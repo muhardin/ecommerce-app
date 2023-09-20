@@ -47,6 +47,20 @@ const PaymentForm = () => {
           </p>
         </div>
       </div>
+      {userInfo ? (
+        <button className=" bg-black text-slate-100 mt-4 py-3 px-6 hover:bg-orange-950 cursor-pointer duration-200">
+          Processed to checkout
+        </button>
+      ) : (
+        <div className="">
+          <button className=" bg-black text-slate-100 mt-4 py-3 px-6 hover:bg-orange-950 duration-200 cursor-not-allowed">
+            Process to checkout
+          </button>
+          <p className=" text-base text-red-500 font-semibold animate-bounce">
+            Please login
+          </p>
+        </div>
+      )}
     </div>
   );
 };

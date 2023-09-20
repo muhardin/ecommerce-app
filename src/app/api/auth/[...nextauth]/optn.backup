@@ -2,11 +2,12 @@ import type { NextAuthOptions } from "next-auth";
 import GithubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
-import toast from "react-hot-toast";
+import axios from "axios";
+import NextAuth from "next-auth";
 
 export const options: NextAuthOptions = {
   pages: {
-    signIn: "/sign-in",
+    // signIn: "/login",
   },
   providers: [
     GithubProvider({
@@ -18,61 +19,40 @@ export const options: NextAuthOptions = {
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
     }),
     CredentialsProvider({
+      // The name to display on the sign in form (e.g. "Sign in with...")
       name: "Credentials",
+      // `credentials` is used to generate a form on the sign in page.
+      // You can specify which fields should be submitted, by adding keys to the `credentials` object.
+      // e.g. domain, username, password, 2FA token, etc.
+      // You can pass any HTML attribute to the <input> tag through the object.
       credentials: {
-        email: {
-          label: "Email",
-          type: "text",
-          placeholder: "Enter Your Email",
-        },
-        password: {
-          label: "Password",
-          type: "password",
-          placeholder: "Enter your password",
-        },
+        email: { label: "Email", type: "email", placeholder: "jsmith" },
+        password: { label: "Password", type: "password" },
       },
       async authorize(credentials, req) {
         console.log(credentials?.email, credentials?.password);
         // const { email, password } = credentials as any;
         const raw = JSON.stringify({
-          username: credentials?.email,
+          email: credentials?.email,
           password: credentials?.password,
         });
 
+        console.log(raw);
         const res = await fetch("https://nimda.blazingwa.com/api/login", {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            "Content-Type": "application/json",
+          },
           body: raw,
         });
-        const userD = await res.json();
-
-        if (res.ok) {
-          const user = userD.data.user;
-          console.log(user);
-          return {
-            id: `${user.id}`,
-            name: user?.firstname,
-            username: `${user?.username}`,
-            email: user?.email,
-            bearer: user?.access_token,
-            image: user?.photo_url,
-          };
+        const user = await res.json();
+        console.log(raw);
+        if (user) {
+          return user;
         } else {
           return null;
         }
       },
     }),
   ],
-  callbacks: {
-    async session({ session, token }) {
-      console.log(session);
-      console.log(token);
-      return {
-        ...session,
-        user: {
-          ...session.user,
-        },
-      };
-    },
-  },
 };

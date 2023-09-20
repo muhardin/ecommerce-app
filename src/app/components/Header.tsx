@@ -12,13 +12,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { Products, StateProps } from "../../../type";
 import FormattedPrice from "./FormattedPrice";
 import { addUser, deleteUser } from "@/redux/shoppingSlice";
+import { useRouter } from "next/navigation";
 
 const Header = () => {
+  const router = useRouter();
   const dispatch = useDispatch();
   const { productData, orderData } = useSelector(
     (state: StateProps) => state.shopping
   );
   const { data: session } = useSession();
+  console.log(session?.user);
   useEffect(() => {
     if (session) {
       dispatch(
@@ -58,7 +61,13 @@ const Header = () => {
         </div>
         {/* Login Register */}
         {!session && (
-          <div onClick={() => signIn()} className="headerDiv cursor-pointer">
+          <div
+            onClick={
+              //() => signIn()
+              () => router.push("/sign-in")
+            }
+            className="headerDiv cursor-pointer"
+          >
             <AiOutlineUser className="text-2xl" />
             <p className=" text-sm font-semibold">Login/Register</p>
           </div>
