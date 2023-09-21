@@ -32,7 +32,7 @@ export const options: NextAuthOptions = {
         },
       },
       async authorize(credentials, req) {
-        console.log(credentials?.email, credentials?.password);
+        // console.log(credentials?.email, credentials?.password);
         // const { email, password } = credentials as any;
         const raw = JSON.stringify({
           username: credentials?.email,
@@ -48,7 +48,7 @@ export const options: NextAuthOptions = {
 
         if (res.ok) {
           const user = userD.data.user;
-          console.log(user);
+          // console.log(user);
           return {
             id: `${user.id}`,
             name: user?.firstname,
@@ -65,8 +65,8 @@ export const options: NextAuthOptions = {
   ],
   callbacks: {
     async session({ session, token }) {
-      console.log(session);
-      console.log(token);
+      // console.log(session);
+      // console.log(token);
       return {
         ...session,
         user: {

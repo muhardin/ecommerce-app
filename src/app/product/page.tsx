@@ -13,7 +13,7 @@ const ProductPage = async ({ searchParams }: Props) => {
   const _id = Number(_idString);
   const product = getSingleProduct(_id);
   const data = await getTrendingProducts();
-  console.log(product);
+  // console.log(product);
   return (
     <div>
       <Container>

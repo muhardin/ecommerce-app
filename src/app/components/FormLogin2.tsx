@@ -8,7 +8,12 @@ import toast, { Toaster } from "react-hot-toast"; //https://react-hot-toast.com/
 import { SessionProvider } from "next-auth/react";
 import { getServerSession } from "next-auth";
 import React, { useRef } from "react";
-import { IoLogoGoogle, IoLogoGithub } from "react-icons/io";
+import {
+  IoLogoGoogle,
+  IoLogoGithub,
+  IoIosEye,
+  IoIosEyeOff,
+} from "react-icons/io";
 
 const FormLoginT = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -25,7 +30,7 @@ const FormLoginT = () => {
         password,
         callbackUrl: "/",
       });
-      console.log(signInData);
+      // console.log(signInData);
       if (signInData?.error) {
         toast.error("Login failed!", {
           position: "top-center",
@@ -43,9 +48,15 @@ const FormLoginT = () => {
       });
     }
   };
-
+  const [passwordShown, setPasswordShown] = useState(false);
+  // Password toggle handler
+  const togglePassword = () => {
+    // When the handler is invoked
+    // chnage inverse the boolean state passwordShown
+    setPasswordShown(!passwordShown);
+  };
   return (
-    <div className=" flex items-center justify-center bg-white">
+    <div className=" flex items-center justify-center">
       <div className="max-w-md bg-white p-6 rounded shadow-lg flex flex-col items-center">
         <div className="text-center">
           <h2 className="text-2xl font-semibold text-gray-800">Login</h2>
@@ -69,24 +80,51 @@ const FormLoginT = () => {
               type="email"
               id="email"
               name="email"
+              placeholder="Enter your email"
               className="w-full mt-2 p-2 border rounded-md focus:outline-none focus:border-blue-500"
             />
           </div>
-          <div className="mb-4">
+
+          <div className="flex flex-col my-4">
+            <label className="text-gray-700">Password</label>
+            <div className="relative flex items-center mt-2">
+              <input
+                name="password"
+                id="password"
+                className="flex-1 p-2 pr-10 border border-gray-300 focus:outline-none focus:ring-0 focus:border-gray-300 rounded text-sm text-gray-900"
+                placeholder="Enter your password"
+                type={passwordShown ? "text" : "password"}
+              />
+              <button
+                onClick={togglePassword}
+                type="button"
+                className="absolute right-2 bg-transparent flex items-center justify-center text-gray-700"
+              >
+                {passwordShown ? <IoIosEye /> : <IoIosEyeOff />}
+              </button>
+            </div>
+          </div>
+
+          {/* <div className="mb-4">
             <label
               htmlFor="password"
               className="block text-gray-600 font-medium"
             >
               Password
             </label>
-            <input
-              required
-              type="password"
-              id="password"
-              name="password"
-              className="w-full mt-2 p-2 border rounded-md focus:outline-none focus:border-blue-500"
-            />
-          </div>
+            <div className=" flex  items-center w-full group">
+              <input
+                required
+                type={passwordShown ? "text" : "password"}
+                id="password"
+                name="password"
+                className="w-full mt-2 p-2 border rounded-md focus:outline-none focus:border-blue-500"
+              />
+              <span onClick={togglePassword}>
+                {passwordShown ? <IoIosEye /> : <IoIosEyeOff />}
+              </span>
+            </div>
+          </div> */}
           <div className="text-center">
             <button
               type="submit"

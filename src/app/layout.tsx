@@ -5,6 +5,7 @@ import type { Metadata } from "next";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Footer from "./components/Footer";
+import BottomNavigation from "./components/BottomNavigation";
 
 export const metadata: Metadata = {
   title: "My Smart Shop ",
@@ -22,6 +23,7 @@ export default function RootLayout({
         <Layout>
           <Header />
           {children}
+          <BottomNavigation />
           <Footer />
         </Layout>
       </body>

@@ -9,11 +9,69 @@ import {
   decreaseQuantity,
   deleteProduct,
   increaseQuantity,
+  resetCart,
 } from "@/redux/shoppingSlice";
 import FormattedPrice from "./FormattedPrice";
+
+import Swal from "sweetalert2";
+type Product = {
+  id: number;
+  title: string;
+  price: number;
+  brandId: number;
+};
 const CartItem = () => {
-  const { productData } = useSelector((state: StateProps) => state?.shopping);
   const dispatch = useDispatch();
+  const ConfirmAction = async (productId?: number, act?: string) => {
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton:
+          "bg-darkText hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:ring focus:ring-blue-200",
+        cancelButton:
+          "bg-darkText hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:ring focus:ring-blue-200 ",
+      },
+      buttonsStyling: false,
+    });
+
+    swalWithBootstrapButtons
+      .fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes, delete it!",
+        cancelButtonText: "No, cancel!",
+        reverseButtons: true,
+      })
+      .then((result) => {
+        if (result.isConfirmed) {
+          // console.log(productId);
+          if (act == "del") {
+            dispatch(deleteProduct(productId));
+          } else {
+            dispatch(resetCart());
+          }
+
+          // swalWithBootstrapButtons.fire(
+          //   "Deleted!",
+          //   "Your file has been deleted.",
+          //   "success"
+          // );
+        } else if (
+          /* Read more about handling dismissals below */
+          result.dismiss === Swal.DismissReason.cancel
+        ) {
+          // swalWithBootstrapButtons.fire(
+          //   "Cancelled",
+          //   "Your imaginary file is safe :)",
+          //   "error"
+          // );
+        }
+      });
+  };
+
+  const { productData } = useSelector((state: StateProps) => state?.shopping);
+
   return (
     <div className="flex flex-col gap-y-2">
       <div className="hidden lg:inline-flex items-center justify-between font-semibold bg-white p-2">
@@ -28,8 +86,17 @@ const CartItem = () => {
             key={item._id}
           >
             <div className=" flex items-center gap-x-3 w-full md:w-1/3">
+              {/* <button
+                onClick={() => {
+                  ConfirmAction(item?._id);
+                }}
+              >
+                Test
+              </button> */}
               <span
-                onClick={() => dispatch(deleteProduct(item?._id))}
+                onClick={() => {
+                  ConfirmAction(item?._id, "del");
+                }}
                 className="text-lg hover:text-red-600 cursor-pointer duration-200"
               >
                 <AiOutlineClose />
