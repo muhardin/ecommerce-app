@@ -2,7 +2,6 @@ import type { NextAuthOptions } from "next-auth";
 import GithubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
-import toast from "react-hot-toast";
 
 export const options: NextAuthOptions = {
   pages: {
@@ -35,26 +34,28 @@ export const options: NextAuthOptions = {
         // console.log(credentials?.email, credentials?.password);
         // const { email, password } = credentials as any;
         const raw = JSON.stringify({
-          username: credentials?.email,
+          email: credentials?.email,
           password: credentials?.password,
         });
-
-        const res = await fetch("https://nimda.blazingwa.com/api/login", {
+        const res = await fetch("http://127.0.0.1:8000/api/login", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: raw,
         });
+        console.log(raw);
         const userD = await res.json();
+        console.log(userD);
 
         if (res.ok) {
-          const user = userD.data.user;
+          const user = userD.user;
+          const auth = userD.authorization;
           // console.log(user);
           return {
             id: `${user.id}`,
             name: user?.firstname,
             username: `${user?.username}`,
             email: user?.email,
-            bearer: user?.access_token,
+            bearer: auth?.token,
             image: user?.photo_url,
           };
         } else {
@@ -64,9 +65,27 @@ export const options: NextAuthOptions = {
     }),
   ],
   callbacks: {
-    async session({ session, token }) {
-      // console.log(session);
-      // console.log(token);
+    async jwt({ token, user }) {
+      console.log(user);
+      if (user) {
+        return { ...token, user: user };
+      }
+      return token;
+    },
+    async signIn({ user, account, profile, email, credentials }) {
+      console.log(user);
+      return true;
+    },
+
+    async redirect({ url, baseUrl }) {
+      console.log(url);
+      console.log(baseUrl);
+      return baseUrl;
+    },
+    async session({ session, token, user }) {
+      console.log(user);
+      console.log(token);
+      console.log(session);
       return {
         ...session,
         user: {

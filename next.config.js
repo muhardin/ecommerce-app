@@ -15,6 +15,7 @@ const nextConfig = {
       "avatars2.githubusercontent.com",
       "lavinephotography.com.au",
       "bucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com",
+      "images.unsplash.com",
     ],
   },
 };

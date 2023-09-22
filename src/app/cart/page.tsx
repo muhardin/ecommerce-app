@@ -7,8 +7,10 @@ import { resetCart } from "@/redux/shoppingSlice";
 import PaymentForm from "../components/PaymentForm";
 import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
+import toast from "react-hot-toast";
 
 const CartPage = () => {
+  toast.dismiss();
   const router = useRouter();
   const { productData } = useSelector((state: StateProps) => state?.shopping);
   const dispatch = useDispatch();

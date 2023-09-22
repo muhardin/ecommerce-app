@@ -25,22 +25,23 @@ const FormLoginT = () => {
     const password = e.currentTarget.password.value;
     try {
       const signInData = await signIn("credentials", {
-        redirect: true,
+        redirect: false,
         email,
         password,
         callbackUrl: "/",
       });
-      // console.log(signInData);
+      console.log(signInData);
       if (signInData?.error) {
+        toast.dismiss();
         toast.error("Login failed!", {
           position: "top-center",
         });
       } else {
+        toast.dismiss();
         toast.success("Login successful!", {
           position: "top-center",
         });
       }
-
       // Redirect or handle the login result as needed
     } catch (error) {
       toast.error("Login failed!", {
@@ -51,8 +52,6 @@ const FormLoginT = () => {
   const [passwordShown, setPasswordShown] = useState(false);
   // Password toggle handler
   const togglePassword = () => {
-    // When the handler is invoked
-    // chnage inverse the boolean state passwordShown
     setPasswordShown(!passwordShown);
   };
   return (

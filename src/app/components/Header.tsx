@@ -20,17 +20,21 @@ import { useDispatch, useSelector } from "react-redux";
 import { Products, StateProps } from "../../../type";
 import FormattedPrice from "./FormattedPrice";
 import { addUser, deleteUser } from "@/redux/shoppingSlice";
+import toast, { Toaster } from "react-hot-toast";
+
 import { useRouter } from "next/navigation";
-import toast from "react-hot-toast";
+import { usePathname } from "next/navigation";
 
 const Header = () => {
   const router = useRouter();
+  const pathname = usePathname();
   const dispatch = useDispatch();
   const { productData, orderData } = useSelector(
     (state: StateProps) => state.shopping
   );
+  console.log(pathname);
   const { data: session } = useSession();
-  // console.log(orderData);
+  console.log(session);
   useEffect(() => {
     if (session) {
       dispatch(
@@ -148,7 +152,7 @@ const Header = () => {
           )} */}
         </div>
         {/* Logout Form */}
-        {session && (
+        {/* {session && (
           <div
             onClick={() => signOut()}
             className="headerDiv cursor-pointer px-2 gap-x-1"
@@ -156,7 +160,7 @@ const Header = () => {
             <FiLogOut className="text-2xl" />
             <p className="text-sm font-semibold">Logout</p>
           </div>
-        )}
+        )} */}
 
         <div className="">
           <div className="relative" x-data="{ open: true }">
@@ -190,9 +194,15 @@ const Header = () => {
               <div className="px-2 pt-2 pb-4 bg-white rounded-md shadow-lg dark-mode:bg-gray-700">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <Link
-                    onClick={toggleProfileMenuShown}
+                    onClick={() => {
+                      toast.loading("Loading...", {
+                        id: "t_profile",
+                      });
+                      toggleProfileMenuShown();
+                      toast.dismiss();
+                    }}
                     className="flex row items-start rounded-lg bg-transparent p-2 dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
-                    href="/profile"
+                    href={`/profile`}
                   >
                     <div className="bg-teal-500 text-white rounded-lg p-3">
                       <svg
@@ -214,7 +224,12 @@ const Header = () => {
                   </Link>
 
                   <Link
-                    onClick={toggleProfileMenuShown}
+                    onClick={() => {
+                      toast.loading("Loading...", {
+                        id: "t_order",
+                      });
+                      toggleProfileMenuShown();
+                    }}
                     className="flex row items-start rounded-lg bg-transparent p-2 dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
                     href="/order"
                   >
@@ -276,9 +291,12 @@ const Header = () => {
                   <div
                     onClick={() => {
                       toast.loading("Loading...");
+                      toggleProfileMenuShown();
                       signOut({
+                        redirect: false,
                         callbackUrl: "/sign-in",
                       });
+                      toast.dismiss();
                     }}
                     className=" cursor-pointer flex row items-start rounded-lg bg-transparent p-2 dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
                   >
@@ -287,9 +305,28 @@ const Header = () => {
                     </div>
                     <div className="ml-3">
                       <p className="font-semibold">Log Out</p>
-                      <p className="text-sm">Take a look at your statistics</p>
+                      <p className="text-sm">Click to sign out</p>
                     </div>
                   </div>
+
+                  <Link
+                    onClick={() => {
+                      toast.loading("Loading...", {
+                        id: "t_cart",
+                      });
+                      toggleProfileMenuShown();
+                    }}
+                    href="/cart"
+                    className=" cursor-pointer flex row items-start rounded-lg bg-transparent p-2 dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                  >
+                    <div className="bg-teal-500 text-white rounded-lg p-3">
+                      <IoMdCart className="md:h-6 md:w-6 h-4 w-4" />
+                    </div>
+                    <div className="ml-3">
+                      <p className="font-semibold">Cart</p>
+                      <p className="text-sm">Take a look at your cart</p>
+                    </div>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -308,6 +345,7 @@ const Header = () => {
           />
         </button> */}
       </Container>
+      <Toaster />
     </div>
   );
 };

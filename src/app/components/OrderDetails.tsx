@@ -6,8 +6,10 @@ import Image from "next/image";
 import FormattedPrice from "./FormattedPrice";
 import { resetOrder } from "@/redux/shoppingSlice";
 import Link from "next/link";
+import toast from "react-hot-toast";
 
 const OrderDetails = () => {
+  toast.dismiss();
   const dispatch = useDispatch();
   const { orderData } = useSelector((state: StateProps) => state?.shopping);
 
