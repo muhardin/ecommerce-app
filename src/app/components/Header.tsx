@@ -8,11 +8,7 @@ import {
   IoIosArrowDropright,
 } from "react-icons/io";
 import { FiSearch, FiLogOut } from "react-icons/fi";
-import {
-  AiOutlineUser,
-  AiOutlineArrowDown,
-  AiOutlineOrderedList,
-} from "react-icons/ai";
+import { AiOutlineUser, AiOutlineOrderedList } from "react-icons/ai";
 import { useSession, signIn, signOut } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
@@ -21,20 +17,21 @@ import { Products, StateProps } from "../../../type";
 import FormattedPrice from "./FormattedPrice";
 import { addUser, deleteUser } from "@/redux/shoppingSlice";
 import toast, { Toaster } from "react-hot-toast";
-
 import { useRouter } from "next/navigation";
-import { usePathname } from "next/navigation";
+import AvatarHeader from "./Avatar";
+
+interface Photo {
+  photo: String;
+}
 
 const Header = () => {
   const router = useRouter();
-  const pathname = usePathname();
   const dispatch = useDispatch();
   const { productData, orderData } = useSelector(
     (state: StateProps) => state.shopping
   );
-  console.log(pathname);
   const { data: session } = useSession();
-  console.log(session);
+  // console.log(session?.bearer);
   useEffect(() => {
     if (session) {
       dispatch(
@@ -169,13 +166,7 @@ const Header = () => {
                 onClick={toggleProfileMenuShown}
                 className="headerDiv cursor-pointer px-4 gap-x-1 py-1 items-center "
               >
-                <Image
-                  className=" rounded-full object-cover"
-                  src={session?.user?.image as string}
-                  alt="image"
-                  width={40}
-                  height={40}
-                />
+                <AvatarHeader />
                 <span>
                   {!profileMenuShown ? (
                     <IoIosArrowDropright />

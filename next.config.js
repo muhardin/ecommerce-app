@@ -1,6 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: false,
+  env: {
+    SERVER_ENDPOINT: process.env.SERVER_ENDPOINT,
+  },
   images: {
     domains: [
       "avatars.githubusercontent.com",

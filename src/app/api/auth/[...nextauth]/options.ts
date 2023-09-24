@@ -37,14 +37,15 @@ export const options: NextAuthOptions = {
           email: credentials?.email,
           password: credentials?.password,
         });
-        const res = await fetch("http://127.0.0.1:8000/api/login", {
+        const res = await fetch(`${process.env.SERVER_ENDPOINT}/api/login`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: raw,
         });
-        console.log(raw);
+        // console.log(raw);
+        // console.log(process.env.SERVER_ENDPOINT);
         const userD = await res.json();
-        console.log(userD);
+        // console.log(userD);
 
         if (res.ok) {
           const user = userD.user;
@@ -66,32 +67,35 @@ export const options: NextAuthOptions = {
   ],
   callbacks: {
     async jwt({ token, user }) {
-      console.log(user);
+      // console.log(user);
       if (user) {
         return { ...token, user: user };
       }
       return token;
     },
     async signIn({ user, account, profile, email, credentials }) {
-      console.log(user);
+      // console.log(user);
       return true;
     },
 
     async redirect({ url, baseUrl }) {
-      console.log(url);
-      console.log(baseUrl);
+      // console.log(url);
+      // console.log(baseUrl);
       return baseUrl;
     },
-    async session({ session, token, user }) {
-      console.log(user);
-      console.log(token);
-      console.log(session);
-      return {
-        ...session,
-        user: {
-          ...session.user,
-        },
-      };
+    async session({ session, token, user, bearer }: any) {
+      // console.log(user);
+      // console.log(token);
+      // console.log(session);
+      // console.log(token.user?.bearer);
+      session.bearer = token?.user?.bearer;
+      return session;
+      // return {
+      //   ...session,
+      //   user: {
+      //     ...session.user,
+      //   },
+      // };
     },
   },
 };

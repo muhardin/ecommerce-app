@@ -1,10 +1,37 @@
 "use client";
-import React from "react";
+import { useSession } from "next-auth/react";
 import Image from "next/image";
-import toast from "react-hot-toast";
+import { useEffect, useState } from "react";
+
+import React from "react";
 
 const ProfileDetail = () => {
-  toast.dismiss();
+  const { data: session } = useSession();
+  const [data, setData]: any = useState(null);
+  const [loaded, setLoaded] = useState(false);
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch(
+        `${process.env.SERVER_ENDPOINT!}/api/user/profile`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${session?.bearer}`,
+          },
+        }
+      );
+
+      const data = await response.json();
+      const dataD = data?.data;
+      setData(dataD);
+      setLoaded(true);
+    };
+    setTimeout(() => {
+      fetchData();
+    }, 3000);
+    // fetchData();
+  }, [session?.bearer, data]);
+  // console.log(process.env.SERVER_ENDPOINT!);
   return (
     <div>
       <div className="container mx-auto my-5 p-5">
@@ -14,19 +41,48 @@ const ProfileDetail = () => {
             {/* <!-- Profile Card --> */}
             <div className="bg-white p-3 border-t-4 border-green-400">
               <div className="image overflow-hidden">
-                <Image
-                  height={500}
-                  width={500}
-                  className="h-auto w-full mx-auto"
-                  src="/images/profile/kid.jpg"
-                  alt=""
-                />
+                {!loaded ? (
+                  <div className="animate-pulse">
+                    <svg
+                      className="w-500 h-500 text-gray-200 dark:text-gray-600"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="currentColor"
+                      viewBox="0 0 20 18"
+                    >
+                      <path d="M18 0H2a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2Zm-5.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm4.376 10.481A1 1 0 0 1 16 15H4a1 1 0 0 1-.895-1.447l3.5-7A1 1 0 0 1 7.468 6a.965.965 0 0 1 .9.5l2.775 4.757 1.546-1.887a1 1 0 0 1 1.618.1l2.541 4a1 1 0 0 1 .028 1.011Z" />
+                    </svg>
+                  </div>
+                ) : data?.photo_url ? (
+                  <Image
+                    priority
+                    height={500}
+                    width={500}
+                    className={`h-auto w-full mx-auto ${
+                      !loaded ? "opacity-0" : "opacity-100"
+                    }}`}
+                    src={data?.photo_url as string}
+                    alt="no image"
+                  />
+                ) : (
+                  <div className="animate-pulse">
+                    <svg
+                      className="w-500 h-500 text-gray-200 dark:text-gray-600"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="currentColor"
+                      viewBox="0 0 20 18"
+                    >
+                      <path d="M18 0H2a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2Zm-5.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm4.376 10.481A1 1 0 0 1 16 15H4a1 1 0 0 1-.895-1.447l3.5-7A1 1 0 0 1 7.468 6a.965.965 0 0 1 .9.5l2.775 4.757 1.546-1.887a1 1 0 0 1 1.618.1l2.541 4a1 1 0 0 1 .028 1.011Z" />
+                    </svg>
+                  </div>
+                )}
               </div>
               <h1 className="text-gray-900 font-bold text-xl leading-8 my-1">
-                Jane Doe
+                {data?.name}
               </h1>
               <h3 className="text-gray-600 font-lg text-semibold leading-6">
-                Owner at Her Company Inc.
+                {data?.email}
               </h3>
               <p className="text-sm text-gray-500 hover:text-gray-600 leading-6">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -73,13 +129,40 @@ const ProfileDetail = () => {
               </div>
               <div className="grid grid-cols-3">
                 <div className="text-center my-2">
-                  <Image
-                    height={500}
-                    width={500}
-                    className="h-16 w-16 rounded-full mx-auto"
-                    src="/images/profile/kid2.jpg"
-                    alt=""
-                  />
+                  {!loaded ? (
+                    <div className="animate-pulse">
+                      <svg
+                        className="w-50 h-50 text-gray-200 dark:text-gray-600"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="currentColor"
+                        viewBox="0 0 20 18"
+                      >
+                        <path d="M18 0H2a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2Zm-5.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm4.376 10.481A1 1 0 0 1 16 15H4a1 1 0 0 1-.895-1.447l3.5-7A1 1 0 0 1 7.468 6a.965.965 0 0 1 .9.5l2.775 4.757 1.546-1.887a1 1 0 0 1 1.618.1l2.541 4a1 1 0 0 1 .028 1.011Z" />
+                      </svg>
+                    </div>
+                  ) : data?.photo_url ? (
+                    <Image
+                      priority
+                      height={500}
+                      width={500}
+                      className="h-16 w-16 rounded-full mx-auto"
+                      src={data?.photo_url}
+                      alt=""
+                    />
+                  ) : (
+                    <div className="animate-pulse">
+                      <svg
+                        className="w-50 h-50 text-gray-200 dark:text-gray-600"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="currentColor"
+                        viewBox="0 0 20 18"
+                      >
+                        <path d="M18 0H2a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2Zm-5.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm4.376 10.481A1 1 0 0 1 16 15H4a1 1 0 0 1-.895-1.447l3.5-7A1 1 0 0 1 7.468 6a.965.965 0 0 1 .9.5l2.775 4.757 1.546-1.887a1 1 0 0 1 1.618.1l2.541 4a1 1 0 0 1 .028 1.011Z" />
+                      </svg>
+                    </div>
+                  )}
                   <a href="#" className="text-main-color">
                     Kojstantin
                   </a>
@@ -101,7 +184,7 @@ const ProfileDetail = () => {
                     width={500}
                     height={500}
                     className="h-16 w-16 rounded-full mx-auto"
-                    src="https://lavinephotography.com.au/wp-content/uploads/2017/01/PROFILE-Photography-112.jpg"
+                    src="/images/thumbnail.jpeg"
                     alt=""
                   />
                   <a href="#" className="text-main-color">
@@ -113,7 +196,7 @@ const ProfileDetail = () => {
                     width={500}
                     height={500}
                     className="h-16 w-16 rounded-full mx-auto"
-                    src="https://bucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com/public/images/f04b52da-12f2-449f-b90c-5e4d5e2b1469_361x361.png"
+                    src="/images/thumbnail.jpeg"
                     alt=""
                   />
                   <a href="#" className="text-main-color">

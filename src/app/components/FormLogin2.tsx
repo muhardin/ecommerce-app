@@ -25,12 +25,12 @@ const FormLoginT = () => {
     const password = e.currentTarget.password.value;
     try {
       const signInData = await signIn("credentials", {
-        redirect: false,
+        redirect: true,
         email,
         password,
         callbackUrl: "/",
       });
-      console.log(signInData);
+      // console.log(signInData);
       if (signInData?.error) {
         toast.dismiss();
         toast.error("Login failed!", {

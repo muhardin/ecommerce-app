@@ -3,11 +3,12 @@ import { signIn } from "next-auth/react";
 import React, { useRef } from "react";
 import TextBox from "./elements/TextBox";
 import Button from "./elements/Button";
+import toast from "react-hot-toast";
 
 const LoginPage = () => {
   const userName = useRef("");
   const pass = useRef("");
-
+  toast.dismiss();
   const onSubmit = async () => {
     const result = await signIn("credentials", {
       email: userName.current,
@@ -15,7 +16,7 @@ const LoginPage = () => {
       redirect: false,
       // callbackUrl: "/",
     });
-    console.log(result);
+    // console.log(result);
   };
   return (
     <div
