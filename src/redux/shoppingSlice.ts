@@ -19,7 +19,7 @@ export const shoppingSlice = createSlice({
   reducers: {
     addToCart: (state, action) => {
       const existingProduct = state.productData.find(
-        (item: Products) => item._id === action.payload._id
+        (item: Products) => item.id === action.payload.id
       );
       if (existingProduct) {
         existingProduct.quantity += action.payload.quantity;
@@ -29,13 +29,19 @@ export const shoppingSlice = createSlice({
     },
     increaseQuantity: (state, action) => {
       const existingProduct = state.productData.find(
-        (item: Products) => item._id === action.payload._id
+        (item: Products) => item.id === action.payload.id
       );
       existingProduct && existingProduct.quantity++;
     },
+    setupShipping: (state, action) => {
+      const existingProduct = state.productData.find(
+        (item: Products) => item.id === action.payload.id
+      );
+      existingProduct && existingProduct.shipping == "data";
+    },
     decreaseQuantity: (state, action) => {
       const existingProduct = state.productData.find(
-        (item: Products) => item._id === action.payload._id
+        (item: Products) => item.id === action.payload.id
       );
       if (existingProduct?.quantity === 1) {
         existingProduct.quantity === 1;
@@ -45,7 +51,7 @@ export const shoppingSlice = createSlice({
     },
     deleteProduct: (state, action) => {
       state.productData = state.productData.filter(
-        (item) => item._id !== action.payload
+        (item) => item.id !== action.payload
       );
     },
     resetCart: (state) => {
@@ -76,5 +82,6 @@ export const {
   deleteUser,
   saveOrder,
   resetOrder,
+  setupShipping,
 } = shoppingSlice.actions;
 export default shoppingSlice.reducer;

@@ -17,7 +17,7 @@ const OrderDetails = () => {
   useEffect(() => {
     let amt = 0;
     orderData?.order?.map((item: Products) => {
-      amt += item.price * item.quantity;
+      amt += (item.agent_price + item.profit) * item.quantity;
       return;
     });
     setTotalAmount(amt);
@@ -36,7 +36,7 @@ const OrderDetails = () => {
           <div className="py-2 flex flex-col justify-center gap-2">
             {orderData?.order?.map((item: Products) => (
               <div
-                key={item?._id}
+                key={item?.id}
                 className="py-2 border-b-[1px] border-gray-300 grid grid-cols-7 items-center"
               >
                 <div className="col-span-4 flex items-start gap-2 text-sm">
@@ -58,10 +58,12 @@ const OrderDetails = () => {
                   {item?.quantity}
                 </p>
                 <p className="flex items-center justify-center">
-                  <FormattedPrice amount={item?.price} />
+                  <FormattedPrice amount={item?.agent_price + item.profit} />
                 </p>
                 <p className="flex items-center justify-center">
-                  <FormattedPrice amount={item?.price * item.quantity} />
+                  <FormattedPrice
+                    amount={(item?.agent_price + item.profit) * item.quantity}
+                  />
                 </p>
               </div>
             ))}

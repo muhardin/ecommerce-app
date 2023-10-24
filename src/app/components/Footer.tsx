@@ -69,28 +69,28 @@ const Footer = () => {
             <p className="text-lg">Latest posts</p>
             <ul className="text-sm font-light mt-2 flex flex-col gap-y-2">
               <li className="flex flex-col">
-                <span className="text-slate hover:text-orange-600 cursor-pointer duration-200">
+                <span className="text-slate hover:text-sky-600 cursor-pointer duration-200">
                   Where Music Is Headed Next
                 </span>
-                <span className="text-orange-600">January 31, 2022</span>
+                <span className="text-sky-600">January 31, 2022</span>
               </li>
               <li className="flex flex-col">
-                <span className="text-slate hover:text-orange-600 cursor-pointer duration-200">
+                <span className="text-slate hover:text-sky-600 cursor-pointer duration-200">
                   Where Music Is Headed Next
                 </span>
-                <span className="text-orange-600">January 31, 2022</span>
+                <span className="text-sky-600">January 31, 2022</span>
               </li>
               <li className="flex flex-col">
-                <span className="text-slate hover:text-orange-600 cursor-pointer duration-200">
+                <span className="text-slate hover:text-sky-600 cursor-pointer duration-200">
                   Where Music Is Headed Next
                 </span>
-                <span className="text-orange-600">January 31, 2022</span>
+                <span className="text-sky-600">January 31, 2022</span>
               </li>
               <li className="flex flex-col">
-                <span className="text-slate hover:text-orange-600 cursor-pointer duration-200">
+                <span className="text-slate hover:text-sky-600 cursor-pointer duration-200">
                   Where Music Is Headed Next
                 </span>
-                <span className="text-orange-600">January 31, 2022</span>
+                <span className="text-sky-600">January 31, 2022</span>
               </li>
             </ul>
           </div>
@@ -98,27 +98,27 @@ const Footer = () => {
             <p className="text-lg">Links</p>
             <ul className=" text-base gap-y-2 ">
               <Link href="/">
-                <li className="hover:text-orange-500 cursor-pointer duration-200">
+                <li className="hover:text-sky-500 cursor-pointer duration-200">
                   Home
                 </li>
               </Link>
               <Link href={"/cart"}>
-                <li className="hover:text-orange-500 cursor-pointer duration-200">
+                <li className="hover:text-sky-500 cursor-pointer duration-200">
                   Cart
                 </li>
               </Link>
               <Link href={"/about"}>
-                <li className="hover:text-orange-500 cursor-pointer duration-200">
+                <li className="hover:text-sky-500 cursor-pointer duration-200">
                   About
                 </li>
               </Link>
               <Link href={"/news"}>
-                <li className="hover:text-orange-500 cursor-pointer duration-200">
+                <li className="hover:text-sky-500 cursor-pointer duration-200">
                   News
                 </li>
               </Link>
               <Link href={"/contact"}>
-                <li className="hover:text-orange-500 cursor-pointer duration-200">
+                <li className="hover:text-sky-500 cursor-pointer duration-200">
                   Contact
                 </li>
               </Link>

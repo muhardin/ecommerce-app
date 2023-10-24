@@ -1,11 +1,21 @@
 "use client";
+import { PhotoIcon, UserCircleIcon } from "@heroicons/react/24/solid";
+import axios from "axios";
 import { useSession } from "next-auth/react";
-import Image from "next/image";
-import { useEffect, useState } from "react";
+import { SyntheticEvent, useEffect, useState } from "react";
+import toast from "react-hot-toast";
+import z from "zod";
+import ModalErrorComponent from "./ui/ModalError";
+import LoadingComponent from "./ui/Loading";
 
-import React from "react";
+export default function Example() {
+  const [isLoading, setIsLoading] = useState(false);
+  const [valModal, setValModal] = useState<boolean>(false);
+  const handleValueChange = (newValue: boolean) => {
+    setValModal(newValue);
+    setIsLoading(!isLoading);
+  };
 
-const ProfileDetail = () => {
   const { data: session } = useSession();
   const [data, setData]: any = useState(null);
   const [loaded, setLoaded] = useState(false);
@@ -25,382 +35,469 @@ const ProfileDetail = () => {
       const dataD = data?.data;
       setData(dataD);
       setLoaded(true);
+      // console.log(dataD);
     };
     setTimeout(() => {
       fetchData();
     }, 3000);
     // fetchData();
   }, [session?.bearer, data]);
-  // console.log(process.env.SERVER_ENDPOINT!);
+
+  const [currentPassword, setCurrentPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  const config = {
+    headers: { Authorization: `Bearer ${session?.bearer}` },
+  };
+
+  const [errMessage, setErrMessage]: any = useState<string[]>([]);
+  const [formErrors, setFormErrors] = useState<{ [key: string]: string }>({});
+
+  const handleSubmit = async (event: SyntheticEvent) => {
+    setIsLoading(true);
+    event.preventDefault();
+    toast.loading("loading....");
+    try {
+      const formData = {
+        currentPassword: currentPassword,
+        newPassword: newPassword,
+        newPassword_confirmation: confirmPassword,
+      };
+      // formDataOrder.parse(formData);
+      // Form data is valid; submit it using Axios
+      const response = await axios.post(
+        process.env.SERVER_ENDPOINT + "/api/user/profile/password",
+        formData,
+        config
+      );
+      // console.log(response.status);
+
+      if (response.status == 200) {
+        toast.dismiss();
+        toast.success("Success", { duration: 6000 });
+
+        setIsLoading(false);
+        console.log(response);
+        setCurrentPassword("");
+        setNewPassword("");
+        setConfirmPassword("");
+      } else if (response.status == 201) {
+        setErrMessage(response.data.message.error);
+        setValModal(true);
+        toast.dismiss();
+        //   console.log(response);
+      } else if (response.status == 500) {
+        toast.error("System on maintenance mode");
+        toast.dismiss();
+      }
+    } catch (error) {
+      toast.dismiss();
+      if (error instanceof z.ZodError) {
+        const fieldErrors = error.errors.reduce(
+          (errors, err) => ({
+            ...errors,
+            [err.path[0]]: err.message,
+          }),
+          {}
+        );
+        setFormErrors(fieldErrors);
+      }
+    }
+  };
+
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastNamer] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const handleSubmitProfile = async (event: SyntheticEvent) => {
+    setIsLoading(true);
+    event.preventDefault();
+    toast.loading("loading....");
+    try {
+      const formProfile = {
+        first_name: firstName ? firstName : data?.first_name,
+        last_name: lastName ? lastName : data?.last_name,
+        phone_number: phoneNumber ? phoneNumber : data?.phone_number,
+      };
+      // formDataOrder.parse(formData);
+      // Form data is valid; submit it using Axios
+      const response = await axios.post(
+        process.env.SERVER_ENDPOINT + "/api/user/profile/update",
+        formProfile,
+        config
+      );
+      console.log(firstName);
+
+      if (response.status == 200) {
+        toast.dismiss();
+        toast.success("Success", { duration: 6000 });
+
+        setIsLoading(false);
+        console.log(response);
+        setCurrentPassword("");
+        setNewPassword("");
+        setConfirmPassword("");
+      } else if (response.status == 201) {
+        setErrMessage(response.data.message.error);
+        setValModal(true);
+        toast.dismiss();
+        //   console.log(response);
+      } else if (response.status == 500) {
+        toast.error("System on maintenance mode");
+        toast.dismiss();
+      }
+    } catch (error) {
+      toast.dismiss();
+      if (error instanceof z.ZodError) {
+        const fieldErrors = error.errors.reduce(
+          (errors, err) => ({
+            ...errors,
+            [err.path[0]]: err.message,
+          }),
+          {}
+        );
+        setFormErrors(fieldErrors);
+      }
+    }
+  };
   return (
-    <div>
-      <div className="container mx-auto my-5 p-5">
-        <div className="md:flex no-wrap md:-mx-2 ">
-          {/* <!-- Left Side --> */}
-          <div className="w-full md:w-3/12 md:mx-2">
-            {/* <!-- Profile Card --> */}
-            <div className="bg-white p-3 border-t-4 border-green-400">
-              <div className="image overflow-hidden">
-                {!loaded ? (
-                  <div className="animate-pulse">
-                    <svg
-                      className="w-500 h-500 text-gray-200 dark:text-gray-600"
-                      aria-hidden="true"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="currentColor"
-                      viewBox="0 0 20 18"
-                    >
-                      <path d="M18 0H2a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2Zm-5.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm4.376 10.481A1 1 0 0 1 16 15H4a1 1 0 0 1-.895-1.447l3.5-7A1 1 0 0 1 7.468 6a.965.965 0 0 1 .9.5l2.775 4.757 1.546-1.887a1 1 0 0 1 1.618.1l2.541 4a1 1 0 0 1 .028 1.011Z" />
-                    </svg>
+    <>
+      <div className="sm:col-span-12  md:col-span-12 lg:col-span-6 xl:col-span-6 ">
+        <div className="w-full relative overflow-hidden">
+          <div className="p-0">
+            <div id="myTabContent">
+              <div
+                className="active"
+                id="Settings"
+                role="tabpanel"
+                aria-labelledby="Settings-tab"
+              >
+                <div className="grid md:grid-cols-12 lg:grid-cols-12 xl:grid-cols-12 gap-4">
+                  <div className="col-span-12 md:col-span-12 lg:col-span-12 xl:col-span-12">
+                    <div className="bg-white dark:bg-slate-800 shadow  rounded-md w-full relative">
+                      <div className="border-b border-dashed border-slate-200 dark:border-slate-700 py-3 px-4 dark:text-slate-300/70">
+                        <h4 className="font-medium">Personal Information</h4>
+                      </div>
+                      {/*end card-header*/}
+                      <div className="flex-auto p-4">
+                        <form onSubmit={handleSubmitProfile}>
+                          <div className="grid md:grid-cols-12 lg:grid-cols-12">
+                            <div className="col-span-12 md:col-span-12 lg:col-span-3 self-center text-right mr-2">
+                              <label
+                                htmlFor="First_Name"
+                                className="font-medium text-sm text-slate-600 dark:text-slate-400"
+                              >
+                                First Name
+                              </label>
+                            </div>
+                            {/*end col*/}
+                            <div className="col-span-12 md:col-span-12 lg:col-span-9 mb-2">
+                              <input
+                                type="text"
+                                id="First_Name"
+                                className="form-input w-full rounded-md mt-1 border border-slate-300/60 dark:border-slate-700 dark:text-slate-300 bg-transparent px-3 py-1 focus:outline-none focus:ring-0 placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-primary-500 dark:focus:border-primary-500  dark:hover:border-slate-700"
+                                defaultValue={data?.first_name}
+                                value={firstName ? firstName : data?.first_name}
+                                onChange={(e) => {
+                                  setFirstName(e.currentTarget.value);
+                                }}
+                                placeholder="First name"
+                                required
+                              />
+                            </div>
+                            {/*end col*/}
+                            <div className="col-span-12 md:col-span-12 lg:col-span-3 self-center text-right mr-2">
+                              <label
+                                htmlFor="Last_Name"
+                                className="font-medium text-sm text-slate-600 dark:text-slate-400"
+                              >
+                                Last Name
+                              </label>
+                            </div>
+                            {/*end col*/}
+                            <div className="col-span-12 md:col-span-12 lg:col-span-9  mb-2">
+                              <input
+                                type="text"
+                                id="Last_Name"
+                                className="form-input w-full rounded-md mt-1 border border-slate-300/60 dark:border-slate-700 dark:text-slate-300 bg-transparent px-3 py-1 focus:outline-none focus:ring-0 placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-primary-500 dark:focus:border-primary-500  dark:hover:border-slate-700"
+                                defaultValue={data?.last_name}
+                                onChange={(e) => {
+                                  setLastNamer(e.currentTarget.value);
+                                }}
+                                placeholder="Last name"
+                                required
+                              />
+                            </div>
+                            {/*end col*/}
+                            <div className="col-span-12 md:col-span-12 lg:col-span-3 self-center text-right mr-2">
+                              <label
+                                htmlFor="Company_Name"
+                                className="font-medium text-sm text-slate-600 dark:text-slate-400"
+                              >
+                                Company Name
+                              </label>
+                            </div>
+                            {/*end col*/}
+                            <div className="col-span-12 md:col-span-12 lg:col-span-9  mb-2">
+                              <input
+                                type="text"
+                                id="Company_Name"
+                                className="form-input w-full rounded-md mt-1 border border-slate-300/60 dark:border-slate-700 dark:text-slate-300 bg-transparent px-3 py-1 focus:outline-none focus:ring-0 placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-primary-500 dark:focus:border-primary-500  dark:hover:border-slate-700"
+                                defaultValue="Example Themes"
+                                placeholder="Last name"
+                                required
+                              />
+                            </div>
+                            {/*end col*/}
+                            <div className="col-span-12 md:col-span-12 lg:col-span-3 self-center text-right mr-2">
+                              <label
+                                htmlFor="Contact_Phone"
+                                className="font-medium text-sm text-slate-600 dark:text-slate-400"
+                              >
+                                Contact Phone
+                              </label>
+                            </div>
+                            {/*end col*/}
+                            <div className="col-span-12 md:col-span-12 lg:col-span-9  mb-2">
+                              <input
+                                type="text"
+                                id="Contact_Phone"
+                                className="form-input w-full rounded-md mt-1 border border-slate-300/60 dark:border-slate-700 dark:text-slate-300 bg-transparent px-3 py-1 focus:outline-none focus:ring-0 placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-primary-500 dark:focus:border-primary-500  dark:hover:border-slate-700"
+                                defaultValue={data?.phone_number}
+                                placeholder="Last name"
+                                value={
+                                  phoneNumber ? phoneNumber : data?.phone_number
+                                }
+                                onChange={(e) => {
+                                  setPhoneNumber(e.currentTarget.value);
+                                }}
+                                required
+                              />
+                            </div>
+                            {/*end col*/}
+                            <div className="col-span-12 md:col-span-12 lg:col-span-3 self-center text-right mr-2">
+                              <label
+                                htmlFor="Your_Email"
+                                className="font-medium text-sm text-slate-600 dark:text-slate-400"
+                              >
+                                Your email
+                              </label>
+                            </div>
+                            {/*end col*/}
+                            <div className="col-span-12 md:col-span-12 lg:col-span-9  mb-2">
+                              <input
+                                type="email"
+                                id="Your_Email"
+                                className="form-input w-full rounded-md mt-1 border border-slate-300/60 dark:border-slate-700 dark:text-slate-300 bg-transparent px-3 py-1 focus:outline-none focus:ring-0 placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-primary-500 dark:focus:border-primary-500  dark:hover:border-slate-700"
+                                defaultValue={data?.email}
+                                placeholder="Last name"
+                                required
+                              />
+                            </div>
+                            {/*end col*/}
+                            <div className="col-span-12 md:col-span-12 lg:col-span-3 self-center text-right mr-2">
+                              <label
+                                htmlFor="Contact_Phone"
+                                className="font-medium text-sm text-slate-600 dark:text-slate-400"
+                              >
+                                Website Link
+                              </label>
+                            </div>
+                            {/*end col*/}
+                            <div className="col-span-12 md:col-span-12 lg:col-span-9  mb-2">
+                              <input
+                                type="text"
+                                id="Contact_Phone"
+                                className="form-input w-full rounded-md mt-1 border border-slate-300/60 dark:border-slate-700 dark:text-slate-300 bg-transparent px-3 py-1 focus:outline-none focus:ring-0 placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-primary-500 dark:focus:border-primary-500  dark:hover:border-slate-700"
+                                defaultValue=""
+                                placeholder="Website"
+                              />
+                            </div>
+                            {/*end col*/}
+                            <div className="col-span-12 md:col-span-12 lg:col-span-3 self-center text-right mr-2">
+                              <label
+                                htmlFor="countries"
+                                className="font-medium text-sm text-slate-600 dark:text-slate-400"
+                              >
+                                Countries
+                              </label>
+                            </div>
+                            {/*end col*/}
+                            <div className="col-span-12 md:col-span-12 lg:col-span-9  mb-2">
+                              <select
+                                id="countries"
+                                className=" w-full rounded-md mt-1 border border-slate-300/60 dark:border-slate-700 dark:text-slate-300 bg-transparent px-3 py-[6.5px] focus:outline-none focus:ring-0 placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-primary-500 dark:focus:border-primary-500  dark:hover:border-slate-700"
+                              >
+                                <option selected>Indonesia</option>
+                              </select>
+                            </div>
+                            {/*end col*/}
+                            <div className="flex flex-row gap-2 col-start-4 col-end-13  mb-2">
+                              <button className="inline-block focus:outline-none text-primary-500 hover:bg-primary-500 hover:text-white bg-transparent border border-gray-200 dark:bg-transparent dark:text-primary-500 dark:hover:text-white dark:border-gray-700 dark:hover:bg-primary-500  text-sm font-medium py-1 px-3 rounded">
+                                Submit
+                              </button>
+                              <button
+                                type="reset"
+                                className="inline-block focus:outline-none text-red-500 hover:bg-red-500 hover:text-white bg-transparent border border-gray-200 dark:bg-transparent dark:text-red-500 dark:hover:text-white dark:border-gray-700 dark:hover:bg-red-500  text-sm font-medium py-1 px-3 rounded"
+                              >
+                                Cancel
+                              </button>
+                            </div>
+                            {/*end col*/}
+                          </div>
+                          {/*end grid*/}
+                        </form>
+                      </div>
+                      {/*end card-body*/}
+                    </div>
+                    {/*end card*/}
                   </div>
-                ) : data?.photo_url ? (
-                  <Image
-                    priority
-                    height={500}
-                    width={500}
-                    className={`h-auto w-full mx-auto ${
-                      !loaded ? "opacity-0" : "opacity-100"
-                    }}`}
-                    src={data?.photo_url as string}
-                    alt="no image"
-                  />
-                ) : (
-                  <div className="animate-pulse">
-                    <svg
-                      className="w-500 h-500 text-gray-200 dark:text-gray-600"
-                      aria-hidden="true"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="currentColor"
-                      viewBox="0 0 20 18"
-                    >
-                      <path d="M18 0H2a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2Zm-5.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm4.376 10.481A1 1 0 0 1 16 15H4a1 1 0 0 1-.895-1.447l3.5-7A1 1 0 0 1 7.468 6a.965.965 0 0 1 .9.5l2.775 4.757 1.546-1.887a1 1 0 0 1 1.618.1l2.541 4a1 1 0 0 1 .028 1.011Z" />
-                    </svg>
+                  {/*end col*/}
+                  <div className="col-span-12 md:col-span-12 lg:col-span-12 xl:col-span-12">
+                    <div className="bg-white dark:bg-slate-800 shadow  rounded-md w-full relative">
+                      <div className="border-b border-dashed border-slate-200 dark:border-slate-700 py-3 px-4 dark:text-slate-300/70">
+                        <h4 className="font-medium">Change Password</h4>
+                      </div>
+                      {/*end card-header*/}
+                      <div className="flex-auto p-4">
+                        <form onSubmit={handleSubmit}>
+                          <div className="grid md:grid-cols-12 lg:grid-cols-12">
+                            <div className="col-span-12 md:col-span-12 lg:col-span-3 self-center text-right mr-2">
+                              <label
+                                htmlFor="Current_Password"
+                                className="font-medium text-sm text-slate-600 dark:text-slate-400"
+                              >
+                                Current Password
+                              </label>
+                            </div>
+                            {/*end col*/}
+                            <div className="col-span-12 md:col-span-12 lg:col-span-9 mb-2">
+                              <input
+                                type="password"
+                                id="Current_Password"
+                                className="form-input w-full rounded-md mt-1 border border-slate-300/60 dark:border-slate-700 dark:text-slate-300 bg-transparent px-3 py-1 focus:outline-none focus:ring-0 placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-primary-500 dark:focus:border-primary-500  dark:hover:border-slate-700"
+                                placeholder="Current Password"
+                                required
+                                value={currentPassword}
+                                onChange={(e) =>
+                                  setCurrentPassword(e.target.value)
+                                }
+                              />
+                            </div>
+                            {/*end col*/}
+                            <div className="col-span-12 md:col-span-12 lg:col-span-3 self-center text-right mr-2">
+                              <label
+                                htmlFor="New_Password"
+                                className="font-medium text-sm text-slate-600 dark:text-slate-400"
+                              >
+                                New Password
+                              </label>
+                            </div>
+                            {/*end col*/}
+                            <div className="col-span-12 md:col-span-12 lg:col-span-9  mb-2">
+                              <input
+                                type="password"
+                                id="New_Password"
+                                className="form-input w-full rounded-md mt-1 border border-slate-300/60 dark:border-slate-700 dark:text-slate-300 bg-transparent px-3 py-1 focus:outline-none focus:ring-0 placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-primary-500 dark:focus:border-primary-500  dark:hover:border-slate-700"
+                                placeholder="New Password"
+                                required
+                                value={newPassword}
+                                onChange={(e) => setNewPassword(e.target.value)}
+                              />
+                            </div>
+                            {/*end col*/}
+                            <div className="col-span-12 md:col-span-12 lg:col-span-3 self-center text-right mr-2">
+                              <label
+                                htmlFor="Confirm_Password"
+                                className="font-medium text-sm text-slate-600 dark:text-slate-400"
+                              >
+                                Confirm Password
+                              </label>
+                            </div>
+                            {/*end col*/}
+                            <div className="col-span-12 md:col-span-12 lg:col-span-9  mb-2">
+                              <input
+                                type="password"
+                                id="Confirm_Password"
+                                className="form-input w-full rounded-md mt-1 border border-slate-300/60 dark:border-slate-700 dark:text-slate-300 bg-transparent px-3 py-1 focus:outline-none focus:ring-0 placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-primary-500 dark:focus:border-primary-500  dark:hover:border-slate-700"
+                                placeholder="Confirm Password"
+                                required
+                                value={confirmPassword}
+                                onChange={(e) =>
+                                  setConfirmPassword(e.target.value)
+                                }
+                              />
+                            </div>
+                            {/*end col*/}
+                            <div className="flex gap-2 col-start-4 col-end-13  mb-2">
+                              <button className="inline-block focus:outline-none text-primary-500 hover:bg-primary-500 hover:text-white bg-transparent border border-gray-200 dark:bg-transparent dark:text-primary-500 dark:hover:text-white dark:border-gray-700 dark:hover:bg-primary-500  text-sm font-medium py-1 px-3 rounded">
+                                Change Password
+                              </button>
+                              <button
+                                type="reset"
+                                className="inline-block focus:outline-none text-red-500 hover:bg-red-500 hover:text-white bg-transparent border border-gray-200 dark:bg-transparent dark:text-red-500 dark:hover:text-white dark:border-gray-700 dark:hover:bg-red-500  text-sm font-medium py-1 px-3 rounded"
+                              >
+                                Cancel
+                              </button>
+                            </div>
+                            {/*end col*/}
+                          </div>
+                          {/*end grid*/}
+                        </form>
+                      </div>
+                      {/*end card-body*/}
+                    </div>
+                    {/*end card*/}
+                    <div className="bg-white dark:bg-slate-800 shadow  rounded-md w-full relative mt-4">
+                      <div className="border-b border-dashed border-slate-200 dark:border-slate-700 py-3 px-4 dark:text-slate-300/70">
+                        <h4 className="font-medium">Other Settings</h4>
+                      </div>
+                      {/*end card-header*/}
+                      <div className="flex-auto p-4">
+                        <form>
+                          <label className="custom-label block mb-2 dark:text-slate-300">
+                            <div className="bg-white border border-slate-200 rounded w-4 h-4  inline-block leading-4 text-center -mb-[3px]">
+                              <input type="checkbox" className="hidden" />
+                              <i className="fas fa-check hidden text-xs text-slate-700 " />
+                            </div>
+                            Email Notifications{" "}
+                            <span className="text-slate-400">
+                              Do you need them?
+                            </span>
+                          </label>
+                          <label className="custom-label block dark:text-slate-300">
+                            <div className="bg-white border border-slate-200 rounded w-4 h-4  inline-block leading-4 text-center -mb-[3px]">
+                              <input type="checkbox" className="hidden" />
+                              <i className="fas fa-check hidden text-xs text-slate-700" />
+                            </div>
+                            API Access{" "}
+                            <span className="text-slate-400">
+                              Enable/Disable access
+                            </span>
+                          </label>
+                        </form>
+                      </div>
+                      {/*end card-body*/}
+                    </div>
+                    {/*end card*/}
                   </div>
-                )}
+                  {/*end col*/}
+                </div>
+                {/*end grid*/}
               </div>
-              <h1 className="text-gray-900 font-bold text-xl leading-8 my-1">
-                {data?.name}
-              </h1>
-              <h3 className="text-gray-600 font-lg text-semibold leading-6">
-                {data?.email}
-              </h3>
-              <p className="text-sm text-gray-500 hover:text-gray-600 leading-6">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Reprehenderit, eligendi dolorum sequi illum qui unde aspernatur
-                non deserunt
-              </p>
-              <ul className="bg-gray-100 text-gray-600 hover:text-gray-700 hover:shadow py-2 px-3 mt-3 divide-y rounded shadow-sm">
-                <li className="flex items-center py-3">
-                  <span>Status</span>
-                  <span className="ml-auto">
-                    <span className="bg-green-500 py-1 px-2 rounded text-white text-sm">
-                      Active
-                    </span>
-                  </span>
-                </li>
-                <li className="flex items-center py-3">
-                  <span>Member since</span>
-                  <span className="ml-auto">Nov 07, 2016</span>
-                </li>
-              </ul>
             </div>
-            {/* <!-- End of profile card --> */}
-            <div className="my-4"></div>
-            {/* <!-- Friends card --> */}
-            <div className="bg-white p-3 hover:shadow">
-              <div className="flex items-center space-x-3 font-semibold text-gray-900 text-xl leading-8">
-                <span className="text-green-500">
-                  <svg
-                    className="h-5 fill-current"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-                    />
-                  </svg>
-                </span>
-                <span>Similar Profiles</span>
-              </div>
-              <div className="grid grid-cols-3">
-                <div className="text-center my-2">
-                  {!loaded ? (
-                    <div className="animate-pulse">
-                      <svg
-                        className="w-50 h-50 text-gray-200 dark:text-gray-600"
-                        aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="currentColor"
-                        viewBox="0 0 20 18"
-                      >
-                        <path d="M18 0H2a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2Zm-5.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm4.376 10.481A1 1 0 0 1 16 15H4a1 1 0 0 1-.895-1.447l3.5-7A1 1 0 0 1 7.468 6a.965.965 0 0 1 .9.5l2.775 4.757 1.546-1.887a1 1 0 0 1 1.618.1l2.541 4a1 1 0 0 1 .028 1.011Z" />
-                      </svg>
-                    </div>
-                  ) : data?.photo_url ? (
-                    <Image
-                      priority
-                      height={500}
-                      width={500}
-                      className="h-16 w-16 rounded-full mx-auto"
-                      src={data?.photo_url}
-                      alt=""
-                    />
-                  ) : (
-                    <div className="animate-pulse">
-                      <svg
-                        className="w-50 h-50 text-gray-200 dark:text-gray-600"
-                        aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="currentColor"
-                        viewBox="0 0 20 18"
-                      >
-                        <path d="M18 0H2a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2Zm-5.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm4.376 10.481A1 1 0 0 1 16 15H4a1 1 0 0 1-.895-1.447l3.5-7A1 1 0 0 1 7.468 6a.965.965 0 0 1 .9.5l2.775 4.757 1.546-1.887a1 1 0 0 1 1.618.1l2.541 4a1 1 0 0 1 .028 1.011Z" />
-                      </svg>
-                    </div>
-                  )}
-                  <a href="#" className="text-main-color">
-                    Kojstantin
-                  </a>
-                </div>
-                <div className="text-center my-2">
-                  <Image
-                    width={500}
-                    height={500}
-                    className="h-16 w-16 rounded-full mx-auto"
-                    src="https://avatars2.githubusercontent.com/u/24622175?s=60&amp;v=4"
-                    alt=""
-                  />
-                  <a href="#" className="text-main-color">
-                    James
-                  </a>
-                </div>
-                <div className="text-center my-2">
-                  <Image
-                    width={500}
-                    height={500}
-                    className="h-16 w-16 rounded-full mx-auto"
-                    src="/images/thumbnail.jpeg"
-                    alt=""
-                  />
-                  <a href="#" className="text-main-color">
-                    Natie
-                  </a>
-                </div>
-                <div className="text-center my-2">
-                  <Image
-                    width={500}
-                    height={500}
-                    className="h-16 w-16 rounded-full mx-auto"
-                    src="/images/thumbnail.jpeg"
-                    alt=""
-                  />
-                  <a href="#" className="text-main-color">
-                    Casey
-                  </a>
-                </div>
-              </div>
-            </div>
-            {/* <!-- End of friends card --> */}
-          </div>
-          {/* <!-- Right Side --> */}
-          <div className="w-full md:w-9/12 mx-2 h-64">
-            {/* <!-- Profile tab --> */}
-            {/* <!-- About Section --> */}
-            <div className="bg-white p-3 shadow-sm rounded-sm">
-              <div className="flex items-center space-x-2 font-semibold text-gray-900 leading-8">
-                <span className="text-green-500">
-                  <svg
-                    className="h-5"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                    />
-                  </svg>
-                </span>
-                <span className="tracking-wide">About</span>
-              </div>
-              <div className="text-gray-700">
-                <div className="grid md:grid-cols-2 text-sm">
-                  <div className="grid grid-cols-2">
-                    <div className="px-4 py-2 font-semibold">First Name</div>
-                    <div className="px-4 py-2">Jane</div>
-                  </div>
-                  <div className="grid grid-cols-2">
-                    <div className="px-4 py-2 font-semibold">Last Name</div>
-                    <div className="px-4 py-2">Doe</div>
-                  </div>
-                  <div className="grid grid-cols-2">
-                    <div className="px-4 py-2 font-semibold">Gender</div>
-                    <div className="px-4 py-2">Female</div>
-                  </div>
-                  <div className="grid grid-cols-2">
-                    <div className="px-4 py-2 font-semibold">Contact No.</div>
-                    <div className="px-4 py-2">+11 998001001</div>
-                  </div>
-                  <div className="grid grid-cols-2">
-                    <div className="px-4 py-2 font-semibold">
-                      Current Address
-                    </div>
-                    <div className="px-4 py-2">
-                      Beech Creek, PA, Pennsylvania
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-2">
-                    <div className="px-4 py-2 font-semibold">
-                      Permanant Address
-                    </div>
-                    <div className="px-4 py-2">
-                      Arlington Heights, IL, Illinois
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-2">
-                    <div className="px-4 py-2 font-semibold">Email.</div>
-                    <div className="px-4 py-2">
-                      <a
-                        className="text-blue-800"
-                        href="mailto:jane@example.com"
-                      >
-                        jane@example.com
-                      </a>
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-2">
-                    <div className="px-4 py-2 font-semibold">Birthday</div>
-                    <div className="px-4 py-2">Feb 06, 1998</div>
-                  </div>
-                </div>
-              </div>
-              <button className="block w-full text-blue-800 text-sm font-semibold rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4">
-                Show Full Information
-              </button>
-            </div>
-            {/* <!-- End of about section --> */}
-
-            <div className="my-4"></div>
-
-            {/* <!-- Experience and education --> */}
-            <div className="bg-white p-3 shadow-sm rounded-sm">
-              <div className="grid grid-cols-2">
-                <div>
-                  <div className="flex items-center space-x-2 font-semibold text-gray-900 leading-8 mb-3">
-                    <span className="text-green-500">
-                      <svg
-                        className="h-5"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                        />
-                      </svg>
-                    </span>
-                    <span className="tracking-wide">Experience</span>
-                  </div>
-                  <ul className="list-inside space-y-2">
-                    <li>
-                      <div className="text-teal-600">
-                        Owner at Her Company Inc.
-                      </div>
-                      <div className="text-gray-500 text-xs">
-                        March 2020 - Now
-                      </div>
-                    </li>
-                    <li>
-                      <div className="text-teal-600">
-                        Owner at Her Company Inc.
-                      </div>
-                      <div className="text-gray-500 text-xs">
-                        March 2020 - Now
-                      </div>
-                    </li>
-                    <li>
-                      <div className="text-teal-600">
-                        Owner at Her Company Inc.
-                      </div>
-                      <div className="text-gray-500 text-xs">
-                        March 2020 - Now
-                      </div>
-                    </li>
-                    <li>
-                      <div className="text-teal-600">
-                        Owner at Her Company Inc.
-                      </div>
-                      <div className="text-gray-500 text-xs">
-                        March 2020 - Now
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-                <div>
-                  <div className="flex items-center space-x-2 font-semibold text-gray-900 leading-8 mb-3">
-                    <span className="text-green-500">
-                      <svg
-                        className="h-5"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path fill="#fff" d="M12 14l9-5-9-5-9 5 9 5z" />
-                        <path
-                          fill="#fff"
-                          d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"
-                        />
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"
-                        />
-                      </svg>
-                    </span>
-                    <span className="tracking-wide">Education</span>
-                  </div>
-                  <ul className="list-inside space-y-2">
-                    <li>
-                      <div className="text-teal-600">
-                        Masters Degree in Oxford
-                      </div>
-                      <div className="text-gray-500 text-xs">
-                        March 2020 - Now
-                      </div>
-                    </li>
-                    <li>
-                      <div className="text-teal-600">
-                        Bachelors Degreen in LPU
-                      </div>
-                      <div className="text-gray-500 text-xs">
-                        March 2020 - Now
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              {/* <!-- End of Experience and education grid --> */}
-            </div>
-            {/* <!-- End of profile tab --> */}
           </div>
         </div>
+        {/*end inner-grid*/}
       </div>
-    </div>
+      <div className={`${!isLoading ? "hidden" : "block"}`}>
+        <LoadingComponent />
+      </div>
+      <ModalErrorComponent
+        errMessage={errMessage}
+        modalToggle={handleValueChange}
+        valModal={valModal}
+      />
+    </>
   );
-};
-
-export default ProfileDetail;
+}

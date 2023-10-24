@@ -7,6 +7,6 @@
     @apply bg-bgLight text-gray-500 flex items-center justify-center p-1.5 rounded-full hover:bg-white border-[1px] border-gray-200 hover:border-orange-500 duration-200;
   }
   .socialLink {
-    @apply bg-slate-100 text-darkText p-1 inline-block items-center justify-center rounded-md text-lg hover:bg-orange-600 hover:text-white cursor-pointer duration-200;
+    @apply bg-slate-100 text-darkText p-1 inline-block items-center justify-center rounded-md text-lg hover:bg-sky-600 hover:text-white cursor-pointer duration-200;
   }
 }

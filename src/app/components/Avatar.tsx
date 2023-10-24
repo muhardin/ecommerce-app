@@ -30,7 +30,16 @@ const AvatarHeader = () => {
   // console.log(process.env.SERVER_ENDPOINT);
   return (
     <>
-      {!loaded ? (
+      <div className="w-10 h-10 bg-cover bg-center rounded-md">
+        <Image
+          width={45}
+          height={45}
+          src={"/images/avatar.png"}
+          alt=""
+          className="h-full w-full overflow-hidden object-cover rounded-full border-2 border-white dark:border-gray-700 shadow"
+        />
+      </div>
+      {/* {!loaded ? (
         <div className="animate-pulse">
           <svg
             className="w-500 h-500 text-gray-200 dark:text-gray-600"
@@ -45,7 +54,8 @@ const AvatarHeader = () => {
       ) : data?.photo_url ? (
         <Image
           className=" rounded-full object-cover"
-          src={data?.photo_url}
+          // src={data?.photo_url}
+          src={"/images/avatar.png"}
           alt="image"
           width={40}
           height={40}
@@ -62,7 +72,7 @@ const AvatarHeader = () => {
             <path d="M18 0H2a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2Zm-5.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm4.376 10.481A1 1 0 0 1 16 15H4a1 1 0 0 1-.895-1.447l3.5-7A1 1 0 0 1 7.468 6a.965.965 0 0 1 .9.5l2.775 4.757 1.546-1.887a1 1 0 0 1 1.618.1l2.541 4a1 1 0 0 1 .028 1.011Z" />
           </svg>
         </div>
-      )}
+      )} */}
     </>
   );
 };

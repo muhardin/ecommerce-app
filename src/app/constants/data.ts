@@ -1,6 +1,6 @@
 export const productData = [
   {
-    _id: 1,
+    id: 1,
     title: "Long sleeve Jacket",
     isNew: true,
     oldPrice: "200",
@@ -14,7 +14,7 @@ export const productData = [
     quantity: 1,
   },
   {
-    _id: 2,
+    id: 2,
     title: "Jacket with wollen hat",
     isNew: true,
     oldPrice: "70",
@@ -28,7 +28,7 @@ export const productData = [
     quantity: 1,
   },
   {
-    _id: 3,
+    id: 3,
     title: "Compact fashion t-shirt",
     isNew: true,
     oldPrice: "70",
@@ -42,7 +42,7 @@ export const productData = [
     quantity: 1,
   },
   {
-    _id: 4,
+    id: 4,
     title: "Blue jins",
     isNew: true,
     oldPrice: "70",
@@ -56,7 +56,7 @@ export const productData = [
     quantity: 1,
   },
   {
-    _id: 5,
+    id: 5,
     title: "Skirts with full setup",
     isNew: true,
     oldPrice: "800",
@@ -70,7 +70,7 @@ export const productData = [
     quantity: 1,
   },
   {
-    _id: 6,
+    id: 6,
     title: "Yellow Hoody",
     isNew: false,
     oldPrice: "200",
@@ -84,7 +84,7 @@ export const productData = [
     quantity: 1,
   },
   {
-    _id: 7,
+    id: 7,
     title: "Black t-shirt for women",
     isNew: false,
     oldPrice: "60",
@@ -98,7 +98,7 @@ export const productData = [
     quantity: 1,
   },
   {
-    _id: 8,
+    id: 8,
     title: "Gouwn with Red velvet",
     isNew: false,
     oldPrice: "500",
@@ -112,7 +112,7 @@ export const productData = [
     quantity: 1,
   },
   {
-    _id: 9,
+    id: 9,
     title: "Pink beauty",
     isNew: false,
     oldPrice: "150",
@@ -126,7 +126,7 @@ export const productData = [
     quantity: 1,
   },
   {
-    _id: 10,
+    id: 10,
     title: "Jean's stylish Jacket",
     isNew: false,
     oldPrice: "250",
@@ -140,7 +140,7 @@ export const productData = [
     quantity: 1,
   },
   {
-    _id: 11,
+    id: 11,
     title: "Round neck t-shirt",
     isNew: false,
     oldPrice: "1000",
@@ -154,7 +154,7 @@ export const productData = [
     quantity: 1,
   },
   {
-    _id: 12,
+    id: 12,
     title: "Black Jacket",
     isNew: false,
     oldPrice: "200",
@@ -168,7 +168,7 @@ export const productData = [
     quantity: 1,
   },
   {
-    _id: 13,
+    id: 13,
     title: "Black top with jeans",
     isNew: false,
     oldPrice: "130",
@@ -182,7 +182,7 @@ export const productData = [
     quantity: 1,
   },
   {
-    _id: 14,
+    id: 14,
     title: "Kids choice",
     isNew: false,
     oldPrice: "80",
@@ -196,7 +196,7 @@ export const productData = [
     quantity: 1,
   },
   {
-    _id: 15,
+    id: 15,
     title: "Stylish jeans in lightblue",
     isNew: false,
     oldPrice: "120",
@@ -210,7 +210,7 @@ export const productData = [
     quantity: 1,
   },
   {
-    _id: 16,
+    id: 16,
     title: "Unknown horizon",
     isNew: false,
     oldPrice: "400",
@@ -224,7 +224,7 @@ export const productData = [
     quantity: 1,
   },
   {
-    _id: 17,
+    id: 17,
     title: "Light tops",
     isNew: false,
     oldPrice: "140",
@@ -238,7 +238,7 @@ export const productData = [
     quantity: 1,
   },
   {
-    _id: 18,
+    id: 18,
     title: "Khakhi jeans",
     isNew: false,
     oldPrice: "250",
@@ -252,7 +252,7 @@ export const productData = [
     quantity: 1,
   },
   {
-    _id: 19,
+    id: 19,
     title: "Black full sleeve",
     isNew: false,
     oldPrice: "180",
@@ -266,7 +266,7 @@ export const productData = [
     quantity: 1,
   },
   {
-    _id: 20,
+    id: 20,
     title: "Formal for Men",
     isNew: false,
     oldPrice: "500",

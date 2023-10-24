@@ -1,11 +1,12 @@
 interface Amount {
   amount: Number;
+  comma?: Number;
 }
-const FormattedPrice = ({ amount }: Amount) => {
-  const formattedAmount = new Number(amount).toLocaleString("en-US", {
+const FormattedPrice = ({ amount, comma }: Amount) => {
+  const formattedAmount = new Number(amount).toLocaleString("id", {
     style: "currency",
-    currency: "USD",
-    maximumFractionDigits: 2,
+    currency: "IDR",
+    maximumFractionDigits: Number(comma ? comma : 0),
   });
   return <span>{formattedAmount}</span>;
 };

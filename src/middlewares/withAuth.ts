@@ -1,5 +1,4 @@
 import { getToken } from "next-auth/jwt";
-import { usePathname } from "next/navigation";
 import {
   NextFetchEvent,
   NextMiddleware,

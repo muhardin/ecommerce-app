@@ -8,6 +8,7 @@ import PaymentForm from "../components/PaymentForm";
 import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
+import CartTotal from "../components/CartTotal";
 
 const CartPage = () => {
   toast.dismiss();
@@ -20,7 +21,7 @@ const CartPage = () => {
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
         confirmButton:
-          "bg-darkText hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:ring focus:ring-blue-200",
+          "bg-red-600 ml-2 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:ring focus:ring-blue-200",
         cancelButton:
           "bg-darkText hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:ring focus:ring-blue-200 ",
       },
@@ -33,7 +34,7 @@ const CartPage = () => {
         text: "You won't be able to revert this!",
         icon: "warning",
         showCancelButton: true,
-        confirmButtonText: "Yes, delete it!",
+        confirmButtonText: "Yes, reset it!",
         cancelButtonText: "No, cancel!",
         reverseButtons: true,
       })
@@ -63,19 +64,20 @@ const CartPage = () => {
       {productData.length > 0 ? (
         <Container>
           <h2 className=" text-2xl font-semibold mb-2">Cart</h2>
-          <div className=" flex flex-col gap-5">
-            <CartItem />
-            <div className=" flex items-center justify-end mt-2">
-              <button
-                onClick={() => ConfirmAction()}
-                className=" bg-red-500 text-base font-semibold text-slate-100 py-2 px-6 hover:bg-red-700 hover:text-white duration-200"
-              >
-                reset cart
-              </button>
+          <div className=" flex flex-col md:flex-row w-full gap-5 justify-between">
+            <div className="flex flex-col gap-2 w-full">
+              <CartItem />
+              <div className=" flex items-center justify-end mt-2">
+                <button
+                  onClick={() => ConfirmAction()}
+                  className=" bg-red-500 rounded-md text-base font-semibold text-slate-100 py-2 px-6 hover:bg-red-700 hover:text-white duration-200"
+                >
+                  reset cart
+                </button>
+              </div>
             </div>
-            {/* Payment Card */}
-            <div className="">
-              <PaymentForm />
+            <div className="w-full md:w-1/3">
+              <CartTotal />
             </div>
           </div>
         </Container>

@@ -8,6 +8,9 @@ import Footer from "./components/Footer";
 import BottomNavigation from "./components/BottomNavigation";
 import { getServerSession } from "next-auth";
 import { options } from "./api/auth/[...nextauth]/options";
+import { LayoutProvider } from "./LayoutProvider";
+import { headers } from "next/headers";
+import { ShopDataProvider } from "./components/shop/ShopContext";
 
 export const metadata: Metadata = {
   title: "My Smart Shop ",
@@ -19,7 +22,7 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const sessionServer = await getServerSession(options);
+  // const sessionServer = await getServerSession(options);
   // const token = sessionServer?.bearer;
   // const res = await fetch("http://127.0.0.1:8000/api/user/profile", {
   //   headers: {
@@ -29,15 +32,22 @@ export default async function RootLayout({
   // });
   // const data = await res.json();
   // console.log(process.env.GITHUB_ID!);
+  const headersList = headers();
+  const domain = headersList.get("host") || "";
+
   return (
     <html lang="en">
       <body className="font-bodyFont w-full bg-main-bg text-darkText ">
-        <Layout>
-          <Header />
-          {children}
-          <BottomNavigation />
-          <Footer />
-        </Layout>
+        <LayoutProvider>
+          <ShopDataProvider domain={domain}>
+            <Layout>
+              <Header />
+              {children}
+              <Footer />
+              <BottomNavigation />
+            </Layout>
+          </ShopDataProvider>
+        </LayoutProvider>
       </body>
     </html>
   );
