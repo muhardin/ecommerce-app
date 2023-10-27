@@ -52,9 +52,9 @@ const OrderSummaryDetail = ({ id }: any) => {
   const subTotal: number = orderDetail?.reduce((total: number, item: any) => {
     return Number(total) + Number(item.amount);
   }, 0);
-  console.log(subTotal);
-  console.log(id);
-  console.log(order);
+  // console.log(subTotal);
+  // console.log(id);
+  // console.log(order);
 
   const [errMessage, setErrMessage] = useState<string[]>([]);
   const [inLoading, setInLoading] = useState(false);

@@ -21,6 +21,7 @@ import { useRouter } from "next/navigation";
 import AvatarHeader from "./Avatar";
 import SideBar from "./SideBar";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { useUserData } from "./supplier/UserData";
 
 interface HeaderProps {
   toggleNavVisibility: () => void;
@@ -111,6 +112,8 @@ const Header = () => {
       window.removeEventListener("mousedown", handleOutSideClick);
     };
   }, [refNotification]);
+  const userData = useUserData();
+  // console.log(userData);
   return (
     <>
       <div className="bg-bodyColor h-20 top-0 sticky z-50">
@@ -451,31 +454,38 @@ const Header = () => {
                         </p>
                       </div>
                     </Link>
-                    <a
-                      className="flex row items-start rounded-lg bg-transparent p-2 dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
-                      href="#"
-                    >
-                      <div className="bg-sky-500 text-white rounded-lg p-3">
-                        <svg
-                          fill="none"
-                          stroke="currentColor"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          viewBox="0 0 24 24"
-                          className="md:h-6 md:w-6 h-4 w-4"
-                        >
-                          <path d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path>
-                          <path d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path>
-                        </svg>
-                      </div>
-                      <div className="ml-3">
-                        <p className="font-semibold">Analytics</p>
-                        <p className="text-sm">
-                          Take a look at your statistics
-                        </p>
-                      </div>
-                    </a>
+                    {userData?.data?.is_supplier ? (
+                      <Link
+                        onClick={() => {
+                          toggleProfileMenuShown();
+                        }}
+                        className="flex row items-start rounded-lg bg-transparent p-2 dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                        href="/supplier"
+                      >
+                        <div className="bg-sky-500 text-white rounded-lg p-3">
+                          <svg
+                            fill="none"
+                            stroke="currentColor"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            viewBox="0 0 24 24"
+                            className="md:h-6 md:w-6 h-4 w-4"
+                          >
+                            <path d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path>
+                            <path d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path>
+                          </svg>
+                        </div>
+                        <div className="ml-3">
+                          <p className="font-semibold">Im Supplier</p>
+                          <p className="text-sm">
+                            Take a look at your supplier board
+                          </p>
+                        </div>
+                      </Link>
+                    ) : (
+                      ""
+                    )}
 
                     <Link
                       onClick={() => {

@@ -1,3 +1,4 @@
+import axios from "axios";
 import { DataToAdd, ResponseData } from "../../../type";
 import { productData } from "../constants/data";
 import { getServerSession } from "next-auth";
@@ -110,3 +111,17 @@ export function formatDateAndTime(dateTimeString: string) {
   );
   return formattedDate;
 }
+export const getUserDetail = async (token: string) => {
+  const apiUrl = "http://localhost:8000/api/user/profile"; // Replace with your API endpoint
+
+  const response = await axios.get(apiUrl, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  const data = response.data.data;
+  console.log(data);
+
+  return data;
+};

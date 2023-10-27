@@ -23,7 +23,7 @@ export function ShopDataProvider({
   domain,
 }: {
   children: ReactNode;
-  domain?: any;
+  domain?: string;
 }) {
   const [shopData, setShopData] = useState<
     ShopData | undefined

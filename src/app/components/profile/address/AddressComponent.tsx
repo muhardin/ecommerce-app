@@ -109,30 +109,30 @@ const AddressComponent = () => {
                         <path
                           d="M45 29V23C45 10.85 35.15 1 23 1C10.85 1 1 10.85 1 23V29"
                           stroke="#161616"
-                          stroke-width="2"
+                          strokeWidth="2"
                           stroke-miterlimit="10"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                           className=""
                         ></path>
                         <path
                           d="M13 29H1V41C1 43.209 2.791 45 5 45H13V29Z"
                           fill="currentColor"
                           stroke="#161616"
-                          stroke-width="2"
+                          strokeWidth="2"
                           stroke-miterlimit="10"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                           className=""
                         ></path>
                         <path
                           d="M45 29H33V45H41C43.209 45 45 43.209 45 41V29Z"
                           fill="currentColor"
                           stroke="#161616"
-                          stroke-width="2"
+                          strokeWidth="2"
                           stroke-miterlimit="10"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                           className=""
                         ></path>
                       </svg> */}

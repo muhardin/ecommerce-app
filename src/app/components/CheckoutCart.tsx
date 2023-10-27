@@ -18,7 +18,6 @@ import {
   deleteProduct,
   increaseQuantity,
   resetCart,
-  setupShipping,
 } from "@/redux/shoppingSlice";
 import FormattedPrice from "./FormattedPrice";
 
@@ -798,7 +797,7 @@ const CheckoutCart = () => {
         <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
         <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
           <div className="w-full flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-            <div className="w-full relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+            <div className="w-full relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg  mb-20">
               <form onSubmit={handleSubmitAddress}>
                 <div className="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
                   {isFail ? (
@@ -991,18 +990,18 @@ const CheckoutCart = () => {
                   </div>
                 </div>
 
-                <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+                <div className="bg-gray-50 flex py-3 flex-row-reverse p-6 gap-2 items-center">
                   <button
                     type="submit"
                     // onClick={handleSubmitAddress}
-                    className="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto"
+                    className="inline-flex justify-center rounded-md bg-sky-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-sky-500 sm:ml-3 sm:w-auto"
                   >
                     Save
                   </button>
                   <button
                     onClick={toggleModal}
                     type="button"
-                    className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"
+                    className="inline-flex justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"
                   >
                     Cancel
                   </button>

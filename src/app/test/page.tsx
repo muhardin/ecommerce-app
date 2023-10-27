@@ -1,42 +1,214 @@
-"use client";
-import { useState, useEffect } from "react";
-
-interface Step {
-  title: string;
-  steps: string[];
-}
-
-function MyComponent() {
-  const [decodedArray, setDecodedArray] = useState<Step[]>([]);
-  const jsonString =
-    '[{"title":"Internet Banking","steps":["Login ke internet banking klikbca Anda","Pilih menu <b>Transfer Dana<\\/b> lalu pilih <b>Transfer ke BCA Virtual Account<\\/b>","Pilih <b>Dari Rekening<\\/b>","Masukkan Nomor VA (<b>253332213566280<\\/b>) lalu klik <b>Lanjutkan<\\/b>","Detail transaksi akan ditampilkan, pastikan data sudah sesuai lalu masukkan respon <b>Key BCA Appli 1<\\/b>","Klik <b>Kirim<\\/b>","Transaksi sukses, simpan bukti transaksi Anda"]},{"title":"Mobile Banking","steps":["Login pada aplikasi BCA mobile","Pilih <b>m-BCA<\\/b> masukkan kode akses m-BCA","Pilih <b>m-Transfer<\\/b>","Pilih <b>BCA Virtual Account<\\/b>","Masukkan Nomor VA (<b>253332213566280<\\/b>) lalu klik <b>OK<\\/b>","Konfirmasi no virtual account dan rekening pendebetan","Periksa kembalian rincian pembayaran anda, lalu klik <b>Ya<\\/b>","Masukkan pin m-BCA","Pembayaran Selesai"]},{"title":"ATM BCA","steps":["Masukkan kartu ATM BCA & PIN","Pilih menu <b>Transaksi Lainnya > Transfer > Ke Rekening BCA Virtual Account<\\/b>","Masukkan Nomor VA (<b>253332213566280<\\/b>)","Di halaman konfirmasi, pastikan detail pembayaran sudah sesuai seperti Nomor VA, Nama, Produk dan Total Tagihan","Jika sudah benar, klik <b>Ya<\\/b>","Simpan struk transaksi sebagai bukti pembayaran"]}]';
-
-  useEffect(() => {
-    try {
-      const decodedArray: Step[] = JSON.parse(jsonString);
-      setDecodedArray(decodedArray);
-    } catch (error) {
-      console.error("Error decoding JSON:", error);
-    }
-  }, []);
-
+import React from "react";
+import Image from "next/image";
+import { useSession } from "next-auth/react";
+import toast from "react-hot-toast";
+import useSWR from "swr";
+function MyForm() {
   return (
-    <div>
-      <h2>Decoded Array:</h2>
-      {decodedArray.map((item, index) => (
-        <details key={index}>
-          <summary>{item.title}</summary>
-          <ol>
-            {item.steps.map((step, stepIndex) => (
-              <li key={stepIndex}>
-                <span dangerouslySetInnerHTML={{ __html: step }} />
-              </li>
-            ))}
-          </ol>
-        </details>
-      ))}
+    <div
+      className={`relative z-10 visible overflow-x-hidden overflow-y-auto inset-0 outline-none focus:outline-none w-full`}
+      aria-labelledby="modal-title"
+      role="dialog"
+      aria-modal="true"
+    >
+      <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+      <div className="fixed inset-0 z-10 w-full md:ml-[156px] overflow-y-auto mt-24 md:mt-0">
+        <div className="w-full flex min-h-full items-center justify-center md:justify-center p-4 text-start sm:items-center sm:p-0">
+          <div className="w-full relative transform overflow-auto rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-2/3 mb-14 md:mb-0">
+            <div className="p-4  shadow-md text-gray-800">
+              <div className="">
+                <div className="grid sm:px-4 lg:grid-cols-2">
+                  <div className="px-4 pt-8">
+                    <p className="text-xl font-medium">Order Summary</p>
+                    <p className="text-gray-400">
+                      Check your items. And select a suitable shipping method.
+                    </p>
+
+                    <p className="mt-2 text-lg font-medium">Shipping Details</p>
+                  </div>
+                  <div className="mt-10 bg-gray-50 px-4 pt-8 lg:mt-0">
+                    <p className="text-xl font-medium">Progress Details</p>
+                    <p className="text-gray-400">
+                      Complete your order by providing your payment details.
+                    </p>
+
+                    <div className="relative mt-6 flex flex-col gap-2">
+                      <div className="relative">
+                        <label
+                          htmlFor="card-holder"
+                          className="mt-4 mb-2 block text-sm font-medium"
+                        >
+                          Set Order Status
+                        </label>
+                        <input
+                          className="peer"
+                          id="delivering_1"
+                          type="radio"
+                          name="status"
+                          value={`processing`}
+                        />
+                        <span className="peer-checked:border-gray-sky absolute right-4 top-3/4 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
+                        <label
+                          className="peer-checked:border-2 peer-checked:border-sky-500 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-1"
+                          htmlFor="delivering_1"
+                        >
+                          <Image
+                            width={150}
+                            height={150}
+                            className="w-14 object-contain"
+                            src={`/images/status/process.svg`}
+                            alt=""
+                          />
+                          <div className="ml-5">
+                            <span className="mt-2 font-semibold capitalize">
+                              Konfirmasi
+                            </span>
+                            <p className="text-slate-500 text-sm leading-6">
+                              Dalam Persiapan Pengiriman
+                            </p>
+                          </div>
+                        </label>
+                      </div>
+                      <div className="relative">
+                        <input
+                          className="peer"
+                          id="virtual_4"
+                          type="radio"
+                          name="status"
+                        />
+                        <span className="peer-checked:border-sky-500 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
+                        <label
+                          className="peer-checked:border-2 peer-checked:border-sky-500 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-2"
+                          htmlFor="virtual_4"
+                        >
+                          <Image
+                            width={500}
+                            height={500}
+                            className="w-14 object-contain"
+                            src="/images/payment/ocbc.png"
+                            alt=""
+                          />
+                          <div className="ml-1">
+                            <span className="mt-2 font-semibold">
+                              OCBC NISP
+                            </span>
+                            <p className="text-slate-500 text-sm leading-6">
+                              OCBC NISP
+                            </p>
+                          </div>
+                        </label>
+                      </div>
+                      <div className="relative">
+                        <input
+                          className="peer hidden"
+                          id="delivering"
+                          type="radio"
+                          name="status"
+                          value={`delivering`}
+                        />
+                        <span className="peer-checked:border-gray-700 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
+                        <label
+                          className="peer-checked:border-2 peer-checked:border-gray-700 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-1"
+                          htmlFor="delivering"
+                        >
+                          <Image
+                            width={150}
+                            height={150}
+                            className="w-14 object-contain"
+                            src={`/images/status/delivering.svg`}
+                            alt=""
+                          />
+                          <div className="ml-5">
+                            <span className="mt-2 font-semibold capitalize">
+                              Delivering
+                            </span>
+                            <p className="text-slate-500 text-sm leading-6">
+                              Barang Sudah Dikirim
+                            </p>
+                          </div>
+                        </label>
+                      </div>
+                      <div className="relative">
+                        <input
+                          className="peer hidden"
+                          id="delivered"
+                          type="radio"
+                          name="status"
+                          value={`delivered`}
+                        />
+                        <span className="peer-checked:border-gray-700 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
+                        <label
+                          className="peer-checked:border-2 peer-checked:border-gray-700 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-1"
+                          htmlFor="delivered"
+                        >
+                          <Image
+                            width={150}
+                            height={150}
+                            className="w-14 object-contain"
+                            src={`/images/status/delivered.png`}
+                            alt=""
+                          />
+                          <div className="ml-5">
+                            <span className="mt-2 font-semibold capitalize">
+                              Delivered
+                            </span>
+                            <p className="text-slate-500 text-sm leading-6">
+                              Barang Sudah Diterima
+                            </p>
+                          </div>
+                        </label>
+                      </div>
+                    </div>
+                    <div className="">
+                      <label
+                        htmlFor="card-holder"
+                        className="mt-4 mb-2 block text-sm font-medium"
+                      >
+                        Shipping Number
+                      </label>
+                      <div className="relative">
+                        <input
+                          type="text"
+                          id="card-holder"
+                          name="card-holder"
+                          className="w-full rounded-md border border-gray-200 px-4 py-3 pl-11 text-sm uppercase shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
+                          placeholder="Your reference code here"
+                        />
+                        <div className="pointer-events-none absolute inset-y-0 left-0 inline-flex items-center px-3">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="h-4 w-4 text-gray-400"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              stroke-linejoin="round"
+                              d="M15 9h3.75M15 12h3.75M15 15h3.75M4.5 19.5h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5zm6-10.125a1.875 1.875 0 11-3.75 0 1.875 1.875 0 013.75 0zm1.294 6.336a6.721 6.721 0 01-3.17.789 6.721 6.721 0 01-3.168-.789 3.376 3.376 0 016.338 0z"
+                            />
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+                    <button className="mt-4 mb-8 w-full rounded-md bg-gray-900 px-6 py-3 font-medium text-white">
+                      Place Order
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div className="flex flex-auto justify-end mt-4 gap-6 items-center">
+                <button className="p-4 rounded-md text-white bg-sky-500 cursor-pointer">
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
 
-export default MyComponent;
+export default MyForm;

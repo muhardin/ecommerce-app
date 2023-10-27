@@ -1,16 +1,26 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Products } from "../../type";
 
 interface StoreState {
   productData: Products[];
   userInfo: null | string;
   orderData: [];
+  notes: null | string;
+  modal: null | string;
 }
 
 const initialState: StoreState = {
   productData: [],
   userInfo: null,
   orderData: [],
+  notes: null,
+  modal: null,
+};
+
+type Note = {
+  id: string;
+  heading: string;
+  content: string;
 };
 
 export const shoppingSlice = createSlice({
@@ -33,12 +43,7 @@ export const shoppingSlice = createSlice({
       );
       existingProduct && existingProduct.quantity++;
     },
-    setupShipping: (state, action) => {
-      const existingProduct = state.productData.find(
-        (item: Products) => item.id === action.payload.id
-      );
-      existingProduct && existingProduct.shipping == "data";
-    },
+
     decreaseQuantity: (state, action) => {
       const existingProduct = state.productData.find(
         (item: Products) => item.id === action.payload.id
@@ -69,10 +74,37 @@ export const shoppingSlice = createSlice({
     resetOrder: (state) => {
       state.orderData = [];
     },
+
+    // addNote: (state, action: PayloadAction<Note>) => {
+    //   const note = action.payload;
+    //   state.notes.push(note);
+    // },
+    // removeNote: (state, action: PayloadAction<string>) => {
+    //   const id = action.payload;
+    //   const notes = state.notes.filter((note) => note.id !== id);
+    //   state.notes = notes;
+    // },
+    removeNote: (state) => {
+      state.notes = null;
+    },
+    updateNote: (state, action) => {
+      state.notes = action.payload;
+    },
+    removeModal: (state) => {
+      state.modal = null;
+    },
+    updateModal: (state, action) => {
+      state.modal = action.payload;
+    },
   },
 });
-
+// actions
+// selectors
 export const {
+  updateNote,
+  removeModal,
+  updateModal,
+  removeNote,
   addToCart,
   increaseQuantity,
   decreaseQuantity,
@@ -82,6 +114,5 @@ export const {
   deleteUser,
   saveOrder,
   resetOrder,
-  setupShipping,
 } = shoppingSlice.actions;
 export default shoppingSlice.reducer;

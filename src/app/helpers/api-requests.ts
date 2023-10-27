@@ -1,6 +1,6 @@
 import { FilteredUser, UserLoginResponse, UserResponse } from "../../../type";
 
-const SERVER_ENDPOINT = process.env.SERVER_ENDPOINT || "http://localhost:3000";
+const SERVER_ENDPOINT = process.env.SERVER_ENDPOINT || "http://localhost:8000";
 
 async function handleResponse<T>(response: Response): Promise<T> {
   const contentType = response.headers.get("Content-Type") || "";
@@ -66,11 +66,27 @@ export async function apiGetAuthUser(token?: string): Promise<FilteredUser> {
   if (token) {
     headers["Authorization"] = `Bearer ${token}`;
   }
-  const response = await fetch(`${SERVER_ENDPOINT}/api/users/me`, {
+  const response = await fetch(`${SERVER_ENDPOINT}/api/user/profile`, {
     method: "GET",
     credentials: "include",
     headers,
   });
 
   return handleResponse<UserResponse>(response).then((data) => data.data.user);
+}
+
+export async function apiGetUser(token?: string) {
+  const headers: Record<string, string> = {
+    "Content-Type": "application/json",
+  };
+
+  if (token) {
+    headers["Authorization"] = `Bearer ${token}`;
+  }
+  const response = await fetch(`http://localhost:8000/api/user/profile`, {
+    method: "GET",
+    headers,
+  });
+  console.log(response.body);
+  return response;
 }

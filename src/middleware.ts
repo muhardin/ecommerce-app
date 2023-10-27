@@ -2,25 +2,35 @@ import { getToken } from "next-auth/jwt";
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-// This function can be marked `async` if using `await` inside
 export async function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
   const token = (await getToken({
     req: request as any,
     secret: process.env.NEXTAUTH_SECRET!,
-  })) as { user: { email: string; role: string } } | null;
-  // console.log(token);
+  })) as { user: { email: string; role: string; bearer: string } } | null;
+  const data = await (
+    await fetch(process.env.SERVER_ENDPOINT + "/api/user/profile", {
+      headers: {
+        Authorization: `Bearer ${token?.user.bearer}`,
+      },
+    })
+  ).json();
   if (!token && pathname != "/sign-in") {
     return NextResponse.redirect(new URL("/sign-in", request.url));
   }
+
   if (token && pathname == "/sign-in") {
-    // console.log(pathname);
     return NextResponse.redirect(new URL("/profile", request.url));
   }
 
   if (request.nextUrl.pathname.startsWith("/myshop")) {
-    if (token?.user.role == "Guest") {
-      return NextResponse.redirect(new URL("/dashboard/user", request.url));
+    if (data?.data.is_seller < 1) {
+      return NextResponse.redirect(new URL("/", request.url));
+    }
+  }
+  if (request.nextUrl.pathname.startsWith("/supplier")) {
+    if (data?.data.is_supplier < 1) {
+      return NextResponse.redirect(new URL("/", request.url));
     }
   }
 }
@@ -29,6 +39,7 @@ export async function middleware(request: NextRequest) {
 export const config = {
   matcher: [
     "/profile/:path*",
+    "/supplier/:path*",
     "/order",
     "/buyer/:path*",
     "/checkout",

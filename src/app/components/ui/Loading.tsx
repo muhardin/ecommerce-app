@@ -12,8 +12,8 @@ const LoadingComponent = () => {
       >
         <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
         <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
-          <div className="w-full flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-            <div className="w-full relative transform overflow-hidden rounded-lg bg-transparent text-left transition-all sm:my-8 sm:w-full sm:max-w-lg">
+          <div className="w-full flex min-h-full justify-center p-4 text-center items-center sm:p-0">
+            <div className="w-full relative transform overflow-hidden rounded-lg bg-transparent text-left transition-all my-8 sm:max-w-lg">
               {/* content */}
               <div className="bg-transparent mx-auto flex justify-center py-12">
                 <div className="relative">
