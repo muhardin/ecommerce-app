@@ -12,6 +12,7 @@ import {
 } from "redux-persist";
 import createWebStorage from "redux-persist/es/storage/createWebStorage";
 import { WebStorage } from "redux-persist/es/types";
+import profileReducer from "./profileSlice";
 
 export function createPersistStore(): WebStorage {
   const isServer = typeof window === "undefined";
@@ -46,7 +47,7 @@ const persistConfig = {
 const persistedReducer = persistReducer(persistConfig, shoppingReducer);
 
 export const store = configureStore({
-  reducer: { shopping: persistedReducer },
+  reducer: { shopping: persistedReducer, profile: profileReducer },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
@@ -60,3 +61,5 @@ export let persistor = persistStore(store);
 export type RootState = ReturnType<typeof store.getState>;
 // Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
 export type AppDispatch = typeof store.dispatch;
+
+export default store;

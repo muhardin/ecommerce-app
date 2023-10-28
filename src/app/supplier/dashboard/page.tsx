@@ -1,5 +1,4 @@
-import React from "react";
-
+import Image from "next/image";
 const page = () => {
   return (
     <div>
@@ -385,9 +384,12 @@ const page = () => {
             </h2>
             <div className="flex flex-wrap mb-6">
               <div className="px-4 ">
-                <img
+                <Image
+                  width={250}
+                  height={250}
+                  alt=""
                   className="object-cover w-20 h-20 p-2 rounded-full"
-                  src="https://i.postimg.cc/RhQYkKYk/pexels-italo-melo-2379005.jpg"
+                  src="/images/avatar.png"
                 />
               </div>
               <div className="flex-grow px-4">
@@ -454,9 +456,12 @@ const page = () => {
             </div>
             <div className="flex flex-wrap ">
               <div className="px-4 ">
-                <img
+                <Image
+                  width={250}
+                  height={250}
+                  alt=""
                   className="object-cover w-20 h-20 p-2 rounded-full"
-                  src="https://i.postimg.cc/RhQYkKYk/pexels-italo-melo-2379005.jpg"
+                  src="/images/avatar.png"
                 />
               </div>
               <div className="flex-grow px-4">

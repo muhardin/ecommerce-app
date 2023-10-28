@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { SyntheticEvent, useState } from "react";
 import { OrderItem } from "../../../../../type";
 import toast from "react-hot-toast";
 import axios from "axios";
@@ -12,6 +12,7 @@ import FormattedPrice from "../../FormattedPrice";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import { updateModal } from "@/redux/shoppingSlice";
+import LoadingComponent from "../../ui/Loading";
 
 const OrderSupplierUpdate = ({
   item,
@@ -22,7 +23,10 @@ const OrderSupplierUpdate = ({
   title?: string;
   className?: string;
 }) => {
+  const { data: session } = useSession();
   const [modal, setModal] = useState(false);
+  const [errMessage, setErrMessage]: any = useState<string[]>([]);
+  const [loading, setLoading] = useState(false);
   // console.log(item);
   function toggleModal() {
     dispatch(
@@ -34,15 +38,59 @@ const OrderSupplierUpdate = ({
   }
   const { modal: modalDt } = useSelector((state: any) => state.shopping);
   const dispatch = useDispatch();
-  console.log(modalDt);
 
-  const [selectedStatus, setSelectedStatus] = useState("");
+  const [selectedStatus, setSelectedStatus] = useState(item.order_status);
+  const [shippingNumber, setShippingNumber] = useState(item.shipping_resi);
   const handleSetSelectedStatus = (value: string) => {
     setSelectedStatus(value);
   };
-  console.log(selectedStatus);
+  console.log(shippingNumber);
+
+  const handleUpdateStatus = async (e: any, index: any) => {
+    setLoading(true);
+    e.preventDefault();
+    toast.loading("loading...");
+    await fetch(
+      `${process.env.SERVER_ENDPOINT}/api/supplier-board/order/update-status`,
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${session?.bearer}`,
+          "Content-Type": "application/json", // You can set other headers as needed
+        },
+        body: JSON.stringify({
+          status: selectedStatus,
+          order_detail_id: index,
+          shipping_number: shippingNumber,
+        }),
+      }
+    ).then(async (response: any) => {
+      if (response.status == 200) {
+        setLoading(false);
+        toast.dismiss();
+        toast.success("Data updated successfully", { duration: 3000 });
+        const result = await response.json();
+        console.log(result);
+        setModal(false);
+        setErrMessage("");
+      } else if (response.status == 201) {
+        setLoading(false);
+        const result = await response.json();
+        setErrMessage(result.message.error);
+        console.log(result.message.error);
+        // setErrMessage(response);
+      } else {
+        // Handle errors or non-successful responses
+        throw new Error(`Request failed with status: ${response.status}`);
+      }
+    });
+  };
+  // console.log(selectedStatus);
   return (
     <div>
+      <div className={`${loading ? "block" : "hidden"} fixed z-20`}>
+        <LoadingComponent />
+      </div>
       <div
         onClick={() => {
           dispatch(
@@ -65,7 +113,8 @@ const OrderSupplierUpdate = ({
         aria-modal="true"
       >
         <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
-        <div className="fixed inset-0 z-10 w-full md:ml-[156px] overflow-y-auto mt-24 md:mt-0">
+        {/* <div className="fixed inset-0 z-10 w-full md:ml-[156px] overflow-y-auto mt-24 md:mt-0"> */}
+        <div className="fixed inset-0 z-10 w-full overflow-y-auto mt-24 md:mt-0">
           <div className="w-full flex min-h-full items-center justify-center md:justify-center p-4 text-start sm:items-center sm:p-0">
             <div className="w-full relative transform overflow-auto rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-2/3 mb-14 md:mb-0">
               <div className="p-4  shadow-md text-gray-800">
@@ -180,157 +229,190 @@ const OrderSupplierUpdate = ({
                         </div>
                       </div>
                     </div>
-                    <div className="mt-10 bg-gray-50 px-4 pt-8 lg:mt-0">
-                      <p className="text-xl font-medium">Progress Details</p>
-                      <p className="text-gray-400">
-                        Complete your order by providing your payment details.
-                      </p>
+                    <form onSubmit={(e) => handleUpdateStatus(e, item.id)}>
+                      <div className="mt-10 bg-gray-50 px-4 pt-8 lg:mt-0">
+                        <p className="text-xl font-medium">Progress Details</p>
+                        <p className="text-gray-400">
+                          Complete your order by providing your payment details.
+                        </p>
 
-                      <div className="relative mt-6 flex flex-col gap-2">
-                        <div className="relative">
-                          <label
-                            htmlFor="card-holder"
-                            className="mt-4 mb-2 block text-sm font-medium"
-                          >
-                            Set Order Status
-                          </label>
-                          <input
-                            className="peer hidden"
-                            id={`delivering_1${item.id}`}
-                            type="radio"
-                            name={`status${item.id}`}
-                            value={`processing`}
-                            onChange={() => {
-                              handleSetSelectedStatus("processing");
-                            }}
-                          />
-                          <span className="peer-checked:border-sky-400 absolute right-4 top-2/3 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
-                          <label
-                            className="peer-checked:border-2 peer-checked:border-sky-500 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-1"
-                            htmlFor={`delivering_1${item.id}`}
-                          >
-                            <Image
-                              width={150}
-                              height={150}
-                              className="w-14 object-contain"
-                              src={`/images/status/process.png`}
-                              alt=""
-                            />
-                            <div className="ml-5">
-                              <span className="mt-2 font-semibold capitalize">
-                                Konfirmasi
-                              </span>
-                              <p className="text-slate-500 text-sm leading-6">
-                                Dalam Persiapan Pengiriman
-                              </p>
-                            </div>
-                          </label>
-                        </div>
-
-                        <div className="relative">
-                          <input
-                            className="peer hidden"
-                            id={`delivering${item.id}`}
-                            type="radio"
-                            name={`status${item.id}`}
-                            value={`delivering`}
-                            onChange={() => {
-                              handleSetSelectedStatus("delivering");
-                            }}
-                          />
-                          <span className="peer-checked:border-sky-400 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
-                          <label
-                            className="peer-checked:border-2 peer-checked:border-sky-400 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-1"
-                            htmlFor={`delivering${item.id}`}
-                          >
-                            <Image
-                              width={150}
-                              height={150}
-                              className="w-14 object-contain"
-                              src={`/images/status/delivering.svg`}
-                              alt=""
-                            />
-                            <div className="ml-5">
-                              <span className="mt-2 font-semibold capitalize">
-                                Delivering
-                              </span>
-                              <p className="text-slate-500 text-sm leading-6">
-                                Barang Sudah Dikirim
-                              </p>
-                            </div>
-                          </label>
-                        </div>
-                        <div className="relative">
-                          <input
-                            className="peer hidden"
-                            id={`delivered${item.id}`}
-                            type="radio"
-                            name={`status${item.id}`}
-                            value={`delivered`}
-                            onChange={() => {
-                              handleSetSelectedStatus("delivered");
-                            }}
-                          />
-                          <span className="peer-checked:border-sky-400 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
-                          <label
-                            className="peer-checked:border-2 peer-checked:border-sky-400 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-1"
-                            htmlFor={`delivered${item.id}`}
-                          >
-                            <Image
-                              width={150}
-                              height={150}
-                              className="w-14 object-contain"
-                              src={`/images/status/delivered.png`}
-                              alt=""
-                            />
-                            <div className="ml-5">
-                              <span className="mt-2 font-semibold capitalize">
-                                Delivered
-                              </span>
-                              <p className="text-slate-500 text-sm leading-6">
-                                Barang Sudah Diterima
-                              </p>
-                            </div>
-                          </label>
-                        </div>
-                      </div>
-                      <div className="">
-                        <label
-                          htmlFor="card-holder"
-                          className="mt-4 mb-2 block text-sm font-medium"
-                        >
-                          Shipping Number
-                        </label>
-                        <div className="relative">
-                          <input
-                            type="text"
-                            id="card-holder"
-                            name="card-holder"
-                            className="w-full rounded-md border border-gray-200 px-4 py-3 pl-11 text-sm uppercase shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
-                            placeholder="Your reference code here"
-                          />
-                          <div className="pointer-events-none absolute inset-y-0 left-0 inline-flex items-center px-3">
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              className="h-4 w-4 text-gray-400"
-                              fill="none"
-                              viewBox="0 0 24 24"
-                              stroke="currentColor"
-                              strokeWidth="2"
+                        <div className="relative mt-6 flex flex-col gap-2">
+                          <div className="relative">
+                            <label
+                              htmlFor="card-holder"
+                              className="mt-4 mb-2 block text-sm font-medium"
                             >
-                              <path
-                                strokeLinecap="round"
-                                stroke-linejoin="round"
-                                d="M15 9h3.75M15 12h3.75M15 15h3.75M4.5 19.5h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5zm6-10.125a1.875 1.875 0 11-3.75 0 1.875 1.875 0 013.75 0zm1.294 6.336a6.721 6.721 0 01-3.17.789 6.721 6.721 0 01-3.168-.789 3.376 3.376 0 016.338 0z"
+                              Set Order Status
+                            </label>
+                            <input
+                              className="peer hidden"
+                              id={`delivering_1${item.id}`}
+                              type="radio"
+                              name={`status[${item.id}]`}
+                              value={`processing`}
+                              checked={selectedStatus === "processing"}
+                              onChange={() => {
+                                handleSetSelectedStatus("processing");
+                              }}
+                            />
+                            <span className="peer-checked:border-sky-400 absolute right-4 top-2/3 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
+                            <label
+                              className="peer-checked:border-2 peer-checked:border-sky-500 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-1"
+                              htmlFor={`delivering_1${item.id}`}
+                            >
+                              <Image
+                                width={150}
+                                height={150}
+                                className="w-14 object-contain"
+                                src={`/images/status/process.png`}
+                                alt=""
                               />
-                            </svg>
+                              <div className="ml-5">
+                                <span className="mt-2 font-semibold capitalize">
+                                  Konfirmasi
+                                </span>
+                                <p className="text-slate-500 text-sm leading-6">
+                                  Dalam Persiapan Pengiriman
+                                </p>
+                              </div>
+                            </label>
+                          </div>
+
+                          <div
+                            className={`${
+                              selectedStatus == "delivering"
+                                ? "border border-gray-400 p-2 rounded-md"
+                                : ""
+                            }`}
+                          >
+                            <div className="relative">
+                              <input
+                                className="peer hidden"
+                                id={`delivering${item.id}`}
+                                type="radio"
+                                name={`status${item.id}`}
+                                value={`delivering`}
+                                checked={selectedStatus === "delivering"}
+                                onChange={() => {
+                                  handleSetSelectedStatus("delivering");
+                                }}
+                              />
+                              <span className="peer-checked:border-sky-400 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
+                              <label
+                                className="peer-checked:border-2 peer-checked:border-sky-400 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-1"
+                                htmlFor={`delivering${item.id}`}
+                              >
+                                <Image
+                                  width={150}
+                                  height={150}
+                                  className="w-14 object-contain"
+                                  src={`/images/status/delivering.svg`}
+                                  alt=""
+                                />
+                                <div className="ml-5">
+                                  <span className="mt-2 font-semibold capitalize">
+                                    Delivering
+                                  </span>
+                                  <p className="text-slate-500 text-sm leading-6">
+                                    Barang Sudah Dikirim
+                                  </p>
+                                </div>
+                              </label>
+                            </div>
+                            <div
+                              className={
+                                selectedStatus == "delivering"
+                                  ? "block"
+                                  : "hidden"
+                              }
+                            >
+                              <label
+                                htmlFor="card-holder"
+                                className="mt-1 mb-1 block text-sm font-medium"
+                              >
+                                Shipping Number
+                              </label>
+                              <div className="relative">
+                                <input
+                                  type="text"
+                                  id="card-holder"
+                                  name="card-holder"
+                                  value={shippingNumber ?? ""}
+                                  className="w-full rounded-md border border-gray-200 px-4 py-3 pl-11 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
+                                  placeholder="Your reference code here"
+                                  onChange={(e) =>
+                                    setShippingNumber(e.target.value)
+                                  }
+                                  // required={selectedStatus == "delivering"}
+                                />
+                                <div className="pointer-events-none absolute inset-y-0 left-0 inline-flex items-center px-3">
+                                  <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="h-4 w-4 text-gray-400"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                    strokeWidth="2"
+                                  >
+                                    <path
+                                      strokeLinecap="round"
+                                      stroke-linejoin="round"
+                                      d="M15 9h3.75M15 12h3.75M15 15h3.75M4.5 19.5h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5zm6-10.125a1.875 1.875 0 11-3.75 0 1.875 1.875 0 013.75 0zm1.294 6.336a6.721 6.721 0 01-3.17.789 6.721 6.721 0 01-3.168-.789 3.376 3.376 0 016.338 0z"
+                                    />
+                                  </svg>
+                                </div>
+                              </div>
+                              {errMessage.length > 0 ? (
+                                <label htmlFor="" className="text-red-500">
+                                  {errMessage[0]}
+                                </label>
+                              ) : (
+                                ""
+                              )}
+                            </div>
+                          </div>
+
+                          <div className="relative">
+                            <input
+                              className="peer hidden"
+                              id={`delivered${item.id}`}
+                              type="radio"
+                              name={`status${item.id}`}
+                              value={`delivered`}
+                              checked={selectedStatus === "delivered"}
+                              onChange={() => {
+                                handleSetSelectedStatus("delivered");
+                              }}
+                            />
+                            <span className="peer-checked:border-sky-400 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
+                            <label
+                              className="peer-checked:border-2 peer-checked:border-sky-400 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-1"
+                              htmlFor={`delivered${item.id}`}
+                            >
+                              <Image
+                                width={150}
+                                height={150}
+                                className="w-14 object-contain"
+                                src={`/images/status/delivered.png`}
+                                alt=""
+                              />
+                              <div className="ml-5">
+                                <span className="mt-2 font-semibold capitalize">
+                                  Delivered
+                                </span>
+                                <p className="text-slate-500 text-sm leading-6">
+                                  Barang Sudah Diterima
+                                </p>
+                              </div>
+                            </label>
                           </div>
                         </div>
+
+                        <button className="mt-4 mb-8 w-full rounded-md bg-gray-900 px-6 py-3 font-medium text-white">
+                          Update Status
+                        </button>
                       </div>
-                      <button className="mt-4 mb-8 w-full rounded-md bg-gray-900 px-6 py-3 font-medium text-white">
-                        Place Order
-                      </button>
-                    </div>
+                    </form>
                   </div>
                 </div>
                 <div className="flex flex-auto justify-end mt-4 gap-6 items-center">

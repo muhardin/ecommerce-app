@@ -439,7 +439,7 @@ const PaymentForm = ({
                     height={250}
                     width={80}
                     alt=""
-                    src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg"
+                    src="/images/payment/paypal.svg"
                     className="ml-3"
                   />
                 </label>
@@ -463,7 +463,7 @@ const PaymentForm = ({
                       width={156}
                       height={24}
                       alt=""
-                      src="https://leadershipmemphis.org/wp-content/uploads/2020/08/780370.png"
+                      src="/images/payment/global.png"
                       className="h-6 ml-3 object-cover"
                     />
                   </label>

@@ -1,6 +1,5 @@
 import axios from "axios";
 import { DataToAdd, ResponseData } from "../../../type";
-import { productData } from "../constants/data";
 import { getServerSession } from "next-auth";
 
 export const getProducts = async () => {
@@ -49,11 +48,6 @@ export const FormattedCommaNumber = (num: any) => {
     return 1;
   }
   return num;
-};
-
-export const getSingleProduct_ = (id: number) => {
-  const item = productData.find((product) => product.id === id);
-  return item;
 };
 
 export const getSingleProduct = async (id: number) => {

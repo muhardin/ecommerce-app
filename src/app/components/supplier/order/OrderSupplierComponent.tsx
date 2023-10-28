@@ -55,7 +55,7 @@ const OrderSupplierComponent = () => {
       {/* <div className="">s</div>
       {orders ? <OrderSupplierUpdate item={orders[0]} /> : ""} */}
       <div className="w-full mx-auto h-auto">
-        <div className="mt-8 px-4 mb-4">
+        <div className="mt-0 px-4 mb-4 pt-4">
           <div className="sm:flex sm:items-center sm:justify-between flex-col sm:flex-row">
             <p className="flex-1 text-base font-bold text-gray-900">
               Product Orders
@@ -206,7 +206,7 @@ const OrderSupplierComponent = () => {
                     </td>
                     <td className="md:block whitespace-no-wrap hidden py-4 text-sm font-normal text-gray-500 sm:px-6 lg:table-cell">
                       <div className="flex flex-col justify-start">
-                        <span>{item.order.order_payment.status}</span>
+                        <span>{item.order_status}</span>
                         <div>{formatDateAndTime(item.created_at)}</div>
                       </div>
                     </td>

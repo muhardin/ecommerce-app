@@ -1,7 +1,7 @@
-import { productData } from "./../../constants/data";
 import { NextResponse } from "next/server";
 
 export const GET = async () => {
+  const productData = [""];
   try {
     return NextResponse.json({
       message: "Product fetched successfully",

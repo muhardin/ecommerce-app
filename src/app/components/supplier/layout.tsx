@@ -4,27 +4,33 @@ import Image from "next/image";
 import { Icons } from "../ui/Icons";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { RootState } from "@/redux/store";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleProfileMenu } from "@/redux/profileSlice";
 
 const SupplierLayoutComponent = ({
   children,
 }: {
   children: React.ReactNode;
 }) => {
+  const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
   function toggleOpen() {
     setOpen(!open);
   }
+  const isOpen = useSelector((state: RootState) => state.profile.isOpen);
   const pathName = usePathname();
-  console.log(open);
+
+  console.log(isOpen);
   return (
     <div className="bg-gray-100 xl:h-screen dark:bg-gray-800">
       <div className="body-content">
         <div className="relative lg:block navbar-menu">
           <div
             className={`${
-              open ? "w-[280px]" : "w-[0px]"
-            } fixed top-16 transition-all lg:mt-0 z-40 mt-16 left-0 dark:bg-gray-900 bottom-0 flex flex-col ${
-              !open ? "md:w-[280px]" : " md:w-[0px]"
+              isOpen ? "w-[280px]" : "w-[0px]"
+            } fixed top-16 transition-all lg:mt-0 z-40 mt-0 left-0 dark:bg-gray-900 bottom-0 flex flex-col ${
+              !isOpen ? "md:w-[280px]" : " md:w-[0px]"
             } lg:border-none border-r border-gray-200 dark:border-gray-800 bg-gray-50 overflow-hidden `}
             id="sidenav"
           >
@@ -196,7 +202,8 @@ const SupplierLayoutComponent = ({
                         <li>
                           <Link
                             onClick={() => {
-                              toggleOpen();
+                              // toggleOpen();
+                              dispatch(toggleProfileMenu());
                             }}
                             href="/supplier/order"
                             className="flex items-center py-3 pl-8 pr-4 text-gray-700 rounded dark:text-gray-400 dark:hover:bg-gray-700 hover:bg-gray-100 "
@@ -419,10 +426,10 @@ const SupplierLayoutComponent = ({
           </div>
         </div>
         <div
-          className={`transition-all ${!open ? " md:ml-[280px]" : "md:ml-0"}`}
+          className={`transition-all ${!isOpen ? " md:ml-[280px]" : "md:ml-0"}`}
           id="dash"
         >
-          <section className="sticky top-0 z-40 px-3 py-3 bg-white shadow dark:text-gray-100 dark:bg-gray-900 lg:px-5">
+          {/* <section className="sticky top-0 z-40 px-3 py-3 bg-white shadow dark:text-gray-100 dark:bg-gray-900 lg:px-5">
             <nav className="relative">
               <div className="flex items-center justify-between">
                 <div>
@@ -525,14 +532,14 @@ const SupplierLayoutComponent = ({
                         <div className="hidden mr-3 text-right md:block">
                           <p className="text-sm font-bold text-black dark:text-gray-400">
                             {" "}
-                            John Doe
+                            Doe
                           </p>
                         </div>
                         <div className="mr-2">
                           <Image
                             width={250}
                             height={250}
-                            src="https://i.postimg.cc/pr2Q6n1w/pexels-italo-melo-2379005.jpg"
+                            src="/images/avatar.png"
                             className="object-cover object-right w-10 h-10 rounded-full"
                             alt="person"
                           />
@@ -609,7 +616,7 @@ const SupplierLayoutComponent = ({
                 </div>
               </div>
             </nav>
-          </section>
+          </section> */}
           {children}
         </div>
       </div>

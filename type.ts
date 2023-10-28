@@ -250,7 +250,7 @@ export interface OrderItem {
   shipping_etd: string;
   sku: string | null;
   user_address_id: string | null;
-  shipping_resi: string | null;
+  shipping_resi?: string | null;
   product: Product;
   order: Order;
   item: OrderItem;

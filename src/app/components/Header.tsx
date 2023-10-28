@@ -15,13 +15,24 @@ import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import { Products, StateProps } from "../../../type";
 import FormattedPrice from "./FormattedPrice";
-import { addUser, deleteUser } from "@/redux/shoppingSlice";
+import {
+  addUser,
+  deleteUser,
+  openMenu,
+  updateNote,
+} from "@/redux/shoppingSlice";
 import toast, { Toaster } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import AvatarHeader from "./Avatar";
 import SideBar from "./SideBar";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useUserData } from "./supplier/UserData";
+import { RootState } from "@/redux/store";
+import {
+  closeProfileMenu,
+  openProfileMenu,
+  toggleProfileMenu,
+} from "@/redux/profileSlice";
 
 interface HeaderProps {
   toggleNavVisibility: () => void;
@@ -114,22 +125,45 @@ const Header = () => {
   }, [refNotification]);
   const userData = useUserData();
   // console.log(userData);
+  // dispatch(
+  //   updateNote({
+  //     name: true,
+  //   })
+  // );
+  // const { menu } = useSelector((state: any) => state.shopping);
+  // console.log(menu);
+
+  const isOpen = useSelector((state: RootState) => state.profile.isOpen);
+
+  const handleOpenMenu = () => {
+    dispatch(openProfileMenu());
+  };
+
+  const handleCloseMenu = () => {
+    dispatch(closeProfileMenu());
+  };
+  const handleToggleMenu = () => {
+    dispatch(toggleProfileMenu());
+  };
+  // console.log(isOpen);
+
   return (
     <>
       <div className="bg-bodyColor h-20 top-0 sticky z-50">
         <Container className="h-full w-full flex items-center md:gap-x-5 justify-between md:justify-start">
           {session && (
             <>
-              <div className=" md:hidden flex items-center ml-2">
+              <div className={`flex items-center ml-2`}>
                 <button
                   onClick={() => {
-                    setValue(!value);
+                    // setValue(!value);
+                    handleToggleMenu();
                   }}
                   data-drawer-target="default-sidebar"
                   data-drawer-toggle="default-sidebar"
                   aria-controls="default-sidebar"
                   type="button"
-                  className="md:hidden"
+                  className=""
                 >
                   <span className="sr-only">Open sidebar</span>
                   {!value ? (

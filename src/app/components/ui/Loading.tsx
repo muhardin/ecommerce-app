@@ -5,7 +5,7 @@ const LoadingComponent = () => {
     <>
       {/* <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> */}
       <div
-        className={`relative z-10 visible h-screen`}
+        className={`relative z-20 visible h-screen`}
         aria-labelledby="modal-title"
         role="dialog"
         aria-modal="true"

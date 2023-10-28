@@ -31,7 +31,7 @@ const DetailProductBag = ({ data, primaryImage }: any) => {
                   src={`${
                     primaryImage
                       ? primaryImage
-                      : "https://images.pexels.com/photos/2010925/pexels-photo-2010925.jpeg?auto=compress&cs=tinysrgb&w=600"
+                      : "/images/products/default.jpeg"
                   }`}
                   alt=""
                   className="object-contain w-full h-full rounded-lg"
@@ -70,77 +70,6 @@ const DetailProductBag = ({ data, primaryImage }: any) => {
                       </div>
                     ))
                   : ""}
-                {/* <div className="w-1/2 p-2 sm:w-1/4">
-                  <a
-                    onClick={() => {
-                      setTopImage(
-                        "https://img.freepik.com/free-photo/portrait-beautiful-face-young-woman-with-long-brown-hair_186202-4331.jpg?size=626&ext=jpg&ga=GA1.1.453157835.1694346094&semt=sph"
-                      );
-                    }}
-                    href="#"
-                    className="block border border-blue-100 dark:border-gray-700 dark:hover:border-gray-600 hover:border-blue-300 "
-                  >
-                    <Image
-                      width={150}
-                      height={150}
-                      src={`https://images.pexels.com/photos/2010812/pexels-photo-2010812.jpeg?auto=compress&cs=tinysrgb&w=600`}
-                      alt=""
-                      className="object-cover w-full lg:h-32"
-                    />
-                  </a>
-                </div>
-                <div className="w-1/2 p-2 sm:w-1/4">
-                  <a
-                    onClick={() => {
-                      setTopImage(
-                        "https://images.pexels.com/photos/2010812/pexels-photo-2010812.jpeg?auto=compress&cs=tinysrgb&w=600"
-                      );
-                    }}
-                    href="#"
-                    className="block border border-blue-100 dark:border-transparent dark:hover:border-gray-600 hover:border-blue-300"
-                  >
-                    <Image
-                      width={150}
-                      height={150}
-                      src="https://images.pexels.com/photos/2010812/pexels-photo-2010812.jpeg?auto=compress&cs=tinysrgb&w=600"
-                      alt=""
-                      className="object-cover w-full lg:h-32"
-                    />
-                  </a>
-                </div>
-                <div className="w-1/2 p-2 sm:w-1/4">
-                  <a
-                    onClick={() => {
-                      setTopImage(
-                        "https://images.pexels.com/photos/2065195/pexels-photo-2065195.jpeg?auto=compress&cs=tinysrgb&w=600"
-                      );
-                    }}
-                    href="#"
-                    className="block border border-blue-100 dark:border-transparent dark:hover:border-gray-600 hover:border-blue-300"
-                  >
-                    <Image
-                      width={150}
-                      height={150}
-                      src="https://images.pexels.com/photos/2065195/pexels-photo-2065195.jpeg?auto=compress&cs=tinysrgb&w=600"
-                      alt=""
-                      className="object-cover w-full lg:h-32"
-                    />
-                  </a>
-                </div>
-                <div className="w-1/2 p-2 sm:w-1/4">
-                  <a
-                    href="#"
-                    className="block border border-blue-100 dark:border-transparent dark:hover:border-gray-600 hover:border-blue-300"
-                  >
-                    <Image
-                      width={150}
-                      height={150}
-                      src="https://images.pexels.com/photos/2738792/pexels-photo-2738792.jpeg?auto=compress&cs=tinysrgb&w=600"
-                      alt=""
-                      className="object-cover w-full lg:h-32"
-                    />
-                  </a>
-                </div> */}
               </div>
             </div>
           </div>

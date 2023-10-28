@@ -390,7 +390,7 @@ const SupplierPage = () => {
                   width={"250"}
                   height={"250"}
                   className="object-cover w-20 h-20 p-2 rounded-full"
-                  src="https://i.postimg.cc/RhQYkKYk/pexels-italo-melo-2379005.jpg"
+                  src="/images/avatar.png"
                 />
               </div>
               <div className="flex-grow px-4">
@@ -462,7 +462,7 @@ const SupplierPage = () => {
                   height={250}
                   width={250}
                   className="object-cover w-20 h-20 p-2 rounded-full"
-                  src="https://i.postimg.cc/RhQYkKYk/pexels-italo-melo-2379005.jpg"
+                  src="/images/avatar.png"
                 />
               </div>
               <div className="flex-grow px-4">

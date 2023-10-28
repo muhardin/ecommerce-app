@@ -12,7 +12,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { Products, StateProps } from "../../../type";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
-import { productData } from "../constants/data";
 
 const HomePage = (): JSX.Element => {
   const { notes, modal } = useSelector((state: any) => state.shopping);

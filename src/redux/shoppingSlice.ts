@@ -7,6 +7,7 @@ interface StoreState {
   orderData: [];
   notes: null | string;
   modal: null | string;
+  menu: null | string;
 }
 
 const initialState: StoreState = {
@@ -15,6 +16,7 @@ const initialState: StoreState = {
   orderData: [],
   notes: null,
   modal: null,
+  menu: null,
 };
 
 type Note = {
@@ -96,11 +98,19 @@ export const shoppingSlice = createSlice({
     updateModal: (state, action) => {
       state.modal = action.payload;
     },
+    openMenu: (state, action) => {
+      state.menu = action.payload;
+    },
+    closeMenu: (state) => {
+      state.menu = null;
+    },
   },
 });
 // actions
 // selectors
 export const {
+  closeMenu,
+  openMenu,
   updateNote,
   removeModal,
   updateModal,
