@@ -140,12 +140,12 @@ const OrderHistory = () => {
                       <Link
                         href={
                           item.status == "PAID"
-                            ? "/ordersummary/" + item?.id
+                            ? "/profile/orders/summary/" + item?.order_id
                             : "/payment/" + item?.order_id
                         }
                         className="hover:text-sky-600"
                       >
-                        {item.payment_name}
+                        {item.invoice_number}
                         <div className="mt-1 lg:hidden">
                           <p className="font-normal text-gray-500">
                             {formatDateAndTime(item.created_at)}
@@ -158,7 +158,7 @@ const OrderHistory = () => {
                       <Link
                         href={
                           item.status == "PAID"
-                            ? "/ordersummary/" + item.id
+                            ? "/profile/orders/summary/" + item.id
                             : "/payment/" + item.id
                         }
                         className="hover:text-sky-600"
@@ -183,11 +183,11 @@ const OrderHistory = () => {
                         </div>
                       ) : item.status == "PAID" ? (
                         <div className="flex mt-1 ml-auto w-fit items-center rounded-full bg-blue-600 py-2 px-3 text-left text-xs font-medium text-white lg:hidden">
-                          Complete
+                          Paid
                         </div>
                       ) : item.status == "EXPIRED" ? (
                         <div className="flex mt-1 ml-auto w-fit items-center rounded-full bg-red-300 py-2 px-3 text-left text-xs font-medium text-white lg:hidden">
-                          EXPIRED
+                          Expired
                         </div>
                       ) : (
                         <div className="flex mt-1 ml-auto w-fit items-center rounded-full bg-red-300 py-2 px-3 text-left text-xs font-medium text-white lg:hidden">
@@ -203,7 +203,7 @@ const OrderHistory = () => {
                         </div>
                       ) : item.status == "PAID" ? (
                         <div className="inline-flex items-center rounded-full bg-blue-600 py-2 px-3 text-xs text-white">
-                          Complete
+                          Paid
                         </div>
                       ) : item.status == "EXPIRED" ? (
                         <div className="inline-flex items-center rounded-full bg-blue-600 py-2 px-3 text-xs text-white">

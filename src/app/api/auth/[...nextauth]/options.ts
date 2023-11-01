@@ -92,6 +92,7 @@ export const options: NextAuthOptions = {
       // console.log(token.user?.role);
       session.bearer = token?.user?.bearer;
       session.role = token?.user?.role;
+      session.user_id = token?.user?.id;
       return session;
       // return {
       //   ...session,

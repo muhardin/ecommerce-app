@@ -1,4 +1,5 @@
 import { getToken } from "next-auth/jwt";
+import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
@@ -7,7 +8,9 @@ export async function middleware(request: NextRequest) {
   const token = (await getToken({
     req: request as any,
     secret: process.env.NEXTAUTH_SECRET!,
-  })) as { user: { email: string; role: string; bearer: string } } | null;
+  })) as {
+    user: { email: string; role: string; bearer: string; id: number };
+  } | null;
   const data = await (
     await fetch(process.env.SERVER_ENDPOINT + "/api/user/profile", {
       headers: {
@@ -15,6 +18,7 @@ export async function middleware(request: NextRequest) {
       },
     })
   ).json();
+
   if (!token && pathname != "/sign-in") {
     return NextResponse.redirect(new URL("/sign-in", request.url));
   }
@@ -25,6 +29,21 @@ export async function middleware(request: NextRequest) {
 
   if (request.nextUrl.pathname.startsWith("/myshop")) {
     if (data?.data.is_seller < 1) {
+      return NextResponse.redirect(new URL("/", request.url));
+    }
+    const headersList = headers();
+    const domain = headersList.get("host") || "";
+    const dataShop = await (
+      await fetch(process.env.SERVER_ENDPOINT + "/api/shop/" + domain, {
+        headers: {
+          Authorization: `Bearer ${token?.user.bearer}`,
+        },
+      })
+    ).json();
+    // console.log(dataShop.user_id);
+    // console.log(dataShop);
+    // console.log(token?.user.id);
+    if (dataShop.user_id != token?.user.id) {
       return NextResponse.redirect(new URL("/", request.url));
     }
   }

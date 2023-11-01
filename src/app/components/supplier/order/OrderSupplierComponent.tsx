@@ -147,12 +147,22 @@ const OrderSupplierComponent = () => {
                             title={item.order.invoice_number}
                           />
                         </div>
-                        <div className="md:hidden capitalize">
+                        <div
+                          className={`${
+                            item.order_status == "pending"
+                              ? "text-red-600"
+                              : item.order_status == "delivering"
+                              ? "text-green-600"
+                              : item.order_status == "delivered"
+                              ? "text-sky-600"
+                              : "text-red-600"
+                          } md:hidden capitalize `}
+                        >
                           {item.order_status}
                         </div>
                       </div>
                     </td>
-                    <td className="whitespace-no-wrap py-4 px-6 text-right text-sm text-gray-600 lg:text-left">
+                    <td className="whitespace-no-wrap py-4 px-6 text-right font-bold text-md text-gray-600 lg:text-left">
                       {item.product.title}
 
                       {item.order.order_payment.status == "UNPAID" ? (
@@ -162,13 +172,13 @@ const OrderSupplierComponent = () => {
                       ) : item.order.order_payment.status == "PAID" ? (
                         <>
                           <div className="flex flex-row gap-1 justify-end items-center">
-                            <div className="flex mt-1 ml-auto w-fit items-center rounded-md bg-sky-400 py-2 px-3 text-left text-xs font-medium text-white lg:hidden ">
+                            {/* <div className="flex mt-1 ml-auto w-fit items-center rounded-md bg-sky-400 py-2 px-3 text-left text-xs font-medium text-white lg:hidden ">
                               <OrderSupplierDetail
                                 item={item}
                                 title="Detail"
                                 className="text-white"
                               />
-                            </div>
+                            </div> */}
                             {/* <div className="flex mt-1 w-fit items-center rounded-md bg-blue-600 py-2 px-3 text-left text-xs font-medium text-white lg:hidden">
                               <OrderSupplierUpdate
                                 item={item}
@@ -211,7 +221,7 @@ const OrderSupplierComponent = () => {
                       </div>
                     </td>
 
-                    <td className="whitespace-no-wrap block py-4 text-sm font-normal text-gray-500 sm:px-6 lg:table-cell">
+                    <td className="whitespace-no-wrap block py-4 text-sm font-normal text-gray-500 sm:px-6 lg:table-cell text-end">
                       {item.order.order_payment.status == "PAID" ? (
                         <div className="inline-flex items-center rounded-md bg-blue-600 py-2 px-3 text-xs text-white">
                           <OrderSupplierUpdate

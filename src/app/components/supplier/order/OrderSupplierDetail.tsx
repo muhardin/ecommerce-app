@@ -17,6 +17,12 @@ import Link from "next/link";
 import Container from "../../Container";
 import { useDispatch, useSelector } from "react-redux";
 import { updateModal } from "@/redux/shoppingSlice";
+import {
+  closeProfileMenu,
+  openProfileMenu,
+  toggleProfileMenu,
+} from "@/redux/profileSlice";
+import { RootState } from "@/redux/store";
 
 const OrderSupplierDetail = ({
   item,
@@ -27,6 +33,7 @@ const OrderSupplierDetail = ({
   title?: string;
   className?: string;
 }) => {
+  const dispatch = useDispatch();
   const [modal, setModal] = useState(false);
   // console.log(item);
   function toggleModal() {
@@ -38,18 +45,22 @@ const OrderSupplierDetail = ({
     setModal(!modal);
   }
   const { modal: modalDt } = useSelector((state: any) => state.shopping);
-  const dispatch = useDispatch();
-  console.log(modalDt);
 
+  const isOpen = useSelector((state: RootState) => state.profile.isOpen);
+  const handleOpenMenu = () => {
+    dispatch(openProfileMenu());
+  };
+  const handleCloseMenu = () => {
+    dispatch(closeProfileMenu());
+  };
+  const handleToggleMenu = () => {
+    dispatch(toggleProfileMenu());
+  };
   return (
     <div>
       <div
         onClick={() => {
-          dispatch(
-            updateModal({
-              modal: true,
-            })
-          );
+          handleCloseMenu();
           setModal(true);
         }}
         className={`${className} text-sky-700 cursor-pointer hover:text-sky-500 `}

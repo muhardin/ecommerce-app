@@ -427,12 +427,12 @@ const CheckoutCart = () => {
     setSum(newSum);
   }, [selectedValuesCost]);
 
-  console.log(sum);
-  console.log(selectedValuesCost);
-  console.log(JSON.stringify(productData));
-  console.log(selectedShippingType);
-  console.log(selectedArray);
-  console.log(selectedValuesProduct);
+  // console.log(sum);
+  // console.log(selectedValuesCost);
+  // console.log(JSON.stringify(productData));
+  // console.log(selectedShippingType);
+  // console.log(selectedArray);
+  // console.log(selectedValuesProduct);
 
   // useEffect(() => {
   //   console.log("Selected Values:", selectedValues);

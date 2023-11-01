@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation";
 import { RootState } from "@/redux/store";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleProfileMenu } from "@/redux/profileSlice";
+import { Wallet } from "lucide-react";
 
 const SupplierLayoutComponent = ({
   children,
@@ -21,28 +22,26 @@ const SupplierLayoutComponent = ({
   const isOpen = useSelector((state: RootState) => state.profile.isOpen);
   const pathName = usePathname();
 
-  console.log(isOpen);
+  // console.log(isOpen);
   return (
     <div className="bg-gray-100 xl:h-screen dark:bg-gray-800">
       <div className="body-content">
         <div className="relative lg:block navbar-menu">
           <div
-            className={`${
+            className={`w-[0px] ${
               isOpen ? "w-[280px]" : "w-[0px]"
-            } fixed top-16 transition-all lg:mt-0 z-40 mt-0 left-0 dark:bg-gray-900 bottom-0 flex flex-col ${
-              !isOpen ? "md:w-[280px]" : " md:w-[0px]"
-            } lg:border-none border-r border-gray-200 dark:border-gray-800 bg-gray-50 overflow-hidden `}
+            } fixed top-16 transition-all lg:mt-0 z-40 mt-0 left-0 dark:bg-gray-900 bottom-0 flex flex-col lg:border-none border-r border-gray-200 dark:border-gray-800 bg-gray-50 overflow-hidden `}
             id="sidenav"
           >
-            {/* <div className="flex items-center w-full px-4 pt-4 pb-4 border-b border-gray-200 dark:border-gray-700">
+            <div className="flex items-center w-full px-4 pt-4 pb-4 border-b border-gray-200 dark:border-gray-700">
               <a href="#">
                 <div className="flex items-center ml-2">
                   <h2 className="ml-3 text-lg font-bold text-gray-700 dark:text-gray-400 whitespace-nowrap">
-                    Your Logo{" "}
+                    Supplier
                   </h2>
                 </div>
               </a>
-            </div> */}
+            </div>
             {/* <div>
               <div className="overflow-hidden ">
                 <img
@@ -178,7 +177,12 @@ const SupplierLayoutComponent = ({
                           <path d="M6 2L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4H6zM3.8 6h16.4M16 10a4 4 0 1 1-8 0" />
                         </svg>
                       </span>
-                      <span> Orders </span>
+                      <div className="flex flex-row items-center justify-end gap-1">
+                        <span> Orders </span>
+                        <span className="flex flex-col items-center text-center justify-center w-6 h-6 px-2 ml-auto text-xs text-indigo-600 bg-indigo-100 rounded dark:group-hover:bg-gray-900 dark:bg-gray-700 dark:text-gray-100">
+                          5
+                        </span>
+                      </div>
                       <span className="inline-block ml-auto sidenav-arrow">
                         <svg
                           className="w-3 h-3 group-"
@@ -210,6 +214,9 @@ const SupplierLayoutComponent = ({
                           >
                             <span className="text-gray-700 dark:text-gray-400 ">
                               All Orders
+                            </span>
+                            <span className="flex items-center justify-center w-6 h-6 px-2 ml-auto text-xs text-indigo-600 bg-indigo-100 rounded dark:group-hover:bg-gray-900 dark:bg-gray-700 dark:text-gray-100">
+                              5
                             </span>
                           </Link>
                         </li>
@@ -259,6 +266,80 @@ const SupplierLayoutComponent = ({
                       5
                     </span>
                   </a>
+                </li>
+                <li>
+                  <details className="group">
+                    <summary
+                      className={`${
+                        pathName.startsWith("/supplier/wallet")
+                          ? "text-gray-100 bg-blue-600 hover:bg-blue-500"
+                          : "text-gray-700 hover:bg-gray-100"
+                      } cursor-pointer flex items-center px-8 py-4 group dark:text-gray-400 dark:hover:bg-gray-700 `}
+                    >
+                      <span className="inline-block mr-3">
+                        <Wallet />
+                      </span>
+                      <span> Wallet </span>
+                      <span className="inline-block ml-auto sidenav-arrow">
+                        <svg
+                          className="w-3 h-3 group-"
+                          viewBox="0 0 10 6"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                          data-config-id="auto-svg-3-1"
+                        >
+                          <path
+                            d="M9.08329 0.666626C8.74996 0.333293 8.24996 0.333293 7.91663 0.666626L4.99996 3.58329L2.08329 0.666626C1.74996 0.333293 1.24996 0.333293 0.916626 0.666626C0.583293 0.999959 0.583293 1.49996 0.916626 1.83329L4.41663 5.33329C4.58329 5.49996 4.74996 5.58329 4.99996 5.58329C5.24996 5.58329 5.41663 5.49996 5.58329 5.33329L9.08329 1.83329C9.41663 1.49996 9.41663 0.999959 9.08329 0.666626Z"
+                            fill="currentColor"
+                          ></path>
+                        </svg>
+                      </span>
+                    </summary>
+                    <div
+                      className="pl-3 ml-3 transition border-gray-500 dropdown-section nested-menu"
+                      x-show="open"
+                    >
+                      <ul className="text-sm ">
+                        <li>
+                          <Link
+                            onClick={() => {
+                              // toggleOpen();
+                              dispatch(toggleProfileMenu());
+                            }}
+                            href="/supplier/wallet"
+                            className="flex items-center py-3 pl-8 pr-4 text-gray-700 rounded dark:text-gray-400 dark:hover:bg-gray-700 hover:bg-gray-100 "
+                          >
+                            <span className="text-gray-700 dark:text-gray-400 ">
+                              History
+                            </span>
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            onClick={() => {
+                              dispatch(toggleProfileMenu());
+                            }}
+                            href="/supplier/wallet/withdraw"
+                            className="flex items-center py-3 pl-8 pr-4 text-gray-700 rounded dark:text-gray-400 dark:hover:bg-gray-700 hover:bg-gray-100 "
+                          >
+                            <span className="text-gray-700 dark:text-gray-400 ">
+                              Withdraw
+                            </span>
+                          </Link>
+                        </li>
+                        <li>
+                          <a
+                            href="#"
+                            className="flex items-center py-3 pl-8 pr-4 text-gray-700 rounded dark:text-gray-400 dark:hover:bg-gray-700 hover:bg-gray-100 "
+                          >
+                            <span className="text-gray-700 dark:text-gray-400 ">
+                              Compose Email
+                            </span>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </details>
                 </li>
                 <li>
                   <details className="group">
@@ -426,7 +507,7 @@ const SupplierLayoutComponent = ({
           </div>
         </div>
         <div
-          className={`transition-all ${!isOpen ? " md:ml-[280px]" : "md:ml-0"}`}
+          className={`transition-all ${isOpen ? " md:ml-[280px]" : "md:ml-0"}`}
           id="dash"
         >
           {/* <section className="sticky top-0 z-40 px-3 py-3 bg-white shadow dark:text-gray-100 dark:bg-gray-900 lg:px-5">

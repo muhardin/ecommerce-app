@@ -1,7 +1,7 @@
 "use client";
-import { SyntheticEvent, useState } from "react";
+import { ChangeEvent, SyntheticEvent, useState } from "react";
 import { OrderItem } from "../../../../../type";
-import toast from "react-hot-toast";
+import toast, { Toast, Toaster } from "react-hot-toast";
 import axios from "axios";
 import { useSession } from "next-auth/react";
 import { useShopData } from "../../shop/ShopContext";
@@ -13,6 +13,12 @@ import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import { updateModal } from "@/redux/shoppingSlice";
 import LoadingComponent from "../../ui/Loading";
+import {
+  closeProfileMenu,
+  openProfileMenu,
+  toggleProfileMenu,
+} from "@/redux/profileSlice";
+import { RootState } from "@/redux/store";
 
 const OrderSupplierUpdate = ({
   item,
@@ -44,48 +50,77 @@ const OrderSupplierUpdate = ({
   const handleSetSelectedStatus = (value: string) => {
     setSelectedStatus(value);
   };
-  console.log(shippingNumber);
+  // console.log(shippingNumber);
+  const [selectedImage, setSelectedImage] = useState<File | null>(null);
 
-  const handleUpdateStatus = async (e: any, index: any) => {
+  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+    // Get the selected file from the input element
+    if (e.target.files) {
+      const file = e.target.files[0];
+      setSelectedImage(file);
+    }
+  };
+  console.log(selectedImage);
+
+  const handleUpdateStatus = async (e: SyntheticEvent, index: number) => {
     setLoading(true);
     e.preventDefault();
     toast.loading("loading...");
-    await fetch(
+
+    const formData = new FormData();
+    formData.append("status", selectedStatus);
+    formData.append("order_detail_id", index.toString());
+    formData.append("shipping_number", shippingNumber || "");
+    if (selectedStatus === "delivering" && selectedImage) {
+      formData.append("shipping_proof", selectedImage);
+    }
+    // `${process.env.SERVER_ENDPOINT}/api/supplier-board/order/update-status`,
+    const response = await axios.post(
       `${process.env.SERVER_ENDPOINT}/api/supplier-board/order/update-status`,
+      formData,
       {
-        method: "POST",
         headers: {
-          Authorization: `Bearer ${session?.bearer}`,
-          "Content-Type": "application/json", // You can set other headers as needed
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${session?.bearer}`, // Include the bearer token
         },
-        body: JSON.stringify({
-          status: selectedStatus,
-          order_detail_id: index,
-          shipping_number: shippingNumber,
-        }),
       }
-    ).then(async (response: any) => {
-      if (response.status == 200) {
-        setLoading(false);
-        toast.dismiss();
-        toast.success("Data updated successfully", { duration: 3000 });
-        const result = await response.json();
-        console.log(result);
-        setModal(false);
-        setErrMessage("");
-      } else if (response.status == 201) {
-        setLoading(false);
-        const result = await response.json();
-        setErrMessage(result.message.error);
-        console.log(result.message.error);
-        // setErrMessage(response);
-      } else {
-        // Handle errors or non-successful responses
-        throw new Error(`Request failed with status: ${response.status}`);
-      }
-    });
+    );
+    if (response.status == 200) {
+      setLoading(false);
+      toast.dismiss();
+      toast.success("Data updated successfully", { duration: 3000 });
+      const result = response.data;
+      console.log(result);
+      setModal(false);
+      setErrMessage("");
+    } else if (response.status == 201) {
+      toast.dismiss();
+      toast.error("Error update");
+      console.log(response);
+      setLoading(false);
+      const result = response.data;
+      setErrMessage(result.message.error);
+      console.log(result.message.error);
+      // setErrMessage(response);
+    } else {
+      setLoading(false);
+      // Handle errors or non-successful responses
+      throw new Error(`Request failed with status: ${response.status}`);
+    }
   };
   // console.log(selectedStatus);
+
+  const isOpen = useSelector((state: RootState) => state.profile.isOpen);
+  const handleOpenMenu = () => {
+    dispatch(openProfileMenu());
+  };
+  const handleCloseMenu = () => {
+    dispatch(closeProfileMenu());
+  };
+  const handleToggleMenu = () => {
+    dispatch(toggleProfileMenu());
+  };
+  console.log(isOpen);
   return (
     <div>
       <div className={`${loading ? "block" : "hidden"} fixed z-20`}>
@@ -93,11 +128,7 @@ const OrderSupplierUpdate = ({
       </div>
       <div
         onClick={() => {
-          dispatch(
-            updateModal({
-              modal: true,
-            })
-          );
+          handleCloseMenu();
           setModal(true);
         }}
         className={`text-sky-700 cursor-pointer hover:text-sky-500 ${className}`}
@@ -120,13 +151,13 @@ const OrderSupplierUpdate = ({
               <div className="p-4  shadow-md text-gray-800">
                 <div className="">
                   <div className="grid sm:px-4 lg:grid-cols-2">
-                    <div className="px-4 pt-8">
+                    <div className="px-4 pt-4">
                       <p className="text-xl font-medium">Order Summary</p>
                       <p className="text-gray-400">
                         Check your items. And select a suitable shipping method.
                       </p>
-                      <div className="mt-8 space-y-3 rounded-lg border bg-white px-2 py-4 sm:px-6">
-                        <div className="flex flex-col rounded-lg bg-white sm:flex-row">
+                      <div className="mt-2 space-y-3 rounded-lg border bg-white px-2 py-4 sm:px-6">
+                        <div className="flex flex-row rounded-lg bg-white sm:flex-row">
                           <Image
                             width={350}
                             height={350}
@@ -151,7 +182,7 @@ const OrderSupplierUpdate = ({
                       <p className="mt-2 text-lg font-medium">
                         Shipping Details
                       </p>
-                      <div className="mt-2 grid gap-6">
+                      <div className="mt-1 grid gap-6">
                         <div className="relative">
                           <input
                             className="peer hidden"
@@ -213,7 +244,7 @@ const OrderSupplierUpdate = ({
                               <FormattedPrice amount={item.shipping_price} />
                             </p>
                           </div>
-                          <div className="mt-6 flex items-center justify-between">
+                          <div className="mt-2 flex items-center justify-between">
                             <p className="text-sm font-medium text-gray-900">
                               Total
                             </p>
@@ -230,13 +261,13 @@ const OrderSupplierUpdate = ({
                       </div>
                     </div>
                     <form onSubmit={(e) => handleUpdateStatus(e, item.id)}>
-                      <div className="mt-10 bg-gray-50 px-4 pt-8 lg:mt-0">
+                      <div className="mt-4 bg-gray-50 px-4 pt-4 lg:mt-0">
                         <p className="text-xl font-medium">Progress Details</p>
                         <p className="text-gray-400">
                           Complete your order by providing your payment details.
                         </p>
 
-                        <div className="relative mt-6 flex flex-col gap-2">
+                        <div className="relative mt-2 flex flex-col gap-2">
                           <div className="relative">
                             <label
                               htmlFor="card-holder"
@@ -361,10 +392,30 @@ const OrderSupplierUpdate = ({
                                     />
                                   </svg>
                                 </div>
+                                {errMessage.shipping_number ? (
+                                  <label htmlFor="" className="text-red-500">
+                                    {errMessage.shipping_number}
+                                  </label>
+                                ) : (
+                                  ""
+                                )}
                               </div>
-                              {errMessage.length > 0 ? (
+                              <div className="mt-2">
+                                <label
+                                  htmlFor="card-holder"
+                                  className="mt-1 mb-1 block text-sm font-medium"
+                                >
+                                  Shipping Proof
+                                </label>
+                                <input
+                                  type="file"
+                                  accept="image/*"
+                                  onChange={handleFileChange}
+                                />
+                              </div>
+                              {errMessage.shipping_proof ? (
                                 <label htmlFor="" className="text-red-500">
-                                  {errMessage[0]}
+                                  {errMessage.shipping_proof}
                                 </label>
                               ) : (
                                 ""
@@ -408,14 +459,30 @@ const OrderSupplierUpdate = ({
                           </div>
                         </div>
 
-                        <button className="mt-4 mb-8 w-full rounded-md bg-gray-900 px-6 py-3 font-medium text-white">
-                          Update Status
-                        </button>
+                        <div className="flex flex-row gap-2">
+                          <button className="mt-4 mb-8 w-full rounded-md bg-sky-600 px-6 py-3 font-medium text-white">
+                            Update Status
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setModal(false);
+                              dispatch(
+                                updateModal({
+                                  modal: modal ? !modal : false,
+                                })
+                              );
+                            }}
+                            className="mt-4 mb-8 w-full rounded-md bg-sky-400 px-6 py-3 font-medium text-white"
+                          >
+                            Close
+                          </button>
+                        </div>
                       </div>
                     </form>
                   </div>
                 </div>
-                <div className="flex flex-auto justify-end mt-4 gap-6 items-center">
+                {/* <div className="flex flex-auto justify-end mt-4 gap-6 items-center">
                   <button
                     onClick={() => {
                       setModal(false);
@@ -429,12 +496,13 @@ const OrderSupplierUpdate = ({
                   >
                     Close
                   </button>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
         </div>
       </div>
+      <Toaster />
     </div>
   );
 };

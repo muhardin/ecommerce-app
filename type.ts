@@ -299,8 +299,70 @@ export interface UserAddress {
   updated_at: string;
 }
 // types.ts
+export interface Wallet {
+  id: number;
+  user_id: number;
+  trx: string;
+  confirmation_code: string | null;
+  is_deleted: number;
+  is_confirmed: number;
+  status: string | null;
+  type: "In" | "Out"; // Define specific values 'In' or 'Out'
+  description: string | null;
+  amount: number;
+  is_read: number;
+  created_at: string;
+  updated_at: string;
+  reward_type: string | null;
+  Wallet: Wallet[];
+}
 
 export interface AppState {
   modal: boolean;
   // other state properties
 }
+export type Bank = {
+  id: number;
+  bank_name: string;
+  name_account: string | null;
+  created_at: string | null;
+  updated_at: string | null;
+  category: string | null;
+  is_delete: number;
+  status: number;
+  picture: string;
+  code: number;
+};
+
+export type UserBank = {
+  id: number;
+  user_id: number;
+  bank_id: number;
+  bank_name: string;
+  bank_account_name: string;
+  bank_account_number: number;
+  status: number | null;
+  created_at: string;
+  updated_at: string;
+  branch: string;
+  bank: Bank;
+};
+export type Withdraw = {
+  map: any;
+  id: number;
+  user_id: number;
+  trx: string;
+  created_at: string;
+  updated_at: string;
+  is_deleted: number;
+  status: number;
+  type: string | null;
+  desc: string | null;
+  amount: number;
+  fee: number;
+  amount_totransfer: number;
+  bank_name: string;
+  bank_account_name: string;
+  bank_account_number: string;
+  branch: string;
+};

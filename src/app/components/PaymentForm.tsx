@@ -166,16 +166,16 @@ const PaymentForm = ({
 
   // console.log("product data : ", productData);
 
-  console.log(JSON.stringify(order));
-  console.log(clientIP);
-  console.log(errMessage);
+  // console.log(JSON.stringify(order));
+  // console.log(clientIP);
+  // console.log(errMessage);
 
-  console.log(shippingMethod);
-  console.log(productData);
-  console.log(address);
-  console.log(shopData);
-  console.log(selectedPayment);
-  console.log(selectedVirtual);
+  // console.log(shippingMethod);
+  // console.log(productData);
+  // console.log(address);
+  // console.log(shopData);
+  // console.log(selectedPayment);
+  // console.log(selectedVirtual);
   return (
     <>
       <div className=" w-full bg-white p-4 relative">

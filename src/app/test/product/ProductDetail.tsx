@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import React, { useState } from "react";
 
 interface Product {
@@ -32,7 +33,12 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
     <div className="product-detail">
       <div className="product-images">
         <button onClick={prevImage}>Previous</button>
-        <img src={product.images[currentImageIndex]} alt={product.title} />
+        <Image
+          width={250}
+          height={250}
+          src={product.images[currentImageIndex]}
+          alt={product.title}
+        />
         <button onClick={nextImage}>Next</button>
       </div>
       <div className="product-info">

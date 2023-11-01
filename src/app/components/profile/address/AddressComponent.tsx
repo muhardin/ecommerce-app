@@ -81,7 +81,7 @@ const AddressComponent = () => {
         }
       });
   };
-  console.log(addresses);
+  // console.log(addresses);
   return (
     <div>
       <section className="bg-white py-0 sm:py-4 lg:py-4">

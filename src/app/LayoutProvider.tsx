@@ -14,12 +14,12 @@ export const LayoutProvider = ({ children }: Props) => {
   const pathname = usePathname();
   // console.log(pathname);
   switch (pathname) {
-    case "/test":
-      return (
-        <>
-          <TestPage />
-        </>
-      );
+    // case "/test":
+    //   return (
+    //     <>
+    //       <TestPage />
+    //     </>
+    //   );
     case "/sign-in_":
       return (
         <div>

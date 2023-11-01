@@ -29,7 +29,9 @@ const LoginPage = () => {
                 <div className="absolute inset-0 z-10 bg-gray-700 opacity-50">
                   {" "}
                 </div>
-                <img
+                <Image
+                  width={250}
+                  height={250}
                   src="https://i.postimg.cc/XJBZvxHp/first.jpg"
                   alt=""
                   className=" inset-0 object-cover w-full h-2/4"

@@ -11,6 +11,7 @@ import { options } from "./api/auth/[...nextauth]/options";
 import { LayoutProvider } from "./LayoutProvider";
 import { headers } from "next/headers";
 import { ShopDataProvider } from "./components/shop/ShopContext";
+import HeaderFront from "./components/HeaderFront";
 
 export const metadata: Metadata = {
   title: "My Smart Shop ",
@@ -34,14 +35,18 @@ export default async function RootLayout({
   // console.log(process.env.GITHUB_ID!);
   const headersList = headers();
   const domain = headersList.get("host") || "";
-
+  const fullUrl = headersList.get("referer") || "";
+  const [, pathname] =
+    fullUrl.match(new RegExp(`https?:\/\/${domain}(.*)`)) || [];
+  // console.log(pathname);
   return (
     <html lang="en">
       <body className="font-bodyFont w-full bg-main-bg text-darkText ">
         <LayoutProvider>
           <ShopDataProvider domain={domain}>
             <Layout>
-              <Header />
+              {/* <Header /> */}
+              <HeaderFront />
               {children}
               <Footer />
               <BottomNavigation />

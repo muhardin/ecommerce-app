@@ -10,3 +10,8 @@ export async function getClientIPAddress(): Promise<string> {
     return "Unknown";
   }
 }
+
+export function formatUnixTimestamp(unixTimestamp: number): string {
+  const date = new Date(unixTimestamp * 1000); // Convert seconds to milliseconds
+  return date.toLocaleDateString(); // You can specify the format as needed
+}
