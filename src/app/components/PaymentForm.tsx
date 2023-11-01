@@ -638,7 +638,7 @@ const PaymentForm = ({
         <LoadingComponent />
       </div>
       <div
-        className={`relative z-10 ${!modal ? "hidden" : ""} `}
+        className={`relative z-30 ${!modal ? "hidden" : ""} `}
         aria-labelledby="modal-title"
         role="dialog"
         aria-modal="true"

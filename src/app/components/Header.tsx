@@ -15,14 +15,9 @@ import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import { Products, StateProps } from "../../../type";
 import FormattedPrice from "./FormattedPrice";
-import {
-  addUser,
-  deleteUser,
-  openMenu,
-  updateNote,
-} from "@/redux/shoppingSlice";
+import { addUser, deleteUser } from "@/redux/shoppingSlice";
 import toast, { Toaster } from "react-hot-toast";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import AvatarHeader from "./Avatar";
 import SideBar from "./SideBar";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
@@ -39,6 +34,7 @@ interface HeaderProps {
 }
 
 const Header = () => {
+  const pathName = usePathname();
   const [value, setValue] = useState<boolean>(false);
   const handleValueChange = (newValue: boolean) => {
     setValue(newValue);
@@ -153,26 +149,31 @@ const Header = () => {
         <Container className="h-full w-full flex items-center md:gap-x-5 justify-between md:justify-start">
           {session && (
             <>
-              <div className={`flex items-center ml-2`}>
-                <button
-                  onClick={() => {
-                    // setValue(!value);
-                    handleToggleMenu();
-                  }}
-                  data-drawer-target="default-sidebar"
-                  data-drawer-toggle="default-sidebar"
-                  aria-controls="default-sidebar"
-                  type="button"
-                  className=""
-                >
-                  <span className="sr-only">Open sidebar</span>
-                  {!value ? (
-                    <Bars3Icon className="block h-6 w-6" aria-hidden="true" />
-                  ) : (
-                    <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
-                  )}
-                </button>
-              </div>
+              {pathName.startsWith("/supplier") ? (
+                <div className={`flex items-center ml-2`}>
+                  <button
+                    onClick={() => {
+                      // setValue(!value);
+                      handleToggleMenu();
+                    }}
+                    data-drawer-target="default-sidebar"
+                    data-drawer-toggle="default-sidebar"
+                    aria-controls="default-sidebar"
+                    type="button"
+                    className=""
+                  >
+                    <span className="sr-only">Open sidebar</span>
+                    {!value ? (
+                      <Bars3Icon className="block h-6 w-6" aria-hidden="true" />
+                    ) : (
+                      <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
+                    )}
+                  </button>
+                </div>
+              ) : (
+                ""
+              )}
+
               <div className="md:hidden mt-10 ">
                 <SideBar value={value} onValueChange={handleValueChange} />
               </div>

@@ -98,19 +98,11 @@ export const shoppingSlice = createSlice({
     updateModal: (state, action) => {
       state.modal = action.payload;
     },
-    openMenu: (state, action) => {
-      state.menu = action.payload;
-    },
-    closeMenu: (state) => {
-      state.menu = null;
-    },
   },
 });
 // actions
 // selectors
 export const {
-  closeMenu,
-  openMenu,
   updateNote,
   removeModal,
   updateModal,
