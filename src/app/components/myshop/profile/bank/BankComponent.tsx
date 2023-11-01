@@ -13,6 +13,7 @@ import AddBankAccountForm from "../../wallet/AddBankAccount";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { closeProfileMenu } from "@/redux/profileSlice";
+import UpdateBank from "./UpdateBank";
 
 const BankComponent = () => {
   const dispatch = useDispatch();
@@ -32,7 +33,7 @@ const BankComponent = () => {
     isValidating,
     error,
   } = useSWR(url, fetcher, {
-    refreshInterval: 6000,
+    refreshInterval: 2000,
   });
 
   const SubmitDelete = async (id?: number, act?: string) => {
@@ -66,7 +67,7 @@ const BankComponent = () => {
             toast.loading("...loading");
             await axios
               .delete(
-                `${process.env.SERVER_ENDPOINT}/api/user/address/delete/${id}`,
+                `${process.env.SERVER_ENDPOINT}/api/wallet/banks/user/delete/${id}`,
                 {
                   headers: {
                     Authorization: `Bearer ${session?.bearer}`, // Include the bearer token
@@ -181,14 +182,17 @@ const BankComponent = () => {
                       </div>
                       <div className=" flex flex-row gap-2 object-bottom text-white mt-2 justify-center">
                         {/* <UpdateAddress address={item} /> */}
-                        <button
-                          onClick={() => {
-                            SubmitDelete(item.id, "del");
-                          }}
-                          className="p-2 bg-red-500 hover:bg-red-400 rounded-md"
-                        >
-                          Delete
-                        </button>
+                        <div className="flex flex-row h-10 justify-end gap-2">
+                          <button
+                            onClick={() => {
+                              SubmitDelete(item.id, "del");
+                            }}
+                            className="p-2 bg-red-500 hover:bg-red-400 rounded-md"
+                          >
+                            Delete
+                          </button>
+                          <UpdateBank item={item} />
+                        </div>
                       </div>
                     </div>
                   ))

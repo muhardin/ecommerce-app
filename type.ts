@@ -333,7 +333,11 @@ export type Bank = {
   picture: string;
   code: number;
 };
-
+export type BankSelect = {
+  value: number;
+  label: string;
+  disabled: boolean;
+};
 export type UserBank = {
   id: number;
   user_id: number;

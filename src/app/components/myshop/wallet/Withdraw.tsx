@@ -298,7 +298,7 @@ const Withdraw = ({ valModal, modalToggle, balance }: Props) => {
                               </div>
 
                               <div className="flex justify-end gap-2">
-                                <Link href={"/profile/address"}>
+                                <Link href={"/myshop/profile/bank"}>
                                   <button className="rounded-md bg-sky-500 p-2 text-white hover:bg-sky-300">
                                     Manage Bank
                                   </button>
