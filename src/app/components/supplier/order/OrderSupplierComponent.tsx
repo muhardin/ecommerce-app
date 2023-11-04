@@ -54,7 +54,7 @@ const OrderSupplierComponent = () => {
     <>
       {/* <div className="">s</div>
       {orders ? <OrderSupplierUpdate item={orders[0]} /> : ""} */}
-      <div className="w-full mx-auto h-auto">
+      <div className="w-full mx-auto h-auto bg-white pb-4">
         <div className="mt-0 px-4 mb-4 pt-4">
           <div className="sm:flex sm:items-center sm:justify-between flex-col sm:flex-row">
             <p className="flex-1 text-base font-bold text-gray-900">

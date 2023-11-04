@@ -657,9 +657,7 @@ const CheckoutCart = () => {
                       {/* <p>W : {FormattedCommaNumber(item.weight / 1000)}</p> */}
                       <p className="text-lg font-semibold">
                         <FormattedPrice
-                          amount={
-                            (item?.agent_price + item?.profit) * item?.quantity
-                          }
+                          amount={item?.agent_price * item?.quantity}
                         />
                       </p>
                     </div>

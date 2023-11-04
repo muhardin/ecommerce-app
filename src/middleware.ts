@@ -5,6 +5,7 @@ import type { NextRequest } from "next/server";
 
 export async function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
+  const hostname = request.nextUrl.hostname;
   const token = (await getToken({
     req: request as any,
     secret: process.env.NEXTAUTH_SECRET!,
@@ -59,10 +60,10 @@ export const config = {
   matcher: [
     "/profile/:path*",
     "/supplier/:path*",
+    "/myshop/:path*",
     "/order",
     "/buyer/:path*",
     "/checkout",
     "/sign-in",
-    "/myshop/:path*",
   ],
 };

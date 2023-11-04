@@ -5,7 +5,7 @@ const GetProfile = () => {
   async function getData() {
     const sessionServer = await getServerSession(options);
     const token = sessionServer?.bearer;
-    const res = await fetch("http://127.0.0.1:8000/api/user/profile", {
+    const res = await fetch(process.env.SERVER_ENDPOINT + "/api/user/profile", {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,

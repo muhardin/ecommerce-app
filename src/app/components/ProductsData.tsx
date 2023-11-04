@@ -55,10 +55,7 @@ const ProductsData = ({ item }: ItemProps) => {
           <div className=" flex items-center justify-between">
             <div className=" border-[1px] border-sky-500 py-1 px-4 rounded-full text-xs">
               <p>
-                {calculatePercentage(
-                  item?.agent_price + item?.profit,
-                  item?.product.oldPrice
-                )}
+                {calculatePercentage(item?.agent_price, item?.product.oldPrice)}
                 % off
               </p>
             </div>
@@ -68,7 +65,7 @@ const ProductsData = ({ item }: ItemProps) => {
                 <FormattedPrice amount={item.product.oldPrice} />
               </p>
               <p className=" font-semibold">
-                <FormattedPrice amount={item?.agent_price + item?.profit} />
+                <FormattedPrice amount={item?.agent_price} />
               </p>
             </div>
           </div>

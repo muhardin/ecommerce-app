@@ -115,7 +115,7 @@ const Withdraw = ({ valModal, modalToggle, balance }: Props) => {
   const [totalReceived, setTotalReceived] = useState(0);
   const [valueAmount, setValueAmount] = useState(0);
   const [errorBalance, setErrorBalance] = useState(false);
-
+  const [disable, setDisable] = useState(false);
   // Function to update the total amount when amount or fee changes
   const updateTotalAmount = (e: Number) => {
     setValueAmount(Number(e));
@@ -132,11 +132,14 @@ const Withdraw = ({ valModal, modalToggle, balance }: Props) => {
   };
 
   const handleSubmitWithdrawal = async (e: SyntheticEvent) => {
+    setDisable(true);
+    setErrMessage([]);
     toast.loading("loading...");
     e.preventDefault();
     const formData = new FormData();
     formData.append("bank", selectedBankDetail.id ?? object.id);
     formData.append("amount", valueAmount.toString());
+
     try {
       const response = await axios.post(
         `${process.env.SERVER_ENDPOINT}/api/wallet/withdraw/post`, // Adjust the URL accordingly
@@ -159,9 +162,10 @@ const Withdraw = ({ valModal, modalToggle, balance }: Props) => {
       }
       if (response.status === 201) {
         toast.dismiss();
-        console.log(response.data.message.error);
+        // console.log(response.data.message.error);
         setErrMessage(response.data.message.error);
       }
+      setDisable(false);
     } catch (error) {
       toast.error("An error occurred while submitting the withdrawal request");
       // Handle errors
@@ -474,8 +478,9 @@ const Withdraw = ({ valModal, modalToggle, balance }: Props) => {
                         </button>
 
                         <button
+                          disabled={disable}
                           onClick={handleSubmitWithdrawal}
-                          className="p-2 rounded-md text-white bg-sky-600 cursor-pointer"
+                          className="p-2 rounded-md text-white bg-sky-600 cursor-pointer disabled:bg-gray-500"
                         >
                           Submit
                         </button>

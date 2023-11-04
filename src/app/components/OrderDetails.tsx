@@ -17,7 +17,7 @@ const OrderDetails = () => {
   useEffect(() => {
     let amt = 0;
     orderData?.order?.map((item: Products) => {
-      amt += (item.agent_price + item.profit) * item.quantity;
+      amt += item.agent_price * item.quantity;
       return;
     });
     setTotalAmount(amt);

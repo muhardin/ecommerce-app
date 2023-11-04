@@ -12,6 +12,7 @@ import { LayoutProvider } from "./LayoutProvider";
 import { headers } from "next/headers";
 import { ShopDataProvider } from "./components/shop/ShopContext";
 import HeaderFront from "./components/HeaderFront";
+import LayoutWeb from "./components/landingpage/Layout";
 
 export const metadata: Metadata = {
   title: "My Smart Shop ",
@@ -39,21 +40,32 @@ export default async function RootLayout({
   const [, pathname] =
     fullUrl.match(new RegExp(`https?:\/\/${domain}(.*)`)) || [];
   // console.log(pathname);
-  return (
-    <html lang="en">
-      <body className="font-bodyFont w-full bg-main-bg text-darkText ">
-        <LayoutProvider>
-          <ShopDataProvider domain={domain}>
-            <Layout>
-              {/* <Header /> */}
-              <HeaderFront />
-              {children}
-              <Footer />
-              <BottomNavigation />
-            </Layout>
-          </ShopDataProvider>
-        </LayoutProvider>
-      </body>
-    </html>
-  );
+  // console.log(domain);
+  if (domain == process.env.LANDING_PAGE) {
+    return (
+      <html lang="en">
+        <body className="font-bodyFont w-full bg-main-bg text-darkText ">
+          <LayoutWeb>{children}</LayoutWeb>
+        </body>
+      </html>
+    );
+  } else {
+    return (
+      <html lang="en">
+        <body className="font-bodyFont w-full bg-main-bg text-darkText ">
+          <LayoutProvider>
+            <ShopDataProvider domain={domain}>
+              <Layout>
+                {/* <Header /> */}
+                <HeaderFront />
+                {children}
+                <Footer />
+                <BottomNavigation />
+              </Layout>
+            </ShopDataProvider>
+          </LayoutProvider>
+        </body>
+      </html>
+    );
+  }
 }

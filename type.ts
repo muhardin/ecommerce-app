@@ -17,6 +17,7 @@ export interface Products {
   isNew: boolean;
   oldPrice: number;
   price: number;
+  company_price: number;
   description: string;
   category: string;
   image: string;
@@ -44,6 +45,7 @@ export interface Address {
   address: string;
   description: string;
   contact_person: string;
+  city: number;
   city_name: string;
   image: string;
   subdistrict_name: string;
@@ -133,21 +135,23 @@ export interface CourierData {
 export interface Product {
   id: number;
   title: string;
-  isNew: number;
-  oldPrice: string;
+  isNew: boolean;
+  oldPrice: number;
   price: number;
+  company_price: number;
   description: string;
   category: string;
   image: string;
   rating: number;
   quantity: number;
-  is_trending: number;
-  sub_category: number;
+  number: number;
+  weight: number;
   supplier_id: number;
   supplier_area: number;
-  weight: number;
-  product_url: string | null;
-  sku: string | null;
+  shipping: string;
+  agent_price: number;
+  profit: number;
+  product: Product;
 }
 
 export interface Order {

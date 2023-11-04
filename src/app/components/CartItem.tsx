@@ -123,9 +123,7 @@ const CartItem = () => {
             </div>
             <div className=" w-full md:w-1/3 flex items-end justify-start md:justify-end">
               <p className="text-lg font-semibold">
-                <FormattedPrice
-                  amount={(item?.agent_price + item?.profit) * item?.quantity}
-                />
+                <FormattedPrice amount={item?.agent_price * item?.quantity} />
               </p>
             </div>
           </div>

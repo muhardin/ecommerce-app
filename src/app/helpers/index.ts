@@ -106,7 +106,7 @@ export function formatDateAndTime(dateTimeString: string) {
   return formattedDate;
 }
 export const getUserDetail = async (token: string) => {
-  const apiUrl = "http://localhost:8000/api/user/profile"; // Replace with your API endpoint
+  const apiUrl = process.env.SERVER_ENDPOINT + "/api/user/profile"; // Replace with your API endpoint
 
   const response = await axios.get(apiUrl, {
     headers: {

@@ -1,6 +1,6 @@
 import { SyntheticEvent, useState } from "react";
 import { Address, DataToAdd } from "../../../../../type";
-import toast from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
 import { useSession } from "next-auth/react";
 import Select from "react-tailwindcss-select";
@@ -13,9 +13,23 @@ const UpdateAddress = ({ address }: { address: Address }) => {
   const [isFail, setIsFail] = useState(false);
   const [errMessage, setErrMessage] = useState<string[]>([]);
 
-  const [getCityId, setCityId] = useState(null);
-  const [getAreaId, setAreaId] = useState(null);
-  const [getInCity, setInCity] = useState(null);
+  // const [getBank, setBank] = useState<any>({
+  //   value: address.city,
+  //   label: address.city_name,
+  //   disabled: false,
+  // });
+
+  const [getCityId, setCityId] = useState(address.city);
+  const [getAreaId, setAreaId] = useState<any>({
+    value: address.subdistrict,
+    label: address.subdistrict_name,
+    disabled: false,
+  });
+  const [getInCity, setInCity] = useState<any>({
+    value: address.city,
+    label: address.city_name,
+    disabled: false,
+  });
 
   const { data: session } = useSession();
 
@@ -61,7 +75,7 @@ const UpdateAddress = ({ address }: { address: Address }) => {
       subdistrict: value.value,
     });
   };
-  const options = data.filter((item) => item.city_id === getCityId);
+  const options = data.filter((item) => item.city_id === getCityId.toString());
 
   const handleSubmitAddress = async (e: SyntheticEvent) => {
     e.preventDefault();
@@ -375,6 +389,7 @@ const UpdateAddress = ({ address }: { address: Address }) => {
             </div>
           </div>
         </div>
+        <Toaster />
       </div>
     </>
   );

@@ -21,7 +21,7 @@ const CartTotal = () => {
   useEffect(() => {
     let amt = 0;
     productData.map((item: Products) => {
-      amt += (item.agent_price + item.profit) * item.quantity;
+      amt += item.agent_price * item.quantity;
       return;
     });
     let total = amt;

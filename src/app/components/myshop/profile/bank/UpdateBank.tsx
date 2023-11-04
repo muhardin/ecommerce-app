@@ -94,7 +94,7 @@ const UpdateBank = ({ item }: { item: UserBank }) => {
     }
   };
 
-  console.log(item);
+  // console.log(item);
   return (
     <>
       <div>

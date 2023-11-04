@@ -3,6 +3,7 @@ const nextConfig = {
   reactStrictMode: false,
   env: {
     SERVER_ENDPOINT: process.env.SERVER_ENDPOINT,
+    LANDING_PAGE: process.env.LANDING_PAGE,
   },
   images: {
     remotePatterns: [
