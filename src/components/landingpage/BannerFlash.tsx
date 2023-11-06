@@ -1,8 +1,14 @@
 import { XMarkIcon } from "@heroicons/react/20/solid";
+import { useState } from "react";
 
 export default function BannerFlash() {
+  const [banner, setBanner] = useState(true);
   return (
-    <div className="relative isolate flex items-center gap-x-6 overflow-hidden bg-gray-50 px-6 py-2.5 sm:px-3.5 sm:before:flex-1">
+    <div
+      className={`${
+        banner ? "block" : "hidden"
+      } relative isolate flex items-center gap-x-6 overflow-hidden bg-gray-50 px-6 py-2.5 sm:px-3.5 sm:before:flex-1`}
+    >
       <div
         className="absolute left-[max(-7rem,calc(50%-52rem))] top-1/2 -z-10 -translate-y-1/2 transform-gpu blur-2xl"
         aria-hidden="true"
@@ -48,6 +54,9 @@ export default function BannerFlash() {
       </div>
       <div className="flex flex-1 justify-end">
         <button
+          onClick={() => {
+            setBanner(false);
+          }}
           type="button"
           className="-m-3 p-3 focus-visible:outline-offset-[-4px]"
         >

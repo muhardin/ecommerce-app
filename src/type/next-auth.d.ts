@@ -8,5 +8,6 @@ declare module "next-auth" {
   interface Session {
     username: string | null;
     bearer: string | null;
+    is_seller: string | null;
   }
 }

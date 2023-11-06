@@ -374,3 +374,28 @@ export type Withdraw = {
   bank_account_number: string;
   branch: string;
 };
+export interface ShopPackage {
+  id: number;
+  package_name: string;
+  title: string;
+  price: string;
+  description_price: string;
+  maximum_product_sale: number;
+  minimum_price_sale: string;
+  benefit: string | null;
+  other_rule: string | null;
+  created_at: string;
+  updated_at: string | null;
+  point: number;
+  sponsor: number;
+  pairing: number;
+  max_pairing: number;
+  sp1: number;
+  sp2: number;
+  sp3: number;
+  sp_global: number;
+  roll_up: number;
+  unilevel_cut: number;
+}
+
+export type ShopPackageArray = ShopPackage[];

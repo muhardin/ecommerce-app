@@ -26,6 +26,8 @@ const PaymentComponent = ({ id }: any) => {
   const pathname = usePathname();
   const router = useRouter();
 
+  console.log(id[0]);
+
   const { data: session } = useSession();
   const fetcher = (url: any) =>
     fetch(url, {
@@ -35,12 +37,7 @@ const PaymentComponent = ({ id }: any) => {
         "Content-Type": "application/json", // Adjust headers as needed
       },
     }).then((res) => res.json());
-  const url =
-    process.env.SERVER_ENDPOINT +
-    "/api/user/payment/detail/" +
-    id[0] +
-    "/" +
-    shopData?.id;
+  const url = `${process.env.SERVER_ENDPOINT}/api/register-payment/${id[0]}`;
   const {
     data: payment,
     isLoading,
@@ -49,16 +46,17 @@ const PaymentComponent = ({ id }: any) => {
   } = useSWR(url, fetcher, {
     refreshInterval: 2000,
   });
-  if (payment?.message == "Data not exist") {
-    router.push("/");
-  }
-  // console.log(payment?.order?.order_payment);
-  // console.log(payment?.order?.order_payment.instructions);
-  // console.log(payment?.order.order_payment.status);
+  console.log(payment);
+  // if (payment?.message == "Data not exist") {
+  //   router.push("/");
+  // }
+  // console.log(payment?);
+  // console.log(payment?.instructions);
+  // console.log(payment?.order.status);
 
   /** Count down  expire payment */
   const [timeRemaining, setTimeRemaining] = useState<number>(0);
-  const unixTimestamp = payment?.order.order_payment.expired_time; // Example Unix timestamp (seconds since the Unix epoch)
+  const unixTimestamp = payment?.expired_time; // Example Unix timestamp (seconds since the Unix epoch)
 
   function formatTimeRemaining(timeInSeconds: number): string {
     const days = Math.floor(timeInSeconds / (60 * 60 * 24));
@@ -85,7 +83,7 @@ const PaymentComponent = ({ id }: any) => {
   }, [unixTimestamp]);
   /** end of count down expire time */
   const [decodedArray, setDecodedArray] = useState<Step[]>([]);
-  const jsonString = payment?.order?.order_payment.instructions;
+  const jsonString = payment?.instructions;
 
   useEffect(() => {
     try {
@@ -98,15 +96,15 @@ const PaymentComponent = ({ id }: any) => {
 
   return (
     <div className=" w-full">
-      <span>Payment Via {payment?.order?.payment_name}</span>
+      <span>Payment Via {payment?.payment_name}</span>
       <div className="w-full flex  flex-col items-center justify-center">
         <div className="text-center">
           <div className="w-full flex justify-center">
-            {payment?.order?.order_payment.payment?.picture ? (
+            {payment?.payment?.picture ? (
               <Image
                 className="object-cover"
-                // src={`${payment?.order?.order_payment.payment?.picture}`}
-                src={`/images/payment/code/${payment?.order?.order_payment.payment?.code}.png`}
+                // src={`${payment?.payment?.picture}`}
+                src={`/images/payment/code/${payment?.payment?.code}.png`}
                 alt=""
                 width={250}
                 height={250}
@@ -115,7 +113,7 @@ const PaymentComponent = ({ id }: any) => {
               ""
             )}
           </div>
-          {payment?.order.order_payment.status != "PAID" ? (
+          {payment?.status != "PAID" ? (
             <h1>
               Batas Pembayaran :{" "}
               <div className="text-2xl text-red-500">
@@ -128,28 +126,23 @@ const PaymentComponent = ({ id }: any) => {
           <div className="flex flex-col mt-2">
             <span>Total</span>
             <span className="text-2xl font-bold">
-              <FormattedPrice amount={payment?.order?.amount} />
+              <FormattedPrice amount={payment?.amount} />
             </span>
           </div>
 
           <div className="flex flex-col mt-4">
-            <span>
-              Nomor Rekening Virtual Account{" "}
-              {payment?.order?.order_payment.payment_name}
-            </span>
-            <span className="font-bold">
-              {payment?.order?.order_payment.pay_code}
-            </span>
+            <span>Nomor Rekening Virtual Account {payment?.payment_name}</span>
+            <span className="font-bold">{payment?.pay_code}</span>
           </div>
           <div className="flex flex-col mt-4">
             <span>Nomor Pesanan</span>
-            <span>{payment?.order?.order_payment.payment_reference}</span>
+            <span>{payment?.payment_reference}</span>
           </div>
         </div>
-        {payment?.order?.payment_method == "wallet" ? (
+        {payment?.payment_method == "wallet" ? (
           <div className="py-10 text-center">
             <Link
-              href={payment?.order?.order_payment.checkout_url}
+              href={payment?.checkout_url}
               className="px-12 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-3 rounded-lg"
             >
               Lanjutkan Pembayaran
@@ -159,7 +152,7 @@ const PaymentComponent = ({ id }: any) => {
           ""
         )}
       </div>
-      {payment?.order?.order_payment?.status == "PAID" ? (
+      {payment?.status == "PAID" ? (
         <div className="bg-gray-100 h-auto">
           <div className="bg-white p-6  md:mx-auto">
             <svg
@@ -194,7 +187,7 @@ const PaymentComponent = ({ id }: any) => {
         <div className="mt-10">
           <div className="mb-2">
             <span className="">
-              Payment instructions via {payment?.order?.payment_name}
+              Payment instructions via {payment?.payment_name}
             </span>
           </div>
           {decodedArray.map((item, index) => (

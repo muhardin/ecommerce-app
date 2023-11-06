@@ -59,6 +59,7 @@ export const options: NextAuthOptions = {
             bearer: auth?.token,
             image: user?.photo_url,
             role: user?.role,
+            is_seller: user?.is_seller,
           };
         } else {
           return null;
@@ -93,6 +94,7 @@ export const options: NextAuthOptions = {
       session.bearer = token?.user?.bearer;
       session.role = token?.user?.role;
       session.user_id = token?.user?.id;
+      session.is_seller = token?.user?.is_seller;
       return session;
       // return {
       //   ...session,

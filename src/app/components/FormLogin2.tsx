@@ -14,8 +14,10 @@ import {
   IoIosEye,
   IoIosEyeOff,
 } from "react-icons/io";
+import { useRouter } from "next/navigation";
 
 const FormLoginT = () => {
+  const router = useRouter();
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     toast.loading("Loading", {
       position: "top-center",
@@ -25,12 +27,12 @@ const FormLoginT = () => {
     const password = e.currentTarget.password.value;
     try {
       const signInData = await signIn("credentials", {
-        redirect: true,
+        redirect: false,
         email,
         password,
         callbackUrl: "/",
       });
-      // console.log(signInData);
+      console.log(signInData);
       if (signInData?.error) {
         toast.dismiss();
         toast.error("Login failed!", {
@@ -41,6 +43,7 @@ const FormLoginT = () => {
         toast.success("Login successful!", {
           position: "top-center",
         });
+        router.push("/");
       }
       // Redirect or handle the login result as needed
     } catch (error) {

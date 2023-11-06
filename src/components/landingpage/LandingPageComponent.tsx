@@ -54,7 +54,7 @@ export default function LandingPageComponent() {
                     <path
                       d="M513 1025C230.23 1025 1 795.77 1 513"
                       stroke="url(#:S2:-gradient-1)"
-                      stroke-linecap="round"
+                      strokeLinecap="round"
                     ></path>
                     <defs>
                       <linearGradient
@@ -88,7 +88,7 @@ export default function LandingPageComponent() {
                     <path
                       d="M913 513c0 220.914-179.086 400-400 400"
                       stroke="url(#:S2:-gradient-2)"
-                      stroke-linecap="round"
+                      strokeLinecap="round"
                     ></path>
                     <defs>
                       <linearGradient
@@ -282,7 +282,7 @@ export default function LandingPageComponent() {
                       <path
                         d="M1 279C1 125.465 125.465 1 279 1"
                         stroke="url(#:r3:)"
-                        stroke-linecap="round"
+                        strokeLinecap="round"
                       ></path>
                     </svg>
                   </div>
@@ -300,8 +300,8 @@ export default function LandingPageComponent() {
                             <path
                               d="M5 6h14M5 18h14M5 12h14"
                               stroke="#fff"
-                              stroke-width="2"
-                              stroke-linecap="round"
+                              strokeWidth="2"
+                              strokeLinecap="round"
                               stroke-linejoin="round"
                             ></path>
                           </svg>
@@ -329,8 +329,8 @@ export default function LandingPageComponent() {
                             <path
                               d="M15 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0ZM6.696 19h10.608c1.175 0 2.08-.935 1.532-1.897C18.028 15.69 16.187 14 12 14s-6.028 1.689-6.836 3.103C4.616 18.065 5.521 19 6.696 19Z"
                               stroke="#fff"
-                              stroke-width="2"
-                              stroke-linecap="round"
+                              strokeWidth="2"
+                              strokeLinecap="round"
                               stroke-linejoin="round"
                             ></path>
                           </svg>
@@ -379,8 +379,8 @@ export default function LandingPageComponent() {
                     >
                       <path
                         fill="#F2F2F2"
-                        fill-rule="evenodd"
-                        clip-rule="evenodd"
+                        fillRule="evenodd"
+                        clipRule="evenodd"
                         d="M300.092 1c41.22 0 63.223 21.99 63.223 63.213V184.94c-.173.184-.329.476-.458.851.188-.282.404-.547.647-.791.844-.073 2.496.257 2.496 2.157V268.719c-.406 2.023-2.605 2.023-2.605 2.023a7.119 7.119 0 0 1-.08-.102v394.462c0 41.213-22.001 63.212-63.223 63.212h-95.074c-.881-.468-2.474-.795-4.323-.838l-33.704-.005-.049.001h-.231l-.141-.001c-2.028 0-3.798.339-4.745.843H66.751c-41.223 0-63.223-21.995-63.223-63.208V287.739c-.402-.024-2.165-.23-2.524-2.02v-.973A2.039 2.039 0 0 1 1 284.62v-47.611c0-.042.001-.084.004-.126v-.726c0-1.9 1.652-2.23 2.496-2.157l.028.028v-16.289c-.402-.024-2.165-.23-2.524-2.02v-.973A2.039 2.039 0 0 1 1 214.62v-47.611c0-.042.001-.084.004-.126v-.726c0-1.9 1.652-2.23 2.496-2.157l.028.028v-26.041a2.26 2.26 0 0 0 .093-.236l-.064-.01a3.337 3.337 0 0 1-.72-.12l-.166-.028A2 2 0 0 1 1 135.62v-24.611a2 2 0 0 1 1.671-1.973l.857-.143v-44.68C3.528 22.99 25.53 1 66.75 1h233.341ZM3.952 234.516a5.481 5.481 0 0 0-.229-.278c.082.071.159.163.228.278Zm89.99-206.304A4.213 4.213 0 0 0 89.727 24H56.864C38.714 24 24 38.708 24 56.852v618.296C24 693.292 38.714 708 56.864 708h250.272c18.15 0 32.864-14.708 32.864-32.852V56.852C340 38.708 325.286 24 307.136 24h-32.864a4.212 4.212 0 0 0-4.213 4.212v2.527c0 10.235-8.3 18.532-18.539 18.532H112.48c-10.239 0-18.539-8.297-18.539-18.532v-2.527Z"
                       ></path>
                       <rect
@@ -417,14 +417,14 @@ export default function LandingPageComponent() {
                         fillOpacity="0.2"
                       ></circle>
                       <path
-                        fill-rule="evenodd"
-                        clip-rule="evenodd"
+                        fillRule="evenodd"
+                        clipRule="evenodd"
                         d="M16 23a3 3 0 100-6 3 3 0 000 6zm-1 2a4 4 0 00-4 4v1a2 2 0 002 2h6a2 2 0 002-2v-1a4 4 0 00-4-4h-2z"
                         fill="#737373"
                       ></path>
                       <path
-                        fill-rule="evenodd"
-                        clip-rule="evenodd"
+                        fillRule="evenodd"
+                        clipRule="evenodd"
                         d="M5 4a4 4 0 014-4h14a4 4 0 014 4v24a4.002 4.002 0 01-3.01 3.877c-.535.136-.99-.325-.99-.877s.474-.98.959-1.244A2 2 0 0025 28V4a2 2 0 00-2-2h-1.382a1 1 0 00-.894.553l-.448.894a1 1 0 01-.894.553h-6.764a1 1 0 01-.894-.553l-.448-.894A1 1 0 0010.382 2H9a2 2 0 00-2 2v24a2 2 0 001.041 1.756C8.525 30.02 9 30.448 9 31s-.455 1.013-.99.877A4.002 4.002 0 015 28V4z"
                         fill="#A3A3A3"
                       ></path>
@@ -476,7 +476,7 @@ export default function LandingPageComponent() {
                       <path
                         d="M1 279C1 125.465 125.465 1 279 1"
                         stroke="url(#:r4:)"
-                        stroke-linecap="round"
+                        strokeLinecap="round"
                       ></path>
                     </svg>
                   </div>
@@ -494,8 +494,8 @@ export default function LandingPageComponent() {
                             <path
                               d="M5 6h14M5 18h14M5 12h14"
                               stroke="#fff"
-                              stroke-width="2"
-                              stroke-linecap="round"
+                              strokeWidth="2"
+                              strokeLinecap="round"
                               stroke-linejoin="round"
                             ></path>
                           </svg>
@@ -523,8 +523,8 @@ export default function LandingPageComponent() {
                             <path
                               d="M15 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0ZM6.696 19h10.608c1.175 0 2.08-.935 1.532-1.897C18.028 15.69 16.187 14 12 14s-6.028 1.689-6.836 3.103C4.616 18.065 5.521 19 6.696 19Z"
                               stroke="#fff"
-                              stroke-width="2"
-                              stroke-linecap="round"
+                              strokeWidth="2"
+                              strokeLinecap="round"
                               stroke-linejoin="round"
                             ></path>
                           </svg>
@@ -546,8 +546,8 @@ export default function LandingPageComponent() {
                                   className="h-10 w-10"
                                 >
                                   <path
-                                    fill-rule="evenodd"
-                                    clip-rule="evenodd"
+                                    fillRule="evenodd"
+                                    clipRule="evenodd"
                                     d="M29.982 14.509c.002.005.006.01.007.015a.316.316 0 0 1 .011.082v4.293a.304.304 0 0 1-.043.156.32.32 0 0 1-.119.115l-3.709 2.075v4.112a.305.305 0 0 1-.043.157.32.32 0 0 1-.119.114l-7.742 4.33a.286.286 0 0 1-.056.023l-.022.008a.33.33 0 0 1-.18-.005l-.01-.005c-.018-.006-.036-.011-.053-.021l-7.742-4.33a.32.32 0 0 1-.119-.115.304.304 0 0 1-.043-.156v-12.88a.33.33 0 0 1 .01-.08c.004-.01.01-.018.012-.027l.01-.027a.158.158 0 0 1 .011-.022c.006-.01.015-.018.023-.028.009-.012.017-.025.028-.036.01-.01.02-.016.031-.024.012-.009.023-.019.036-.026l3.871-2.165a.33.33 0 0 1 .322 0l3.872 2.165c.013.007.024.017.036.026l.01.008c.008.005.015.01.021.016a.175.175 0 0 1 .021.025l.008.011.022.028c.008.015.014.032.02.049l.006.01.006.016a.307.307 0 0 1 .01.082v8.044l3.227-1.804v-4.112c0-.028.004-.055.011-.082.003-.01.008-.017.011-.026l.004-.01a.228.228 0 0 1 .017-.039.132.132 0 0 1 .013-.018.203.203 0 0 0 .01-.01c.009-.012.017-.025.028-.036l.015-.013.016-.01.019-.016a.126.126 0 0 1 .017-.011l3.871-2.165a.33.33 0 0 1 .322 0l3.871 2.165c.014.007.024.018.036.026l.012.008.02.016a.162.162 0 0 1 .02.026l.009.01.008.01c.005.006.01.012.013.018a.254.254 0 0 1 .018.04l.003.009.005.01Zm-15.138 8.717 3.22 1.77 7.094-3.933-3.223-1.803-7.091 3.966Zm10.64-2.704v-3.57l-3.226-1.804v3.57l3.225 1.804Zm3.547-5.916-3.225-1.803-3.224 1.803 3.224 1.803 3.225-1.803Zm-14.515.218v7.863l3.226-1.805V13.02l-3.226 1.804Zm2.902-2.346-3.225-1.803-3.224 1.803 3.224 1.803 3.225-1.803Zm-3.547 2.347-3.226-1.805v12.155l7.098 3.97V25.54l-3.708-2.038h-.001l-.002-.002c-.013-.008-.024-.018-.035-.027a.28.28 0 0 0-.011-.007.133.133 0 0 1-.02-.015v-.001l-.019-.022a.452.452 0 0 0-.008-.011l-.016-.02a.086.086 0 0 1-.008-.01v-.002a.123.123 0 0 1-.013-.027l-.005-.012-.008-.016a.115.115 0 0 1-.007-.02.18.18 0 0 1-.005-.033l-.002-.013a.293.293 0 0 0-.002-.013l-.002-.022v-8.405Zm4.516 10.715v3.605l7.096-3.969v-3.572l-7.096 3.935Zm7.742-5.019 3.226-1.804v-3.57l-3.226 1.805v3.57Z"
                                   ></path>
                                 </svg>
@@ -573,8 +573,8 @@ export default function LandingPageComponent() {
                                   className="h-10 w-10"
                                 >
                                   <path
-                                    fill-rule="evenodd"
-                                    clip-rule="evenodd"
+                                    fillRule="evenodd"
+                                    clipRule="evenodd"
                                     d="M22.5 8 12 11.692v12l3.5 1.231v3.385L26 32V12.615l-3.5 1.231V8Zm-5.833 17.334 5.833 2.05v-12.24l2.333-.82v15.968l-8.166-2.87v-2.088Z"
                                   ></path>
                                 </svg>
@@ -621,8 +621,8 @@ export default function LandingPageComponent() {
                                   viewBox="0 0 40 40"
                                   fill="#fff"
                                   stroke="#fff"
-                                  stroke-width="2"
-                                  stroke-linecap="round"
+                                  strokeWidth="2"
+                                  strokeLinecap="round"
                                   stroke-linejoin="round"
                                   aria-hidden="true"
                                   className="h-10 w-10"
@@ -678,8 +678,8 @@ export default function LandingPageComponent() {
                                   className="h-10 w-10"
                                 >
                                   <path
-                                    fill-rule="evenodd"
-                                    clip-rule="evenodd"
+                                    fillRule="evenodd"
+                                    clipRule="evenodd"
                                     d="M30.177 27.293c0 1.921-.644 2.707-2.398 2.707H12.22c-1.754 0-2.397-.786-2.397-2.707v-3.741c0-1.805-.837-2.824-1.642-3.291a.385.385 0 0 1-.133-.143.403.403 0 0 1 .133-.526c.837-.551 1.642-1.704 1.642-3.241v-3.677c0-2.072.547-2.674 2.3-2.674h15.754c1.754 0 2.3.602 2.3 2.674v3.675c0 1.537.805 2.69 1.641 3.24.243.168.243.52 0 .67-.804.484-1.64 1.503-1.64 3.29v3.743h-.001Zm-14.739-2.455c1.271 1.152 2.64 1.737 4.522 1.737 2.96 0 4.891-1.537 4.891-4.026 0-2.637-2.3-3.31-4.17-3.856-1.282-.375-2.363-.691-2.363-1.54 0-.551.564-1.086 1.513-1.086.917 0 1.674.2 2.397.584.242.117.467.2.676.2.306 0 .547-.15.756-.45l.29-.451a.955.955 0 0 0 .161-.55c0-.336-.161-.67-.402-.837-.966-.635-2.27-1.17-4.039-1.17-2.51 0-4.44 1.37-4.44 3.826 0 2.746 2.349 3.443 4.23 4h.001c1.255.372 2.3.681 2.3 1.497 0 .785-.707 1.17-1.592 1.17a5.19 5.19 0 0 1-2.992-.92c-.274-.183-.532-.3-.805-.3-.242 0-.451.117-.644.368l-.387.517a.888.888 0 0 0-.192.585c0 .25.08.501.29.702Z"
                                   ></path>
                                 </svg>
@@ -705,8 +705,8 @@ export default function LandingPageComponent() {
                                   className="h-10 w-10"
                                 >
                                   <path
-                                    fill-rule="evenodd"
-                                    clip-rule="evenodd"
+                                    fillRule="evenodd"
+                                    clipRule="evenodd"
                                     d="M24.05 9c2.307 0 4.177 1.885 4.177 4.21a4.21 4.21 0 0 1-2.762 3.964l3.366 6.057h2.304c.355 0 .642.29.642.647a.645.645 0 0 1-.642.647H7.142a.645.645 0 0 1-.642-.647c0-.358.288-.647.643-.647h2.304l5.994-10.747a.641.641 0 0 1 1.097-.036l3.444 5.32 1.071-1.627a4.214 4.214 0 0 1-1.178-2.93c0-2.326 1.87-4.211 4.176-4.211Zm-3.304 9.948 2.772 4.283h3.84l-4.317-7.769-2.295 3.486Zm1.239 4.283-5.944-9.183-5.121 9.183h11.065Zm5.038-10.02a2.995 2.995 0 0 1-2.159 2.883l-1.216-2.19a.64.64 0 0 0-1.096-.04l-.811 1.232a3 3 0 0 1-.663-1.885c0-1.655 1.332-2.997 2.973-2.997 1.641 0 2.972 1.341 2.972 2.997Z"
                                   ></path>
                                   <path d="M12.069 26.469c-.354 0-.641.289-.641.646 0 .358.287.646.64.646h14.139c.354 0 .641-.29.641-.646a.644.644 0 0 0-.64-.646h-14.14Zm4.928 3.236a.645.645 0 0 0-.642.648c0 .357.288.647.642.647h4.282c.355 0 .643-.29.643-.647a.645.645 0 0 0-.643-.648h-4.282Z"></path>
@@ -730,8 +730,8 @@ export default function LandingPageComponent() {
                                   viewBox="0 0 40 40"
                                   fill="none"
                                   stroke="#fff"
-                                  stroke-width="2"
-                                  stroke-linecap="square"
+                                  strokeWidth="2"
+                                  strokeLinecap="square"
                                   stroke-linejoin="round"
                                   aria-hidden="true"
                                   className="h-10 w-10"
@@ -762,8 +762,8 @@ export default function LandingPageComponent() {
                     >
                       <path
                         fill="#F2F2F2"
-                        fill-rule="evenodd"
-                        clip-rule="evenodd"
+                        fillRule="evenodd"
+                        clipRule="evenodd"
                         d="M300.092 1c41.22 0 63.223 21.99 63.223 63.213V184.94c-.173.184-.329.476-.458.851.188-.282.404-.547.647-.791.844-.073 2.496.257 2.496 2.157V268.719c-.406 2.023-2.605 2.023-2.605 2.023a7.119 7.119 0 0 1-.08-.102v394.462c0 41.213-22.001 63.212-63.223 63.212h-95.074c-.881-.468-2.474-.795-4.323-.838l-33.704-.005-.049.001h-.231l-.141-.001c-2.028 0-3.798.339-4.745.843H66.751c-41.223 0-63.223-21.995-63.223-63.208V287.739c-.402-.024-2.165-.23-2.524-2.02v-.973A2.039 2.039 0 0 1 1 284.62v-47.611c0-.042.001-.084.004-.126v-.726c0-1.9 1.652-2.23 2.496-2.157l.028.028v-16.289c-.402-.024-2.165-.23-2.524-2.02v-.973A2.039 2.039 0 0 1 1 214.62v-47.611c0-.042.001-.084.004-.126v-.726c0-1.9 1.652-2.23 2.496-2.157l.028.028v-26.041a2.26 2.26 0 0 0 .093-.236l-.064-.01a3.337 3.337 0 0 1-.72-.12l-.166-.028A2 2 0 0 1 1 135.62v-24.611a2 2 0 0 1 1.671-1.973l.857-.143v-44.68C3.528 22.99 25.53 1 66.75 1h233.341ZM3.952 234.516a5.481 5.481 0 0 0-.229-.278c.082.071.159.163.228.278Zm89.99-206.304A4.213 4.213 0 0 0 89.727 24H56.864C38.714 24 24 38.708 24 56.852v618.296C24 693.292 38.714 708 56.864 708h250.272c18.15 0 32.864-14.708 32.864-32.852V56.852C340 38.708 325.286 24 307.136 24h-32.864a4.212 4.212 0 0 0-4.213 4.212v2.527c0 10.235-8.3 18.532-18.539 18.532H112.48c-10.239 0-18.539-8.297-18.539-18.532v-2.527Z"
                       ></path>
                       <rect
@@ -800,8 +800,8 @@ export default function LandingPageComponent() {
                         fillOpacity="0.2"
                       ></circle>
                       <path
-                        fill-rule="evenodd"
-                        clip-rule="evenodd"
+                        fillRule="evenodd"
+                        clipRule="evenodd"
                         d="M9 0a4 4 0 00-4 4v24a4 4 0 004 4h14a4 4 0 004-4V4a4 4 0 00-4-4H9zm0 2a2 2 0 00-2 2v24a2 2 0 002 2h14a2 2 0 002-2V4a2 2 0 00-2-2h-1.382a1 1 0 00-.894.553l-.448.894a1 1 0 01-.894.553h-6.764a1 1 0 01-.894-.553l-.448-.894A1 1 0 0010.382 2H9z"
                         fill="#A3A3A3"
                       ></path>
@@ -857,7 +857,7 @@ export default function LandingPageComponent() {
                       <path
                         d="M1 279C1 125.465 125.465 1 279 1"
                         stroke="url(#:r5:)"
-                        stroke-linecap="round"
+                        strokeLinecap="round"
                       ></path>
                     </svg>
                   </div>
@@ -875,8 +875,8 @@ export default function LandingPageComponent() {
                             <path
                               d="M5 6h14M5 18h14M5 12h14"
                               stroke="#fff"
-                              stroke-width="2"
-                              stroke-linecap="round"
+                              strokeWidth="2"
+                              strokeLinecap="round"
                               stroke-linejoin="round"
                             ></path>
                           </svg>
@@ -904,8 +904,8 @@ export default function LandingPageComponent() {
                             <path
                               d="M15 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0ZM6.696 19h10.608c1.175 0 2.08-.935 1.532-1.897C18.028 15.69 16.187 14 12 14s-6.028 1.689-6.836 3.103C4.616 18.065 5.521 19 6.696 19Z"
                               stroke="#fff"
-                              stroke-width="2"
-                              stroke-linecap="round"
+                              strokeWidth="2"
+                              strokeLinecap="round"
                               stroke-linejoin="round"
                             ></path>
                           </svg>
@@ -942,8 +942,8 @@ export default function LandingPageComponent() {
                                       <path
                                         d="M17 15V7H9M17 7 7 17"
                                         stroke="#06B6D4"
-                                        stroke-width="2"
-                                        stroke-linecap="round"
+                                        strokeWidth="2"
+                                        strokeLinecap="round"
                                         stroke-linejoin="round"
                                       ></path>
                                     </svg>
@@ -973,8 +973,8 @@ export default function LandingPageComponent() {
                     >
                       <path
                         fill="#F2F2F2"
-                        fill-rule="evenodd"
-                        clip-rule="evenodd"
+                        fillRule="evenodd"
+                        clipRule="evenodd"
                         d="M300.092 1c41.22 0 63.223 21.99 63.223 63.213V184.94c-.173.184-.329.476-.458.851.188-.282.404-.547.647-.791.844-.073 2.496.257 2.496 2.157V268.719c-.406 2.023-2.605 2.023-2.605 2.023a7.119 7.119 0 0 1-.08-.102v394.462c0 41.213-22.001 63.212-63.223 63.212h-95.074c-.881-.468-2.474-.795-4.323-.838l-33.704-.005-.049.001h-.231l-.141-.001c-2.028 0-3.798.339-4.745.843H66.751c-41.223 0-63.223-21.995-63.223-63.208V287.739c-.402-.024-2.165-.23-2.524-2.02v-.973A2.039 2.039 0 0 1 1 284.62v-47.611c0-.042.001-.084.004-.126v-.726c0-1.9 1.652-2.23 2.496-2.157l.028.028v-16.289c-.402-.024-2.165-.23-2.524-2.02v-.973A2.039 2.039 0 0 1 1 214.62v-47.611c0-.042.001-.084.004-.126v-.726c0-1.9 1.652-2.23 2.496-2.157l.028.028v-26.041a2.26 2.26 0 0 0 .093-.236l-.064-.01a3.337 3.337 0 0 1-.72-.12l-.166-.028A2 2 0 0 1 1 135.62v-24.611a2 2 0 0 1 1.671-1.973l.857-.143v-44.68C3.528 22.99 25.53 1 66.75 1h233.341ZM3.952 234.516a5.481 5.481 0 0 0-.229-.278c.082.071.159.163.228.278Zm89.99-206.304A4.213 4.213 0 0 0 89.727 24H56.864C38.714 24 24 38.708 24 56.852v618.296C24 693.292 38.714 708 56.864 708h250.272c18.15 0 32.864-14.708 32.864-32.852V56.852C340 38.708 325.286 24 307.136 24h-32.864a4.212 4.212 0 0 0-4.213 4.212v2.527c0 10.235-8.3 18.532-18.539 18.532H112.48c-10.239 0-18.539-8.297-18.539-18.532v-2.527Z"
                       ></path>
                       <rect
@@ -1029,16 +1029,16 @@ export default function LandingPageComponent() {
                         fillOpacity="0.2"
                       ></circle>
                       <path
-                        fill-rule="evenodd"
-                        clip-rule="evenodd"
+                        fillRule="evenodd"
+                        clipRule="evenodd"
                         d="M5 4a4 4 0 014-4h14a4 4 0 014 4v13h-2V4a2 2 0 00-2-2h-1.382a1 1 0 00-.894.553l-.448.894a1 1 0 01-.894.553h-6.764a1 1 0 01-.894-.553l-.448-.894A1 1 0 0010.382 2H9a2 2 0 00-2 2v24a2 2 0 002 2h4v2H9a4 4 0 01-4-4V4z"
                         fill="#A3A3A3"
                       ></path>
                       <path
                         d="M7 22c0-4.694 3.5-8 8-8"
                         stroke="url(#:r6:-gradient)"
-                        stroke-width="2"
-                        stroke-linecap="round"
+                        strokeWidth="2"
+                        strokeLinecap="round"
                         stroke-linejoin="round"
                       ></path>
                       <path
@@ -1105,14 +1105,14 @@ export default function LandingPageComponent() {
                         fillOpacity="0.2"
                       ></circle>
                       <path
-                        fill-rule="evenodd"
-                        clip-rule="evenodd"
+                        fillRule="evenodd"
+                        clipRule="evenodd"
                         d="M16 23a3 3 0 100-6 3 3 0 000 6zm-1 2a4 4 0 00-4 4v1a2 2 0 002 2h6a2 2 0 002-2v-1a4 4 0 00-4-4h-2z"
                         fill="#737373"
                       ></path>
                       <path
-                        fill-rule="evenodd"
-                        clip-rule="evenodd"
+                        fillRule="evenodd"
+                        clipRule="evenodd"
                         d="M5 4a4 4 0 014-4h14a4 4 0 014 4v24a4.002 4.002 0 01-3.01 3.877c-.535.136-.99-.325-.99-.877s.474-.98.959-1.244A2 2 0 0025 28V4a2 2 0 00-2-2h-1.382a1 1 0 00-.894.553l-.448.894a1 1 0 01-.894.553h-6.764a1 1 0 01-.894-.553l-.448-.894A1 1 0 0010.382 2H9a2 2 0 00-2 2v24a2 2 0 001.041 1.756C8.525 30.02 9 30.448 9 31s-.455 1.013-.99.877A4.002 4.002 0 015 28V4z"
                         fill="#A3A3A3"
                       ></path>
@@ -1153,8 +1153,8 @@ export default function LandingPageComponent() {
                         fillOpacity="0.2"
                       ></circle>
                       <path
-                        fill-rule="evenodd"
-                        clip-rule="evenodd"
+                        fillRule="evenodd"
+                        clipRule="evenodd"
                         d="M9 0a4 4 0 00-4 4v24a4 4 0 004 4h14a4 4 0 004-4V4a4 4 0 00-4-4H9zm0 2a2 2 0 00-2 2v24a2 2 0 002 2h14a2 2 0 002-2V4a2 2 0 00-2-2h-1.382a1 1 0 00-.894.553l-.448.894a1 1 0 01-.894.553h-6.764a1 1 0 01-.894-.553l-.448-.894A1 1 0 0010.382 2H9z"
                         fill="#A3A3A3"
                       ></path>
@@ -1217,16 +1217,16 @@ export default function LandingPageComponent() {
                         fillOpacity="0.2"
                       ></circle>
                       <path
-                        fill-rule="evenodd"
-                        clip-rule="evenodd"
+                        fillRule="evenodd"
+                        clipRule="evenodd"
                         d="M5 4a4 4 0 014-4h14a4 4 0 014 4v13h-2V4a2 2 0 00-2-2h-1.382a1 1 0 00-.894.553l-.448.894a1 1 0 01-.894.553h-6.764a1 1 0 01-.894-.553l-.448-.894A1 1 0 0010.382 2H9a2 2 0 00-2 2v24a2 2 0 002 2h4v2H9a4 4 0 01-4-4V4z"
                         fill="#A3A3A3"
                       ></path>
                       <path
                         d="M7 22c0-4.694 3.5-8 8-8"
                         stroke="url(#:r9:-gradient)"
-                        stroke-width="2"
-                        stroke-linecap="round"
+                        strokeWidth="2"
+                        strokeLinecap="round"
                         stroke-linejoin="round"
                       ></path>
                       <path
@@ -1291,7 +1291,7 @@ export default function LandingPageComponent() {
                     <path
                       d="M1 279C1 125.465 125.465 1 279 1"
                       stroke="url(#:rb:)"
-                      stroke-linecap="round"
+                      strokeLinecap="round"
                     ></path>
                   </svg>
                 </div>
@@ -1330,16 +1330,16 @@ export default function LandingPageComponent() {
               <li className="rounded-2xl border border-gray-200 p-8">
                 <svg viewBox="0 0 32 32" aria-hidden="true" className="h-8 w-8">
                   <path
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
+                    fillRule="evenodd"
+                    clipRule="evenodd"
                     d="M9 0a4 4 0 00-4 4v24a4 4 0 004 4h14a4 4 0 004-4V4a4 4 0 00-4-4H9zm0 2a2 2 0 00-2 2v24a2 2 0 002 2h14a2 2 0 002-2V4a2 2 0 00-2-2h-1.382a1 1 0 00-.894.553l-.448.894a1 1 0 01-.894.553h-6.764a1 1 0 01-.894-.553l-.448-.894A1 1 0 0010.382 2H9z"
                     fill="#737373"
                   ></path>
                   <path
                     d="M12 25l8-8m0 0h-6m6 0v6"
                     stroke="#171717"
-                    stroke-width="2"
-                    stroke-linecap="round"
+                    strokeWidth="2"
+                    strokeLinecap="round"
                   ></path>
                   <circle
                     cx="16"
@@ -1360,14 +1360,14 @@ export default function LandingPageComponent() {
               <li className="rounded-2xl border border-gray-200 p-8">
                 <svg viewBox="0 0 32 32" aria-hidden="true" className="h-8 w-8">
                   <path
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
+                    fillRule="evenodd"
+                    clipRule="evenodd"
                     d="M9 0a4 4 0 00-4 4v24a4 4 0 004 4h14a4 4 0 004-4V4a4 4 0 00-4-4H9zm0 2a2 2 0 00-2 2v24a2 2 0 002 2h14a2 2 0 002-2V4a2 2 0 00-2-2h-1.382a1 1 0 00-.894.553l-.448.894a1 1 0 01-.894.553h-6.764a1 1 0 01-.894-.553l-.448-.894A1 1 0 0010.382 2H9z"
                     fill="#737373"
                   ></path>
                   <path
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
+                    fillRule="evenodd"
+                    clipRule="evenodd"
                     d="M9 13a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H10a1 1 0 01-1-1v-2zm0 6a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H10a1 1 0 01-1-1v-2zm1 5a1 1 0 00-1 1v2a1 1 0 001 1h12a1 1 0 001-1v-2a1 1 0 00-1-1H10z"
                     fill="url(#:S3:-gradient)"
                   ></path>
@@ -1422,14 +1422,14 @@ export default function LandingPageComponent() {
                     fillOpacity="0.2"
                   ></circle>
                   <path
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
+                    fillRule="evenodd"
+                    clipRule="evenodd"
                     d="M5 4a4 4 0 014-4h14a4 4 0 014 4v10h-2V4a2 2 0 00-2-2h-1.382a1 1 0 00-.894.553l-.448.894a1 1 0 01-.894.553h-6.764a1 1 0 01-.894-.553l-.448-.894A1 1 0 0010.382 2H9a2 2 0 00-2 2v24a2 2 0 002 2h5v2H9a4 4 0 01-4-4V4z"
                     fill="#737373"
                   ></path>
                   <path
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
+                    fillRule="evenodd"
+                    clipRule="evenodd"
                     d="M24 32a8 8 0 100-16 8 8 0 000 16zm1-8.414V19h-2v5.414l4 4L28.414 27 25 23.586z"
                     fill="#171717"
                   ></path>
@@ -1450,8 +1450,8 @@ export default function LandingPageComponent() {
                   className="h-8 w-8"
                 >
                   <path
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
+                    fillRule="evenodd"
+                    clipRule="evenodd"
                     d="M9 0a4 4 0 00-4 4v24a4 4 0 004 4h14a4 4 0 004-4V4a4 4 0 00-4-4H9zm0 2a2 2 0 00-2 2v24a2 2 0 002 2h14a2 2 0 002-2V4a2 2 0 00-2-2h-1.382a1 1 0 00-.894.553l-.448.894a1 1 0 01-.894.553h-6.764a1 1 0 01-.894-.553l-.448-.894A1 1 0 0010.382 2H9z"
                     fill="#737373"
                   ></path>
@@ -1461,8 +1461,8 @@ export default function LandingPageComponent() {
                   <path
                     d="M16 14h6M16 20h6M16 26h6"
                     stroke="#737373"
-                    stroke-width="2"
-                    stroke-linecap="square"
+                    strokeWidth="2"
+                    strokeLinecap="square"
                   ></path>
                   <circle
                     cx="16"
@@ -1490,14 +1490,14 @@ export default function LandingPageComponent() {
                     fillOpacity="0.2"
                   ></circle>
                   <path
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
+                    fillRule="evenodd"
+                    clipRule="evenodd"
                     d="M5 4a4 4 0 014-4h14a4 4 0 014 4v10h-2V4a2 2 0 00-2-2h-1.382a1 1 0 00-.894.553l-.448.894a1 1 0 01-.894.553h-6.764a1 1 0 01-.894-.553l-.448-.894A1 1 0 0010.382 2H9a2 2 0 00-2 2v24a2 2 0 002 2h5v2H9a4 4 0 01-4-4V4z"
                     fill="#737373"
                   ></path>
                   <path
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
+                    fillRule="evenodd"
+                    clipRule="evenodd"
                     d="M18 19.5a3.5 3.5 0 117 0V22a2 2 0 012 2v6a2 2 0 01-2 2h-7a2 2 0 01-2-2v-6a2 2 0 012-2v-2.5zm2 2.5h3v-2.5a1.5 1.5 0 00-3 0V22z"
                     fill="#171717"
                   ></path>
@@ -1518,22 +1518,22 @@ export default function LandingPageComponent() {
                   className="h-8 w-8"
                 >
                   <path
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
+                    fillRule="evenodd"
+                    clipRule="evenodd"
                     d="M9 0a4 4 0 00-4 4v24a4 4 0 004 4h14a4 4 0 004-4V4a4 4 0 00-4-4H9zm0 2a2 2 0 00-2 2v24a2 2 0 002 2h14a2 2 0 002-2V4a2 2 0 00-2-2h-1.382a1 1 0 00-.894.553l-.448.894a1 1 0 01-.894.553h-6.764a1 1 0 01-.894-.553l-.448-.894A1 1 0 0010.382 2H9z"
                     fill="#737373"
                   ></path>
                   <path
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
+                    fillRule="evenodd"
+                    clipRule="evenodd"
                     d="M23 13.838V26a2 2 0 01-2 2H11a2 2 0 01-2-2V15.65l2.57 3.212a1 1 0 001.38.175L15.4 17.2a1 1 0 011.494.353l1.841 3.681c.399.797 1.562.714 1.843-.13L23 13.837z"
                     fill="#171717"
                   ></path>
                   <path
                     d="M10 12h12"
                     stroke="#737373"
-                    stroke-width="2"
-                    stroke-linecap="square"
+                    strokeWidth="2"
+                    strokeLinecap="square"
                   ></path>
                   <circle
                     cx="16"
@@ -1588,7 +1588,7 @@ export default function LandingPageComponent() {
               <path
                 d="M1 279C1 125.465 125.465 1 279 1"
                 stroke="url(#:S4:)"
-                stroke-linecap="round"
+                strokeLinecap="round"
               ></path>
             </svg>
           </div>
@@ -1709,8 +1709,8 @@ export default function LandingPageComponent() {
                     className="h-6 w-6 flex-none fill-gray-300"
                   >
                     <path
-                      fill-rule="evenodd"
-                      clip-rule="evenodd"
+                      fillRule="evenodd"
+                      clipRule="evenodd"
                       d="M20 40C8.954 40 0 31.046 0 20S8.954 0 20 0s20 8.954 20 20-8.954 20-20 20ZM4 20c0 7.264 5.163 13.321 12.02 14.704C17.642 35.03 19 33.657 19 32V8c0-1.657-1.357-3.031-2.98-2.704C9.162 6.68 4 12.736 4 20Z"
                     ></path>
                   </svg>
@@ -1744,8 +1744,8 @@ export default function LandingPageComponent() {
                           r="8.25"
                           fill="none"
                           stroke="currentColor"
-                          stroke-width="1.5"
-                          stroke-linecap="round"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
                           stroke-linejoin="round"
                         ></circle>
                       </svg>
@@ -1767,8 +1767,8 @@ export default function LandingPageComponent() {
                           r="8.25"
                           fill="none"
                           stroke="currentColor"
-                          stroke-width="1.5"
-                          stroke-linecap="round"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
                           stroke-linejoin="round"
                         ></circle>
                       </svg>
@@ -1790,8 +1790,8 @@ export default function LandingPageComponent() {
                           r="8.25"
                           fill="none"
                           stroke="currentColor"
-                          stroke-width="1.5"
-                          stroke-linecap="round"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
                           stroke-linejoin="round"
                         ></circle>
                       </svg>
@@ -1813,8 +1813,8 @@ export default function LandingPageComponent() {
                           r="8.25"
                           fill="none"
                           stroke="currentColor"
-                          stroke-width="1.5"
-                          stroke-linecap="round"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
                           stroke-linejoin="round"
                         ></circle>
                       </svg>
@@ -1840,8 +1840,8 @@ export default function LandingPageComponent() {
                     className="h-6 w-6 flex-none fill-gray-500"
                   >
                     <path
-                      fill-rule="evenodd"
-                      clip-rule="evenodd"
+                      fillRule="evenodd"
+                      clipRule="evenodd"
                       d="M20 40C8.954 40 0 31.046 0 20S8.954 0 20 0s20 8.954 20 20-8.954 20-20 20ZM4 20c0 7.264 5.163 13.321 12.02 14.704C17.642 35.03 19 33.657 19 32V8c0-1.657-1.357-3.031-2.98-2.704C9.162 6.68 4 12.736 4 20Z"
                     ></path>
                   </svg>
@@ -1883,8 +1883,8 @@ export default function LandingPageComponent() {
                           r="8.25"
                           fill="none"
                           stroke="currentColor"
-                          stroke-width="1.5"
-                          stroke-linecap="round"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
                           stroke-linejoin="round"
                         ></circle>
                       </svg>
@@ -1906,8 +1906,8 @@ export default function LandingPageComponent() {
                           r="8.25"
                           fill="none"
                           stroke="currentColor"
-                          stroke-width="1.5"
-                          stroke-linecap="round"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
                           stroke-linejoin="round"
                         ></circle>
                       </svg>
@@ -1929,8 +1929,8 @@ export default function LandingPageComponent() {
                           r="8.25"
                           fill="none"
                           stroke="currentColor"
-                          stroke-width="1.5"
-                          stroke-linecap="round"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
                           stroke-linejoin="round"
                         ></circle>
                       </svg>
@@ -1952,8 +1952,8 @@ export default function LandingPageComponent() {
                           r="8.25"
                           fill="none"
                           stroke="currentColor"
-                          stroke-width="1.5"
-                          stroke-linecap="round"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
                           stroke-linejoin="round"
                         ></circle>
                       </svg>
@@ -1977,8 +1977,8 @@ export default function LandingPageComponent() {
                           r="8.25"
                           fill="none"
                           stroke="currentColor"
-                          stroke-width="1.5"
-                          stroke-linecap="round"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
                           stroke-linejoin="round"
                         ></circle>
                       </svg>
@@ -2004,8 +2004,8 @@ export default function LandingPageComponent() {
                     className="h-6 w-6 flex-none fill-cyan-500"
                   >
                     <path
-                      fill-rule="evenodd"
-                      clip-rule="evenodd"
+                      fillRule="evenodd"
+                      clipRule="evenodd"
                       d="M20 40C8.954 40 0 31.046 0 20S8.954 0 20 0s20 8.954 20 20-8.954 20-20 20ZM4 20c0 7.264 5.163 13.321 12.02 14.704C17.642 35.03 19 33.657 19 32V8c0-1.657-1.357-3.031-2.98-2.704C9.162 6.68 4 12.736 4 20Z"
                     ></path>
                   </svg>
@@ -2047,8 +2047,8 @@ export default function LandingPageComponent() {
                           r="8.25"
                           fill="none"
                           stroke="currentColor"
-                          stroke-width="1.5"
-                          stroke-linecap="round"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
                           stroke-linejoin="round"
                         ></circle>
                       </svg>
@@ -2070,8 +2070,8 @@ export default function LandingPageComponent() {
                           r="8.25"
                           fill="none"
                           stroke="currentColor"
-                          stroke-width="1.5"
-                          stroke-linecap="round"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
                           stroke-linejoin="round"
                         ></circle>
                       </svg>
@@ -2093,8 +2093,8 @@ export default function LandingPageComponent() {
                           r="8.25"
                           fill="none"
                           stroke="currentColor"
-                          stroke-width="1.5"
-                          stroke-linecap="round"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
                           stroke-linejoin="round"
                         ></circle>
                       </svg>
@@ -2116,8 +2116,8 @@ export default function LandingPageComponent() {
                           r="8.25"
                           fill="none"
                           stroke="currentColor"
-                          stroke-width="1.5"
-                          stroke-linecap="round"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
                           stroke-linejoin="round"
                         ></circle>
                       </svg>
@@ -2139,8 +2139,8 @@ export default function LandingPageComponent() {
                           r="8.25"
                           fill="none"
                           stroke="currentColor"
-                          stroke-width="1.5"
-                          stroke-linecap="round"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
                           stroke-linejoin="round"
                         ></circle>
                       </svg>
@@ -2164,8 +2164,8 @@ export default function LandingPageComponent() {
                           r="8.25"
                           fill="none"
                           stroke="currentColor"
-                          stroke-width="1.5"
-                          stroke-linecap="round"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
                           stroke-linejoin="round"
                         ></circle>
                       </svg>
@@ -2207,7 +2207,7 @@ export default function LandingPageComponent() {
                 id="faqs-title"
                 className="text-3xl font-medium tracking-tight text-gray-900"
               >
-                Frequently asked questions
+                Tanya Jawab (FAQ) Website Business Toko Online SmartShop
               </h2>
               <p className="mt-2 text-lg text-gray-600">
                 If you have anything else you want to ask,{" "}
@@ -2227,67 +2227,57 @@ export default function LandingPageComponent() {
                 <ul role="list" className="space-y-10">
                   <li>
                     <h3 className="text-lg font-semibold leading-6 text-gray-900">
-                      How do I know the tips are good?
+                      Apa Itu Toko Online?
                     </h3>
                     <p className="mt-4 text-sm text-gray-700">
-                      Our whole business depends on our tips being good, so it’s
-                      in our best interest that they are. The results of our
-                      customers speak for themselves, just trust us.
+                      Toko online adalah toko yang menjual produk dan layanannya
+                      melalui internet. Jenis usaha ini berbeda dengan toko
+                      konvensional yang masih berjualan lewat bangunan fisik.
+                      Website eCommerce adalah platform yang mendukung aktivitas
+                      jual beli produk atau layanan di internet. Dengan kata
+                      lain, website eCommerce adalah toko online. Setelah
+                      pembeli melunasi pembayaran, produk yang dipesan akan
+                      diantarkan ke alamat pembeli. Opsi pembayaran di transaksi
+                      eCommerce bervariasi, mulai dari pembayaran digital hingga
+                      COD.
                     </p>
                   </li>
                   <li>
                     <h3 className="text-lg font-semibold leading-6 text-gray-900">
-                      Isn’t this insider trading?
+                      Mengapa Saya Perlu Website untuk Jualan Online?
                     </h3>
                     <p className="mt-4 text-sm text-gray-700">
-                      Yes exactly. But at scale! Historically you could only
-                      make insider trades with knowledge from your direct
-                      network. Pocket brings you insider trading tips from
-                      people you don’t even know.
+                      Meskipun sudah berjualan di marketplace, Anda masih bisa
+                      mendapatkan keuntungan lebih banyak dengan memiliki
+                      website toko online sendiri. Anda bebas melakukan optimasi
+                      untuk mendatangkan lebih banyak pelanggan lewat mesin
+                      pencari, seperti Google, dan menautkannya dengan akun
+                      media sosial yang dimiliki. Sudah jadi rahasia umum kalau
+                      persaingan di marketplace lebih sulit karena mereka
+                      memiliki algoritmanya sendiri. Anda pun harus berusaha
+                      lebih keras agar toko terlihat pembeli. Tapi, apabila
+                      punya website toko online sendiri, Anda tidak perlu
+                      mengalami hal ini. Cukup pilih domain profesional yang
+                      memuat nama usaha dan buat website toko online terbaik
+                      versi Anda. Selain itu, banyak marketplace yang
+                      membebankan biaya administrasi hingga 15% dari setiap
+                      produk yang berhasil terjual membuat margin keuntungan
+                      Anda menjadi lebih kecil.
                     </p>
                   </li>
                   <li>
                     <h3 className="text-lg font-semibold leading-6 text-gray-900">
-                      But isn’t insider trading illegal?
+                      Apakah Bisnis Toko Online Menguntungkan?
                     </h3>
                     <p className="mt-4 text-sm text-gray-700">
-                      Here’s the thing: you’re the one doing the insider
-                      trading, not us. We’re just giving you the tips and some
-                      tools to make trades. We’re not doing anything wrong here.
-                    </p>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <ul role="list" className="space-y-10">
-                  <li>
-                    <h3 className="text-lg font-semibold leading-6 text-gray-900">
-                      Do the people giving you tips realize what they are doing?
-                    </h3>
-                    <p className="mt-4 text-sm text-gray-700">
-                      Again I would argue this isn’t really our responsibility.
-                      People make their own choices. If they don’t research the
-                      consequences that’s on them, not on us.
-                    </p>
-                  </li>
-                  <li>
-                    <h3 className="text-lg font-semibold leading-6 text-gray-900">
-                      Where is Pocket based?
-                    </h3>
-                    <p className="mt-4 text-sm text-gray-700">
-                      Let’s just say it’s not somewhere where the SEC is going
-                      to find us.
-                    </p>
-                  </li>
-                  <li>
-                    <h3 className="text-lg font-semibold leading-6 text-gray-900">
-                      Is there any age limit to trading on Pocket?
-                    </h3>
-                    <p className="mt-4 text-sm text-gray-700">
-                      For our free plan, the age limit is based on the minimum
-                      age to trade in your country of residence. Our VIP plan
-                      uses advanced transaction anonymization though, so you can
-                      use that plan even if you’re 9 years old. Or a dog.
+                      Jika dibandingkan dengan toko konvensional, tentu saja
+                      lebih menguntungkan. Toko online tidak perlu bangunan
+                      fisik. Jadi, Anda tidak perlu memikirkan biaya listrik,
+                      air, dan sewa bulanan. Toko online bisa diakses 24/7 oleh
+                      siapa saja dari seluruh dunia; tidak dibatasi waktu buka
+                      atau lokasi toko. Biaya operasionalnya juga bisa lebih
+                      murah karena Anda tidak perlu mempekerjakan banyak
+                      karyawan.
                     </p>
                   </li>
                 </ul>
@@ -2296,12 +2286,62 @@ export default function LandingPageComponent() {
                 <ul role="list" className="space-y-10">
                   <li>
                     <h3 className="text-lg font-semibold leading-6 text-gray-900">
-                      How did you get this on the App Store?
+                      Apakah Jualan Online Hanya untuk Bisnis Profesional?
                     </h3>
                     <p className="mt-4 text-sm text-gray-700">
-                      Honestly we were surprised too, but eventually we found
-                      out that the app reviewer found the app so compelling they
-                      approved it just so they could use it themselves.
+                      Tidak. Mulai dari bisnis individu dan kecil hingga
+                      perusahaan multinasional bisa berjulan online. Meskipun
+                      sudah memiliki website, Anda bisa meningkatkan penjualan
+                      dengan membuka toko online. Anda juga bisa memperluas
+                      jangkauan bisnis dengan menerima pesanan di website
+                      eCommerce. Buat toko online mudah dan cepat. Jangan
+                      khawatir jika Anda belum memiliki ide bisnis! Kami siap
+                      membantu mewujudkan bisnis Anda sekarang.
+                    </p>
+                  </li>
+                  <li>
+                    <h3 className="text-lg font-semibold leading-6 text-gray-900">
+                      Apa Saja Opsi Pembayaran yang Tersedia untuk Pelanggan?
+                    </h3>
+                    <p className="mt-4 text-sm text-gray-700">
+                      Kami menyediakan berbagai opsi pembayaran berbeda untuk
+                      tiap negara. Anda bisa memilih opsi pembayaran yang sesuai
+                      dengan lokasi target audiens. Hubungkan website ke Stripe
+                      dan aktifkan 20+ opsi pembayaran internasional seperti
+                      Apple Pay, EPS, Sofort, dan masih banyak lagi.
+                    </p>
+                  </li>
+                  <li>
+                    <h3 className="text-lg font-semibold leading-6 text-gray-900">
+                      Apa Produk yang Bisa Saya Jual?
+                    </h3>
+                    <p className="mt-4 text-sm text-gray-700">
+                      Tergantung dari niche dan target audiens Anda. Sebelum
+                      merintis website jualan online, lakukan riset untuk
+                      mengetahui tren produk di pasaran. Dengan begitu, Anda
+                      dapat menentukan strategi yang tepat untuk bersaing dengan
+                      kompetitor. Jual produk yang unik atau produk dengan harga
+                      yang menarik di toko online Anda. Sebagai rekomendasi,
+                      kami sudah membuat daftar produk jualan online paling
+                      laris di tahun ini khusus untuk Anda.
+                    </p>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <ul role="list" className="space-y-10">
+                  <li>
+                    <h3 className="text-lg font-semibold leading-6 text-gray-900">
+                      Berapa Lama Waktu untuk Buat Website Toko Online?
+                    </h3>
+                    <p className="mt-4 text-sm text-gray-700">
+                      Lama cepatnya tergantung pada produk yang ingin dijual dan
+                      tampilan toko online yang diinginkan. Kebanyakan website
+                      builder membutuhkan beberapa hari hingga beberapa minggu
+                      untuk menyiapkan dan mengonlinekan website, tergantung
+                      tingkat kemampuan Anda. Untungnya,dengan website builder
+                      drag-and-drop intuitif Hostinger, Anda bisa buat buat toko
+                      online tanpa skill coding dalam sekejap.
                     </p>
                   </li>
                   <li>

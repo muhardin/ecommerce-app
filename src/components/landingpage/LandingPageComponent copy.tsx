@@ -104,9 +104,9 @@ export default function LandingPageComponent() {
               <svg
                 stroke="currentColor"
                 fill="none"
-                stroke-width="2"
+                strokeWidth="2"
                 viewBox="0 0 24 24"
-                stroke-linecap="round"
+                strokeLinecap="round"
                 stroke-linejoin="round"
                 className="flex-shrink-0 h-4 w-4"
                 aria-hidden="true"
@@ -130,9 +130,9 @@ export default function LandingPageComponent() {
               <svg
                 stroke="currentColor"
                 fill="none"
-                stroke-width="2"
+                strokeWidth="2"
                 viewBox="0 0 24 24"
-                stroke-linecap="round"
+                strokeLinecap="round"
                 stroke-linejoin="round"
                 className="flex-shrink-0 h-4 w-4"
                 aria-hidden="true"
@@ -158,9 +158,9 @@ export default function LandingPageComponent() {
               <svg
                 stroke="currentColor"
                 fill="none"
-                stroke-width="2"
+                strokeWidth="2"
                 viewBox="0 0 24 24"
-                stroke-linecap="round"
+                strokeLinecap="round"
                 stroke-linejoin="round"
                 className="flex-shrink-0 h-4 w-4"
                 aria-hidden="true"
@@ -182,9 +182,9 @@ export default function LandingPageComponent() {
               <svg
                 stroke="currentColor"
                 fill="none"
-                stroke-width="2"
+                strokeWidth="2"
                 viewBox="0 0 24 24"
-                stroke-linecap="round"
+                strokeLinecap="round"
                 stroke-linejoin="round"
                 className="flex-shrink-0 h-4 w-4"
                 aria-hidden="true"
@@ -210,7 +210,7 @@ export default function LandingPageComponent() {
                 <svg
                   stroke="currentColor"
                   fill="currentColor"
-                  stroke-width="0"
+                  strokeWidth="0"
                   viewBox="0 0 512 512"
                   height="1em"
                   width="1em"
@@ -218,9 +218,9 @@ export default function LandingPageComponent() {
                 >
                   <path
                     fill="none"
-                    stroke-linecap="round"
+                    strokeLinecap="round"
                     stroke-linejoin="round"
-                    stroke-width="32"
+                    strokeWidth="32"
                     d="M336 112a80 80 0 00-160 0v96"
                   ></path>
                   <rect
@@ -229,9 +229,9 @@ export default function LandingPageComponent() {
                     x="96"
                     y="208"
                     fill="none"
-                    stroke-linecap="round"
+                    strokeLinecap="round"
                     stroke-linejoin="round"
-                    stroke-width="32"
+                    strokeWidth="32"
                     rx="48"
                     ry="48"
                   ></rect>
@@ -253,9 +253,9 @@ export default function LandingPageComponent() {
                     <svg
                       stroke="currentColor"
                       fill="none"
-                      stroke-width="2"
+                      strokeWidth="2"
                       viewBox="0 0 24 24"
-                      stroke-linecap="round"
+                      strokeLinecap="round"
                       stroke-linejoin="round"
                       height="1em"
                       width="1em"
@@ -282,9 +282,9 @@ export default function LandingPageComponent() {
                     <svg
                       stroke="currentColor"
                       fill="none"
-                      stroke-width="2"
+                      strokeWidth="2"
                       viewBox="0 0 24 24"
-                      stroke-linecap="round"
+                      strokeLinecap="round"
                       stroke-linejoin="round"
                       height="1em"
                       width="1em"
@@ -311,9 +311,9 @@ export default function LandingPageComponent() {
                     <svg
                       stroke="currentColor"
                       fill="none"
-                      stroke-width="2"
+                      strokeWidth="2"
                       viewBox="0 0 24 24"
-                      stroke-linecap="round"
+                      strokeLinecap="round"
                       stroke-linejoin="round"
                       height="1em"
                       width="1em"
@@ -341,9 +341,9 @@ export default function LandingPageComponent() {
                     <svg
                       stroke="currentColor"
                       fill="none"
-                      stroke-width="2"
+                      strokeWidth="2"
                       viewBox="0 0 24 24"
-                      stroke-linecap="round"
+                      strokeLinecap="round"
                       stroke-linejoin="round"
                       height="1em"
                       width="1em"
