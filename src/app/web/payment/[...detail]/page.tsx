@@ -1,5 +1,5 @@
 import Container from "@/app/components/Container";
-import PaymentComponent from "@/app/components/Payment";
+import PaymentWebComponent from "@/components/landingpage/PaymentWebComponent";
 import React from "react";
 
 const PaymentDetail = ({ params }: { params: { detail?: string } }) => {
@@ -8,7 +8,7 @@ const PaymentDetail = ({ params }: { params: { detail?: string } }) => {
   return (
     <Container>
       {/* <div className="">Payment</div> */}
-      <PaymentComponent id={params.detail} />
+      <PaymentWebComponent id={params.detail} />
     </Container>
   );
 };

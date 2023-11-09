@@ -73,7 +73,7 @@ const BottomNavigation = () => {
               stroke="currentColor"
               strokeWidth="2"
               strokeLinecap="round"
-              stroke-linejoin="round"
+              strokeLinejoin="round"
               className="lucide lucide-shopping-basket text-white"
             >
               <path d="m5 11 4-7" />

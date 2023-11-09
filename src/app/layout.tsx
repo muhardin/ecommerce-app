@@ -13,6 +13,7 @@ import { headers } from "next/headers";
 import { ShopDataProvider } from "./components/shop/ShopContext";
 import HeaderFront from "./components/HeaderFront";
 import LayoutWeb from "./components/landingpage/Layout";
+import FooterWeb from "@/components/landingpage/FooterWeb";
 
 export const metadata: Metadata = {
   title: "My Smart Shop ",
@@ -41,11 +42,26 @@ export default async function RootLayout({
     fullUrl.match(new RegExp(`https?:\/\/${domain}(.*)`)) || [];
   // console.log(pathname);
   // console.log(domain);
+
+  /**
+   <Provider store={store}>
+      <PersistGate persistor={persistor}>
+        <SessionProvider>
+          <UserDataProvider>{children}</UserDataProvider>
+        </SessionProvider>
+      </PersistGate>
+    </Provider>
+    
+   */
   if (domain == process.env.LANDING_PAGE) {
     return (
       <html lang="en">
         <body className="font-bodyFont w-full bg-main-bg text-darkText ">
-          <LayoutWeb>{children}</LayoutWeb>
+          <LayoutProvider>
+            <ShopDataProvider domain={domain}>
+              <LayoutWeb>{children}</LayoutWeb>
+            </ShopDataProvider>
+          </LayoutProvider>
         </body>
       </html>
     );

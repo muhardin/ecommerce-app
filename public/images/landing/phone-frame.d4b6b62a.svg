@@ -68,7 +68,7 @@
     </linearGradient>
     <linearGradient id="f" x1="3.002" y1="108.991" x2="3.002" y2="116.75" gradientUnits="userSpaceOnUse">
       <stop stop-color="#171717" />
-      <stop offset=".783" stop-color="#171717" stop-opacity="0" />
+      <stop offset=".783" stop-color="#171717" stopOpacity="0" />
     </linearGradient>
     <linearGradient id="h" x1="1.004" y1="190.867" x2="5" y2="190.867" gradientUnits="userSpaceOnUse">
       <stop stop-color="#D4D4D4" />
@@ -76,7 +76,7 @@
     </linearGradient>
     <linearGradient id="i" x1="3.002" y1="163.991" x2="3.002" y2="178.497" gradientUnits="userSpaceOnUse">
       <stop stop-color="#171717" />
-      <stop offset=".783" stop-color="#171717" stop-opacity="0" />
+      <stop offset=".783" stop-color="#171717" stopOpacity="0" />
     </linearGradient>
     <linearGradient id="k" x1="1.004" y1="260.867" x2="5" y2="260.867" gradientUnits="userSpaceOnUse">
       <stop stop-color="#D4D4D4" />
@@ -84,7 +84,7 @@
     </linearGradient>
     <linearGradient id="l" x1="3.002" y1="233.991" x2="3.002" y2="248.497" gradientUnits="userSpaceOnUse">
       <stop stop-color="#171717" />
-      <stop offset=".783" stop-color="#171717" stop-opacity="0" />
+      <stop offset=".783" stop-color="#171717" stopOpacity="0" />
     </linearGradient>
     <linearGradient id="n" x1="362.004" y1="226.25" x2="366" y2="226.25" gradientUnits="userSpaceOnUse">
       <stop offset=".124" stop-color="#E6E6E6" />
@@ -92,11 +92,11 @@
     </linearGradient>
     <linearGradient id="o" x1="364.002" y1="184.991" x2="364.002" y2="208.134" gradientUnits="userSpaceOnUse">
       <stop stop-color="#171717" />
-      <stop offset=".783" stop-color="#171717" stop-opacity="0" />
+      <stop offset=".783" stop-color="#171717" stopOpacity="0" />
     </linearGradient>
     <linearGradient id="p" x1="182" y1="15" x2="182" y2="716" gradientUnits="userSpaceOnUse">
       <stop stop-color="#fff" />
-      <stop offset=".381" stop-color="#fff" stop-opacity="0" />
+      <stop offset=".381" stop-color="#fff" stopOpacity="0" />
     </linearGradient>
     <filter id="a" x="-1" y="-1" width="367" height="730.314" filterUnits="userSpaceOnUse"
       color-interpolation-filters="sRGB">
@@ -220,7 +220,7 @@
     <radialGradient id="c" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse"
       gradientTransform="matrix(0 319 -295.5 0 183.5 1)">
       <stop stop-color="#fff" />
-      <stop offset=".533" stop-color="#fff" stop-opacity="0" />
+      <stop offset=".533" stop-color="#fff" stopOpacity="0" />
     </radialGradient>
     <radialGradient id="r" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse"
       gradientTransform="matrix(0 689 -326.783 0 182 27)">

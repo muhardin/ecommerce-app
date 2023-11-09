@@ -131,8 +131,26 @@ export interface CourierData {
   costs: string[];
   code: string;
 }
-
+export interface Category {
+  id: number;
+  name: string;
+  created_at: string;
+  updated_at: string | null;
+  picture: string;
+  status: number;
+}
+export interface ProductGallery {
+  id: number;
+  product_id: number;
+  galleries: string;
+  url: string;
+  full_url: string;
+  thumbnail: string | null;
+  created_at: string;
+  updated_at: string | null;
+}
 export interface Product {
+  map: any;
   id: number;
   title: string;
   isNew: boolean;
@@ -140,8 +158,10 @@ export interface Product {
   price: number;
   company_price: number;
   description: string;
-  category: string;
-  image: string;
+  category: Category;
+  product_gallery: ProductGallery[];
+  category_json: string;
+  image: string | "";
   rating: number;
   quantity: number;
   number: number;
@@ -151,7 +171,13 @@ export interface Product {
   shipping: string;
   agent_price: number;
   profit: number;
+  is_trending: number;
+  sub_category: number;
+  product_url: string;
+  slug: string;
+  sku: string;
   product: Product;
+  data: Product;
 }
 
 export interface Order {

@@ -40,7 +40,7 @@ export async function middleware(request: NextRequest) {
   if (token && pathname.startsWith("/web/myshop")) {
     if (data?.data.is_seller == 2) {
       const response = await fetch(
-        `${process.env.SERVER_ENDPOINT}/api/register-payment`,
+        `${process.env.SERVER_ENDPOINT}/api/register-payment/2`,
         {
           method: "GET",
           headers: {
@@ -49,10 +49,10 @@ export async function middleware(request: NextRequest) {
           },
         }
       );
-      const data = await response.json();
+      const dataSeller = await response.json();
       if (response.status == 200) {
         return NextResponse.redirect(
-          new URL(`/web/payment/${data.id}`, request.url)
+          new URL(`/web/payment/${dataSeller.id}`, request.url)
         );
       } else {
         return NextResponse.redirect(new URL(`/web/sign-up`, request.url));
@@ -70,7 +70,7 @@ export async function middleware(request: NextRequest) {
     }
     if (data?.data.is_seller == 2) {
       const response = await fetch(
-        `${process.env.SERVER_ENDPOINT}/api/register-payment`,
+        `${process.env.SERVER_ENDPOINT}/api/register-payment/1`,
         {
           method: "GET",
           headers: {
@@ -79,9 +79,12 @@ export async function middleware(request: NextRequest) {
           },
         }
       );
-      const data = await response.json();
+      const dataSeller = await response.json();
       return NextResponse.redirect(
-        new URL(`/web/payment/${data.id}`, request.url)
+        new URL(
+          `http://smartcommerce.id:3000/web/payment/${dataSeller.id}`,
+          request.url
+        )
       );
       // return NextResponse.redirect(
       //   `${process.env.LANDING_PAGE}/web/payment/${data.id}`,
@@ -96,7 +99,9 @@ export async function middleware(request: NextRequest) {
       })
     ).json();
     if (dataShop.user_id != token?.user.id) {
-      return NextResponse.redirect(new URL("/", request.url));
+      if (domain != process.env.LANDING_PAGE) {
+        return NextResponse.redirect(new URL("/", request.url));
+      }
     }
   }
   if (request.nextUrl.pathname.startsWith("/supplier")) {

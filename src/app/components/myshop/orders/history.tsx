@@ -38,7 +38,7 @@ const MyShopOrderHistory = () => {
       },
     }).then((res) => res.json());
 
-  const url = process.env.SERVER_ENDPOINT + "/api/supplier-board/order/";
+  const url = process.env.SERVER_ENDPOINT + "/api/myshop-board/order";
   const {
     data: orders,
     isLoading,

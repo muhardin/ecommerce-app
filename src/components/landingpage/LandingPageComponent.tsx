@@ -69,7 +69,7 @@ export default function LandingPageComponent() {
                         <stop
                           offset="1"
                           stop-color="#06b6d4"
-                          stop-opacity="0"
+                          stopOpacity="0"
                         ></stop>
                       </linearGradient>
                     </defs>
@@ -103,7 +103,7 @@ export default function LandingPageComponent() {
                         <stop
                           offset="1"
                           stop-color="#06b6d4"
-                          stop-opacity="0"
+                          stopOpacity="0"
                         ></stop>
                       </linearGradient>
                     </defs>
@@ -270,7 +270,7 @@ export default function LandingPageComponent() {
                           <stop
                             offset="1"
                             stop-color="#13B5C8"
-                            stop-opacity="0"
+                            stopOpacity="0"
                           ></stop>
                         </linearGradient>
                       </defs>
@@ -302,7 +302,7 @@ export default function LandingPageComponent() {
                               stroke="#fff"
                               strokeWidth="2"
                               strokeLinecap="round"
-                              stroke-linejoin="round"
+                              strokeLinejoin="round"
                             ></path>
                           </svg>
                           <svg
@@ -331,7 +331,7 @@ export default function LandingPageComponent() {
                               stroke="#fff"
                               strokeWidth="2"
                               strokeLinecap="round"
-                              stroke-linejoin="round"
+                              strokeLinejoin="round"
                             ></path>
                           </svg>
                         </div>
@@ -464,7 +464,7 @@ export default function LandingPageComponent() {
                           <stop
                             offset="1"
                             stop-color="#13B5C8"
-                            stop-opacity="0"
+                            stopOpacity="0"
                           ></stop>
                         </linearGradient>
                       </defs>
@@ -496,7 +496,7 @@ export default function LandingPageComponent() {
                               stroke="#fff"
                               strokeWidth="2"
                               strokeLinecap="round"
-                              stroke-linejoin="round"
+                              strokeLinejoin="round"
                             ></path>
                           </svg>
                           <svg
@@ -525,7 +525,7 @@ export default function LandingPageComponent() {
                               stroke="#fff"
                               strokeWidth="2"
                               strokeLinecap="round"
-                              stroke-linejoin="round"
+                              strokeLinejoin="round"
                             ></path>
                           </svg>
                         </div>
@@ -623,7 +623,7 @@ export default function LandingPageComponent() {
                                   stroke="#fff"
                                   strokeWidth="2"
                                   strokeLinecap="round"
-                                  stroke-linejoin="round"
+                                  strokeLinejoin="round"
                                   aria-hidden="true"
                                   className="h-10 w-10"
                                 >
@@ -732,7 +732,7 @@ export default function LandingPageComponent() {
                                   stroke="#fff"
                                   strokeWidth="2"
                                   strokeLinecap="square"
-                                  stroke-linejoin="round"
+                                  strokeLinejoin="round"
                                   aria-hidden="true"
                                   className="h-10 w-10"
                                 >
@@ -845,7 +845,7 @@ export default function LandingPageComponent() {
                           <stop
                             offset="1"
                             stop-color="#13B5C8"
-                            stop-opacity="0"
+                            stopOpacity="0"
                           ></stop>
                         </linearGradient>
                       </defs>
@@ -877,7 +877,7 @@ export default function LandingPageComponent() {
                               stroke="#fff"
                               strokeWidth="2"
                               strokeLinecap="round"
-                              stroke-linejoin="round"
+                              strokeLinejoin="round"
                             ></path>
                           </svg>
                           <svg
@@ -906,7 +906,7 @@ export default function LandingPageComponent() {
                               stroke="#fff"
                               strokeWidth="2"
                               strokeLinecap="round"
-                              stroke-linejoin="round"
+                              strokeLinejoin="round"
                             ></path>
                           </svg>
                         </div>
@@ -944,7 +944,7 @@ export default function LandingPageComponent() {
                                         stroke="#06B6D4"
                                         strokeWidth="2"
                                         strokeLinecap="round"
-                                        stroke-linejoin="round"
+                                        strokeLinejoin="round"
                                       ></path>
                                     </svg>
                                   </div>
@@ -1017,7 +1017,7 @@ export default function LandingPageComponent() {
                           <stop
                             offset="1"
                             stop-color="#D4D4D4"
-                            stop-opacity="0"
+                            stopOpacity="0"
                           ></stop>
                         </linearGradient>
                       </defs>
@@ -1039,7 +1039,7 @@ export default function LandingPageComponent() {
                         stroke="url(#:r6:-gradient)"
                         strokeWidth="2"
                         strokeLinecap="round"
-                        stroke-linejoin="round"
+                        strokeLinejoin="round"
                       ></path>
                       <path
                         d="M21 20l.217-5.513a1.431 1.431 0 00-2.85-.226L17.5 21.5l-1.51-1.51a2.107 2.107 0 00-2.98 0 .024.024 0 00-.005.024l3.083 9.25A4 4 0 0019.883 32H25a4 4 0 004-4v-5a3 3 0 00-3-3h-5z"
@@ -1205,7 +1205,7 @@ export default function LandingPageComponent() {
                           <stop
                             offset="1"
                             stop-color="#D4D4D4"
-                            stop-opacity="0"
+                            stopOpacity="0"
                           ></stop>
                         </linearGradient>
                       </defs>
@@ -1227,7 +1227,7 @@ export default function LandingPageComponent() {
                         stroke="url(#:r9:-gradient)"
                         strokeWidth="2"
                         strokeLinecap="round"
-                        stroke-linejoin="round"
+                        strokeLinejoin="round"
                       ></path>
                       <path
                         d="M21 20l.217-5.513a1.431 1.431 0 00-2.85-.226L17.5 21.5l-1.51-1.51a2.107 2.107 0 00-2.98 0 .024.024 0 00-.005.024l3.083 9.25A4 4 0 0019.883 32H25a4 4 0 004-4v-5a3 3 0 00-3-3h-5z"
@@ -1279,7 +1279,7 @@ export default function LandingPageComponent() {
                         <stop
                           offset="1"
                           stop-color="#13B5C8"
-                          stop-opacity="0"
+                          stopOpacity="0"
                         ></stop>
                       </linearGradient>
                     </defs>
@@ -1399,7 +1399,7 @@ export default function LandingPageComponent() {
                       <stop
                         offset="1"
                         stop-color="#737373"
-                        stop-opacity="0"
+                        stopOpacity="0"
                       ></stop>
                     </linearGradient>
                   </defs>
@@ -1577,7 +1577,7 @@ export default function LandingPageComponent() {
                   gradientUnits="userSpaceOnUse"
                 >
                   <stop stop-color="#fff"></stop>
-                  <stop offset="1" stop-color="#fff" stop-opacity="0"></stop>
+                  <stop offset="1" stop-color="#fff" stopOpacity="0"></stop>
                 </linearGradient>
               </defs>
               <path
@@ -1746,7 +1746,7 @@ export default function LandingPageComponent() {
                           stroke="currentColor"
                           strokeWidth="1.5"
                           strokeLinecap="round"
-                          stroke-linejoin="round"
+                          strokeLinejoin="round"
                         ></circle>
                       </svg>
                       <span className="ml-4">Commission-free trading</span>
@@ -1769,7 +1769,7 @@ export default function LandingPageComponent() {
                           stroke="currentColor"
                           strokeWidth="1.5"
                           strokeLinecap="round"
-                          stroke-linejoin="round"
+                          strokeLinejoin="round"
                         ></circle>
                       </svg>
                       <span className="ml-4">Multi-layered encryption</span>
@@ -1792,7 +1792,7 @@ export default function LandingPageComponent() {
                           stroke="currentColor"
                           strokeWidth="1.5"
                           strokeLinecap="round"
-                          stroke-linejoin="round"
+                          strokeLinejoin="round"
                         ></circle>
                       </svg>
                       <span className="ml-4">One tip every day</span>
@@ -1815,7 +1815,7 @@ export default function LandingPageComponent() {
                           stroke="currentColor"
                           strokeWidth="1.5"
                           strokeLinecap="round"
-                          stroke-linejoin="round"
+                          strokeLinejoin="round"
                         ></circle>
                       </svg>
                       <span className="ml-4">
@@ -1885,7 +1885,7 @@ export default function LandingPageComponent() {
                           stroke="currentColor"
                           strokeWidth="1.5"
                           strokeLinecap="round"
-                          stroke-linejoin="round"
+                          strokeLinejoin="round"
                         ></circle>
                       </svg>
                       <span className="ml-4">Commission-free trading</span>
@@ -1908,7 +1908,7 @@ export default function LandingPageComponent() {
                           stroke="currentColor"
                           strokeWidth="1.5"
                           strokeLinecap="round"
-                          stroke-linejoin="round"
+                          strokeLinejoin="round"
                         ></circle>
                       </svg>
                       <span className="ml-4">Multi-layered encryption</span>
@@ -1931,7 +1931,7 @@ export default function LandingPageComponent() {
                           stroke="currentColor"
                           strokeWidth="1.5"
                           strokeLinecap="round"
-                          stroke-linejoin="round"
+                          strokeLinejoin="round"
                         ></circle>
                       </svg>
                       <span className="ml-4">One tip every hour</span>
@@ -1954,7 +1954,7 @@ export default function LandingPageComponent() {
                           stroke="currentColor"
                           strokeWidth="1.5"
                           strokeLinecap="round"
-                          stroke-linejoin="round"
+                          strokeLinejoin="round"
                         ></circle>
                       </svg>
                       <span className="ml-4">
@@ -1979,7 +1979,7 @@ export default function LandingPageComponent() {
                           stroke="currentColor"
                           strokeWidth="1.5"
                           strokeLinecap="round"
-                          stroke-linejoin="round"
+                          strokeLinejoin="round"
                         ></circle>
                       </svg>
                       <span className="ml-4">
@@ -2049,7 +2049,7 @@ export default function LandingPageComponent() {
                           stroke="currentColor"
                           strokeWidth="1.5"
                           strokeLinecap="round"
-                          stroke-linejoin="round"
+                          strokeLinejoin="round"
                         ></circle>
                       </svg>
                       <span className="ml-4">Commission-free trading</span>
@@ -2072,7 +2072,7 @@ export default function LandingPageComponent() {
                           stroke="currentColor"
                           strokeWidth="1.5"
                           strokeLinecap="round"
-                          stroke-linejoin="round"
+                          strokeLinejoin="round"
                         ></circle>
                       </svg>
                       <span className="ml-4">Multi-layered encryption</span>
@@ -2095,7 +2095,7 @@ export default function LandingPageComponent() {
                           stroke="currentColor"
                           strokeWidth="1.5"
                           strokeLinecap="round"
-                          stroke-linejoin="round"
+                          strokeLinejoin="round"
                         ></circle>
                       </svg>
                       <span className="ml-4">Real-time tip notifications</span>
@@ -2118,7 +2118,7 @@ export default function LandingPageComponent() {
                           stroke="currentColor"
                           strokeWidth="1.5"
                           strokeLinecap="round"
-                          stroke-linejoin="round"
+                          strokeLinejoin="round"
                         ></circle>
                       </svg>
                       <span className="ml-4">No investment limits</span>
@@ -2141,7 +2141,7 @@ export default function LandingPageComponent() {
                           stroke="currentColor"
                           strokeWidth="1.5"
                           strokeLinecap="round"
-                          stroke-linejoin="round"
+                          strokeLinejoin="round"
                         ></circle>
                       </svg>
                       <span className="ml-4">
@@ -2166,7 +2166,7 @@ export default function LandingPageComponent() {
                           stroke="currentColor"
                           strokeWidth="1.5"
                           strokeLinecap="round"
-                          stroke-linejoin="round"
+                          strokeLinejoin="round"
                         ></circle>
                       </svg>
                       <span className="ml-4">

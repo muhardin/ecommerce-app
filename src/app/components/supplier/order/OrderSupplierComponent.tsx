@@ -49,7 +49,7 @@ const OrderSupplierComponent = () => {
     refreshInterval: 3000,
   });
 
-  // console.log(orders[0]);
+  // console.log(orders);
   return (
     <>
       {/* <div className="">s</div>
@@ -226,7 +226,11 @@ const OrderSupplierComponent = () => {
                         <div className="inline-flex items-center rounded-md bg-blue-600 py-2 px-3 text-xs text-white">
                           <OrderSupplierUpdate
                             item={item}
-                            title="Update"
+                            title={`${
+                              item.order_status == "received"
+                                ? "Detail"
+                                : "Update"
+                            } `}
                             className="text-white hover:text-white"
                           />
                         </div>

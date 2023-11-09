@@ -12,6 +12,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      class: {
+        "btn-dark": "bg-red-500",
+      },
       backgroundImage: {
         "main-bg": "url('/bg-image.jpg')",
       },

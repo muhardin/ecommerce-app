@@ -155,7 +155,7 @@ const PageAbout = () => {
                         gradientUnits="userSpaceOnUse"
                       >
                         <stop stop-color="#fff" />
-                        <stop offset="1" stop-color="#fff" stop-opacity="0" />
+                        <stop offset="1" stop-color="#fff" stopOpacity="0" />
                       </linearGradient>
                       <linearGradient
                         id="paint1_linear_228_431"

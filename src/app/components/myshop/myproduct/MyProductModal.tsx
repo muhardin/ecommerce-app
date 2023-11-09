@@ -7,13 +7,13 @@ import CurrencyInput from "react-currency-input-field";
 import toast, { Toaster } from "react-hot-toast";
 import FormattedPrice from "../../FormattedPrice";
 import { useShopData } from "../../shop/ShopContext";
-import { Product } from "../../../../../type";
+import { Product, Products } from "../../../../../type";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Swal from "sweetalert2";
 
-const MyProductModal = ({ product }: { product: Product }) => {
+const MyProductModal = ({ product }: { product: Products }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const shopData = useShopData();
@@ -254,7 +254,7 @@ const MyProductModal = ({ product }: { product: Product }) => {
                                 >
                                   <path
                                     strokeLinecap="round"
-                                    stroke-linejoin="round"
+                                    strokeLinejoin="round"
                                     d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"
                                   />
                                 </svg> */}

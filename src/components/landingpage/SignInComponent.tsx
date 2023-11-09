@@ -55,7 +55,7 @@ const SignInComponent = () => {
       try {
         if (session?.is_seller == "2") {
           const response = await fetch(
-            `${process.env.SERVER_ENDPOINT}/api/register-payment`,
+            `${process.env.SERVER_ENDPOINT}/api/register-payment/2`,
             {
               method: "GET",
               headers: {
@@ -70,7 +70,7 @@ const SignInComponent = () => {
           }
           console.log(data);
         } else if (session?.is_seller == "1") {
-          router.push("/web/myshop/");
+          router.push("/myshop/");
         }
       } catch (error) {
         console.error("Error fetching data:", error);

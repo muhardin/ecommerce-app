@@ -130,7 +130,7 @@ const ProductAvailableComponent = () => {
                     stroke="currentColor"
                     strokeWidth="2"
                     strokeLinecap="round"
-                    stroke-linejoin="round"
+                    strokeLinejoin="round"
                     data-lucide="search"
                     className="lucide lucide-search z-[1] w-5 h-5 stroke-slate-400"
                   >

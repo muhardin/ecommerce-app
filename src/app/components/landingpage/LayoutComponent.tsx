@@ -4,28 +4,27 @@ import BannerFlash from "@/components/landingpage/BannerFlash";
 import Image from "next/image";
 import Link from "next/link";
 import { SessionProvider, signOut, useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
-
-const includedFeatures = [
-  "Private forum access",
-  "Member resources",
-  "Entry to annual conference",
-  "Official member t-shirt",
-];
-
-const navigation = [
-  { name: "Product", href: "#" },
-  { name: "Features", href: "#" },
-  { name: "Marketplace", href: "#" },
-  { name: "Company", href: "#" },
-];
+import { usePathname, useRouter } from "next/navigation";
+import {
+  closeProfileMenu,
+  openProfileMenu,
+  toggleProfileMenu,
+} from "@/redux/profileSlice";
+import { useDispatch } from "react-redux";
+import SideBarWeb from "../menu/SideBarWeb";
+import { ClipboardList, ShoppingBag } from "lucide-react";
+import LucidaIcon from "../ui/LucidaIcons";
+import toast from "react-hot-toast";
+import { useUserData } from "../supplier/UserData";
 
 const LayoutComponent = ({ children }: { children: React.ReactNode }) => {
+  const userData = useUserData();
+  const dispatch = useDispatch();
   const route = useRouter();
   const { data: session } = useSession();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
-
+  const pathName = usePathname();
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 0) {
@@ -44,7 +43,14 @@ const LayoutComponent = ({ children }: { children: React.ReactNode }) => {
 
   const [menuMobile, setMenuMobile] = useState(false);
   const toggleMenuMobile = () => setMenuMobile(!menuMobile);
-
+  const handleToggleMenu = () => {
+    dispatch(toggleProfileMenu());
+  };
+  const [profileMenu, setProfileMenu] = useState(false);
+  const handleToggleProfile = () => {
+    setProfileMenu(!profileMenu);
+  };
+  console.log(userData);
   return (
     <>
       <div className="flex min-h-full flex-col">
@@ -54,9 +60,30 @@ const LayoutComponent = ({ children }: { children: React.ReactNode }) => {
             <div
               className={`${
                 isSticky ? "fixed top-0" : "relative"
-              } bg-white  mx-auto px-4 sm:px-6 lg:px-8 z-50 flex justify-between py-4 shadow-lg shadow-gray-200 w-full`}
+              } bg-white  mx-auto px-4 sm:px-6 lg:px-8 z-50 flex justify-between py-3 shadow-lg shadow-gray-200 w-full`}
             >
               <div className="relative z-10 flex items-center gap-16">
+                <div>
+                  <button
+                    onClick={() => {
+                      handleToggleMenu();
+                    }}
+                    className="px-2 py-3 text-blue-500 bg-blue-100 rounded dark:text-gray-400 dark:bg-gray-800"
+                  >
+                    <svg
+                      width="18"
+                      height="10"
+                      viewBox="0 0 18 10"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M1.50002 1.66667H16.5C16.721 1.66667 16.933 1.57887 17.0893 1.42259C17.2456 1.26631 17.3334 1.05435 17.3334 0.833333C17.3334 0.61232 17.2456 0.400358 17.0893 0.244078C16.933 0.0877975 16.721 0 16.5 0H1.50002C1.27901 0 1.06704 0.0877975 0.910765 0.244078C0.754484 0.400358 0.666687 0.61232 0.666687 0.833333C0.666687 1.05435 0.754484 1.26631 0.910765 1.42259C1.06704 1.57887 1.27901 1.66667 1.50002 1.66667V1.66667ZM16.5 8.33333H1.50002C1.27901 8.33333 1.06704 8.42113 0.910765 8.57741C0.754484 8.73369 0.666687 8.94565 0.666687 9.16667C0.666687 9.38768 0.754484 9.59964 0.910765 9.75592C1.06704 9.9122 1.27901 10 1.50002 10H16.5C16.721 10 16.933 9.9122 17.0893 9.75592C17.2456 9.59964 17.3334 9.38768 17.3334 9.16667C17.3334 8.94565 17.2456 8.73369 17.0893 8.57741C16.933 8.42113 16.721 8.33333 16.5 8.33333ZM16.5 4.16667H1.50002C1.27901 4.16667 1.06704 4.25446 0.910765 4.41074C0.754484 4.56702 0.666687 4.77899 0.666687 5C0.666687 5.22101 0.754484 5.43298 0.910765 5.58926C1.06704 5.74554 1.27901 5.83333 1.50002 5.83333H16.5C16.721 5.83333 16.933 5.74554 17.0893 5.58926C17.2456 5.43298 17.3334 5.22101 17.3334 5C17.3334 4.77899 17.2456 4.56702 17.0893 4.41074C16.933 4.25446 16.721 4.16667 16.5 4.16667Z"
+                        fill="currentColor"
+                      ></path>
+                    </svg>
+                  </button>
+                </div>
                 <Link aria-label="Home" href="/">
                   <div className="h-12 w-14">
                     <Image
@@ -128,9 +155,9 @@ const LayoutComponent = ({ children }: { children: React.ReactNode }) => {
                       >
                         <path
                           d="M17 14l-5-5-5 5"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         ></path>
                       </svg>
                     ) : (
@@ -142,9 +169,9 @@ const LayoutComponent = ({ children }: { children: React.ReactNode }) => {
                       >
                         <path
                           d="M5 6h14M5 18h14M5 12h14"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         ></path>
                       </svg>
                     )}
@@ -266,6 +293,7 @@ const LayoutComponent = ({ children }: { children: React.ReactNode }) => {
                   </div>
                 </div>
                 <div className="fixed top-1 left-1 w-1 h-0 p-0 m--1 overflow-hidden clip-rect-0 border-0 invisible"></div>
+
                 {session ? (
                   <button
                     onClick={() => {
@@ -294,121 +322,286 @@ const LayoutComponent = ({ children }: { children: React.ReactNode }) => {
                 >
                   Register
                 </Link>
+                <div className="relative text-left lg:inline-block">
+                  <div
+                    // ref={profileButtonRef}
+                    onClick={() => {
+                      handleToggleProfile();
+                    }}
+                    className="lg:block"
+                  >
+                    <button className="flex items-center">
+                      {/* <div className="hidden mr-3 text-right md:block">
+                      <p className="text-sm font-bold text-black dark:text-gray-400">
+                        {" "}
+                        Doe
+                      </p>
+                    </div> */}
+                      <div className="mr-2">
+                        <Image
+                          width={250}
+                          height={250}
+                          src="/images/avatar.png"
+                          className="object-cover object-right w-10 h-10 rounded-full"
+                          alt="person"
+                        />
+                      </div>
+                      <span>
+                        <svg
+                          className="text-gray-400"
+                          width="10"
+                          height="6"
+                          viewBox="0 0 10 6"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M9.08335 0.666657C8.75002 0.333323 8.25002 0.333323 7.91669 0.666657L5.00002 3.58332L2.08335 0.666657C1.75002 0.333323 1.25002 0.333323 0.916687 0.666657C0.583354 0.99999 0.583354 1.49999 0.916687 1.83332L4.41669 5.33332C4.58335 5.49999 4.75002 5.58332 5.00002 5.58332C5.25002 5.58332 5.41669 5.49999 5.58335 5.33332L9.08335 1.83332C9.41669 1.49999 9.41669 0.99999 9.08335 0.666657Z"
+                            fill="currentColor"
+                          ></path>
+                        </svg>
+                      </span>
+                    </button>
+                  </div>
+                  <div
+                    id="dropdown_profile"
+                    className={`${
+                      profileMenu ? "block" : "hidden"
+                    } absolute right-0 w-48 mt-3 origin-top-right bg-white rounded shadow dark:bg-gray-800 dark:text-gray-100 `}
+                  >
+                    <div className="py-1">
+                      <Link
+                        onClick={() => {
+                          setProfileMenu(false);
+                        }}
+                        href="/profile"
+                        className="flex px-4 py-2 text-sm text-gray-700 dark:text-gray-400 dark:hover:bg-gray-800 hover:bg-gray-100"
+                      >
+                        <svg
+                          className="mr-2"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="18"
+                          height="18"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          <circle cx="12" cy="12" r="3"></circle>
+                          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                        </svg>
+                        Account
+                      </Link>
+
+                      <Link
+                        onClick={() => {
+                          setProfileMenu(false);
+                        }}
+                        href="/profile/orders"
+                        className="flex px-4 py-2 text-sm text-gray-700 dark:text-gray-400 dark:hover:bg-gray-800 hover:bg-gray-100"
+                      >
+                        <div className="mr-2">
+                          <ClipboardList size={18} />
+                        </div>
+                        Order
+                      </Link>
+                      {userData?.data?.is_supplier == 1 ? (
+                        <Link
+                          onClick={() => {
+                            setProfileMenu(false);
+                          }}
+                          href="/supplier"
+                          className="flex px-4 py-2 text-sm text-gray-700 dark:text-gray-400 dark:hover:bg-gray-800 hover:bg-gray-100"
+                        >
+                          <div className="mr-2">
+                            <LucidaIcon name="Store" size={18} />
+                          </div>
+                          Supplier
+                        </Link>
+                      ) : (
+                        ""
+                      )}
+                      {userData?.data?.is_seller ? (
+                        <Link
+                          onClick={() => {
+                            setProfileMenu(false);
+                          }}
+                          href="/myshop"
+                          className="flex px-4 py-2 text-sm text-gray-700 dark:text-gray-400 dark:hover:bg-gray-800 hover:bg-gray-100"
+                        >
+                          <div className="mr-2">
+                            <ShoppingBag name="Store" size={18} />
+                          </div>
+                          My Shop
+                        </Link>
+                      ) : (
+                        ""
+                      )}
+
+                      <button
+                        onClick={() => {
+                          toast.loading("Loading...");
+                          setProfileMenu(false);
+                          signOut({
+                            redirect: false,
+                            callbackUrl: "/web/sign-in",
+                          });
+                          route.push("/web/sign-in");
+                          toast.dismiss();
+                        }}
+                        className="w-full flex px-4 py-2 text-sm text-gray-700 dark:hover:bg-gray-800 dark:text-gray-400 hover:bg-gray-100"
+                      >
+                        <svg
+                          className="mr-2"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="18"
+                          height="18"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                          <polyline points="16 17 21 12 16 7"></polyline>
+                          <line x1="21" y1="12" x2="9" y2="12"></line>
+                        </svg>
+                        Logout
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </nav>
         </header>
-        {children}
+        <div>
+          <SideBarWeb />
+        </div>
 
-        <footer className="border-t border-gray-200">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="flex flex-col items-start justify-between gap-y-12 pb-6 pt-16 lg:flex-row lg:items-center lg:py-16">
-              <div>
-                <div className="flex items-center text-gray-900">
-                  <div className="h-10 w-10 flex-none fill-cyan-500">
+        {children}
+        {["/supplierpp", "/myshopp"].some((path) =>
+          pathName.startsWith(path)
+        ) ? (
+          ""
+        ) : (
+          <footer className="border-t border-gray-200 md:mt-36">
+            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+              <div className="flex flex-col items-start justify-between gap-y-12 pb-6 pt-16 lg:flex-row lg:items-center lg:py-16">
+                <div>
+                  <div className="flex items-center text-gray-900">
+                    <div className="h-10 w-10 flex-none fill-cyan-500">
+                      <Image
+                        src={"/images/address.png"}
+                        width={150}
+                        height={150}
+                        alt=""
+                      />
+                    </div>
+                    <div className="ml-4">
+                      <p className="text-base font-semibold">Pocket</p>
+                      <p className="mt-1 text-sm">
+                        Invest at the perfect time.
+                      </p>
+                    </div>
+                  </div>
+                  <nav className="mt-11 flex gap-8">
+                    <a
+                      className="relative -mx-3 -my-2 rounded-lg px-3 py-2 text-sm text-gray-700 transition-colors delay-150 hover:text-gray-900 hover:delay-0"
+                      href="/#features"
+                    >
+                      <span className="relative z-10">Features</span>
+                    </a>
+                    <a
+                      className="relative -mx-3 -my-2 rounded-lg px-3 py-2 text-sm text-gray-700 transition-colors delay-150 hover:text-gray-900 hover:delay-0"
+                      href="/#reviews"
+                    >
+                      <span className="relative z-10">Reviews</span>
+                    </a>
+                    <a
+                      className="relative -mx-3 -my-2 rounded-lg px-3 py-2 text-sm text-gray-700 transition-colors delay-150 hover:text-gray-900 hover:delay-0"
+                      href="/#pricing"
+                    >
+                      <span className="relative z-10">Pricing</span>
+                    </a>
+                    <a
+                      className="relative -mx-3 -my-2 rounded-lg px-3 py-2 text-sm text-gray-700 transition-colors delay-150 hover:text-gray-900 hover:delay-0"
+                      href="/#faqs"
+                    >
+                      <span className="relative z-10">FAQs</span>
+                    </a>
+                  </nav>
+                </div>
+                <div className="group relative -mx-4 flex items-center self-stretch p-4 transition-colors hover:bg-gray-100 sm:self-auto sm:rounded-2xl lg:mx-0 lg:self-auto lg:p-6">
+                  <div className="relative flex h-24 w-24 flex-none items-center justify-center">
+                    <svg
+                      viewBox="0 0 96 96"
+                      fill="none"
+                      aria-hidden="true"
+                      className="absolute inset-0 h-full w-full stroke-gray-300 transition-colors group-hover:stroke-cyan-500"
+                    >
+                      <path
+                        d="M1 17V9a8 8 0 0 1 8-8h8M95 17V9a8 8 0 0 0-8-8h-8M1 79v8a8 8 0 0 0 8 8h8M95 79v8a8 8 0 0 1-8 8h-8"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                      ></path>
+                    </svg>
                     <Image
-                      src={"/images/address.png"}
-                      width={150}
-                      height={150}
                       alt=""
+                      loading="lazy"
+                      width="80"
+                      height="80"
+                      decoding="async"
+                      data-nimg="1"
+                      src="/images/playstore.png"
                     />
                   </div>
-                  <div className="ml-4">
-                    <p className="text-base font-semibold">Pocket</p>
-                    <p className="mt-1 text-sm">Invest at the perfect time.</p>
+                  <div className="ml-8 lg:w-64">
+                    <p className="text-base font-semibold text-gray-900">
+                      <a href="#">
+                        <span className="absolute inset-0 sm:rounded-2xl"></span>
+                        Download the app{" "}
+                      </a>
+                    </p>
+                    <p className="mt-1 text-sm text-gray-700">
+                      Scan the QR code to download the app from the App Store.
+                    </p>
                   </div>
                 </div>
-                <nav className="mt-11 flex gap-8">
-                  <a
-                    className="relative -mx-3 -my-2 rounded-lg px-3 py-2 text-sm text-gray-700 transition-colors delay-150 hover:text-gray-900 hover:delay-0"
-                    href="/#features"
-                  >
-                    <span className="relative z-10">Features</span>
-                  </a>
-                  <a
-                    className="relative -mx-3 -my-2 rounded-lg px-3 py-2 text-sm text-gray-700 transition-colors delay-150 hover:text-gray-900 hover:delay-0"
-                    href="/#reviews"
-                  >
-                    <span className="relative z-10">Reviews</span>
-                  </a>
-                  <a
-                    className="relative -mx-3 -my-2 rounded-lg px-3 py-2 text-sm text-gray-700 transition-colors delay-150 hover:text-gray-900 hover:delay-0"
-                    href="/#pricing"
-                  >
-                    <span className="relative z-10">Pricing</span>
-                  </a>
-                  <a
-                    className="relative -mx-3 -my-2 rounded-lg px-3 py-2 text-sm text-gray-700 transition-colors delay-150 hover:text-gray-900 hover:delay-0"
-                    href="/#faqs"
-                  >
-                    <span className="relative z-10">FAQs</span>
-                  </a>
-                </nav>
               </div>
-              <div className="group relative -mx-4 flex items-center self-stretch p-4 transition-colors hover:bg-gray-100 sm:self-auto sm:rounded-2xl lg:mx-0 lg:self-auto lg:p-6">
-                <div className="relative flex h-24 w-24 flex-none items-center justify-center">
-                  <svg
-                    viewBox="0 0 96 96"
-                    fill="none"
-                    aria-hidden="true"
-                    className="absolute inset-0 h-full w-full stroke-gray-300 transition-colors group-hover:stroke-cyan-500"
+              <div className="flex flex-col items-center border-t border-gray-200 pb-12 pt-8 md:flex-row-reverse md:justify-between md:pt-6">
+                <form className="flex w-full justify-center md:w-auto">
+                  <div className="w-60 min-w-0 shrink">
+                    <input
+                      id=":S5:"
+                      aria-label="Email address"
+                      placeholder="Email address"
+                      autoComplete="email"
+                      required
+                      className="block w-full appearance-none rounded-lg border border-gray-200 bg-white py-[calc(theme(spacing.2)-1px)] px-[calc(theme(spacing.3)-1px)] text-gray-900 placeholder:text-gray-400 focus:border-cyan-500 focus:outline-none focus:ring-cyan-500 sm:text-sm"
+                      type="email"
+                    />
+                  </div>
+                  <button
+                    className="inline-flex justify-center rounded-lg py-2 px-3 text-sm font-semibold outline-2 outline-offset-2 transition-colors relative overflow-hidden bg-cyan-500 text-white before:absolute before:inset-0 active:before:bg-transparent hover:before:bg-white/10 active:bg-cyan-600 active:text-white/80 before:transition-colors ml-4 flex-none"
+                    type="submit"
                   >
-                    <path
-                      d="M1 17V9a8 8 0 0 1 8-8h8M95 17V9a8 8 0 0 0-8-8h-8M1 79v8a8 8 0 0 0 8 8h8M95 79v8a8 8 0 0 1-8 8h-8"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                    ></path>
-                  </svg>
-                  <Image
-                    alt=""
-                    loading="lazy"
-                    width="80"
-                    height="80"
-                    decoding="async"
-                    data-nimg="1"
-                    src="/images/playstore.png"
-                  />
-                </div>
-                <div className="ml-8 lg:w-64">
-                  <p className="text-base font-semibold text-gray-900">
-                    <a href="#">
-                      <span className="absolute inset-0 sm:rounded-2xl"></span>
-                      Download the app{" "}
-                    </a>
-                  </p>
-                  <p className="mt-1 text-sm text-gray-700">
-                    Scan the QR code to download the app from the App Store.
-                  </p>
-                </div>
+                    <span className="hidden lg:inline">
+                      Join our newsletter
+                    </span>
+                    <span className="lg:hidden">Join newsletter</span>
+                  </button>
+                </form>
+                <p className="mt-6 text-sm text-gray-500 md:mt-0">
+                  © Copyright 2023. All rights reserved.
+                </p>
               </div>
             </div>
-            <div className="flex flex-col items-center border-t border-gray-200 pb-12 pt-8 md:flex-row-reverse md:justify-between md:pt-6">
-              <form className="flex w-full justify-center md:w-auto">
-                <div className="w-60 min-w-0 shrink">
-                  <input
-                    id=":S5:"
-                    aria-label="Email address"
-                    placeholder="Email address"
-                    autoComplete="email"
-                    required
-                    className="block w-full appearance-none rounded-lg border border-gray-200 bg-white py-[calc(theme(spacing.2)-1px)] px-[calc(theme(spacing.3)-1px)] text-gray-900 placeholder:text-gray-400 focus:border-cyan-500 focus:outline-none focus:ring-cyan-500 sm:text-sm"
-                    type="email"
-                  />
-                </div>
-                <button
-                  className="inline-flex justify-center rounded-lg py-2 px-3 text-sm font-semibold outline-2 outline-offset-2 transition-colors relative overflow-hidden bg-cyan-500 text-white before:absolute before:inset-0 active:before:bg-transparent hover:before:bg-white/10 active:bg-cyan-600 active:text-white/80 before:transition-colors ml-4 flex-none"
-                  type="submit"
-                >
-                  <span className="hidden lg:inline">Join our newsletter</span>
-                  <span className="lg:hidden">Join newsletter</span>
-                </button>
-              </form>
-              <p className="mt-6 text-sm text-gray-500 md:mt-0">
-                © Copyright 2023. All rights reserved.
-              </p>
-            </div>
-          </div>
-        </footer>
+          </footer>
+        )}
       </div>
     </>
   );
