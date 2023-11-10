@@ -11,18 +11,17 @@ import Select from "react-tailwindcss-select";
 import toast from "react-hot-toast";
 import { ClipboardEdit } from "lucide-react";
 import { SelectValue } from "react-tailwindcss-select/dist/components/type";
+import Categories from "@/data/categories.json";
 
 interface ModalProps {
   isOpen: boolean;
   isUpdate?: boolean;
-  itemProducts?: Product | [];
   closeModal: () => void;
 }
 const AddProductComponent: React.FC<ModalProps> = ({
   isOpen,
   closeModal,
   isUpdate,
-  itemProducts,
 }) => {
   const [loading, setLoading] = useState(false);
   const { data: session } = useSession();
@@ -67,17 +66,16 @@ const AddProductComponent: React.FC<ModalProps> = ({
   /** end of get supplier  */
 
   /** get categories */
-  const [categories, setCategories] = useState([]);
+  const [categories, setCategories] = useState(Categories);
   useEffect(() => {
-    const fetchData = async () => {
-      setTimeout(async () => {
-        const response = await axios.get(
-          `${process.env.SERVER_ENDPOINT}/api/products/categories/list`
-        );
-        setCategories(response.data);
-      }, 9000);
-    };
-    fetchData();
+    setCategories(Categories);
+    // const fetchData = async () => {
+    //   setTimeout(async () => {
+    //     const response = await axios.get(`Categories`);
+    //     setCategories(response.data);
+    //   }, 9000);
+    // };
+    // fetchData();
   }, []);
 
   const selectOptions = categories.map((item: any) => ({
@@ -123,29 +121,6 @@ const AddProductComponent: React.FC<ModalProps> = ({
     setSalePrice(0);
     setErrMessage([]);
   };
-
-  /** Update the state for edit data */
-  useEffect(() => {
-    if (itemProducts) {
-      const product = itemProducts as Product;
-      setTitle(product.title);
-      setIsNew(Number(product.isNew));
-      setDescription(product.description);
-      setPrice(product.price);
-      setSalePrice(product.company_price);
-      setSku(product.sku);
-      setQuantity(product.quantity);
-      setWeight(product.weight);
-      setSlug(product.slug);
-      setValCat({
-        value: product?.category?.id,
-        label: product?.category?.name,
-        disabled: false,
-      });
-    } else {
-      clearState();
-    }
-  }, [itemProducts]);
 
   const handleSalePrice = (e: Number) => {
     setPrice(Number(e));
@@ -247,9 +222,6 @@ const AddProductComponent: React.FC<ModalProps> = ({
     console.log(e);
   };
 
-  console.log(type);
-  console.log(valCat);
-  console.log(description);
   if (!isOpen) return null;
 
   return (
@@ -265,9 +237,9 @@ const AddProductComponent: React.FC<ModalProps> = ({
               <svg
                 stroke="currentColor"
                 fill="none"
-                stroke-width="2"
+                strokeWidth="2"
                 viewBox="0 0 24 24"
-                stroke-linecap="round"
+                strokeLinecap="round"
                 stroke-linejoin="round"
                 className="mx-auto"
                 height="1em"
@@ -302,7 +274,7 @@ const AddProductComponent: React.FC<ModalProps> = ({
               </div>
               <div className="bg-white text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-700">
                 <div className="mb-3 flex flex-wrap justify-end items-center mr-8 h-2">
-                  <div className="flex flex-wrap items-center">
+                  <div className="flex flex-wrap items-center mt-2">
                     <label className="block text-base font-normal text-orange-500 dark:text-orange-400 mx-4">
                       Does this product have variants?
                     </label>
@@ -416,9 +388,9 @@ const AddProductComponent: React.FC<ModalProps> = ({
                                 <svg
                                   stroke="currentColor"
                                   fill="none"
-                                  stroke-width="2"
+                                  strokeWidth="2"
                                   viewBox="0 0 24 24"
-                                  stroke-linecap="round"
+                                  strokeLinecap="round"
                                   stroke-linejoin="round"
                                   className="text-3xl text-emerald-500"
                                   height="1em"
@@ -469,9 +441,9 @@ const AddProductComponent: React.FC<ModalProps> = ({
                                       <svg
                                         stroke="currentColor"
                                         fill="none"
-                                        stroke-width="2"
+                                        strokeWidth="2"
                                         viewBox="0 0 24 24"
-                                        stroke-linecap="round"
+                                        strokeLinecap="round"
                                         stroke-linejoin="round"
                                         height="1em"
                                         width="1em"

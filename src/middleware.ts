@@ -19,13 +19,6 @@ export async function middleware(request: NextRequest) {
   })) as {
     user: { email: string; role: string; bearer: string; id: number };
   } | null;
-  const data = await (
-    await fetch(process.env.SERVER_ENDPOINT + "/api/user/profile", {
-      headers: {
-        Authorization: `Bearer ${token?.user.bearer}`,
-      },
-    })
-  ).json();
 
   const includes = ["/web", "/web/sign-up", "/web/sign-in", "/sign-in"];
 
@@ -38,6 +31,13 @@ export async function middleware(request: NextRequest) {
   }
 
   if (token && pathname.startsWith("/web/myshop")) {
+    const data = await (
+      await fetch(process.env.SERVER_ENDPOINT + "/api/user/profile", {
+        headers: {
+          Authorization: `Bearer ${token?.user.bearer}`,
+        },
+      })
+    ).json();
     if (data?.data.is_seller == 2) {
       const response = await fetch(
         `${process.env.SERVER_ENDPOINT}/api/register-payment/2`,
@@ -65,6 +65,13 @@ export async function middleware(request: NextRequest) {
   }
 
   if (request.nextUrl.pathname.startsWith("/myshop")) {
+    const data = await (
+      await fetch(process.env.SERVER_ENDPOINT + "/api/user/profile", {
+        headers: {
+          Authorization: `Bearer ${token?.user.bearer}`,
+        },
+      })
+    ).json();
     if (data?.data.is_seller < 1) {
       return NextResponse.redirect(new URL("/", request.url));
     }
@@ -105,6 +112,13 @@ export async function middleware(request: NextRequest) {
     }
   }
   if (request.nextUrl.pathname.startsWith("/supplier")) {
+    const data = await (
+      await fetch(process.env.SERVER_ENDPOINT + "/api/user/profile", {
+        headers: {
+          Authorization: `Bearer ${token?.user.bearer}`,
+        },
+      })
+    ).json();
     if (data?.data.is_supplier < 1) {
       return NextResponse.redirect(new URL("/", request.url));
     }
@@ -120,6 +134,19 @@ export async function middleware(request: NextRequest) {
     // console.log(hostname);
     // console.log(pathname);
   }
+  if (request.nextUrl.pathname.startsWith("/admin")) {
+    const data = await (
+      await fetch(process.env.SERVER_ENDPOINT + "/api/user/profile", {
+        headers: {
+          Authorization: `Bearer ${token?.user.bearer}`,
+        },
+      })
+    ).json();
+
+    if (data?.data.is_company < 1) {
+      return NextResponse.redirect(new URL("/", request.url));
+    }
+  }
 }
 
 // See "Matching Paths" below to learn more
@@ -133,5 +160,6 @@ export const config = {
     "/checkout",
     "/sign-in",
     "/web/:path*",
+    "/admin/:path*",
   ],
 };

@@ -2,7 +2,7 @@
 import React, { ChangeEvent, useEffect, useRef, useState } from "react";
 import { Editor } from "@tinymce/tinymce-react";
 import Switch from "react-switch";
-import { Product } from "../../../type";
+import { Product, SupplierData } from "../../../type";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
 import axios from "axios";
@@ -14,15 +14,17 @@ import { SelectValue } from "react-tailwindcss-select/dist/components/type";
 
 interface ModalProps {
   isOpen: boolean;
-  isUpdate?: boolean;
-  itemProducts?: Product | [];
+  // suppliers?: SupplierData;
+  buttonText?: string;
+  itemProducts: Product | [];
   closeModal: () => void;
 }
 const UpdateProductComponent: React.FC<ModalProps> = ({
   isOpen,
   closeModal,
-  isUpdate,
   itemProducts,
+  buttonText,
+  // suppliers,
 }) => {
   const [loading, setLoading] = useState(false);
   const { data: session } = useSession();
@@ -54,8 +56,8 @@ const UpdateProductComponent: React.FC<ModalProps> = ({
     fetchData();
   }, [session?.bearer]);
   // console.log(suppliers);
-  const [valSupp, setValSupp] = useState(null);
-  const [valSuppG, setValSuppG] = useState(null);
+  const [valSupp, setValSupp] = useState<any | null>(null);
+  const [valSuppG, setValSuppG] = useState<any | null>(null);
   const selectOptionsSupplier = suppliers.map((item: any) => ({
     value: item.id,
     label: item.supplier_name,
@@ -85,7 +87,7 @@ const UpdateProductComponent: React.FC<ModalProps> = ({
     label: item.name,
   }));
   const [valCat, setValCat] = useState<any | null>(null);
-  const [valCatG, setValCatG] = useState(null);
+  const [valCatG, setValCatG] = useState<any | null>(null);
   const handleChangeCategory = (value: any) => {
     setValCat(value);
     setValCatG(value.value);
@@ -94,58 +96,35 @@ const UpdateProductComponent: React.FC<ModalProps> = ({
   // console.log(categories);
 
   /* end of get categories */
-
+  const product = itemProducts as Product;
   const [selectedImages, setSelectedImages] = useState<string[]>([]);
   const [selectedFiles, setSelectedFiles] = useState<FileList>();
-  const [title, setTitle] = useState("");
-  const [isNew, setIsNew] = useState(1);
-  const [description, setDescription] = useState("");
-  const [sku, setSku] = useState("");
-  const [price, setPrice] = useState(0);
-  const [quantity, setQuantity] = useState(0);
-  const [weight, setWeight] = useState(0);
-  const [slug, setSlug] = useState("");
+  const [title, setTitle] = useState(product.title);
+  const [isNew, setIsNew] = useState(product.isNew);
+  const [description, setDescription] = useState(product.description);
+  const [sku, setSku] = useState(product.sku);
+  const [price, setPrice] = useState(product.price);
+  const [quantity, setQuantity] = useState(product.quantity);
+  const [weight, setWeight] = useState(product.weight);
+  const [slug, setSlug] = useState(product.slug);
   const [barcode, setBarcode] = useState("");
-  const [salePrice, setSalePrice] = useState(0);
+  const [salePrice, setSalePrice] = useState(product.company_price);
   const [errMessage, setErrMessage]: any = useState<string[]>([]);
 
-  const clearState = () => {
-    setSelectedImages([]);
-    setTitle("");
-    setIsNew(1);
-    setDescription("");
-    setSku("");
-    setPrice(0);
-    setQuantity(0);
-    setWeight(0);
-    setSlug("");
-    setBarcode("");
-    setSalePrice(0);
-    setErrMessage([]);
-  };
-
-  /** Update the state for edit data */
   useEffect(() => {
-    if (itemProducts) {
-      const product = itemProducts as Product;
-      setTitle(product.title);
-      setIsNew(Number(product.isNew));
-      setDescription(product.description);
-      setPrice(product.price);
-      setSalePrice(product.company_price);
-      setSku(product.sku);
-      setQuantity(product.quantity);
-      setWeight(product.weight);
-      setSlug(product.slug);
-      setValCat({
-        value: product?.category?.id,
-        label: product?.category?.name,
-        disabled: false,
-      });
-    } else {
-      clearState();
-    }
-  }, [itemProducts]);
+    setValCat({
+      value: product?.category?.id,
+      label: product?.category?.name,
+      disabled: false,
+    });
+    setValCatG(product?.category?.id);
+    setValSupp({
+      value: product?.supplier?.id,
+      label: product?.supplier?.supplier_name,
+      disabled: false,
+    });
+    setValSuppG(product?.supplier?.id);
+  }, []);
 
   const handleSalePrice = (e: Number) => {
     setPrice(Number(e));
@@ -192,6 +171,7 @@ const UpdateProductComponent: React.FC<ModalProps> = ({
     setQuantity(Number(cleanedValue));
   };
 
+  const [open, setOpen] = useState(false);
   const [type, setType] = useState(0);
   const handleSubmit = async (e: React.FormEvent) => {
     setLoading(true);
@@ -223,7 +203,7 @@ const UpdateProductComponent: React.FC<ModalProps> = ({
     };
     axios
       .post(
-        `${process.env.SERVER_ENDPOINT}/api/supplier-board/product/store`,
+        `${process.env.SERVER_ENDPOINT}/api/supplier-board/product/update/${product.id}`,
         formData,
         { headers }
       )
@@ -231,8 +211,7 @@ const UpdateProductComponent: React.FC<ModalProps> = ({
         toast.dismiss();
         if (response.status == 200) {
           toast.success("Product created successfully");
-          clearState();
-          closeModal();
+          setOpen(false);
         }
         if (response.status == 201) {
           setLoading(false);
@@ -246,29 +225,95 @@ const UpdateProductComponent: React.FC<ModalProps> = ({
       });
     console.log(e);
   };
+  // console.log(type);
+  // console.log(valCat);
+  // console.log(description);
 
-  console.log(type);
-  console.log(valCat);
-  console.log(description);
-  if (!isOpen) return null;
-
+  if (!open)
+    return (
+      <>
+        {/* bg-green-500 py-2 px-4 rounded-lg text-sm tracking-wide text-slate-100 hover:bg-sky-600 hover:text-white duration-200 */}
+        {buttonText ? (
+          <button
+            onClick={() => {
+              setOpen(true);
+            }}
+            className={` bg-sky-500 py-2 px-4 rounded-lg text-sm tracking-wide text-slate-100 hover:bg-sky-600 hover:text-white duration-200`}
+          >
+            Update
+          </button>
+        ) : (
+          <button
+            onClick={() => {
+              setOpen(true);
+            }}
+            className="p-2 cursor-pointer text-gray-400 hover:text-emerald-600 focus:outline-none "
+          >
+            <p data-tip="true" data-for="edit" className="text-xl">
+              <svg
+                stroke="currentColor"
+                fill="none"
+                strokeWidth="2"
+                viewBox="0 0 24 24"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                height="1em"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+              </svg>
+            </p>
+          </button>
+        )}
+        {/* <button
+          onClick={() => {
+            setOpen(true);
+          }}
+          className="p-2 cursor-pointer text-gray-400 hover:text-emerald-600 focus:outline-none relative z-0"
+        >
+          <p data-tip="true" data-for="edit" className="text-xl">
+            <svg
+              stroke="currentColor"
+              fill="none"
+              strokeWidth="2"
+              viewBox="0 0 24 24"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              height="1em"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+              <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+            </svg>
+          </p>
+        </button> */}
+      </>
+    );
   return (
     <>
-      <div tabIndex={-1} className="drawer drawer-right drawer-open bg-white">
-        <div className="fixed inset-0 bg-black opacity-50"></div>
-        <div className="drawer-content-wrapper w-5/6 ">
-          <div className="drawer-content ">
+      <div
+        tabIndex={-1}
+        className="fixed drawer drawer-right drawer-open bg-white"
+      >
+        <div className="fixed inset-0 bg-black opacity-50 z-50"></div>
+        <div className="drawer-content-wrapper w-5/6 relative z-50">
+          <div className="drawer-content">
             <button
-              onClick={closeModal}
-              className="fixed focus:outline-none z-10 text-red-500 hover:bg-red-100 hover:text-gray-700 transition-colors duration-150 bg-white shadow-md mr-6 mt-6 right-0 left-auto w-10 h-10 rounded-full block text-center"
+              onClick={() => {
+                setOpen(false);
+              }}
+              className="fixed top-16 focus:outline-none z-10 text-red-500 hover:bg-red-100 hover:text-gray-700 transition-colors duration-150 bg-white shadow-md mr-6 mt-6 right-0 left-auto w-10 h-10 rounded-full block text-center"
             >
               <svg
                 stroke="currentColor"
                 fill="none"
-                stroke-width="2"
+                strokeWidth="2"
                 viewBox="0 0 24 24"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeLinecap="round"
+                strokeLinejoin="round"
                 className="mx-auto"
                 height="1em"
                 width="1em"
@@ -278,8 +323,8 @@ const UpdateProductComponent: React.FC<ModalProps> = ({
                 <line x1="6" y1="6" x2="18" y2="18"></line>
               </svg>
             </button>
-            <div className="fixed flex flex-col w-full h-full justify-between bg-white">
-              <div className="w-full relative p-6 border-b border-gray-100 bg-gray-200 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300">
+            <div className="fixed top-16 right-0 flex flex-col w-full h-full md:w-4/5  bg-white">
+              <div className="w-full relative top-0 p-6 border-b border-gray-100 bg-gray-200 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300">
                 <div className="flex md:flex-row flex-col justify-between mr-20">
                   <div>
                     <h4 className="text-xl font-medium dark:text-gray-300">
@@ -302,7 +347,7 @@ const UpdateProductComponent: React.FC<ModalProps> = ({
               </div>
               <div className="bg-white text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-700">
                 <div className="mb-3 flex flex-wrap justify-end items-center mr-8 h-2">
-                  <div className="flex flex-wrap items-center">
+                  <div className="flex flex-wrap items-center mt-4">
                     <label className="block text-base font-normal text-orange-500 dark:text-orange-400 mx-4">
                       Does this product have variants?
                     </label>
@@ -336,10 +381,10 @@ const UpdateProductComponent: React.FC<ModalProps> = ({
                   </li>
                 </ul>
               </div>
-              <div className="bg-white relative overflow-hidden h-full track-horizontal thumb-horizontal w-full dark:bg-gray-700 dark:text-gray-200">
+              <div className="bg-white relative  z-50 overflow-hidden h-full track-horizontal thumb-horizontal w-full dark:bg-gray-700 dark:text-gray-200">
                 <div className="absolute inset-0 overflow-y-scroll mr-[-17px] mb-[-17px]">
                   <form className="block" id="block" onSubmit={handleSubmit}>
-                    <div className="px-6 pt-8 flex-grow w-full h-full max-h-full pb-56 md:pb-56 lg:pb-56 xl:pb-56">
+                    <div className="px-6 pt-8 flex-grow w-full  h-full max-h-full pb-56 md:pb-56 lg:pb-56 xl:pb-56">
                       <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6 items-center">
                         <label className="block text-gray-800 dark:text-gray-400 col-span-4 sm:col-span-2 font-medium text-sm">
                           Product Title/Name
@@ -372,6 +417,7 @@ const UpdateProductComponent: React.FC<ModalProps> = ({
                         </label>
                         <div className="col-span-8 sm:col-span-4">
                           <textarea
+                            value={description}
                             onChange={(e) => {
                               setDescription(e.target.value);
                             }}
@@ -379,9 +425,7 @@ const UpdateProductComponent: React.FC<ModalProps> = ({
                             name="description"
                             placeholder="Product Description"
                             spellCheck="false"
-                          >
-                            {description}
-                          </textarea>
+                          ></textarea>
                           {errMessage?.description ? (
                             <p className="text-red-400 text-sm">
                               Required description
@@ -416,10 +460,10 @@ const UpdateProductComponent: React.FC<ModalProps> = ({
                                 <svg
                                   stroke="currentColor"
                                   fill="none"
-                                  stroke-width="2"
+                                  strokeWidth="2"
                                   viewBox="0 0 24 24"
-                                  stroke-linecap="round"
-                                  stroke-linejoin="round"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
                                   className="text-3xl text-emerald-500"
                                   height="1em"
                                   width="1em"
@@ -469,10 +513,10 @@ const UpdateProductComponent: React.FC<ModalProps> = ({
                                       <svg
                                         stroke="currentColor"
                                         fill="none"
-                                        stroke-width="2"
+                                        strokeWidth="2"
                                         viewBox="0 0 24 24"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
                                         height="1em"
                                         width="1em"
                                         xmlns="http://www.w3.org/2000/svg"
@@ -515,6 +559,7 @@ const UpdateProductComponent: React.FC<ModalProps> = ({
                         <div className="col-span-8 sm:col-span-4 flex sm:flex-row items-center gap-6">
                           <div className="cursor-pointer flex items-center mb-4 sm:mb-0">
                             <input
+                              checked={type == 1}
                               onChange={() => {
                                 setType(1);
                               }}
@@ -534,6 +579,7 @@ const UpdateProductComponent: React.FC<ModalProps> = ({
                           </div>
                           <div className="cursor-pointer flex items-center">
                             <input
+                              checked={type == 0}
                               onChange={() => {
                                 setType(0);
                               }}
@@ -629,6 +675,7 @@ const UpdateProductComponent: React.FC<ModalProps> = ({
                               onValueChange={(e) => {
                                 handleSalePrice(Number(e));
                               }}
+                              value={price}
                               name="fee"
                               className="block w-full h-12 border px-3 py-1 text-sm focus:outline-none dark:text-gray-300 leading-5 rounded-md focus:bg-white dark:focus:bg-gray-700 border-gray-400 opacity-50 bg-gray-300 dark:bg-gray-800 mr-2 p-2 rounded-l-none"
                               // intlConfig={{ locale: "id", currency: "IDR" }}
@@ -653,7 +700,7 @@ const UpdateProductComponent: React.FC<ModalProps> = ({
                           )}
                         </div>
                       </div>
-                      <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
+                      <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6 items-center">
                         <label className="block text-sm text-gray-800 dark:text-gray-400 col-span-4 sm:col-span-2 font-medium">
                           Default Sale Price
                         </label>
@@ -666,7 +713,7 @@ const UpdateProductComponent: React.FC<ModalProps> = ({
                               disabled
                               placeholder="Sale price"
                               value={salePrice}
-                              className="block w-full h-12 px-3 py-1 text-sm focus:outline-none dark:text-gray-300 leading-5 rounded-md bg-gray-100 focus:bg-white dark:focus:bg-gray-700 border border-gray-400 cursor-not-allowed opacity-50 bg-gray-300 dark:bg-gray-800 mr-2 p-2 rounded-l-none"
+                              className="block w-full h-12 px-3 py-1 text-sm focus:outline-none dark:text-gray-300 leading-5 rounded-md focus:bg-white dark:focus:bg-gray-700 border border-gray-400 cursor-not-allowed opacity-50 bg-gray-300 dark:bg-gray-800 mr-2 p-2 rounded-l-none"
                               // intlConfig={{ locale: "id", currency: "IDR" }}
                             />
                             {/* <input
@@ -681,7 +728,7 @@ const UpdateProductComponent: React.FC<ModalProps> = ({
                           </div>
                         </div>
                       </div>
-                      <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6 relative">
+                      <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6 relative items-center">
                         <label className="block text-sm text-gray-800 dark:text-gray-400 col-span-4 sm:col-span-2 font-medium">
                           Product Quantity
                         </label>
@@ -703,7 +750,7 @@ const UpdateProductComponent: React.FC<ModalProps> = ({
                           )}
                         </div>
                       </div>
-                      <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6 relative">
+                      <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6 relative items-center">
                         <label className="block text-sm text-gray-800 dark:text-gray-400 col-span-4 sm:col-span-2 font-medium">
                           Product Weight (gram)
                         </label>
@@ -711,7 +758,7 @@ const UpdateProductComponent: React.FC<ModalProps> = ({
                           <div className="flex flex-row">
                             <input
                               onChange={handleAmountWeight}
-                              className="block w-full h-12 px-3 py-1 text-sm focus:outline-none dark:text-gray-300 leading-5 rounded-md bg-gray-100 focus:bg-white dark:focus:bg-gray-700 border border-gray-400 cursor-not-allowed opacity-50 bg-gray-300 dark:bg-gray-800 mr-2 p-2"
+                              className="block w-full h-12 px-3 py-1 text-sm focus:outline-none dark:text-gray-300 leading-5 rounded-md bg-gray-100 focus:bg-white dark:focus:bg-gray-700 border border-gray-400 cursor-not-allowed opacity-50 dark:bg-gray-800 mr-2 p-2"
                               type="text"
                               name="stock"
                               placeholder="Product Quantity"
@@ -780,10 +827,12 @@ const UpdateProductComponent: React.FC<ModalProps> = ({
                         </div>
                       </div>
                     </div>
-                    <div className="fixed z-10 bottom-0 w-full right-0 py-4 lg:py-8 px-6 grid gap-4 lg:gap-6 xl:gap-6 md:flex xl:flex bg-gray-50 border-t border-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300">
+                    <div className="fixed z-10 bottom-0 w-full md:w-4/5 right-0 py-4 lg:py-8 px-6 grid gap-4 lg:gap-6 xl:gap-6 md:flex xl:flex bg-gray-50 border-t border-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300">
                       <div className="flex-grow-0 md:flex-grow lg:flex-grow xl:flex-grow">
                         <button
-                          onClick={closeModal}
+                          onClick={() => {
+                            setOpen(false);
+                          }}
                           className="align-bottom inline-flex justify-center cursor-pointer leading-5 transition-colors duration-150 font-medium focus:outline-none px-4 py-2 text-sm text-gray-600 border-gray-200 border dark:text-gray-400 rounded-lg bg-gray-200  mr-3 items-center h-12 w-full hover:bg-red-50 hover:border-red-100 hover:text-red-600 dark:bg-gray-700 dark:border-gray-700 dark:hover:bg-gray-800 dark:hover:text-red-700"
                           type="button"
                         >
@@ -795,7 +844,7 @@ const UpdateProductComponent: React.FC<ModalProps> = ({
                           className="align-bottom inline-flex items-center justify-center cursor-pointer leading-5 transition-colors duration-150 font-medium focus:outline-none px-4 py-2 rounded-lg text-sm text-white bg-emerald-500 border border-transparent active:bg-emerald-600 hover:bg-emerald-600 w-full h-12"
                           type="submit"
                         >
-                          <span>Add Product</span>
+                          <span>Update Product</span>
                         </button>
                       </div>
                     </div>

@@ -11,6 +11,9 @@ import FormattedPrice from "@/app/components/FormattedPrice";
 import useSWR from "swr";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
+import UpdateProductComponent from "../UpdateProductComponent";
+import ModalUpdateProduct from "../ModalUpdateProduct";
+import { CheckCheck, Minus } from "lucide-react";
 
 const ListProductComponent = () => {
   const [checked, setChecked] = useState(false);
@@ -33,23 +36,6 @@ const ListProductComponent = () => {
     setContent(newContent);
   };
   const { data: session } = useSession();
-  //   const [products, setProducts] = useState<Product>();
-  //   useEffect(() => {
-  //     const fetchData = async () => {
-  //       setTimeout(async () => {
-  //         const headers = {
-  //           Authorization: `Bearer ${session?.bearer}`,
-  //           "Content-Type": "multipart/form-data", // Use 'multipart/form-data' for FormData
-  //         };
-  //         const response = await axios.get(
-  //           `${process.env.SERVER_ENDPOINT}/api/supplier-board/product`,
-  //           { headers }
-  //         );
-  //         setProducts(response.data);
-  //       }, 9000);
-  //     };
-  //     fetchData();
-  //   }, [session?.bearer]);
 
   const fetcher = (url: any) =>
     fetch(url, {
@@ -60,7 +46,8 @@ const ListProductComponent = () => {
       },
     }).then((res) => res.json());
 
-  const url = `${process.env.SERVER_ENDPOINT}/api/supplier-board/product`;
+  const [currentPage, setCurrentPage] = useState(1);
+  const url = `${process.env.SERVER_ENDPOINT}/api/supplier-board/product?page=${currentPage}`;
   const {
     data: products,
     isLoading,
@@ -69,14 +56,21 @@ const ListProductComponent = () => {
   } = useSWR(url, fetcher, {
     refreshInterval: 3000,
   });
-  //   console.log(products);
 
-  const modalUpdate = (e: Product) => {
-    console.log(e);
-    setIsModalOpen(true);
-    setItemProduct(e);
+  const startItem = (currentPage - 1) * products?.per_page + 1;
+  const endItem = Math.min(currentPage * products?.per_page, products?.total);
+
+  const [itemOffset, setItemOffset] = useState(0);
+  const pageCount = Math.ceil(products?.total / products?.per_page);
+  const handlePageClick = (selected: number) => {
+    setCurrentPage(Number(selected + 1));
+    const newOffset = (selected * products?.per_page) % products?.total;
+    console.log(
+      `User requested page number ${selected}, which is offset ${newOffset}`
+    );
+    setItemOffset(newOffset);
   };
-  console.log(itemProduct);
+  //   console.log(products);
 
   const [inLoading, setInLoading] = useState(false);
   const [errMessage, setErrMessage] = useState<string[]>([]);
@@ -138,14 +132,44 @@ const ListProductComponent = () => {
         }
       });
   };
+
+  const ConfirmActionPublish = async (productId?: number, act?: string) => {
+    setInLoading(true);
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        cancelButton:
+          "bg-darkText hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:ring focus:ring-blue-200 ",
+        confirmButton:
+          "bg-darkText mr-2 ml-2 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:ring focus:ring-blue-200",
+      },
+      buttonsStyling: false,
+    });
+
+    swalWithBootstrapButtons
+      .fire({
+        title: "Apakah anda yakin ?",
+        text: "Status publikasi product akan diganti!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes, change it!",
+        cancelButtonText: "No, cancel!",
+        reverseButtons: true,
+      })
+      .then(async (result) => {
+        if (result.isConfirmed) {
+          if (act == "del") {
+          } else {
+            console.log(productId);
+          }
+        }
+      });
+  };
+  const [open, setOpen] = useState(false);
+
   return (
     <>
       <main className="h-full overflow-y-auto">
-        <AddProductComponent
-          isOpen={isModalOpen}
-          closeModal={closeModal}
-          itemProducts={itemProduct}
-        />
+        <AddProductComponent isOpen={isModalOpen} closeModal={closeModal} />
         <div className="sm:container grid lg:px-6 sm:px-4 px-2 mx-auto">
           <h1 className="my-6 text-lg font-bold text-gray-700 dark:text-gray-300">
             Products
@@ -161,10 +185,10 @@ const ListProductComponent = () => {
                           <svg
                             stroke="currentColor"
                             fill="none"
-                            stroke-width="2"
+                            strokeWidth="2"
                             viewBox="0 0 24 24"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
                             className="mr-2"
                             height="1em"
                             width="1em"
@@ -182,10 +206,10 @@ const ListProductComponent = () => {
                           <svg
                             stroke="currentColor"
                             fill="none"
-                            stroke-width="2"
+                            strokeWidth="2"
                             viewBox="0 0 24 24"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
                             className="mr-2"
                             height="1em"
                             width="1em"
@@ -216,10 +240,10 @@ const ListProductComponent = () => {
                         <svg
                           stroke="currentColor"
                           fill="none"
-                          stroke-width="2"
+                          strokeWidth="2"
                           viewBox="0 0 24 24"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                           height="1em"
                           width="1em"
                           xmlns="http://www.w3.org/2000/svg"
@@ -241,10 +265,10 @@ const ListProductComponent = () => {
                         <svg
                           stroke="currentColor"
                           fill="none"
-                          stroke-width="2"
+                          strokeWidth="2"
                           viewBox="0 0 24 24"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                           height="1em"
                           width="1em"
                           xmlns="http://www.w3.org/2000/svg"
@@ -261,7 +285,6 @@ const ListProductComponent = () => {
                   <div className="flex-grow-0 md:flex-grow lg:flex-grow xl:flex-grow">
                     <button
                       onClick={() => {
-                        setItemProduct([]);
                         openModal();
                       }}
                       className="align-bottom inline-flex items-center justify-center cursor-pointer leading-5 transition-colors duration-150 font-medium focus:outline-none px-4 py-2 rounded-lg text-sm text-white bg-emerald-500 border border-transparent active:bg-emerald-600 hover:bg-emerald-600 w-full h-12"
@@ -271,10 +294,10 @@ const ListProductComponent = () => {
                         <svg
                           stroke="currentColor"
                           fill="none"
-                          stroke-width="2"
+                          strokeWidth="2"
                           viewBox="0 0 24 24"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                           height="1em"
                           width="1em"
                           xmlns="http://www.w3.org/2000/svg"
@@ -450,7 +473,7 @@ const ListProductComponent = () => {
                 <div className="flex items-center gap-2 flex-grow-0 md:flex-grow lg:flex-grow xl:flex-grow">
                   <div className="w-full mx-1">
                     <button
-                      className="align-bottom inline-flex items-center justify-center cursor-pointer leading-5 transition-colors duration-150 font-medium focus:outline-none px-4 py-2 rounded-lg text-sm text-white bg-emerald-500 border border-transparent active:bg-emerald-600 hover:bg-emerald-600 h-12 w-full bg-emerald-700"
+                      className="align-bottom inline-flex items-center justify-center cursor-pointer leading-5 transition-colors duration-150 font-medium focus:outline-none px-4 py-2 rounded-lg text-sm text-white border border-transparent active:bg-emerald-600 hover:bg-emerald-600 h-12 w-full bg-emerald-700"
                       type="submit"
                     >
                       Filter
@@ -458,7 +481,7 @@ const ListProductComponent = () => {
                   </div>
                   <div className="w-full mx-1">
                     <button
-                      className="align-bottom inline-flex items-center justify-center cursor-pointer leading-5 transition-colors duration-150 font-medium focus:outline-none px-4 py-2 rounded-lg text-sm text-gray-600 border-gray-200 border dark:text-gray-400 focus:outline-none rounded-lg border bg-gray-200 border-gray-200 px-4 w-full mr-3 flex h-12 px-4 md:py-1 py-2 h-12 text-sm dark:bg-gray-700"
+                      className="align-bottom inline-flex items-center justify-center cursor-pointer leading-5 transition-colors duration-150 font-medium px-4 py-2 rounded-lg text-gray-600 border-gray-200 border dark:text-gray-400 focus:outline-none bg-gray-200 w-full mr-3 flex h-12 md:py-1 text-sm dark:bg-gray-700"
                       type="reset"
                     >
                       <span className="text-black dark:text-gray-200">
@@ -476,7 +499,14 @@ const ListProductComponent = () => {
                 <thead className="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b border-gray-200 dark:border-gray-700 bg-gray-100 dark:text-gray-400 dark:bg-gray-800">
                   <tr>
                     <td className="px-4 py-2">
-                      <input id="selectAll" name="selectAll" type="checkbox" />
+                      <input
+                        onChange={() => {
+                          toggleChecked();
+                        }}
+                        id="selectAll"
+                        name="selectAll"
+                        type="checkbox"
+                      />
                     </td>
                     <td className="px-4 py-2">PRODUCT NAME</td>
                     <td className="px-4 py-2">CATEGORY</td>
@@ -495,7 +525,9 @@ const ListProductComponent = () => {
                       <tr className="" key={item.id}>
                         <td className="px-4 py-2">
                           <input
-                            id="654a3c8d73ddc60007066f53"
+                            value={item.id}
+                            checked={checked}
+                            id={`654a3c8d73ddc60007066f53${item.id}`}
                             name="iphone"
                             type="checkbox"
                           />
@@ -522,7 +554,7 @@ const ListProductComponent = () => {
                           </div>
                         </td>
                         <td className="px-4 py-2">
-                          <span className="text-sm">Real Estate</span>
+                          <span className="text-sm">{item.category.name}</span>
                         </td>
                         <td className="px-4 py-2">
                           <span className="text-sm font-semibold">
@@ -535,7 +567,7 @@ const ListProductComponent = () => {
                           </span>
                         </td>
                         <td className="px-4 py-2">
-                          <span className="text-sm">2</span>
+                          <span className="text-sm">{item.quantity}</span>
                         </td>
                         <td className="px-4 py-2">
                           <span className="inline-flex px-2 text-xs font-medium leading-5 rounded-full text-emerald-600 bg-emerald-100 dark:bg-emerald-800 dark:text-emerald-100">
@@ -555,10 +587,10 @@ const ListProductComponent = () => {
                               <svg
                                 stroke="currentColor"
                                 fill="none"
-                                stroke-width="2"
+                                strokeWidth="2"
                                 viewBox="0 0 24 24"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
                                 height="1em"
                                 width="1em"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -577,11 +609,26 @@ const ListProductComponent = () => {
                           </a>
                         </td>
                         <td className="px-4 py-2 text-center">
-                          <div className="relative inline-block text-left opacity-100 border rounded-lg transition-opacity duration-250 ease-in-out select-none touch-none tap-highlight-transparent"></div>
+                          <div
+                            className=""
+                            onClick={() => {
+                              ConfirmActionPublish(item.id, "del");
+                            }}
+                          >
+                            {item.isPublish == 1 ? (
+                              <button>
+                                <CheckCheck color="green" />
+                              </button>
+                            ) : (
+                              <button>
+                                <Minus color="red" />
+                              </button>
+                            )}
+                          </div>
                         </td>
                         <td className="px-4 py-2">
                           <div className="flex justify-end text-right">
-                            <button
+                            {/* <button
                               onClick={(e) => {
                                 modalUpdate(item);
                               }}
@@ -595,10 +642,10 @@ const ListProductComponent = () => {
                                 <svg
                                   stroke="currentColor"
                                   fill="none"
-                                  stroke-width="2"
+                                  strokeWidth="2"
                                   viewBox="0 0 24 24"
-                                  stroke-linecap="round"
-                                  stroke-linejoin="round"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
                                   height="1em"
                                   width="1em"
                                   xmlns="http://www.w3.org/2000/svg"
@@ -607,7 +654,13 @@ const ListProductComponent = () => {
                                   <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
                                 </svg>
                               </p>
-                            </button>
+                            </button> */}
+                            {/* <UpdateProductComponent isOpen={} closeModal={} itemProducts={item}/> */}
+                            <UpdateProductComponent
+                              isOpen={open}
+                              closeModal={closeModal}
+                              itemProducts={item}
+                            />
                             <button
                               onClick={() => {
                                 ConfirmAction(item.id, "del");
@@ -622,10 +675,10 @@ const ListProductComponent = () => {
                                 <svg
                                   stroke="currentColor"
                                   fill="none"
-                                  stroke-width="2"
+                                  strokeWidth="2"
                                   viewBox="0 0 24 24"
-                                  stroke-linecap="round"
-                                  stroke-linejoin="round"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
                                   height="1em"
                                   width="1em"
                                   xmlns="http://www.w3.org/2000/svg"
@@ -699,10 +752,10 @@ const ListProductComponent = () => {
                           <svg
                             stroke="currentColor"
                             fill="none"
-                            stroke-width="2"
+                            strokeWidth="2"
                             viewBox="0 0 24 24"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
                             height="1em"
                             width="1em"
                             xmlns="http://www.w3.org/2000/svg"
@@ -727,10 +780,10 @@ const ListProductComponent = () => {
                             <svg
                               stroke="currentColor"
                               fill="none"
-                              stroke-width="2"
+                              strokeWidth="2"
                               viewBox="0 0 24 24"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
                               height="1em"
                               width="1em"
                               xmlns="http://www.w3.org/2000/svg"
@@ -749,10 +802,10 @@ const ListProductComponent = () => {
                             <svg
                               stroke="currentColor"
                               fill="none"
-                              stroke-width="2"
+                              strokeWidth="2"
                               viewBox="0 0 24 24"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
                               height="1em"
                               width="1em"
                               xmlns="http://www.w3.org/2000/svg"
@@ -773,15 +826,19 @@ const ListProductComponent = () => {
             <div className="px-4 py-3 border-t border-gray-200 dark:border-gray-700 bg-white text-gray-500 dark:text-gray-400 dark:bg-gray-800">
               <div className="flex flex-col justify-between text-xs sm:flex-row text-gray-600 dark:text-gray-400">
                 <span className="flex items-center font-semibold tracking-wide uppercase">
-                  Showing 1-20 of 316
+                  Showing {startItem} - {endItem} of {products?.total}
                 </span>
+
                 <div className="flex mt-2 sm:mt-auto sm:justify-end">
                   <nav aria-label="Product Page Navigation">
                     <ul className="inline-flex items-center">
                       <li>
                         <button
-                          className="align-bottom inline-flex items-center justify-center cursor-pointer leading-5 transition-colors duration-150 font-medium focus:outline-none p-2 rounded-md text-gray-600 dark:text-gray-400 focus:outline-none border border-transparent opacity-50 cursor-not-allowed"
-                          disabled
+                          disabled={currentPage < 2}
+                          onClick={() => {
+                            setCurrentPage(Number(currentPage - 1));
+                          }}
+                          className="align-bottom inline-flex items-center justify-center leading-5 transition-colors duration-150 font-medium focus:outline-none p-2 rounded-md hover:bg-gray-100 text-gray-800 dark:text-gray-400 border border-transparent opacity-50 cursor-pointer"
                           type="button"
                           aria-label="Previous"
                         >
@@ -793,66 +850,51 @@ const ListProductComponent = () => {
                           >
                             <path
                               d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-                              clip-rule="evenodd"
-                              fill-rule="evenodd"
+                              clipRule="evenodd"
+                              fillRule="evenodd"
                             ></path>
                           </svg>
                         </button>
                       </li>
-                      <li>
-                        <button
-                          className="align-bottom inline-flex items-center justify-center cursor-pointer leading-5 transition-colors duration-150 font-medium focus:outline-none px-3 py-1 rounded-md text-xs text-white bg-emerald-500 border border-transparent active:bg-emerald-600 hover:bg-emerald-600"
-                          type="button"
-                        >
-                          1
-                        </button>
-                      </li>
-                      <li>
-                        <button
-                          className="align-bottom inline-flex items-center justify-center cursor-pointer leading-5 transition-colors duration-150 font-medium focus:outline-none px-3 py-1 rounded-md text-xs text-gray-600 dark:text-gray-400 focus:outline-none border border-transparent active:bg-transparent hover:bg-gray-100 dark:hover:bg-gray-500 dark:hover:text-gray-300 dark:hover:bg-opacity-10"
-                          type="button"
-                        >
-                          2
-                        </button>
-                      </li>
-                      <li>
-                        <button
-                          className="align-bottom inline-flex items-center justify-center cursor-pointer leading-5 transition-colors duration-150 font-medium focus:outline-none px-3 py-1 rounded-md text-xs text-gray-600 dark:text-gray-400 focus:outline-none border border-transparent active:bg-transparent hover:bg-gray-100 dark:hover:bg-gray-500 dark:hover:text-gray-300 dark:hover:bg-opacity-10"
-                          type="button"
-                        >
-                          3
-                        </button>
-                      </li>
-                      <li>
-                        <button
-                          className="align-bottom inline-flex items-center justify-center cursor-pointer leading-5 transition-colors duration-150 font-medium focus:outline-none px-3 py-1 rounded-md text-xs text-gray-600 dark:text-gray-400 focus:outline-none border border-transparent active:bg-transparent hover:bg-gray-100 dark:hover:bg-gray-500 dark:hover:text-gray-300 dark:hover:bg-opacity-10"
-                          type="button"
-                        >
-                          4
-                        </button>
-                      </li>
-                      <li>
-                        <button
-                          className="align-bottom inline-flex items-center justify-center cursor-pointer leading-5 transition-colors duration-150 font-medium focus:outline-none px-3 py-1 rounded-md text-xs text-gray-600 dark:text-gray-400 focus:outline-none border border-transparent active:bg-transparent hover:bg-gray-100 dark:hover:bg-gray-500 dark:hover:text-gray-300 dark:hover:bg-opacity-10"
-                          type="button"
-                        >
-                          5
-                        </button>
-                      </li>
-                      <li>
+                      {Array.from({ length: pageCount }).map((_, index) => {
+                        const page = index + 1;
+                        return (
+                          <li>
+                            <button
+                              onClick={() => {
+                                handlePageClick(index);
+                              }}
+                              key={page}
+                              className={`mx-1 align-bottom inline-flex items-center justify-center cursor-pointer leading-5 transition-colors duration-150 font-medium focus:outline-none px-3 py-1 rounded-md text-xs ${
+                                page == currentPage &&
+                                "text-white bg-emerald-500"
+                              } border border-transparent active:bg-emerald-600 hover:bg-emerald-600 hover:text-slate-50`}
+                              type="button"
+                            >
+                              {page}
+                            </button>
+                          </li>
+                        );
+                      })}
+
+                      {/* <li>
                         <span className="px-2 py-1">...</span>
                       </li>
                       <li>
                         <button
-                          className="align-bottom inline-flex items-center justify-center cursor-pointer leading-5 transition-colors duration-150 font-medium focus:outline-none px-3 py-1 rounded-md text-xs text-gray-600 dark:text-gray-400 focus:outline-none border border-transparent active:bg-transparent hover:bg-gray-100 dark:hover:bg-gray-500 dark:hover:text-gray-300 dark:hover:bg-opacity-10"
+                          className="align-bottom inline-flex items-center justify-center cursor-pointer leading-5 transition-colors duration-150 font-medium px-3 py-1 rounded-md text-xs text-gray-600 dark:text-gray-400 focus:outline-none border border-transparent active:bg-transparent hover:bg-gray-100 dark:hover:bg-gray-500 dark:hover:text-gray-300 dark:hover:bg-opacity-10"
                           type="button"
                         >
                           16
                         </button>
-                      </li>
+                      </li> */}
                       <li>
                         <button
-                          className="align-bottom inline-flex items-center justify-center cursor-pointer leading-5 transition-colors duration-150 font-medium focus:outline-none p-2 rounded-md text-gray-600 dark:text-gray-400 focus:outline-none border border-transparent active:bg-transparent hover:bg-gray-100 dark:hover:bg-gray-500 dark:hover:text-gray-300 dark:hover:bg-opacity-10"
+                          disabled={currentPage == pageCount}
+                          onClick={() => {
+                            setCurrentPage(Number(currentPage + 1));
+                          }}
+                          className="align-bottom inline-flex items-center justify-center cursor-pointer leading-5 transition-colors duration-150 font-medium p-2 rounded-md text-gray-600 dark:text-gray-400 focus:outline-none border border-transparent active:bg-transparent hover:bg-gray-100 dark:hover:bg-gray-500 dark:hover:text-gray-300 dark:hover:bg-opacity-10"
                           type="button"
                           aria-label="Next"
                         >
@@ -864,8 +906,8 @@ const ListProductComponent = () => {
                           >
                             <path
                               d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                              clip-rule="evenodd"
-                              fill-rule="evenodd"
+                              clipRule="evenodd"
+                              fillRule="evenodd"
                             ></path>
                           </svg>
                         </button>

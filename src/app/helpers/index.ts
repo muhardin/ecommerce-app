@@ -107,15 +107,22 @@ export function formatDateAndTime(dateTimeString: string) {
 }
 export const getUserDetail = async (token: string) => {
   const apiUrl = process.env.SERVER_ENDPOINT + "/api/user/profile"; // Replace with your API endpoint
-
   const response = await axios.get(apiUrl, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
   });
-
   const data = response.data.data;
+  return data;
+};
+export const getSupplier = async (token: string | null | undefined) => {
+  const apiUrl = `${process.env.SERVER_ENDPOINT}/api/supplier-board/suppliers`; // Replace with your API endpoint
+  const response = await axios.get(apiUrl, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  const data = response.data;
   console.log(data);
-
   return data;
 };

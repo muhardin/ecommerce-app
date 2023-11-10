@@ -229,7 +229,7 @@ const SupplierLayoutComponent = ({
                             onClick={() => {
                               dispatch(toggleProfileMenu());
                             }}
-                            href="/myshop/product/available"
+                            href="/supplier/product/catalog"
                             className="flex items-center py-3 pl-8 pr-4 text-gray-700 rounded dark:text-gray-400 dark:hover:bg-gray-700 hover:bg-gray-100 "
                           >
                             <span className="text-gray-700 dark:text-gray-400 ">

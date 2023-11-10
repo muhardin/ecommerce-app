@@ -12,6 +12,7 @@ export interface ProductShops {
 }
 
 export interface Products {
+  map: any;
   id: number;
   title: string;
   isNew: boolean;
@@ -19,8 +20,10 @@ export interface Products {
   price: number;
   company_price: number;
   description: string;
-  category: string;
-  image: string;
+  category: Category;
+  product_gallery: ProductGallery[];
+  category_json: string;
+  image: string | "";
   rating: number;
   quantity: number;
   number: number;
@@ -30,7 +33,26 @@ export interface Products {
   shipping: string;
   agent_price: number;
   profit: number;
+  is_trending: number;
+  sub_category: number;
+  product_url: string;
+  slug: string;
+  sku: string;
+  isPublish: number;
   product: Products;
+  data: Product;
+  supplier: {
+    id: number;
+    user_id: number;
+    supplier_id: string;
+    supplier_name: string;
+    city_id: number;
+    city_name: string;
+    district_area_id: number | null;
+    province_id: number | null;
+    province_name: string | null;
+    user: User;
+  };
 }
 export interface Shops {
   id: number;
@@ -132,6 +154,7 @@ export interface CourierData {
   code: string;
 }
 export interface Category {
+  map(arg0: (item: Category) => { value: number; label: string }): unknown;
   id: number;
   name: string;
   created_at: string;
@@ -176,8 +199,21 @@ export interface Product {
   product_url: string;
   slug: string;
   sku: string;
+  isPublish: number;
   product: Product;
   data: Product;
+  supplier: {
+    id: number;
+    user_id: number;
+    supplier_id: string;
+    supplier_name: string;
+    city_id: number;
+    city_name: string;
+    district_area_id: number | null;
+    province_id: number | null;
+    province_name: string | null;
+    user: User;
+  };
 }
 
 export interface Order {
@@ -422,6 +458,20 @@ export interface ShopPackage {
   sp_global: number;
   roll_up: number;
   unilevel_cut: number;
+}
+export interface SupplierData {
+  [x: string]: any;
+  id: number;
+  user_id: number;
+  supplier_id: string;
+  supplier_name: string;
+  city_id: number;
+  city_name: string;
+  district_area_id: number | null;
+  province_id: number | null;
+  province_name: string | null;
+  created_at: string;
+  updated_at: string;
 }
 
 export type ShopPackageArray = ShopPackage[];
