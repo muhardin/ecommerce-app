@@ -6,6 +6,8 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import ReactFlagsSelect from "react-flags-select";
 import { IoIosEye, IoIosEyeOff } from "react-icons/io";
+import { useShopData } from "./shop/ShopContext";
+import { ShopData } from "../../../type";
 //https://www.npmjs.com/package/react-flags-select
 interface FormData {
   username: string;
@@ -16,11 +18,13 @@ interface FormData {
   last_name: string;
   confirm_password: string;
   phone_number: string;
+  country: string;
+  registered_shop: ShopData | undefined | Number;
 }
 
 const RegistrationForm: React.FC = () => {
+  const shopData = useShopData();
   const [selected, setSelected] = useState("");
-
   const [formData, setFormData] = useState<FormData>({
     username: "",
     email: "",
@@ -30,7 +34,10 @@ const RegistrationForm: React.FC = () => {
     last_name: "",
     confirm_password: "",
     phone_number: "",
+    country: selected,
+    registered_shop: Number(shopData?.id),
   });
+
   const router = useRouter();
   const [error, setErrors] = useState<string[]>([]);
   const [errMessage, setErrMessage]: any = useState<string[]>([]);
@@ -43,34 +50,24 @@ const RegistrationForm: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     // Reset errors before validation
     setErrors([]);
+    const formDataSubmit = new FormData();
+    Object.keys(formData).forEach((key) => {
+      if (key !== "image") {
+        formDataSubmit.append(
+          key,
+          (formData as unknown as Record<string, string>)[key]
+        );
+      }
+    });
 
-    // // Perform form validation here
-    // if (formData.username === "") {
-    //   setErrors((prevErrors) => [...prevErrors, "Username is required"]);
-    // }
-    // if (formData.email === "") {
-    //   setErrors((prevErrors) => [...prevErrors, "Email is required"]);
-    // }
-    // if (formData.password === "") {
-    //   setErrors((prevErrors) => [...prevErrors, "Password is required"]);
-    // }
+    formDataSubmit.append("country", selected);
+    formDataSubmit.append("registered_shop", shopData?.id.toString() || "");
 
-    // // If there are validation errors, show them in alerts
-    // if (errors.length > 0) {
-    //   errors.forEach((error) => {
-    //     toast.error(error);
-    //   });
-    //   return;
-    // }
-
-    // Send the form data to your backend for registration
-    // console.log("Form Data:", formData);
     const post = await axios.post(
       process.env.SERVER_ENDPOINT + "/api/register",
-      formData
+      formDataSubmit
     );
     // console.log(post);
     if (post.status == 200) {
@@ -228,7 +225,7 @@ const RegistrationForm: React.FC = () => {
                 </div>
                 <div>
                   <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">
-                    Phone number
+                    Whatsapp number
                   </label>
                   <input
                     required

@@ -60,6 +60,7 @@ export const options: NextAuthOptions = {
             image: user?.photo_url,
             role: user?.role,
             is_seller: user?.is_seller,
+            is_company: user?.is_company,
           };
         } else {
           return null;
@@ -95,6 +96,7 @@ export const options: NextAuthOptions = {
       session.role = token?.user?.role;
       session.user_id = token?.user?.id;
       session.is_seller = token?.user?.is_seller;
+      session.is_company = token?.user?.is_company;
       return session;
       // return {
       //   ...session,
@@ -103,5 +105,9 @@ export const options: NextAuthOptions = {
       //   },
       // };
     },
+  },
+  session: {
+    // Use a custom session expiration callback
+    maxAge: 1 * 60 * 60, // 1 hour in seconds
   },
 };

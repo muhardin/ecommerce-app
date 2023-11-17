@@ -23,12 +23,15 @@ const ProductsData = ({ item }: ItemProps) => {
         <Link
           href={{
             pathname: "/product",
-            query: { id: item?.id, image: item?.product?.image },
+            query: {
+              id: item?.id,
+              image: `${process.env.SERVER_ENDPOINT}${item?.product?.image}`,
+            },
           }}
         >
           <div className=" w-full h-80 group overflow-hidden relative">
             <Image
-              src={item.product?.image}
+              src={`${process.env.SERVER_ENDPOINT}${item.product?.image}`}
               alt="Product image"
               width={500}
               height={500}
@@ -45,7 +48,10 @@ const ProductsData = ({ item }: ItemProps) => {
           <Link
             href={{
               pathname: "/product",
-              query: { id: item?.id, image: item?.product?.image },
+              query: {
+                id: item?.id,
+                image: `${process.env.SERVER_ENDPOINT}${item?.product?.image}`,
+              },
             }}
           >
             <p className="cursor-pointer hover:text-sky-600">

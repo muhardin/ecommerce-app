@@ -1,10 +1,10 @@
-import CatalogProductSupplier from "@/components/supplier/product/CatalogProductSupplier";
+import CatalogAdminComponent from "@/components/admin/product/catalog/CatalogAdminComponent";
 import React from "react";
 
 const page = () => {
   return (
     <div>
-      <CatalogProductSupplier />
+      <CatalogAdminComponent />
     </div>
   );
 };

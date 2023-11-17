@@ -1,7 +1,6 @@
 import { toggleProfileMenu } from "@/redux/profileSlice";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React from "react";
 import { useDispatch } from "react-redux";
 
 const MenuProfile = ({ path }: any) => {

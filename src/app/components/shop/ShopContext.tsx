@@ -6,13 +6,15 @@ import React, {
   ReactNode,
   useEffect,
 } from "react";
+import { ShopData } from "../../../../type";
 
 // Define the shape of your ShopData
-interface ShopData {
-  domain?: string;
-  company_name: string;
-  id: string;
-}
+// interface ShopData {
+//   domain?: string;
+//   company_name: string;
+//   status: number;
+//   id: string;
+// }
 interface ShopProviderProps {
   children: ReactNode;
 }

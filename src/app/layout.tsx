@@ -35,6 +35,8 @@ export default async function RootLayout({
   // });
   // const data = await res.json();
   // console.log(process.env.GITHUB_ID!);
+
+  /** */
   const headersList = headers();
   const domain = headersList.get("host") || "";
   const fullUrl = headersList.get("referer") || "";

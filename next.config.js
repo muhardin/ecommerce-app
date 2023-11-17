@@ -19,6 +19,12 @@ const nextConfig = {
         port: "",
         pathname: "/photos/**",
       },
+      {
+        protocol: "http",
+        hostname: "smartcommerce.co.id",
+        port: "88",
+        // pathname: "/**",
+      },
     ],
   },
   async headers() {

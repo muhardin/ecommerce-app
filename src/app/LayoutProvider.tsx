@@ -6,13 +6,13 @@ import { usePathname } from "next/navigation";
 import TestPage from "./test/page";
 import LoginPage from "./(auth)/sign-in/page";
 import { ReactNode } from "react";
+import { useShopData } from "./components/shop/ShopContext";
 
 interface Props {
   children: ReactNode;
 }
 export const LayoutProvider = ({ children }: Props) => {
   const pathname = usePathname();
-  // console.log(pathname);
   switch (pathname) {
     // case "/test":
     //   return (
@@ -20,7 +20,7 @@ export const LayoutProvider = ({ children }: Props) => {
     //       <TestPage />
     //     </>
     //   );
-    case "/sign-in_":
+    case "/sign-in-d":
       return (
         <div>
           <LoginPage />

@@ -92,7 +92,7 @@ const CartItem = () => {
                   <AiOutlineClose />
                 </span>
                 <Image
-                  src={item?.product?.image}
+                  src={process.env.SERVER_ENDPOINT + item?.product?.image}
                   alt="image"
                   width={500}
                   height={500}

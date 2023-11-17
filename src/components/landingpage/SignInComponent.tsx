@@ -9,6 +9,7 @@ import toast, { Toaster } from "react-hot-toast";
 const SignInComponent = () => {
   const router = useRouter();
   const { data: session } = useSession();
+  console.log(session);
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     toast.loading("Loading", {
       position: "top-center",
@@ -30,7 +31,7 @@ const SignInComponent = () => {
           position: "top-center",
         });
       } else {
-        console.log(session?.is_seller);
+        router.push("/admin");
         toast.dismiss();
         toast.success("Login successful!", {
           position: "top-center",
@@ -53,6 +54,10 @@ const SignInComponent = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        if (session?.is_company == "1") {
+          router.push("/admin");
+        }
+
         if (session?.is_seller == "2") {
           const response = await fetch(
             `${process.env.SERVER_ENDPOINT}/api/register-payment/2`,
@@ -77,7 +82,7 @@ const SignInComponent = () => {
       }
     };
     fetchData();
-  }, [router, session?.bearer, session?.is_seller]);
+  }, [router, session?.bearer, session?.is_company, session?.is_seller]);
 
   return (
     <>

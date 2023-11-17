@@ -6,7 +6,7 @@ const FooterWeb = () => {
     <div>
       <footer className="border-t border-gray-200">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col items-start justify-between gap-y-12 pb-6 pt-16 lg:flex-row lg:items-center lg:py-16">
+          {/* <div className="flex flex-col items-start justify-between gap-y-12 pb-6 pt-16 lg:flex-row lg:items-center lg:py-16">
             <div>
               <div className="flex items-center text-gray-900">
                 <div className="h-10 w-10 flex-none fill-cyan-500">
@@ -85,7 +85,7 @@ const FooterWeb = () => {
                 </p>
               </div>
             </div>
-          </div>
+          </div> */}
           <div className="flex flex-col items-center border-t border-gray-200 pb-12 pt-8 md:flex-row-reverse md:justify-between md:pt-6">
             <form className="flex w-full justify-center md:w-auto">
               <div className="w-60 min-w-0 shrink">

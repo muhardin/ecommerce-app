@@ -7,8 +7,9 @@ import { usePathname } from "next/navigation";
 import { RootState } from "@/redux/store";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleProfileMenu } from "@/redux/profileSlice";
-import { Wallet } from "lucide-react";
+import { Container, LogOut, Wallet } from "lucide-react";
 import MenuProfile from "../menu/MenuProfile";
+import { signOut } from "next-auth/react";
 
 const SupplierLayoutComponent = ({
   children,
@@ -73,6 +74,9 @@ const SupplierLayoutComponent = ({
               <ul className="mb-8 text-sm">
                 <li>
                   <Link
+                    onClick={() => {
+                      dispatch(toggleProfileMenu());
+                    }}
                     href="/supplier"
                     className={`${
                       pathName == "/supplier"
@@ -166,16 +170,6 @@ const SupplierLayoutComponent = ({
                             </span>
                           </a>
                         </li>
-                        <li>
-                          <a
-                            href="#"
-                            className="flex items-center py-3 pl-8 pr-4 text-gray-700 rounded dark:text-gray-400 dark:hover:bg-gray-700 hover:bg-gray-100 "
-                          >
-                            <span className="text-gray-700 dark:text-gray-400 ">
-                              Done Order
-                            </span>
-                          </a>
-                        </li>
                       </ul>
                     </div>
                   </details>
@@ -229,6 +223,19 @@ const SupplierLayoutComponent = ({
                             onClick={() => {
                               dispatch(toggleProfileMenu());
                             }}
+                            href="/supplier/product/list"
+                            className="flex items-center py-3 pl-8 pr-4 text-gray-700 rounded dark:text-gray-400 dark:hover:bg-gray-700 hover:bg-gray-100 "
+                          >
+                            <span className="text-gray-700 dark:text-gray-400 ">
+                              List View
+                            </span>
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            onClick={() => {
+                              dispatch(toggleProfileMenu());
+                            }}
                             href="/supplier/product/catalog"
                             className="flex items-center py-3 pl-8 pr-4 text-gray-700 rounded dark:text-gray-400 dark:hover:bg-gray-700 hover:bg-gray-100 "
                           >
@@ -239,29 +246,6 @@ const SupplierLayoutComponent = ({
                               5
                             </span>
                           </Link>
-                        </li>
-                        <li>
-                          <Link
-                            onClick={() => {
-                              dispatch(toggleProfileMenu());
-                            }}
-                            href="/supplier/product/list"
-                            className="flex items-center py-3 pl-8 pr-4 text-gray-700 rounded dark:text-gray-400 dark:hover:bg-gray-700 hover:bg-gray-100 "
-                          >
-                            <span className="text-gray-700 dark:text-gray-400 ">
-                              List View
-                            </span>
-                          </Link>
-                        </li>
-                        <li>
-                          <a
-                            href="#"
-                            className="flex items-center py-3 pl-8 pr-4 text-gray-700 rounded dark:text-gray-400 dark:hover:bg-gray-700 hover:bg-gray-100 "
-                          >
-                            <span className="text-gray-700 dark:text-gray-400 ">
-                              Done Order
-                            </span>
-                          </a>
                         </li>
                       </ul>
                     </div>
@@ -327,21 +311,11 @@ const SupplierLayoutComponent = ({
                             </span>
                           </Link>
                         </li>
-                        <li>
-                          <a
-                            href="#"
-                            className="flex items-center py-3 pl-8 pr-4 text-gray-700 rounded dark:text-gray-400 dark:hover:bg-gray-700 hover:bg-gray-100 "
-                          >
-                            <span className="text-gray-700 dark:text-gray-400 ">
-                              Compose Email
-                            </span>
-                          </a>
-                        </li>
                       </ul>
                     </div>
                   </details>
                 </li>
-                <li>
+                {/* <li>
                   <details className="group">
                     <summary className="cursor-pointer flex items-center px-8 py-4 text-gray-700 group dark:text-gray-400 dark:hover:bg-gray-700 hover:bg-gray-100">
                       <span className="inline-block mr-3">
@@ -411,30 +385,26 @@ const SupplierLayoutComponent = ({
                       </ul>
                     </div>
                   </details>
-                </li>
-
+                </li> */}
                 <li>
-                  <a
-                    href="#"
-                    className="flex items-center px-8 py-4 text-gray-700 dark:text-gray-400 group dark:hover:bg-gray-700 hover:bg-gray-100"
+                  <Link
+                    onClick={() => {
+                      dispatch(toggleProfileMenu());
+                    }}
+                    href="/supplier/supplier"
+                    className={`${
+                      pathName == "/supplier/supplier"
+                        ? "text-gray-100 bg-blue-600 hover:bg-blue-500"
+                        : "text-gray-700 hover:bg-gray-100"
+                    } flex items-center px-8 py-4 dark:text-gray-400 group dark:hover:bg-gray-700 hover:bg-gray-100`}
                   >
                     <span className="inline-block mr-3">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="16"
-                        height="16"
-                        fill="currentColor"
-                        className="w-5 h-5 group-"
-                        viewBox="0 0 16 16"
-                      >
-                        <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H2z" />
-                        <path d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5V4z" />
-                      </svg>
+                      <Container />
                     </span>
-                    <span> Calendar </span>
-                  </a>
+                    <span> Supplier </span>
+                  </Link>
                 </li>
-                <li>
+                {/* <li>
                   <a
                     href="#"
                     className="flex items-center px-8 py-4 text-gray-700 dark:text-gray-400 group dark:hover:bg-gray-700 hover:bg-gray-100"
@@ -457,8 +427,8 @@ const SupplierLayoutComponent = ({
                     </span>
                     <span> Team </span>
                   </a>
-                </li>
-                <li>
+                </li> */}
+                {/* <li>
                   <a
                     href="#"
                     className="flex items-center px-8 py-4 text-gray-700 dark:text-gray-400 group dark:hover:bg-gray-700 hover:bg-gray-100"
@@ -480,27 +450,20 @@ const SupplierLayoutComponent = ({
                     </span>
                     <span> Category </span>
                   </a>
-                </li>
+                </li> */}
                 <li>
-                  <a
-                    href="#"
+                  <Link
+                    onClick={() => {
+                      signOut();
+                    }}
+                    href="/sign-in"
                     className="flex items-center px-8 py-4 text-gray-700 dark:text-gray-400 group dark:hover:bg-gray-700 hover:bg-gray-100"
                   >
                     <span className="inline-block mr-3">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="16"
-                        height="16"
-                        fill="currentColor"
-                        className="w-5 h-5 group-"
-                        viewBox="0 0 16 16"
-                      >
-                        <path d="M5.5 7a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zM5 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5z" />
-                        <path d="M9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.5L9.5 0zm0 1v2A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z" />
-                      </svg>
+                      <LogOut />
                     </span>
-                    <span> Blog </span>
-                  </a>
+                    <span> Sign Out </span>
+                  </Link>
                 </li>
               </ul>
             </div>

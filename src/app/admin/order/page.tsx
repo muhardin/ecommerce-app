@@ -1,9 +1,11 @@
-import OrderSupplierComponent from "@/app/components/supplier/order/OrderSupplierComponent";
+import OrderAdminComponent from "@/components/admin/order/OrderAdminComponent";
+import OrderAdminComponentNext from "@/components/admin/order/OrderAdminComponentNext";
 
 const SupplierOrderPage = () => {
   return (
     <div>
-      <OrderSupplierComponent />
+      <OrderAdminComponentNext />
+      {/* <OrderAdminComponent /> */}
     </div>
   );
 };

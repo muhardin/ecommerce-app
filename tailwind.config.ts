@@ -9,7 +9,9 @@ const config: Config = {
     "./node_modules/tw-elements/dist/js/**/*.js",
     "./src/**/*.{js,jsx,ts,tsx}",
     "./node_modules/react-tailwindcss-select/dist/index.esm.js",
+    "./node_modules/preline/dist/*.js",
   ],
+
   theme: {
     extend: {
       class: {
@@ -29,7 +31,11 @@ const config: Config = {
       },
     },
   },
-  plugins: [require("tw-elements/dist/plugin.cjs")],
+  plugins: [
+    require("tw-elements/dist/plugin.cjs"),
+    require("daisyui"),
+    require("preline/plugin"),
+  ],
   darkMode: "class",
 };
 export default config;

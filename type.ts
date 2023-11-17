@@ -1,3 +1,4 @@
+import { Supplier } from "./adminType";
 export interface ProductShops {
   id: number;
   title: string;
@@ -10,7 +11,31 @@ export interface ProductShops {
   rating: number;
   quantity: number;
 }
-
+export interface ShopProduct {
+  id: number;
+  user_id: number;
+  category_id: null | number;
+  shop_id: number;
+  domain: string;
+  product_id: number;
+  agent_price: number;
+  profit: number;
+  final_profit: number;
+  referral_profit: number;
+  created_at: string;
+  updated_at: string;
+  old_price: null | number;
+  is_old_price: number;
+  detail_product: null | string;
+  status: number;
+  reset: number;
+  primary_image: null | string;
+  primary_image_thumb: null | string;
+  is_primary: number;
+  quantity: number;
+  isDisable: number;
+  product: Product;
+}
 export interface Products {
   map: any;
   id: number;
@@ -53,6 +78,35 @@ export interface Products {
     province_name: string | null;
     user: User;
   };
+}
+export interface ShopData {
+  id: number;
+  user_id: number;
+  domain: string | null;
+  subdomain: string | null;
+  master: string | null;
+  slug: string | null;
+  tagline: string | null;
+  company_name: string;
+  email: string;
+  phone: string;
+  no_rekening: string | null;
+  nama_pemilik: string | null;
+  nama_bank: string | null;
+  status: boolean;
+  shop_package_id: number;
+  created_at: string;
+  updated_at: string;
+  logo: string | null;
+  favicon: string | null;
+  id_bank: number | null;
+  theme_color: string;
+  description: string;
+  is_hidden_category: 0 | 1;
+  package_id: number | null;
+  callback_payment: string | null;
+  user: User;
+  shop_package: ShopPackage;
 }
 export interface Shops {
   id: number;
@@ -183,6 +237,7 @@ export interface Product {
   description: string;
   category: Category;
   product_gallery: ProductGallery[];
+  gallery: ProductGallery[];
   category_json: string;
   image: string | "";
   rating: number;
@@ -199,7 +254,9 @@ export interface Product {
   product_url: string;
   slug: string;
   sku: string;
+  status: string;
   isPublish: number;
+  tag: string;
   product: Product;
   data: Product;
   supplier: {
@@ -340,6 +397,8 @@ export interface User {
   is_supplier: number;
   is_seller: number;
   is_company: number;
+  shop: Shops[];
+  supplier: Supplier[];
 }
 export interface UserAddress {
   id: number;
@@ -380,6 +439,7 @@ export interface Wallet {
   created_at: string;
   updated_at: string;
   reward_type: string | null;
+  user: User;
   Wallet: Wallet[];
 }
 
@@ -435,6 +495,7 @@ export type Withdraw = {
   bank_account_name: string;
   bank_account_number: string;
   branch: string;
+  user: User;
 };
 export interface ShopPackage {
   id: number;
@@ -465,13 +526,29 @@ export interface SupplierData {
   user_id: number;
   supplier_id: string;
   supplier_name: string;
+  phone: string;
+  contact_person: string;
+  description: string | null;
   city_id: number;
   city_name: string;
-  district_area_id: number | null;
+  subdistrict: number;
+  subdistrict_name: string;
+  address: string;
   province_id: number | null;
   province_name: string | null;
   created_at: string;
   updated_at: string;
+  zip_code: string;
+  user: User;
 }
-
+export interface Payment {
+  id: number;
+  tripay_code: string;
+  code: string;
+  payment_name: string;
+  picture: string;
+  type: string;
+  created_at: string;
+  updated_at: string | null;
+}
 export type ShopPackageArray = ShopPackage[];

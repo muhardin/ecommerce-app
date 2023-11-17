@@ -264,7 +264,8 @@ const OrderSupplierUpdate = ({
                       <div className="mt-4 bg-gray-50 px-4 pt-4 lg:mt-0">
                         <p className="text-xl font-medium">Progress Details</p>
                         <p className="text-gray-400">
-                          Complete your order by providing your payment details.
+                          Complete your order by providing your payment
+                          details_.
                         </p>
 
                         <div className="relative mt-2 flex flex-col gap-2">

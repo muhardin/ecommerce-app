@@ -136,7 +136,7 @@ const OrderHistorySummary = ({ id }: any) => {
                             width={350}
                             height={350}
                             className="m-2 h-24 w-28 rounded-md border object-cover object-center"
-                            src={`${item.product.image}`}
+                            src={`${process.env.SERVER_ENDPOINT}${item.product.image}`}
                             alt=""
                           />
                           <div className="flex w-full flex-col px-4 py-4">

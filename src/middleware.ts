@@ -20,6 +20,13 @@ export async function middleware(request: NextRequest) {
     user: { email: string; role: string; bearer: string; id: number };
   } | null;
 
+  const data = await (
+    await fetch(process.env.SERVER_ENDPOINT + "/api/user/profile", {
+      headers: {
+        Authorization: `Bearer ${token?.user.bearer}`,
+      },
+    })
+  ).json();
   const includes = ["/web", "/web/sign-up", "/web/sign-in", "/sign-in"];
 
   if (!token && !includes.includes(pathname)) {
@@ -65,13 +72,6 @@ export async function middleware(request: NextRequest) {
   }
 
   if (request.nextUrl.pathname.startsWith("/myshop")) {
-    const data = await (
-      await fetch(process.env.SERVER_ENDPOINT + "/api/user/profile", {
-        headers: {
-          Authorization: `Bearer ${token?.user.bearer}`,
-        },
-      })
-    ).json();
     if (data?.data.is_seller < 1) {
       return NextResponse.redirect(new URL("/", request.url));
     }

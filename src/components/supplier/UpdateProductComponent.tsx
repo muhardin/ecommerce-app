@@ -2,7 +2,7 @@
 import React, { ChangeEvent, useEffect, useRef, useState } from "react";
 import { Editor } from "@tinymce/tinymce-react";
 import Switch from "react-switch";
-import { Product, SupplierData } from "../../../type";
+import { Product, ProductGallery, SupplierData } from "../../../type";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
 import axios from "axios";
@@ -11,6 +11,8 @@ import Select from "react-tailwindcss-select";
 import toast from "react-hot-toast";
 import { ClipboardEdit } from "lucide-react";
 import { SelectValue } from "react-tailwindcss-select/dist/components/type";
+import useSWR from "swr";
+import Swal from "sweetalert2";
 
 interface ModalProps {
   isOpen: boolean;
@@ -18,8 +20,10 @@ interface ModalProps {
   buttonText?: string;
   itemProducts: Product | [];
   closeModal: () => void;
+  openModal?: () => void;
 }
 const UpdateProductComponent: React.FC<ModalProps> = ({
+  openModal,
   isOpen,
   closeModal,
   itemProducts,
@@ -35,30 +39,28 @@ const UpdateProductComponent: React.FC<ModalProps> = ({
       fileInputRef.current.click();
     }
   };
+
   /*
   get Supplier 
   */
-  const [suppliers, setSuppliers] = useState([]);
-  useEffect(() => {
-    const fetchData = async () => {
-      setTimeout(async () => {
-        const headers = {
-          Authorization: `Bearer ${session?.bearer}`,
-          "Content-Type": "multipart/form-data", // Use 'multipart/form-data' for FormData
-        };
-        const response = await axios.get(
-          `${process.env.SERVER_ENDPOINT}/api/supplier-board/suppliers`,
-          { headers }
-        );
-        setSuppliers(response.data);
-      }, 9000);
-    };
-    fetchData();
-  }, [session?.bearer]);
-  // console.log(suppliers);
+
+  const fetcher = (url: any) =>
+    fetch(url, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${session?.bearer}`,
+        "Content-Type": "application/json",
+      },
+    }).then((res) => res.json());
+
+  const url = `${process.env.SERVER_ENDPOINT}/api/supplier-board/suppliers`;
+  const { data: suppliers } = useSWR(url, fetcher, {
+    refreshInterval: 3000,
+  });
+
   const [valSupp, setValSupp] = useState<any | null>(null);
   const [valSuppG, setValSuppG] = useState<any | null>(null);
-  const selectOptionsSupplier = suppliers.map((item: any) => ({
+  const selectOptionsSupplier = suppliers?.map((item: any) => ({
     value: item.id,
     label: item.supplier_name,
   }));
@@ -66,6 +68,35 @@ const UpdateProductComponent: React.FC<ModalProps> = ({
     setValSupp(value);
     setValSuppG(value.value);
   };
+
+  // const [suppliers, setSuppliers] = useState([]);
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     setTimeout(async () => {
+  //       const headers = {
+  //         Authorization: `Bearer ${session?.bearer}`,
+  //         "Content-Type": "multipart/form-data", // Use 'multipart/form-data' for FormData
+  //       };
+  //       const response = await axios.get(
+  //         `${process.env.SERVER_ENDPOINT}/api/supplier-board/suppliers`,
+  //         { headers }
+  //       );
+  //       setSuppliers(response.data);
+  //     }, 9000);
+  //   };
+  //   fetchData();
+  // }, [session?.bearer]);
+  // // console.log(suppliers);
+  // const [valSupp, setValSupp] = useState<any | null>(null);
+  // const [valSuppG, setValSuppG] = useState<any | null>(null);
+  // const selectOptionsSupplier = suppliers.map((item: any) => ({
+  //   value: item.id,
+  //   label: item.supplier_name,
+  // }));
+  // const handleChangeSupplier = (value: any) => {
+  //   setValSupp(value);
+  //   setValSuppG(value.value);
+  // };
   /** end of get supplier  */
 
   /** get categories */
@@ -124,7 +155,12 @@ const UpdateProductComponent: React.FC<ModalProps> = ({
       disabled: false,
     });
     setValSuppG(product?.supplier?.id);
-  }, []);
+  }, [
+    product?.category?.id,
+    product?.category?.name,
+    product?.supplier?.id,
+    product?.supplier?.supplier_name,
+  ]);
 
   const handleSalePrice = (e: Number) => {
     setPrice(Number(e));
@@ -173,6 +209,7 @@ const UpdateProductComponent: React.FC<ModalProps> = ({
 
   const [open, setOpen] = useState(false);
   const [type, setType] = useState(0);
+
   const handleSubmit = async (e: React.FormEvent) => {
     setLoading(true);
     toast.loading("Loading...");
@@ -218,16 +255,63 @@ const UpdateProductComponent: React.FC<ModalProps> = ({
           setErrMessage(response.data?.message.error);
           console.log(response.data?.message.error);
         }
-        console.log("Response:", response);
       })
       .catch((error) => {
         console.error("Error:", error);
       });
-    console.log(e);
   };
-  // console.log(type);
-  // console.log(valCat);
-  // console.log(description);
+  const galleries = product.product_gallery;
+
+  const subDelGallery = async (itemId?: number, act?: string) => {
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton:
+          "bg-darkText mr-2 ml-2 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:ring focus:ring-blue-200",
+        cancelButton:
+          "bg-darkText hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:ring focus:ring-blue-200 ",
+      },
+      buttonsStyling: false,
+    });
+
+    swalWithBootstrapButtons
+      .fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes, delete it!",
+        cancelButtonText: "No, cancel!",
+        reverseButtons: true,
+      })
+      .then((result) => {
+        if (result.isConfirmed) {
+          toast.loading("loading...");
+          if (act == "del") {
+            axios
+              .delete(
+                `${process.env.SERVER_ENDPOINT}/api/supplier-board/product/gallery/delete/${itemId}`,
+                {
+                  headers: {
+                    Authorization: `Bearer ${session?.bearer}`,
+                    "Content-Type": "multipart/form-data",
+                  },
+                }
+              )
+              .then((response) => {
+                toast.dismiss();
+                if (response.status == 200) {
+                  toast.success("Image deleted successfully", {
+                    duration: 6000,
+                  });
+                } else {
+                  toast.error("Fail !");
+                }
+              });
+          } else {
+          }
+        }
+      });
+  };
 
   if (!open)
     return (
@@ -328,7 +412,7 @@ const UpdateProductComponent: React.FC<ModalProps> = ({
                 <div className="flex md:flex-row flex-col justify-between mr-20">
                   <div>
                     <h4 className="text-xl font-medium dark:text-gray-300">
-                      Add Product
+                      Update Product
                     </h4>
                     <p className="mb-0 text-sm dark:text-gray-300">
                       Update products info, combinations and extras.
@@ -485,6 +569,67 @@ const UpdateProductComponent: React.FC<ModalProps> = ({
                             </div>
                             <div className="text-emerald-500"></div>
                             <aside className="flex flex-row flex-wrap mt-4">
+                              {galleries.length > 0
+                                ? galleries.map(
+                                    (item: ProductGallery, index) => (
+                                      <div key={item.id} className="relative">
+                                        <Image
+                                          width={150}
+                                          height={150}
+                                          className="inline-flex border rounded-md border-gray-100 dark:border-gray-600 w-24 max-h-24 p-2 m-2"
+                                          src={`${process.env.SERVER_ENDPOINT}${item.url}`}
+                                          alt="product"
+                                        />
+                                        {index == 0 ? (
+                                          <div>
+                                            <p className="text-xs absolute py-1 w-full bottom-0 inset-x-0 bg-blue-500 rounded-full text-white text-center ">
+                                              Default Image
+                                            </p>
+                                          </div>
+                                        ) : (
+                                          ""
+                                        )}
+                                        <button
+                                          onClick={() =>
+                                            subDelGallery(item.id, "del")
+                                          }
+                                          type="button"
+                                          className="absolute top-0 right-0 text-red-500 focus:outline-none"
+                                        >
+                                          <svg
+                                            stroke="currentColor"
+                                            fill="none"
+                                            strokeWidth="2"
+                                            viewBox="0 0 24 24"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            height="1em"
+                                            width="1em"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                          >
+                                            <circle
+                                              cx="12"
+                                              cy="12"
+                                              r="10"
+                                            ></circle>
+                                            <line
+                                              x1="15"
+                                              y1="9"
+                                              x2="9"
+                                              y2="15"
+                                            ></line>
+                                            <line
+                                              x1="9"
+                                              y1="9"
+                                              x2="15"
+                                              y2="15"
+                                            ></line>
+                                          </svg>
+                                        </button>
+                                      </div>
+                                    )
+                                  )
+                                : null}
                               {selectedImages
                                 .slice(0, 5)
                                 .map((imageUrl, index) => (

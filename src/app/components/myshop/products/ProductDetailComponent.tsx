@@ -76,11 +76,11 @@ const ProductDetailComponent = ({ id }: Props) => {
     // console.log(e);
   };
 
-  console.log(basePrice);
-  console.log(sharingProfit);
-  console.log(profitDefault);
-  console.log(price);
-  console.log(profit);
+  // console.log(basePrice);
+  // console.log(sharingProfit);
+  // console.log(profitDefault);
+  // console.log(price);
+  // console.log(profit);
 
   const [errMessage, setErrMessage]: any = useState<string[]>([]);
   const config = {
@@ -144,9 +144,9 @@ const ProductDetailComponent = ({ id }: Props) => {
                     <Image
                       width={500}
                       height={500}
-                      src={product.image}
+                      src={`${process.env.SERVER_ENDPOINT}${product.image}`}
                       alt=""
-                      className="object-cover w-full lg:h-full "
+                      className="object-cover w-full lg:h-2/5 "
                     />
                   </div>
                   <div className="flex-wrap hidden md:flex ">

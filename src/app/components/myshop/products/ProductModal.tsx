@@ -32,7 +32,6 @@ const ProductModal = ({ product }: { product: Products }) => {
   const [sharingProfit, setSharingProfit] = useState(sharingProfitDefault);
   const [profit, setProfit] = useState(profitDefault);
   const [errorPrice, setErrorPrice] = useState(false);
-  console.log(product);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -100,17 +99,15 @@ const ProductModal = ({ product }: { product: Products }) => {
         }
         setErrMessage(response.data.message);
         toast.dismiss();
-        console.log(response.data.message);
       } else if (response.status == 500) {
         toast.error("System on maintenance mode");
         toast.dismiss();
       }
     } catch (error) {
       toast.dismiss();
-      console.log(error);
     }
   };
-  console.log(errMessage);
+
   return (
     <div>
       <button
@@ -137,7 +134,7 @@ const ProductModal = ({ product }: { product: Products }) => {
                       <Image
                         width={500}
                         height={500}
-                        src={product.image}
+                        src={process.env.SERVER_ENDPOINT + product.image}
                         alt=""
                         className="object-cover w-full lg:h-full "
                       />

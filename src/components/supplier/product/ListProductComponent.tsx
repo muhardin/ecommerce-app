@@ -6,7 +6,7 @@ import Switch from "react-switch";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
 import axios from "axios";
-import { Product } from "../../../../type";
+import { Category, Product, Products } from "../../../../type";
 import FormattedPrice from "@/app/components/FormattedPrice";
 import useSWR from "swr";
 import Swal from "sweetalert2";
@@ -14,14 +14,15 @@ import toast from "react-hot-toast";
 import UpdateProductComponent from "../UpdateProductComponent";
 import ModalUpdateProduct from "../ModalUpdateProduct";
 import { CheckCheck, Minus } from "lucide-react";
+import Categories from "@/data/categories.json";
+import BulkProductComponent from "./BulkProductComponent";
 
 const ListProductComponent = () => {
   const [checked, setChecked] = useState(false);
-  const toggleChecked = () => {
-    setChecked(!checked);
-  };
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [itemProduct, setItemProduct] = useState<Product | []>();
+  const [categorySearch, setCategorySearch] = useState<Number>();
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -37,6 +38,24 @@ const ListProductComponent = () => {
   };
   const { data: session } = useSession();
 
+  const [search, setSearch] = useState("");
+
+  const [searchQuery, setSearchQuery] = useState("");
+  const [debouncedSearchQuery, setDebouncedSearchQuery] = useState("");
+
+  useEffect(() => {
+    const debounceTimer = setTimeout(() => {
+      setDebouncedSearchQuery(searchQuery);
+    }, 300); // Adjust the debounce delay as needed (e.g., 300 milliseconds)
+
+    // Cleanup the timer to avoid unnecessary debounced updates
+    return () => clearTimeout(debounceTimer);
+  }, [searchQuery]);
+
+  const handleInputChange = () => {
+    setSearchQuery(search);
+  };
+
   const fetcher = (url: any) =>
     fetch(url, {
       method: "GET",
@@ -47,7 +66,7 @@ const ListProductComponent = () => {
     }).then((res) => res.json());
 
   const [currentPage, setCurrentPage] = useState(1);
-  const url = `${process.env.SERVER_ENDPOINT}/api/supplier-board/product?page=${currentPage}`;
+  const url = `${process.env.SERVER_ENDPOINT}/api/supplier-board/product?page=${currentPage}&search=${searchQuery}&category=${searchQuery}`;
   const {
     data: products,
     isLoading,
@@ -65,9 +84,6 @@ const ListProductComponent = () => {
   const handlePageClick = (selected: number) => {
     setCurrentPage(Number(selected + 1));
     const newOffset = (selected * products?.per_page) % products?.total;
-    console.log(
-      `User requested page number ${selected}, which is offset ${newOffset}`
-    );
     setItemOffset(newOffset);
   };
   //   console.log(products);
@@ -166,8 +182,128 @@ const ListProductComponent = () => {
   };
   const [open, setOpen] = useState(false);
 
+  const [selectAll, setSelectAll] = useState(false);
+  const [checkedItems, setCheckedItems] = useState<Record<number, boolean>>({});
+
+  const toggleChecked = () => {
+    setSelectAll(!selectAll);
+
+    // If "Select All" is checked, set all items to checked; otherwise, set all to unchecked
+    const newCheckedItems: Record<number, boolean> = {};
+    products.data.forEach((item: Products) => {
+      newCheckedItems[item.id] = !selectAll;
+    });
+    setCheckedItems(newCheckedItems);
+  };
+
+  const handleCheckboxChange = (itemId: number) => {
+    // Toggle the checked state for the individual checkbox
+    setCheckedItems((prevCheckedItems) => ({
+      ...prevCheckedItems,
+      [itemId]: !prevCheckedItems[itemId],
+    }));
+  };
+  const checkedItemIds = Object.keys(checkedItems).filter(
+    (itemId) => checkedItems[Number(itemId)]
+  );
+
+  const handleDeleteChecked = () => {
+    // Get the IDs of checked items
+    const checkedIds = Object.keys(checkedItems)
+      .filter((itemId) => checkedItems[Number(itemId)])
+      .map(Number);
+
+    // Implement your logic to delete items with the checked IDs
+    // For demonstration purposes, let's log the IDs to the console
+    console.log("Deleting checked items with IDs:", checkedIds);
+
+    // After deletion, you may want to update your data source or state
+    // For example, filter out the checked items from the data
+    const updatedData = products.data.filter(
+      (item: Products) => !checkedIds.includes(item.id)
+    );
+    // Update the data source or state accordingly
+    // setYourData(updatedData);
+
+    // Clear the checked items
+    setCheckedItems({});
+    // Uncheck the "Select All" checkbox
+    setSelectAll(false);
+  };
+  const ConfirmActionDelete = async (act?: string) => {
+    setInLoading(true);
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        cancelButton:
+          "bg-darkText hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:ring focus:ring-blue-200 ",
+        confirmButton:
+          "bg-darkText mr-2 ml-2 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:ring focus:ring-blue-200",
+      },
+      buttonsStyling: false,
+    });
+
+    swalWithBootstrapButtons
+      .fire({
+        title: "Are you sure?",
+        text: "The product will be delete!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes, delete it!",
+        cancelButtonText: "No, cancel!",
+        reverseButtons: true,
+      })
+      .then(async (result) => {
+        if (result.isConfirmed) {
+          if (act == "del") {
+            const checkedIds = Object.keys(checkedItems)
+              .filter((itemId) => checkedItems[Number(itemId)])
+              .map(Number);
+            const config = {
+              headers: { Authorization: `Bearer ${session?.bearer}` },
+            };
+            try {
+              const response = await axios.post(
+                `${process.env.SERVER_ENDPOINT}/api/supplier-board/product/delete-multi`,
+                {
+                  ids: checkedIds,
+                },
+                {
+                  headers: { Authorization: `Bearer ${session?.bearer}` },
+                }
+              );
+
+              // Handle success, e.g., show a success message or update the local state
+              console.log(response);
+
+              // Update your data source or state accordingly
+              // setYourData(updatedData);
+            } catch (error) {
+              // Handle error, e.g., show an error message
+              console.error("Error deleting items:", error);
+            } finally {
+              // Clear the checked items
+              setCheckedItems({});
+              // Uncheck the "Select All" checkbox
+              setSelectAll(false);
+            }
+          } else {
+          }
+        }
+      });
+  };
+  const [isBatch, setIsBatch] = useState(false);
+  const closeBatch = () => {
+    setIsBatch(!isBatch);
+  };
+
   return (
     <>
+      <BulkProductComponent
+        isBatch={isBatch}
+        closeBatch={closeBatch}
+        checkedItems={checkedItemIds}
+      />
+
       <main className="h-full overflow-y-auto">
         <AddProductComponent isOpen={isModalOpen} closeModal={closeModal} />
         <div className="sm:container grid lg:px-6 sm:px-4 px-2 mx-auto">
@@ -232,8 +368,15 @@ const ListProductComponent = () => {
                 >
                   <div className="flex-grow-0 md:flex-grow lg:flex-grow xl:flex-grow">
                     <button
-                      className="align-bottom inline-flex items-center justify-center cursor-pointer leading-5 transition-colors duration-150 font-medium focus:outline-none px-4 py-2 rounded-lg text-sm text-white bg-emerald-500 border border-transparent opacity-50 w-full h-12 btn-gray"
-                      disabled
+                      disabled={checkedItemIds.length < 1}
+                      onClick={() => {
+                        setIsBatch(true);
+                      }}
+                      className={`${
+                        checkedItemIds.length > 0
+                          ? "bg-emerald-500 cursor-pointer"
+                          : "bg-emerald-300 opacity-50"
+                      } align-bottom inline-flex items-center justify-center leading-5 transition-colors duration-150 font-medium focus:outline-none px-4 py-2 rounded-lg text-sm text-white  border border-transparent  w-full h-12 btn-gray`}
                       type="button"
                     >
                       <span className="mr-2">
@@ -257,8 +400,16 @@ const ListProductComponent = () => {
                   </div>
                   <div className="flex-grow-0 md:flex-grow lg:flex-grow xl:flex-grow">
                     <button
-                      className="align-bottom inline-flex items-center justify-center cursor-pointer leading-5 transition-colors duration-150 font-medium focus:outline-none px-4 py-2 rounded-lg text-sm text-white border border-transparent opacity-50 w-full h-12 bg-red-300 disabled btn-red"
-                      disabled
+                      disabled={checkedItemIds.length < 1}
+                      onClick={() => {
+                        ConfirmActionDelete("del");
+                      }}
+                      // selectAll
+                      className={`${
+                        checkedItemIds.length > 0
+                          ? "bg-red-500 cursor-pointer "
+                          : "bg-red-300 disabled opacity-50"
+                      } align-bottom inline-flex items-center justify-center leading-5 transition-colors duration-150 font-medium focus:outline-none px-4 py-2 rounded-lg text-sm text-white border border-transparent  w-full h-12   btn-red relative z-0`}
                       type="button"
                     >
                       <span className="mr-2">
@@ -318,136 +469,28 @@ const ListProductComponent = () => {
               <form className="py-3 grid gap-4 lg:gap-6 xl:gap-6 md:flex xl:flex">
                 <div className="flex-grow-0 md:flex-grow lg:flex-grow xl:flex-grow">
                   <input
+                    onChange={(e) => setSearch(e.target.value)}
                     className="block w-full h-12 border px-3 py-1 text-sm focus:outline-none dark:text-gray-300 leading-5 rounded-md bg-gray-100 focus:bg-white dark:focus:bg-gray-700 focus:border-gray-200 border-gray-200 dark:border-gray-600 dark:focus:border-gray-500 dark:bg-gray-700"
                     type="search"
                     name="search"
                     placeholder="Search Product"
                   />
                   <button
-                    type="submit"
+                    type="button"
                     className="absolute right-0 top-0 mt-5 mr-1"
                   ></button>
                 </div>
                 <div className="flex-grow-0 md:flex-grow lg:flex-grow xl:flex-grow">
-                  <select className="block w-full h-12 border bg-gray-100 px-2 py-1 text-sm dark:text-gray-300 focus:outline-none rounded-md form-select focus:bg-white dark:focus:bg-gray-700 focus:border-gray-200 border-gray-200 dark:border-gray-600 focus:shadow-none dark:focus:border-gray-500 dark:bg-gray-700 leading-5">
-                    <option value="All">Category</option>
-                    <option value="654922fa74d64c0008819ad3">
-                      Sandala_sub
-                    </option>
-                    <option value="65492259663f73000864e340">jkhlhjk</option>
-                    <option value="654921abd422f40008ed4564">dfgh</option>
-                    <option value="6549127a6e8a1b0008844814">test</option>
-                    <option value="65477f1111cbdc0008df8bc0">
-                      Real Estate
-                    </option>
-                    <option value="63f12afdcc480f0454f475dd">Baby Food</option>
-                    <option value="632aca9b4d87ff2494210c4f">Rui</option>
-                    <option value="632aca944d87ff2494210c47">Tuna</option>
-                    <option value="632aca864d87ff2494210c3c">Beef</option>
-                    <option value="632aca7e4d87ff2494210c34">Fish</option>
-                    <option value="632aca754d87ff2494210c2c">Meat</option>
-                    <option value="632aca6d4d87ff2494210c24">
-                      Fish &amp; Meat
-                    </option>
-                    <option value="632aca594d87ff2494210c10">Orange</option>
-                    <option value="632aca524d87ff2494210c08">Apple</option>
-                    <option value="632aca454d87ff2494210c00">
-                      Fresh Fruits
-                    </option>
-                    <option value="632aca3d4d87ff2494210bf8">Dry Fruits</option>
-                    <option value="632aca374d87ff2494210bf0">
-                      Fresh Vegetable
-                    </option>
-                    <option value="632aca2b4d87ff2494210be8">
-                      Fruits &amp; Vegetable
-                    </option>
-                    <option value="632aca184d87ff2494210bd4">Flour</option>
-                    <option value="632aca144d87ff2494210bcc">Oil</option>
-                    <option value="632aca0b4d87ff2494210bc4">
-                      Cooking Essentials
-                    </option>
-                    <option value="632ac9f64d87ff2494210bb0">Biscuits</option>
-                    <option value="632ac9ef4d87ff2494210ba8">Cakes</option>
-                    <option value="632ac9e94d87ff2494210ba0">
-                      Biscuits &amp; Cakes
-                    </option>
-                    <option value="632ac9c24d87ff2494210b84">
-                      Water Filter
-                    </option>
-                    <option value="632ac9ba4d87ff2494210b7c">
-                      Cleaning Tools
-                    </option>
-                    <option value="632ac9b24d87ff2494210b74">
-                      Pest Control
-                    </option>
-                    <option value="632ac99d4d87ff2494210b64">
-                      Air Freshener
-                    </option>
-                    <option value="632ac9984d87ff2494210b5c">Luandry</option>
-                    <option value="632ac9934d87ff2494210b54">Cleaner</option>
-                    <option value="632ac9864d87ff2494210b49">
-                      Household Tools
-                    </option>
-                    <option value="632ab45b4d87ff2494210b21">Dog Care</option>
-                    <option value="632ab4524d87ff2494210b19">Cat Care</option>
-                    <option value="632ab4434d87ff2494210b0e">Pet Care</option>
-                    <option value="632ab3044d87ff2494210ae8">Bath</option>
-                    <option value="632ab2fd4d87ff2494210ae0">Cosmetics</option>
-                    <option value="632ab2f84d87ff2494210ad8">Oral Care</option>
-                    <option value="632ab2f04d87ff2494210ad0">Skin Care</option>
-                    <option value="632ab2df4d87ff2494210ac8">Body Care</option>
-                    <option value="632ab2d54d87ff2494210ac0">
-                      Shaving Needs
-                    </option>
-                    <option value="632ab2c34d87ff2494210ab2">Women</option>
-                    <option value="632ab2b64d87ff2494210aa7">Men</option>
-                    <option value="632ab2864d87ff2494210a8a">
-                      Beauty &amp; Healths
-                    </option>
-                    <option value="632ab1e04d87ff2494210a6a">
-                      Jam &amp; Jelly
-                    </option>
-                    <option value="632ab16c4d87ff2494210a44">
-                      Butter &amp; Ghee
-                    </option>
-                    <option value="632ab1644d87ff2494210a3c">Ice Cream</option>
-                    <option value="632ab1584d87ff2494210a31">Dairy</option>
-                    <option value="632ab14a4d87ff2494210a29">
-                      Milk &amp; Dairy
-                    </option>
-                    <option value="632ab0664d87ff24942109ef">Tea</option>
-                    <option value="632ab0604d87ff24942109e7">Water</option>
-                    <option value="632ab0564d87ff24942109df">Juice</option>
-                    <option value="632ab0504d87ff24942109d7">Coffee</option>
-                    <option value="632ab0454d87ff24942109cc">
-                      Energy Drinks
-                    </option>
-                    <option value="632ab0334d87ff24942109c1">Drinks</option>
-                    <option value="632aae7b4d87ff2494210967">Bread</option>
-                    <option value="632aae624d87ff2494210951">Cereal</option>
-                    <option value="632aae414d87ff2494210945">Breakfast</option>
-                    <option value="62e4ebb90ea79023fc11d847">Beef</option>
-                    <option value="62d2bbe62e63b40520194f21">Orange</option>
-                    <option value="62d2bbd22e63b40520194f1b">Apple</option>
-                    <option value="62d03a542d28e904b20e2342">Rui</option>
-                    <option value="62d03a312d28e904b20e233c">Tuna</option>
-                    <option value="62d02efd2d28e904b20e22bf">Tuna</option>
-                    <option value="62cfad52484d89068aa7a81f">
-                      Pickles &amp; Condiments
-                    </option>
-                    <option value="62cfad3d484d89068aa7a819">Sauces</option>
-                    <option value="62cfab4b484d89068aa7a7ff">
-                      Canned Food
-                    </option>
-                    <option value="62cfab39484d89068aa7a7fb">
-                      Chips &amp; Nuts
-                    </option>
-                    <option value="62cfab28484d89068aa7a7f5">Chocolate</option>
-                    <option value="62cc07b8d511b304aecdfbfa">
-                      Baby Accessories
-                    </option>
-                    <option value="62cc0791d511b304aecdfbf2">Baby Food</option>
-                    <option value="62c827b5a427b63741da9175">Home</option>
+                  <select
+                    onChange={(e) => {}}
+                    className="block w-full h-12 border bg-gray-100 px-2 py-1 text-sm dark:text-gray-300 focus:outline-none rounded-md form-select focus:bg-white dark:focus:bg-gray-700 focus:border-gray-200 border-gray-200 dark:border-gray-600 focus:shadow-none dark:focus:border-gray-500 dark:bg-gray-700 leading-5"
+                  >
+                    <option selected>All</option>
+                    {Categories.map((item: any) => (
+                      <option key={item.id} value={item.id}>
+                        {item.name}
+                      </option>
+                    ))}
                   </select>
                 </div>
                 <div className="flex-grow-0 md:flex-grow lg:flex-grow xl:flex-grow">
@@ -473,15 +516,27 @@ const ListProductComponent = () => {
                 <div className="flex items-center gap-2 flex-grow-0 md:flex-grow lg:flex-grow xl:flex-grow">
                   <div className="w-full mx-1">
                     <button
-                      className="align-bottom inline-flex items-center justify-center cursor-pointer leading-5 transition-colors duration-150 font-medium focus:outline-none px-4 py-2 rounded-lg text-sm text-white border border-transparent active:bg-emerald-600 hover:bg-emerald-600 h-12 w-full bg-emerald-700"
-                      type="submit"
+                      disabled={!search}
+                      onClick={() => {
+                        handleInputChange();
+                        setCurrentPage(1);
+                      }}
+                      className={`${
+                        search
+                          ? "cursor-pointer active:bg-emerald-600 hover:bg-emerald-600 bg-emerald-700"
+                          : " bg-emerald-400 opacity-50"
+                      } align-bottom inline-flex items-center justify-center leading-5 transition-colors duration-150 font-medium focus:outline-none px-4 py-2 rounded-lg text-sm text-white border border-transparent  h-12 w-full `}
+                      type="button"
                     >
-                      Filter
+                      Search
                     </button>
                   </div>
                   <div className="w-full mx-1">
                     <button
-                      className="align-bottom inline-flex items-center justify-center cursor-pointer leading-5 transition-colors duration-150 font-medium px-4 py-2 rounded-lg text-gray-600 border-gray-200 border dark:text-gray-400 focus:outline-none bg-gray-200 w-full mr-3 flex h-12 md:py-1 text-sm dark:bg-gray-700"
+                      onClick={() => {
+                        setSearchQuery("");
+                      }}
+                      className="align-bottom inline-flex items-center justify-center cursor-pointer leading-5 transition-colors duration-150 font-medium px-4 py-2 rounded-lg text-gray-600 border-gray-200 border dark:text-gray-400 focus:outline-none bg-gray-200 w-full mr-3 h-12 md:py-1 text-sm dark:bg-gray-700"
                       type="reset"
                     >
                       <span className="text-black dark:text-gray-200">
@@ -500,9 +555,8 @@ const ListProductComponent = () => {
                   <tr>
                     <td className="px-4 py-2">
                       <input
-                        onChange={() => {
-                          toggleChecked();
-                        }}
+                        checked={selectAll}
+                        onChange={toggleChecked}
                         id="selectAll"
                         name="selectAll"
                         type="checkbox"
@@ -525,8 +579,9 @@ const ListProductComponent = () => {
                       <tr className="" key={item.id}>
                         <td className="px-4 py-2">
                           <input
+                            onChange={() => handleCheckboxChange(item.id)}
                             value={item.id}
-                            checked={checked}
+                            checked={checkedItems[item.id] || false}
                             id={`654a3c8d73ddc60007066f53${item.id}`}
                             name="iphone"
                             type="checkbox"
@@ -535,9 +590,11 @@ const ListProductComponent = () => {
                         <td className="px-4 py-2">
                           <div className="flex items-center">
                             <div className="rounded-full inline-block w-8 h-8 p-1 mr-2 md:block bg-gray-50 shadow-none">
-                              <img
+                              <Image
+                                width={250}
+                                height={250}
                                 className="object-cover w-full h-full rounded-full"
-                                src={`http://localhost:8000${item.image}`}
+                                src={`${process.env.SERVER_ENDPOINT}${item.image}`}
                                 alt="product"
                                 loading="lazy"
                               />
@@ -554,7 +611,7 @@ const ListProductComponent = () => {
                           </div>
                         </td>
                         <td className="px-4 py-2">
-                          <span className="text-sm">{item.category.name}</span>
+                          <span className="text-sm">{item.category?.name}</span>
                         </td>
                         <td className="px-4 py-2">
                           <span className="text-sm font-semibold">
@@ -570,9 +627,19 @@ const ListProductComponent = () => {
                           <span className="text-sm">{item.quantity}</span>
                         </td>
                         <td className="px-4 py-2">
-                          <span className="inline-flex px-2 text-xs font-medium leading-5 rounded-full text-emerald-600 bg-emerald-100 dark:bg-emerald-800 dark:text-emerald-100">
-                            Selling
-                          </span>
+                          {item.status == "Pending" ? (
+                            <span className="inline-flex px-2 text-xs font-medium leading-5 rounded-full text-white bg-yellow-500 dark:bg-emerald-800 dark:text-emerald-100">
+                              {item.status}
+                            </span>
+                          ) : item.status == "Selling" ? (
+                            <span className="inline-flex px-2 text-xs font-medium leading-5 rounded-full text-emerald-600 bg-emerald-100 dark:bg-emerald-800 dark:text-emerald-100">
+                              {item.status}
+                            </span>
+                          ) : (
+                            <span className="inline-flex px-2 text-xs font-medium leading-5 rounded-full text-white bg-red-600 dark:bg-emerald-800 dark:text-emerald-100">
+                              {item.status}
+                            </span>
+                          )}
                         </td>
                         <td className="px-4 py-2">
                           <a
@@ -696,7 +763,21 @@ const ListProductComponent = () => {
                     ))
                   ) : (
                     <tr>
-                      <td>Loading...</td>
+                      <td colSpan={10} className="text-center">
+                        <div className="min-h-[15rem] flex flex-col bg-white dark:bg-gray-800 dark:border-gray-700 dark:shadow-slate-700/[.7]">
+                          <div className="flex flex-auto flex-col justify-center items-center p-4 md:p-5">
+                            <div className="flex justify-center">
+                              <div
+                                className="animate-spin inline-block w-6 h-6 border-[3px] border-current border-t-transparent text-blue-600 rounded-full dark:text-blue-500"
+                                role="status"
+                                aria-label="loading"
+                              >
+                                <span className="sr-only">Loading...</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
                     </tr>
                   )}
 
@@ -859,7 +940,7 @@ const ListProductComponent = () => {
                       {Array.from({ length: pageCount }).map((_, index) => {
                         const page = index + 1;
                         return (
-                          <li>
+                          <li key={index}>
                             <button
                               onClick={() => {
                                 handlePageClick(index);

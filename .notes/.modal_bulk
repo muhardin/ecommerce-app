@@ -1,0 +1,448 @@
+<div>
+  <div tabindex="-1" class="drawer drawer-right drawer-open">
+    <div class="drawer-mask"></div>
+    <div class="drawer-content-wrapper" style="">
+      <div class="drawer-content">
+        <button
+          class="absolute z-50 text-red-500 hover:bg-red-100 hover:text-gray-700 transition-colors duration-150 bg-white shadow-md mr-6 mt-6 right-0 left-auto w-10 h-10 rounded-full block text-center"
+        >
+          <svg
+            stroke="currentColor"
+            fill="none"
+            strokeWidth="2"
+            viewBox="0 0 24 24"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            class="mx-auto"
+            height="1em"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+        <div class="flex flex-col w-full h-full justify-between">
+          <div
+            class="w-full relative p-6 border-b border-gray-100 bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300"
+          >
+            <div class="flex md:flex-row flex-col justify-between mr-20">
+              <div>
+                <h4 class="text-xl font-medium dark:text-gray-300">
+                  Update Selected Products
+                </h4>
+                <p class="mb-0 text-sm dark:text-gray-300">
+                  Apply changes to the selected Products from the list
+                </p>
+              </div>
+            </div>
+          </div>
+          <div
+            class="w-full md:w-7/12 lg:w-8/12 xl:w-8/12 relative dark:bg-gray-700 dark:text-gray-200"
+            style="
+              position: relative;
+              overflow: hidden;
+              width: 100%;
+              height: 100%;
+            "
+          >
+            <div
+              style="
+                position: absolute;
+                inset: 0px;
+                overflow: scroll;
+                margin-right: -17px;
+                margin-bottom: -17px;
+              "
+            >
+              <form class="block">
+                <div
+                  class="px-6 pt-8 flex-grow w-full h-full max-h-full pb-40 md:pb-32 lg:pb-32 xl:pb-32"
+                >
+                  <div
+                    class="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6"
+                  >
+                    <label
+                      class="block text-sm text-gray-800 dark:text-gray-400 col-span-4 sm:col-span-2 font-medium text-sm"
+                      >Categorys</label
+                    >
+                    <div class="col-span-8 sm:col-span-4">
+                      <div class="mb-2">
+                        <div>
+                          <div
+                            class="multiselect-container multiSelectContainer"
+                            id="multiselectContainerReact"
+                          >
+                            <div class="search-wrapper searchWrapper">
+                              <input
+                                type="text"
+                                class="searchBox"
+                                id="search_input"
+                                name="search_name_input"
+                                placeholder="Select Category"
+                                autocomplete="off"
+                                value=""
+                              />
+                            </div>
+                            <div class="optionListContainer displayNone">
+                              <ul class="optionContainer">
+                                <span class="notFound"
+                                  >No Options Available</span
+                                >
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="draggable-demo capitalize">
+                        <style>
+                          .rc-tree-child-tree {
+                            display: block;
+                          }
+
+                          .node-motion {
+                            transition: all 0.3s;
+                            overflow-y: hidden;
+                          }
+                        </style>
+                        <div role="tree" class="rc-tree">
+                          <div>
+                            <input
+                              tabindex="0"
+                              aria-label="for screen reader"
+                              value=""
+                              style="
+                                width: 0px;
+                                height: 0px;
+                                display: flex;
+                                overflow: hidden;
+                                opacity: 0;
+                                border: 0px;
+                                padding: 0px;
+                                margin: 0px;
+                              "
+                            />
+                          </div>
+                          <div
+                            class="rc-tree-treenode"
+                            aria-hidden="true"
+                            style="
+                              position: absolute;
+                              pointer-events: none;
+                              visibility: hidden;
+                              height: 0px;
+                              overflow: hidden;
+                              border: 0px;
+                              padding: 0px;
+                            "
+                          >
+                            <div class="rc-tree-indent">
+                              <div class="rc-tree-indent-unit"></div>
+                            </div>
+                          </div>
+                          <div class="rc-tree-list" style="position: relative">
+                            <div class="rc-tree-list-holder">
+                              <div>
+                                <div
+                                  class="rc-tree-list-holder-inner"
+                                  style="display: flex; flex-direction: column"
+                                >
+                                  <div
+                                    class="rc-tree-treenode rc-tree-treenode-switcher-close rc-tree-treenode-leaf-last"
+                                    draggable="false"
+                                    aria-grabbed="false"
+                                  >
+                                    <span
+                                      aria-hidden="true"
+                                      class="rc-tree-indent"
+                                    ></span
+                                    ><span
+                                      class="rc-tree-switcher rc-tree-switcher_close"
+                                    ></span
+                                    ><span
+                                      title="Home"
+                                      class="rc-tree-node-content-wrapper rc-tree-node-content-wrapper-close"
+                                      ><span
+                                        class="rc-tree-iconEle rc-tree-icon__close"
+                                      ></span
+                                      ><span class="rc-tree-title"
+                                        >Home</span
+                                      ></span
+                                    >
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6"
+                  >
+                    <label
+                      class="block text-sm text-gray-800 dark:text-gray-400 col-span-4 sm:col-span-2 font-medium text-sm"
+                      >Default Category</label
+                    >
+                    <div class="col-span-8 sm:col-span-4">
+                      <div>
+                        <div
+                          class="multiselect-container multiSelectContainer"
+                          id="multiselectContainerReact"
+                        >
+                          <div
+                            class="search-wrapper searchWrapper singleSelect"
+                          >
+                            <input
+                              type="text"
+                              class="searchBox"
+                              id="search_input"
+                              name="search_name_input"
+                              placeholder="Default Category"
+                              autocomplete="off"
+                              disabled=""
+                              value=""
+                            /><img
+                              src="data:image/svg+xml,%3Csvg%20height%3D%2232%22%20viewBox%3D%220%200%2032%2032%22%20width%3D%2232%22%20%20%20%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%20%20%20%20%3Cg%20id%3D%22background%22%3E%20%20%20%20%20%20%20%20%3Crect%20fill%3D%22none%22%20height%3D%2232%22%20width%3D%2232%22%2F%3E%20%20%20%20%3C%2Fg%3E%20%20%20%20%3Cg%20id%3D%22arrow_x5F_down%22%3E%20%20%20%20%20%20%20%20%3Cpolygon%20points%3D%222.002%2C10%2016.001%2C24%2030.002%2C10%20%20%22%2F%3E%20%20%20%20%3C%2Fg%3E%3C%2Fsvg%3E"
+                              class="icon_cancel icon_down_dir"
+                            />
+                          </div>
+                          <div class="optionListContainer displayNone">
+                            <ul class="optionContainer">
+                              <span class="notFound">No Options Available</span>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6"
+                  >
+                    <label
+                      class="block text-sm text-gray-800 dark:text-gray-400 col-span-4 sm:col-span-2 font-medium text-sm"
+                      >Published</label
+                    >
+                    <div class="col-span-8 sm:col-span-4">
+                      <div class="mb-3">
+                        <div class="flex flex-wrap items-center">
+                          <label
+                            class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1"
+                          ></label>
+                          <div
+                            class="react-switch md:ml-0 ml-3"
+                            style="
+                              position: relative;
+                              display: inline-block;
+                              text-align: left;
+                              opacity: 1;
+                              direction: ltr;
+                              border-radius: 15px;
+                              transition: opacity 0.25s ease 0s;
+                              touch-action: none;
+                              -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+                              user-select: none;
+                            "
+                          >
+                            <div
+                              class="react-switch-bg"
+                              style="
+                                height: 30px;
+                                width: 80px;
+                                margin: 0px;
+                                position: relative;
+                                background: rgb(47, 133, 90);
+                                border-radius: 15px;
+                                cursor: pointer;
+                                transition: background 0.25s ease 0s;
+                              "
+                            >
+                              <div
+                                style="
+                                  height: 30px;
+                                  width: 45px;
+                                  position: relative;
+                                  opacity: 1;
+                                  pointer-events: none;
+                                  transition: opacity 0.25s ease 0s;
+                                "
+                              >
+                                <div
+                                  style="
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                    height: 100%;
+                                    font-size: 14px;
+                                    color: white;
+                                    padding-left: 8px;
+                                    padding-top: 1px;
+                                  "
+                                >
+                                  Yes
+                                </div>
+                              </div>
+                              <div
+                                style="
+                                  height: 30px;
+                                  width: 45px;
+                                  position: absolute;
+                                  opacity: 0;
+                                  right: 0px;
+                                  top: 0px;
+                                  pointer-events: none;
+                                  transition: opacity 0.25s ease 0s;
+                                "
+                              >
+                                <div
+                                  style="
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                    height: 100%;
+                                    font-size: 14px;
+                                    color: white;
+                                    padding-right: 5px;
+                                    padding-top: 1px;
+                                  "
+                                >
+                                  No
+                                </div>
+                              </div>
+                            </div>
+                            <div
+                              class="react-switch-handle"
+                              style="
+                                height: 28px;
+                                width: 28px;
+                                background: rgb(255, 255, 255);
+                                display: inline-block;
+                                cursor: pointer;
+                                border-radius: 50%;
+                                position: absolute;
+                                transform: translateX(51px);
+                                top: 1px;
+                                outline: 0px;
+                                border: 0px;
+                                transition: background-color 0.25s ease 0s,
+                                  transform 0.25s ease 0s,
+                                  box-shadow 0.15s ease 0s;
+                              "
+                            ></div>
+                            <input
+                              type="checkbox"
+                              role="switch"
+                              aria-checked="true"
+                              checked=""
+                              style="
+                                border: 0px;
+                                clip: rect(0px, 0px, 0px, 0px);
+                                height: 1px;
+                                margin: -1px;
+                                overflow: hidden;
+                                padding: 0px;
+                                position: absolute;
+                                width: 1px;
+                              "
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6"
+                  >
+                    <label
+                      class="block text-sm text-gray-800 dark:text-gray-400 col-span-4 sm:col-span-2 font-medium text-sm"
+                      >Product Tags</label
+                    >
+                    <div class="col-span-8 sm:col-span-4">
+                      <div class="react-tag-input">
+                        <input
+                          class="react-tag-input__input"
+                          placeholder="Product Tag (Write then press enter to add new tag )"
+                          value=""
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="fixed bottom-0 w-full right-0 py-4 lg:py-8 px-6 grid gap-4 lg:gap-6 xl:gap-6 md:flex xl:flex bg-gray-50 border-t border-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300"
+                >
+                  <div
+                    class="flex-grow-0 md:flex-grow lg:flex-grow xl:flex-grow"
+                  >
+                    <button
+                      class="align-bottom inline-flex items-center justify-center cursor-pointer leading-5 transition-colors duration-150 font-medium focus:outline-none px-4 py-2 rounded-lg text-sm text-gray-600 border-gray-200 border dark:text-gray-400 focus:outline-none rounded-lg border bg-gray-200 border-gray-200 px-4 w-full mr-3 flex items-center justify-center cursor-pointer h-12 text-red-500 hover:bg-red-50 hover:border-red-100 hover:text-red-600 dark:bg-gray-700 dark:border-gray-700 dark:text-gray-500 dark:hover:bg-gray-800 dark:hover:text-red-700"
+                      type="button"
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                  <div
+                    class="flex-grow-0 md:flex-grow lg:flex-grow xl:flex-grow"
+                  >
+                    <button
+                      class="align-bottom inline-flex items-center justify-center cursor-pointer leading-5 transition-colors duration-150 font-medium focus:outline-none px-4 py-2 rounded-lg text-sm text-white bg-emerald-500 border border-transparent active:bg-emerald-600 hover:bg-emerald-600 h-12 w-full"
+                      type="submit"
+                    >
+                      Bulk Update Products
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div
+              style="
+                position: absolute;
+                height: 6px;
+                right: 2px;
+                bottom: 2px;
+                left: 2px;
+                border-radius: 3px;
+              "
+            >
+              <div
+                style="
+                  position: relative;
+                  display: block;
+                  height: 100%;
+                  cursor: pointer;
+                  border-radius: inherit;
+                  background-color: rgba(0, 0, 0, 0.2);
+                  width: 0px;
+                "
+              ></div>
+            </div>
+            <div
+              style="
+                position: absolute;
+                width: 6px;
+                right: 2px;
+                bottom: 2px;
+                top: 2px;
+                border-radius: 3px;
+              "
+            >
+              <div
+                style="
+                  position: relative;
+                  display: block;
+                  width: 100%;
+                  cursor: pointer;
+                  border-radius: inherit;
+                  background-color: rgba(0, 0, 0, 0.2);
+                  height: 0px;
+                "
+              ></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="drawer-handle"><i class="drawer-handle-icon"></i></div>
+    </div>
+  </div>
+</div>

@@ -137,7 +137,7 @@ const MyProductModal = ({ product }: { product: Products }) => {
                       <Image
                         width={500}
                         height={500}
-                        src={product.product.image}
+                        src={`${process.env.SERVER_ENDPOINT}${product.product.image}`}
                         alt=""
                         className="object-cover w-full lg:h-full "
                       />
@@ -291,7 +291,7 @@ const MyProductModal = ({ product }: { product: Products }) => {
                                   htmlFor="card-holder"
                                   className="mt-4 mb-2 block text-sm font-medium"
                                 >
-                                  Your Profit
+                                  Keuntungan Diterima
                                 </label>
                                 <div className="relative">
                                   <CurrencyInput

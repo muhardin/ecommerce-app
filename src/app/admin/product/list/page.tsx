@@ -1,10 +1,10 @@
-import ListProductComponent from "@/components/supplier/product/ListProductComponent";
+import ProductListComponent from "@/components/admin/product/ProductListComponent";
 import React from "react";
 
 const SupplierProductList = () => {
   return (
     <div>
-      <ListProductComponent />
+      <ProductListComponent />
     </div>
   );
 };

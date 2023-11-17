@@ -11,21 +11,46 @@ import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import useSWR from "swr";
 import Link from "next/link";
+import { ProductGallery, ShopProduct } from "../../../../type";
+import ModalImage from "react-modal-image";
+import Slider from "react-slick";
 
-const DetailProductBag = ({ data, primaryImage }: any) => {
+const DetailProductBag = ({
+  data,
+  primaryImage,
+}: {
+  data: ShopProduct;
+  primaryImage: string;
+}) => {
   const dispatch = useDispatch();
   const price = Number(data?.agent_price + data?.profit);
   const [topImage, setTopImage] = useState(data?.product.image);
-  console.log(price, data?.product.gallery);
-
+  var settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
+  const gallery = data?.product.gallery;
+  console.log(data?.product.gallery);
   return (
     <section className="py-0 overflow-hidden font-poppins dark:bg-gray-800">
       <div className="max-w-6xl px-4 py-4 mx-auto lg:py-8 md:px-6">
         <div className="flex flex-wrap -mx-4">
-          <div className="w-full px-4 md:w-1/2 ">
-            <div className="top-0 z-50 overflow-hidden ">
-              <div className=" mb-2 lg:mb-10 h-[450px] rounded-lg">
-                <Image
+          <div className="w-full px-0 md:w-1/2 ">
+            <div className="top-0 z-50 overflow-hidden flex flex-col">
+              <div className="h-[450px] w-full rounded-lg flex-col justify-center items-center flex gap-2">
+                <div className="h-96 w-96 flex flex-row justify-center items-center">
+                  <ModalImage
+                    className="object-center items-center"
+                    small={primaryImage}
+                    large={primaryImage}
+                    alt={data?.product.title}
+                  />
+                </div>
+
+                {/* <Image
                   width={250}
                   height={250}
                   src={`${
@@ -35,48 +60,70 @@ const DetailProductBag = ({ data, primaryImage }: any) => {
                   }`}
                   alt=""
                   className="object-contain w-full h-full rounded-lg"
-                />
+                /> */}
               </div>
-              <div className="flex-wrap hidden md:flex;">
-                <div className="w-1/2 p-2 sm:w-1/4">
+              <div className="flex flex-row h-40 w-full gap-2 justify-between items-center px-4">
+                <div className="h-28 w-28">
                   <Link
-                    href={`product?id=${data?.id}&image=${data?.product.image}`}
-                    className="block border border-blue-100 dark:border-gray-700 dark:hover:border-gray-600 hover:border-blue-300 "
+                    href={{
+                      pathname: "/product",
+                      query: {
+                        id: data?.id,
+                        image: `${process.env.SERVER_ENDPOINT}${data?.product?.image}`,
+                      },
+                    }}
                   >
-                    <Image
-                      width={150}
-                      height={150}
-                      src={data?.product.image}
-                      alt=""
-                      className="object-cover w-full lg:h-32"
-                    />
+                    {data?.product?.image ? (
+                      <Image
+                        src={`${process.env.SERVER_ENDPOINT}${data?.product?.image}`}
+                        width={250}
+                        height={250}
+                        alt=""
+                      />
+                    ) : null}
                   </Link>
+                  {/* <ModalImage
+                          className="relative z-50 w-28 h-28"
+                          small={`${process.env.SERVER_ENDPOINT}${item.url}`}
+                          large={`${process.env.SERVER_ENDPOINT}${item.url}`}
+                          alt={data?.product.title}
+                        /> */}
                 </div>
-                {data?.product.gallery.length > 0
-                  ? data?.product.gallery.map((item: any) => (
-                      <div key={item.id} className="w-1/2 p-2 sm:w-1/4">
+                {gallery?.length > 0
+                  ? gallery.map((item: ProductGallery) => (
+                      <div key={item.id} className="h-28 w-28">
                         <Link
-                          href={`product?id=${data.id}&image=${item.url}`}
-                          className="block border border-blue-100 dark:border-gray-700 dark:hover:border-gray-600 hover:border-blue-300 "
+                          href={{
+                            pathname: "/product",
+                            query: {
+                              id: data?.id,
+                              image: `${process.env.SERVER_ENDPOINT}${item?.url}`,
+                            },
+                          }}
                         >
                           <Image
-                            width={150}
-                            height={150}
-                            src={item.url}
+                            src={`${process.env.SERVER_ENDPOINT}${item?.url}`}
+                            width={250}
+                            height={250}
                             alt=""
-                            className="object-cover w-full lg:h-32"
                           />
                         </Link>
+                        {/* <ModalImage
+                          className="relative z-50 w-28 h-28"
+                          small={`${process.env.SERVER_ENDPOINT}${item.url}`}
+                          large={`${process.env.SERVER_ENDPOINT}${item.url}`}
+                          alt={data?.product.title}
+                        /> */}
                       </div>
                     ))
-                  : ""}
+                  : null}
               </div>
             </div>
           </div>
           <div className="w-full px-4 md:w-1/2 ">
             <div className="lg:pl-20">
               <div className="pb-6 mb-8 border-b border-gray-200 dark:border-gray-700">
-                {data?.product.isNew > 0 ? (
+                {data?.product.isNew ? (
                   <span className="text-lg font-medium text-rose-500 dark:text-rose-200">
                     New
                   </span>
@@ -173,7 +220,9 @@ const DetailProductBag = ({ data, primaryImage }: any) => {
                     <FormattedPrice amount={price} />
                   </span>
                   <span className="ml-2 text-base font-normal text-gray-500 line-through dark:text-gray-400">
-                    $1500.00
+                    <FormattedPrice
+                      amount={data?.old_price ? data?.old_price : 0}
+                    />
                   </span>
                 </p>
               </div>

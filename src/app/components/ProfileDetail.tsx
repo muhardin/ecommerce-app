@@ -8,7 +8,7 @@ import z from "zod";
 import ModalErrorComponent from "./ui/ModalError";
 import LoadingComponent from "./ui/Loading";
 
-export default function Example() {
+export default function ProfileDetail() {
   const [isLoading, setIsLoading] = useState(false);
   const [valModal, setValModal] = useState<boolean>(false);
   const handleValueChange = (newValue: boolean) => {

@@ -1,8 +1,17 @@
+"use client";
+import { RootState } from "@/redux/store";
 import { XMarkIcon } from "@heroicons/react/20/solid";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
 export default function BannerFlash() {
   const [banner, setBanner] = useState(true);
+  const pathName = usePathname();
+  const isOpen = useSelector((state: RootState) => state.profile.isOpen);
+  if (pathName.startsWith("/admin")) {
+    return null;
+  }
   return (
     <div
       className={`${

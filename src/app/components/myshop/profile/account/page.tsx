@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 
 const ProfileAccountComponent = () => {
@@ -40,7 +41,10 @@ const ProfileAccountComponent = () => {
             <p className="text-sm text-gray-600">Change your avatar</p>
           </div>
           <div className="flex h-56 w-full flex-col items-center justify-center gap-4 rounded-xl border border-dashed border-gray-300 p-5 text-center">
-            <img
+            <Image
+              alt=""
+              width={250}
+              height={250}
               src="/images/no-image.png"
               className="h-16 w-16 rounded-full"
             />

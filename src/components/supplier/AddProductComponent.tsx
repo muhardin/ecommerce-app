@@ -219,7 +219,6 @@ const AddProductComponent: React.FC<ModalProps> = ({
       .catch((error) => {
         console.error("Error:", error);
       });
-    console.log(e);
   };
 
   if (!isOpen) return null;
@@ -240,7 +239,7 @@ const AddProductComponent: React.FC<ModalProps> = ({
                 strokeWidth="2"
                 viewBox="0 0 24 24"
                 strokeLinecap="round"
-                stroke-linejoin="round"
+                strokeLinejoin="round"
                 className="mx-auto"
                 height="1em"
                 width="1em"
@@ -391,7 +390,7 @@ const AddProductComponent: React.FC<ModalProps> = ({
                                   strokeWidth="2"
                                   viewBox="0 0 24 24"
                                   strokeLinecap="round"
-                                  stroke-linejoin="round"
+                                  strokeLinejoin="round"
                                   className="text-3xl text-emerald-500"
                                   height="1em"
                                   width="1em"
@@ -444,7 +443,7 @@ const AddProductComponent: React.FC<ModalProps> = ({
                                         strokeWidth="2"
                                         viewBox="0 0 24 24"
                                         strokeLinecap="round"
-                                        stroke-linejoin="round"
+                                        strokeLinejoin="round"
                                         height="1em"
                                         width="1em"
                                         xmlns="http://www.w3.org/2000/svg"

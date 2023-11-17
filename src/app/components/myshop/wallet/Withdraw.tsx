@@ -372,6 +372,7 @@ const Withdraw = ({ valModal, modalToggle, balance }: Props) => {
                             Amount
                           </label>
                           <CurrencyInput
+                            required
                             name="amount"
                             onValueChange={(value, name) =>
                               updateTotalAmount(Number(value))
@@ -478,7 +479,7 @@ const Withdraw = ({ valModal, modalToggle, balance }: Props) => {
                         </button>
 
                         <button
-                          disabled={disable}
+                          disabled={disable || errorBalance}
                           onClick={handleSubmitWithdrawal}
                           className="p-2 rounded-md text-white bg-sky-600 cursor-pointer disabled:bg-gray-500"
                         >

@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useDispatch } from "react-redux";
 import { addToCart } from "@/redux/shoppingSlice";
 import toast, { Toaster } from "react-hot-toast";
-import { ItemProps } from "../../../../../type";
+import { ItemProps, Product } from "../../../../../type";
 import { calculatePercentage } from "@/app/helpers";
 import FormattedPrice from "../../FormattedPrice";
 import ProductModal from "./ProductModal";
@@ -17,6 +17,8 @@ const ProductList = ({ item }: ItemProps) => {
   const pathname = usePathname();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [open, setOpen] = useState(false);
+  const [isListed, setIsListed] = useState(false);
+
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -30,11 +32,11 @@ const ProductList = ({ item }: ItemProps) => {
       <IoIosStar />
     </span>
   ));
-  // console.log(item);
+
   return (
     <>
       <div className="w-full rounded-lg overflow-hidden">
-        <div className="">
+        <div className={`${isListed ? "hidden" : "block"}`}>
           <Link
             href={{
               pathname: "/product",
@@ -43,7 +45,7 @@ const ProductList = ({ item }: ItemProps) => {
           >
             <div className=" w-full h-80 group overflow-hidden relative">
               <Image
-                src={item.image}
+                src={`${process.env.SERVER_ENDPOINT}${item.image}`}
                 alt="Product image"
                 width={500}
                 height={500}
@@ -63,7 +65,12 @@ const ProductList = ({ item }: ItemProps) => {
                 query: { id: item?.id, image: item?.image },
               }}
             >
-              <p className="cursor-pointer hover:text-sky-600">{item?.title}</p>
+              <p className="cursor-pointer hover:text-sky-600 font-semibold">
+                {item?.title}
+              </p>
+              <p className="cursor-pointer hover:text-sky-600">
+                City : {item?.supplier.city_name}
+              </p>
             </Link>
             <div className=" flex items-center justify-between">
               <div className=" border-[1px] border-sky-500 py-1 px-4 rounded-full text-xs">
@@ -79,17 +86,18 @@ const ProductList = ({ item }: ItemProps) => {
                 </p>
               </div>
             </div>
-            <div className="flex items-center justify-between">
+            <div className="flex flex-row items-center justify-between">
               {/* Add to cart */}
               <div className="flex flex-row justify-start gap-2">
-                <div className="w-full h-full bg-white relative z-20">
+                <div className="flex flex-row gap-2 w-full h-full bg-white relative z-20">
                   {pathname.startsWith("/supplier") ? (
                     <div className=" relative z-10">
                       <UpdateProductComponent
                         buttonText={"Update"}
-                        isOpen={open}
+                        isOpen={isModalOpen}
                         closeModal={closeModal}
-                        itemProducts={item}
+                        openModal={openModal}
+                        itemProducts={item as Product}
                       />
                     </div>
                   ) : (

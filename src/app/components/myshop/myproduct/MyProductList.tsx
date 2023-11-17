@@ -88,7 +88,7 @@ const MyProductList = ({ item }: ItemProps) => {
         >
           <div className=" w-full h-80 group overflow-hidden relative">
             <Image
-              src={item.product.image}
+              src={`${process.env.SERVER_ENDPOINT}${item.product.image}`}
               alt="Product image"
               width={500}
               height={500}
