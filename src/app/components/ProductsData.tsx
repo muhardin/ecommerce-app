@@ -11,7 +11,7 @@ import toast, { Toaster } from "react-hot-toast";
 
 const ProductsData = ({ item }: ItemProps) => {
   const dispatch = useDispatch();
-  const starArray = Array.from({ length: item?.rating }, (_, index) => (
+  const starArray = Array.from({ length: item?.product.rating }, (_, index) => (
     <span key={index} className=" text-yellow-400">
       <IoIosStar />
     </span>
@@ -89,7 +89,7 @@ const ProductsData = ({ item }: ItemProps) => {
               add to cart
             </button>
             {/* Star Icons */}
-            <div className=" flex items-center">{starArray}</div>
+            <div className="flex items-center">{starArray}</div>
           </div>
         </div>
       </div>

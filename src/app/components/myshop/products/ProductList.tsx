@@ -102,7 +102,7 @@ const ProductList = ({ item }: ItemProps) => {
                     </div>
                   ) : (
                     <>
-                      <ProductModal product={item} />
+                      {/* <ProductModal product={item} /> */}
                       <Link
                         href={`/myshop/product/detail/${item.id}`}
                         className=" bg-green-500 py-2 px-4 rounded-lg text-sm tracking-wide text-slate-100 hover:bg-sky-600 hover:text-white duration-200"

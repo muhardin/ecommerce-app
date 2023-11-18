@@ -31,38 +31,38 @@ const AddWithdrawAdminComponent: React.FC<ModalProps> = ({
       fileInputRef.current.click();
     }
   };
-  /*
-  get Supplier 
-  */
-  const [suppliers, setSuppliers] = useState([]);
-  useEffect(() => {
-    const fetchData = async () => {
-      setTimeout(async () => {
-        const headers = {
-          Authorization: `Bearer ${session?.bearer}`,
-          "Content-Type": "multipart/form-data", // Use 'multipart/form-data' for FormData
-        };
-        const response = await axios.get(
-          `${process.env.SERVER_ENDPOINT}/api/supplier-board/suppliers`,
-          { headers }
-        );
-        setSuppliers(response.data);
-      }, 9000);
-    };
-    fetchData();
-  }, [session?.bearer]);
-  // console.log(suppliers);
-  const [valSupp, setValSupp] = useState(null);
-  const [valSuppG, setValSuppG] = useState(null);
-  const selectOptionsSupplier = suppliers.map((item: any) => ({
-    value: item.id,
-    label: item.supplier_name,
-  }));
-  const handleChangeSupplier = (value: any) => {
-    setValSupp(value);
-    setValSuppG(value.value);
-  };
-  /** end of get supplier  */
+  // /*
+  // get Supplier
+  // */
+  // const [suppliers, setSuppliers] = useState([]);
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     setTimeout(async () => {
+  //       const headers = {
+  //         Authorization: `Bearer ${session?.bearer}`,
+  //         "Content-Type": "multipart/form-data", // Use 'multipart/form-data' for FormData
+  //       };
+  //       const response = await axios.get(
+  //         `${process.env.SERVER_ENDPOINT}/api/supplier-board/suppliers`,
+  //         { headers }
+  //       );
+  //       setSuppliers(response.data);
+  //     }, 9000);
+  //   };
+  //   fetchData();
+  // }, [session?.bearer]);
+  // // console.log(suppliers);
+  // const [valSupp, setValSupp] = useState(null);
+  // const [valSuppG, setValSuppG] = useState(null);
+  // const selectOptionsSupplier = suppliers.map((item: any) => ({
+  //   value: item.id,
+  //   label: item.supplier_name,
+  // }));
+  // const handleChangeSupplier = (value: any) => {
+  //   setValSupp(value);
+  //   setValSuppG(value.value);
+  // };
+  // /** end of get supplier  */
 
   /** get categories */
   const [categories, setCategories] = useState(Categories);
@@ -185,12 +185,12 @@ const AddWithdrawAdminComponent: React.FC<ModalProps> = ({
     formData.append("quantity", quantity?.toString());
     formData.append("weight", weight?.toString());
     formData.append("slug", slug);
-    if (valSuppG !== null) {
-      formData.append("supplier_id", valSuppG as string);
-    }
-    if (valCatG !== null) {
-      formData.append("category", valCatG as string);
-    }
+    // if (valSuppG !== null) {
+    //   formData.append("supplier_id", valSuppG as string);
+    // }
+    // if (valCatG !== null) {
+    //   formData.append("category", valCatG as string);
+    // }
     const headers = {
       Authorization: `Bearer ${session?.bearer}`,
       "Content-Type": "multipart/form-data", // Use 'multipart/form-data' for FormData
@@ -695,7 +695,7 @@ const AddWithdrawAdminComponent: React.FC<ModalProps> = ({
                           )}
                         </div>
                       </div>
-                      <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6 items-center">
+                      {/* <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6 items-center">
                         <label className="block text-gray-800 dark:text-gray-400 col-span-4 sm:col-span-2 font-medium text-sm">
                           Supplier Setup
                         </label>
@@ -717,7 +717,7 @@ const AddWithdrawAdminComponent: React.FC<ModalProps> = ({
                             </p>
                           )}
                         </div>
-                      </div>
+                      </div> */}
                       <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
                         <label className="block text-sm text-gray-800 dark:text-gray-400 col-span-4 sm:col-span-2 font-medium">
                           Product Slug

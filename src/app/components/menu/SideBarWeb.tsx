@@ -252,16 +252,6 @@ const SideBarWeb = () => {
                         </span>
                       </Link>
                     </li>
-                    <li>
-                      <a
-                        href="#"
-                        className="flex items-center py-3 pl-8 pr-4 text-gray-700 rounded dark:text-gray-400 dark:hover:bg-gray-700 hover:bg-gray-100 "
-                      >
-                        <span className="text-gray-700 dark:text-gray-400 ">
-                          Done Order
-                        </span>
-                      </a>
-                    </li>
                   </ul>
                 </div>
               </details>

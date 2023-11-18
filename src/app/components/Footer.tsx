@@ -14,11 +14,13 @@ import Logo from "./Logo";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { useShopData } from "./shop/ShopContext";
 
 const Footer = () => {
   const pathsToCheck = ["/supplier", "/myshop"];
   const pathName = usePathname();
   const startsWith = pathsToCheck.some((path) => pathName.startsWith(path));
+  const shopData = useShopData();
   // console.log(pathName);
   return (
     <>
@@ -30,12 +32,7 @@ const Footer = () => {
             <Container className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
               <div className=" flex flex-col gap-y-4">
                 <Logo />
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas
-                  magnam sint fuga ullam porro ipsa inventore tempora, officia,
-                  ea quis nesciunt tenetur aliquam est consequuntur cumque
-                  repellendus corrupti commodi rem.
-                </p>
+                <p>{shopData?.description && shopData?.description}</p>
                 <div className="gap-x-4 flex items-center">
                   <Link href="https://www.google.com" target="_blank">
                     <span className="socialLink">

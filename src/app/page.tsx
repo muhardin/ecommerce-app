@@ -3,14 +3,12 @@ import Products from "./components/Products";
 import { NextRequest, NextResponse } from "next/server";
 import { headers } from "next/headers";
 import LandingPageComponent from "@/components/landingpage/LandingPageComponent";
+import DefaultPage from "@/components/DefaultPage";
 export default async function Home() {
   const headersList = headers();
   const domain = headersList.get("host") || "";
   const fullUrl = headersList.get("referer") || "";
 
-  // console.log(domain);
-  // console.log(headersList);
-  // console.log(headersList.get("host"));
   if (domain == process.env.LANDING_PAGE) {
     return (
       <main>
@@ -20,8 +18,7 @@ export default async function Home() {
   } else {
     return (
       <main>
-        <Banner />
-        <Products host={domain} />
+        <DefaultPage domain={domain} />
       </main>
     );
   }

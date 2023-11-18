@@ -12,8 +12,14 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
-const ProductModal = ({ product }: { product: Products }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+const ProductModal = ({
+  product,
+  onReset,
+}: {
+  product: Products;
+  onReset: () => void;
+}) => {
+  const [isModalOpen, setIsModalOpen] = useState(true);
   const router = useRouter();
   const [productName, setProductName] = useState("");
   const [productDescription, setProductDescription] = useState("");
@@ -91,8 +97,7 @@ const ProductModal = ({ product }: { product: Products }) => {
       if (response.status == 200) {
         toast.dismiss();
         toast.success("Success", { duration: 6000 });
-        setIsLoading(false);
-        setIsModalOpen(false);
+        onReset();
       } else if (response.status == 201) {
         if (response.data.message.price) {
           setErrorPrice(true);
@@ -116,122 +121,124 @@ const ProductModal = ({ product }: { product: Products }) => {
       >
         Add To Shop
       </button>
-
-      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-        <div className="w-full">
-          <section className="overflow-hidden bg-white py-2 font-poppins dark:bg-gray-800">
-            <div className="max-w-6xl px-2 py-0 mx-auto lg:py-2 sm:px-2">
-              <div className="flex flex-col md:flex-row -mx-4">
-                <div className="w-full px-4">
-                  <div className="sticky top-0 z-0 overflow-hidden ">
-                    <span className="text-lg font-medium text-rose-500 dark:text-rose-200">
-                      {product.isNew ? "New" : ""}
-                    </span>
-                    <h2 className="max-w-xl mt-2 mb-6 text-2xl font-bold dark:text-gray-400 md:text-4xl">
-                      {product.title}
-                    </h2>
-                    <div className="relative mb-2 lg:mb-2">
-                      <Image
-                        width={500}
-                        height={500}
-                        src={process.env.SERVER_ENDPOINT + product.image}
-                        alt=""
-                        className="object-cover w-full lg:h-full "
-                      />
+      <div className="fixed inset-0 flex items-center justify-center z-50 mt-2 mb-20 md:mb-2">
+        <div className="fixed inset-0 bg-black opacity-50"></div>
+        <div className="modal-container bg-white w-full h-full md:h-auto lg:m-44 rounded shadow-lg z-50 overflow-y-auto">
+          <div className="relative modal-content py-4 text-left px-6">
+            <div className="w-full">
+              <section className="overflow-hidden bg-white py-2 font-poppins dark:bg-gray-800">
+                <div className="max-w-6xl px-2 py-0 mx-auto lg:py-2 sm:px-2">
+                  <div className="flex flex-col md:flex-row -mx-4">
+                    <div className="w-full px-4">
+                      <div className="sticky top-0 z-0 overflow-hidden ">
+                        <span className="text-lg font-medium text-rose-500 dark:text-rose-200">
+                          {product.isNew ? "New" : ""}
+                        </span>
+                        <h2 className="max-w-xl mt-2 mb-6 text-2xl font-bold dark:text-gray-400 md:text-4xl">
+                          {product.title}
+                        </h2>
+                        <div className="relative mb-2 lg:mb-2">
+                          <Image
+                            width={500}
+                            height={500}
+                            src={process.env.SERVER_ENDPOINT + product.image}
+                            alt=""
+                            className="object-cover w-full lg:h-full "
+                          />
+                        </div>
+                        <div className="flex-wrap hidden md:flex ">
+                          <div className="w-1/2 p-2 sm:w-1/4">
+                            <a
+                              href="#"
+                              className="block border border-blue-300 dark:border-transparent dark:hover:border-blue-300 hover:border-blue-300"
+                            >
+                              <Image
+                                width={500}
+                                height={500}
+                                src="/images/products/pexels-melvin-buezo-2529148.jpg"
+                                alt=""
+                                className="object-cover w-full lg:h-20"
+                              />
+                            </a>
+                          </div>
+                          <div className="w-1/2 p-2 sm:w-1/4">
+                            <a
+                              href="#"
+                              className="block border border-transparent dark:border-transparent dark:hover:border-blue-300 hover:border-blue-300"
+                            >
+                              <Image
+                                width={500}
+                                height={500}
+                                src="/images/products/pexels-melvin-buezo-2529148.jpg"
+                                alt=""
+                                className="object-cover w-full lg:h-20"
+                              />
+                            </a>
+                          </div>
+                          <div className="w-1/2 p-2 sm:w-1/4">
+                            <a
+                              href="#"
+                              className="block border border-transparent dark:border-transparent dark:hover:border-blue-300 hover:border-blue-300"
+                            >
+                              <Image
+                                width={500}
+                                height={500}
+                                src="/images/products/pexels-melvin-buezo-2529148.jpg"
+                                alt=""
+                                className="object-cover w-full lg:h-20"
+                              />
+                            </a>
+                          </div>
+                          <div className="w-1/2 p-2 sm:w-1/4">
+                            <a
+                              href="#"
+                              className="block border border-transparent dark:border-transparent dark:hover:border-blue-300 hover:border-blue-300"
+                            >
+                              <Image
+                                width={500}
+                                height={500}
+                                src="/images/products/pexels-melvin-buezo-2529148.jpg"
+                                alt=""
+                                className="object-cover w-full lg:h-20"
+                              />
+                            </a>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                    <div className="flex-wrap hidden md:flex ">
-                      <div className="w-1/2 p-2 sm:w-1/4">
-                        <a
-                          href="#"
-                          className="block border border-blue-300 dark:border-transparent dark:hover:border-blue-300 hover:border-blue-300"
-                        >
-                          <Image
-                            width={500}
-                            height={500}
-                            src="/images/products/pexels-melvin-buezo-2529148.jpg"
-                            alt=""
-                            className="object-cover w-full lg:h-20"
-                          />
-                        </a>
-                      </div>
-                      <div className="w-1/2 p-2 sm:w-1/4">
-                        <a
-                          href="#"
-                          className="block border border-transparent dark:border-transparent dark:hover:border-blue-300 hover:border-blue-300"
-                        >
-                          <Image
-                            width={500}
-                            height={500}
-                            src="/images/products/pexels-melvin-buezo-2529148.jpg"
-                            alt=""
-                            className="object-cover w-full lg:h-20"
-                          />
-                        </a>
-                      </div>
-                      <div className="w-1/2 p-2 sm:w-1/4">
-                        <a
-                          href="#"
-                          className="block border border-transparent dark:border-transparent dark:hover:border-blue-300 hover:border-blue-300"
-                        >
-                          <Image
-                            width={500}
-                            height={500}
-                            src="/images/products/pexels-melvin-buezo-2529148.jpg"
-                            alt=""
-                            className="object-cover w-full lg:h-20"
-                          />
-                        </a>
-                      </div>
-                      <div className="w-1/2 p-2 sm:w-1/4">
-                        <a
-                          href="#"
-                          className="block border border-transparent dark:border-transparent dark:hover:border-blue-300 hover:border-blue-300"
-                        >
-                          <Image
-                            width={500}
-                            height={500}
-                            src="/images/products/pexels-melvin-buezo-2529148.jpg"
-                            alt=""
-                            className="object-cover w-full lg:h-20"
-                          />
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="w-full px-4">
-                  <div className="lg:pl-4">
-                    <div className="mb-8 ">
-                      <div className="flex items-center mb-6">
-                        <div className="w-full mb-2 ">
-                          <form onSubmit={handleSubmit}>
-                            <div className="mt-0 bg-gray-50 px-4 pt-2 lg:mt-0">
-                              <p className="text-xl font-medium">
-                                Price Details
-                              </p>
-                              <p className="text-gray-400">
-                                Complete your order by providing your payment
-                                details.
-                              </p>
-                              <div className="">
-                                <label
-                                  htmlFor="email"
-                                  className="mt-4 mb-2 block text-sm font-medium"
-                                >
-                                  Base Price
-                                </label>
-                                <div className="relative">
-                                  <CurrencyInput
-                                    readOnly
-                                    name="fee"
-                                    value={product.company_price}
-                                    className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-1 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                    intlConfig={{
-                                      locale: "id",
-                                      currency: "IDR",
-                                    }}
-                                  />
-                                  {/* <input
+                    <div className="w-full px-4">
+                      <div className="lg:pl-4">
+                        <div className="mb-8 ">
+                          <div className="flex items-center mb-6">
+                            <div className="w-full mb-2 ">
+                              <form onSubmit={handleSubmit}>
+                                <div className="mt-0 bg-gray-50 px-4 pt-2 lg:mt-0">
+                                  <p className="text-xl font-medium">
+                                    Price Details
+                                  </p>
+                                  <p className="text-gray-400">
+                                    Complete your order by providing your
+                                    payment details.
+                                  </p>
+                                  <div className="">
+                                    <label
+                                      htmlFor="email"
+                                      className="mt-4 mb-2 block text-sm font-medium"
+                                    >
+                                      Base Price
+                                    </label>
+                                    <div className="relative">
+                                      <CurrencyInput
+                                        readOnly
+                                        name="fee"
+                                        value={product.company_price}
+                                        className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-1 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                        intlConfig={{
+                                          locale: "id",
+                                          currency: "IDR",
+                                        }}
+                                      />
+                                      {/* <input
                                 readOnly
                                 value={product.company_price}
                                 type="text"
@@ -240,8 +247,8 @@ const ProductModal = ({ product }: { product: Products }) => {
                                 className="w-full rounded-md border border-gray-200 px-4 py-3 pl-11 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
                                 placeholder="your.email@gmail.com"
                               /> */}
-                                  <div className="pointer-events-none absolute inset-y-0 left-0 inline-flex items-center px-3">
-                                    {/* <svg
+                                      <div className="pointer-events-none absolute inset-y-0 left-0 inline-flex items-center px-3">
+                                        {/* <svg
                                   xmlns="http://www.w3.org/2000/svg"
                                   className="h-4 w-4 text-gray-400"
                                   fill="none"
@@ -255,70 +262,72 @@ const ProductModal = ({ product }: { product: Products }) => {
                                     d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"
                                   />
                                 </svg> */}
-                                  </div>
-                                </div>
-                                <label
-                                  htmlFor="card-holder"
-                                  className="mt-4 mb-2 block text-sm font-medium"
-                                >
-                                  Harga Jual
-                                </label>
-                                <div className="relative">
-                                  <CurrencyInput
-                                    onValueChange={(value, name) =>
-                                      handleChange(Number(value))
-                                    }
-                                    value={price}
-                                    required
-                                    name="agent_price"
-                                    className="appearance-none block w-full bg-white text-gray-700 border border-gray-200 rounded py-3 px-4 mb-1 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                    intlConfig={{
-                                      locale: "id",
-                                      currency: "IDR",
-                                    }}
-                                  />
-                                  {errorPrice ? (
-                                    <label className="text-red-600 text-sm ">
-                                      Harga tidak boleh dibawah{" "}
-                                      <FormattedPrice amount={sellingPrice} />
+                                      </div>
+                                    </div>
+                                    <label
+                                      htmlFor="card-holder"
+                                      className="mt-4 mb-2 block text-sm font-medium"
+                                    >
+                                      Harga Jual
                                     </label>
-                                  ) : null}
-                                </div>
-                                <label
-                                  htmlFor="card-holder"
-                                  className="mt-4 mb-2 block text-sm font-medium"
-                                >
-                                  Your Profit
-                                </label>
-                                <div className="relative">
-                                  <CurrencyInput
-                                    readOnly
-                                    value={profit}
-                                    className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-1 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                    intlConfig={{
-                                      locale: "id",
-                                      currency: "IDR",
-                                    }}
-                                  />
-                                </div>
-                                <label
-                                  htmlFor="card-holder"
-                                  className="mt-4 mb-2 block text-sm font-medium"
-                                >
-                                  Sharing Profit
-                                </label>
-                                <div className="relative">
-                                  <CurrencyInput
-                                    value={sharingProfit}
-                                    readOnly
-                                    className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-1 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                    intlConfig={{
-                                      locale: "id",
-                                      currency: "IDR",
-                                    }}
-                                  />
-                                </div>
-                                {/* <label
+                                    <div className="relative">
+                                      <CurrencyInput
+                                        onValueChange={(value, name) =>
+                                          handleChange(Number(value))
+                                        }
+                                        value={price}
+                                        required
+                                        name="agent_price"
+                                        className="appearance-none block w-full bg-white text-gray-700 border border-gray-200 rounded py-3 px-4 mb-1 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                        intlConfig={{
+                                          locale: "id",
+                                          currency: "IDR",
+                                        }}
+                                      />
+                                      {errorPrice ? (
+                                        <label className="text-red-600 text-sm ">
+                                          Harga tidak boleh dibawah{" "}
+                                          <FormattedPrice
+                                            amount={sellingPrice}
+                                          />
+                                        </label>
+                                      ) : null}
+                                    </div>
+                                    <label
+                                      htmlFor="card-holder"
+                                      className="mt-4 mb-2 block text-sm font-medium"
+                                    >
+                                      Your Profit
+                                    </label>
+                                    <div className="relative">
+                                      <CurrencyInput
+                                        readOnly
+                                        value={profit}
+                                        className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-1 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                        intlConfig={{
+                                          locale: "id",
+                                          currency: "IDR",
+                                        }}
+                                      />
+                                    </div>
+                                    <label
+                                      htmlFor="card-holder"
+                                      className="mt-4 mb-2 block text-sm font-medium"
+                                    >
+                                      Sharing Profit
+                                    </label>
+                                    <div className="relative">
+                                      <CurrencyInput
+                                        value={sharingProfit}
+                                        readOnly
+                                        className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-1 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                        intlConfig={{
+                                          locale: "id",
+                                          currency: "IDR",
+                                        }}
+                                      />
+                                    </div>
+                                    {/* <label
                                 htmlFor="card-no"
                                 className="mt-4 mb-2 block text-sm font-medium"
                               >
@@ -361,69 +370,71 @@ const ProductModal = ({ product }: { product: Products }) => {
                                 />
                               </div> */}
 
-                                <div className="mt-6 border-t border-b py-2">
-                                  <div className="flex items-center justify-between">
-                                    <p className="text-sm font-medium text-gray-900">
-                                      Harga Awal
-                                    </p>
-                                    <p className="font-semibold text-gray-900">
-                                      <FormattedPrice
-                                        amount={product.company_price}
-                                      />
-                                    </p>
+                                    <div className="mt-6 border-t border-b py-2">
+                                      <div className="flex items-center justify-between">
+                                        <p className="text-sm font-medium text-gray-900">
+                                          Harga Awal
+                                        </p>
+                                        <p className="font-semibold text-gray-900">
+                                          <FormattedPrice
+                                            amount={product.company_price}
+                                          />
+                                        </p>
+                                      </div>
+                                      <div className="flex items-center justify-between">
+                                        <p className="text-sm font-medium text-gray-900">
+                                          Profit
+                                        </p>
+                                        <p className="font-semibold text-gray-900">
+                                          <FormattedPrice amount={profit} />
+                                        </p>
+                                      </div>
+                                      <div className="flex items-center justify-between">
+                                        <p className="text-sm font-medium text-gray-900">
+                                          Referral Profit
+                                        </p>
+                                        <p className="font-semibold text-gray-900">
+                                          <FormattedPrice
+                                            amount={sharingProfit}
+                                          />
+                                        </p>
+                                      </div>
+                                    </div>
+                                    <div className="mt-6 flex items-center justify-between">
+                                      <p className="text-sm font-medium text-gray-900">
+                                        Total
+                                      </p>
+                                      <p className="text-2xl font-semibold text-gray-900">
+                                        <FormattedPrice amount={price} />
+                                      </p>
+                                    </div>
                                   </div>
-                                  <div className="flex items-center justify-between">
-                                    <p className="text-sm font-medium text-gray-900">
-                                      Profit
-                                    </p>
-                                    <p className="font-semibold text-gray-900">
-                                      <FormattedPrice amount={profit} />
-                                    </p>
-                                  </div>
-                                  <div className="flex items-center justify-between">
-                                    <p className="text-sm font-medium text-gray-900">
-                                      Referral Profit
-                                    </p>
-                                    <p className="font-semibold text-gray-900">
-                                      <FormattedPrice amount={sharingProfit} />
-                                    </p>
-                                  </div>
-                                </div>
-                                <div className="mt-6 flex items-center justify-between">
-                                  <p className="text-sm font-medium text-gray-900">
-                                    Total
-                                  </p>
-                                  <p className="text-2xl font-semibold text-gray-900">
-                                    <FormattedPrice amount={price} />
-                                  </p>
-                                </div>
-                              </div>
-                              <div className="flex flex-wrap items-center mt-2 justify-end gap-2 mb-2 mr-2">
-                                <div className="">
-                                  <button
-                                    type="button"
-                                    onClick={() => setIsModalOpen(false)}
-                                    className="flex items-center justify-center w-full p-4 text-blue-500 border border-blue-500 rounded-md dark:text-gray-200 dark:border-blue-600 hover:bg-blue-600 hover:border-blue-600 hover:text-gray-100 dark:bg-blue-600 dark:hover:bg-blue-700 dark:hover:border-blue-700 dark:hover:text-gray-300"
-                                  >
-                                    Close
-                                  </button>
-                                </div>
+                                  <div className="flex flex-wrap items-center mt-2 justify-end gap-2 mb-2 mr-2">
+                                    <div className="">
+                                      <button
+                                        type="button"
+                                        onClick={onReset}
+                                        className="flex items-center justify-center w-full p-4 text-blue-500 border border-blue-500 rounded-md dark:text-gray-200 dark:border-blue-600 hover:bg-blue-600 hover:border-blue-600 hover:text-gray-100 dark:bg-blue-600 dark:hover:bg-blue-700 dark:hover:border-blue-700 dark:hover:text-gray-300"
+                                      >
+                                        Close
+                                      </button>
+                                    </div>
 
-                                <div className="">
-                                  <button
-                                    //   type="button"
-                                    className="flex items-center justify-center w-full p-4 text-blue-500 border border-blue-500 rounded-md dark:text-gray-200 dark:border-blue-600 hover:bg-blue-600 hover:border-blue-600 hover:text-gray-100 dark:bg-blue-600 dark:hover:bg-blue-700 dark:hover:border-blue-700 dark:hover:text-gray-300"
-                                  >
-                                    Add to store
-                                  </button>
+                                    <div className="">
+                                      <button
+                                        //   type="button"
+                                        className="flex items-center justify-center w-full p-4 text-blue-500 border border-blue-500 rounded-md dark:text-gray-200 dark:border-blue-600 hover:bg-blue-600 hover:border-blue-600 hover:text-gray-100 dark:bg-blue-600 dark:hover:bg-blue-700 dark:hover:border-blue-700 dark:hover:text-gray-300"
+                                      >
+                                        Add to store
+                                      </button>
+                                    </div>
+                                  </div>
                                 </div>
-                              </div>
+                              </form>
                             </div>
-                          </form>
-                        </div>
-                      </div>
+                          </div>
 
-                      {/* <p className="inline-block mb-8 text-4xl font-bold text-gray-700 dark:text-gray-400 ">
+                          {/* <p className="inline-block mb-8 text-4xl font-bold text-gray-700 dark:text-gray-400 ">
                       <span>
                         <FormattedPrice amount={product.price} />
                       </span>
@@ -434,14 +445,35 @@ const ProductModal = ({ product }: { product: Products }) => {
                     <p className="text-green-600 dark:text-green-300 ">
                       7 in stock
                     </p> */}
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              </section>
             </div>
-          </section>
+          </div>
+          <div
+            className="modal-close absolute top-0 right-0 -m-4 p-2 cursor-pointer"
+            onClick={onReset}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="w-6 h-6 text-white" // Change text-white to the desired color
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </div>
         </div>
-      </Modal>
+      </div>
     </div>
   );
 };

@@ -24,7 +24,7 @@ const DashboardMyShop = () => {
   } = useSWR(url, fetcher, {
     refreshInterval: 3000,
   });
-  console.log(orders);
+  // console.log(orders);
   //{ orderSum: 1085000, orderCount: 6, customerCount: 1 }
   return (
     <div>
@@ -173,7 +173,7 @@ const DashboardMyShop = () => {
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-3 ">
           <div className="p-4 bg-white rounded-md shadow md:p-6 dark:bg-gray-900 ">
             <h2 className="pb-4 text-xl font-bold border-b dark:border-gray-700 dark:text-gray-400">
-              Task overview
+              Recent Orders
             </h2>
             <div className="px-4 py-3 text-xs font-medium">
               <div className="flex px-4 mb-3 text-gray-500 dark:text-gray-400">
@@ -406,7 +406,7 @@ const DashboardMyShop = () => {
           </div>
           <div className="p-4 bg-white rounded-md shadow md:p-6 dark:bg-gray-900">
             <h2 className="pb-2 mb-2 text-xl font-bold border-b dark:border-gray-700 dark:text-gray-400">
-              Comments
+              New Referral
             </h2>
             <div className="flex flex-wrap mb-6">
               <div className="px-4 ">

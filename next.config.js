@@ -25,6 +25,12 @@ const nextConfig = {
         port: "88",
         // pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "q.smartpage.store",
+        port: "",
+        pathname: "/**",
+      },
     ],
   },
   async headers() {

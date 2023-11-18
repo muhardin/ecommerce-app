@@ -81,6 +81,7 @@ export interface Products {
 }
 export interface ShopData {
   id: number;
+  theme_id: number;
   user_id: number;
   domain: string | null;
   subdomain: string | null;

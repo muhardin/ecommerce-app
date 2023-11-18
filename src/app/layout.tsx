@@ -14,6 +14,7 @@ import { ShopDataProvider } from "./components/shop/ShopContext";
 import HeaderFront from "./components/HeaderFront";
 import LayoutWeb from "./components/landingpage/Layout";
 import FooterWeb from "@/components/landingpage/FooterWeb";
+import LayoutCustom from "./components/LayoutCustom";
 
 export const metadata: Metadata = {
   title: "My Smart Shop ",
@@ -74,11 +75,7 @@ export default async function RootLayout({
           <LayoutProvider>
             <ShopDataProvider domain={domain}>
               <Layout>
-                {/* <Header /> */}
-                <HeaderFront />
-                {children}
-                <Footer />
-                <BottomNavigation />
+                <LayoutCustom>{children}</LayoutCustom>
               </Layout>
             </ShopDataProvider>
           </LayoutProvider>

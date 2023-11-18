@@ -8,8 +8,21 @@ import { useShopData } from "../../shop/ShopContext";
 import { Supplier } from "../../../../../adminType";
 import { useState } from "react";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
+import FormattedPrice from "../../FormattedPrice";
+import Link from "next/link";
+import UpdateProductComponent from "@/components/supplier/UpdateProductComponent";
+import { Toaster } from "react-hot-toast";
+import { calculatePercentage } from "@/app/helpers";
+import { usePathname } from "next/navigation";
+import { IoIosStar } from "react-icons/io";
+import ProductModal from "./ProductModal";
 
 const ProductAvailableComponent = () => {
+  const pathname = usePathname();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [isListed, setIsListed] = useState(false);
+
   const [selectedCity, setSelectedCity] = useState<string | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string>("");
 
@@ -35,6 +48,11 @@ const ProductAvailableComponent = () => {
     refreshInterval: 3000,
   });
 
+  const starArray = Array.from({ length: products?.rating }, (_, index) => (
+    <span key={index} className=" text-yellow-400">
+      <IoIosStar />
+    </span>
+  ));
   /** Start Supplier */
   const urlSupplier =
     process.env.SERVER_ENDPOINT + "/api/supplier/list/general";
@@ -51,8 +69,20 @@ const ProductAvailableComponent = () => {
   });
   /** end of category */
   // console.log(selectedCity);
+  const [productItem, setProductItem] = useState<Product | undefined | null>(
+    undefined
+  );
+  const addToShop = (productItem: any) => {
+    setProductItem(productItem);
+  };
+  const resetProduct = () => {
+    setProductItem(null);
+  };
   return (
     <>
+      {productItem && (
+        <ProductModal product={productItem} onReset={resetProduct} />
+      )}
       <Tabs focusTabOnClick={true} className="flex flex-col gap-2 bg-white p-6">
         <div
           className="mb-4 border-b border-gray-200 dark:border-slate-700"
@@ -220,7 +250,109 @@ const ProductAvailableComponent = () => {
                   return true; // If no city is selected, show all products
                 })
                 .map((product: Products) => (
-                  <ProductList key={product.id} item={product} />
+                  <div className="" key={product.id}>
+                    <div className="w-full rounded-lg overflow-hidden">
+                      <div className={`${isListed ? "hidden" : "block"}`}>
+                        <Link
+                          href={{
+                            pathname: "/product",
+                            query: { id: product?.id, image: product?.image },
+                          }}
+                        >
+                          <div className=" w-full h-80 group overflow-hidden relative">
+                            <Image
+                              src={`${process.env.SERVER_ENDPOINT}${product.image}`}
+                              alt="Product image"
+                              width={500}
+                              height={500}
+                              className="w-full h-full object-cover group-hover:scale-110 duration-200 rounded-t-lg"
+                            />
+                            {product?.isNew && (
+                              <span className=" absolute top-2 right-2 font-medium text-xs py-1 px-3 rounded-full group-hover:bg-sky-500 group-hover:text-white bg-white duration-200">
+                                New Arrival
+                              </span>
+                            )}
+                          </div>
+                        </Link>
+                        <div className="border-[1px] border-slate-300 border-t-0 py-4 px-2 flex flex-col gap-y-2 bg-white rounded-b-lg">
+                          <Link
+                            href={{
+                              pathname: "/product",
+                              query: { id: product?.id, image: product?.image },
+                            }}
+                          >
+                            <p className="cursor-pointer hover:text-sky-600 font-semibold">
+                              {product?.title}
+                            </p>
+                            <p className="cursor-pointer hover:text-sky-600">
+                              City : {product?.supplier.city_name}
+                            </p>
+                          </Link>
+                          <div className=" flex items-center justify-between">
+                            <div className=" border-[1px] border-sky-500 py-1 px-4 rounded-full text-xs">
+                              <p>
+                                {calculatePercentage(
+                                  product?.price,
+                                  product?.oldPrice
+                                )}
+                                % off
+                              </p>
+                            </div>
+
+                            <div className=" flex items-center gap-x-2">
+                              <p className="text-slate-500 line-through text-sm">
+                                <FormattedPrice amount={product.oldPrice} />
+                              </p>
+                              <p className=" font-semibold">
+                                <FormattedPrice amount={product?.price} />
+                              </p>
+                            </div>
+                          </div>
+                          <div className="flex flex-row items-center justify-between">
+                            {/* Add to cart */}
+                            <div className="flex flex-row justify-start gap-2">
+                              <div className="flex flex-row gap-2 w-full h-full bg-white relative z-20">
+                                {pathname.startsWith("/supplier") ? (
+                                  <div className=" relative z-10">
+                                    {/* <UpdateProductComponent
+                                      buttonText={"Update"}
+                                      isOpen={isModalOpen}
+                                      closeModal={closeModal}
+                                      openModal={openModal}
+                                      itemProducts={item as Product}
+                                    /> */}
+                                  </div>
+                                ) : (
+                                  <>
+                                    {/* <ProductModal product={item} /> */}
+                                    <Link
+                                      href={`/myshop/product/detail/${product.id}`}
+                                      className=" bg-green-500 py-2 px-4 rounded-lg text-sm tracking-wide text-slate-100 hover:bg-sky-600 hover:text-white duration-200"
+                                    >
+                                      Detail
+                                    </Link>
+                                    <button
+                                      onClick={() => {
+                                        addToShop(product);
+                                      }}
+                                      className="bg-sky-500 py-2 px-4 rounded-lg text-sm tracking-wide text-slate-100 hover:bg-sky-600 hover:text-white duration-200"
+                                    >
+                                      Add To Shop
+                                    </button>
+                                  </>
+                                )}
+                              </div>
+                            </div>
+                            {/* Star Icons */}
+                            <div className=" flex items-center">
+                              {starArray}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <Toaster />
+                    </div>
+                  </div>
                 ))}
             </div>
           ) : (
