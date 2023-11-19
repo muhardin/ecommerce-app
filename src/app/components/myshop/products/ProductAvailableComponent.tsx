@@ -131,19 +131,6 @@ const ProductAvailableComponent = () => {
                 Drafts <span className="text-slate-400">(0)</span>
               </button>
             </Tab>
-            <Tab role="presentation">
-              <button
-                className="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
-                id="discount-tab"
-                data-fc-target="#discount"
-                type="button"
-                role="tab"
-                aria-controls="discount"
-                aria-selected="false"
-              >
-                On Discount <span className="text-slate-400">(0)</span>
-              </button>
-            </Tab>
           </TabList>
         </div>
         <div className="flex flex-wrap gap-4 mb-3">
