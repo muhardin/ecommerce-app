@@ -118,19 +118,6 @@ const ProductAvailableComponent = () => {
                 Published <span className="text-slate-400">(0)</span>
               </button>
             </Tab>
-            <Tab className="me-2" role="presentation">
-              <button
-                className=" inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
-                id="drafts-tab"
-                data-fc-target="#drafts"
-                type="button"
-                role="tab"
-                aria-controls="drafts"
-                aria-selected="false"
-              >
-                Drafts <span className="text-slate-400">(0)</span>
-              </button>
-            </Tab>
           </TabList>
         </div>
         <div className="flex flex-wrap gap-4 mb-3">
