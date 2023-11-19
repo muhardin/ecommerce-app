@@ -10,5 +10,6 @@ declare module "next-auth" {
     bearer: string | null;
     is_seller: string | null;
     is_company: string | null;
+    is_supplier: number | null;
   }
 }

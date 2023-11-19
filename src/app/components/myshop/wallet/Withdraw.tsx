@@ -139,7 +139,6 @@ const Withdraw = ({ valModal, modalToggle, balance }: Props) => {
     const formData = new FormData();
     formData.append("bank", selectedBankDetail.id ?? object.id);
     formData.append("amount", valueAmount.toString());
-
     try {
       const response = await axios.post(
         `${process.env.SERVER_ENDPOINT}/api/wallet/withdraw/post`, // Adjust the URL accordingly

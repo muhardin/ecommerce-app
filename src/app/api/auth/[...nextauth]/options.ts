@@ -60,6 +60,7 @@ export const options: NextAuthOptions = {
             image: user?.photo_url,
             role: user?.role,
             is_seller: user?.is_seller,
+            is_supplier: user?.is_supplier,
             is_company: user?.is_company,
           };
         } else {

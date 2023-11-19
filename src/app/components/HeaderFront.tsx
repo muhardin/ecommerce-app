@@ -236,7 +236,7 @@ const HeaderFront = () => {
                 href="/aboutus"
                 className="px-2 py-2 hover:bg-gray-100 rounded-lg text-gray-400 hover:text-gray-600"
               >
-                About Us_
+                About Us
               </Link>
             </div>
             <div className="flex items-center">

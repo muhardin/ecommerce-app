@@ -3,20 +3,20 @@ import WithdrawComponents from "@/app/components/myshop/wallet/withdraw/Withdraw
 import { getServerSession } from "next-auth";
 
 const page = async () => {
-  const sessionServer = await getServerSession(options);
-  const token = sessionServer?.bearer;
-  const items = await (
-    await fetch(process.env.SERVER_ENDPOINT + "/api/wallet/withdraw", {
-      cache: "force-cache",
-      next: { tags: ["wallet"] },
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
-  ).json();
+  // const sessionServer = await getServerSession(options);
+  // const token = sessionServer?.bearer;
+  // const items = await (
+  //   await fetch(process.env.SERVER_ENDPOINT + "/api/wallet/withdraw", {
+  //     cache: "force-cache",
+  //     next: { tags: ["wallet"] },
+  //     headers: {
+  //       Authorization: `Bearer ${token}`,
+  //     },
+  //   })
+  // ).json();
   return (
     <div>
-      <WithdrawComponents items={items} />
+      <WithdrawComponents/>
     </div>
   );
 };

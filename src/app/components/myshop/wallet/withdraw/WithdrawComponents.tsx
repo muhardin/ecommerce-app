@@ -24,7 +24,7 @@ const WithdrawComponents = ({ items }: { items?: Withdraw }) => {
   const urlHistory =
     process.env.SERVER_ENDPOINT + "/api/wallet/withdraw?page=" + currentPage;
   const { data: histories } = useSWR(urlHistory, fetcher, {
-    refreshInterval: 3000,
+    refreshInterval: 6000,
   });
 
   const [itemOffset, setItemOffset] = useState(0);
@@ -32,13 +32,9 @@ const WithdrawComponents = ({ items }: { items?: Withdraw }) => {
   const handlePageClick = (selected: number) => {
     setCurrentPage(Number(selected + 1));
     const newOffset = (selected * histories?.per_page) % histories?.total;
-    console.log(
-      `User requested page number ${selected}, which is offset ${newOffset}`
-    );
     setItemOffset(newOffset);
   };
-  console.log(itemOffset);
-
+  
   return (
     <>
       <div className="mt-2 overflow-hidden rounded-xl border shadow">
