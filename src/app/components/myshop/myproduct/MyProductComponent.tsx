@@ -5,7 +5,7 @@ import { useSession } from "next-auth/react";
 import Products from "../../Products";
 import MyProductList from "./MyProductList";
 import { Supplier } from "../../../../../adminType";
-import { Category } from "../../../../../type";
+import { Category, Product } from "../../../../../type";
 
 const MyProductComponent = () => {
   const shopData = useShopData();
@@ -191,7 +191,7 @@ const MyProductComponent = () => {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-4 ">
         {products ? (
-          products.map((product: Products) => (
+          products.map((product: Product) => (
             <MyProductList key={product.id} item={product} />
           ))
         ) : (
