@@ -20,13 +20,6 @@ export async function middleware(request: NextRequest) {
     user: { email: string; role: string; bearer: string; id: number };
   } | null;
 
-  const data = await (
-    await fetch(process.env.SERVER_ENDPOINT + "/api/user/profile", {
-      headers: {
-        Authorization: `Bearer ${token?.user.bearer}`,
-      },
-    })
-  ).json();
   const includes = ["/web", "/web/sign-up", "/web/sign-in", "/sign-in"];
 
   if (!token && !includes.includes(pathname)) {
@@ -72,10 +65,17 @@ export async function middleware(request: NextRequest) {
   }
 
   if (request.nextUrl.pathname.startsWith("/myshop")) {
-    if (data?.data.is_seller < 1) {
+    const data = await (
+      await fetch(process.env.SERVER_ENDPOINT + "/api/user/profile", {
+        headers: {
+          Authorization: `Bearer ${token?.user.bearer}`,
+        },
+      })
+    ).json();
+    if (data?.data?.is_seller < 1) {
       return NextResponse.redirect(new URL("/", request.url));
     }
-    if (data?.data.is_seller == 2) {
+    if (data?.data?.is_seller == 2) {
       const response = await fetch(
         `${process.env.SERVER_ENDPOINT}/api/register-payment/1`,
         {
@@ -89,7 +89,7 @@ export async function middleware(request: NextRequest) {
       const dataSeller = await response.json();
       return NextResponse.redirect(
         new URL(
-          `http://smartcommerce.id:3000/web/payment/${dataSeller.id}`,
+          `${process.env.LANDING_PAGE}/web/payment/${dataSeller.id}`,
           request.url
         )
       );
@@ -105,9 +105,10 @@ export async function middleware(request: NextRequest) {
         },
       })
     ).json();
+
     if (dataShop.user_id != token?.user.id) {
       if (domain != process.env.LANDING_PAGE) {
-        return NextResponse.redirect(new URL("/", request.url));
+        // return NextResponse.redirect(new URL("/", request.url));
       }
     }
   }
