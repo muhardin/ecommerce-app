@@ -15,6 +15,7 @@ import {
   IoIosEyeOff,
 } from "react-icons/io";
 import { useRouter } from "next/navigation";
+import { useShopData } from "./shop/ShopContext";
 
 const FormLoginT = () => {
   const router = useRouter();
@@ -57,20 +58,31 @@ const FormLoginT = () => {
   const togglePassword = () => {
     setPasswordShown(!passwordShown);
   };
+  const shopData = useShopData();
   return (
     <div className=" flex items-center justify-center">
       <div className="max-w-md bg-white p-6 rounded shadow-lg flex flex-col items-center">
         <div className="text-center">
           <h2 className="text-2xl font-semibold text-gray-800">Login</h2>
         </div>
-        <div className="mt-4 mb-4">
-          <Image
-            src="/images/login.jpg"
-            alt="Login Background"
-            width={600}
-            height={500}
-            className="w-full max-h-40 object-cover"
-          />
+        <div className="mt-4 mb-4 w-24 h-24">
+          {shopData?.logo ? (
+            <Image
+              src={`${process.env.SERVER_ENDPOINT}/storage/logo/${shopData.logo}`}
+              alt="Login Background"
+              width={600}
+              height={500}
+              className="w-full max-h-40 object-cover"
+            />
+          ) : (
+            <Image
+              src="/images/login.jpg"
+              alt="Login Background"
+              width={600}
+              height={500}
+              className="w-full max-h-40 object-cover"
+            />
+          )}
         </div>
         <form onSubmit={handleSubmit} className="w-full">
           <div className="mb-4">

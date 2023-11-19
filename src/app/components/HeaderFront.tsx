@@ -163,6 +163,7 @@ const HeaderFront = () => {
     };
   }, []);
 
+  console.log(session);
   return (
     <>
       <section className="sticky top-0 z-40 px-3 py-3 bg-bodyColor shadow dark:text-gray-100 dark:bg-gray-900 lg:px-5 w-full">
@@ -235,7 +236,7 @@ const HeaderFront = () => {
                 href="/aboutus"
                 className="px-2 py-2 hover:bg-gray-100 rounded-lg text-gray-400 hover:text-gray-600"
               >
-                About Us
+                About Us_
               </Link>
             </div>
             <div className="flex items-center">
@@ -434,7 +435,7 @@ const HeaderFront = () => {
                       ) : (
                         ""
                       )}
-                      {userData?.data?.is_seller ? (
+                      {session?.is_seller == "1" ? (
                         <Link
                           onClick={() => {
                             setProfileMenu(false);
