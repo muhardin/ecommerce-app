@@ -68,7 +68,12 @@ export default async function RootLayout({
         </body>
       </html>
     );
-  } else {
+
+
+    
+
+  } 
+  else {
     return (
       <html lang="en">
         <body className="font-bodyFont w-full bg-main-bg text-darkText ">
