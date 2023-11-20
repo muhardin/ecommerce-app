@@ -126,7 +126,7 @@ const PaymentComponent = ({ id }: any) => {
                   ""
                 )}
               </div>
-              {payment?.status != "PAID" ? (
+              {payment?.order?.order_payment?.status !== "PAID" ? (
                 <h1>
                   Batas Pembayaran :{" "}
                   <div className="text-2xl text-red-500">
