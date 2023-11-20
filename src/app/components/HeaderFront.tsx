@@ -419,7 +419,7 @@ const HeaderFront = () => {
                         </div>
                         Order
                       </Link>
-                      {userData?.data?.is_supplier == 1 ? (
+                      {session?.is_supplier == 1 ? (
                         <Link
                           onClick={() => {
                             setProfileMenu(false);
