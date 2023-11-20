@@ -457,7 +457,7 @@ const HeaderFront = () => {
                           toast.loading("Loading...");
                           setProfileMenu(false);
                           signOut({
-                            redirect: true,
+                            redirect: false,
                             callbackUrl: "/sign-in",
                           });
                           toast.dismiss();
