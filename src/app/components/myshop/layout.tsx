@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { Icons } from "../ui/Icons";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { RootState } from "@/redux/store";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleProfileMenu } from "@/redux/profileSlice";
@@ -11,7 +11,6 @@ import { Wallet } from "lucide-react";
 import MenuProfile from "../menu/MenuProfile";
 import SideBarWeb from "../menu/SideBarWeb";
 import { useSession } from "next-auth/react";
-import { useRouter } from "next/router";
 
 const MyShopLayoutComponent = ({ children }: { children: React.ReactNode }) => {
   const dispatch = useDispatch();
