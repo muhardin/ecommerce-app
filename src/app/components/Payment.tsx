@@ -160,14 +160,15 @@ const PaymentComponent = ({ id }: any) => {
               </div>
             </div>
             {payment?.order.order_payment.payment_method == "wallet" ? (
-              <div className="py-10 text-center">
-                <Link
-                  href={payment?.order.order_payment?.checkout_url}
-                  className="px-12 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-3 rounded-lg"
-                >
-                  Lanjutkan Pembayaran
-                </Link>
-              </div>
+              payment?.order?.order_payment?.status !== "PAID" ? <div className="py-10 text-center">
+              <Link
+                href={payment?.order.order_payment?.checkout_url}
+                className="px-12 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-3 rounded-lg"
+              >
+                Lanjutkan Pembayaran
+              </Link>
+            </div>:''
+              
             ) : (
               ""
             )}
