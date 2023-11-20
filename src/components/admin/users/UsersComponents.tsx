@@ -239,8 +239,7 @@ const UsersComponents = () => {
                             className="mr-2"
                             height="1em"
                             width="1em"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
+                            xmlns="http://www.w3.org/2000/svg">
                             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
                             <polyline points="17 8 12 3 7 8"></polyline>
                             <line x1="12" y1="3" x2="12" y2="15"></line>
@@ -260,8 +259,7 @@ const UsersComponents = () => {
                             className="mr-2"
                             height="1em"
                             width="1em"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
+                            xmlns="http://www.w3.org/2000/svg">
                             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
                             <polyline points="7 10 12 15 17 10"></polyline>
                             <line x1="12" y1="15" x2="12" y2="3"></line>
@@ -275,8 +273,7 @@ const UsersComponents = () => {
                 <div
                   className={`${
                     isModalOpen ? "hidden" : "block"
-                  } flex flex-col sm:flex-row gap-4`}
-                >
+                  } flex flex-col sm:flex-row gap-4`}>
                   <div className="flex-grow-0 md:flex-grow lg:flex-grow xl:flex-grow">
                     <button
                       disabled={checkedItemIds.length < 1}
@@ -288,8 +285,7 @@ const UsersComponents = () => {
                           ? "bg-red-500 cursor-pointer"
                           : "bg-red-300 opacity-50"
                       } align-bottom inline-flex items-center justify-center leading-5 transition-colors duration-150 font-medium focus:outline-none px-4 py-2 rounded-lg text-sm text-white  border border-transparent  w-full h-12 btn-gray`}
-                      type="button"
-                    >
+                      type="button">
                       <span className="mr-2">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -298,11 +294,10 @@ const UsersComponents = () => {
                           viewBox="0 0 24 24"
                           fill="none"
                           stroke="currentColor"
-                          stroke-width="2"
+                          strokeWidth="2"
                           strokeLinecap="round"
                           stroke-linejoin="round"
-                          className="lucide lucide-shield-x"
-                        >
+                          className="lucide lucide-shield-x">
                           <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10" />
                           <path d="m14.5 9-5 5" />
                           <path d="m9.5 9 5 5" />
@@ -323,8 +318,7 @@ const UsersComponents = () => {
                           ? "bg-emerald-500 cursor-pointer "
                           : "bg-emerald-300 disabled opacity-50"
                       } align-bottom inline-flex items-center justify-center leading-5 transition-colors duration-150 font-medium focus:outline-none px-4 py-2 rounded-lg text-sm text-white border border-transparent  w-full h-12   btn-red relative z-0`}
-                      type="button"
-                    >
+                      type="button">
                       <span className="mr-2">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -333,11 +327,10 @@ const UsersComponents = () => {
                           viewBox="0 0 24 24"
                           fill="none"
                           stroke="currentColor"
-                          stroke-width="2"
+                          strokeWidth="2"
                           strokeLinecap="round"
                           stroke-linejoin="round"
-                          className="lucide lucide-check-check"
-                        >
+                          className="lucide lucide-check-check">
                           <path d="M18 6 7 17l-5-5" />
                           <path d="m22 10-7.5 7.5L13 16" />
                         </svg>
@@ -351,8 +344,7 @@ const UsersComponents = () => {
                         openModal();
                       }}
                       className="align-bottom inline-flex items-center justify-center cursor-pointer leading-5 transition-colors duration-150 font-medium focus:outline-none px-4 py-2 rounded-lg text-sm text-white bg-emerald-500 border border-transparent active:bg-emerald-600 hover:bg-emerald-600 w-full h-12"
-                      type="button"
-                    >
+                      type="button">
                       <span className="mr-2">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -361,11 +353,10 @@ const UsersComponents = () => {
                           viewBox="0 0 24 24"
                           fill="none"
                           stroke="currentColor"
-                          stroke-width="2"
+                          strokeWidth="2"
                           strokeLinecap="round"
                           stroke-linejoin="round"
-                          className="lucide lucide-arrow-up-right-from-circle"
-                        >
+                          className="lucide lucide-arrow-up-right-from-circle">
                           <path d="M22 12A10 10 0 1 1 12 2" />
                           <path d="M22 2 12 12" />
                           <path d="M16 2h6v6" />
@@ -390,14 +381,12 @@ const UsersComponents = () => {
                   />
                   <button
                     type="submit"
-                    className="absolute right-0 top-0 mt-5 mr-1"
-                  ></button>
+                    className="absolute right-0 top-0 mt-5 mr-1"></button>
                 </div>
                 <div className="flex-grow-0 md:flex-grow lg:flex-grow xl:flex-grow">
                   <select
                     onChange={onFilter}
-                    className="block w-full h-12 border bg-gray-100 px-2 py-1 text-sm dark:text-gray-300 focus:outline-none rounded-md form-select focus:bg-white dark:focus:bg-gray-700 focus:border-gray-200 border-gray-200 dark:border-gray-600 focus:shadow-none dark:focus:border-gray-500 dark:bg-gray-700 leading-5"
-                  >
+                    className="block w-full h-12 border bg-gray-100 px-2 py-1 text-sm dark:text-gray-300 focus:outline-none rounded-md form-select focus:bg-white dark:focus:bg-gray-700 focus:border-gray-200 border-gray-200 dark:border-gray-600 focus:shadow-none dark:focus:border-gray-500 dark:bg-gray-700 leading-5">
                     <option disabled selected>
                       Select Status
                     </option>
@@ -413,16 +402,14 @@ const UsersComponents = () => {
                   <div className="w-full mx-1">
                     <button
                       className="align-bottom inline-flex items-center justify-center cursor-pointer leading-5 transition-colors duration-150 font-medium focus:outline-none px-4 py-2 rounded-lg text-sm text-white border border-transparent active:bg-emerald-600 hover:bg-emerald-600 h-12 w-full bg-emerald-700"
-                      type="submit"
-                    >
+                      type="submit">
                       Filter
                     </button>
                   </div>
                   <div className="w-full mx-1">
                     <button
                       className="align-bottom inline-flex items-center justify-center cursor-pointer leading-5 transition-colors duration-150 font-medium px-4 py-2 rounded-lg text-gray-600 border-gray-200 border dark:text-gray-400 focus:outline-none bg-gray-200 w-full mr-3 h-12 md:py-1 text-sm dark:bg-gray-700"
-                      type="reset"
-                    >
+                      type="reset">
                       <span className="text-black dark:text-gray-200">
                         Reset
                       </span>
@@ -482,8 +469,7 @@ const UsersComponents = () => {
                                 />
                                 <div
                                   className="absolute rounded-full shadow-inner"
-                                  aria-hidden="true"
-                                ></div>
+                                  aria-hidden="true"></div>
                               </div>
                               <div>
                                 <h2 className="text-sm font-medium ">
@@ -552,8 +538,7 @@ const UsersComponents = () => {
                               <div
                                 className="animate-spin inline-block w-6 h-6 border-[3px] border-current border-t-transparent text-blue-600 rounded-full dark:text-blue-500"
                                 role="status"
-                                aria-label="loading"
-                              >
+                                aria-label="loading">
                                 <span className="sr-only">Loading...</span>
                               </div>
                             </div>
@@ -703,19 +688,16 @@ const UsersComponents = () => {
                           }}
                           className="align-bottom inline-flex items-center justify-center leading-5 transition-colors duration-150 font-medium focus:outline-none p-2 rounded-md hover:bg-gray-100 text-gray-800 dark:text-gray-400 border border-transparent opacity-50 cursor-pointer"
                           type="button"
-                          aria-label="Previous"
-                        >
+                          aria-label="Previous">
                           <svg
                             className="h-3 w-3"
                             aria-hidden="true"
                             fill="currentColor"
-                            viewBox="0 0 20 20"
-                          >
+                            viewBox="0 0 20 20">
                             <path
                               d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
                               clipRule="evenodd"
-                              fillRule="evenodd"
-                            ></path>
+                              fillRule="evenodd"></path>
                           </svg>
                         </button>
                       </li>
@@ -732,8 +714,7 @@ const UsersComponents = () => {
                                 page == currentPage &&
                                 "text-white bg-emerald-500"
                               } border border-transparent active:bg-emerald-600 hover:bg-emerald-600 hover:text-slate-50`}
-                              type="button"
-                            >
+                              type="button">
                               {page}
                             </button>
                           </li>
@@ -759,19 +740,16 @@ const UsersComponents = () => {
                           }}
                           className="align-bottom inline-flex items-center justify-center cursor-pointer leading-5 transition-colors duration-150 font-medium p-2 rounded-md text-gray-600 dark:text-gray-400 focus:outline-none border border-transparent active:bg-transparent hover:bg-gray-100 dark:hover:bg-gray-500 dark:hover:text-gray-300 dark:hover:bg-opacity-10"
                           type="button"
-                          aria-label="Next"
-                        >
+                          aria-label="Next">
                           <svg
                             className="h-3 w-3"
                             aria-hidden="true"
                             fill="currentColor"
-                            viewBox="0 0 20 20"
-                          >
+                            viewBox="0 0 20 20">
                             <path
                               d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
                               clipRule="evenodd"
-                              fillRule="evenodd"
-                            ></path>
+                              fillRule="evenodd"></path>
                           </svg>
                         </button>
                       </li>

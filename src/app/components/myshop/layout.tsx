@@ -15,30 +15,21 @@ import { useSession } from "next-auth/react";
 const MyShopLayoutComponent = ({ children }: { children: React.ReactNode }) => {
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
-  const {data:session} = useSession();
+  const { data: session } = useSession();
   const router = useRouter();
   function toggleOpen() {
     setOpen(!open);
   }
   const isOpen = useSelector((state: RootState) => state.profile.isOpen);
   const pathName = usePathname();
-  useEffect(() => {
-    if(!session){
-        router.push('/sign-in');
-    }
-  }, [router, session]);
-  // console.log(isOpen);
-  return (
 
+  return (
     <div className="bg-gray-100 xl:h-screen dark:bg-gray-800">
       <div className="body-content">
         <SideBarWeb />
-        < div
-        className = {
-          `transition-all ${isOpen ? " md:ml-[280px]" : "md:ml-0"}`
-        }
-        id = "dash"
-          >
+        <div
+          className={`transition-all ${isOpen ? " md:ml-[280px]" : "md:ml-0"}`}
+          id="dash">
           {/* <section className="sticky top-0 z-40 px-3 py-3 bg-white shadow dark:text-gray-100 dark:bg-gray-900 lg:px-5">
             <nav className="relative">
               <div className="flex items-center justify-between">

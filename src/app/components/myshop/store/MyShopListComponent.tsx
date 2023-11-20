@@ -42,8 +42,7 @@ const MyShopListComponent = () => {
                   <div className="lg:flex-1 md:flex-1 mr-3 sm:flex-none">
                     <button
                       type="button"
-                      className="border flex justify-center items-center border-gray-300 hover:border-emerald-400 hover:text-emerald-400  dark:text-gray-300 cursor-pointer h-10 w-20 rounded-md focus:outline-none"
-                    >
+                      className="border flex justify-center items-center border-gray-300 hover:border-emerald-400 hover:text-emerald-400  dark:text-gray-300 cursor-pointer h-10 w-20 rounded-md focus:outline-none">
                       <svg
                         stroke="currentColor"
                         fill="none"
@@ -54,8 +53,7 @@ const MyShopListComponent = () => {
                         className="mr-2"
                         height="1em"
                         width="1em"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
+                        xmlns="http://www.w3.org/2000/svg">
                         <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
                         <polyline points="17 8 12 3 7 8"></polyline>
                         <line x1="12" y1="3" x2="12" y2="15"></line>
@@ -66,8 +64,7 @@ const MyShopListComponent = () => {
                   <div className="lg:flex-1 md:flex-1 mr-3  sm:flex-none">
                     <button
                       type="button"
-                      className="border flex justify-center items-center h-10 w-20 hover:text-yellow-400  border-gray-300 dark:text-gray-300 cursor-pointer  py-2 hover:border-yellow-400 rounded-md focus:outline-none"
-                    >
+                      className="border flex justify-center items-center h-10 w-20 hover:text-yellow-400  border-gray-300 dark:text-gray-300 cursor-pointer  py-2 hover:border-yellow-400 rounded-md focus:outline-none">
                       <svg
                         stroke="currentColor"
                         fill="none"
@@ -78,8 +75,7 @@ const MyShopListComponent = () => {
                         className="mr-2"
                         height="1em"
                         width="1em"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
+                        xmlns="http://www.w3.org/2000/svg">
                         <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
                         <polyline points="7 10 12 15 17 10"></polyline>
                         <line x1="12" y1="15" x2="12" y2="3"></line>
@@ -96,8 +92,7 @@ const MyShopListComponent = () => {
                 <button
                   onClick={() => {}}
                   className="align-bottom inline-flex items-center justify-center cursor-pointer leading-5 transition-colors duration-150 font-medium focus:outline-none px-4 py-2 rounded-lg text-sm text-white bg-emerald-500 border border-transparent active:bg-emerald-600 hover:bg-emerald-600 w-full h-12"
-                  type="button"
-                >
+                  type="button">
                   <span className="mr-2">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -106,11 +101,10 @@ const MyShopListComponent = () => {
                       viewBox="0 0 24 24"
                       fill="none"
                       stroke="currentColor"
-                      stroke-width="2"
+                      strokeWidth="2"
                       strokeLinecap="round"
                       stroke-linejoin="round"
-                      className="lucide lucide-package-plus"
-                    >
+                      className="lucide lucide-package-plus">
                       <path d="M16 16h6" />
                       <path d="M19 13v6" />
                       <path d="M21 10V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l2-1.14" />
@@ -189,11 +183,10 @@ const MyShopListComponent = () => {
                               viewBox="0 0 24 24"
                               fill="none"
                               stroke="currentColor"
-                              stroke-width="2"
+                              strokeWidth="2"
                               strokeLinecap="round"
                               stroke-linejoin="round"
-                              className="lucide lucide-power-off"
-                            >
+                              className="lucide lucide-power-off">
                               <path d="M18.36 6.64A9 9 0 0 1 20.77 15" />
                               <path d="M6.16 6.16a9 9 0 1 0 12.68 12.68" />
                               <path d="M12 2v4" />
@@ -204,8 +197,7 @@ const MyShopListComponent = () => {
                         </button>
                         <Link
                           className="bg-emerald-500 hover:bg-emerald-700 p-2 text-white rounded-lg flex flex-row items-start justify-center"
-                          href={`/myshop/store/setting/${item.id}`}
-                        >
+                          href={`/myshop/store/setting/${item.id}`}>
                           <span className="mr-2">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
@@ -214,11 +206,10 @@ const MyShopListComponent = () => {
                               viewBox="0 0 24 24"
                               fill="none"
                               stroke="currentColor"
-                              stroke-width="2"
+                              strokeWidth="2"
                               strokeLinecap="round"
                               stroke-linejoin="round"
-                              className="lucide lucide-file-signature"
-                            >
+                              className="lucide lucide-file-signature">
                               <path d="M20 19.5v.5a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8.5L18 5.5" />
                               <path d="M8 18h1" />
                               <path d="M18.42 9.61a2.1 2.1 0 1 1 2.97 2.97L16.95 17 13 18l.99-3.95 4.43-4.44Z" />

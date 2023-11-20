@@ -19,6 +19,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       </div>
     );
   }
+
   return (
     <Provider store={store}>
       <PersistGate persistor={persistor}>

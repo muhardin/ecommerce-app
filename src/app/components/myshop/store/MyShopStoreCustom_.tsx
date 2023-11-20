@@ -16,8 +16,7 @@ const MyShopStoreCustom = () => {
             <div className="pb-4">
               <select
                 name="language"
-                className="block w-20 h-10 border border-emerald-400 bg-gray-100 dark:bg-gray-700 px-2 py-1 text-sm dark:text-gray-300 focus:outline-none rounded-md form-select focus:bg-white dark:focus:bg-gray-700"
-              >
+                className="block w-20 h-10 border border-emerald-400 bg-gray-100 dark:bg-gray-700 px-2 py-1 text-sm dark:text-gray-300 focus:outline-none rounded-md form-select focus:bg-white dark:focus:bg-gray-700">
                 <option value="en" className="hidden">
                   en
                 </option>
@@ -31,8 +30,7 @@ const MyShopStoreCustom = () => {
             <li>
               <a
                 className="inline-block w-full px-4 py-3 shadow-md bg-emerald-500 text-white dark:bg-emerald-500 dark:text-white hover:text-white hover:bg-emerald-500  focus:outline-none dark:hover:text-white dark:hover:bg-emerald-500 sm:rounded-l-md rounded-tl-md"
-                href="/store/customization?storeTab=home-settings"
-              >
+                href="/store/customization?storeTab=home-settings">
                 <span className="text-sm font-medium font-serif xl:inline-block hidden">
                   Home Page
                 </span>
@@ -44,8 +42,7 @@ const MyShopStoreCustom = () => {
             <li>
               <a
                 className="inline-block w-full py-3 px-4 shadow-md bg-gray-200 text-gray-800 font-medium dark:bg-gray-600 dark:text-gray-300 hover:text-white hover:bg-emerald-500  focus:outline-none dark:hover:text-white dark:hover:bg-emerald-500"
-                href="/store/customization?storeTab=single-setting"
-              >
+                href="/store/customization?storeTab=single-setting">
                 <span className="text-sm font-medium font-serif xl:inline-block hidden">
                   Product Slug Page
                 </span>
@@ -57,8 +54,7 @@ const MyShopStoreCustom = () => {
             <li>
               <a
                 className="inline-block w-full py-3 px-4 shadow-md bg-gray-200 text-gray-800 font-medium dark:bg-gray-600 dark:text-gray-300 hover:text-white hover:bg-emerald-500 focus:outline-none dark:hover:text-white dark:hover:bg-emerald-500 sm:rounded-tr-none rounded-tr-md"
-                href="/store/customization?storeTab=about-us-setting"
-              >
+                href="/store/customization?storeTab=about-us-setting">
                 <span className="text-sm font-medium font-serif xl:inline-block hidden">
                   About Us
                 </span>
@@ -70,8 +66,7 @@ const MyShopStoreCustom = () => {
             <li>
               <a
                 className="inline-block w-full py-3 px-4 shadow-md bg-gray-200 text-gray-800 font-medium dark:bg-gray-600 dark:text-gray-300 hover:text-white hover:bg-emerald-500  focus:outline-none dark:hover:text-white dark:hover:bg-emerald-500"
-                href="/store/customization?storeTab=privacy-setting"
-              >
+                href="/store/customization?storeTab=privacy-setting">
                 <span className="text-sm font-medium font-serif xl:inline-block hidden">
                   Privacy Policy and T&amp;C
                 </span>
@@ -83,8 +78,7 @@ const MyShopStoreCustom = () => {
             <li>
               <a
                 className="inline-block w-full py-3 px-4 shadow-md bg-gray-200 text-gray-800 font-medium dark:bg-gray-600 dark:text-gray-300 hover:text-white hover:bg-emerald-500  focus:outline-none dark:hover:text-white dark:hover:bg-emerald-500"
-                href="/store/customization?storeTab=FAQ-setting"
-              >
+                href="/store/customization?storeTab=FAQ-setting">
                 <span className="text-sm font-medium font-serif xl:inline-block hidden">
                   FAQs
                 </span>
@@ -96,8 +90,7 @@ const MyShopStoreCustom = () => {
             <li>
               <a
                 className="inline-block w-full py-3 px-4 shadow-md bg-gray-200 text-gray-800 font-medium dark:bg-gray-600 dark:text-gray-300 hover:text-white hover:bg-emerald-500  focus:outline-none dark:hover:text-white dark:hover:bg-emerald-500"
-                href="/store/customization?storeTab=offers-setting"
-              >
+                href="/store/customization?storeTab=offers-setting">
                 <span className="text-sm font-medium font-serif xl:inline-block hidden">
                   Offers
                 </span>
@@ -109,8 +102,7 @@ const MyShopStoreCustom = () => {
             <li>
               <a
                 className="inline-block w-full py-3 px-4 shadow-md bg-gray-200 text-gray-800 font-medium dark:bg-gray-600 dark:text-gray-300 hover:text-white hover:bg-emerald-500  focus:outline-none dark:hover:text-white dark:hover:bg-emerald-500 sm:rounded-bl-none rounded-bl-md"
-                href="/store/customization?storeTab=contact-us-setting"
-              >
+                href="/store/customization?storeTab=contact-us-setting">
                 <span className="text-sm font-medium font-serif xl:inline-block hidden">
                   Contact Us
                 </span>
@@ -122,8 +114,7 @@ const MyShopStoreCustom = () => {
             <li>
               <a
                 className="inline-block w-full py-3 px-4 shadow-md bg-gray-200 text-gray-800 font-medium dark:bg-gray-600 dark:text-gray-300 hover:text-white hover:bg-emerald-500  focus:outline-none dark:hover:text-white dark:hover:bg-emerald-500 sm:rounded-bl-none rounded-bl-md"
-                href="/store/customization?storeTab=checkout-setting"
-              >
+                href="/store/customization?storeTab=checkout-setting">
                 <span className="text-sm font-medium font-serif xl:inline-block hidden">
                   Checkout
                 </span>
@@ -135,8 +126,7 @@ const MyShopStoreCustom = () => {
             <li>
               <a
                 className="inline-block w-full py-3 px-4 shadow-md bg-gray-200 text-gray-800 font-medium dark:bg-gray-600 dark:text-gray-300 hover:text-white hover:bg-emerald-500  focus:outline-none dark:hover:text-white dark:hover:bg-emerald-500 sm:rounded-bl-none rounded-bl-md"
-                href="/store/customization?storeTab=dashboard-setting"
-              >
+                href="/store/customization?storeTab=dashboard-setting">
                 <span className="text-sm font-medium font-serif xl:inline-block hidden">
                   Dashboard Setting
                 </span>
@@ -154,15 +144,14 @@ const MyShopStoreCustom = () => {
                     <svg
                       stroke="currentColor"
                       fill="none"
-                      stroke-width="2"
+                      strokeWidth="2"
                       viewBox="0 0 24 24"
                       strokeLinecap="round"
                       stroke-linejoin="round"
                       className="mt-1 mr-2"
                       height="1em"
                       width="1em"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
+                      xmlns="http://www.w3.org/2000/svg">
                       <circle cx="12" cy="12" r="3"></circle>
                       <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
                     </svg>
@@ -213,8 +202,7 @@ const MyShopStoreCustom = () => {
                           <div
                             className="border-2 border-gray-300 dark:border-gray-600 border-dashed rounded-md cursor-pointer px-6 pt-5 pb-6"
                             role="presentation"
-                            tabIndex={0}
-                          >
+                            tabIndex={0}>
                             <input
                               accept="image/*,.jpeg,.jpg,.png,.webp"
                               type="file"
@@ -225,15 +213,14 @@ const MyShopStoreCustom = () => {
                               <svg
                                 stroke="currentColor"
                                 fill="none"
-                                stroke-width="2"
+                                strokeWidth="2"
                                 viewBox="0 0 24 24"
                                 strokeLinecap="round"
                                 stroke-linejoin="round"
                                 className="text-3xl text-emerald-500"
                                 height="1em"
                                 width="1em"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
+                                xmlns="http://www.w3.org/2000/svg">
                                 <polyline points="16 16 12 12 8 16"></polyline>
                                 <line x1="12" y1="12" x2="12" y2="21"></line>
                                 <path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"></path>
@@ -259,19 +246,17 @@ const MyShopStoreCustom = () => {
                               />
                               <button
                                 type="button"
-                                className="absolute top-0 right-0 text-red-500 focus:outline-none"
-                              >
+                                className="absolute top-0 right-0 text-red-500 focus:outline-none">
                                 <svg
                                   stroke="currentColor"
                                   fill="none"
-                                  stroke-width="2"
+                                  strokeWidth="2"
                                   viewBox="0 0 24 24"
                                   strokeLinecap="round"
                                   stroke-linejoin="round"
                                   height="1em"
                                   width="1em"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                >
+                                  xmlns="http://www.w3.org/2000/svg">
                                   <circle cx="12" cy="12" r="10"></circle>
                                   <line x1="15" y1="9" x2="9" y2="15"></line>
                                   <line x1="9" y1="9" x2="15" y2="15"></line>
@@ -287,8 +272,7 @@ const MyShopStoreCustom = () => {
                     <div className="fixed right-auto md:mb-6 mb-3 bottom-0 z-40">
                       <button
                         className="align-bottom inline-flex items-center justify-center cursor-pointer leading-5 transition-colors duration-150 font-medium focus:outline-none px-4 py-2 rounded-lg text-sm text-white bg-emerald-500 border border-transparent active:bg-emerald-600 hover:bg-emerald-600 h-10 px-6"
-                        type="submit"
-                      >
+                        type="submit">
                         {" "}
                         Update
                       </button>
@@ -300,15 +284,14 @@ const MyShopStoreCustom = () => {
                     <svg
                       stroke="currentColor"
                       fill="none"
-                      stroke-width="2"
+                      strokeWidth="2"
                       viewBox="0 0 24 24"
                       strokeLinecap="round"
                       stroke-linejoin="round"
                       className="mt-1 mr-2"
                       height="1em"
                       width="1em"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
+                      xmlns="http://www.w3.org/2000/svg">
                       <circle cx="12" cy="12" r="3"></circle>
                       <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
                     </svg>{" "}
@@ -325,8 +308,7 @@ const MyShopStoreCustom = () => {
                           aria-selected="true"
                           aria-disabled="false"
                           aria-controls="panel:rj:0"
-                          data-rttab="true"
-                        >
+                          data-rttab="true">
                           Slider 1
                         </Tab>
                         <Tab
@@ -336,8 +318,7 @@ const MyShopStoreCustom = () => {
                           aria-selected="false"
                           aria-disabled="false"
                           aria-controls="panel:rj:1"
-                          data-rttab="true"
-                        >
+                          data-rttab="true">
                           Slider 2
                         </Tab>
                         <Tab
@@ -347,8 +328,7 @@ const MyShopStoreCustom = () => {
                           aria-selected="false"
                           aria-disabled="false"
                           aria-controls="panel:rj:2"
-                          data-rttab="true"
-                        >
+                          data-rttab="true">
                           Slider 3
                         </Tab>
                         <Tab
@@ -358,8 +338,7 @@ const MyShopStoreCustom = () => {
                           aria-selected="false"
                           aria-disabled="false"
                           aria-controls="panel:rj:3"
-                          data-rttab="true"
-                        >
+                          data-rttab="true">
                           Slider 4
                         </Tab>
                         <Tab
@@ -369,8 +348,7 @@ const MyShopStoreCustom = () => {
                           aria-selected="false"
                           aria-disabled="false"
                           aria-controls="panel:rj:4"
-                          data-rttab="true"
-                        >
+                          data-rttab="true">
                           Slider 5
                         </Tab>
                         <Tab
@@ -380,8 +358,7 @@ const MyShopStoreCustom = () => {
                           aria-selected="false"
                           aria-disabled="false"
                           aria-controls="panel:rj:5"
-                          data-rttab="true"
-                        >
+                          data-rttab="true">
                           Options
                         </Tab>
                       </TabList>
@@ -390,8 +367,7 @@ const MyShopStoreCustom = () => {
                           className="md:mt-10 mt-3 react-tabs__tab-panel--selected"
                           role="tabpanel"
                           id="panel:rj:0"
-                          aria-labelledby="tab:rj:0"
-                        >
+                          aria-labelledby="tab:rj:0">
                           <div className="grid md:grid-cols-5 sm:grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 md:mb-6 mb-3 relative">
                             <label className="block md:text-sm  md:col-span-1 sm:col-span-2 text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1">
                               Slider Images 1
@@ -401,8 +377,7 @@ const MyShopStoreCustom = () => {
                                 <div
                                   className="border-2 border-gray-300 dark:border-gray-600 border-dashed rounded-md cursor-pointer px-6 pt-5 pb-6"
                                   role="presentation"
-                                  tabIndex={0}
-                                >
+                                  tabIndex={0}>
                                   <input
                                     accept="image/*,.jpeg,.jpg,.png,.webp"
                                     type="file"
@@ -413,22 +388,20 @@ const MyShopStoreCustom = () => {
                                     <svg
                                       stroke="currentColor"
                                       fill="none"
-                                      stroke-width="2"
+                                      strokeWidth="2"
                                       viewBox="0 0 24 24"
                                       strokeLinecap="round"
                                       stroke-linejoin="round"
                                       className="text-3xl text-emerald-500"
                                       height="1em"
                                       width="1em"
-                                      xmlns="http://www.w3.org/2000/svg"
-                                    >
+                                      xmlns="http://www.w3.org/2000/svg">
                                       <polyline points="16 16 12 12 8 16"></polyline>
                                       <line
                                         x1="12"
                                         y1="12"
                                         x2="12"
-                                        y2="21"
-                                      ></line>
+                                        y2="21"></line>
                                       <path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"></path>
                                       <polyline points="16 16 12 12 8 16"></polyline>
                                     </svg>
@@ -452,32 +425,28 @@ const MyShopStoreCustom = () => {
                                     />
                                     <button
                                       type="button"
-                                      className="absolute top-0 right-0 text-red-500 focus:outline-none"
-                                    >
+                                      className="absolute top-0 right-0 text-red-500 focus:outline-none">
                                       <svg
                                         stroke="currentColor"
                                         fill="none"
-                                        stroke-width="2"
+                                        strokeWidth="2"
                                         viewBox="0 0 24 24"
                                         strokeLinecap="round"
                                         stroke-linejoin="round"
                                         height="1em"
                                         width="1em"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                      >
+                                        xmlns="http://www.w3.org/2000/svg">
                                         <circle cx="12" cy="12" r="10"></circle>
                                         <line
                                           x1="15"
                                           y1="9"
                                           x2="9"
-                                          y2="15"
-                                        ></line>
+                                          y2="15"></line>
                                         <line
                                           x1="9"
                                           y1="9"
                                           x2="15"
-                                          y2="15"
-                                        ></line>
+                                          y2="15"></line>
                                       </svg>
                                     </button>
                                   </div>
@@ -510,8 +479,7 @@ const MyShopStoreCustom = () => {
                                 name="slider_description"
                                 placeholder="Slider Description"
                                 rows={4}
-                                spellCheck="false"
-                              ></textarea>
+                                spellCheck="false"></textarea>
                             </div>
                           </div>
                           <div className="grid md:grid-cols-5 sm:grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 md:mb-6 mb-3 relative">
@@ -551,8 +519,7 @@ const MyShopStoreCustom = () => {
                           className="md:mt-10 mt-3 react-tabs__tab-panel--selected"
                           role="tabpanel"
                           id="panel:rj:0"
-                          aria-labelledby="tab:rj:0"
-                        >
+                          aria-labelledby="tab:rj:0">
                           <div className="grid md:grid-cols-5 sm:grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 md:mb-6 mb-3 relative">
                             <label className="block md:text-sm  md:col-span-1 sm:col-span-2 text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1">
                               Slider Images
@@ -562,8 +529,7 @@ const MyShopStoreCustom = () => {
                                 <div
                                   className="border-2 border-gray-300 dark:border-gray-600 border-dashed rounded-md cursor-pointer px-6 pt-5 pb-6"
                                   role="presentation"
-                                  tabIndex={0}
-                                >
+                                  tabIndex={0}>
                                   <input
                                     accept="image/*,.jpeg,.jpg,.png,.webp"
                                     type="file"
@@ -574,22 +540,20 @@ const MyShopStoreCustom = () => {
                                     <svg
                                       stroke="currentColor"
                                       fill="none"
-                                      stroke-width="2"
+                                      strokeWidth="2"
                                       viewBox="0 0 24 24"
                                       strokeLinecap="round"
                                       stroke-linejoin="round"
                                       className="text-3xl text-emerald-500"
                                       height="1em"
                                       width="1em"
-                                      xmlns="http://www.w3.org/2000/svg"
-                                    >
+                                      xmlns="http://www.w3.org/2000/svg">
                                       <polyline points="16 16 12 12 8 16"></polyline>
                                       <line
                                         x1="12"
                                         y1="12"
                                         x2="12"
-                                        y2="21"
-                                      ></line>
+                                        y2="21"></line>
                                       <path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"></path>
                                       <polyline points="16 16 12 12 8 16"></polyline>
                                     </svg>
@@ -613,32 +577,28 @@ const MyShopStoreCustom = () => {
                                     />
                                     <button
                                       type="button"
-                                      className="absolute top-0 right-0 text-red-500 focus:outline-none"
-                                    >
+                                      className="absolute top-0 right-0 text-red-500 focus:outline-none">
                                       <svg
                                         stroke="currentColor"
                                         fill="none"
-                                        stroke-width="2"
+                                        strokeWidth="2"
                                         viewBox="0 0 24 24"
                                         strokeLinecap="round"
                                         stroke-linejoin="round"
                                         height="1em"
                                         width="1em"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                      >
+                                        xmlns="http://www.w3.org/2000/svg">
                                         <circle cx="12" cy="12" r="10"></circle>
                                         <line
                                           x1="15"
                                           y1="9"
                                           x2="9"
-                                          y2="15"
-                                        ></line>
+                                          y2="15"></line>
                                         <line
                                           x1="9"
                                           y1="9"
                                           x2="15"
-                                          y2="15"
-                                        ></line>
+                                          y2="15"></line>
                                       </svg>
                                     </button>
                                   </div>
@@ -671,8 +631,7 @@ const MyShopStoreCustom = () => {
                                 name="slider_description"
                                 placeholder="Slider Description"
                                 rows={4}
-                                spellCheck="false"
-                              ></textarea>
+                                spellCheck="false"></textarea>
                             </div>
                           </div>
                           <div className="grid md:grid-cols-5 sm:grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 md:mb-6 mb-3 relative">
@@ -715,15 +674,14 @@ const MyShopStoreCustom = () => {
                     <svg
                       stroke="currentColor"
                       fill="none"
-                      stroke-width="2"
+                      strokeWidth="2"
                       viewBox="0 0 24 24"
                       strokeLinecap="round"
                       stroke-linejoin="round"
                       className="mt-1 mr-2"
                       height="1em"
                       width="1em"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
+                      xmlns="http://www.w3.org/2000/svg">
                       <circle cx="12" cy="12" r="3"></circle>
                       <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
                     </svg>
@@ -832,15 +790,14 @@ const MyShopStoreCustom = () => {
                     <svg
                       stroke="currentColor"
                       fill="none"
-                      stroke-width="2"
+                      strokeWidth="2"
                       viewBox="0 0 24 24"
                       strokeLinecap="round"
                       stroke-linejoin="round"
                       className="mt-1 mr-2"
                       height="1em"
                       width="1em"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
+                      xmlns="http://www.w3.org/2000/svg">
                       <circle cx="12" cy="12" r="3"></circle>
                       <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
                     </svg>{" "}
@@ -880,8 +837,7 @@ const MyShopStoreCustom = () => {
                             name="promotion_description"
                             placeholder="Promotion Description"
                             rows={4}
-                            spellCheck="false"
-                          ></textarea>
+                            spellCheck="false"></textarea>
                         </div>
                       </div>
                       <div className="grid md:grid-cols-5 sm:grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 md:mb-6 mb-3 relative">
@@ -922,15 +878,14 @@ const MyShopStoreCustom = () => {
                     <svg
                       stroke="currentColor"
                       fill="none"
-                      stroke-width="2"
+                      strokeWidth="2"
                       viewBox="0 0 24 24"
                       strokeLinecap="round"
                       stroke-linejoin="round"
                       className="mt-1 mr-2"
                       height="1em"
                       width="1em"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
+                      xmlns="http://www.w3.org/2000/svg">
                       <circle cx="12" cy="12" r="3"></circle>
                       <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
                     </svg>{" "}
@@ -969,8 +924,7 @@ const MyShopStoreCustom = () => {
                             name="feature_description"
                             placeholder="Featured Categories"
                             rows={4}
-                            spellCheck="false"
-                          ></textarea>
+                            spellCheck="false"></textarea>
                         </div>
                       </div>
                       <div className="grid md:grid-cols-5 sm:grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 md:mb-6 mb-3">
@@ -980,8 +934,7 @@ const MyShopStoreCustom = () => {
                         <div className="sm:col-span-4">
                           <select
                             className="block w-full h-12 border bg-gray-100 px-2 py-1 text-sm dark:text-gray-300 focus:outline-none rounded-md form-select focus:bg-white dark:focus:bg-gray-700 focus:border-gray-200 border-gray-200 dark:border-gray-600 focus:shadow-none dark:focus:border-gray-500 dark:bg-gray-700 leading-5"
-                            name="feature_product_limit"
-                          >
+                            name="feature_product_limit">
                             <option value="" className="hidden">
                               Select Products Limit
                             </option>
@@ -999,15 +952,14 @@ const MyShopStoreCustom = () => {
                     <svg
                       stroke="currentColor"
                       fill="none"
-                      stroke-width="2"
+                      strokeWidth="2"
                       viewBox="0 0 24 24"
                       strokeLinecap="round"
                       stroke-linejoin="round"
                       className="mt-1 mr-2"
                       height="1em"
                       width="1em"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
+                      xmlns="http://www.w3.org/2000/svg">
                       <circle cx="12" cy="12" r="3"></circle>
                       <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
                     </svg>
@@ -1047,8 +999,7 @@ const MyShopStoreCustom = () => {
                             name="popular_description"
                             placeholder="Popular Description"
                             rows={4}
-                            spellCheck="false"
-                          ></textarea>
+                            spellCheck="false"></textarea>
                         </div>
                       </div>
                       <div className="grid md:grid-cols-5 sm:grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 md:mb-6 mb-3">
@@ -1058,8 +1009,7 @@ const MyShopStoreCustom = () => {
                         <div className="sm:col-span-4">
                           <select
                             className="block w-full h-12 border bg-gray-100 px-2 py-1 text-sm dark:text-gray-300 focus:outline-none rounded-md form-select focus:bg-white dark:focus:bg-gray-700 focus:border-gray-200 border-gray-200 dark:border-gray-600 focus:shadow-none dark:focus:border-gray-500 dark:bg-gray-700 leading-5"
-                            name="popular_product_limit"
-                          >
+                            name="popular_product_limit">
                             <option value="" className="hidden">
                               Select Products Limit
                             </option>
@@ -1077,15 +1027,14 @@ const MyShopStoreCustom = () => {
                     <svg
                       stroke="currentColor"
                       fill="none"
-                      stroke-width="2"
+                      strokeWidth="2"
                       viewBox="0 0 24 24"
                       strokeLinecap="round"
                       stroke-linejoin="round"
                       className="mt-1 mr-2"
                       height="1em"
                       width="1em"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
+                      xmlns="http://www.w3.org/2000/svg">
                       <circle cx="12" cy="12" r="3"></circle>
                       <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
                     </svg>{" "}
@@ -1140,8 +1089,7 @@ const MyShopStoreCustom = () => {
                             name="quick_delivery_description"
                             placeholder="Quick Delivery Section"
                             rows={4}
-                            spellCheck="false"
-                          ></textarea>
+                            spellCheck="false"></textarea>
                         </div>
                       </div>
                       <div className="grid md:grid-cols-5 sm:grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 md:mb-6 mb-3 relative">
@@ -1183,8 +1131,7 @@ const MyShopStoreCustom = () => {
                             <div
                               className="border-2 border-gray-300 dark:border-gray-600 border-dashed rounded-md cursor-pointer px-6 pt-5 pb-6"
                               role="presentation"
-                              tabIndex={0}
-                            >
+                              tabIndex={0}>
                               <input
                                 accept="image/*,.jpeg,.jpg,.png,.webp"
                                 type="file"
@@ -1195,15 +1142,14 @@ const MyShopStoreCustom = () => {
                                 <svg
                                   stroke="currentColor"
                                   fill="none"
-                                  stroke-width="2"
+                                  strokeWidth="2"
                                   viewBox="0 0 24 24"
                                   strokeLinecap="round"
                                   stroke-linejoin="round"
                                   className="text-3xl text-emerald-500"
                                   height="1em"
                                   width="1em"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                >
+                                  xmlns="http://www.w3.org/2000/svg">
                                   <polyline points="16 16 12 12 8 16"></polyline>
                                   <line x1="12" y1="12" x2="12" y2="21"></line>
                                   <path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"></path>
@@ -1229,19 +1175,17 @@ const MyShopStoreCustom = () => {
                                 />
                                 <button
                                   type="button"
-                                  className="absolute top-0 right-0 text-red-500 focus:outline-none"
-                                >
+                                  className="absolute top-0 right-0 text-red-500 focus:outline-none">
                                   <svg
                                     stroke="currentColor"
                                     fill="none"
-                                    stroke-width="2"
+                                    strokeWidth="2"
                                     viewBox="0 0 24 24"
                                     strokeLinecap="round"
                                     stroke-linejoin="round"
                                     height="1em"
                                     width="1em"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
+                                    xmlns="http://www.w3.org/2000/svg">
                                     <circle cx="12" cy="12" r="10"></circle>
                                     <line x1="15" y1="9" x2="9" y2="15"></line>
                                     <line x1="9" y1="9" x2="15" y2="15"></line>
@@ -1260,15 +1204,14 @@ const MyShopStoreCustom = () => {
                     <svg
                       stroke="currentColor"
                       fill="none"
-                      stroke-width="2"
+                      strokeWidth="2"
                       viewBox="0 0 24 24"
                       strokeLinecap="round"
                       stroke-linejoin="round"
                       className="mt-1 mr-2"
                       height="1em"
                       width="1em"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
+                      xmlns="http://www.w3.org/2000/svg">
                       <circle cx="12" cy="12" r="3"></circle>
                       <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
                     </svg>{" "}
@@ -1336,8 +1279,7 @@ const MyShopStoreCustom = () => {
                             name="latest_discount_description"
                             placeholder="Latest Discount Description"
                             rows={4}
-                            spellCheck="false"
-                          ></textarea>
+                            spellCheck="false"></textarea>
                         </div>
                       </div>
                       <div className="grid md:grid-cols-5 sm:grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 md:mb-6 mb-3">
@@ -1347,8 +1289,7 @@ const MyShopStoreCustom = () => {
                         <div className="sm:col-span-4">
                           <select
                             className="block w-full h-12 border bg-gray-100 px-2 py-1 text-sm dark:text-gray-300 focus:outline-none rounded-md form-select focus:bg-white dark:focus:bg-gray-700 focus:border-gray-200 border-gray-200 dark:border-gray-600 focus:shadow-none dark:focus:border-gray-500 dark:bg-gray-700 leading-5"
-                            name="latest_discount_product_limit"
-                          >
+                            name="latest_discount_product_limit">
                             <option value="" className="hidden">
                               Select Products Limit
                             </option>
@@ -1366,15 +1307,14 @@ const MyShopStoreCustom = () => {
                     <svg
                       stroke="currentColor"
                       fill="none"
-                      stroke-width="2"
+                      strokeWidth="2"
                       viewBox="0 0 24 24"
                       strokeLinecap="round"
                       stroke-linejoin="round"
                       className="mt-1 mr-2"
                       height="1em"
                       width="1em"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
+                      xmlns="http://www.w3.org/2000/svg">
                       <circle cx="12" cy="12" r="3"></circle>
                       <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
                     </svg>{" "}
@@ -1442,8 +1382,7 @@ const MyShopStoreCustom = () => {
                             name="daily_need_description"
                             placeholder="Daily Need Description"
                             rows={4}
-                            spellCheck="false"
-                          ></textarea>
+                            spellCheck="false"></textarea>
                         </div>
                       </div>
                       <div className="grid md:grid-cols-5 sm:grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 md:mb-6 mb-3 relative">
@@ -1455,8 +1394,7 @@ const MyShopStoreCustom = () => {
                             <div
                               className="border-2 border-gray-300 dark:border-gray-600 border-dashed rounded-md cursor-pointer px-6 pt-5 pb-6"
                               role="presentation"
-                              tabIndex={0}
-                            >
+                              tabIndex={0}>
                               <input
                                 accept="image/*,.jpeg,.jpg,.png,.webp"
                                 type="file"
@@ -1467,15 +1405,14 @@ const MyShopStoreCustom = () => {
                                 <svg
                                   stroke="currentColor"
                                   fill="none"
-                                  stroke-width="2"
+                                  strokeWidth="2"
                                   viewBox="0 0 24 24"
                                   strokeLinecap="round"
                                   stroke-linejoin="round"
                                   className="text-3xl text-emerald-500"
                                   height="1em"
                                   width="1em"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                >
+                                  xmlns="http://www.w3.org/2000/svg">
                                   <polyline points="16 16 12 12 8 16"></polyline>
                                   <line x1="12" y1="12" x2="12" y2="21"></line>
                                   <path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"></path>
@@ -1501,19 +1438,17 @@ const MyShopStoreCustom = () => {
                                 />
                                 <button
                                   type="button"
-                                  className="absolute top-0 right-0 text-red-500 focus:outline-none"
-                                >
+                                  className="absolute top-0 right-0 text-red-500 focus:outline-none">
                                   <svg
                                     stroke="currentColor"
                                     fill="none"
-                                    stroke-width="2"
+                                    strokeWidth="2"
                                     viewBox="0 0 24 24"
                                     strokeLinecap="round"
                                     stroke-linejoin="round"
                                     height="1em"
                                     width="1em"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
+                                    xmlns="http://www.w3.org/2000/svg">
                                     <circle cx="12" cy="12" r="10"></circle>
                                     <line x1="15" y1="9" x2="9" y2="15"></line>
                                     <line x1="9" y1="9" x2="15" y2="15"></line>
@@ -1533,8 +1468,7 @@ const MyShopStoreCustom = () => {
                             <div
                               className="border-2 border-gray-300 dark:border-gray-600 border-dashed rounded-md cursor-pointer px-6 pt-5 pb-6"
                               role="presentation"
-                              tabIndex={0}
-                            >
+                              tabIndex={0}>
                               <input
                                 accept="image/*,.jpeg,.jpg,.png,.webp"
                                 type="file"
@@ -1545,15 +1479,14 @@ const MyShopStoreCustom = () => {
                                 <svg
                                   stroke="currentColor"
                                   fill="none"
-                                  stroke-width="2"
+                                  strokeWidth="2"
                                   viewBox="0 0 24 24"
                                   strokeLinecap="round"
                                   stroke-linejoin="round"
                                   className="text-3xl text-emerald-500"
                                   height="1em"
                                   width="1em"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                >
+                                  xmlns="http://www.w3.org/2000/svg">
                                   <polyline points="16 16 12 12 8 16"></polyline>
                                   <line x1="12" y1="12" x2="12" y2="21"></line>
                                   <path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"></path>
@@ -1579,19 +1512,17 @@ const MyShopStoreCustom = () => {
                                 />
                                 <button
                                   type="button"
-                                  className="absolute top-0 right-0 text-red-500 focus:outline-none"
-                                >
+                                  className="absolute top-0 right-0 text-red-500 focus:outline-none">
                                   <svg
                                     stroke="currentColor"
                                     fill="none"
-                                    stroke-width="2"
+                                    strokeWidth="2"
                                     viewBox="0 0 24 24"
                                     strokeLinecap="round"
                                     stroke-linejoin="round"
                                     height="1em"
                                     width="1em"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
+                                    xmlns="http://www.w3.org/2000/svg">
                                     <circle cx="12" cy="12" r="10"></circle>
                                     <line x1="15" y1="9" x2="9" y2="15"></line>
                                     <line x1="9" y1="9" x2="15" y2="15"></line>
@@ -1611,8 +1542,7 @@ const MyShopStoreCustom = () => {
                             <div
                               className="border-2 border-gray-300 dark:border-gray-600 border-dashed rounded-md cursor-pointer px-6 pt-5 pb-6"
                               role="presentation"
-                              tabIndex={0}
-                            >
+                              tabIndex={0}>
                               <input
                                 accept="image/*,.jpeg,.jpg,.png,.webp"
                                 type="file"
@@ -1623,15 +1553,14 @@ const MyShopStoreCustom = () => {
                                 <svg
                                   stroke="currentColor"
                                   fill="none"
-                                  stroke-width="2"
+                                  strokeWidth="2"
                                   viewBox="0 0 24 24"
                                   strokeLinecap="round"
                                   stroke-linejoin="round"
                                   className="text-3xl text-emerald-500"
                                   height="1em"
                                   width="1em"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                >
+                                  xmlns="http://www.w3.org/2000/svg">
                                   <polyline points="16 16 12 12 8 16"></polyline>
                                   <line x1="12" y1="12" x2="12" y2="21"></line>
                                   <path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"></path>
@@ -1657,19 +1586,17 @@ const MyShopStoreCustom = () => {
                                 />
                                 <button
                                   type="button"
-                                  className="absolute top-0 right-0 text-red-500 focus:outline-none"
-                                >
+                                  className="absolute top-0 right-0 text-red-500 focus:outline-none">
                                   <svg
                                     stroke="currentColor"
                                     fill="none"
-                                    stroke-width="2"
+                                    strokeWidth="2"
                                     viewBox="0 0 24 24"
                                     strokeLinecap="round"
                                     stroke-linejoin="round"
                                     height="1em"
                                     width="1em"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
+                                    xmlns="http://www.w3.org/2000/svg">
                                     <circle cx="12" cy="12" r="10"></circle>
                                     <line x1="15" y1="9" x2="9" y2="15"></line>
                                     <line x1="9" y1="9" x2="15" y2="15"></line>
@@ -1704,8 +1631,7 @@ const MyShopStoreCustom = () => {
                             <div
                               className="border-2 border-gray-300 dark:border-gray-600 border-dashed rounded-md cursor-pointer px-6 pt-5 pb-6"
                               role="presentation"
-                              tabIndex={0}
-                            >
+                              tabIndex={0}>
                               <input
                                 accept="image/*,.jpeg,.jpg,.png,.webp"
                                 type="file"
@@ -1716,15 +1642,14 @@ const MyShopStoreCustom = () => {
                                 <svg
                                   stroke="currentColor"
                                   fill="none"
-                                  stroke-width="2"
+                                  strokeWidth="2"
                                   viewBox="0 0 24 24"
                                   strokeLinecap="round"
                                   stroke-linejoin="round"
                                   className="text-3xl text-emerald-500"
                                   height="1em"
                                   width="1em"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                >
+                                  xmlns="http://www.w3.org/2000/svg">
                                   <polyline points="16 16 12 12 8 16"></polyline>
                                   <line x1="12" y1="12" x2="12" y2="21"></line>
                                   <path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"></path>
@@ -1750,19 +1675,17 @@ const MyShopStoreCustom = () => {
                                 />
                                 <button
                                   type="button"
-                                  className="absolute top-0 right-0 text-red-500 focus:outline-none"
-                                >
+                                  className="absolute top-0 right-0 text-red-500 focus:outline-none">
                                   <svg
                                     stroke="currentColor"
                                     fill="none"
-                                    stroke-width="2"
+                                    strokeWidth="2"
                                     viewBox="0 0 24 24"
                                     strokeLinecap="round"
                                     stroke-linejoin="round"
                                     height="1em"
                                     width="1em"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
+                                    xmlns="http://www.w3.org/2000/svg">
                                     <circle cx="12" cy="12" r="10"></circle>
                                     <line x1="15" y1="9" x2="9" y2="15"></line>
                                     <line x1="9" y1="9" x2="15" y2="15"></line>
@@ -1796,15 +1719,14 @@ const MyShopStoreCustom = () => {
                     <svg
                       stroke="currentColor"
                       fill="none"
-                      stroke-width="2"
+                      strokeWidth="2"
                       viewBox="0 0 24 24"
                       strokeLinecap="round"
                       stroke-linejoin="round"
                       className="mt-1 mr-2"
                       height="1em"
                       width="1em"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
+                      xmlns="http://www.w3.org/2000/svg">
                       <circle cx="12" cy="12" r="3"></circle>
                       <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
                     </svg>{" "}
@@ -1886,15 +1808,14 @@ const MyShopStoreCustom = () => {
                     <svg
                       stroke="currentColor"
                       fill="none"
-                      stroke-width="2"
+                      strokeWidth="2"
                       viewBox="0 0 24 24"
                       strokeLinecap="round"
                       stroke-linejoin="round"
                       className="mt-1 mr-2"
                       height="1em"
                       width="1em"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
+                      xmlns="http://www.w3.org/2000/svg">
                       <circle cx="12" cy="12" r="3"></circle>
                       <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
                     </svg>{" "}
@@ -2339,8 +2260,7 @@ const MyShopStoreCustom = () => {
                             <div
                               className="border-2 border-gray-300 dark:border-gray-600 border-dashed rounded-md cursor-pointer px-6 pt-5 pb-6"
                               role="presentation"
-                              tabIndex={0}
-                            >
+                              tabIndex={0}>
                               <input
                                 accept="image/*,.jpeg,.jpg,.png,.webp"
                                 type="file"
@@ -2351,15 +2271,14 @@ const MyShopStoreCustom = () => {
                                 <svg
                                   stroke="currentColor"
                                   fill="none"
-                                  stroke-width="2"
+                                  strokeWidth="2"
                                   viewBox="0 0 24 24"
                                   strokeLinecap="round"
                                   stroke-linejoin="round"
                                   className="text-3xl text-emerald-500"
                                   height="1em"
                                   width="1em"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                >
+                                  xmlns="http://www.w3.org/2000/svg">
                                   <polyline points="16 16 12 12 8 16"></polyline>
                                   <line x1="12" y1="12" x2="12" y2="21"></line>
                                   <path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"></path>
@@ -2385,19 +2304,17 @@ const MyShopStoreCustom = () => {
                                 />
                                 <button
                                   type="button"
-                                  className="absolute top-0 right-0 text-red-500 focus:outline-none"
-                                >
+                                  className="absolute top-0 right-0 text-red-500 focus:outline-none">
                                   <svg
                                     stroke="currentColor"
                                     fill="none"
-                                    stroke-width="2"
+                                    strokeWidth="2"
                                     viewBox="0 0 24 24"
                                     strokeLinecap="round"
                                     stroke-linejoin="round"
                                     height="1em"
                                     width="1em"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
+                                    xmlns="http://www.w3.org/2000/svg">
                                     <circle cx="12" cy="12" r="10"></circle>
                                     <line x1="15" y1="9" x2="9" y2="15"></line>
                                     <line x1="9" y1="9" x2="15" y2="15"></line>
@@ -2573,8 +2490,7 @@ const MyShopStoreCustom = () => {
                             <div
                               className="border-2 border-gray-300 dark:border-gray-600 border-dashed rounded-md cursor-pointer px-6 pt-5 pb-6"
                               role="presentation"
-                              tabIndex={0}
-                            >
+                              tabIndex={0}>
                               <input
                                 accept="image/*,.jpeg,.jpg,.png,.webp"
                                 type="file"
@@ -2585,15 +2501,14 @@ const MyShopStoreCustom = () => {
                                 <svg
                                   stroke="currentColor"
                                   fill="none"
-                                  stroke-width="2"
+                                  strokeWidth="2"
                                   viewBox="0 0 24 24"
                                   strokeLinecap="round"
                                   stroke-linejoin="round"
                                   className="text-3xl text-emerald-500"
                                   height="1em"
                                   width="1em"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                >
+                                  xmlns="http://www.w3.org/2000/svg">
                                   <polyline points="16 16 12 12 8 16"></polyline>
                                   <line x1="12" y1="12" x2="12" y2="21"></line>
                                   <path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"></path>
@@ -2619,19 +2534,17 @@ const MyShopStoreCustom = () => {
                                 />
                                 <button
                                   type="button"
-                                  className="absolute top-0 right-0 text-red-500 focus:outline-none"
-                                >
+                                  className="absolute top-0 right-0 text-red-500 focus:outline-none">
                                   <svg
                                     stroke="currentColor"
                                     fill="none"
-                                    stroke-width="2"
+                                    strokeWidth="2"
                                     viewBox="0 0 24 24"
                                     strokeLinecap="round"
                                     stroke-linejoin="round"
                                     height="1em"
                                     width="1em"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
+                                    xmlns="http://www.w3.org/2000/svg">
                                     <circle cx="12" cy="12" r="10"></circle>
                                     <line x1="15" y1="9" x2="9" y2="15"></line>
                                     <line x1="9" y1="9" x2="15" y2="15"></line>

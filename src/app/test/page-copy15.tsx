@@ -17,8 +17,7 @@ const TestPage = () => {
                       style={{
                         width: "100%",
                         transform: "translate3d(0px, 0px, 0px)",
-                      }}
-                    >
+                      }}>
                       {/* Product images for slick-for */}
                       <div className="slick-slide">
                         <div className="product-imgwrap">
@@ -67,8 +66,7 @@ const TestPage = () => {
                       style={{
                         width: "100%",
                         transform: "translate3d(-810px, 0px, 0px)",
-                      }}
-                    >
+                      }}>
                       {/* Cloned product images for slick-to */}
                       <div className="slick-slide slick-cloned">
                         <div className="product-imgwrap">
@@ -218,11 +216,10 @@ const TestPage = () => {
                             viewBox="0 0 24 24"
                             fill="none"
                             stroke="currentColor"
-                            stroke-width="2"
+                            strokeWidth="2"
                             stroke-linecap="round"
                             stroke-linejoin="round"
-                            className="feather feather-share-2"
-                          >
+                            className="feather feather-share-2">
                             <circle cx="18" cy="5" r="3"></circle>
                             <circle cx="6" cy="12" r="3"></circle>
                             <circle cx="18" cy="19" r="3"></circle>
@@ -230,14 +227,12 @@ const TestPage = () => {
                               x1="8.59"
                               y1="13.51"
                               x2="15.42"
-                              y2="17.49"
-                            ></line>
+                              y2="17.49"></line>
                             <line
                               x1="15.41"
                               y1="6.51"
                               x2="8.59"
-                              y2="10.49"
-                            ></line>
+                              y2="10.49"></line>
                           </svg>
                         </span>
                         <ul className="share-iconlist">
@@ -327,11 +322,10 @@ const TestPage = () => {
                           viewBox="0 0 24 24"
                           fill="none"
                           stroke="currentColor"
-                          stroke-width="2"
+                          strokeWidth="2"
                           stroke-linecap="round"
                           stroke-linejoin="round"
-                          className="feather feather-minus"
-                        >
+                          className="feather feather-minus">
                           <line x1="5" y1="12" x2="19" y2="12"></line>
                         </svg>
                       </span>
@@ -350,11 +344,10 @@ const TestPage = () => {
                           viewBox="0 0 24 24"
                           fill="none"
                           stroke="currentColor"
-                          stroke-width="2"
+                          strokeWidth="2"
                           stroke-linecap="round"
                           stroke-linejoin="round"
-                          className="feather feather-plus"
-                        >
+                          className="feather feather-plus">
                           <line x1="12" y1="5" x2="12" y2="19"></line>
                           <line x1="5" y1="12" x2="19" y2="12"></line>
                         </svg>
@@ -598,14 +591,12 @@ const TestPage = () => {
                         <div className="form-group">
                           <textarea
                             className="form-control"
-                            placeholder="Your Review"
-                          ></textarea>
+                            placeholder="Your Review"></textarea>
                         </div>
                         <div className="form-group mb-0">
                           <a
                             className="btn btn-primary"
-                            href="javascript:void(0)"
-                          >
+                            href="javascript:void(0)">
                             Post review
                           </a>
                         </div>
@@ -620,13 +611,11 @@ const TestPage = () => {
                 <h3>Related products</h3>
                 <div
                   className="slide-5 arrow-style1 slick-initialized slick-slider"
-                  data-slick='{"slidesToShow": 4, "slidesToScroll": 1}'
-                >
+                  data-slick='{"slidesToShow": 4, "slidesToScroll": 1}'>
                   <button
                     className="slick-prev slick-arrow"
                     aria-label="Previous"
-                    type="button"
-                  >
+                    type="button">
                     Previous
                   </button>
                   <div className="slick-list draggable">
@@ -636,8 +625,7 @@ const TestPage = () => {
                         data-slick-index="-4"
                         id=""
                         aria-hidden="true"
-                        tabIndex={-1}
-                      >
+                        tabIndex={-1}>
                         <div className="product-boxwrap">
                           <div className="product-imgwrap">
                             <a href="product-detail.html" tabIndex={-1}>
@@ -653,8 +641,7 @@ const TestPage = () => {
                                 <a
                                   href="cart.html"
                                   data-tip="add to cart"
-                                  tabIndex={-1}
-                                >
+                                  tabIndex={-1}>
                                   <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="24"
@@ -662,11 +649,10 @@ const TestPage = () => {
                                     viewBox="0 0 24 24"
                                     fill="none"
                                     stroke="currentColor"
-                                    stroke-width="2"
+                                    strokeWidth="2"
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
-                                    className="feather feather-shopping-cart"
-                                  >
+                                    className="feather feather-shopping-cart">
                                     <circle cx="9" cy="21" r="1"></circle>
                                     <circle cx="20" cy="21" r="1"></circle>
                                     <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
@@ -677,8 +663,7 @@ const TestPage = () => {
                                 <a
                                   href="product-detail.html"
                                   data-tip="Quick View"
-                                  tabIndex={-1}
-                                >
+                                  tabIndex={-1}>
                                   <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="24"
@@ -686,11 +671,10 @@ const TestPage = () => {
                                     viewBox="0 0 24 24"
                                     fill="none"
                                     stroke="currentColor"
-                                    stroke-width="2"
+                                    strokeWidth="2"
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
-                                    className="feather feather-eye"
-                                  >
+                                    className="feather feather-eye">
                                     <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                                     <circle cx="12" cy="12" r="3"></circle>
                                   </svg>
@@ -700,8 +684,7 @@ const TestPage = () => {
                                 <a
                                   href="wishlist.html"
                                   data-tip="Wishlist"
-                                  tabIndex={-1}
-                                >
+                                  tabIndex={-1}>
                                   <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="24"
@@ -709,11 +692,10 @@ const TestPage = () => {
                                     viewBox="0 0 24 24"
                                     fill="none"
                                     stroke="currentColor"
-                                    stroke-width="2"
+                                    strokeWidth="2"
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
-                                    className="feather feather-heart"
-                                  >
+                                    className="feather feather-heart">
                                     <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
                                   </svg>
                                 </a>
@@ -784,8 +766,7 @@ const TestPage = () => {
                         data-slick-index="-3"
                         id=""
                         aria-hidden="true"
-                        tabIndex={-1}
-                      >
+                        tabIndex={-1}>
                         <div className="product-boxwrap">
                           <div className="product-imgwrap">
                             <a href="product-detail.html" tabIndex={-1}>
@@ -801,8 +782,7 @@ const TestPage = () => {
                                 <a
                                   href="cart.html"
                                   data-tip="add to cart"
-                                  tabIndex={-1}
-                                >
+                                  tabIndex={-1}>
                                   <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="24"
@@ -810,11 +790,10 @@ const TestPage = () => {
                                     viewBox="0 0 24 24"
                                     fill="none"
                                     stroke="currentColor"
-                                    stroke-width="2"
+                                    strokeWidth="2"
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
-                                    className="feather feather-shopping-cart"
-                                  >
+                                    className="feather feather-shopping-cart">
                                     <circle cx="9" cy="21" r="1"></circle>
                                     <circle cx="20" cy="21" r="1"></circle>
                                     <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
@@ -825,8 +804,7 @@ const TestPage = () => {
                                 <a
                                   href="product-detail.html"
                                   data-tip="Quick View"
-                                  tabIndex={-1}
-                                >
+                                  tabIndex={-1}>
                                   <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="24"
@@ -834,11 +812,10 @@ const TestPage = () => {
                                     viewBox="0 0 24 24"
                                     fill="none"
                                     stroke="currentColor"
-                                    stroke-width="2"
+                                    strokeWidth="2"
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
-                                    className="feather feather-eye"
-                                  >
+                                    className="feather feather-eye">
                                     <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                                     <circle cx="12" cy="12" r="3"></circle>
                                   </svg>
@@ -848,8 +825,7 @@ const TestPage = () => {
                                 <a
                                   href="wishlist.html"
                                   data-tip="Wishlist"
-                                  tabIndex={-1}
-                                >
+                                  tabIndex={-1}>
                                   <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="24"
@@ -857,11 +833,10 @@ const TestPage = () => {
                                     viewBox="0 0 24 24"
                                     fill="none"
                                     stroke="currentColor"
-                                    stroke-width="2"
+                                    strokeWidth="2"
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
-                                    className="feather feather-heart"
-                                  >
+                                    className="feather feather-heart">
                                     <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
                                   </svg>
                                 </a>
@@ -932,8 +907,7 @@ const TestPage = () => {
                         data-slick-index="-2"
                         id=""
                         aria-hidden="true"
-                        tabIndex={-1}
-                      >
+                        tabIndex={-1}>
                         <div className="product-boxwrap">
                           <div className="product-imgwrap">
                             <a href="product-detail.html" tabIndex={-1}>
@@ -949,8 +923,7 @@ const TestPage = () => {
                                 <a
                                   href="cart.html"
                                   data-tip="add to cart"
-                                  tabIndex={-1}
-                                >
+                                  tabIndex={-1}>
                                   <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="24"
@@ -958,11 +931,10 @@ const TestPage = () => {
                                     viewBox="0 0 24 24"
                                     fill="none"
                                     stroke="currentColor"
-                                    stroke-width="2"
+                                    strokeWidth="2"
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
-                                    className="feather feather-shopping-cart"
-                                  >
+                                    className="feather feather-shopping-cart">
                                     <circle cx="9" cy="21" r="1"></circle>
                                     <circle cx="20" cy="21" r="1"></circle>
                                     <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
@@ -973,8 +945,7 @@ const TestPage = () => {
                                 <a
                                   href="product-detail.html"
                                   data-tip="Quick View"
-                                  tabIndex={-1}
-                                >
+                                  tabIndex={-1}>
                                   <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="24"
@@ -982,11 +953,10 @@ const TestPage = () => {
                                     viewBox="0 0 24 24"
                                     fill="none"
                                     stroke="currentColor"
-                                    stroke-width="2"
+                                    strokeWidth="2"
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
-                                    className="feather feather-eye"
-                                  >
+                                    className="feather feather-eye">
                                     <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                                     <circle cx="12" cy="12" r="3"></circle>
                                   </svg>
@@ -996,8 +966,7 @@ const TestPage = () => {
                                 <a
                                   href="wishlist.html"
                                   data-tip="Wishlist"
-                                  tabIndex={-1}
-                                >
+                                  tabIndex={-1}>
                                   <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="24"
@@ -1005,11 +974,10 @@ const TestPage = () => {
                                     viewBox="0 0 24 24"
                                     fill="none"
                                     stroke="currentColor"
-                                    stroke-width="2"
+                                    strokeWidth="2"
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
-                                    className="feather feather-heart"
-                                  >
+                                    className="feather feather-heart">
                                     <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
                                   </svg>
                                 </a>
@@ -1080,8 +1048,7 @@ const TestPage = () => {
                         data-slick-index="-1"
                         id=""
                         aria-hidden="true"
-                        tabIndex={-1}
-                      >
+                        tabIndex={-1}>
                         <div className="product-boxwrap">
                           <div className="product-imgwrap">
                             <a href="product-detail.html" tabIndex={-1}>
@@ -1097,8 +1064,7 @@ const TestPage = () => {
                                 <a
                                   href="cart.html"
                                   data-tip="add to cart"
-                                  tabIndex={-1}
-                                >
+                                  tabIndex={-1}>
                                   <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="24"
@@ -1106,11 +1072,10 @@ const TestPage = () => {
                                     viewBox="0 0 24 24"
                                     fill="none"
                                     stroke="currentColor"
-                                    stroke-width="2"
+                                    strokeWidth="2"
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
-                                    className="feather feather-shopping-cart"
-                                  >
+                                    className="feather feather-shopping-cart">
                                     <circle cx="9" cy="21" r="1"></circle>
                                     <circle cx="20" cy="21" r="1"></circle>
                                     <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
@@ -1121,8 +1086,7 @@ const TestPage = () => {
                                 <a
                                   href="product-detail.html"
                                   data-tip="Quick View"
-                                  tabIndex={-1}
-                                >
+                                  tabIndex={-1}>
                                   <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="24"
@@ -1130,11 +1094,10 @@ const TestPage = () => {
                                     viewBox="0 0 24 24"
                                     fill="none"
                                     stroke="currentColor"
-                                    stroke-width="2"
+                                    strokeWidth="2"
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
-                                    className="feather feather-eye"
-                                  >
+                                    className="feather feather-eye">
                                     <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                                     <circle cx="12" cy="12" r="3"></circle>
                                   </svg>
@@ -1144,8 +1107,7 @@ const TestPage = () => {
                                 <a
                                   href="wishlist.html"
                                   data-tip="Wishlist"
-                                  tabIndex={-1}
-                                >
+                                  tabIndex={-1}>
                                   <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="24"
@@ -1153,11 +1115,10 @@ const TestPage = () => {
                                     viewBox="0 0 24 24"
                                     fill="none"
                                     stroke="currentColor"
-                                    stroke-width="2"
+                                    strokeWidth="2"
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
-                                    className="feather feather-heart"
-                                  >
+                                    className="feather feather-heart">
                                     <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
                                   </svg>
                                 </a>
@@ -1227,8 +1188,7 @@ const TestPage = () => {
                         className="w-[270px] slick-slide slick-current slick-active"
                         data-slick-index="0"
                         aria-hidden="false"
-                        tabIndex={0}
-                      >
+                        tabIndex={0}>
                         <div className="product-boxwrap">
                           <div className="product-imgwrap">
                             <a href="product-detail.html" tabIndex={0}>
@@ -1245,8 +1205,7 @@ const TestPage = () => {
                                 <a
                                   href="cart.html"
                                   data-tip="add to cart"
-                                  tabIndex={0}
-                                >
+                                  tabIndex={0}>
                                   <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="24"
@@ -1254,11 +1213,10 @@ const TestPage = () => {
                                     viewBox="0 0 24 24"
                                     fill="none"
                                     stroke="currentColor"
-                                    stroke-width="2"
+                                    strokeWidth="2"
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
-                                    className="feather feather-shopping-cart"
-                                  >
+                                    className="feather feather-shopping-cart">
                                     <circle cx="9" cy="21" r="1"></circle>
                                     <circle cx="20" cy="21" r="1"></circle>
                                     <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
@@ -1269,8 +1227,7 @@ const TestPage = () => {
                                 <a
                                   href="product-detail.html"
                                   data-tip="Quick View"
-                                  tabIndex={0}
-                                >
+                                  tabIndex={0}>
                                   <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="24"
@@ -1278,11 +1235,10 @@ const TestPage = () => {
                                     viewBox="0 0 24 24"
                                     fill="none"
                                     stroke="currentColor"
-                                    stroke-width="2"
+                                    strokeWidth="2"
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
-                                    className="feather feather-eye"
-                                  >
+                                    className="feather feather-eye">
                                     <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                                     <circle cx="12" cy="12" r="3"></circle>
                                   </svg>
@@ -1292,8 +1248,7 @@ const TestPage = () => {
                                 <a
                                   href="wishlist.html"
                                   data-tip="Wishlist"
-                                  tabIndex={0}
-                                >
+                                  tabIndex={0}>
                                   <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="24"
@@ -1301,11 +1256,10 @@ const TestPage = () => {
                                     viewBox="0 0 24 24"
                                     fill="none"
                                     stroke="currentColor"
-                                    stroke-width="2"
+                                    strokeWidth="2"
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
-                                    className="feather feather-heart"
-                                  >
+                                    className="feather feather-heart">
                                     <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
                                   </svg>
                                 </a>
@@ -1375,8 +1329,7 @@ const TestPage = () => {
                         className="w-[270px] slick-slide slick-active"
                         data-slick-index="1"
                         aria-hidden="false"
-                        tabIndex={0}
-                      >
+                        tabIndex={0}>
                         <div className="product-boxwrap">
                           <div className="product-imgwrap">
                             <a href="product-detail.html" tabIndex={0}>
@@ -1392,8 +1345,7 @@ const TestPage = () => {
                                 <a
                                   href="cart.html"
                                   data-tip="add to cart"
-                                  tabIndex={0}
-                                >
+                                  tabIndex={0}>
                                   <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="24"
@@ -1401,11 +1353,10 @@ const TestPage = () => {
                                     viewBox="0 0 24 24"
                                     fill="none"
                                     stroke="currentColor"
-                                    stroke-width="2"
+                                    strokeWidth="2"
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
-                                    className="feather feather-shopping-cart"
-                                  >
+                                    className="feather feather-shopping-cart">
                                     <circle cx="9" cy="21" r="1"></circle>
                                     <circle cx="20" cy="21" r="1"></circle>
                                     <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
@@ -1416,8 +1367,7 @@ const TestPage = () => {
                                 <a
                                   href="product-detail.html"
                                   data-tip="Quick View"
-                                  tabIndex={0}
-                                >
+                                  tabIndex={0}>
                                   <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="24"
@@ -1425,11 +1375,10 @@ const TestPage = () => {
                                     viewBox="0 0 24 24"
                                     fill="none"
                                     stroke="currentColor"
-                                    stroke-width="2"
+                                    strokeWidth="2"
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
-                                    className="feather feather-eye"
-                                  >
+                                    className="feather feather-eye">
                                     <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                                     <circle cx="12" cy="12" r="3"></circle>
                                   </svg>
@@ -1439,8 +1388,7 @@ const TestPage = () => {
                                 <a
                                   href="wishlist.html"
                                   data-tip="Wishlist"
-                                  tabIndex={0}
-                                >
+                                  tabIndex={0}>
                                   <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="24"
@@ -1448,11 +1396,10 @@ const TestPage = () => {
                                     viewBox="0 0 24 24"
                                     fill="none"
                                     stroke="currentColor"
-                                    stroke-width="2"
+                                    strokeWidth="2"
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
-                                    className="feather feather-heart"
-                                  >
+                                    className="feather feather-heart">
                                     <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
                                   </svg>
                                 </a>
@@ -1522,8 +1469,7 @@ const TestPage = () => {
                         className="w-[270px]  slick-slide slick-active"
                         data-slick-index="2"
                         aria-hidden="false"
-                        tabIndex={0}
-                      >
+                        tabIndex={0}>
                         <div className="product-boxwrap">
                           <div className="product-imgwrap">
                             <a href="product-detail.html" tabIndex={0}>
@@ -1539,8 +1485,7 @@ const TestPage = () => {
                                 <a
                                   href="cart.html"
                                   data-tip="add to cart"
-                                  tabIndex={0}
-                                >
+                                  tabIndex={0}>
                                   <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="24"
@@ -1548,11 +1493,10 @@ const TestPage = () => {
                                     viewBox="0 0 24 24"
                                     fill="none"
                                     stroke="currentColor"
-                                    stroke-width="2"
+                                    strokeWidth="2"
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
-                                    className="feather feather-shopping-cart"
-                                  >
+                                    className="feather feather-shopping-cart">
                                     <circle cx="9" cy="21" r="1"></circle>
                                     <circle cx="20" cy="21" r="1"></circle>
                                     <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
@@ -1563,8 +1507,7 @@ const TestPage = () => {
                                 <a
                                   href="product-detail.html"
                                   data-tip="Quick View"
-                                  tabIndex={0}
-                                >
+                                  tabIndex={0}>
                                   <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="24"
@@ -1572,11 +1515,10 @@ const TestPage = () => {
                                     viewBox="0 0 24 24"
                                     fill="none"
                                     stroke="currentColor"
-                                    stroke-width="2"
+                                    strokeWidth="2"
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
-                                    className="feather feather-eye"
-                                  >
+                                    className="feather feather-eye">
                                     <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                                     <circle cx="12" cy="12" r="3"></circle>
                                   </svg>
@@ -1586,8 +1528,7 @@ const TestPage = () => {
                                 <a
                                   href="wishlist.html"
                                   data-tip="Wishlist"
-                                  tabIndex={0}
-                                >
+                                  tabIndex={0}>
                                   <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="24"
@@ -1595,11 +1536,10 @@ const TestPage = () => {
                                     viewBox="0 0 24 24"
                                     fill="none"
                                     stroke="currentColor"
-                                    stroke-width="2"
+                                    strokeWidth="2"
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
-                                    className="feather feather-heart"
-                                  >
+                                    className="feather feather-heart">
                                     <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
                                   </svg>
                                 </a>
@@ -1669,8 +1609,7 @@ const TestPage = () => {
                         className="w-[270px]  slick-slide slick-active"
                         data-slick-index="3"
                         aria-hidden="false"
-                        tabIndex={0}
-                      >
+                        tabIndex={0}>
                         <div className="product-boxwrap">
                           <div className="product-imgwrap">
                             <a href="product-detail.html" tabIndex={0}>
@@ -1686,8 +1625,7 @@ const TestPage = () => {
                                 <a
                                   href="cart.html"
                                   data-tip="add to cart"
-                                  tabIndex={0}
-                                >
+                                  tabIndex={0}>
                                   <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="24"
@@ -1695,11 +1633,10 @@ const TestPage = () => {
                                     viewBox="0 0 24 24"
                                     fill="none"
                                     stroke="currentColor"
-                                    stroke-width="2"
+                                    strokeWidth="2"
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
-                                    className="feather feather-shopping-cart"
-                                  >
+                                    className="feather feather-shopping-cart">
                                     <circle cx="9" cy="21" r="1"></circle>
                                     <circle cx="20" cy="21" r="1"></circle>
                                     <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
@@ -1710,8 +1647,7 @@ const TestPage = () => {
                                 <a
                                   href="product-detail.html"
                                   data-tip="Quick View"
-                                  tabIndex={0}
-                                >
+                                  tabIndex={0}>
                                   <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="24"
@@ -1719,11 +1655,10 @@ const TestPage = () => {
                                     viewBox="0 0 24 24"
                                     fill="none"
                                     stroke="currentColor"
-                                    stroke-width="2"
+                                    strokeWidth="2"
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
-                                    className="feather feather-eye"
-                                  >
+                                    className="feather feather-eye">
                                     <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                                     <circle cx="12" cy="12" r="3"></circle>
                                   </svg>
@@ -1733,8 +1668,7 @@ const TestPage = () => {
                                 <a
                                   href="wishlist.html"
                                   data-tip="Wishlist"
-                                  tabIndex={0}
-                                >
+                                  tabIndex={0}>
                                   <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="24"
@@ -1742,11 +1676,10 @@ const TestPage = () => {
                                     viewBox="0 0 24 24"
                                     fill="none"
                                     stroke="currentColor"
-                                    stroke-width="2"
+                                    strokeWidth="2"
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
-                                    className="feather feather-heart"
-                                  >
+                                    className="feather feather-heart">
                                     <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
                                   </svg>
                                 </a>
@@ -1816,8 +1749,7 @@ const TestPage = () => {
                         className="w-[270px]  slick-slide"
                         data-slick-index="4"
                         aria-hidden="true"
-                        tabIndex={-1}
-                      >
+                        tabIndex={-1}>
                         <div className="product-boxwrap">
                           <div className="product-imgwrap">
                             <a href="product-detail.html" tabIndex={-1}>
@@ -1833,8 +1765,7 @@ const TestPage = () => {
                                 <a
                                   href="cart.html"
                                   data-tip="add to cart"
-                                  tabIndex={-1}
-                                >
+                                  tabIndex={-1}>
                                   <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="24"
@@ -1842,11 +1773,10 @@ const TestPage = () => {
                                     viewBox="0 0 24 24"
                                     fill="none"
                                     stroke="currentColor"
-                                    stroke-width="2"
+                                    strokeWidth="2"
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
-                                    className="feather feather-shopping-cart"
-                                  >
+                                    className="feather feather-shopping-cart">
                                     <circle cx="9" cy="21" r="1"></circle>
                                     <circle cx="20" cy="21" r="1"></circle>
                                     <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
@@ -1857,8 +1787,7 @@ const TestPage = () => {
                                 <a
                                   href="product-detail.html"
                                   data-tip="Quick View"
-                                  tabIndex={-1}
-                                >
+                                  tabIndex={-1}>
                                   <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="24"
@@ -1866,11 +1795,10 @@ const TestPage = () => {
                                     viewBox="0 0 24 24"
                                     fill="none"
                                     stroke="currentColor"
-                                    stroke-width="2"
+                                    strokeWidth="2"
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
-                                    className="feather feather-eye"
-                                  >
+                                    className="feather feather-eye">
                                     <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                                     <circle cx="12" cy="12" r="3"></circle>
                                   </svg>
@@ -1880,8 +1808,7 @@ const TestPage = () => {
                                 <a
                                   href="wishlist.html"
                                   data-tip="Wishlist"
-                                  tabIndex={-1}
-                                >
+                                  tabIndex={-1}>
                                   <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="24"
@@ -1889,11 +1816,10 @@ const TestPage = () => {
                                     viewBox="0 0 24 24"
                                     fill="none"
                                     stroke="currentColor"
-                                    stroke-width="2"
+                                    strokeWidth="2"
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
-                                    className="feather feather-heart"
-                                  >
+                                    className="feather feather-heart">
                                     <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
                                   </svg>
                                 </a>
@@ -1963,8 +1889,7 @@ const TestPage = () => {
                         className="slick-slide w-[270px] "
                         data-slick-index="5"
                         aria-hidden="true"
-                        tabIndex={-1}
-                      >
+                        tabIndex={-1}>
                         <div className="product-boxwrap">
                           <div className="product-imgwrap">
                             <a href="product-detail.html" tabIndex={-1}>
@@ -1980,8 +1905,7 @@ const TestPage = () => {
                                 <a
                                   href="cart.html"
                                   data-tip="add to cart"
-                                  tabIndex={-1}
-                                >
+                                  tabIndex={-1}>
                                   <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="24"
@@ -1989,11 +1913,10 @@ const TestPage = () => {
                                     viewBox="0 0 24 24"
                                     fill="none"
                                     stroke="currentColor"
-                                    stroke-width="2"
+                                    strokeWidth="2"
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
-                                    className="feather feather-shopping-cart"
-                                  >
+                                    className="feather feather-shopping-cart">
                                     <circle cx="9" cy="21" r="1"></circle>
                                     <circle cx="20" cy="21" r="1"></circle>
                                     <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
@@ -2004,8 +1927,7 @@ const TestPage = () => {
                                 <a
                                   href="product-detail.html"
                                   data-tip="Quick View"
-                                  tabIndex={-1}
-                                >
+                                  tabIndex={-1}>
                                   <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="24"
@@ -2013,11 +1935,10 @@ const TestPage = () => {
                                     viewBox="0 0 24 24"
                                     fill="none"
                                     stroke="currentColor"
-                                    stroke-width="2"
+                                    strokeWidth="2"
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
-                                    className="feather feather-eye"
-                                  >
+                                    className="feather feather-eye">
                                     <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                                     <circle cx="12" cy="12" r="3"></circle>
                                   </svg>
@@ -2027,8 +1948,7 @@ const TestPage = () => {
                                 <a
                                   href="wishlist.html"
                                   data-tip="Wishlist"
-                                  tabIndex={-1}
-                                >
+                                  tabIndex={-1}>
                                   <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="24"
@@ -2036,11 +1956,10 @@ const TestPage = () => {
                                     viewBox="0 0 24 24"
                                     fill="none"
                                     stroke="currentColor"
-                                    stroke-width="2"
+                                    strokeWidth="2"
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
-                                    className="feather feather-heart"
-                                  >
+                                    className="feather feather-heart">
                                     <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
                                   </svg>
                                 </a>
@@ -2110,8 +2029,7 @@ const TestPage = () => {
                         className="slick-slide w-[270px] "
                         data-slick-index="6"
                         aria-hidden="true"
-                        tabIndex={-1}
-                      >
+                        tabIndex={-1}>
                         <div className="product-boxwrap">
                           <div className="product-imgwrap">
                             <a href="product-detail.html" tabIndex={-1}>
@@ -2127,8 +2045,7 @@ const TestPage = () => {
                                 <a
                                   href="cart.html"
                                   data-tip="add to cart"
-                                  tabIndex={-1}
-                                >
+                                  tabIndex={-1}>
                                   <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="24"
@@ -2136,11 +2053,10 @@ const TestPage = () => {
                                     viewBox="0 0 24 24"
                                     fill="none"
                                     stroke="currentColor"
-                                    stroke-width="2"
+                                    strokeWidth="2"
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
-                                    className="feather feather-shopping-cart"
-                                  >
+                                    className="feather feather-shopping-cart">
                                     <circle cx="9" cy="21" r="1"></circle>
                                     <circle cx="20" cy="21" r="1"></circle>
                                     <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
@@ -2151,8 +2067,7 @@ const TestPage = () => {
                                 <a
                                   href="product-detail.html"
                                   data-tip="Quick View"
-                                  tabIndex={-1}
-                                >
+                                  tabIndex={-1}>
                                   <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="24"
@@ -2160,11 +2075,10 @@ const TestPage = () => {
                                     viewBox="0 0 24 24"
                                     fill="none"
                                     stroke="currentColor"
-                                    stroke-width="2"
+                                    strokeWidth="2"
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
-                                    className="feather feather-eye"
-                                  >
+                                    className="feather feather-eye">
                                     <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                                     <circle cx="12" cy="12" r="3"></circle>
                                   </svg>
@@ -2174,8 +2088,7 @@ const TestPage = () => {
                                 <a
                                   href="wishlist.html"
                                   data-tip="Wishlist"
-                                  tabIndex={-1}
-                                >
+                                  tabIndex={-1}>
                                   <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="24"
@@ -2183,11 +2096,10 @@ const TestPage = () => {
                                     viewBox="0 0 24 24"
                                     fill="none"
                                     stroke="currentColor"
-                                    stroke-width="2"
+                                    strokeWidth="2"
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
-                                    className="feather feather-heart"
-                                  >
+                                    className="feather feather-heart">
                                     <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
                                   </svg>
                                 </a>
@@ -2258,8 +2170,7 @@ const TestPage = () => {
                         data-slick-index="7"
                         id=""
                         aria-hidden="true"
-                        tabIndex={-1}
-                      >
+                        tabIndex={-1}>
                         <div className="product-boxwrap">
                           <div className="product-imgwrap">
                             <a href="product-detail.html" tabIndex={-1}>
@@ -2276,8 +2187,7 @@ const TestPage = () => {
                                 <a
                                   href="cart.html"
                                   data-tip="add to cart"
-                                  tabIndex={-1}
-                                >
+                                  tabIndex={-1}>
                                   <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="24"
@@ -2285,11 +2195,10 @@ const TestPage = () => {
                                     viewBox="0 0 24 24"
                                     fill="none"
                                     stroke="currentColor"
-                                    stroke-width="2"
+                                    strokeWidth="2"
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
-                                    className="feather feather-shopping-cart"
-                                  >
+                                    className="feather feather-shopping-cart">
                                     <circle cx="9" cy="21" r="1"></circle>
                                     <circle cx="20" cy="21" r="1"></circle>
                                     <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
@@ -2300,8 +2209,7 @@ const TestPage = () => {
                                 <a
                                   href="product-detail.html"
                                   data-tip="Quick View"
-                                  tabIndex={-1}
-                                >
+                                  tabIndex={-1}>
                                   <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="24"
@@ -2309,11 +2217,10 @@ const TestPage = () => {
                                     viewBox="0 0 24 24"
                                     fill="none"
                                     stroke="currentColor"
-                                    stroke-width="2"
+                                    strokeWidth="2"
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
-                                    className="feather feather-eye"
-                                  >
+                                    className="feather feather-eye">
                                     <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                                     <circle cx="12" cy="12" r="3"></circle>
                                   </svg>
@@ -2323,8 +2230,7 @@ const TestPage = () => {
                                 <a
                                   href="wishlist.html"
                                   data-tip="Wishlist"
-                                  tabIndex={-1}
-                                >
+                                  tabIndex={-1}>
                                   <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="24"
@@ -2332,11 +2238,10 @@ const TestPage = () => {
                                     viewBox="0 0 24 24"
                                     fill="none"
                                     stroke="currentColor"
-                                    stroke-width="2"
+                                    strokeWidth="2"
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
-                                    className="feather feather-heart"
-                                  >
+                                    className="feather feather-heart">
                                     <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
                                   </svg>
                                 </a>
@@ -2407,8 +2312,7 @@ const TestPage = () => {
                         data-slick-index="8"
                         id=""
                         aria-hidden="true"
-                        tabIndex={-1}
-                      >
+                        tabIndex={-1}>
                         <div className="product-boxwrap">
                           <div className="product-imgwrap">
                             <a href="product-detail.html" tabIndex={-1}>
@@ -2424,8 +2328,7 @@ const TestPage = () => {
                                 <a
                                   href="cart.html"
                                   data-tip="add to cart"
-                                  tabIndex={-1}
-                                >
+                                  tabIndex={-1}>
                                   <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="24"
@@ -2433,11 +2336,10 @@ const TestPage = () => {
                                     viewBox="0 0 24 24"
                                     fill="none"
                                     stroke="currentColor"
-                                    stroke-width="2"
+                                    strokeWidth="2"
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
-                                    className="feather feather-shopping-cart"
-                                  >
+                                    className="feather feather-shopping-cart">
                                     <circle cx="9" cy="21" r="1"></circle>
                                     <circle cx="20" cy="21" r="1"></circle>
                                     <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
@@ -2448,8 +2350,7 @@ const TestPage = () => {
                                 <a
                                   href="product-detail.html"
                                   data-tip="Quick View"
-                                  tabIndex={-1}
-                                >
+                                  tabIndex={-1}>
                                   <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="24"
@@ -2457,11 +2358,10 @@ const TestPage = () => {
                                     viewBox="0 0 24 24"
                                     fill="none"
                                     stroke="currentColor"
-                                    stroke-width="2"
+                                    strokeWidth="2"
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
-                                    className="feather feather-eye"
-                                  >
+                                    className="feather feather-eye">
                                     <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                                     <circle cx="12" cy="12" r="3"></circle>
                                   </svg>
@@ -2471,8 +2371,7 @@ const TestPage = () => {
                                 <a
                                   href="wishlist.html"
                                   data-tip="Wishlist"
-                                  tabIndex={-1}
-                                >
+                                  tabIndex={-1}>
                                   <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="24"
@@ -2480,11 +2379,10 @@ const TestPage = () => {
                                     viewBox="0 0 24 24"
                                     fill="none"
                                     stroke="currentColor"
-                                    stroke-width="2"
+                                    strokeWidth="2"
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
-                                    className="feather feather-heart"
-                                  >
+                                    className="feather feather-heart">
                                     <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
                                   </svg>
                                 </a>
@@ -2555,8 +2453,7 @@ const TestPage = () => {
                         data-slick-index="9"
                         id=""
                         aria-hidden="true"
-                        tabIndex={-1}
-                      >
+                        tabIndex={-1}>
                         <div className="product-boxwrap">
                           <div className="product-imgwrap">
                             <a href="product-detail.html" tabIndex={-1}>
@@ -2572,8 +2469,7 @@ const TestPage = () => {
                                 <a
                                   href="cart.html"
                                   data-tip="add to cart"
-                                  tabIndex={-1}
-                                >
+                                  tabIndex={-1}>
                                   <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="24"
@@ -2581,11 +2477,10 @@ const TestPage = () => {
                                     viewBox="0 0 24 24"
                                     fill="none"
                                     stroke="currentColor"
-                                    stroke-width="2"
+                                    strokeWidth="2"
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
-                                    className="feather feather-shopping-cart"
-                                  >
+                                    className="feather feather-shopping-cart">
                                     <circle cx="9" cy="21" r="1"></circle>
                                     <circle cx="20" cy="21" r="1"></circle>
                                     <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
@@ -2596,8 +2491,7 @@ const TestPage = () => {
                                 <a
                                   href="product-detail.html"
                                   data-tip="Quick View"
-                                  tabIndex={-1}
-                                >
+                                  tabIndex={-1}>
                                   <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="24"
@@ -2605,11 +2499,10 @@ const TestPage = () => {
                                     viewBox="0 0 24 24"
                                     fill="none"
                                     stroke="currentColor"
-                                    stroke-width="2"
+                                    strokeWidth="2"
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
-                                    className="feather feather-eye"
-                                  >
+                                    className="feather feather-eye">
                                     <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                                     <circle cx="12" cy="12" r="3"></circle>
                                   </svg>
@@ -2619,8 +2512,7 @@ const TestPage = () => {
                                 <a
                                   href="wishlist.html"
                                   data-tip="Wishlist"
-                                  tabIndex={-1}
-                                >
+                                  tabIndex={-1}>
                                   <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="24"
@@ -2628,11 +2520,10 @@ const TestPage = () => {
                                     viewBox="0 0 24 24"
                                     fill="none"
                                     stroke="currentColor"
-                                    stroke-width="2"
+                                    strokeWidth="2"
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
-                                    className="feather feather-heart"
-                                  >
+                                    className="feather feather-heart">
                                     <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
                                   </svg>
                                 </a>
@@ -2703,8 +2594,7 @@ const TestPage = () => {
                         data-slick-index="10"
                         id=""
                         aria-hidden="true"
-                        tabIndex={-1}
-                      >
+                        tabIndex={-1}>
                         <div className="product-boxwrap">
                           <div className="product-imgwrap">
                             <a href="product-detail.html" tabIndex={-1}>
@@ -2720,8 +2610,7 @@ const TestPage = () => {
                                 <a
                                   href="cart.html"
                                   data-tip="add to cart"
-                                  tabIndex={-1}
-                                >
+                                  tabIndex={-1}>
                                   <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="24"
@@ -2729,11 +2618,10 @@ const TestPage = () => {
                                     viewBox="0 0 24 24"
                                     fill="none"
                                     stroke="currentColor"
-                                    stroke-width="2"
+                                    strokeWidth="2"
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
-                                    className="feather feather-shopping-cart"
-                                  >
+                                    className="feather feather-shopping-cart">
                                     <circle cx="9" cy="21" r="1"></circle>
                                     <circle cx="20" cy="21" r="1"></circle>
                                     <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
@@ -2744,8 +2632,7 @@ const TestPage = () => {
                                 <a
                                   href="product-detail.html"
                                   data-tip="Quick View"
-                                  tabIndex={-1}
-                                >
+                                  tabIndex={-1}>
                                   <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="24"
@@ -2753,11 +2640,10 @@ const TestPage = () => {
                                     viewBox="0 0 24 24"
                                     fill="none"
                                     stroke="currentColor"
-                                    stroke-width="2"
+                                    strokeWidth="2"
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
-                                    className="feather feather-eye"
-                                  >
+                                    className="feather feather-eye">
                                     <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                                     <circle cx="12" cy="12" r="3"></circle>
                                   </svg>
@@ -2767,8 +2653,7 @@ const TestPage = () => {
                                 <a
                                   href="wishlist.html"
                                   data-tip="Wishlist"
-                                  tabIndex={-1}
-                                >
+                                  tabIndex={-1}>
                                   <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="24"
@@ -2776,11 +2661,10 @@ const TestPage = () => {
                                     viewBox="0 0 24 24"
                                     fill="none"
                                     stroke="currentColor"
-                                    stroke-width="2"
+                                    strokeWidth="2"
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
-                                    className="feather feather-heart"
-                                  >
+                                    className="feather feather-heart">
                                     <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
                                   </svg>
                                 </a>
@@ -2851,8 +2735,7 @@ const TestPage = () => {
                         data-slick-index="11"
                         id=""
                         aria-hidden="true"
-                        tabIndex={-1}
-                      >
+                        tabIndex={-1}>
                         <div className="product-boxwrap">
                           <div className="product-imgwrap">
                             <a href="product-detail.html" tabIndex={-1}>
@@ -2868,8 +2751,7 @@ const TestPage = () => {
                                 <a
                                   href="cart.html"
                                   data-tip="add to cart"
-                                  tabIndex={-1}
-                                >
+                                  tabIndex={-1}>
                                   <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="24"
@@ -2877,11 +2759,10 @@ const TestPage = () => {
                                     viewBox="0 0 24 24"
                                     fill="none"
                                     stroke="currentColor"
-                                    stroke-width="2"
+                                    strokeWidth="2"
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
-                                    className="feather feather-shopping-cart"
-                                  >
+                                    className="feather feather-shopping-cart">
                                     <circle cx="9" cy="21" r="1"></circle>
                                     <circle cx="20" cy="21" r="1"></circle>
                                     <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
@@ -2892,8 +2773,7 @@ const TestPage = () => {
                                 <a
                                   href="product-detail.html"
                                   data-tip="Quick View"
-                                  tabIndex={-1}
-                                >
+                                  tabIndex={-1}>
                                   <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="24"
@@ -2901,11 +2781,10 @@ const TestPage = () => {
                                     viewBox="0 0 24 24"
                                     fill="none"
                                     stroke="currentColor"
-                                    stroke-width="2"
+                                    strokeWidth="2"
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
-                                    className="feather feather-eye"
-                                  >
+                                    className="feather feather-eye">
                                     <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                                     <circle cx="12" cy="12" r="3"></circle>
                                   </svg>
@@ -2915,8 +2794,7 @@ const TestPage = () => {
                                 <a
                                   href="wishlist.html"
                                   data-tip="Wishlist"
-                                  tabIndex={-1}
-                                >
+                                  tabIndex={-1}>
                                   <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="24"
@@ -2924,11 +2802,10 @@ const TestPage = () => {
                                     viewBox="0 0 24 24"
                                     fill="none"
                                     stroke="currentColor"
-                                    stroke-width="2"
+                                    strokeWidth="2"
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
-                                    className="feather feather-heart"
-                                  >
+                                    className="feather feather-heart">
                                     <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
                                   </svg>
                                 </a>
@@ -2999,8 +2876,7 @@ const TestPage = () => {
                         data-slick-index="12"
                         id=""
                         aria-hidden="true"
-                        tabIndex={-1}
-                      >
+                        tabIndex={-1}>
                         <div className="product-boxwrap">
                           <div className="product-imgwrap">
                             <a href="product-detail.html" tabIndex={-1}>
@@ -3016,8 +2892,7 @@ const TestPage = () => {
                                 <a
                                   href="cart.html"
                                   data-tip="add to cart"
-                                  tabIndex={-1}
-                                >
+                                  tabIndex={-1}>
                                   <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="24"
@@ -3025,11 +2900,10 @@ const TestPage = () => {
                                     viewBox="0 0 24 24"
                                     fill="none"
                                     stroke="currentColor"
-                                    stroke-width="2"
+                                    strokeWidth="2"
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
-                                    className="feather feather-shopping-cart"
-                                  >
+                                    className="feather feather-shopping-cart">
                                     <circle cx="9" cy="21" r="1"></circle>
                                     <circle cx="20" cy="21" r="1"></circle>
                                     <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
@@ -3040,8 +2914,7 @@ const TestPage = () => {
                                 <a
                                   href="product-detail.html"
                                   data-tip="Quick View"
-                                  tabIndex={-1}
-                                >
+                                  tabIndex={-1}>
                                   <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="24"
@@ -3049,11 +2922,10 @@ const TestPage = () => {
                                     viewBox="0 0 24 24"
                                     fill="none"
                                     stroke="currentColor"
-                                    stroke-width="2"
+                                    strokeWidth="2"
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
-                                    className="feather feather-eye"
-                                  >
+                                    className="feather feather-eye">
                                     <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                                     <circle cx="12" cy="12" r="3"></circle>
                                   </svg>
@@ -3063,8 +2935,7 @@ const TestPage = () => {
                                 <a
                                   href="wishlist.html"
                                   data-tip="Wishlist"
-                                  tabIndex={-1}
-                                >
+                                  tabIndex={-1}>
                                   <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="24"
@@ -3072,11 +2943,10 @@ const TestPage = () => {
                                     viewBox="0 0 24 24"
                                     fill="none"
                                     stroke="currentColor"
-                                    stroke-width="2"
+                                    strokeWidth="2"
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
-                                    className="feather feather-heart"
-                                  >
+                                    className="feather feather-heart">
                                     <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
                                   </svg>
                                 </a>
@@ -3147,8 +3017,7 @@ const TestPage = () => {
                         data-slick-index="13"
                         id=""
                         aria-hidden="true"
-                        tabIndex={-1}
-                      >
+                        tabIndex={-1}>
                         <div className="product-boxwrap">
                           <div className="product-imgwrap">
                             <a href="product-detail.html" tabIndex={-1}>
@@ -3164,8 +3033,7 @@ const TestPage = () => {
                                 <a
                                   href="cart.html"
                                   data-tip="add to cart"
-                                  tabIndex={-1}
-                                >
+                                  tabIndex={-1}>
                                   <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="24"
@@ -3173,11 +3041,10 @@ const TestPage = () => {
                                     viewBox="0 0 24 24"
                                     fill="none"
                                     stroke="currentColor"
-                                    stroke-width="2"
+                                    strokeWidth="2"
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
-                                    className="feather feather-shopping-cart"
-                                  >
+                                    className="feather feather-shopping-cart">
                                     <circle cx="9" cy="21" r="1"></circle>
                                     <circle cx="20" cy="21" r="1"></circle>
                                     <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
@@ -3188,8 +3055,7 @@ const TestPage = () => {
                                 <a
                                   href="product-detail.html"
                                   data-tip="Quick View"
-                                  tabIndex={-1}
-                                >
+                                  tabIndex={-1}>
                                   <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="24"
@@ -3197,11 +3063,10 @@ const TestPage = () => {
                                     viewBox="0 0 24 24"
                                     fill="none"
                                     stroke="currentColor"
-                                    stroke-width="2"
+                                    strokeWidth="2"
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
-                                    className="feather feather-eye"
-                                  >
+                                    className="feather feather-eye">
                                     <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                                     <circle cx="12" cy="12" r="3"></circle>
                                   </svg>
@@ -3211,8 +3076,7 @@ const TestPage = () => {
                                 <a
                                   href="wishlist.html"
                                   data-tip="Wishlist"
-                                  tabIndex={-1}
-                                >
+                                  tabIndex={-1}>
                                   <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="24"
@@ -3220,11 +3084,10 @@ const TestPage = () => {
                                     viewBox="0 0 24 24"
                                     fill="none"
                                     stroke="currentColor"
-                                    stroke-width="2"
+                                    strokeWidth="2"
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
-                                    className="feather feather-heart"
-                                  >
+                                    className="feather feather-heart">
                                     <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
                                   </svg>
                                 </a>
@@ -3295,8 +3158,7 @@ const TestPage = () => {
                   <button
                     className="slick-next slick-arrow"
                     aria-label="Next"
-                    type="button"
-                  >
+                    type="button">
                     Next
                   </button>
                 </div>

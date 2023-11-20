@@ -6,6 +6,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 export const options: NextAuthOptions = {
   pages: {
     signIn: "/sign-in",
+    signOut: "/sign-in",
   },
   providers: [
     GithubProvider({
@@ -88,11 +89,6 @@ export const options: NextAuthOptions = {
       return baseUrl;
     },
     async session({ session, token, user, bearer }: any) {
-      // console.log(user);
-      // console.log(token);
-      // console.log(session);
-      // console.log(token.user?.bearer);
-      // console.log(token.user?.role);
       session.bearer = token?.user?.bearer;
       session.role = token?.user?.role;
       session.user_id = token?.user?.id;
@@ -100,16 +96,10 @@ export const options: NextAuthOptions = {
       session.is_supplier = token?.user?.is_supplier;
       session.is_company = token?.user?.is_company;
       return session;
-      // return {
-      //   ...session,
-      //   user: {
-      //     ...session.user,
-      //   },
-      // };
     },
   },
   session: {
     // Use a custom session expiration callback
-    maxAge: 1 * 60 * 60, // 1 hour in seconds
+    maxAge: 3 * 60 * 60, // 1 hour in seconds
   },
 };
