@@ -7,9 +7,7 @@ import React from "react";
 
 const page = async ({
   params,
-  request,
 }: {
-  request?: NextRequest;
   params: { slug: string; store: number };
 }) => {
   const sessionServer = await getServerSession(options);
