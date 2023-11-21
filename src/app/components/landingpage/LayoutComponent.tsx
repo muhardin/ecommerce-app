@@ -50,7 +50,11 @@ const LayoutComponent = ({ children }: { children: React.ReactNode }) => {
   const handleToggleProfile = () => {
     setProfileMenu(!profileMenu);
   };
-
+  const onSignOut = async () => {
+    await signOut({ redirect: false });
+    route.push("/web/sign-in");
+    toast.dismiss();
+  };
   return (
     <>
       <div className="flex min-h-full flex-col">
@@ -60,8 +64,7 @@ const LayoutComponent = ({ children }: { children: React.ReactNode }) => {
             <div
               className={`${
                 isSticky ? "fixed top-0" : "relative"
-              } bg-white  mx-auto px-4 sm:px-6 lg:px-8 z-10 flex justify-between py-3 shadow-lg shadow-gray-200 w-full`}
-            >
+              } bg-white  mx-auto px-4 sm:px-6 lg:px-8 z-10 flex justify-between py-3 shadow-lg shadow-gray-200 w-full`}>
               {/* <div
               className={`${"fixed top-0"} bg-white  mx-auto px-4 sm:px-6 lg:px-8 z-10 flex justify-between py-3 shadow-lg shadow-gray-200 w-full`}
             > */}
@@ -72,19 +75,16 @@ const LayoutComponent = ({ children }: { children: React.ReactNode }) => {
                       onClick={() => {
                         handleToggleMenu();
                       }}
-                      className="px-2 py-3 text-blue-500 bg-blue-100 rounded dark:text-gray-400 dark:bg-gray-800"
-                    >
+                      className="px-2 py-3 text-blue-500 bg-blue-100 rounded dark:text-gray-400 dark:bg-gray-800">
                       <svg
                         width="18"
                         height="10"
                         viewBox="0 0 18 10"
                         fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
+                        xmlns="http://www.w3.org/2000/svg">
                         <path
                           d="M1.50002 1.66667H16.5C16.721 1.66667 16.933 1.57887 17.0893 1.42259C17.2456 1.26631 17.3334 1.05435 17.3334 0.833333C17.3334 0.61232 17.2456 0.400358 17.0893 0.244078C16.933 0.0877975 16.721 0 16.5 0H1.50002C1.27901 0 1.06704 0.0877975 0.910765 0.244078C0.754484 0.400358 0.666687 0.61232 0.666687 0.833333C0.666687 1.05435 0.754484 1.26631 0.910765 1.42259C1.06704 1.57887 1.27901 1.66667 1.50002 1.66667V1.66667ZM16.5 8.33333H1.50002C1.27901 8.33333 1.06704 8.42113 0.910765 8.57741C0.754484 8.73369 0.666687 8.94565 0.666687 9.16667C0.666687 9.38768 0.754484 9.59964 0.910765 9.75592C1.06704 9.9122 1.27901 10 1.50002 10H16.5C16.721 10 16.933 9.9122 17.0893 9.75592C17.2456 9.59964 17.3334 9.38768 17.3334 9.16667C17.3334 8.94565 17.2456 8.73369 17.0893 8.57741C16.933 8.42113 16.721 8.33333 16.5 8.33333ZM16.5 4.16667H1.50002C1.27901 4.16667 1.06704 4.25446 0.910765 4.41074C0.754484 4.56702 0.666687 4.77899 0.666687 5C0.666687 5.22101 0.754484 5.43298 0.910765 5.58926C1.06704 5.74554 1.27901 5.83333 1.50002 5.83333H16.5C16.721 5.83333 16.933 5.74554 17.0893 5.58926C17.2456 5.43298 17.3334 5.22101 17.3334 5C17.3334 4.77899 17.2456 4.56702 17.0893 4.41074C16.933 4.25446 16.721 4.16667 16.5 4.16667Z"
-                          fill="currentColor"
-                        ></path>
+                          fill="currentColor"></path>
                       </svg>
                     </button>
                   </div>
@@ -103,38 +103,32 @@ const LayoutComponent = ({ children }: { children: React.ReactNode }) => {
                 <div className="hidden lg:flex lg:gap-10">
                   <Link
                     className="relative -mx-3 -my-2 rounded-lg px-3 py-2 text-sm text-gray-700 transition-colors delay-150 hover:text-gray-900 hover:delay-0"
-                    href="/"
-                  >
+                    href="/">
                     <span className="relative z-10">Home</span>
                   </Link>
                   <a
                     className="relative -mx-3 -my-2 rounded-lg px-3 py-2 text-sm text-gray-700 transition-colors delay-150 hover:text-gray-900 hover:delay-0"
-                    href="/#features"
-                  >
+                    href="/#features">
                     <span className="relative z-10">Features</span>
                   </a>
                   <a
                     className="relative -mx-3 -my-2 rounded-lg px-3 py-2 text-sm text-gray-700 transition-colors delay-150 hover:text-gray-900 hover:delay-0"
-                    href="/#reviews"
-                  >
+                    href="/#reviews">
                     <span className="relative z-10">Reviews</span>
                   </a>
                   <a
                     className="relative -mx-3 -my-2 rounded-lg px-3 py-2 text-sm text-gray-700 transition-colors delay-150 hover:text-gray-900 hover:delay-0"
-                    href="/#pricing"
-                  >
+                    href="/#pricing">
                     <span className="relative z-10">Pricing</span>
                   </a>
                   <Link
                     className="relative -mx-3 -my-2 rounded-lg px-3 py-2 text-sm text-gray-700 transition-colors delay-150 hover:text-gray-900 hover:delay-0"
-                    href="/#about"
-                  >
+                    href="/#about">
                     <span className="relative z-10">About</span>
                   </Link>
                   <a
                     className="relative -mx-3 -my-2 rounded-lg px-3 py-2 text-sm text-gray-700 transition-colors delay-150 hover:text-gray-900 hover:delay-0"
-                    href="/#faqs"
-                  >
+                    href="/#faqs">
                     <span className="relative z-10">FAQs</span>
                   </a>
                 </div>
@@ -149,35 +143,30 @@ const LayoutComponent = ({ children }: { children: React.ReactNode }) => {
                     aria-expanded="true"
                     data-headlessui-state="open"
                     id="headlessui-popover-button-:Raplla:"
-                    aria-controls="headlessui-popover-panel-:r2g:"
-                  >
+                    aria-controls="headlessui-popover-panel-:r2g:">
                     {menuMobile ? (
                       <svg
                         viewBox="0 0 24 24"
                         fill="none"
                         aria-hidden="true"
-                        className="h-6 w-6"
-                      >
+                        className="h-6 w-6">
                         <path
                           d="M17 14l-5-5-5 5"
                           strokeWidth="2"
                           strokeLinecap="round"
-                          strokeLinejoin="round"
-                        ></path>
+                          strokeLinejoin="round"></path>
                       </svg>
                     ) : (
                       <svg
                         viewBox="0 0 24 24"
                         fill="none"
                         aria-hidden="true"
-                        className="h-6 w-6"
-                      >
+                        className="h-6 w-6">
                         <path
                           d="M5 6h14M5 18h14M5 12h14"
                           strokeWidth="2"
                           strokeLinecap="round"
-                          strokeLinejoin="round"
-                        ></path>
+                          strokeLinejoin="round"></path>
                       </svg>
                     )}
                   </button>
@@ -187,16 +176,14 @@ const LayoutComponent = ({ children }: { children: React.ReactNode }) => {
                     } fixed inset-0 z-0 bg-gray-300/60 backdrop-blur opacity-100`}
                     id="headlessui-popover-overlay-:r2f:"
                     aria-hidden="true"
-                    data-headlessui-state="open"
-                  ></div>
+                    data-headlessui-state="open"></div>
                   <div
                     className={`${
                       menuMobile ? "block" : "hidden"
                     } absolute inset-x-0 top-0 z-0 origin-top rounded-b-2xl bg-gray-50 px-6 pb-6 pt-32 shadow-2xl shadow-gray-900/20 opacity-100 transform-none`}
                     id="headlessui-popover-panel-:r2g:"
                     tabIndex={-1}
-                    data-headlessui-state="open"
-                  >
+                    data-headlessui-state="open">
                     <div className="space-y-4">
                       <Link
                         onClick={() => {
@@ -204,8 +191,7 @@ const LayoutComponent = ({ children }: { children: React.ReactNode }) => {
                         }}
                         className="block text-base leading-7 tracking-tight text-gray-700"
                         data-headlessui-state="open"
-                        href="/#top"
-                      >
+                        href="/#top">
                         Home
                       </Link>
                       <a
@@ -214,8 +200,7 @@ const LayoutComponent = ({ children }: { children: React.ReactNode }) => {
                         }}
                         className="block text-base leading-7 tracking-tight text-gray-700"
                         data-headlessui-state="open"
-                        href="/#features"
-                      >
+                        href="/#features">
                         Features
                       </a>
                       <a
@@ -224,8 +209,7 @@ const LayoutComponent = ({ children }: { children: React.ReactNode }) => {
                         }}
                         className="block text-base leading-7 tracking-tight text-gray-700"
                         data-headlessui-state="open"
-                        href="/#reviews"
-                      >
+                        href="/#reviews">
                         Reviews
                       </a>
                       <a
@@ -234,8 +218,7 @@ const LayoutComponent = ({ children }: { children: React.ReactNode }) => {
                         }}
                         className="block text-base leading-7 tracking-tight text-gray-700"
                         data-headlessui-state="open"
-                        href="/#pricing"
-                      >
+                        href="/#pricing">
                         Pricing
                       </a>
                       <Link
@@ -244,8 +227,7 @@ const LayoutComponent = ({ children }: { children: React.ReactNode }) => {
                         }}
                         className="block text-base leading-7 tracking-tight text-gray-700"
                         data-headlessui-state="open"
-                        href="/#about"
-                      >
+                        href="/#about">
                         About
                       </Link>
                       <a
@@ -254,8 +236,7 @@ const LayoutComponent = ({ children }: { children: React.ReactNode }) => {
                         }}
                         className="block text-base leading-7 tracking-tight text-gray-700"
                         data-headlessui-state="open"
-                        href="/#faqs"
-                      >
+                        href="/#faqs">
                         FAQs
                       </a>
                     </div>
@@ -270,8 +251,7 @@ const LayoutComponent = ({ children }: { children: React.ReactNode }) => {
                               callbackUrl: `${process.env.LANDING_PAGE}/sign-in`,
                             });
                           }}
-                          className="inline-flex justify-center rounded-lg border py-[calc(theme(spacing.2)-1px)] px-[calc(theme(spacing.3)-1px)] text-sm outline-2 outline-offset-2 transition-colors border-gray-300 text-gray-700 hover:border-gray-400 active:bg-gray-100 active:text-gray-700/80"
-                        >
+                          className="inline-flex justify-center rounded-lg border py-[calc(theme(spacing.2)-1px)] px-[calc(theme(spacing.3)-1px)] text-sm outline-2 outline-offset-2 transition-colors border-gray-300 text-gray-700 hover:border-gray-400 active:bg-gray-100 active:text-gray-700/80">
                           Log Out
                         </button>
                       ) : (
@@ -280,8 +260,7 @@ const LayoutComponent = ({ children }: { children: React.ReactNode }) => {
                             setMenuMobile(false);
                           }}
                           className="inline-flex justify-center rounded-lg border py-[calc(theme(spacing.2)-1px)] px-[calc(theme(spacing.3)-1px)] text-sm outline-2 outline-offset-2 transition-colors border-gray-300 text-gray-700 hover:border-gray-400 active:bg-gray-100 active:text-gray-700/80"
-                          href="/web/sign-in"
-                        >
+                          href="/web/sign-in">
                           Log in
                         </Link>
                       )}
@@ -290,8 +269,7 @@ const LayoutComponent = ({ children }: { children: React.ReactNode }) => {
                           setMenuMobile(false);
                         }}
                         className="inline-flex justify-center rounded-lg py-2 px-3 text-sm font-semibold outline-2 outline-offset-2 transition-colors bg-gray-800 text-white hover:bg-gray-900 active:bg-gray-800 active:text-white/80"
-                        href="/web/sign-up"
-                      >
+                        href="/web/sign-up">
                         Register
                       </Link>
                     </div>
@@ -301,30 +279,21 @@ const LayoutComponent = ({ children }: { children: React.ReactNode }) => {
 
                 {session ? (
                   <button
-                    onClick={() => {
-                      route.push("/web/sign-in");
-                      signOut({
-                        redirect: false,
-                        callbackUrl: `${process.env.LANDING_PAGE}/sign-in`,
-                      });
-                    }}
-                    className="md:inline-flex justify-center rounded-lg border py-[calc(theme(spacing.2)-1px)] px-[calc(theme(spacing.3)-1px)] text-sm outline-2 outline-offset-2 transition-colors border-gray-300 text-gray-700 hover:border-gray-400 active:bg-gray-100 active:text-gray-700/80 hidden lg:block"
-                  >
+                    onClick={onSignOut}
+                    className="md:inline-flex justify-center rounded-lg border py-[calc(theme(spacing.2)-1px)] px-[calc(theme(spacing.3)-1px)] text-sm outline-2 outline-offset-2 transition-colors border-gray-300 text-gray-700 hover:border-gray-400 active:bg-gray-100 active:text-gray-700/80 hidden lg:block">
                     Log Out
                   </button>
                 ) : (
                   <Link
                     className="md:inline-flex justify-center rounded-lg border py-[calc(theme(spacing.2)-1px)] px-[calc(theme(spacing.3)-1px)] text-sm outline-2 outline-offset-2 transition-colors border-gray-300 text-gray-700 hover:border-gray-400 active:bg-gray-100 active:text-gray-700/80 hidden lg:block"
-                    href="/web/sign-in"
-                  >
+                    href="/web/sign-in">
                     Log in
                   </Link>
                 )}
 
                 <Link
                   className="md:inline-flex justify-center rounded-lg py-2 px-3 text-sm font-semibold outline-2 outline-offset-2 transition-colors bg-gray-800 text-white hover:bg-gray-900 active:bg-gray-800 active:text-white/80 hidden lg:block"
-                  href="/web/sign-up"
-                >
+                  href="/web/sign-up">
                   Register
                 </Link>
 
@@ -335,8 +304,7 @@ const LayoutComponent = ({ children }: { children: React.ReactNode }) => {
                       onClick={() => {
                         handleToggleProfile();
                       }}
-                      className="lg:block"
-                    >
+                      className="lg:block">
                       <button className="flex items-center">
                         {/* <div className="hidden mr-3 text-right md:block">
                       <p className="text-sm font-bold text-black dark:text-gray-400">
@@ -370,12 +338,10 @@ const LayoutComponent = ({ children }: { children: React.ReactNode }) => {
                             height="6"
                             viewBox="0 0 10 6"
                             fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
+                            xmlns="http://www.w3.org/2000/svg">
                             <path
                               d="M9.08335 0.666657C8.75002 0.333323 8.25002 0.333323 7.91669 0.666657L5.00002 3.58332L2.08335 0.666657C1.75002 0.333323 1.25002 0.333323 0.916687 0.666657C0.583354 0.99999 0.583354 1.49999 0.916687 1.83332L4.41669 5.33332C4.58335 5.49999 4.75002 5.58332 5.00002 5.58332C5.25002 5.58332 5.41669 5.49999 5.58335 5.33332L9.08335 1.83332C9.41669 1.49999 9.41669 0.99999 9.08335 0.666657Z"
-                              fill="currentColor"
-                            ></path>
+                              fill="currentColor"></path>
                           </svg>
                         </span>
                       </button>
@@ -384,16 +350,14 @@ const LayoutComponent = ({ children }: { children: React.ReactNode }) => {
                       id="dropdown_profile"
                       className={`${
                         profileMenu ? "block" : "hidden"
-                      } absolute right-0 w-48 mt-3 origin-top-right bg-white rounded shadow dark:bg-gray-800 dark:text-gray-100 `}
-                    >
+                      } absolute right-0 w-48 mt-3 origin-top-right bg-white rounded shadow dark:bg-gray-800 dark:text-gray-100 `}>
                       <div className="py-1">
                         <Link
                           onClick={() => {
                             setProfileMenu(false);
                           }}
                           href="/profile"
-                          className="flex px-4 py-2 text-sm text-gray-700 dark:text-gray-400 dark:hover:bg-gray-800 hover:bg-gray-100"
-                        >
+                          className="flex px-4 py-2 text-sm text-gray-700 dark:text-gray-400 dark:hover:bg-gray-800 hover:bg-gray-100">
                           <svg
                             className="mr-2"
                             xmlns="http://www.w3.org/2000/svg"
@@ -404,8 +368,7 @@ const LayoutComponent = ({ children }: { children: React.ReactNode }) => {
                             stroke="currentColor"
                             strokeWidth="2"
                             strokeLinecap="round"
-                            strokeLinejoin="round"
-                          >
+                            strokeLinejoin="round">
                             <circle cx="12" cy="12" r="3"></circle>
                             <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
                           </svg>
@@ -417,8 +380,7 @@ const LayoutComponent = ({ children }: { children: React.ReactNode }) => {
                             setProfileMenu(false);
                           }}
                           href="/profile/orders"
-                          className="flex px-4 py-2 text-sm text-gray-700 dark:text-gray-400 dark:hover:bg-gray-800 hover:bg-gray-100"
-                        >
+                          className="flex px-4 py-2 text-sm text-gray-700 dark:text-gray-400 dark:hover:bg-gray-800 hover:bg-gray-100">
                           <div className="mr-2">
                             <ClipboardList size={18} />
                           </div>
@@ -430,8 +392,7 @@ const LayoutComponent = ({ children }: { children: React.ReactNode }) => {
                               setProfileMenu(false);
                             }}
                             href="/admin"
-                            className="flex px-4 py-2 text-sm text-sky-400 dark:text-gray-400 dark:hover:bg-gray-800 hover:bg-gray-100"
-                          >
+                            className="flex px-4 py-2 text-sm text-sky-400 dark:text-gray-400 dark:hover:bg-gray-800 hover:bg-gray-100">
                             <div className="mr-2">
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -443,8 +404,7 @@ const LayoutComponent = ({ children }: { children: React.ReactNode }) => {
                                 strokeWidth="2"
                                 strokeLinecap="round"
                                 strokeLinejoin="round"
-                                className="lucide lucide-blocks"
-                              >
+                                className="lucide lucide-blocks">
                                 <rect
                                   width="7"
                                   height="7"
@@ -465,8 +425,7 @@ const LayoutComponent = ({ children }: { children: React.ReactNode }) => {
                               setProfileMenu(false);
                             }}
                             href="/supplier"
-                            className="flex px-4 py-2 text-sm text-gray-700 dark:text-gray-400 dark:hover:bg-gray-800 hover:bg-gray-100"
-                          >
+                            className="flex px-4 py-2 text-sm text-gray-700 dark:text-gray-400 dark:hover:bg-gray-800 hover:bg-gray-100">
                             <div className="mr-2">
                               <LucidaIcon name="Store" size={18} />
                             </div>
@@ -479,8 +438,7 @@ const LayoutComponent = ({ children }: { children: React.ReactNode }) => {
                               setProfileMenu(false);
                             }}
                             href="/myshop"
-                            className="flex px-4 py-2 text-sm text-gray-700 dark:text-gray-400 dark:hover:bg-gray-800 hover:bg-gray-100"
-                          >
+                            className="flex px-4 py-2 text-sm text-gray-700 dark:text-gray-400 dark:hover:bg-gray-800 hover:bg-gray-100">
                             <div className="mr-2">
                               <ShoppingBag name="Store" size={18} />
                             </div>
@@ -492,15 +450,9 @@ const LayoutComponent = ({ children }: { children: React.ReactNode }) => {
                           onClick={() => {
                             toast.loading("Loading...");
                             setProfileMenu(false);
-                            signOut({
-                              redirect: false,
-                              callbackUrl: "/web/sign-in",
-                            });
-                            route.push("/web/sign-in");
-                            toast.dismiss();
+                            onSignOut();
                           }}
-                          className="w-full flex px-4 py-2 text-sm text-red-500 dark:hover:bg-gray-800 dark:text-gray-400 hover:bg-gray-100"
-                        >
+                          className="w-full flex px-4 py-2 text-sm text-red-500 dark:hover:bg-gray-800 dark:text-gray-400 hover:bg-gray-100">
                           <svg
                             className="mr-2"
                             xmlns="http://www.w3.org/2000/svg"
@@ -511,8 +463,7 @@ const LayoutComponent = ({ children }: { children: React.ReactNode }) => {
                             stroke="currentColor"
                             strokeWidth="2"
                             strokeLinecap="round"
-                            strokeLinejoin="round"
-                          >
+                            strokeLinejoin="round">
                             <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
                             <polyline points="16 17 21 12 16 7"></polyline>
                             <line x1="21" y1="12" x2="9" y2="12"></line>
@@ -548,8 +499,7 @@ const LayoutComponent = ({ children }: { children: React.ReactNode }) => {
                 xmlns="http://www.w3.org/2000/svg"
                 fillRule="evenodd"
                 clipRule="evenodd"
-                className="fill-current"
-              >
+                className="fill-current">
                 <path d="M22.672 15.226l-2.432.811.841 2.515c.33 1.019-.209 2.127-1.23 2.456-1.15.325-2.148-.321-2.463-1.226l-.84-2.518-5.013 1.677.84 2.517c.391 1.203-.434 2.542-1.831 2.542-.88 0-1.601-.564-1.86-1.314l-.842-2.516-2.431.809c-1.135.328-2.145-.317-2.463-1.229-.329-1.018.211-2.127 1.231-2.456l2.432-.809-1.621-4.823-2.432.808c-1.355.384-2.558-.59-2.558-1.839 0-.817.509-1.582 1.327-1.846l2.433-.809-.842-2.515c-.33-1.02.211-2.129 1.232-2.458 1.02-.329 2.13.209 2.461 1.229l.842 2.515 5.011-1.677-.839-2.517c-.403-1.238.484-2.553 1.843-2.553.819 0 1.585.509 1.85 1.326l.841 2.517 2.431-.81c1.02-.33 2.131.211 2.461 1.229.332 1.018-.21 2.126-1.23 2.456l-2.433.809 1.622 4.823 2.433-.809c1.242-.401 2.557.484 2.557 1.838 0 .819-.51 1.583-1.328 1.847m-8.992-6.428l-5.01 1.675 1.619 4.828 5.011-1.674-1.62-4.829z"></path>
               </svg>
               <p>
