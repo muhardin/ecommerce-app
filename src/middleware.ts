@@ -23,7 +23,7 @@ export async function middleware(request: NextRequest) {
   const includes = ["/web", "/web/sign-up", "/web/sign-in", "/sign-in"];
 
   if (!token && !includes.includes(pathname)) {
-    if (domain == process.env.LANDING_PAGE) {
+    if (process.env.LANDING_PAGE?.includes(domain)) {
       return NextResponse.redirect(new URL("/web/sign-in", request.url));
     } else {
       return NextResponse.redirect(new URL("/sign-in", request.url));
@@ -89,7 +89,7 @@ export async function middleware(request: NextRequest) {
       const dataSeller = await response.json();
       return NextResponse.redirect(
         new URL(
-          `https://${process.env.LANDING_PAGE}/web/payment/${dataSeller.id}`,
+          `${process.env.LANDING_PAGE}/web/payment/${dataSeller.id}`,
           request.url
         )
       );

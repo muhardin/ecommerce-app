@@ -9,7 +9,7 @@ export default async function Home() {
   const domain = headersList.get("host") || "";
   const fullUrl = headersList.get("referer") || "";
 
-  if (domain == process.env.LANDING_PAGE) {
+  if (process.env.LANDING_PAGE?.includes(domain)) {
     return (
       <main>
         <LandingPageComponent />

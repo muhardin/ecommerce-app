@@ -56,7 +56,7 @@ export default async function RootLayout({
     </Provider>
     
    */
-  if (domain == process.env.LANDING_PAGE) {
+  if (process.env.LANDING_PAGE?.includes(domain)) {
     return (
       <html lang="en">
         <body className="font-bodyFont w-full bg-main-bg text-darkText ">
@@ -68,12 +68,7 @@ export default async function RootLayout({
         </body>
       </html>
     );
-
-
-    
-
-  } 
-  else {
+  } else {
     return (
       <html lang="en">
         <body className="font-bodyFont w-full bg-main-bg text-darkText ">
