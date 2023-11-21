@@ -89,7 +89,7 @@ export async function middleware(request: NextRequest) {
       const dataSeller = await response.json();
       return NextResponse.redirect(
         new URL(
-          `${process.env.LANDING_PAGE}/web/payment/${dataSeller.id}`,
+          `https://${process.env.LANDING_PAGE}/web/payment/${dataSeller.id}`,
           request.url
         )
       );

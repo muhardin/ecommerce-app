@@ -148,7 +148,7 @@ const RegistrationForm: React.FC = () => {
     if (post.status == 200) {
       toast.dismiss();
       toast.success("Success");
-      //   router.push("/sign-in");
+      router.push("/sign-in");
     } else if (post.status == 201) {
       setErrMessage(post.data.message);
       setIsFail(true);
@@ -354,8 +354,7 @@ const RegistrationForm: React.FC = () => {
                         <button
                           onClick={togglePassword}
                           type="button"
-                          className="absolute right-2 bg-transparent flex items-center justify-center text-gray-700"
-                        >
+                          className="absolute right-2 bg-transparent flex items-center justify-center text-gray-700">
                           {passwordShown ? <IoIosEye /> : <IoIosEyeOff />}
                         </button>
                       </div>
@@ -426,16 +425,14 @@ const RegistrationForm: React.FC = () => {
                     <button
                       onClick={handleNext}
                       type="button"
-                      className="flex items-center justify-between px-6 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-md hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50"
-                    >
+                      className="flex items-center justify-between px-6 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-md hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
                       <span>Next </span>
 
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         className="w-5 h-5 rtl:-scale-x-100"
                         viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
+                        fill="currentColor">
                         <path
                           fillRule="evenodd"
                           d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
@@ -451,8 +448,7 @@ const RegistrationForm: React.FC = () => {
                   <div className="flex flex-col gap-2">
                     <label
                       htmlFor="card-holder"
-                      className="mt-4 mb-2 block text-sm font-medium"
-                    >
+                      className="mt-4 mb-2 block text-sm font-medium">
                       Pilih Paket Pendaftaran
                     </label>
                     {packageData ? (
@@ -470,8 +466,7 @@ const RegistrationForm: React.FC = () => {
                           <span className="peer-checked:border-sky-400 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
                           <label
                             className="peer-checked:border-1 peer-checked:border-sky-500 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-1"
-                            htmlFor={`delivering_1${item.id}`}
-                          >
+                            htmlFor={`delivering_1${item.id}`}>
                             {/* <Image
                         width={150}
                         height={150}
@@ -518,14 +513,12 @@ const RegistrationForm: React.FC = () => {
                       <button
                         onClick={handlePrevious}
                         type="button"
-                        className="flex items-center justify-between px-6 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-md hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50"
-                      >
+                        className="flex items-center justify-between px-6 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-md hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           className="w-5 h-5 -scale-x-100"
                           viewBox="0 0 20 20"
-                          fill="currentColor"
-                        >
+                          fill="currentColor">
                           <path
                             fillRule="evenodd"
                             d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
@@ -537,16 +530,14 @@ const RegistrationForm: React.FC = () => {
                       <button
                         onClick={handleNext}
                         type="button"
-                        className="flex items-center justify-between px-6 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-md hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50"
-                      >
+                        className="flex items-center justify-between px-6 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-md hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
                         <span>Next </span>
 
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           className="w-5 h-5 rtl:-scale-x-100"
                           viewBox="0 0 20 20"
-                          fill="currentColor"
-                        >
+                          fill="currentColor">
                           <path
                             fillRule="evenodd"
                             d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
@@ -563,8 +554,7 @@ const RegistrationForm: React.FC = () => {
                   <div className="flex flex-col gap-2">
                     <label
                       htmlFor="card-holder"
-                      className="mt-4 mb-2 block text-sm font-medium"
-                    >
+                      className="mt-4 mb-2 block text-sm font-medium">
                       Pilih Cara Pembayaran
                     </label>
                     {payments ? (
@@ -582,8 +572,7 @@ const RegistrationForm: React.FC = () => {
                           <span className="peer-checked:border-sky-400 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
                           <label
                             className="peer-checked:border-1 peer-checked:border-sky-500 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-1"
-                            htmlFor={`payment_1${item.id}`}
-                          >
+                            htmlFor={`payment_1${item.id}`}>
                             <Image
                               width={150}
                               height={150}
@@ -614,14 +603,12 @@ const RegistrationForm: React.FC = () => {
                       <button
                         onClick={handlePrevious}
                         type="button"
-                        className="flex items-center justify-between px-6 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-md hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50"
-                      >
+                        className="flex items-center justify-between px-6 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-md hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           className="w-5 h-5 -scale-x-100"
                           viewBox="0 0 20 20"
-                          fill="currentColor"
-                        >
+                          fill="currentColor">
                           <path
                             fillRule="evenodd"
                             d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
@@ -632,16 +619,14 @@ const RegistrationForm: React.FC = () => {
                       </button>
                       <button
                         type="submit"
-                        className="flex items-center justify-between px-6 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-md hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50"
-                      >
+                        className="flex items-center justify-between px-6 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-md hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
                         <span>Sign Up </span>
 
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           className="w-5 h-5 rtl:-scale-x-100"
                           viewBox="0 0 20 20"
-                          fill="currentColor"
-                        >
+                          fill="currentColor">
                           <path
                             fillRule="evenodd"
                             d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
