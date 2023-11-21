@@ -22,7 +22,7 @@ export async function middleware(request: NextRequest) {
 
   const includes = ["/web", "/web/sign-up", "/web/sign-in", "/sign-in"];
 
-  if (!token && includes.includes(pathname)) {
+  if (!token && !includes.includes(pathname)) {
     if (process.env.LANDING_PAGE?.includes(domain)) {
       return NextResponse.redirect(new URL("/web/sign-in", request.url));
     } else {
@@ -129,12 +129,8 @@ export async function middleware(request: NextRequest) {
     if (!process.env.LANDING_PAGE?.includes(domain)) {
       return NextResponse.redirect(new URL("/", request.url));
     }
-    // console.log(domain);
-    // console.log(process.env.LANDING_PAGE);
-    // console.log(origin);
-    // console.log(hostname);
-    // console.log(pathname);
   }
+
   if (request.nextUrl.pathname.startsWith("/admin")) {
     const data = await (
       await fetch(process.env.SERVER_ENDPOINT + "/api/user/profile", {
