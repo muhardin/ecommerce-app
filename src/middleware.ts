@@ -22,8 +22,8 @@ export async function middleware(request: NextRequest) {
 
   const includes = ["/web", "/web/sign-up", "/web/sign-in", "/sign-in"];
 
-  if (!token && !includes.includes(pathname)) {
-    if (process.env.LANDING_PAGE?.includes(domain)) {
+  if (!token && includes.includes(pathname)) {
+    if (!process.env.LANDING_PAGE?.includes(domain)) {
       return NextResponse.redirect(new URL("/web/sign-in", request.url));
     } else {
       return NextResponse.redirect(new URL("/sign-in", request.url));
@@ -126,7 +126,7 @@ export async function middleware(request: NextRequest) {
   }
 
   if (request.nextUrl.pathname.startsWith("/web")) {
-    if (domain != process.env.LANDING_PAGE) {
+    if (!process.env.LANDING_PAGE?.includes(domain)) {
       return NextResponse.redirect(new URL("/", request.url));
     }
     // console.log(domain);
