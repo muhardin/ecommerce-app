@@ -7,7 +7,7 @@ import MyProductList from "./MyProductList";
 import { Supplier } from "../../../../../adminType";
 import { Category, Product } from "../../../../../type";
 
-const MyProductComponent = () => {
+const MyProductGlobalCom = () => {
   const shopData = useShopData();
   const { data: session } = useSession();
 
@@ -21,8 +21,7 @@ const MyProductComponent = () => {
     }).then((res) => res.json());
   const url =
     process.env.SERVER_ENDPOINT +
-    "/api/myshop-board/products/myproducts/" +
-    shopData?.id;
+    "/api/myshop-board/products/myproducts-global/list/";
   const {
     data: productsData,
     isLoading,
@@ -47,7 +46,7 @@ const MyProductComponent = () => {
     refreshInterval: 3000,
   });
   /** end of category */
-  console.log(shopData);
+  console.log(productsData);
   return (
     <div className="flex flex-col gap-2 bg-white p-6">
       <div
@@ -179,4 +178,4 @@ const MyProductComponent = () => {
   );
 };
 
-export default MyProductComponent;
+export default MyProductGlobalCom;

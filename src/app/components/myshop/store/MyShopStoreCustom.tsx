@@ -4,7 +4,7 @@ import React, { useRef, useState } from "react";
 import { ShopData } from "../../../../../type";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
-import toast from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
 
 const MyShopStoreCustom = ({ item }: { item: ShopData }) => {
@@ -122,8 +122,7 @@ const MyShopStoreCustom = ({ item }: { item: ShopData }) => {
                     onClick={handleDivClick}
                     role="presentation"
                     tabIndex={0}
-                    className="border-dashed border-2 border-border-base h-36 rounded flex flex-col justify-center items-center cursor-pointer focus:border-accent-400 focus:outline-none"
-                  >
+                    className="border-dashed border-2 border-border-base h-36 rounded flex flex-col justify-center items-center cursor-pointer focus:border-accent-400 focus:outline-none">
                     <input
                       onChange={handleImageChange}
                       ref={fileInputRef}
@@ -137,15 +136,13 @@ const MyShopStoreCustom = ({ item }: { item: ShopData }) => {
                       width="41px"
                       height="30px"
                       viewBox="0 0 40.909 30"
-                      className="text-muted-light"
-                    >
+                      className="text-muted-light">
                       <g transform="translate(0 -73.091)">
                         <path
                           data-name="Path 2125"
                           d="M39.129,89.827A8.064,8.064,0,0,0,34.58,86.94,5.446,5.446,0,0,0,30,78.546a5.207,5.207,0,0,0-3.537,1.321,10.921,10.921,0,0,0-10.1-6.776,10.511,10.511,0,0,0-7.713,3.2A10.508,10.508,0,0,0,5.454,84q0,.277.043.916A9.528,9.528,0,0,0,0,93.546a9.193,9.193,0,0,0,2.8,6.743,9.191,9.191,0,0,0,6.744,2.8H32.728a8.172,8.172,0,0,0,6.4-13.264Zm-12.06-.575a.656.656,0,0,1-.479.2H21.818v7.5a.691.691,0,0,1-.681.681H17.045a.691.691,0,0,1-.682-.681v-7.5H11.59a.655.655,0,0,1-.681-.681.8.8,0,0,1,.213-.512L18.6,80.783a.722.722,0,0,1,.98,0l7.5,7.5a.663.663,0,0,1,.191.49A.656.656,0,0,1,27.07,89.252Z"
                           transform="translate(0)"
-                          fill="currentColor"
-                        ></path>
+                          fill="currentColor"></path>
                       </g>
                     </svg>
                     <p className="mt-4 text-center text-sm text-body">
@@ -194,8 +191,7 @@ const MyShopStoreCustom = ({ item }: { item: ShopData }) => {
                 <div className="mb-5">
                   <label
                     htmlFor="company_name"
-                    className="mb-3 block text-sm font-semibold leading-none text-body-dark"
-                  >
+                    className="mb-3 block text-sm font-semibold leading-none text-body-dark">
                     Store Name
                   </label>
                   <input
@@ -214,8 +210,7 @@ const MyShopStoreCustom = ({ item }: { item: ShopData }) => {
                 <div className="mb-5">
                   <label
                     htmlFor="siteSubtitle"
-                    className="mb-3 block text-sm font-semibold leading-none text-body-dark"
-                  >
+                    className="mb-3 block text-sm font-semibold leading-none text-body-dark">
                     Site Subtitle
                   </label>
                   <input
@@ -235,8 +230,7 @@ const MyShopStoreCustom = ({ item }: { item: ShopData }) => {
                 <div className="mb-5">
                   <label
                     htmlFor="siteSubtitle"
-                    className="mb-3 block text-sm font-semibold leading-none text-body-dark"
-                  >
+                    className="mb-3 block text-sm font-semibold leading-none text-body-dark">
                     Email
                   </label>
                   <input
@@ -256,8 +250,7 @@ const MyShopStoreCustom = ({ item }: { item: ShopData }) => {
                 <div className="mb-5">
                   <label
                     htmlFor="siteSubtitle"
-                    className="mb-3 block text-sm font-semibold leading-none text-body-dark"
-                  >
+                    className="mb-3 block text-sm font-semibold leading-none text-body-dark">
                     Phone
                   </label>
                   <input
@@ -277,8 +270,7 @@ const MyShopStoreCustom = ({ item }: { item: ShopData }) => {
                 <div className="mb-5">
                   <label
                     htmlFor="siteSubtitle"
-                    className="mb-3 block text-sm font-semibold leading-none text-body-dark"
-                  >
+                    className="mb-3 block text-sm font-semibold leading-none text-body-dark">
                     Store Description
                   </label>
 
@@ -291,8 +283,7 @@ const MyShopStoreCustom = ({ item }: { item: ShopData }) => {
                     className="block w-full border bg-gray-50 focus:bg-white text-sm dark:text-gray-300 rounded-md focus:outline-none p-3 border-gray-200 dark:border-gray-600 dark:focus:border-gray-600 dark:bg-gray-700"
                     placeholder="Slider Description"
                     rows={4}
-                    spellCheck="false"
-                  ></textarea>
+                    spellCheck="false"></textarea>
                 </div>
 
                 <div className="mb-5">
@@ -396,8 +387,7 @@ const MyShopStoreCustom = ({ item }: { item: ShopData }) => {
                 <div className="mb-5">
                   <label
                     htmlFor="contactDetails.website"
-                    className="mb-3 block text-sm font-semibold leading-none text-body-dark"
-                  >
+                    className="mb-3 block text-sm font-semibold leading-none text-body-dark">
                     Alternative Website
                   </label>
                   <input
@@ -425,8 +415,7 @@ const MyShopStoreCustom = ({ item }: { item: ShopData }) => {
                         type="button"
                         tabIndex={0}
                         aria-checked="false"
-                        data-headlessui-state=""
-                      >
+                        data-headlessui-state="">
                         <span className="sr-only">Enable </span>
                         <span className="translate-x-1 inline-block h-4 w-4 transform rounded-full bg-light transition-transform"></span>
                       </button>
@@ -448,13 +437,11 @@ const MyShopStoreCustom = ({ item }: { item: ShopData }) => {
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               viewBox="0 0 12 12"
-                              className="w-4 h-4"
-                            >
+                              className="w-4 h-4">
                               <path
                                 data-name="_ionicons_svg_logo-facebook (6)"
                                 d="M11.338 0H.662A.663.663 0 000 .663v10.674a.663.663 0 00.662.662H6V7.25H4.566V5.5H6V4.206a2.28 2.28 0 012.459-2.394c.662 0 1.375.05 1.541.072V3.5H8.9c-.753 0-.9.356-.9.881V5.5h1.794L9.56 7.25H8V12h3.338a.663.663 0 00.662-.663V.662A.663.663 0 0011.338 0z"
-                                fill="currentColor"
-                              ></path>
+                                fill="currentColor"></path>
                             </svg>
                           </span>
                           <span className="ml-2">Facebook</span>
@@ -463,8 +450,7 @@ const MyShopStoreCustom = ({ item }: { item: ShopData }) => {
                       <div className="sm:col-span-2">
                         <label
                           htmlFor="contactDetails.socials.0.url"
-                          className="mb-3 block text-sm font-semibold leading-none text-body-dark"
-                        >
+                          className="mb-3 block text-sm font-semibold leading-none text-body-dark">
                           Add profile url
                         </label>
                         <input
@@ -482,8 +468,7 @@ const MyShopStoreCustom = ({ item }: { item: ShopData }) => {
                       </div>
                       <button
                         type="button"
-                        className="text-sm text-red-500 transition-colors duration-200 hover:text-red-700 focus:outline-none sm:col-span-1 sm:mt-4"
-                      >
+                        className="text-sm text-red-500 transition-colors duration-200 hover:text-red-700 focus:outline-none sm:col-span-1 sm:mt-4">
                         Remove
                       </button>
                     </div>
@@ -499,13 +484,11 @@ const MyShopStoreCustom = ({ item }: { item: ShopData }) => {
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               viewBox="0 0 14.747 12"
-                              className="w-4 h-4"
-                            >
+                              className="w-4 h-4">
                               <path
                                 data-name="_ionicons_svg_logo-twitter (5)"
                                 d="M14.747 1.422a6.117 6.117 0 01-1.737.478A3.036 3.036 0 0014.341.225a6.012 6.012 0 01-1.922.734 3.025 3.025 0 00-5.234 2.069 2.962 2.962 0 00.078.691A8.574 8.574 0 011.026.553a3.032 3.032 0 00.941 4.044 2.955 2.955 0 01-1.375-.378v.037A3.028 3.028 0 003.02 7.225a3.046 3.046 0 01-.8.106 2.854 2.854 0 01-.569-.056 3.03 3.03 0 002.828 2.1 6.066 6.066 0 01-3.759 1.3 6.135 6.135 0 01-.722-.044A8.457 8.457 0 004.631 12a8.557 8.557 0 008.616-8.619c0-.131 0-.262-.009-.391a6.159 6.159 0 001.509-1.568z"
-                                fill="currentColor"
-                              ></path>
+                                fill="currentColor"></path>
                             </svg>
                           </span>
                           <span className="ml-2">Twitter</span>
@@ -514,8 +497,7 @@ const MyShopStoreCustom = ({ item }: { item: ShopData }) => {
                       <div className="sm:col-span-2">
                         <label
                           htmlFor="contactDetails.socials.1.url"
-                          className="mb-3 block text-sm font-semibold leading-none text-body-dark"
-                        >
+                          className="mb-3 block text-sm font-semibold leading-none text-body-dark">
                           Add profile url
                         </label>
                         <input
@@ -533,8 +515,7 @@ const MyShopStoreCustom = ({ item }: { item: ShopData }) => {
                       </div>
                       <button
                         type="button"
-                        className="text-sm text-red-500 transition-colors duration-200 hover:text-red-700 focus:outline-none sm:col-span-1 sm:mt-4"
-                      >
+                        className="text-sm text-red-500 transition-colors duration-200 hover:text-red-700 focus:outline-none sm:col-span-1 sm:mt-4">
                         Remove
                       </button>
                     </div>
@@ -552,18 +533,15 @@ const MyShopStoreCustom = ({ item }: { item: ShopData }) => {
                                 data-name="Group 96"
                                 xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 12 12"
-                                className="w-4 h-4"
-                              >
+                                className="w-4 h-4">
                                 <path
                                   data-name="Path 1"
                                   d="M8.5 1A2.507 2.507 0 0111 3.5v5A2.507 2.507 0 018.5 11h-5A2.507 2.507 0 011 8.5v-5A2.507 2.507 0 013.5 1h5m0-1h-5A3.51 3.51 0 000 3.5v5A3.51 3.51 0 003.5 12h5A3.51 3.51 0 0012 8.5v-5A3.51 3.51 0 008.5 0z"
-                                  fill="currentColor"
-                                ></path>
+                                  fill="currentColor"></path>
                                 <path
                                   data-name="Path 2"
                                   d="M9.25 3.5a.75.75 0 11.75-.75.748.748 0 01-.75.75zM6 4a2 2 0 11-2 2 2 2 0 012-2m0-1a3 3 0 103 3 3 3 0 00-3-3z"
-                                  fill="currentColor"
-                                ></path>
+                                  fill="currentColor"></path>
                               </svg>
                             </span>
                             <span className="ml-2">Instagram</span>
@@ -573,8 +551,7 @@ const MyShopStoreCustom = ({ item }: { item: ShopData }) => {
                       <div className="sm:col-span-2">
                         <label
                           htmlFor="contactDetails.socials.2.url"
-                          className="mb-3 block text-sm font-semibold leading-none text-body-dark"
-                        >
+                          className="mb-3 block text-sm font-semibold leading-none text-body-dark">
                           Add profile url
                         </label>
                         <input
@@ -592,8 +569,7 @@ const MyShopStoreCustom = ({ item }: { item: ShopData }) => {
                       </div>
                       <button
                         type="button"
-                        className="text-sm text-red-500 transition-colors duration-200 hover:text-red-700 focus:outline-none sm:col-span-1 sm:mt-4"
-                      >
+                        className="text-sm text-red-500 transition-colors duration-200 hover:text-red-700 focus:outline-none sm:col-span-1 sm:mt-4">
                         Remove
                       </button>
                     </div>
@@ -602,8 +578,7 @@ const MyShopStoreCustom = ({ item }: { item: ShopData }) => {
                 <button
                   data-variant="normal"
                   className="inline-flex items-center justify-center flex-shrink-0 font-semibold leading-none rounded outline-none transition duration-300 ease-in-out focus:outline-none focus:shadow focus:ring-1 focus:ring-accent-700 bg-accent text-light border border-transparent hover:bg-accent-hover px-5 py-0 h-12 w-full sm:w-auto"
-                  type="button"
-                >
+                  type="button">
                   Add New Social Profile
                 </button>
               </div>
@@ -613,19 +588,18 @@ const MyShopStoreCustom = ({ item }: { item: ShopData }) => {
               <Link
                 href={"/myshop/store"}
                 data-variant="normal"
-                className=" text-white inline-flex items-center justify-center flex-shrink-0 font-semibold leading-none rounded outline-none transition duration-300 ease-in-out focus:outline-none focus:shadow focus:ring-1 focus:ring-accent-700 bg-accent text-light border border-transparent hover:bg-accent-hover px-5 py-0 h-12"
-              >
+                className=" text-white inline-flex items-center justify-center flex-shrink-0 font-semibold leading-none rounded outline-none transition duration-300 ease-in-out focus:outline-none focus:shadow focus:ring-1 focus:ring-accent-700 bg-accent text-light border border-transparent hover:bg-accent-hover px-5 py-0 h-12">
                 Back
               </Link>
               <button
                 data-variant="normal"
-                className=" text-white inline-flex items-center justify-center flex-shrink-0 font-semibold leading-none rounded outline-none transition duration-300 ease-in-out focus:outline-none focus:shadow focus:ring-1 focus:ring-accent-700 bg-accent text-light border border-transparent hover:bg-accent-hover px-5 py-0 h-12"
-              >
+                className=" text-white inline-flex items-center justify-center flex-shrink-0 font-semibold leading-none rounded outline-none transition duration-300 ease-in-out focus:outline-none focus:shadow focus:ring-1 focus:ring-accent-700 bg-accent text-light border border-transparent hover:bg-accent-hover px-5 py-0 h-12">
                 Save Settings
               </button>
             </div>
           </form>
         </div>
+        <Toaster />
       </main>
     </>
   );

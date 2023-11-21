@@ -76,7 +76,7 @@ const MyProductList = ({ item }: ItemProps) => {
         }
       });
   };
-  console.log(shopData);
+
   return (
     <div className="w-full rounded-lg overflow-hidden">
       <div className="">
@@ -84,8 +84,7 @@ const MyProductList = ({ item }: ItemProps) => {
           href={{
             pathname: "/product",
             query: { id: item?.id, image: item?.image },
-          }}
-        >
+          }}>
           <div className=" w-full h-80 group overflow-hidden relative">
             <Image
               src={`${process.env.SERVER_ENDPOINT}${item.product.image}`}
@@ -106,8 +105,7 @@ const MyProductList = ({ item }: ItemProps) => {
             href={{
               pathname: "/product",
               query: { id: item?.id, image: item?.image },
-            }}
-          >
+            }}>
             <p className="cursor-pointer hover:text-sky-600">
               {item?.product.title}
             </p>
@@ -137,14 +135,12 @@ const MyProductList = ({ item }: ItemProps) => {
                 onClick={(e) => {
                   SubmitDelete(item.id, "del");
                 }}
-                className=" bg-red-500 py-2 px-4 rounded-lg text-sm tracking-wide text-slate-100 hover:bg-red-600 hover:text-white duration-200"
-              >
+                className=" bg-red-500 py-2 px-4 rounded-lg text-sm tracking-wide text-slate-100 hover:bg-red-600 hover:text-white duration-200">
                 Delete
               </button>
               <Link
                 href={`/myshop/product/detail/${item.id}`}
-                className=" bg-green-500 py-2 px-4 rounded-lg text-sm tracking-wide text-slate-100 hover:bg-sky-600 hover:text-white duration-200"
-              >
+                className=" bg-green-500 py-2 px-4 rounded-lg text-sm tracking-wide text-slate-100 hover:bg-sky-600 hover:text-white duration-200">
                 Detail
               </Link>
             </div>

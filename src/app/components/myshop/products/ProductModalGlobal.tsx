@@ -7,15 +7,17 @@ import CurrencyInput from "react-currency-input-field";
 import toast from "react-hot-toast";
 import FormattedPrice from "../../FormattedPrice";
 import { useShopData } from "../../shop/ShopContext";
-import { Product, Products } from "../../../../../type";
+import { Product, Products, ShopData } from "../../../../../type";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
-const ProductModal = ({
+const ProductModalGlobal = ({
   product,
   onReset,
+  shops,
 }: {
+  shops: ShopData;
   product: Products;
   onReset: () => void;
 }) => {
@@ -74,7 +76,9 @@ const ProductModal = ({
     headers: { Authorization: `Bearer ${session?.bearer}` },
   };
   const [isLoading, setIsLoading] = useState(false);
-
+  const [selectedShop, setSelectedShop] = useState(
+    (shops as unknown as ShopData[])[0]?.id
+  );
   const handleSubmit = async (e: FormEvent) => {
     setErrorPrice(false);
     e.preventDefault();
@@ -84,7 +88,7 @@ const ProductModal = ({
       const formData = {
         product: product.id,
         price: price,
-        shop: shopData?.id,
+        shop: selectedShop,
       };
       // formDataOrder.parse(formData);
       // Form data is valid; submit it using Axios
@@ -112,7 +116,7 @@ const ProductModal = ({
       toast.dismiss();
     }
   };
-
+  console.log(selectedShop);
   return (
     <div>
       <button
@@ -257,6 +261,40 @@ const ProductModal = ({
                                   />
                                 </svg> */}
                                       </div>
+                                    </div>
+                                    <label
+                                      htmlFor="card-holder"
+                                      className="mt-4 mb-2 block text-sm font-medium">
+                                      Store
+                                    </label>
+                                    <div className="relative">
+                                      <select
+                                        onChange={(e) =>
+                                          setSelectedShop(
+                                            Number(e.target.value)
+                                          )
+                                        }
+                                        id="Category"
+                                        className="w-full rounded-md mt-1 border border-slate-300/60 dark:border-slate-700 dark:text-slate-300 bg-transparent px-3 py-2 focus:outline-none focus:ring-0 placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-primary-500 dark:focus:border-primary-500  dark:hover:border-slate-700">
+                                        <option className="dark:text-slate-700">
+                                          Select Shop
+                                        </option>
+                                        {/* categories */}
+                                        {Array.isArray(shops) &&
+                                        shops.length > 0
+                                          ? shops.map(
+                                              (item: ShopData, index) => (
+                                                <option
+                                                  selected={index === 0}
+                                                  key={item.id}
+                                                  value={item.id}
+                                                  className="dark:text-slate-700">
+                                                  {item.company_name}
+                                                </option>
+                                              )
+                                            )
+                                          : null}
+                                      </select>
                                     </div>
                                     <label
                                       htmlFor="card-holder"
@@ -465,4 +503,4 @@ const ProductModal = ({
   );
 };
 
-export default ProductModal;
+export default ProductModalGlobal;

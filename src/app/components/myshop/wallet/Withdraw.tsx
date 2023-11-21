@@ -170,13 +170,6 @@ const Withdraw = ({ valModal, modalToggle, balance }: Props) => {
       // Handle errors
     }
   };
-  // console.log(totalAmount);
-  // console.log(object?.id);
-  // console.log(selectedBankDetail?.id);
-  // console.log(selectedBankDetail);
-  // console.log(userBanks);
-  // console.log(object);
-
   return (
     <div>
       <div className={`${loading ? "block" : "hidden"} fixed z-20`}>
@@ -189,8 +182,7 @@ const Withdraw = ({ valModal, modalToggle, balance }: Props) => {
         } overflow-x-hidden overflow-y-auto inset-0 outline-none focus:outline-none w-full`}
         aria-labelledby="modal-title"
         role="dialog"
-        aria-modal="true"
-      >
+        aria-modal="true">
         <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
         {/* <div className="fixed inset-0 z-10 w-full md:ml-[156px] overflow-y-auto mt-24 md:mt-0"> */}
         <div className="fixed inset-0 z-10 w-full overflow-y-auto mt-24 md:mt-0">
@@ -206,14 +198,12 @@ const Withdraw = ({ valModal, modalToggle, balance }: Props) => {
                       onSubmit={() => {
                         // handleSubmitWithdrawal;
                       }}
-                      className="w-full"
-                    >
+                      className="w-full">
                       <div className="flex flex-wrap -mx-3 mb-4">
                         <div className="bg-white p-4 border border-gray-200 shadow-md w-full">
                           <div
                             className="flex flex-row justify-between relative w-full"
-                            ref={ref}
-                          >
+                            ref={ref}>
                             <div className="flex flex-row gap-1">
                               <Landmark size={20} />
                               <span>Bank Tujuan</span>
@@ -221,8 +211,7 @@ const Withdraw = ({ valModal, modalToggle, balance }: Props) => {
                             <div className="">
                               <div
                                 onClick={toggleAddress}
-                                className="flex flex-row justify-end items-center"
-                              >
+                                className="flex flex-row justify-end items-center">
                                 <span className="text-sky-500 cursor-pointer hover:text-sky-600">
                                   Select Bank
                                 </span>
@@ -233,30 +222,26 @@ const Withdraw = ({ valModal, modalToggle, balance }: Props) => {
                                   viewBox="0 0 20 20"
                                   fill="#3a5fd6"
                                   xmlns="http://www.w3.org/2000/svg"
-                                  className="transition ico_drop_down_minor ml-2"
-                                >
+                                  className="transition ico_drop_down_minor ml-2">
                                   <path
                                     fillRule="evenodd"
                                     clipRule="evenodd"
                                     d="M5 7L10 14L15 7H5Z"
                                     fill="#3a5fd6"
-                                    className="ico_drop_down_minor"
-                                  ></path>
+                                    className="ico_drop_down_minor"></path>
                                 </svg>
                               </div>
                             </div>
                             <div
                               className={`${
                                 !address ? "hidden" : ""
-                              } absolute flex flex-col gap-2 w-full md:w-2/3 right-0 top-0 mt-8 bg-white p-2 border border-gray-200 shadow-md justify-end`}
-                            >
+                              } absolute flex flex-col gap-2 w-full md:w-2/3 right-0 top-0 mt-8 bg-white p-2 border border-gray-200 shadow-md justify-end`}>
                               <div className="overflow-y-auto h-96">
                                 {userBanks?.length > 0 ? (
                                   userBanks.map((item: UserBank) => (
                                     <div
                                       key={item.id}
-                                      className="relative mt-1"
-                                    >
+                                      className="relative mt-1">
                                       <input
                                         className="peer hidden"
                                         id={item.id.toString()}
@@ -270,8 +255,7 @@ const Withdraw = ({ valModal, modalToggle, balance }: Props) => {
                                       <span className="peer-checked:border-gray-700 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
                                       <label
                                         className="peer-checked:border-2 peer-checked:border-sky-600 peer-checked:bg-sky-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-2"
-                                        htmlFor={item.id.toString()}
-                                      >
+                                        htmlFor={item.id.toString()}>
                                         <Image
                                           width={95}
                                           height={95}
@@ -313,8 +297,7 @@ const Withdraw = ({ valModal, modalToggle, balance }: Props) => {
                                     // toggleAddress();
                                     setAddBankAccountOpen(true);
                                   }}
-                                  className="rounded-md bg-sky-500 p-2 text-white  hover:bg-sky-300"
-                                >
+                                  className="rounded-md bg-sky-500 p-2 text-white  hover:bg-sky-300">
                                   Add Bank
                                 </button>
                               </div>
@@ -366,8 +349,7 @@ const Withdraw = ({ valModal, modalToggle, balance }: Props) => {
                         <div className="w-full px-3">
                           <label
                             className="block capitalize tracking-wide text-gray-700 text-xs font-bold mb-2"
-                            htmlFor="grid-password"
-                          >
+                            htmlFor="grid-password">
                             Amount
                           </label>
                           <CurrencyInput
@@ -398,8 +380,7 @@ const Withdraw = ({ valModal, modalToggle, balance }: Props) => {
                         <div className="w-full px-3">
                           <label
                             className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                            htmlFor="grid-password"
-                          >
+                            htmlFor="grid-password">
                             Fee
                           </label>
                           <CurrencyInput
@@ -419,8 +400,7 @@ const Withdraw = ({ valModal, modalToggle, balance }: Props) => {
                         <div className="w-full px-3">
                           <label
                             className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                            htmlFor="grid-password"
-                          >
+                            htmlFor="grid-password">
                             Receiving Amount
                           </label>
                           <CurrencyInput
@@ -472,16 +452,14 @@ const Withdraw = ({ valModal, modalToggle, balance }: Props) => {
                           onClick={() => {
                             toggleValue();
                           }}
-                          className="p-2 rounded-md text-white bg-red-400 cursor-pointer"
-                        >
+                          className="p-2 rounded-md text-white bg-red-400 cursor-pointer">
                           Close
                         </button>
 
                         <button
                           disabled={disable || errorBalance}
                           onClick={handleSubmitWithdrawal}
-                          className="p-2 rounded-md text-white bg-sky-600 cursor-pointer disabled:bg-gray-500"
-                        >
+                          className="p-2 rounded-md text-white bg-sky-600 cursor-pointer disabled:bg-gray-500">
                           Submit
                         </button>
                       </div>
@@ -505,8 +483,7 @@ const Withdraw = ({ valModal, modalToggle, balance }: Props) => {
       </div>
       <Modal
         isOpen={isAddBankAccountOpen}
-        onClose={() => setAddBankAccountOpen(false)}
-      >
+        onClose={() => setAddBankAccountOpen(false)}>
         <AddBankAccountForm onClose={() => setAddBankAccountOpen(false)} />
       </Modal>
 

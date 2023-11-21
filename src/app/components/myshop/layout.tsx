@@ -11,6 +11,8 @@ import { Wallet } from "lucide-react";
 import MenuProfile from "../menu/MenuProfile";
 import SideBarWeb from "../menu/SideBarWeb";
 import { useSession } from "next-auth/react";
+import Head from "next/head";
+import { Metadata } from "next";
 
 const MyShopLayoutComponent = ({ children }: { children: React.ReactNode }) => {
   const dispatch = useDispatch();
@@ -24,13 +26,16 @@ const MyShopLayoutComponent = ({ children }: { children: React.ReactNode }) => {
   const pathName = usePathname();
 
   return (
-    <div className="bg-gray-100 xl:h-screen dark:bg-gray-800">
-      <div className="body-content">
-        <SideBarWeb />
-        <div
-          className={`transition-all ${isOpen ? " md:ml-[280px]" : "md:ml-0"}`}
-          id="dash">
-          {/* <section className="sticky top-0 z-40 px-3 py-3 bg-white shadow dark:text-gray-100 dark:bg-gray-900 lg:px-5">
+    <>
+      <div className="bg-gray-100 xl:h-screen dark:bg-gray-800">
+        <div className="body-content">
+          <SideBarWeb />
+          <div
+            className={`transition-all ${
+              isOpen ? " md:ml-[280px]" : "md:ml-0"
+            }`}
+            id="dash">
+            {/* <section className="sticky top-0 z-40 px-3 py-3 bg-white shadow dark:text-gray-100 dark:bg-gray-900 lg:px-5">
             <nav className="relative">
               <div className="flex items-center justify-between">
                 <div>
@@ -218,10 +223,11 @@ const MyShopLayoutComponent = ({ children }: { children: React.ReactNode }) => {
               </div>
             </nav>
           </section> */}
-          {children}
+            {children}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
