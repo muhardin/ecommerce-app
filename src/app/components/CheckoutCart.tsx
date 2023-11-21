@@ -311,7 +311,7 @@ const CheckoutCart = () => {
       updatedValues[index] = defaultCourierData;
       return updatedValues;
     });
-    console.log(supplier);
+    // console.log(supplier);
 
     const getD = await axios
       .get(
@@ -326,8 +326,8 @@ const CheckoutCart = () => {
           if (response.data.rajaongkir?.results) {
             updatedValues[index] = response.data.rajaongkir.results[0]; // Update the selected value at the specified index
           }
-          console.log(updatedValues[index]);
-          console.log(response.data);
+          // console.log(updatedValues[index]);
+          // console.log(response.data);
           return updatedValues;
         });
         // Assuming the response is an array of data
@@ -452,23 +452,20 @@ const CheckoutCart = () => {
                   viewBox="0 0 24 24"
                   fill="ink-dark"
                   xmlns="http://www.w3.org/2000/svg"
-                  className="ico_home"
-                >
+                  className="ico_home">
                   <path
                     fillRule="evenodd"
                     clipRule="evenodd"
                     d="M19.9736 10.9996H18.9866V19.9196C18.9866 20.5166 18.5036 20.9996 17.9086 20.9996H14.4946C14.2196 20.9996 13.9956 20.7756 13.9956 20.4996V15.9996C13.9956 15.4476 13.5486 14.9996 12.9976 14.9996H11.0016C10.4516 14.9996 10.0036 15.4476 10.0036 15.9996V20.4996C10.0036 20.7756 9.78059 20.9996 9.50459 20.9996H6.09159C5.49559 20.9996 5.01359 20.5166 5.01359 19.9196V10.9996H4.02659C3.03959 10.9996 2.62259 9.7396 3.41459 9.1496L11.4086 3.1966C11.7596 2.9346 12.2406 2.9346 12.5916 3.1966L20.5846 9.1496C21.3766 9.7396 20.9596 10.9996 19.9736 10.9996Z"
                     fill="ink-dark"
-                    className="ico_home"
-                  ></path>
+                    className="ico_home"></path>
                 </svg>
                 <span>Kirim ke mana ?</span>
               </div>
               <div className="">
                 <div
                   onClick={toggleAddress}
-                  className="flex flex-row justify-end items-center"
-                >
+                  className="flex flex-row justify-end items-center">
                   <span className="text-sky-500 cursor-pointer hover:text-sky-600">
                     Select Address
                   </span>
@@ -479,23 +476,20 @@ const CheckoutCart = () => {
                     viewBox="0 0 20 20"
                     fill="#3a5fd6"
                     xmlns="http://www.w3.org/2000/svg"
-                    className="transition ico_drop_down_minor ml-2"
-                  >
+                    className="transition ico_drop_down_minor ml-2">
                     <path
                       fillRule="evenodd"
                       clipRule="evenodd"
                       d="M5 7L10 14L15 7H5Z"
                       fill="#3a5fd6"
-                      className="ico_drop_down_minor"
-                    ></path>
+                      className="ico_drop_down_minor"></path>
                   </svg>
                 </div>
               </div>
               <div
                 className={`${
                   !address ? "hidden" : ""
-                } absolute flex flex-col gap-2 w-full md:w-2/3 right-0 top-0 mt-8 bg-white p-2 border border-gray-200 shadow-md justify-end`}
-              >
+                } absolute flex flex-col gap-2 w-full md:w-2/3 right-0 top-0 mt-8 bg-white p-2 border border-gray-200 shadow-md justify-end`}>
                 <div className="overflow-y-auto h-96">
                   {addresses?.length > 0 ? (
                     addresses.map((address: Address) => (
@@ -513,8 +507,7 @@ const CheckoutCart = () => {
                         <span className="peer-checked:border-gray-700 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
                         <label
                           className="peer-checked:border-2 peer-checked:border-sky-600 peer-checked:bg-sky-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-4"
-                          htmlFor={address.id.toString()}
-                        >
+                          htmlFor={address.id.toString()}>
                           <Image
                             width={95}
                             height={95}
@@ -554,8 +547,7 @@ const CheckoutCart = () => {
                       toggleModal();
                       toggleAddress();
                     }}
-                    className="rounded-md bg-sky-500 p-2 text-white  hover:bg-sky-300"
-                  >
+                    className="rounded-md bg-sky-500 p-2 text-white  hover:bg-sky-300">
                     Add Address
                   </button>
                 </div>
@@ -613,8 +605,7 @@ const CheckoutCart = () => {
                           onClick={() => {
                             ConfirmAction(item?.id, "del");
                           }}
-                          className="text-lg hover:text-red-600 cursor-pointer duration-200"
-                        >
+                          className="text-lg hover:text-red-600 cursor-pointer duration-200">
                           <AiOutlineClose />
                         </span>
                         <Image
@@ -679,8 +670,7 @@ const CheckoutCart = () => {
                             item.product.supplier_area
                           )
                         }
-                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                      >
+                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         <option>Select Courier</option>
                         {optionCouriers.map((select) => (
                           <option key={select.id} value={select.value}>
@@ -717,8 +707,7 @@ const CheckoutCart = () => {
                         <select
                           id={`select-${index}`}
                           onChange={(e) => handleSelectChangeCost(e, index)}
-                          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        >
+                          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                           {loading ? (
                             <option selected>Loading...</option>
                           ) : (
@@ -738,8 +727,7 @@ const CheckoutCart = () => {
                                   itemCost.cost[0].value *
                                   item?.quantity *
                                   FormattedCommaNumber(item.weight / 1000)
-                                }
-                              >
+                                }>
                                 <div className="flex flex-row justify-between w-full gap-4">
                                   <span>{itemCost.description}</span>
                                   <span> | </span>
@@ -790,8 +778,7 @@ const CheckoutCart = () => {
         } overflow-x-hidden overflow-y-auto fixed inset-0 outline-none focus:outline-none`}
         aria-labelledby="modal-title"
         role="dialog"
-        aria-modal="true"
-      >
+        aria-modal="true">
         <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
         <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
           <div className="w-full flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
@@ -802,28 +789,24 @@ const CheckoutCart = () => {
                     <div className="font-regular relative mb-4 block w-full rounded-lg bg-red-500 p-4 text-base leading-5 text-white opacity-100">
                       <div
                         className="absolute top-2.5 right-3 w-max rounded-lg transition-all hover:bg-white hover:bg-opacity-20"
-                        data-dismissible-target="alert"
-                      >
+                        data-dismissible-target="alert">
                         <button
                           onClick={() => {
                             setIsFail(false);
                           }}
                           role="button"
-                          className="w-max rounded-lg p-1"
-                        >
+                          className="w-max rounded-lg p-1">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             className="h-6 w-6"
                             fill="none"
                             viewBox="0 0 24 24"
                             stroke="currentColor"
-                            strokeWidth="2"
-                          >
+                            strokeWidth="2">
                             <path
                               strokeLinecap="round"
                               strokeLinejoin="round"
-                              d="M6 18L18 6M6 6l12 12"
-                            ></path>
+                              d="M6 18L18 6M6 6l12 12"></path>
                           </svg>
                         </button>
                       </div>
@@ -844,8 +827,7 @@ const CheckoutCart = () => {
                       <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                         <label
                           className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                          htmlFor="grid-first-name"
-                        >
+                          htmlFor="grid-first-name">
                           Contact Person
                         </label>
                         <input
@@ -869,8 +851,7 @@ const CheckoutCart = () => {
                       <div className="w-full md:w-1/2 px-3">
                         <label
                           className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                          htmlFor="grid-last-name"
-                        >
+                          htmlFor="grid-last-name">
                           Phone
                         </label>
                         <input
@@ -895,8 +876,7 @@ const CheckoutCart = () => {
                         <div className="w-full px-3">
                           <label
                             className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                            htmlFor="grid-password"
-                          >
+                            htmlFor="grid-password">
                             City
                           </label>
                           {/* <input
@@ -922,8 +902,7 @@ const CheckoutCart = () => {
                         <div className="w-full px-3">
                           <label
                             className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                            htmlFor="grid-password"
-                          >
+                            htmlFor="grid-password">
                             Area
                           </label>
                           {/* <input
@@ -960,14 +939,12 @@ const CheckoutCart = () => {
                           })
                         }
                         className="block w-full h-24 px-5 py-2.5 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg md:h-28 dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
-                        placeholder="Address Detail"
-                      ></textarea>
+                        placeholder="Address Detail"></textarea>
                     </div>
                     <div className="w-full md:w-1/3 mb-6 mt-2 md:mb-0">
                       <label
                         className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                        htmlFor="grid-zip"
-                      >
+                        htmlFor="grid-zip">
                         Zip
                       </label>
                       <input
@@ -992,15 +969,13 @@ const CheckoutCart = () => {
                   <button
                     type="submit"
                     // onClick={handleSubmitAddress}
-                    className="inline-flex justify-center rounded-md bg-sky-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-sky-500 sm:ml-3 sm:w-auto"
-                  >
+                    className="inline-flex justify-center rounded-md bg-sky-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-sky-500 sm:ml-3 sm:w-auto">
                     Save
                   </button>
                   <button
                     onClick={toggleModal}
                     type="button"
-                    className="inline-flex justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"
-                  >
+                    className="inline-flex justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto">
                     Cancel
                   </button>
                 </div>

@@ -82,7 +82,7 @@ const OrderHistorySummary = ({ id }: any) => {
         if (result.isConfirmed) {
           // console.log(productId);
           if (act == "del") {
-            console.log(productId);
+            // console.log(productId);
             setErrMessage([]);
             const config = {
               headers: { Authorization: `Bearer ${session?.bearer}` },
@@ -101,14 +101,14 @@ const OrderHistorySummary = ({ id }: any) => {
               setModal(true);
               setErrMessage(post.data.message.error);
               toast.dismiss();
-              console.log(post.data.message.error);
+              // console.log(post.data.message.error);
             } else if (post.status == 500) {
               toast.error("System on maintenance mode");
               toast.dismiss();
               // console.log(post.data.message.error);
             }
           } else {
-            console.log(productId);
+            // console.log(productId);
           }
         }
       });
@@ -127,8 +127,7 @@ const OrderHistorySummary = ({ id }: any) => {
                 {orderDetails?.map((item: any) => (
                   <div
                     key={item.id}
-                    className="border-2 border-sky-400 rounded-md p-2 flex flex-col justify-between"
-                  >
+                    className="border-2 border-sky-400 rounded-md p-2 flex flex-col justify-between">
                     <div className="">
                       <div className="mt-2 space-y-3 rounded-lg border bg-white px-2 py-4 sm:px-6">
                         <div className="flex flex-row rounded-lg bg-white sm:flex-row">
@@ -169,8 +168,7 @@ const OrderHistorySummary = ({ id }: any) => {
 
                           <label
                             className="peer-checked:border-1 peer-checked:border-sky-400 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-4"
-                            htmlFor={`shipping_detail${item.id}`}
-                          >
+                            htmlFor={`shipping_detail${item.id}`}>
                             <Image
                               width={150}
                               height={150}
@@ -247,8 +245,7 @@ const OrderHistorySummary = ({ id }: any) => {
                         <div className="relative">
                           <label
                             htmlFor="card-holder"
-                            className="mt-4 mb-2 block text-sm font-medium"
-                          >
+                            className="mt-4 mb-2 block text-sm font-medium">
                             Order Status
                           </label>
                           <input
@@ -263,8 +260,7 @@ const OrderHistorySummary = ({ id }: any) => {
                           <span className="peer-checked:border-sky-400 absolute right-4 top-2/3 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
                           <label
                             className="peer-checked:border-2 peer-checked:border-sky-500 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-1"
-                            htmlFor={`delivering_1${orders?.id}`}
-                          >
+                            htmlFor={`delivering_1${orders?.id}`}>
                             <Image
                               width={150}
                               height={150}
@@ -284,13 +280,11 @@ const OrderHistorySummary = ({ id }: any) => {
                         </div>
                       ) : item.order_status == "delivering" ? (
                         <div
-                          className={`border border-gray-400 p-2 rounded-md`}
-                        >
+                          className={`border border-gray-400 p-2 rounded-md`}>
                           <div className="relative">
                             <label
                               htmlFor="card-holder"
-                              className="mt-4 mb-2 block text-sm font-medium"
-                            >
+                              className="mt-4 mb-2 block text-sm font-medium">
                               Order Status
                             </label>
                             <input
@@ -303,8 +297,7 @@ const OrderHistorySummary = ({ id }: any) => {
 
                             <label
                               className="peer-checked:border-2 peer-checked:border-sky-400 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-1"
-                              htmlFor={`delivering${item.id}`}
-                            >
+                              htmlFor={`delivering${item.id}`}>
                               <Image
                                 width={150}
                                 height={150}
@@ -325,8 +318,7 @@ const OrderHistorySummary = ({ id }: any) => {
                           <div className={`block`}>
                             <label
                               htmlFor="card-holder"
-                              className="mt-1 mb-1 block text-sm font-medium"
-                            >
+                              className="mt-1 mb-1 block text-sm font-medium">
                               Shipping Number
                             </label>
                             <div className="relative">
@@ -348,8 +340,7 @@ const OrderHistorySummary = ({ id }: any) => {
                                   fill="none"
                                   viewBox="0 0 24 24"
                                   stroke="currentColor"
-                                  strokeWidth="2"
-                                >
+                                  strokeWidth="2">
                                   <path
                                     strokeLinecap="round"
                                     strokeLinejoin="round"
@@ -364,8 +355,7 @@ const OrderHistorySummary = ({ id }: any) => {
                         <div className="relative">
                           <label
                             htmlFor="card-holder"
-                            className="mt-4 mb-2 block text-sm font-medium"
-                          >
+                            className="mt-4 mb-2 block text-sm font-medium">
                             Order Status
                           </label>
                           <input
@@ -378,8 +368,7 @@ const OrderHistorySummary = ({ id }: any) => {
 
                           <label
                             className="peer-checked:border-2 peer-checked:border-sky-500 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-1"
-                            htmlFor={`delivering_1${orders?.id}`}
-                          >
+                            htmlFor={`delivering_1${orders?.id}`}>
                             <Image
                               width={150}
                               height={150}
@@ -401,8 +390,7 @@ const OrderHistorySummary = ({ id }: any) => {
                         <div className="relative">
                           <label
                             htmlFor="card-holder"
-                            className="mt-4 mb-2 block text-sm font-medium"
-                          >
+                            className="mt-4 mb-2 block text-sm font-medium">
                             Order Status
                           </label>
                           <input
@@ -415,8 +403,7 @@ const OrderHistorySummary = ({ id }: any) => {
                           <span className="peer-checked:border-sky-400 absolute right-4 top-2/3 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
                           <label
                             className="peer-checked:border-1 peer-checked:border-sky-500 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-1"
-                            htmlFor={`delivering_1${orders?.id}`}
-                          >
+                            htmlFor={`delivering_1${orders?.id}`}>
                             <Image
                               width={150}
                               height={150}
@@ -445,8 +432,7 @@ const OrderHistorySummary = ({ id }: any) => {
                           onClick={() => {
                             ConfirmAction(item?.id, "del");
                           }}
-                          className="bg-red-500 rounded-md hover:bg-red-300 text-white p-3"
-                        >
+                          className="bg-red-500 rounded-md hover:bg-red-300 text-white p-3">
                           Received
                         </button>
                       ) : (

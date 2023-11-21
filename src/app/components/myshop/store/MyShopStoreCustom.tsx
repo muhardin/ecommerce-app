@@ -10,8 +10,11 @@ import axios from "axios";
 const MyShopStoreCustom = ({ item }: { item: ShopData }) => {
   const { data: session } = useSession();
   const [previewImage, setPreviewImage] = useState<string | null>();
+  const [previewFavicon, setPreviewFavicon] = useState<string | null>();
   const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const fileInputRefFav = useRef<HTMLInputElement | null>(null);
   const [selectedFiles, setSelectedFiles] = useState<any>();
+  const [selectedFavicon, setSelectedFavicon] = useState<any>();
   const handleDivClick = () => {
     // Trigger a click event on the file input
     if (fileInputRef.current) {
@@ -33,6 +36,30 @@ const MyShopStoreCustom = ({ item }: { item: ShopData }) => {
     setSelectedFiles(file);
   };
 
+  /** Favicon Action */
+
+  const handleDivClickFavicon = () => {
+    // Trigger a click event on the file input
+    if (fileInputRefFav.current) {
+      fileInputRefFav.current.click();
+    }
+  };
+  const handleImageChangeFavicon = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPreviewFavicon(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    } else {
+      setPreviewFavicon(null);
+    }
+    setSelectedFavicon(file);
+  };
+
+  /** End of Favicon Action */
   const [formData, setFormData] = useState({
     ...item,
     status: item.status,
@@ -49,7 +76,7 @@ const MyShopStoreCustom = ({ item }: { item: ShopData }) => {
       [name]: inputValue,
     }));
   };
-  // console.log(formData);
+
   const handleSubmit = async (e: React.FormEvent) => {
     toast.loading("loading...");
     e.preventDefault();
@@ -58,9 +85,12 @@ const MyShopStoreCustom = ({ item }: { item: ShopData }) => {
     if (selectedFiles) {
       formDataWithImage.append("image", selectedFiles);
     }
+    if (selectedFavicon) {
+      formDataWithImage.append("favicon", selectedFavicon);
+    }
 
     Object.keys(formData).forEach((key) => {
-      if (key !== "image") {
+      if (key !== "image" && key !== "favicon") {
         formDataWithImage.append(
           key,
           (formData as unknown as Record<string, string>)[key]
@@ -170,6 +200,91 @@ const MyShopStoreCustom = ({ item }: { item: ShopData }) => {
                             width={500}
                             height={500}
                             src={`${process.env.SERVER_ENDPOINT}/storage/logo/${item.logo}`}
+                          />
+                        )}
+                      </figure>
+                    </div>
+                  </aside>
+                </section>
+              </div>
+            </div>
+            <div className="my-5 flex flex-wrap border-b border-dashed border-border-base pb-8 sm:my-8">
+              <div className="w-full px-0 pb-5 sm:w-4/12 sm:py-8 sm:pe-4 md:w-1/3 md:pe-5">
+                <h4 className="text-base font-semibold text-body-dark mb-2">
+                  Favicon
+                </h4>
+                <p className="text-sm text-body">
+                  <span>
+                    Upload your site Favicon from here. Dimension of the logo
+                    should be &nbsp;
+                    <span className="font-bold">128x40 Pixel</span>Image size
+                    should not be more than &nbsp;
+                    <span className="font-bold">2 MB </span>
+                  </span>
+                </p>
+              </div>
+              <div className="bg-white p-5 md:p-8 bg-light shadow rounded w-full sm:w-8/12 md:w-2/3">
+                <section className="upload">
+                  <div
+                    onClick={handleDivClickFavicon}
+                    role="presentation"
+                    tabIndex={0}
+                    className="border-dashed border-2 border-border-base h-36 rounded flex flex-col justify-center items-center cursor-pointer focus:border-accent-400 focus:outline-none">
+                    <input
+                      onChange={handleImageChangeFavicon}
+                      ref={fileInputRefFav}
+                      accept="image/*,.jpg,.jpeg,.png,.webp"
+                      type="file"
+                      tabIndex={-1}
+                      className="hidden"
+                    />
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="41px"
+                      height="30px"
+                      viewBox="0 0 40.909 30"
+                      className="text-muted-light">
+                      <g transform="translate(0 -73.091)">
+                        <path
+                          data-name="Path 2125"
+                          d="M39.129,89.827A8.064,8.064,0,0,0,34.58,86.94,5.446,5.446,0,0,0,30,78.546a5.207,5.207,0,0,0-3.537,1.321,10.921,10.921,0,0,0-10.1-6.776,10.511,10.511,0,0,0-7.713,3.2A10.508,10.508,0,0,0,5.454,84q0,.277.043.916A9.528,9.528,0,0,0,0,93.546a9.193,9.193,0,0,0,2.8,6.743,9.191,9.191,0,0,0,6.744,2.8H32.728a8.172,8.172,0,0,0,6.4-13.264Zm-12.06-.575a.656.656,0,0,1-.479.2H21.818v7.5a.691.691,0,0,1-.681.681H17.045a.691.691,0,0,1-.682-.681v-7.5H11.59a.655.655,0,0,1-.681-.681.8.8,0,0,1,.213-.512L18.6,80.783a.722.722,0,0,1,.98,0l7.5,7.5a.663.663,0,0,1,.191.49A.656.656,0,0,1,27.07,89.252Z"
+                          transform="translate(0)"
+                          fill="currentColor"></path>
+                      </g>
+                    </svg>
+                    <p className="mt-4 text-center text-sm text-body">
+                      <span className="font-semibold text-accent">
+                        Upload an image
+                      </span>{" "}
+                      or drag and drop{" "}
+                      <span className="text-xs text-body">PNG, JPG</span>
+                    </p>
+                  </div>
+                  <aside className="mt-2 flex flex-wrap">
+                    <div className="relative mt-2 inline-flex flex-col overflow-hidden rounded me-2 border border-border-200">
+                      <figure className="relative h-28 w-28">
+                        {previewFavicon ? (
+                          <Image
+                            alt=""
+                            width={500}
+                            height={500}
+                            src={previewFavicon}
+                          />
+                        ) : item.favicon ? (
+                          <Image
+                            className="w-36 h-25"
+                            alt=""
+                            width={500}
+                            height={500}
+                            src={`${process.env.SERVER_ENDPOINT}/storage/logo/${item.favicon}`}
+                          />
+                        ) : (
+                          <Image
+                            className="w-36 h-25"
+                            alt=""
+                            width={500}
+                            height={500}
+                            src={`/images/no_image.png`}
                           />
                         )}
                       </figure>

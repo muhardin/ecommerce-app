@@ -126,14 +126,14 @@ export default function ProfileDetail() {
         formProfile,
         config
       );
-      console.log(firstName);
+      // console.log(firstName);
 
       if (response.status == 200) {
         toast.dismiss();
         toast.success("Success", { duration: 6000 });
 
         setIsLoading(false);
-        console.log(response);
+        // console.log(response);
         setCurrentPassword("");
         setNewPassword("");
         setConfirmPassword("");
@@ -170,8 +170,7 @@ export default function ProfileDetail() {
                 className="active"
                 id="Settings"
                 role="tabpanel"
-                aria-labelledby="Settings-tab"
-              >
+                aria-labelledby="Settings-tab">
                 <div className="grid md:grid-cols-12 lg:grid-cols-12 xl:grid-cols-12 gap-4">
                   <div className="col-span-12 md:col-span-12 lg:col-span-12 xl:col-span-12">
                     <div className="bg-white dark:bg-slate-800 shadow  rounded-md w-full relative">
@@ -185,8 +184,7 @@ export default function ProfileDetail() {
                             <div className="col-span-12 md:col-span-12 lg:col-span-3 self-center text-right mr-2">
                               <label
                                 htmlFor="First_Name"
-                                className="font-medium text-sm text-slate-600 dark:text-slate-400"
-                              >
+                                className="font-medium text-sm text-slate-600 dark:text-slate-400">
                                 First Name
                               </label>
                             </div>
@@ -209,8 +207,7 @@ export default function ProfileDetail() {
                             <div className="col-span-12 md:col-span-12 lg:col-span-3 self-center text-right mr-2">
                               <label
                                 htmlFor="Last_Name"
-                                className="font-medium text-sm text-slate-600 dark:text-slate-400"
-                              >
+                                className="font-medium text-sm text-slate-600 dark:text-slate-400">
                                 Last Name
                               </label>
                             </div>
@@ -232,8 +229,7 @@ export default function ProfileDetail() {
                             <div className="col-span-12 md:col-span-12 lg:col-span-3 self-center text-right mr-2">
                               <label
                                 htmlFor="Company_Name"
-                                className="font-medium text-sm text-slate-600 dark:text-slate-400"
-                              >
+                                className="font-medium text-sm text-slate-600 dark:text-slate-400">
                                 Company Name
                               </label>
                             </div>
@@ -252,8 +248,7 @@ export default function ProfileDetail() {
                             <div className="col-span-12 md:col-span-12 lg:col-span-3 self-center text-right mr-2">
                               <label
                                 htmlFor="Contact_Phone"
-                                className="font-medium text-sm text-slate-600 dark:text-slate-400"
-                              >
+                                className="font-medium text-sm text-slate-600 dark:text-slate-400">
                                 Contact Phone
                               </label>
                             </div>
@@ -278,8 +273,7 @@ export default function ProfileDetail() {
                             <div className="col-span-12 md:col-span-12 lg:col-span-3 self-center text-right mr-2">
                               <label
                                 htmlFor="Your_Email"
-                                className="font-medium text-sm text-slate-600 dark:text-slate-400"
-                              >
+                                className="font-medium text-sm text-slate-600 dark:text-slate-400">
                                 Your email
                               </label>
                             </div>
@@ -298,8 +292,7 @@ export default function ProfileDetail() {
                             <div className="col-span-12 md:col-span-12 lg:col-span-3 self-center text-right mr-2">
                               <label
                                 htmlFor="Contact_Phone"
-                                className="font-medium text-sm text-slate-600 dark:text-slate-400"
-                              >
+                                className="font-medium text-sm text-slate-600 dark:text-slate-400">
                                 Website Link
                               </label>
                             </div>
@@ -317,8 +310,7 @@ export default function ProfileDetail() {
                             <div className="col-span-12 md:col-span-12 lg:col-span-3 self-center text-right mr-2">
                               <label
                                 htmlFor="countries"
-                                className="font-medium text-sm text-slate-600 dark:text-slate-400"
-                              >
+                                className="font-medium text-sm text-slate-600 dark:text-slate-400">
                                 Countries
                               </label>
                             </div>
@@ -326,8 +318,7 @@ export default function ProfileDetail() {
                             <div className="col-span-12 md:col-span-12 lg:col-span-9  mb-2">
                               <select
                                 id="countries"
-                                className=" w-full rounded-md mt-1 border border-slate-300/60 dark:border-slate-700 dark:text-slate-300 bg-transparent px-3 py-[6.5px] focus:outline-none focus:ring-0 placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-primary-500 dark:focus:border-primary-500  dark:hover:border-slate-700"
-                              >
+                                className=" w-full rounded-md mt-1 border border-slate-300/60 dark:border-slate-700 dark:text-slate-300 bg-transparent px-3 py-[6.5px] focus:outline-none focus:ring-0 placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-primary-500 dark:focus:border-primary-500  dark:hover:border-slate-700">
                                 <option selected>Indonesia</option>
                               </select>
                             </div>
@@ -338,8 +329,7 @@ export default function ProfileDetail() {
                               </button>
                               <button
                                 type="reset"
-                                className="inline-block focus:outline-none text-red-500 hover:bg-red-500 hover:text-white bg-transparent border border-gray-200 dark:bg-transparent dark:text-red-500 dark:hover:text-white dark:border-gray-700 dark:hover:bg-red-500  text-sm font-medium py-1 px-3 rounded"
-                              >
+                                className="inline-block focus:outline-none text-red-500 hover:bg-red-500 hover:text-white bg-transparent border border-gray-200 dark:bg-transparent dark:text-red-500 dark:hover:text-white dark:border-gray-700 dark:hover:bg-red-500  text-sm font-medium py-1 px-3 rounded">
                                 Cancel
                               </button>
                             </div>
@@ -365,8 +355,7 @@ export default function ProfileDetail() {
                             <div className="col-span-12 md:col-span-12 lg:col-span-3 self-center text-right mr-2">
                               <label
                                 htmlFor="Current_Password"
-                                className="font-medium text-sm text-slate-600 dark:text-slate-400"
-                              >
+                                className="font-medium text-sm text-slate-600 dark:text-slate-400">
                                 Current Password
                               </label>
                             </div>
@@ -388,8 +377,7 @@ export default function ProfileDetail() {
                             <div className="col-span-12 md:col-span-12 lg:col-span-3 self-center text-right mr-2">
                               <label
                                 htmlFor="New_Password"
-                                className="font-medium text-sm text-slate-600 dark:text-slate-400"
-                              >
+                                className="font-medium text-sm text-slate-600 dark:text-slate-400">
                                 New Password
                               </label>
                             </div>
@@ -409,8 +397,7 @@ export default function ProfileDetail() {
                             <div className="col-span-12 md:col-span-12 lg:col-span-3 self-center text-right mr-2">
                               <label
                                 htmlFor="Confirm_Password"
-                                className="font-medium text-sm text-slate-600 dark:text-slate-400"
-                              >
+                                className="font-medium text-sm text-slate-600 dark:text-slate-400">
                                 Confirm Password
                               </label>
                             </div>
@@ -435,8 +422,7 @@ export default function ProfileDetail() {
                               </button>
                               <button
                                 type="reset"
-                                className="inline-block focus:outline-none text-red-500 hover:bg-red-500 hover:text-white bg-transparent border border-gray-200 dark:bg-transparent dark:text-red-500 dark:hover:text-white dark:border-gray-700 dark:hover:bg-red-500  text-sm font-medium py-1 px-3 rounded"
-                              >
+                                className="inline-block focus:outline-none text-red-500 hover:bg-red-500 hover:text-white bg-transparent border border-gray-200 dark:bg-transparent dark:text-red-500 dark:hover:text-white dark:border-gray-700 dark:hover:bg-red-500  text-sm font-medium py-1 px-3 rounded">
                                 Cancel
                               </button>
                             </div>

@@ -111,18 +111,18 @@ const ProductDetailComponent = ({ id }: Props) => {
         toast.success("Success", { duration: 6000 });
         router.push("/payment/" + response.data.order.id);
         setIsLoading(false);
-        console.log(response);
+        // console.log(response);
       } else if (response.status == 201) {
         setErrMessage(response.data.message.error);
         toast.dismiss();
-        console.log(response);
+        // console.log(response);
       } else if (response.status == 500) {
         toast.error("System on maintenance mode");
         toast.dismiss();
       }
     } catch (error) {
       toast.dismiss();
-      console.log(error);
+      // console.log(error);
     }
   };
 
@@ -153,8 +153,7 @@ const ProductDetailComponent = ({ id }: Props) => {
                     <div className="w-1/2 p-2 sm:w-1/4">
                       <a
                         href="#"
-                        className="block border border-blue-300 dark:border-transparent dark:hover:border-blue-300 hover:border-blue-300"
-                      >
+                        className="block border border-blue-300 dark:border-transparent dark:hover:border-blue-300 hover:border-blue-300">
                         <Image
                           width={500}
                           height={500}
@@ -167,8 +166,7 @@ const ProductDetailComponent = ({ id }: Props) => {
                     <div className="w-1/2 p-2 sm:w-1/4">
                       <a
                         href="#"
-                        className="block border border-transparent dark:border-transparent dark:hover:border-blue-300 hover:border-blue-300"
-                      >
+                        className="block border border-transparent dark:border-transparent dark:hover:border-blue-300 hover:border-blue-300">
                         <Image
                           width={500}
                           height={500}
@@ -181,8 +179,7 @@ const ProductDetailComponent = ({ id }: Props) => {
                     <div className="w-1/2 p-2 sm:w-1/4">
                       <a
                         href="#"
-                        className="block border border-transparent dark:border-transparent dark:hover:border-blue-300 hover:border-blue-300"
-                      >
+                        className="block border border-transparent dark:border-transparent dark:hover:border-blue-300 hover:border-blue-300">
                         <Image
                           width={500}
                           height={500}
@@ -195,8 +192,7 @@ const ProductDetailComponent = ({ id }: Props) => {
                     <div className="w-1/2 p-2 sm:w-1/4">
                       <a
                         href="#"
-                        className="block border border-transparent dark:border-transparent dark:hover:border-blue-300 hover:border-blue-300"
-                      >
+                        className="block border border-transparent dark:border-transparent dark:hover:border-blue-300 hover:border-blue-300">
                         <Image
                           width={500}
                           height={500}
@@ -224,8 +220,7 @@ const ProductDetailComponent = ({ id }: Props) => {
                             <div className="">
                               <label
                                 htmlFor="email"
-                                className="mt-4 mb-2 block text-sm font-medium"
-                              >
+                                className="mt-4 mb-2 block text-sm font-medium">
                                 Base Price
                               </label>
                               <div className="relative">
@@ -264,8 +259,7 @@ const ProductDetailComponent = ({ id }: Props) => {
                               </div>
                               <label
                                 htmlFor="card-holder"
-                                className="mt-4 mb-2 block text-sm font-medium"
-                              >
+                                className="mt-4 mb-2 block text-sm font-medium">
                                 Harga Jual
                               </label>
                               <div className="relative">
@@ -288,8 +282,7 @@ const ProductDetailComponent = ({ id }: Props) => {
                               </div>
                               <label
                                 htmlFor="card-holder"
-                                className="mt-4 mb-2 block text-sm font-medium"
-                              >
+                                className="mt-4 mb-2 block text-sm font-medium">
                                 Your Profit
                               </label>
                               <div className="relative">
@@ -302,8 +295,7 @@ const ProductDetailComponent = ({ id }: Props) => {
                               </div>
                               <label
                                 htmlFor="card-holder"
-                                className="mt-4 mb-2 block text-sm font-medium"
-                              >
+                                className="mt-4 mb-2 block text-sm font-medium">
                                 Sharing Profit
                               </label>
                               <div className="relative">
@@ -398,16 +390,14 @@ const ProductDetailComponent = ({ id }: Props) => {
                               <div className="w-full px-4 mb-4 lg:w-1/2 lg:mb-0">
                                 <Link
                                   href={"/myshop/product/available"}
-                                  className="flex items-center justify-center w-full p-4 text-blue-500 border border-blue-500 rounded-md dark:text-gray-200 dark:border-blue-600 hover:bg-blue-600 hover:border-blue-600 hover:text-gray-100 dark:bg-blue-600 dark:hover:bg-blue-700 dark:hover:border-blue-700 dark:hover:text-gray-300"
-                                >
+                                  className="flex items-center justify-center w-full p-4 text-blue-500 border border-blue-500 rounded-md dark:text-gray-200 dark:border-blue-600 hover:bg-blue-600 hover:border-blue-600 hover:text-gray-100 dark:bg-blue-600 dark:hover:bg-blue-700 dark:hover:border-blue-700 dark:hover:text-gray-300">
                                   Back
                                 </Link>
                               </div>
                               <div className="w-full px-4 mb-4 lg:mb-0 lg:w-1/2">
                                 <button
                                   //   type="button"
-                                  className="flex items-center justify-center w-full p-4 text-blue-500 border border-blue-500 rounded-md dark:text-gray-200 dark:border-blue-600 hover:bg-blue-600 hover:border-blue-600 hover:text-gray-100 dark:bg-blue-600 dark:hover:bg-blue-700 dark:hover:border-blue-700 dark:hover:text-gray-300"
-                                >
+                                  className="flex items-center justify-center w-full p-4 text-blue-500 border border-blue-500 rounded-md dark:text-gray-200 dark:border-blue-600 hover:bg-blue-600 hover:border-blue-600 hover:text-gray-100 dark:bg-blue-600 dark:hover:bg-blue-700 dark:hover:border-blue-700 dark:hover:text-gray-300">
                                   Add to store
                                 </button>
                               </div>

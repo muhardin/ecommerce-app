@@ -33,7 +33,7 @@ const FormLoginT = () => {
         password,
         callbackUrl: "/",
       });
-      console.log(signInData);
+      // console.log(signInData);
       if (signInData?.error) {
         toast.dismiss();
         toast.error("Login failed!", {
@@ -112,8 +112,7 @@ const FormLoginT = () => {
               <button
                 onClick={togglePassword}
                 type="button"
-                className="absolute right-2 bg-transparent flex items-center justify-center text-gray-700"
-              >
+                className="absolute right-2 bg-transparent flex items-center justify-center text-gray-700">
                 {passwordShown ? <IoIosEye /> : <IoIosEyeOff />}
               </button>
             </div>
@@ -142,8 +141,7 @@ const FormLoginT = () => {
           <div className="text-center">
             <button
               type="submit"
-              className=" bg-darkText hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
-            >
+              className=" bg-darkText hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:ring focus:ring-blue-200">
               Login
             </button>
           </div>
@@ -158,8 +156,7 @@ const FormLoginT = () => {
                 callbackUrl: "/",
               })
             }
-            className="flex"
-          >
+            className="flex">
             <IoLogoGithub className="mr-2 h-6 w-4" />
             <button>Sign In With Github</button>
           </div>
@@ -169,8 +166,7 @@ const FormLoginT = () => {
                 callbackUrl: "/",
               })
             }
-            className="flex"
-          >
+            className="flex">
             <IoLogoGoogle className="mr-2 h-6 w-4" />
             <button>Sign In With Google</button>
           </div>

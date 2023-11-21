@@ -12,7 +12,7 @@ const FormattedCommaNumber = ({ amount }: any) => {
     }
     return num;
   };
-  console.log(amount);
+  // console.log(amount);
   const roundedNumber = roundUpIfNeeded(amount);
   return <div>{roundedNumber}</div>;
 };

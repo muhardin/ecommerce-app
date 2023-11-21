@@ -47,7 +47,7 @@ const MyProductComponent = () => {
     refreshInterval: 3000,
   });
   /** end of category */
-  console.log(shopData);
+  // console.log(shopData);
   return (
     <div className="flex flex-col gap-2 bg-white p-6">
       <div

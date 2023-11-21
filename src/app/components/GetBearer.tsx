@@ -1,7 +1,7 @@
 import { useSession } from "next-auth/react";
 const GetBearer = () => {
   const { data: session } = useSession();
-  console.log(session?.bearer);
+  // console.log(session?.bearer);
   return session?.bearer;
 };
 

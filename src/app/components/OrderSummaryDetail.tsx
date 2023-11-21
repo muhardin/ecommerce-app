@@ -86,7 +86,7 @@ const OrderSummaryDetail = ({ id }: any) => {
         if (result.isConfirmed) {
           // console.log(productId);
           if (act == "del") {
-            console.log(productId);
+            // console.log(productId);
             setErrMessage([]);
             const config = {
               headers: { Authorization: `Bearer ${session?.bearer}` },
@@ -105,14 +105,14 @@ const OrderSummaryDetail = ({ id }: any) => {
               setModal(true);
               setErrMessage(post.data.message.error);
               toast.dismiss();
-              console.log(post.data.message.error);
+              // console.log(post.data.message.error);
             } else if (post.status == 500) {
               toast.error("System on maintenance mode");
               toast.dismiss();
               // console.log(post.data.message.error);
             }
           } else {
-            console.log(productId);
+            // console.log(productId);
           }
         }
       });
@@ -139,8 +139,7 @@ const OrderSummaryDetail = ({ id }: any) => {
                   ? order.order_detail.map((item: OrderDetail) => (
                       <div
                         key={item.id}
-                        className="flex flex-col border-b border-gray-200"
-                      >
+                        className="flex flex-col border-b border-gray-200">
                         <div className="mt-2 md:mt-4 flex  flex-col md:flex-row justify-start items-start md:items-center md:space-x-2 xl:space-x-8 w-full ">
                           <div className="pb-4 md:pb-4 w-full md:w-40">
                             <Image
@@ -236,8 +235,7 @@ const OrderSummaryDetail = ({ id }: any) => {
                                 onClick={() => {
                                   ConfirmAction(item?.id, "del");
                                 }}
-                                className="bg-red-500 rounded-md hover:bg-red-300 text-white p-3"
-                              >
+                                className="bg-red-500 rounded-md hover:bg-red-300 text-white p-3">
                                 Received
                               </button>
                             ) : (
@@ -323,8 +321,7 @@ const OrderSummaryDetail = ({ id }: any) => {
                       height="24"
                       viewBox="0 0 24 24"
                       fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
+                      xmlns="http://www.w3.org/2000/svg">
                       <path
                         d="M19 5H5C3.89543 5 3 5.89543 3 7V17C3 18.1046 3.89543 19 5 19H19C20.1046 19 21 18.1046 21 17V7C21 5.89543 20.1046 5 19 5Z"
                         stroke="#1F2937"
@@ -384,14 +381,12 @@ const OrderSummaryDetail = ({ id }: any) => {
         className={`relative z-10 ${!modal ? "hidden" : ""} `}
         aria-labelledby="modal-title"
         role="dialog"
-        aria-modal="true"
-      >
+        aria-modal="true">
         <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
         <div className="fixed top-40 md:inset-0 z-10 w-screen overflow-y-auto">
           <div className="w-full flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
             <div
-              className={`animate-enter max-w-md w-full bg-white shadow-lg rounded-lg pointer-events-auto flex ring-1 ring-black ring-opacity-5`}
-            >
+              className={`animate-enter max-w-md w-full bg-white shadow-lg rounded-lg pointer-events-auto flex ring-1 ring-black ring-opacity-5`}>
               <div className="flex-1 w-0 p-4">
                 <div className="flex items-center">
                   <div className="flex-shrink-0 pt-0.5 mt-2">
@@ -404,8 +399,7 @@ const OrderSummaryDetail = ({ id }: any) => {
                       stroke="#f01616"
                       strokeWidth="2"
                       strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
+                      strokeLinejoin="round">
                       <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
                       <line x1="12" y1="9" x2="12" y2="13"></line>
                       <line x1="12" y1="17" x2="12.01" y2="17"></line>
@@ -422,8 +416,7 @@ const OrderSummaryDetail = ({ id }: any) => {
                           ? errMessage.map((item: string, index: any) => (
                               <div
                                 className="flex justify-start"
-                                key={item[index]}
-                              >
+                                key={item[index]}>
                                 <li className="text-md font-bold text-red-600 text-sm">
                                   - {item}
                                 </li>
@@ -441,8 +434,7 @@ const OrderSummaryDetail = ({ id }: any) => {
                     setModal(false);
                     setInLoading(false);
                   }}
-                  className="w-full border border-transparent rounded-none rounded-r-lg p-4 flex items-center justify-center text-sm font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                >
+                  className="w-full border border-transparent rounded-none rounded-r-lg p-4 flex items-center justify-center text-sm font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500">
                   Close
                 </button>
               </div>

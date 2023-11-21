@@ -46,7 +46,7 @@ const MyProductGlobalCom = () => {
     refreshInterval: 3000,
   });
   /** end of category */
-  console.log(productsData);
+  // console.log(productsData);
   return (
     <div className="flex flex-col gap-2 bg-white p-6">
       <div
