@@ -77,6 +77,18 @@ const MyShopStoreCustom = ({ item }: { item: ShopData }) => {
     }));
   };
 
+  const handleInputChangeSubDomain = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value, type } = e.target;
+    const inputValue =
+      type === "checkbox" ? (e.target as HTMLInputElement).checked : value;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: inputValue,
+    }));
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     toast.loading("loading...");
     e.preventDefault();
@@ -492,6 +504,7 @@ const MyShopStoreCustom = ({ item }: { item: ShopData }) => {
                         className="bg-slate-200 rounded-r-none pointer-events-none block w-1/3 px-2 py-3 mt-2 text-gray-700 placeholder-gray-400 border border-r-0 border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                       />
                       <input
+                        required={formData.is_subdomain}
                         onChange={handleInputChange}
                         value={formData.slug?.toString()}
                         name="slug"
@@ -509,25 +522,28 @@ const MyShopStoreCustom = ({ item }: { item: ShopData }) => {
                   </div>
                 </div>
 
-                <div className="mt-6">
-                  <div className="flex items-center gap-x-4">
-                    <div>
-                      <button
-                        className="bg-gray-300 relative inline-flex h-6 w-11 items-center rounded-full focus:outline-none "
-                        dir="ltr"
-                        id="headlessui-switch-:ra:"
-                        role="switch"
-                        type="button"
-                        tabIndex={0}
-                        aria-checked="false"
-                        data-headlessui-state="">
-                        <span className="sr-only">Enable </span>
-                        <span className="translate-x-1 inline-block h-4 w-4 transform rounded-full bg-light transition-transform"></span>
-                      </button>
+                <div className="flex flex-row gap-4">
+                  <label htmlFor="">Enable Sub Domain : </label>
+                  <div className="mb-5">
+                    <div className="flex items-center gap-x-4">
+                      <div className="form-control w-52">
+                        <label className="cursor-pointer flex flex-row items-center gap-2">
+                          <input
+                            value="1"
+                            checked={formData.is_subdomain}
+                            onChange={handleInputChangeSubDomain}
+                            name="is_subdomain"
+                            type="checkbox"
+                            className="toggle toggle-primary"
+                          />
+                          {formData.is_subdomain ? (
+                            <span className="label-text ml-1">Enabled</span>
+                          ) : (
+                            <span className="label-text ml-1">Disabled</span>
+                          )}
+                        </label>
+                      </div>
                     </div>
-                    <label className="block text-body-dark font-semibold text-sm leading-none mb-3">
-                      Enable product review system before publish ?
-                    </label>
                   </div>
                 </div>
                 <div>

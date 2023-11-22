@@ -59,6 +59,7 @@ const FormLoginT = () => {
     setPasswordShown(!passwordShown);
   };
   const shopData = useShopData();
+  console.log(shopData);
   return (
     <div className=" flex items-center justify-center">
       <div className="max-w-md bg-white p-6 rounded shadow-lg flex flex-col items-center">

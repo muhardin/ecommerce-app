@@ -95,6 +95,7 @@ export interface ShopData {
   nama_pemilik: string | null;
   nama_bank: string | null;
   status: boolean;
+  is_subdomain: boolean;
   shop_package_id: number;
   created_at: string;
   updated_at: string;
@@ -108,6 +109,13 @@ export interface ShopData {
   callback_payment: string | null;
   user: User;
   shop_package: ShopPackage;
+}
+export interface ShopDomain {
+  id: number;
+  shop_id: number;
+  domain: string;
+  status?: number;
+  shop: ShopData;
 }
 export interface Shops {
   id: number;
