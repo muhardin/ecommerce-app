@@ -98,17 +98,28 @@ export async function middleware(request: NextRequest) {
       //   { status: 301 }
       // );
     }
+
+    // const dataShop = await (
+    //   await fetch(process.env.SERVER_ENDPOINT + "/api/shop/" + domain, {
+    //     headers: {
+    //       Authorization: `Bearer ${token?.user.bearer}`,
+    //     },
+    //   })
+    // ).json();
     const dataShop = await (
-      await fetch(process.env.SERVER_ENDPOINT + "/api/shop/" + domain, {
-        headers: {
-          Authorization: `Bearer ${token?.user.bearer}`,
-        },
-      })
+      await fetch(
+        process.env.SERVER_ENDPOINT + "/api/myshop-board/domain/" + domain,
+        {
+          headers: {
+            Authorization: `Bearer ${token?.user.bearer}`,
+          },
+        }
+      )
     ).json();
 
-    if (dataShop.user_id != token?.user.id) {
-      if (domain != process.env.LANDING_PAGE) {
-        // return NextResponse.redirect(new URL("/", request.url));
+    if (!dataShop.id) {
+      if (!process.env.LANDING_PAGE?.includes(domain)) {
+        return NextResponse.redirect(new URL("/", request.url));
       }
     }
   }

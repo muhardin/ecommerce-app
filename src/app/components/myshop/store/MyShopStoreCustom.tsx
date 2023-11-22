@@ -468,6 +468,16 @@ const MyShopStoreCustom = ({ item }: { item: ShopData }) => {
                       />
                     </div> */}
                   </div>
+                  <div className="mt-1 bg-red-100 p-2 rounded-lg text-sm font-mono">
+                    <p className="text-gray-700 ">
+                      Mohon untuk segera mengupdate pengaturan Name Server pada
+                      penyedia layanan domain Anda dengan informasi berikut:
+                    </p>
+                    <ul className="list-disc pl-6 mt-0">
+                      <li className="text-blue-500">NS1 : n1.smartshop.id</li>
+                      <li className="text-blue-500">NS2 : n2.smartshop.id</li>
+                    </ul>
+                  </div>
                 </div>
                 <div className="mb-5">
                   <label className="block text-body-dark font-semibold text-sm leading-none mb-2">
@@ -499,26 +509,6 @@ const MyShopStoreCustom = ({ item }: { item: ShopData }) => {
                   </div>
                 </div>
 
-                <div className="mb-5">
-                  <label
-                    htmlFor="contactDetails.website"
-                    className="mb-3 block text-sm font-semibold leading-none text-body-dark">
-                    Alternative Website
-                  </label>
-                  <input
-                    readOnly
-                    value={process.env.LANDING_PAGE}
-                    id="contactDetails.website"
-                    name="contactDetails.website"
-                    type="text"
-                    className="px-4 flex items-center w-full rounded appearance-none transition duration-300 ease-in-out text-heading text-sm focus:outline-none focus:ring-0 border border-border-base focus:border-accent h-12 "
-                    autoComplete="off"
-                    autoCorrect="off"
-                    autoCapitalize="off"
-                    spellCheck="false"
-                    aria-invalid="false"
-                  />
-                </div>
                 <div className="mt-6">
                   <div className="flex items-center gap-x-4">
                     <div>

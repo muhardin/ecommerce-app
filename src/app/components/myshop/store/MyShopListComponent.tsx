@@ -30,7 +30,7 @@ const MyShopListComponent = () => {
   } = useSWR(url, fetcher, {
     refreshInterval: 3000,
   });
-  console.log(shops);
+
   return (
     <div>
       <div className="rounded-lg overflow-hidden bg-white min-w-0 shadow-xs dark:bg-gray-800 mb-5">
