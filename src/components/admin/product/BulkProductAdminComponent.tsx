@@ -64,35 +64,37 @@ const BulkProductAdminComponent: React.FC<ModalProps> = ({
   /*
   get Supplier 
   */
-  const fetcher = (url: string) =>
-    fetch(url, {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${session?.bearer}`,
-        "Content-Type": "application/json",
-      },
-    }).then((res) => res.json());
+  // const fetcher = (url: string) =>
+  //   fetch(url, {
+  //     method: "GET",
+  //     headers: {
+  //       Authorization: `Bearer ${session?.bearer}`,
+  //       "Content-Type": "application/json",
+  //     },
+  //   }).then((res) => res.json());
 
-  const url = `${process.env.SERVER_ENDPOINT}/api/supplier-board/suppliers`;
-  const { data: supplierItems } = useSWR(url, fetcher, {
-    refreshInterval: 3000,
-  });
+  // const url = `${process.env.SERVER_ENDPOINT}/api/supplier-board/suppliers`;
+  // const { data: supplierItems } = useSWR(url, fetcher, {
+  //   refreshInterval: 3000,
+  // });
 
-  const [valSupp, setValSupp] = useState(null);
-  const [valSuppG, setValSuppG] = useState(null);
-  const [isNew, setIsNew] = useState(null);
-  const selectOptionsSupplier = supplierItems?.map((item: any) => ({
-    value: item.id,
-    label: item.supplier_name,
-  }));
+  // const [valSupp, setValSupp] = useState(null);
+  // const [valSuppG, setValSuppG] = useState(null);
+  // const [isNew, setIsNew] = useState(null);
+  // const selectOptionsSupplier = supplierItems?.map((item: any) => ({
+  //   value: item.id,
+  //   label: item.supplier_name,
+  // }));
 
-  // console.log(selectOptionsSupplier);
-  // console.log(selectOptionsSupplier);
+  // // console.log(selectOptionsSupplier);
+  // // console.log(selectOptionsSupplier);
 
-  const handleChangeSupplier = (value: any) => {
-    setValSupp(value);
-    setValSuppG(value.value);
-  };
+  // const handleChangeSupplier = (value: any) => {
+  //   setValSupp(value);
+  //   setValSuppG(value.value);
+  // };
+  /** end of supplier get */
+
   const [error, setError] = useState<ErrorData>();
   const submitUpdate = async (e: React.FormEvent) => {
     setError(undefined);
@@ -144,8 +146,7 @@ const BulkProductAdminComponent: React.FC<ModalProps> = ({
           <div className="drawer-content">
             <button
               onClick={closeBatch}
-              className="fixed top-0 z-50 text-red-500 hover:bg-red-100 hover:text-gray-700 transition-colors duration-150 bg-white shadow-md mr-6 mt-6 right-0 left-auto w-10 h-10 rounded-full block text-center"
-            >
+              className="fixed top-0 z-50 text-red-500 hover:bg-red-100 hover:text-gray-700 transition-colors duration-150 bg-white shadow-md mr-6 mt-6 right-0 left-auto w-10 h-10 rounded-full block text-center">
               <svg
                 stroke="currentColor"
                 fill="none"
@@ -156,8 +157,7 @@ const BulkProductAdminComponent: React.FC<ModalProps> = ({
                 className="mx-auto"
                 height="1em"
                 width="1em"
-                xmlns="http://www.w3.org/2000/svg"
-              >
+                xmlns="http://www.w3.org/2000/svg">
                 <line x1="18" y1="6" x2="6" y2="18"></line>
                 <line x1="6" y1="6" x2="18" y2="18"></line>
               </svg>
@@ -257,8 +257,7 @@ const BulkProductAdminComponent: React.FC<ModalProps> = ({
                             <div>
                               <select
                                 onChange={check}
-                                className="select select-error w-full max-w-xs"
-                              >
+                                className="select select-error w-full max-w-xs">
                                 <option disabled selected>
                                   Select Status
                                 </option>
@@ -281,16 +280,14 @@ const BulkProductAdminComponent: React.FC<ModalProps> = ({
                         <button
                           onClick={closeBatch}
                           className="align-bottom cursor-pointer leading-5 transition-colors duration-150 font-medium focus:outline-none py-2 rounded-lg text-sm border bg-gray-200 border-gray-200 px-4 w-full mr-3 flex items-center justify-center h-12 text-red-500 hover:bg-red-50 hover:border-red-100 hover:text-red-600 dark:bg-gray-700 dark:border-gray-700 dark:text-gray-500 dark:hover:bg-gray-800 dark:hover:text-red-700"
-                          type="button"
-                        >
+                          type="button">
                           Cancel
                         </button>
                       </div>
                       <div className="flex-grow-0 md:flex-grow lg:flex-grow xl:flex-grow">
                         <button
                           className="align-bottom inline-flex items-center justify-center cursor-pointer leading-5 transition-colors duration-150 font-medium focus:outline-none px-4 py-2 rounded-lg text-sm text-white bg-emerald-500 border border-transparent active:bg-emerald-600 hover:bg-emerald-600 h-12 w-full"
-                          type="submit"
-                        >
+                          type="submit">
                           Bulk Update Products
                         </button>
                       </div>

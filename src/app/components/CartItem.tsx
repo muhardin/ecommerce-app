@@ -1,7 +1,7 @@
 "use client";
 
 import { useDispatch, useSelector } from "react-redux";
-import { Products, StateProps } from "../../../type";
+import { Product, Products, StateProps } from "../../../type";
 import Image from "next/image";
 import { AiOutlineClose } from "react-icons/ai";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
@@ -64,7 +64,6 @@ const CartItem = () => {
       });
   };
   const { productData } = useSelector((state: StateProps) => state?.shopping);
-  console.log(productData);
 
   return (
     <div className="flex flex-col gap-y-2 w-full">
@@ -76,28 +75,40 @@ const CartItem = () => {
         <p className="w-1/3 flex items-center justify-end">Subtotal</p>
       </div>
       <div className="flex flex-col gap-y-2">
-        {productData?.map((item: Products) => (
+        {productData?.map((item: Product) => (
           <div
             className=" w-full bg-white p-4 flex flex-col md:flex-row items-center justify-between gap-4"
-            key={item.id}
-          >
+            key={item.id}>
             <div className="flex items-center gap-2 md:justify-between w-full">
               <div className=" flex items-center gap-x-3 w-full md:w-1/3">
                 <span
                   onClick={() => {
                     ConfirmAction(item?.id, "del");
                   }}
-                  className="text-lg hover:text-red-600 cursor-pointer duration-200"
-                >
+                  className="text-lg hover:text-red-600 cursor-pointer duration-200">
                   <AiOutlineClose />
                 </span>
-                <Image
-                  src={process.env.SERVER_ENDPOINT + item?.product?.image}
-                  alt="image"
-                  width={500}
-                  height={500}
-                  className=" w-20 h-20 object-cover"
-                />
+                {item.product.product_gallery?.length > 0 ? (
+                  <Image
+                    src={
+                      process.env.SERVER_ENDPOINT +
+                      item?.product?.product_gallery[0].url
+                    }
+                    alt="image"
+                    width={500}
+                    height={500}
+                    className=" w-20 h-20 object-cover"
+                  />
+                ) : (
+                  <Image
+                    src={"/images/no_image.png"}
+                    alt="image"
+                    width={500}
+                    height={500}
+                    className=" w-20 h-20 object-cover"
+                  />
+                )}
+
                 <span>{item?.product?.title}</span>
               </div>
               {/* quantity */}
@@ -107,15 +118,13 @@ const CartItem = () => {
                 <div className=" flex items-center text-md md:text-lg w-15 justify-between">
                   <span
                     onClick={() => dispatch(decreaseQuantity(item))}
-                    className=" cursor-pointer hover:text-orange-600"
-                  >
+                    className=" cursor-pointer hover:text-orange-600">
                     <FiChevronLeft />
                   </span>
                   <span>{item?.quantity}</span>
                   <span
                     onClick={() => dispatch(increaseQuantity(item))}
-                    className="cursor-pointer hover:text-orange-600"
-                  >
+                    className="cursor-pointer hover:text-orange-600">
                     <FiChevronRight />
                   </span>
                 </div>

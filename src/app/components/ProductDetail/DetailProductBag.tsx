@@ -8,7 +8,7 @@ import { useDispatch } from "react-redux";
 import { addToCart } from "@/redux/shoppingSlice";
 import toast, { Toaster } from "react-hot-toast";
 import { useSession } from "next-auth/react";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import useSWR from "swr";
 import Link from "next/link";
 import { ProductGallery, ShopProduct } from "../../../../type";
@@ -24,7 +24,6 @@ const DetailProductBag = ({
 }) => {
   const dispatch = useDispatch();
   const price = Number(data?.agent_price + data?.profit);
-  const [topImage, setTopImage] = useState(data?.product.image);
   var settings = {
     dots: true,
     infinite: true,
@@ -32,8 +31,25 @@ const DetailProductBag = ({
     slidesToShow: 1,
     slidesToScroll: 1,
   };
-  const gallery = data?.product.gallery;
-  console.log(data?.product.gallery);
+  const gallery = data?.product.product_gallery;
+
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const showNextImage = () => {
+    setCurrentImageIndex(
+      (prevIndex) => (prevIndex + 1) % data?.product.product_gallery.length
+    );
+  };
+
+  const showPrevImage = () => {
+    setCurrentImageIndex(
+      (prevIndex) =>
+        (prevIndex - 1 + data?.product.product_gallery.length) %
+        data?.product.product_gallery.length
+    );
+  };
+  // console.log(data?.product);
+  // console.log(data?.product.gallery[currentImageIndex]);
   return (
     <section className="py-0 overflow-hidden font-poppins dark:bg-gray-800">
       <div className="max-w-6xl px-4 py-4 mx-auto lg:py-8 md:px-6">
@@ -41,13 +57,66 @@ const DetailProductBag = ({
           <div className="w-full px-0 md:w-1/2 ">
             <div className="top-0 z-50 overflow-hidden flex flex-col">
               <div className="h-[450px] w-full rounded-lg flex-col justify-center items-center flex gap-2">
-                <div className="h-96 w-96 flex flex-row justify-center items-center">
-                  <ModalImage
-                    className="object-center items-center"
-                    small={primaryImage}
-                    large={primaryImage}
-                    alt={data?.product.title}
-                  />
+                <div className="relative aspect-square h-full max-h-[550px] w-full overflow-hidden">
+                  <Suspense>
+                    {data?.product.product_gallery?.length > 0 ? (
+                      <ModalImage
+                        className="object-center items-center"
+                        small={`${process.env.SERVER_ENDPOINT}${data?.product.product_gallery[currentImageIndex].url}`}
+                        large={`${process.env.SERVER_ENDPOINT}${data?.product.product_gallery[currentImageIndex].url}`}
+                        alt={data?.product.title}
+                      />
+                    ) : (
+                      <ModalImage
+                        className="object-center items-center"
+                        small={`/images/no_image.png`}
+                        large={`/images/no_image.png`}
+                        alt={data?.product.title}
+                      />
+                    )}
+                  </Suspense>
+
+                  <div className="absolute bottom-[15%] flex w-full justify-center">
+                    <div className="mx-auto flex h-11 items-center rounded-full border border-white bg-neutral-50/80 text-neutral-500 backdrop-blur dark:border-black dark:bg-neutral-900/80">
+                      <button
+                        onClick={showPrevImage}
+                        aria-label="Previous product image"
+                        className="h-full px-6 transition-all ease-in-out hover:scale-110 hover:text-black dark:hover:text-white flex items-center justify-center">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke-width="1.5"
+                          stroke="currentColor"
+                          aria-hidden="true"
+                          className="h-5">
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path>
+                        </svg>
+                      </button>
+                      <div className="mx-1 h-6 w-px bg-neutral-500"></div>
+                      <button
+                        onClick={showNextImage}
+                        aria-label="Next product image"
+                        className="h-full px-6 transition-all ease-in-out hover:scale-110 hover:text-black dark:hover:text-white flex items-center justify-center">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke-width="1.5"
+                          stroke="currentColor"
+                          aria-hidden="true"
+                          className="h-5">
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"></path>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
                 </div>
 
                 {/* <Image
@@ -63,7 +132,7 @@ const DetailProductBag = ({
                 /> */}
               </div>
               <div className="flex flex-row h-40 w-full gap-2 justify-between items-center px-4">
-                <div className="h-28 w-28">
+                {/* <div className="h-28 w-28">
                   <Link
                     href={{
                       pathname: "/product",
@@ -71,8 +140,7 @@ const DetailProductBag = ({
                         id: data?.id,
                         image: `${process.env.SERVER_ENDPOINT}${data?.product?.image}`,
                       },
-                    }}
-                  >
+                    }}>
                     {data?.product?.image ? (
                       <Image
                         src={`${process.env.SERVER_ENDPOINT}${data?.product?.image}`}
@@ -82,26 +150,28 @@ const DetailProductBag = ({
                       />
                     ) : null}
                   </Link>
-                  {/* <ModalImage
-                          className="relative z-50 w-28 h-28"
-                          small={`${process.env.SERVER_ENDPOINT}${item.url}`}
-                          large={`${process.env.SERVER_ENDPOINT}${item.url}`}
-                          alt={data?.product.title}
-                        /> */}
-                </div>
+                  
+                </div> */}
                 {gallery?.length > 0
-                  ? gallery.map((item: ProductGallery) => (
-                      <div key={item.id} className="h-28 w-28">
+                  ? gallery.map((item: ProductGallery, index) => (
+                      <div key={item.id} className={` h-28 w-28 `}>
                         <Link
+                          onClick={() => {
+                            setCurrentImageIndex(index);
+                          }}
                           href={{
                             pathname: "/product",
                             query: {
                               id: data?.id,
                               image: `${process.env.SERVER_ENDPOINT}${item?.url}`,
                             },
-                          }}
-                        >
+                          }}>
                           <Image
+                            className={`${
+                              currentImageIndex === index
+                                ? "border border-sky-500"
+                                : ""
+                            }`}
                             src={`${process.env.SERVER_ENDPOINT}${item?.url}`}
                             width={250}
                             height={250}
@@ -143,8 +213,7 @@ const DetailProductBag = ({
                           height="16"
                           fill="currentColor"
                           className="w-4 mr-1 text-red-500 dark:text-gray-400 bi bi-star "
-                          viewBox="0 0 16 16"
-                        >
+                          viewBox="0 0 16 16">
                           <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z" />
                         </svg>
                       </a>
@@ -157,8 +226,7 @@ const DetailProductBag = ({
                           height="16"
                           fill="currentColor"
                           className="w-4 mr-1 text-red-500 dark:text-gray-400 bi bi-star "
-                          viewBox="0 0 16 16"
-                        >
+                          viewBox="0 0 16 16">
                           <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z" />
                         </svg>
                       </a>
@@ -171,8 +239,7 @@ const DetailProductBag = ({
                           height="16"
                           fill="currentColor"
                           className="w-4 mr-1 text-red-500 dark:text-gray-400 bi bi-star "
-                          viewBox="0 0 16 16"
-                        >
+                          viewBox="0 0 16 16">
                           <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z" />
                         </svg>
                       </a>
@@ -185,8 +252,7 @@ const DetailProductBag = ({
                           height="16"
                           fill="currentColor"
                           className="w-4 mr-1 text-red-500 dark:text-gray-400 bi bi-star "
-                          viewBox="0 0 16 16"
-                        >
+                          viewBox="0 0 16 16">
                           <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z" />
                         </svg>
                       </a>
@@ -194,8 +260,7 @@ const DetailProductBag = ({
                   </ul>
                   <a
                     className="mb-4 text-xs underline dark:text-gray-400 dark:hover:text-gray-300 lg:mb-0"
-                    href="#"
-                  >
+                    href="#">
                     Be the first to review the product
                   </a>
                 </div>
@@ -298,8 +363,7 @@ const DetailProductBag = ({
                       )} added successfully!`
                     )
                   }
-                  className="mb-2 mr-4 lg:mb-0 flex"
-                >
+                  className="mb-2 mr-4 lg:mb-0 flex">
                   <button className="w-full h-10 p-2 mr-0 bg-sky-500 dark:text-gray-200 text-gray-50 hover:bg-sky-600 dark:bg-sky-600 dark:hover:bg-sky-500">
                     Add To Cart
                   </button>
@@ -310,8 +374,7 @@ const DetailProductBag = ({
                       height="16"
                       fill="currentColor"
                       className="bi bi-cart"
-                      viewBox="0 0 16 16"
-                    >
+                      viewBox="0 0 16 16">
                       <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
                     </svg>
                   </button>
@@ -324,8 +387,7 @@ const DetailProductBag = ({
                       height="16"
                       fill="currentColor"
                       className=" bi bi-heart"
-                      viewBox="0 0 16 16"
-                    >
+                      viewBox="0 0 16 16">
                       <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
                     </svg>
                   </button>

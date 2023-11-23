@@ -609,7 +609,12 @@ const CheckoutCart = () => {
                           <AiOutlineClose />
                         </span>
                         <Image
-                          src={process.env.SERVER_ENDPOINT + item.product.image}
+                          src={
+                            item.product.product_gallery?.length > 0
+                              ? process.env.SERVER_ENDPOINT +
+                                item.product.product_gallery[0].url
+                              : "/images/no_image.png"
+                          }
                           alt="image"
                           width={500}
                           height={500}

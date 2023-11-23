@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useDispatch } from "react-redux";
 import { addToCart } from "@/redux/shoppingSlice";
 import toast, { Toaster } from "react-hot-toast";
-import { ItemProps } from "../../../../../type";
+import { ItemProps, Product } from "../../../../../type";
 import { calculatePercentage } from "@/app/helpers";
 import FormattedPrice from "../../FormattedPrice";
 import MyProductModal from "./MyProductModal";
@@ -14,7 +14,7 @@ import { useSession } from "next-auth/react";
 import axios from "axios";
 import { useShopData } from "../../shop/ShopContext";
 
-const MyProductList = ({ item }: ItemProps) => {
+const MyProductList = ({ item }: { item: Product }) => {
   const shopData = useShopData();
   const { data: session } = useSession();
   const starArray = Array.from({ length: item?.product.rating }, (_, index) => (
@@ -83,11 +83,17 @@ const MyProductList = ({ item }: ItemProps) => {
         <Link
           href={{
             pathname: "/product",
-            query: { id: item?.id, image: item?.image },
+            query: {
+              id: item?.id,
+              image:
+                item?.product_gallery?.length > 0
+                  ? item?.product_gallery[0].url
+                  : "/images/no_image.png",
+            },
           }}>
           <div className=" w-full h-80 group overflow-hidden relative">
             <Image
-              src={`${process.env.SERVER_ENDPOINT}${item.product.image}`}
+              src={`${process.env.SERVER_ENDPOINT}${item.product.product_gallery[0].url}`}
               alt="Product image"
               width={500}
               height={500}
@@ -104,7 +110,13 @@ const MyProductList = ({ item }: ItemProps) => {
           <Link
             href={{
               pathname: "/product",
-              query: { id: item?.id, image: item?.image },
+              query: {
+                id: item?.id,
+                image:
+                  item?.product_gallery?.length > 0
+                    ? item?.product_gallery[0].url
+                    : "/images/no_image.png",
+              },
             }}>
             <p className="cursor-pointer hover:text-sky-600">
               {item?.product.title}

@@ -2,7 +2,11 @@
 import { getProducts } from "../helpers";
 import Container from "./Container";
 import ProductsData from "./ProductsData";
-import { ProductShops, Products as ProductType } from "../../../type";
+import {
+  ProductShops,
+  Products as ProductType,
+  ShopProduct,
+} from "../../../type";
 import { useEffect, useState } from "react";
 import { useShopData } from "./shop/ShopContext";
 import useSWR from "swr";
@@ -53,7 +57,7 @@ const Products = ({ host }: any) => {
   // console.log(shopData?.id);
   return (
     <Container className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-4 -mt-5">
-      {productsData?.map((item: ProductType) => (
+      {productsData?.map((item: ShopProduct) => (
         <ProductsData item={item} key={item.id} />
       ))}
     </Container>

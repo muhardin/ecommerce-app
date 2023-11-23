@@ -131,8 +131,7 @@ const OrderSupplierUpdate = ({
           handleCloseMenu();
           setModal(true);
         }}
-        className={`text-sky-700 cursor-pointer hover:text-sky-500 ${className}`}
-      >
+        className={`text-sky-700 cursor-pointer hover:text-sky-500 ${className}`}>
         {title ? title : item.product.title}
       </div>
       <div
@@ -141,8 +140,7 @@ const OrderSupplierUpdate = ({
         } overflow-x-hidden overflow-y-auto inset-0 outline-none focus:outline-none w-full`}
         aria-labelledby="modal-title"
         role="dialog"
-        aria-modal="true"
-      >
+        aria-modal="true">
         <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
         {/* <div className="fixed inset-0 z-10 w-full md:ml-[156px] overflow-y-auto mt-24 md:mt-0"> */}
         <div className="fixed inset-0 z-10 w-full overflow-y-auto mt-24 md:mt-0">
@@ -162,7 +160,11 @@ const OrderSupplierUpdate = ({
                             width={350}
                             height={350}
                             className="m-2 h-24 w-28 rounded-md border object-cover object-center"
-                            src={`${item.product.image}`}
+                            src={`${
+                              item.product.product_gallery?.length > 0
+                                ? item.product.product_gallery[0].url
+                                : "/images/product_image.png"
+                            }`}
                             alt=""
                           />
                           <div className="flex w-full flex-col px-4 py-4">
@@ -194,8 +196,7 @@ const OrderSupplierUpdate = ({
                           <span className="peer-checked:border-gray-700 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
                           <label
                             className="peer-checked:border-2 peer-checked:border-gray-700 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-4"
-                            htmlFor={`shipping_detail${item.id}`}
-                          >
+                            htmlFor={`shipping_detail${item.id}`}>
                             <Image
                               width={150}
                               height={150}
@@ -272,8 +273,7 @@ const OrderSupplierUpdate = ({
                           <div className="relative">
                             <label
                               htmlFor="card-holder"
-                              className="mt-4 mb-2 block text-sm font-medium"
-                            >
+                              className="mt-4 mb-2 block text-sm font-medium">
                               Set Order Status
                             </label>
                             <input
@@ -290,8 +290,7 @@ const OrderSupplierUpdate = ({
                             <span className="peer-checked:border-sky-400 absolute right-4 top-2/3 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
                             <label
                               className="peer-checked:border-2 peer-checked:border-sky-500 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-1"
-                              htmlFor={`delivering_1${item.id}`}
-                            >
+                              htmlFor={`delivering_1${item.id}`}>
                               <Image
                                 width={150}
                                 height={150}
@@ -315,8 +314,7 @@ const OrderSupplierUpdate = ({
                               selectedStatus == "delivering"
                                 ? "border border-gray-400 p-2 rounded-md"
                                 : ""
-                            }`}
-                          >
+                            }`}>
                             <div className="relative">
                               <input
                                 className="peer hidden"
@@ -332,8 +330,7 @@ const OrderSupplierUpdate = ({
                               <span className="peer-checked:border-sky-400 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
                               <label
                                 className="peer-checked:border-2 peer-checked:border-sky-400 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-1"
-                                htmlFor={`delivering${item.id}`}
-                              >
+                                htmlFor={`delivering${item.id}`}>
                                 <Image
                                   width={150}
                                   height={150}
@@ -356,12 +353,10 @@ const OrderSupplierUpdate = ({
                                 selectedStatus == "delivering"
                                   ? "block"
                                   : "hidden"
-                              }
-                            >
+                              }>
                               <label
                                 htmlFor="card-holder"
-                                className="mt-1 mb-1 block text-sm font-medium"
-                              >
+                                className="mt-1 mb-1 block text-sm font-medium">
                                 Shipping Number
                               </label>
                               <div className="relative">
@@ -384,8 +379,7 @@ const OrderSupplierUpdate = ({
                                     fill="none"
                                     viewBox="0 0 24 24"
                                     stroke="currentColor"
-                                    strokeWidth="2"
-                                  >
+                                    strokeWidth="2">
                                     <path
                                       strokeLinecap="round"
                                       strokeLinejoin="round"
@@ -404,8 +398,7 @@ const OrderSupplierUpdate = ({
                               <div className="mt-2">
                                 <label
                                   htmlFor="card-holder"
-                                  className="mt-1 mb-1 block text-sm font-medium"
-                                >
+                                  className="mt-1 mb-1 block text-sm font-medium">
                                   Shipping Proof
                                 </label>
                                 <input
@@ -439,8 +432,7 @@ const OrderSupplierUpdate = ({
                             <span className="peer-checked:border-sky-400 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
                             <label
                               className="peer-checked:border-2 peer-checked:border-sky-400 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-1"
-                              htmlFor={`delivered${item.id}`}
-                            >
+                              htmlFor={`delivered${item.id}`}>
                               <Image
                                 width={150}
                                 height={150}
@@ -470,8 +462,7 @@ const OrderSupplierUpdate = ({
                             <span className="peer-checked:border-sky-400 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
                             <label
                               className="peer-checked:border-2 peer-checked:border-sky-400 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-1"
-                              htmlFor={`delivered${item.id}`}
-                            >
+                              htmlFor={`delivered${item.id}`}>
                               <Image
                                 width={150}
                                 height={150}
@@ -496,8 +487,7 @@ const OrderSupplierUpdate = ({
                             disabled={item.order_status == "received"}
                             className={`${
                               item.order_status == "received" && "hidden"
-                            } mt-4 mb-8 w-full rounded-md bg-sky-600 px-6 py-3 font-medium text-white`}
-                          >
+                            } mt-4 mb-8 w-full rounded-md bg-sky-600 px-6 py-3 font-medium text-white`}>
                             Update Status
                           </button>
                           <button
@@ -510,8 +500,7 @@ const OrderSupplierUpdate = ({
                                 })
                               );
                             }}
-                            className="mt-4 mb-8 w-full rounded-md bg-sky-400 px-6 py-3 font-medium text-white"
-                          >
+                            className="mt-4 mb-8 w-full rounded-md bg-sky-400 px-6 py-3 font-medium text-white">
                             Close
                           </button>
                         </div>

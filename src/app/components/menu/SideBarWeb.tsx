@@ -2,7 +2,7 @@
 import { toggleProfileMenu } from "@/redux/profileSlice";
 import { RootState } from "@/redux/store";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import MenuProfile from "../menu/MenuProfile";
@@ -10,6 +10,7 @@ import { Icons } from "../ui/Icons";
 import { Container, LogOut, Wallet } from "lucide-react";
 import MenuLogout from "./MenuLogout";
 import { signOut } from "next-auth/react";
+import toast from "react-hot-toast";
 
 const SideBarWeb = () => {
   const dispatch = useDispatch();
@@ -19,6 +20,13 @@ const SideBarWeb = () => {
   }
   const isOpen = useSelector((state: RootState) => state.profile.isOpen);
   const pathName = usePathname();
+  const route = useRouter();
+  const onSignOut = async () => {
+    toast.loading("loading...");
+    await signOut({ redirect: false });
+    route.push("/web/sign-in");
+    toast.dismiss();
+  };
   return (
     <div className="relative lg:block navbar-menu">
       <div
@@ -484,11 +492,10 @@ const SideBarWeb = () => {
               </details>
             </li>
             <li>
-              <Link
+              <button
                 onClick={() => {
-                  signOut();
+                  onSignOut();
                 }}
-                href="/sign-in"
                 className="flex items-center px-8 py-4 text-gray-700 dark:text-gray-400 group dark:hover:bg-gray-700 hover:bg-gray-100">
                 <span className="inline-block mr-3">
                   <svg
@@ -508,7 +515,7 @@ const SideBarWeb = () => {
                   </svg>
                 </span>
                 <span> Sign Out </span>
-              </Link>
+              </button>
             </li>
             {/* <li>
               <a

@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useDispatch } from "react-redux";
 import { addToCart } from "@/redux/shoppingSlice";
 import toast, { Toaster } from "react-hot-toast";
-import { ItemProps, Product } from "../../../../../type";
+import { ItemProps, Product, Products } from "../../../../../type";
 import { calculatePercentage } from "@/app/helpers";
 import FormattedPrice from "../../FormattedPrice";
 import ProductModal from "./ProductModal";
@@ -13,7 +13,7 @@ import UpdateProductComponent from "@/components/supplier/UpdateProductComponent
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 
-const ProductList = ({ item }: ItemProps) => {
+const ProductList = ({ item }: { item: Product }) => {
   const pathname = usePathname();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [open, setOpen] = useState(false);
@@ -40,12 +40,21 @@ const ProductList = ({ item }: ItemProps) => {
           <Link
             href={{
               pathname: "/product",
-              query: { id: item?.id, image: item?.image },
-            }}
-          >
+              query: {
+                id: item?.id,
+                image:
+                  item?.product_gallery.length > 0
+                    ? item?.product_gallery[0].url
+                    : "/images/no_image.png",
+              },
+            }}>
             <div className=" w-full h-80 group overflow-hidden relative">
               <Image
-                src={`${process.env.SERVER_ENDPOINT}${item.image}`}
+                src={`${process.env.SERVER_ENDPOINT}${
+                  item.product_gallery.length > 0
+                    ? item.product_gallery[0].url
+                    : "/images/no_image.png"
+                }`}
                 alt="Product image"
                 width={500}
                 height={500}
@@ -62,9 +71,14 @@ const ProductList = ({ item }: ItemProps) => {
             <Link
               href={{
                 pathname: "/product",
-                query: { id: item?.id, image: item?.image },
-              }}
-            >
+                query: {
+                  id: item?.id,
+                  image:
+                    item?.product_gallery.length > 0
+                      ? item?.product_gallery[0].url
+                      : "/images/no_image.png",
+                },
+              }}>
               <p className="cursor-pointer hover:text-sky-600 font-semibold">
                 {item?.title}
               </p>
@@ -97,7 +111,7 @@ const ProductList = ({ item }: ItemProps) => {
                         isOpen={isModalOpen}
                         closeModal={closeModal}
                         openModal={openModal}
-                        itemProducts={item as Product}
+                        itemProducts={item}
                       />
                     </div>
                   ) : (
@@ -105,8 +119,7 @@ const ProductList = ({ item }: ItemProps) => {
                       {/* <ProductModal product={item} /> */}
                       <Link
                         href={`/myshop/product/detail/${item.id}`}
-                        className=" bg-green-500 py-2 px-4 rounded-lg text-sm tracking-wide text-slate-100 hover:bg-sky-600 hover:text-white duration-200"
-                      >
+                        className=" bg-green-500 py-2 px-4 rounded-lg text-sm tracking-wide text-slate-100 hover:bg-sky-600 hover:text-white duration-200">
                         Detail
                       </Link>
                     </>

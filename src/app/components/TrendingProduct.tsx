@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import ProductsData from "./ProductsData";
-import { Products } from "../../../type";
+import { Product, Products, ShopProduct } from "../../../type";
 import useSWR from "swr";
 import { useShopData } from "./shop/ShopContext";
 
@@ -25,7 +25,7 @@ const TrendingProduct = (domain: any) => {
           </h2>
           <div className="w-20 mb-6 border-b border-red-700 dark:border-gray-400"></div>
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 ">
-            {data?.map((item: Products) => (
+            {data?.map((item: ShopProduct) => (
               <ProductsData key={item.id} item={item} />
             ))}
           </div>

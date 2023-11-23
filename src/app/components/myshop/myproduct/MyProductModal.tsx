@@ -13,7 +13,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Swal from "sweetalert2";
 
-const MyProductModal = ({ product }: { product: Products }) => {
+const MyProductModal = ({ product }: { product: Product }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const shopData = useShopData();
@@ -115,8 +115,7 @@ const MyProductModal = ({ product }: { product: Products }) => {
     <div>
       <button
         onClick={() => setIsModalOpen(true)}
-        className="bg-sky-500 py-2 px-4 rounded-lg text-sm tracking-wide text-slate-100 hover:bg-sky-600 hover:text-white duration-200"
-      >
+        className="bg-sky-500 py-2 px-4 rounded-lg text-sm tracking-wide text-slate-100 hover:bg-sky-600 hover:text-white duration-200">
         Update
       </button>
 
@@ -137,7 +136,7 @@ const MyProductModal = ({ product }: { product: Products }) => {
                       <Image
                         width={500}
                         height={500}
-                        src={`${process.env.SERVER_ENDPOINT}${product.product.image}`}
+                        src={`${process.env.SERVER_ENDPOINT}${product.product.product_gallery[0].url}`}
                         alt=""
                         className="object-cover w-full lg:h-full "
                       />
@@ -146,8 +145,7 @@ const MyProductModal = ({ product }: { product: Products }) => {
                       <div className="w-1/2 p-2 sm:w-1/4">
                         <a
                           href="#"
-                          className="block border border-blue-300 dark:border-transparent dark:hover:border-blue-300 hover:border-blue-300"
-                        >
+                          className="block border border-blue-300 dark:border-transparent dark:hover:border-blue-300 hover:border-blue-300">
                           <Image
                             width={500}
                             height={500}
@@ -160,8 +158,7 @@ const MyProductModal = ({ product }: { product: Products }) => {
                       <div className="w-1/2 p-2 sm:w-1/4">
                         <a
                           href="#"
-                          className="block border border-transparent dark:border-transparent dark:hover:border-blue-300 hover:border-blue-300"
-                        >
+                          className="block border border-transparent dark:border-transparent dark:hover:border-blue-300 hover:border-blue-300">
                           <Image
                             width={500}
                             height={500}
@@ -174,8 +171,7 @@ const MyProductModal = ({ product }: { product: Products }) => {
                       <div className="w-1/2 p-2 sm:w-1/4">
                         <a
                           href="#"
-                          className="block border border-transparent dark:border-transparent dark:hover:border-blue-300 hover:border-blue-300"
-                        >
+                          className="block border border-transparent dark:border-transparent dark:hover:border-blue-300 hover:border-blue-300">
                           <Image
                             width={500}
                             height={500}
@@ -188,8 +184,7 @@ const MyProductModal = ({ product }: { product: Products }) => {
                       <div className="w-1/2 p-2 sm:w-1/4">
                         <a
                           href="#"
-                          className="block border border-transparent dark:border-transparent dark:hover:border-blue-300 hover:border-blue-300"
-                        >
+                          className="block border border-transparent dark:border-transparent dark:hover:border-blue-300 hover:border-blue-300">
                           <Image
                             width={500}
                             height={500}
@@ -219,8 +214,7 @@ const MyProductModal = ({ product }: { product: Products }) => {
                               <div className="">
                                 <label
                                   htmlFor="email"
-                                  className="mt-4 mb-2 block text-sm font-medium"
-                                >
+                                  className="mt-4 mb-2 block text-sm font-medium">
                                   Base Price
                                 </label>
                                 <div className="relative">
@@ -262,8 +256,7 @@ const MyProductModal = ({ product }: { product: Products }) => {
                                 </div>
                                 <label
                                   htmlFor="card-holder"
-                                  className="mt-4 mb-2 block text-sm font-medium"
-                                >
+                                  className="mt-4 mb-2 block text-sm font-medium">
                                   Harga Jual
                                 </label>
                                 <div className="relative">
@@ -289,8 +282,7 @@ const MyProductModal = ({ product }: { product: Products }) => {
                                 </div>
                                 <label
                                   htmlFor="card-holder"
-                                  className="mt-4 mb-2 block text-sm font-medium"
-                                >
+                                  className="mt-4 mb-2 block text-sm font-medium">
                                   Keuntungan Diterima
                                 </label>
                                 <div className="relative">
@@ -306,8 +298,7 @@ const MyProductModal = ({ product }: { product: Products }) => {
                                 </div>
                                 <label
                                   htmlFor="card-holder"
-                                  className="mt-4 mb-2 block text-sm font-medium"
-                                >
+                                  className="mt-4 mb-2 block text-sm font-medium">
                                   Sharing Profit
                                 </label>
                                 <div className="relative">
@@ -408,8 +399,7 @@ const MyProductModal = ({ product }: { product: Products }) => {
                                   <button
                                     type="button"
                                     onClick={() => setIsModalOpen(false)}
-                                    className="flex items-center justify-center w-full p-2 text-blue-500 border border-blue-500 rounded-md dark:text-gray-200 dark:border-blue-600 hover:bg-blue-600 hover:border-blue-600 hover:text-gray-100 dark:bg-blue-600 dark:hover:bg-blue-700 dark:hover:border-blue-700 dark:hover:text-gray-300"
-                                  >
+                                    className="flex items-center justify-center w-full p-2 text-blue-500 border border-blue-500 rounded-md dark:text-gray-200 dark:border-blue-600 hover:bg-blue-600 hover:border-blue-600 hover:text-gray-100 dark:bg-blue-600 dark:hover:bg-blue-700 dark:hover:border-blue-700 dark:hover:text-gray-300">
                                     Close
                                   </button>
                                 </div>
@@ -417,8 +407,7 @@ const MyProductModal = ({ product }: { product: Products }) => {
                                 <div className="">
                                   <button
                                     //   type="button"
-                                    className="flex items-center justify-center w-full p-2 text-blue-500 border border-blue-500 rounded-md dark:text-gray-200 dark:border-blue-600 hover:bg-blue-600 hover:border-blue-600 hover:text-gray-100 dark:bg-blue-600 dark:hover:bg-blue-700 dark:hover:border-blue-700 dark:hover:text-gray-300"
-                                  >
+                                    className="flex items-center justify-center w-full p-2 text-blue-500 border border-blue-500 rounded-md dark:text-gray-200 dark:border-blue-600 hover:bg-blue-600 hover:border-blue-600 hover:text-gray-100 dark:bg-blue-600 dark:hover:bg-blue-700 dark:hover:border-blue-700 dark:hover:text-gray-300">
                                     Update Product
                                   </button>
                                 </div>

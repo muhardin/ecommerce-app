@@ -162,6 +162,21 @@ const AddDomain: React.FC<ModalProps> = ({ isOpen, closeModal, id }) => {
                             placeholder="example.com"
                           />
                           {message && <label htmlFor="">Invalid Domain</label>}
+                          <div className="mt-1 bg-red-100 p-2 rounded-lg text-sm font-mono">
+                            <p className="text-gray-700 ">
+                              Mohon untuk segera mengupdate pengaturan Name
+                              Server pada penyedia layanan domain Anda dengan
+                              informasi berikut:
+                            </p>
+                            <ul className="list-disc pl-6 mt-0">
+                              <li className="text-blue-500">
+                                NS1 : n1.smartshop.id
+                              </li>
+                              <li className="text-blue-500">
+                                NS2 : n2.smartshop.id
+                              </li>
+                            </ul>
+                          </div>
                         </div>
                       </div>
 

@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { Editor } from "@tinymce/tinymce-react";
 import AddProductComponent from "../AddProductComponent";
 import Switch from "react-switch";
@@ -328,8 +328,7 @@ const ListProductComponent = () => {
                             className="mr-2"
                             height="1em"
                             width="1em"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
+                            xmlns="http://www.w3.org/2000/svg">
                             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
                             <polyline points="17 8 12 3 7 8"></polyline>
                             <line x1="12" y1="3" x2="12" y2="15"></line>
@@ -349,8 +348,7 @@ const ListProductComponent = () => {
                             className="mr-2"
                             height="1em"
                             width="1em"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
+                            xmlns="http://www.w3.org/2000/svg">
                             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
                             <polyline points="7 10 12 15 17 10"></polyline>
                             <line x1="12" y1="15" x2="12" y2="3"></line>
@@ -364,8 +362,7 @@ const ListProductComponent = () => {
                 <div
                   className={`${
                     isModalOpen ? "hidden" : "block"
-                  } flex flex-col sm:flex-row gap-4`}
-                >
+                  } flex flex-col sm:flex-row gap-4`}>
                   <div className="flex-grow-0 md:flex-grow lg:flex-grow xl:flex-grow">
                     <button
                       disabled={checkedItemIds.length < 1}
@@ -377,8 +374,7 @@ const ListProductComponent = () => {
                           ? "bg-emerald-500 cursor-pointer"
                           : "bg-emerald-300 opacity-50"
                       } align-bottom inline-flex items-center justify-center leading-5 transition-colors duration-150 font-medium focus:outline-none px-4 py-2 rounded-lg text-sm text-white  border border-transparent  w-full h-12 btn-gray`}
-                      type="button"
-                    >
+                      type="button">
                       <span className="mr-2">
                         <svg
                           stroke="currentColor"
@@ -389,8 +385,7 @@ const ListProductComponent = () => {
                           strokeLinejoin="round"
                           height="1em"
                           width="1em"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
+                          xmlns="http://www.w3.org/2000/svg">
                           <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
                           <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
                         </svg>
@@ -410,8 +405,7 @@ const ListProductComponent = () => {
                           ? "bg-red-500 cursor-pointer "
                           : "bg-red-300 disabled opacity-50"
                       } align-bottom inline-flex items-center justify-center leading-5 transition-colors duration-150 font-medium focus:outline-none px-4 py-2 rounded-lg text-sm text-white border border-transparent  w-full h-12   btn-red relative z-0`}
-                      type="button"
-                    >
+                      type="button">
                       <span className="mr-2">
                         <svg
                           stroke="currentColor"
@@ -422,8 +416,7 @@ const ListProductComponent = () => {
                           strokeLinejoin="round"
                           height="1em"
                           width="1em"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
+                          xmlns="http://www.w3.org/2000/svg">
                           <polyline points="3 6 5 6 21 6"></polyline>
                           <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
                           <line x1="10" y1="11" x2="10" y2="17"></line>
@@ -439,8 +432,7 @@ const ListProductComponent = () => {
                         openModal();
                       }}
                       className="align-bottom inline-flex items-center justify-center cursor-pointer leading-5 transition-colors duration-150 font-medium focus:outline-none px-4 py-2 rounded-lg text-sm text-white bg-emerald-500 border border-transparent active:bg-emerald-600 hover:bg-emerald-600 w-full h-12"
-                      type="button"
-                    >
+                      type="button">
                       <span className="mr-2">
                         <svg
                           stroke="currentColor"
@@ -451,8 +443,7 @@ const ListProductComponent = () => {
                           strokeLinejoin="round"
                           height="1em"
                           width="1em"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
+                          xmlns="http://www.w3.org/2000/svg">
                           <line x1="12" y1="5" x2="12" y2="19"></line>
                           <line x1="5" y1="12" x2="19" y2="12"></line>
                         </svg>
@@ -477,14 +468,12 @@ const ListProductComponent = () => {
                   />
                   <button
                     type="button"
-                    className="absolute right-0 top-0 mt-5 mr-1"
-                  ></button>
+                    className="absolute right-0 top-0 mt-5 mr-1"></button>
                 </div>
                 <div className="flex-grow-0 md:flex-grow lg:flex-grow xl:flex-grow">
                   <select
                     onChange={(e) => {}}
-                    className="block w-full h-12 border bg-gray-100 px-2 py-1 text-sm dark:text-gray-300 focus:outline-none rounded-md form-select focus:bg-white dark:focus:bg-gray-700 focus:border-gray-200 border-gray-200 dark:border-gray-600 focus:shadow-none dark:focus:border-gray-500 dark:bg-gray-700 leading-5"
-                  >
+                    className="block w-full h-12 border bg-gray-100 px-2 py-1 text-sm dark:text-gray-300 focus:outline-none rounded-md form-select focus:bg-white dark:focus:bg-gray-700 focus:border-gray-200 border-gray-200 dark:border-gray-600 focus:shadow-none dark:focus:border-gray-500 dark:bg-gray-700 leading-5">
                     <option selected>All</option>
                     {Categories.map((item: any) => (
                       <option key={item.id} value={item.id}>
@@ -515,7 +504,7 @@ const ListProductComponent = () => {
                 </div>
                 <div className="flex items-center gap-2 flex-grow-0 md:flex-grow lg:flex-grow xl:flex-grow">
                   <div className="w-full mx-1">
-                    <button
+                    {/* <button
                       disabled={!search}
                       onClick={() => {
                         handleInputChange();
@@ -525,10 +514,21 @@ const ListProductComponent = () => {
                         search
                           ? "cursor-pointer active:bg-emerald-600 hover:bg-emerald-600 bg-emerald-700"
                           : " bg-emerald-400 opacity-50"
-                      } align-bottom inline-flex items-center justify-center leading-5 transition-colors duration-150 font-medium focus:outline-none px-4 py-2 rounded-lg text-sm text-white border border-transparent  h-12 w-full `}
-                      type="button"
-                    >
+                      } align-bottom inline-flex items-center justify-center leading-5 transition-colors duration-150 font-medium focus:outline-none px-4 py-2 rounded-lg text-sm text-white border border-transparent  h-12 w-full relative z-0 `}
+                      type="button">
                       Search
+                    </button> */}
+                    <button
+                      disabled={!search}
+                      onClick={() => {
+                        handleInputChange();
+                        setCurrentPage(1);
+                      }}
+                      className="align-bottom inline-flex items-center justify-center cursor-pointer leading-5 transition-colors duration-150 font-medium px-4 py-2 rounded-lg text-green-600 border-gray-200 border dark:text-gray-400 focus:outline-none bg-green-200 w-full mr-3 h-12 md:py-1 text-sm dark:bg-green-700"
+                      type="reset">
+                      <span className="text-black dark:text-gray-200">
+                        Search
+                      </span>
                     </button>
                   </div>
                   <div className="w-full mx-1">
@@ -537,8 +537,7 @@ const ListProductComponent = () => {
                         setSearchQuery("");
                       }}
                       className="align-bottom inline-flex items-center justify-center cursor-pointer leading-5 transition-colors duration-150 font-medium px-4 py-2 rounded-lg text-gray-600 border-gray-200 border dark:text-gray-400 focus:outline-none bg-gray-200 w-full mr-3 h-12 md:py-1 text-sm dark:bg-gray-700"
-                      type="reset"
-                    >
+                      type="reset">
                       <span className="text-black dark:text-gray-200">
                         Reset
                       </span>
@@ -590,18 +589,30 @@ const ListProductComponent = () => {
                         <td className="px-4 py-2">
                           <div className="flex items-center">
                             <div className="rounded-full inline-block w-8 h-8 p-1 mr-2 md:block bg-gray-50 shadow-none">
-                              <Image
-                                width={250}
-                                height={250}
-                                className="object-cover w-full h-full rounded-full"
-                                src={`${process.env.SERVER_ENDPOINT}${item.image}`}
-                                alt="product"
-                                loading="lazy"
-                              />
+                              <Suspense>
+                                {item?.product_gallery.length > 0 ? (
+                                  <Image
+                                    width={250}
+                                    height={250}
+                                    className="object-cover w-full h-full rounded-full"
+                                    src={`${process.env.SERVER_ENDPOINT}${item?.product_gallery[0].url}`}
+                                    alt="product"
+                                    loading="lazy"
+                                  />
+                                ) : (
+                                  <Image
+                                    width={250}
+                                    height={250}
+                                    className="object-cover w-full h-full rounded-full"
+                                    src={`/images/no_image.png`}
+                                    alt="product"
+                                    loading="lazy"
+                                  />
+                                )}
+                              </Suspense>
                               <div
                                 className="absolute rounded-full shadow-inner"
-                                aria-hidden="true"
-                              ></div>
+                                aria-hidden="true"></div>
                             </div>
                             <div>
                               <h2 className="text-sm font-medium ">
@@ -644,13 +655,11 @@ const ListProductComponent = () => {
                         <td className="px-4 py-2">
                           <a
                             className="flex justify-center text-gray-400 hover:text-emerald-600"
-                            href="/product/654a3c8d73ddc60007066f53"
-                          >
+                            href="/product/654a3c8d73ddc60007066f53">
                             <p
                               data-tip="true"
                               data-for="view"
-                              className="text-xl"
-                            >
+                              className="text-xl">
                               <svg
                                 stroke="currentColor"
                                 fill="none"
@@ -660,15 +669,13 @@ const ListProductComponent = () => {
                                 strokeLinejoin="round"
                                 height="1em"
                                 width="1em"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
+                                xmlns="http://www.w3.org/2000/svg">
                                 <circle cx="11" cy="11" r="8"></circle>
                                 <line
                                   x1="21"
                                   y1="21"
                                   x2="16.65"
-                                  y2="16.65"
-                                ></line>
+                                  y2="16.65"></line>
                                 <line x1="11" y1="8" x2="11" y2="14"></line>
                                 <line x1="8" y1="11" x2="14" y2="11"></line>
                               </svg>
@@ -680,8 +687,7 @@ const ListProductComponent = () => {
                             className=""
                             onClick={() => {
                               ConfirmActionPublish(item.id, "del");
-                            }}
-                          >
+                            }}>
                             {item.isPublish == 1 ? (
                               <button>
                                 <CheckCheck color="green" />
@@ -728,17 +734,43 @@ const ListProductComponent = () => {
                               closeModal={closeModal}
                               itemProducts={item}
                             />
+
                             <button
                               onClick={() => {
                                 ConfirmAction(item.id, "del");
                               }}
-                              className="p-2 cursor-pointer text-gray-400 hover:text-red-600 focus:outline-none"
-                            >
+                              data-tip="test"
+                              className="tooltip p-2 cursor-pointer text-gray-400 hover:text-red-600 focus:outline-none">
                               <p
                                 data-tip="true"
                                 data-for="delete"
-                                className="text-xl"
-                              >
+                                className="text-xl">
+                                <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  width="20"
+                                  height="20"
+                                  viewBox="0 0 24 24"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  stroke-width="2"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  className="lucide lucide-book-image">
+                                  <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20" />
+                                  <circle cx="10" cy="8" r="2" />
+                                  <path d="m20 13.7-2.1-2.1c-.8-.8-2-.8-2.8 0L9.7 17" />
+                                </svg>
+                              </p>
+                            </button>
+                            <button
+                              onClick={() => {
+                                ConfirmAction(item.id, "del");
+                              }}
+                              className="p-2 cursor-pointer text-gray-400 hover:text-red-600 focus:outline-none">
+                              <p
+                                data-tip="true"
+                                data-for="delete"
+                                className="text-xl">
                                 <svg
                                   stroke="currentColor"
                                   fill="none"
@@ -748,8 +780,7 @@ const ListProductComponent = () => {
                                   strokeLinejoin="round"
                                   height="1em"
                                   width="1em"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                >
+                                  xmlns="http://www.w3.org/2000/svg">
                                   <polyline points="3 6 5 6 21 6"></polyline>
                                   <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
                                   <line x1="10" y1="11" x2="10" y2="17"></line>
@@ -770,8 +801,7 @@ const ListProductComponent = () => {
                               <div
                                 className="animate-spin inline-block w-6 h-6 border-[3px] border-current border-t-transparent text-blue-600 rounded-full dark:text-blue-500"
                                 role="status"
-                                aria-label="loading"
-                              >
+                                aria-label="loading">
                                 <span className="sr-only">Loading...</span>
                               </div>
                             </div>
@@ -921,19 +951,16 @@ const ListProductComponent = () => {
                           }}
                           className="align-bottom inline-flex items-center justify-center leading-5 transition-colors duration-150 font-medium focus:outline-none p-2 rounded-md hover:bg-gray-100 text-gray-800 dark:text-gray-400 border border-transparent opacity-50 cursor-pointer"
                           type="button"
-                          aria-label="Previous"
-                        >
+                          aria-label="Previous">
                           <svg
                             className="h-3 w-3"
                             aria-hidden="true"
                             fill="currentColor"
-                            viewBox="0 0 20 20"
-                          >
+                            viewBox="0 0 20 20">
                             <path
                               d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
                               clipRule="evenodd"
-                              fillRule="evenodd"
-                            ></path>
+                              fillRule="evenodd"></path>
                           </svg>
                         </button>
                       </li>
@@ -950,8 +977,7 @@ const ListProductComponent = () => {
                                 page == currentPage &&
                                 "text-white bg-emerald-500"
                               } border border-transparent active:bg-emerald-600 hover:bg-emerald-600 hover:text-slate-50`}
-                              type="button"
-                            >
+                              type="button">
                               {page}
                             </button>
                           </li>
@@ -977,19 +1003,16 @@ const ListProductComponent = () => {
                           }}
                           className="align-bottom inline-flex items-center justify-center cursor-pointer leading-5 transition-colors duration-150 font-medium p-2 rounded-md text-gray-600 dark:text-gray-400 focus:outline-none border border-transparent active:bg-transparent hover:bg-gray-100 dark:hover:bg-gray-500 dark:hover:text-gray-300 dark:hover:bg-opacity-10"
                           type="button"
-                          aria-label="Next"
-                        >
+                          aria-label="Next">
                           <svg
                             className="h-3 w-3"
                             aria-hidden="true"
                             fill="currentColor"
-                            viewBox="0 0 20 20"
-                          >
+                            viewBox="0 0 20 20">
                             <path
                               d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
                               clipRule="evenodd"
-                              fillRule="evenodd"
-                            ></path>
+                              fillRule="evenodd"></path>
                           </svg>
                         </button>
                       </li>

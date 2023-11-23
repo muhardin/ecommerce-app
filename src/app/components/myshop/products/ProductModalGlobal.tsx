@@ -18,7 +18,7 @@ const ProductModalGlobal = ({
   shops,
 }: {
   shops: ShopData;
-  product: Products;
+  product: Product;
   onReset: () => void;
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(true);
@@ -141,13 +141,26 @@ const ProductModalGlobal = ({
                           {product.title}
                         </h2>
                         <div className="relative mb-2 lg:mb-2">
-                          <Image
-                            width={500}
-                            height={500}
-                            src={process.env.SERVER_ENDPOINT + product.image}
-                            alt=""
-                            className="object-cover w-full lg:h-full "
-                          />
+                          {product.product_gallery?.length > 0 ? (
+                            <Image
+                              width={500}
+                              height={500}
+                              src={
+                                process.env.SERVER_ENDPOINT +
+                                product.product_gallery[0].url
+                              }
+                              alt=""
+                              className="object-cover w-full lg:h-full "
+                            />
+                          ) : (
+                            <Image
+                              width={500}
+                              height={500}
+                              src={"/images/no_image.png"}
+                              alt=""
+                              className="object-cover w-full lg:h-full "
+                            />
+                          )}
                         </div>
                         <div className="flex-wrap hidden md:flex ">
                           <div className="w-1/2 p-2 sm:w-1/4">

@@ -11,12 +11,13 @@ import { Product, Products } from "../../../../../type";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { ProductGallery } from "../../../../../adminType";
 
 const ProductModal = ({
   product,
   onReset,
 }: {
-  product: Products;
+  product: Product;
   onReset: () => void;
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(true);
@@ -137,67 +138,64 @@ const ProductModal = ({
                           {product.title}
                         </h2>
                         <div className="relative mb-2 lg:mb-2">
-                          <Image
-                            width={500}
-                            height={500}
-                            src={process.env.SERVER_ENDPOINT + product.image}
-                            alt=""
-                            className="object-cover w-full lg:h-full "
-                          />
+                          {product.product_gallery ? (
+                            <Image
+                              width={500}
+                              height={500}
+                              src={
+                                process.env.SERVER_ENDPOINT +
+                                product.product_gallery[0].url
+                              }
+                              alt=""
+                              className="object-cover w-full lg:h-full "
+                            />
+                          ) : (
+                            <Image
+                              width={500}
+                              height={500}
+                              src={"/images/no_image.png"}
+                              alt=""
+                              className="object-cover w-full lg:h-full "
+                            />
+                          )}
                         </div>
                         <div className="flex-wrap hidden md:flex ">
-                          <div className="w-1/2 p-2 sm:w-1/4">
-                            <a
-                              href="#"
-                              className="block border border-blue-300 dark:border-transparent dark:hover:border-blue-300 hover:border-blue-300">
-                              <Image
-                                width={500}
-                                height={500}
-                                src="/images/products/pexels-melvin-buezo-2529148.jpg"
-                                alt=""
-                                className="object-cover w-full lg:h-20"
-                              />
-                            </a>
-                          </div>
-                          <div className="w-1/2 p-2 sm:w-1/4">
-                            <a
-                              href="#"
-                              className="block border border-transparent dark:border-transparent dark:hover:border-blue-300 hover:border-blue-300">
-                              <Image
-                                width={500}
-                                height={500}
-                                src="/images/products/pexels-melvin-buezo-2529148.jpg"
-                                alt=""
-                                className="object-cover w-full lg:h-20"
-                              />
-                            </a>
-                          </div>
-                          <div className="w-1/2 p-2 sm:w-1/4">
-                            <a
-                              href="#"
-                              className="block border border-transparent dark:border-transparent dark:hover:border-blue-300 hover:border-blue-300">
-                              <Image
-                                width={500}
-                                height={500}
-                                src="/images/products/pexels-melvin-buezo-2529148.jpg"
-                                alt=""
-                                className="object-cover w-full lg:h-20"
-                              />
-                            </a>
-                          </div>
-                          <div className="w-1/2 p-2 sm:w-1/4">
-                            <a
-                              href="#"
-                              className="block border border-transparent dark:border-transparent dark:hover:border-blue-300 hover:border-blue-300">
-                              <Image
-                                width={500}
-                                height={500}
-                                src="/images/products/pexels-melvin-buezo-2529148.jpg"
-                                alt=""
-                                className="object-cover w-full lg:h-20"
-                              />
-                            </a>
-                          </div>
+                          {product.product_gallery?.length > 0 ? (
+                            product.product_gallery.map(
+                              (item: ProductGallery) => (
+                                <div
+                                  key={item.id}
+                                  className="w-1/2 p-2 sm:w-1/4">
+                                  <a
+                                    href="#"
+                                    className="block border border-blue-300 dark:border-transparent dark:hover:border-blue-300 hover:border-blue-300">
+                                    <Image
+                                      width={500}
+                                      height={500}
+                                      src={`${process.env.SERVER_ENDPOINT}${item.url}`}
+                                      alt=""
+                                      className="object-cover w-full lg:h-20"
+                                    />
+                                  </a>
+                                </div>
+                              )
+                            )
+                          ) : (
+                            <div className="w-1/2 p-2 sm:w-1/4">
+                              <a
+                                href="#"
+                                className="block border border-blue-300 dark:border-transparent dark:hover:border-blue-300 hover:border-blue-300">
+                                <Image
+                                  width={500}
+                                  height={500}
+                                  src={`/images/no_image.png`}
+                                  alt=""
+                                  className="object-cover w-full lg:h-20"
+                                />
+                              </a>
+                            </div>
+                          )}
+                          {}
                         </div>
                       </div>
                     </div>

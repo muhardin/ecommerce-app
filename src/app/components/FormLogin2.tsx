@@ -59,7 +59,7 @@ const FormLoginT = () => {
     setPasswordShown(!passwordShown);
   };
   const shopData = useShopData();
-  console.log(shopData);
+
   return (
     <div className=" flex items-center justify-center">
       <div className="max-w-md bg-white p-6 rounded shadow-lg flex flex-col items-center">
@@ -106,7 +106,7 @@ const FormLoginT = () => {
               <input
                 name="password"
                 id="password"
-                className="flex-1 p-2 pr-10 border border-gray-300 focus:outline-none focus:ring-0 focus:border-gray-300 rounded text-sm text-gray-900"
+                className="flex-1 p-2 pr-10 border border-gray-300 focus:outline-none focus:ring-0 focus:border-gray-300 rounded text-sm bg-white text-gray-900"
                 placeholder="Enter your password"
                 type={passwordShown ? "text" : "password"}
               />

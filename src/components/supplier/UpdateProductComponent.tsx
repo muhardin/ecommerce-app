@@ -18,7 +18,7 @@ interface ModalProps {
   isOpen: boolean;
   // suppliers?: SupplierData;
   buttonText?: string;
-  itemProducts: Product | [];
+  itemProducts: Product;
   closeModal: () => void;
   openModal?: () => void;
 }

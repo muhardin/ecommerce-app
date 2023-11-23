@@ -86,12 +86,10 @@ const ProductAvailableComponent = () => {
       <Tabs focusTabOnClick={true} className="flex flex-col gap-2 bg-white p-6">
         <div
           className="mb-4 border-b border-gray-200 dark:border-slate-700"
-          data-fc-type="tab"
-        >
+          data-fc-type="tab">
           <TabList
             className="flex flex-wrap -mb-px text-sm font-medium text-center"
-            aria-label="Tabs"
-          >
+            aria-label="Tabs">
             <Tab className="me-2" role="presentation">
               <button
                 className="inline-block p-4 rounded-t-lg border-b-2 active "
@@ -100,8 +98,7 @@ const ProductAvailableComponent = () => {
                 type="button"
                 role="tab"
                 aria-controls="all"
-                aria-selected="false"
-              >
+                aria-selected="false">
                 All <span className="text-slate-400">(0)</span>
               </button>
             </Tab>
@@ -113,8 +110,7 @@ const ProductAvailableComponent = () => {
                 type="button"
                 role="tab"
                 aria-controls="published"
-                aria-selected="false"
-              >
+                aria-selected="false">
                 Published <span className="text-slate-400">(0)</span>
               </button>
             </Tab>
@@ -126,21 +122,19 @@ const ProductAvailableComponent = () => {
                 type="button"
                 role="tab"
                 aria-controls="drafts"
-                aria-selected="false"
-              >
+                aria-selected="false">
                 Drafts <span className="text-slate-400">(0)</span>
               </button>
             </Tab>
           </TabList>
         </div>
-        <div className="flex flex-wrap gap-4 mb-3">
-          <div className="mb-2 w-44">
+        <div className="flex flex-col sm:flex-row gap-4 mb-3">
+          <div className="mb-2 w-44 hidden sm:block">
             <select
               id="Category"
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}
-              className="w-full rounded-md mt-1 border border-slate-300/60 dark:border-slate-700 dark:text-slate-300 bg-transparent px-3 py-2 focus:outline-none focus:ring-0 placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-primary-500 dark:focus:border-primary-500  dark:hover:border-slate-700"
-            >
+              className="w-full rounded-md mt-1 border border-slate-300/60 dark:border-slate-700 dark:text-slate-300 bg-transparent px-3 py-2 focus:outline-none focus:ring-0 placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-primary-500 dark:focus:border-primary-500  dark:hover:border-slate-700">
               <option className="dark:text-slate-700">All Category</option>
               {/* categories */}
               {categories
@@ -148,21 +142,19 @@ const ProductAvailableComponent = () => {
                     <option
                       key={item.id}
                       value={item.id}
-                      className="dark:text-slate-700"
-                    >
+                      className="dark:text-slate-700">
                       {item.name}
                     </option>
                   ))
                 : null}
             </select>
           </div>
-          <div className="mb-2 w-44 flex flex-row gap-2">
+          <div className="mb-2 w-full flex flex-row gap-2">
             <select
               id="City"
               value={selectedCity || ""}
               onChange={(e) => setSelectedCity(e.target.value)}
-              className="w-full rounded-md mt-1 border border-slate-300/60 dark:border-slate-700 dark:text-slate-300 bg-transparent px-3 py-2 focus:outline-none focus:ring-0 placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-primary-500 dark:focus:border-primary-500  dark:hover:border-slate-700"
-            >
+              className="w-full rounded-md mt-1 border border-slate-300/60 dark:border-slate-700 dark:text-slate-300 bg-transparent px-3 py-2 focus:outline-none focus:ring-0 placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-primary-500 dark:focus:border-primary-500  dark:hover:border-slate-700">
               <option selected className="dark:text-slate-700">
                 City
               </option>
@@ -171,8 +163,7 @@ const ProductAvailableComponent = () => {
                   <option
                     value={item.city_id}
                     key={item.id}
-                    className="dark:text-slate-700"
-                  >
+                    className="dark:text-slate-700">
                     {item.city_name}
                   </option>
                 ))}
@@ -182,16 +173,15 @@ const ProductAvailableComponent = () => {
                 onClick={() => {
                   setSelectedCity("");
                 }}
-                className="bg-red-600 inline-block focus:outline-none bg-brand-500 mt-1 text-white hover:bg-brand-600 hover:text-white  text-md font-medium py-2 px-4 rounded"
-              >
+                className="bg-red-600 inline-block focus:outline-none bg-brand-500 mt-1 text-white hover:bg-brand-600 hover:text-white  text-md font-medium py-2 px-4 rounded">
                 Reset
               </button>
             </div>
           </div>
 
-          <div className="ms-auto">
-            <form>
-              <div className="relative">
+          <div className="ms-auto w-full">
+            <form className="flex flex-row justify-end items-center gap-2">
+              <div className="relative w-full">
                 <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -204,8 +194,7 @@ const ProductAvailableComponent = () => {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     data-lucide="search"
-                    className="lucide lucide-search z-[1] w-5 h-5 stroke-slate-400"
-                  >
+                    className="lucide lucide-search z-[1] w-5 h-5 stroke-slate-400">
                     <circle cx="11" cy="11" r="8"></circle>
                     <path d="m21 21-4.3-4.3"></path>
                   </svg>
@@ -213,16 +202,16 @@ const ProductAvailableComponent = () => {
                 <input
                   type="search"
                   id="productSearch"
-                  className="form-input w-52 rounded-md mt-1 border border-slate-300/60 dark:border-slate-700 dark:text-slate-300 bg-transparent px-3 py-2 focus:outline-none focus:ring-0 placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-primary-500 dark:focus:border-primary-500  dark:hover:border-slate-700 pl-10 p-2.5"
+                  className="form-input w-full rounded-md mt-1 border border-slate-300/60 dark:border-slate-700 dark:text-slate-300 bg-transparent px-3 py-2 focus:outline-none focus:ring-0 placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-primary-500 dark:focus:border-primary-500  dark:hover:border-slate-700 pl-10 p-2.5"
                   placeholder="search"
                 />
               </div>
+              <div className="">
+                <button className="sm:hidden bg-sky-600 inline-block focus:outline-none bg-brand-500 mt-1 text-white hover:bg-brand-600 hover:text-white  text-md font-medium py-2 px-4 rounded">
+                  Search
+                </button>
+              </div>
             </form>
-          </div>
-          <div>
-            <button className="bg-sky-600 inline-block focus:outline-none bg-brand-500 mt-1 text-white hover:bg-brand-600 hover:text-white  text-md font-medium py-2 px-4 rounded">
-              Search
-            </button>
           </div>
         </div>
         <hr className="mb-2" />
@@ -243,12 +232,23 @@ const ProductAvailableComponent = () => {
                         <Link
                           href={{
                             pathname: "/product",
-                            query: { id: product?.id, image: product?.image },
-                          }}
-                        >
+                            query: {
+                              id: product?.id,
+                              image:
+                                product?.product_gallery?.length > 0
+                                  ? process.env.SERVER_ENDPOINT +
+                                    product?.product_gallery[0].url
+                                  : "/images/no_image.png",
+                            },
+                          }}>
                           <div className=" w-full h-80 group overflow-hidden relative">
                             <Image
-                              src={`${process.env.SERVER_ENDPOINT}${product.image}`}
+                              src={`${
+                                product.product_gallery?.length > 0
+                                  ? process.env.SERVER_ENDPOINT +
+                                    product.product_gallery[0].url
+                                  : "/images/no_image.png"
+                              }`}
                               alt="Product image"
                               width={500}
                               height={500}
@@ -265,9 +265,15 @@ const ProductAvailableComponent = () => {
                           <Link
                             href={{
                               pathname: "/product",
-                              query: { id: product?.id, image: product?.image },
-                            }}
-                          >
+                              query: {
+                                id: product?.id,
+                                image:
+                                  product?.product_gallery?.length > 0
+                                    ? process.env.SERVER_ENDPOINT +
+                                      product?.product_gallery[0].url
+                                    : "/images/no_image.png",
+                              },
+                            }}>
                             <p className="cursor-pointer hover:text-sky-600 font-semibold">
                               {product?.title}
                             </p>
@@ -314,16 +320,14 @@ const ProductAvailableComponent = () => {
                                     {/* <ProductModal product={item} /> */}
                                     <Link
                                       href={`/myshop/product/detail/${product.id}`}
-                                      className=" bg-green-500 py-2 px-4 rounded-lg text-sm tracking-wide text-slate-100 hover:bg-sky-600 hover:text-white duration-200"
-                                    >
+                                      className=" bg-green-500 py-2 px-4 rounded-lg text-sm tracking-wide text-slate-100 hover:bg-sky-600 hover:text-white duration-200">
                                       Detail
                                     </Link>
                                     <button
                                       onClick={() => {
                                         addToShop(product);
                                       }}
-                                      className="bg-sky-500 py-2 px-4 rounded-lg text-sm tracking-wide text-slate-100 hover:bg-sky-600 hover:text-white duration-200"
-                                    >
+                                      className="bg-sky-500 py-2 px-4 rounded-lg text-sm tracking-wide text-slate-100 hover:bg-sky-600 hover:text-white duration-200">
                                       Add To Shop
                                     </button>
                                   </>

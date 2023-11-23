@@ -4,7 +4,7 @@ import { useShopData } from "@/app/components/shop/ShopContext";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import useSWR from "swr";
-import { Products } from "../../../../type";
+import { Product, Products } from "../../../../type";
 import AddProductComponent from "../AddProductComponent";
 import { useState } from "react";
 
@@ -47,12 +47,10 @@ const CatalogProductSupplier = () => {
       <div className="flex flex-col gap-2 bg-white p-6">
         <div
           className="mb-4 border-b border-gray-200 dark:border-slate-700"
-          data-fc-type="tab"
-        >
+          data-fc-type="tab">
           <ul
             className="flex flex-wrap -mb-px text-sm font-medium text-center"
-            aria-label="Tabs"
-          >
+            aria-label="Tabs">
             <li className="me-2" role="presentation">
               <button
                 className="inline-block p-4 rounded-t-lg border-b-2 active "
@@ -61,8 +59,7 @@ const CatalogProductSupplier = () => {
                 type="button"
                 role="tab"
                 aria-controls="all"
-                aria-selected="false"
-              >
+                aria-selected="false">
                 All <span className="text-slate-400">(4251)</span>
               </button>
             </li>
@@ -74,8 +71,7 @@ const CatalogProductSupplier = () => {
                 type="button"
                 role="tab"
                 aria-controls="published"
-                aria-selected="false"
-              >
+                aria-selected="false">
                 Published <span className="text-slate-400">(3255)</span>
               </button>
             </li>
@@ -87,8 +83,7 @@ const CatalogProductSupplier = () => {
                 type="button"
                 role="tab"
                 aria-controls="drafts"
-                aria-selected="false"
-              >
+                aria-selected="false">
                 Drafts <span className="text-slate-400">(25)</span>
               </button>
             </li>
@@ -100,8 +95,7 @@ const CatalogProductSupplier = () => {
                 type="button"
                 role="tab"
                 aria-controls="discount"
-                aria-selected="false"
-              >
+                aria-selected="false">
                 On Discount <span className="text-slate-400">(532)</span>
               </button>
             </li>
@@ -111,8 +105,7 @@ const CatalogProductSupplier = () => {
           <div className="mb-2 w-44">
             <select
               id="Category"
-              className="w-full rounded-md mt-1 border border-slate-300/60 dark:border-slate-700 dark:text-slate-300 bg-transparent px-3 py-2 focus:outline-none focus:ring-0 placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-primary-500 dark:focus:border-primary-500  dark:hover:border-slate-700"
-            >
+              className="w-full rounded-md mt-1 border border-slate-300/60 dark:border-slate-700 dark:text-slate-300 bg-transparent px-3 py-2 focus:outline-none focus:ring-0 placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-primary-500 dark:focus:border-primary-500  dark:hover:border-slate-700">
               <option className="dark:text-slate-700">All Category</option>
               <option className="dark:text-slate-700">Electronics</option>
               <option className="dark:text-slate-700">Furniture</option>
@@ -123,8 +116,7 @@ const CatalogProductSupplier = () => {
           <div className="mb-2 w-36">
             <select
               id="City"
-              className="w-full rounded-md mt-1 border border-slate-300/60 dark:border-slate-700 dark:text-slate-300 bg-transparent px-3 py-2 focus:outline-none focus:ring-0 placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-primary-500 dark:focus:border-primary-500  dark:hover:border-slate-700"
-            >
+              className="w-full rounded-md mt-1 border border-slate-300/60 dark:border-slate-700 dark:text-slate-300 bg-transparent px-3 py-2 focus:outline-none focus:ring-0 placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-primary-500 dark:focus:border-primary-500  dark:hover:border-slate-700">
               <option className="dark:text-slate-700">Vendor</option>
               <option className="dark:text-slate-700">Vendor-2</option>
               <option className="dark:text-slate-700">Vendor-3</option>
@@ -145,8 +137,7 @@ const CatalogProductSupplier = () => {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     data-lucide="search"
-                    className="lucide lucide-search z-[1] w-5 h-5 stroke-slate-400"
-                  >
+                    className="lucide lucide-search z-[1] w-5 h-5 stroke-slate-400">
                     <circle cx="11" cy="11" r="8"></circle>
                     <path d="m21 21-4.3-4.3"></path>
                   </svg>
@@ -165,8 +156,7 @@ const CatalogProductSupplier = () => {
               onClick={() => {
                 openModal();
               }}
-              className="bg-sky-400 inline-block focus:outline-none bg-brand-500 mt-1 text-white hover:bg-brand-600 hover:text-white  text-md font-medium py-2 px-4 rounded"
-            >
+              className="bg-sky-400 inline-block focus:outline-none bg-brand-500 mt-1 text-white hover:bg-brand-600 hover:text-white  text-md font-medium py-2 px-4 rounded">
               Add product
             </button>
           </div>
@@ -174,7 +164,7 @@ const CatalogProductSupplier = () => {
         <hr className="mb-2" />
         <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-4 ">
           {products ? (
-            products.data.map((product: Products) => (
+            products.data.map((product: Product) => (
               <ProductList key={product.id} item={product} />
             ))
           ) : (

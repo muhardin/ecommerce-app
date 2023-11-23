@@ -24,7 +24,6 @@ const SingleProduct = ({ product, primaryImage }: any) => {
   });
 
   const price = Number(data?.agent_price + data?.profit);
-  console.log(price, data);
 
   switch (data?.product.sub_category) {
     case 1:

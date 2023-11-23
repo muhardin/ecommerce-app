@@ -233,6 +233,4 @@ export interface ProductGallery {
   url: string;
   full_url: string;
   thumbnail: string | null;
-  created_at: string;
-  updated_at: string;
 }

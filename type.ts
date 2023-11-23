@@ -248,7 +248,6 @@ export interface Product {
   product_gallery: ProductGallery[];
   gallery: ProductGallery[];
   category_json: string;
-  image: string | "";
   rating: number;
   quantity: number;
   number: number;
