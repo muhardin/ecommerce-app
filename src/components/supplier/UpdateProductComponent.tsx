@@ -377,7 +377,7 @@ const UpdateProductComponent: React.FC<ModalProps> = ({
     <>
       <div
         tabIndex={-1}
-        className="fixed drawer drawer-right drawer-open bg-white">
+        className="fixed drawer drawer-right drawer-open bg-white z-50">
         <div className="fixed inset-0 bg-black opacity-50 z-50"></div>
         <div className="drawer-content-wrapper w-5/6 relative z-50">
           <div className="drawer-content">
@@ -426,7 +426,7 @@ const UpdateProductComponent: React.FC<ModalProps> = ({
                 <div className="mb-3 flex flex-wrap justify-end items-center mr-8 h-2">
                   <div className="flex flex-wrap items-center mt-4">
                     <label className="block text-base font-normal text-orange-500 dark:text-orange-400 mx-4">
-                      Does this product have variants?
+                      Have variants?
                     </label>
                     <div className="react-switch md:ml-0 ml-3 relative inline-block text-left  direction-ltr rounded-15 ease-in-out touch-none select-none">
                       <Switch
