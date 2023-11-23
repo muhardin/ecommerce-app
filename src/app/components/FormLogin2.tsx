@@ -66,7 +66,7 @@ const FormLoginT = () => {
         <div className="text-center">
           <h2 className="text-2xl font-semibold text-gray-800">Login</h2>
         </div>
-        <div className="mt-4 mb-4 w-24 h-24">
+        <div className="mt-2 mb-2 w-28 h-28">
           {shopData?.logo ? (
             <Image
               src={`${process.env.SERVER_ENDPOINT}/storage/logo/${shopData.logo}`}
@@ -96,7 +96,7 @@ const FormLoginT = () => {
               id="email"
               name="email"
               placeholder="Enter your email"
-              className="w-full mt-2 p-2 border rounded-md focus:outline-none focus:border-blue-500"
+              className="w-full mt-2 p-2 border rounded-md focus:outline-none focus:border-blue-500 focus:text-white"
             />
           </div>
 
@@ -106,7 +106,7 @@ const FormLoginT = () => {
               <input
                 name="password"
                 id="password"
-                className="flex-1 p-2 pr-10 border border-gray-300 focus:outline-none focus:ring-0 focus:border-gray-300 rounded text-sm bg-white text-gray-900"
+                className="flex-1 p-2 pr-10 border border-gray-300 focus:outline-none focus:ring-0 focus:border-gray-300 rounded bg-white text-gray-900 focus:text-black"
                 placeholder="Enter your password"
                 type={passwordShown ? "text" : "password"}
               />

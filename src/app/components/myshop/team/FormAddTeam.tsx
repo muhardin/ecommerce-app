@@ -227,8 +227,7 @@ const FormAddTeam: React.FC<ModalProps> = ({ closeModal }) => {
                 <button
                   type="button"
                   onClick={closeModal}
-                  className="bg-white p-4"
-                >
+                  className="bg-white p-4">
                   Close
                 </button>
                 <p className="mt-2 text-gray-500 dark:text-gray-400">
@@ -377,8 +376,7 @@ const FormAddTeam: React.FC<ModalProps> = ({ closeModal }) => {
                         <button
                           onClick={togglePassword}
                           type="button"
-                          className="absolute right-2 bg-transparent flex items-center justify-center text-gray-700"
-                        >
+                          className="absolute right-2 bg-transparent flex items-center justify-center text-gray-700">
                           {passwordShown ? <IoIosEye /> : <IoIosEyeOff />}
                         </button>
                       </div>
@@ -476,8 +474,7 @@ const FormAddTeam: React.FC<ModalProps> = ({ closeModal }) => {
                   <div className="flex flex-col gap-2">
                     <label
                       htmlFor="card-holder"
-                      className="mt-4 mb-2 block text-sm font-medium"
-                    >
+                      className="mt-4 mb-2 block text-sm font-medium">
                       Pilih Paket Pendaftaran
                     </label>
                     {packageData ? (
@@ -495,8 +492,7 @@ const FormAddTeam: React.FC<ModalProps> = ({ closeModal }) => {
                           <span className="peer-checked:border-sky-400 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
                           <label
                             className="peer-checked:border-1 peer-checked:border-sky-500 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-1"
-                            htmlFor={`delivering_1${item.id}`}
-                          >
+                            htmlFor={`delivering_1${item.id}`}>
                             {/* <Image
                         width={150}
                         height={150}
@@ -588,8 +584,7 @@ const FormAddTeam: React.FC<ModalProps> = ({ closeModal }) => {
                   <div className="flex flex-col gap-2">
                     <label
                       htmlFor="card-holder"
-                      className="mt-4 mb-2 block text-sm font-medium"
-                    >
+                      className="mt-4 mb-2 block text-sm font-medium">
                       Pilih Cara Pembayaran_
                     </label>
                     {filteredPayments ? (
@@ -607,8 +602,7 @@ const FormAddTeam: React.FC<ModalProps> = ({ closeModal }) => {
                           <span className="peer-checked:border-sky-400 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
                           <label
                             className="peer-checked:border-1 peer-checked:border-sky-500 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-1"
-                            htmlFor={`payment_1${item.id}`}
-                          >
+                            htmlFor={`payment_1${item.id}`}>
                             <Image
                               width={150}
                               height={150}
@@ -679,7 +673,7 @@ const FormAddTeam: React.FC<ModalProps> = ({ closeModal }) => {
                 </div>
               )}
             </div>
-            <div className="fixed flex flex-row justify-between z-10 bottom-16 md:bottom-0 w-full right-0 py-4 lg:py-2 px-2 gap-2 lg:gap-2 xl:gap-2 md:flex xl:flex bg-gray-50 border-t border-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300">
+            <div className="fixed flex flex-row justify-between z-10 bottom-0 md:bottom-0 w-full right-0 py-4 lg:py-2 px-2 gap-2 lg:gap-2 xl:gap-2 md:flex xl:flex bg-gray-50 border-t border-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300">
               <div className="flex-grow-0 md:flex-grow lg:flex-grow xl:flex-grow">
                 <button
                   disabled={step == 1}
@@ -688,8 +682,7 @@ const FormAddTeam: React.FC<ModalProps> = ({ closeModal }) => {
                     step !== 1 &&
                     "cursor-pointer hover:bg-red-50 hover:border-red-100 hover:text-red-600"
                   } align-bottom inline-flex justify-center  leading-5 transition-colors duration-150 font-medium focus:outline-none px-4 py-2 text-sm text-gray-600 border-gray-200 border dark:text-gray-400 rounded-lg bg-gray-200  mr-3 items-center h-12 w-full dark:bg-gray-700 dark:border-gray-700 dark:hover:bg-gray-800 dark:hover:text-red-700`}
-                  type="button"
-                >
+                  type="button">
                   Previous
                 </button>
               </div>
@@ -698,8 +691,7 @@ const FormAddTeam: React.FC<ModalProps> = ({ closeModal }) => {
                   <button
                     onClick={handleNext}
                     className="align-bottom inline-flex items-center justify-center cursor-pointer leading-5 transition-colors duration-150 font-medium focus:outline-none px-4 py-2 rounded-lg text-sm text-white bg-emerald-500 border border-transparent active:bg-emerald-600 hover:bg-emerald-600 w-full h-12"
-                    type="button"
-                  >
+                    type="button">
                     <span>Next</span>
                   </button>
                 </div>
@@ -709,8 +701,7 @@ const FormAddTeam: React.FC<ModalProps> = ({ closeModal }) => {
                 <div className="flex-grow-0 md:flex-grow lg:flex-grow xl:flex-grow">
                   <button
                     className="align-bottom inline-flex items-center justify-center cursor-pointer leading-5 transition-colors duration-150 font-medium focus:outline-none px-4 py-2 rounded-lg text-sm text-white bg-emerald-500 border border-transparent active:bg-emerald-600 hover:bg-emerald-600 w-full h-12"
-                    type="submit"
-                  >
+                    type="submit">
                     <span>Submit</span>
                   </button>
                 </div>

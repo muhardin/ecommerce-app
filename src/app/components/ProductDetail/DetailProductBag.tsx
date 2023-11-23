@@ -57,7 +57,7 @@ const DetailProductBag = ({
           <div className="w-full px-0 md:w-1/2 ">
             <div className="top-0 z-50 overflow-hidden flex flex-col">
               <div className="h-[450px] w-full rounded-lg flex-col justify-center items-center flex gap-2">
-                <div className="relative aspect-square h-full max-h-[550px] w-full overflow-hidden">
+                <div className="relative aspect-square h-full max-h-[550px] w-full overflow-hidden flex justify-center">
                   <Suspense>
                     {data?.product.product_gallery?.length > 0 ? (
                       <ModalImage

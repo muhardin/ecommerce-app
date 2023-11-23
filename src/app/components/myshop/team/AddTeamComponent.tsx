@@ -38,7 +38,9 @@ const AddTeamComponent: React.FC<ModalProps> = ({
 
   return (
     <>
-      <div tabIndex={-1} className="drawer drawer-right drawer-open bg-white">
+      <div
+        tabIndex={-1}
+        className="drawer drawer-right drawer-open bg-white z-50">
         <div className="fixed inset-0 bg-black opacity-50"></div>
         <div className="drawer-content-wrapper w-5/6 ">
           <div className="drawer-content ">

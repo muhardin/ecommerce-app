@@ -172,12 +172,12 @@ const Withdraw = ({ valModal, modalToggle, balance }: Props) => {
   };
   return (
     <div>
-      <div className={`${loading ? "block" : "hidden"} fixed z-20`}>
+      <div className={`${loading ? "block" : "hidden"} fixed z-50`}>
         <LoadingComponent />
       </div>
       <div className={`text-sky-700 cursor-pointer hover:text-sky-500 `}></div>
       <div
-        className={`relative z-10 ${
+        className={`relative z-40 ${
           valModal ? "visible" : "invisible"
         } overflow-x-hidden overflow-y-auto inset-0 outline-none focus:outline-none w-full`}
         aria-labelledby="modal-title"
@@ -185,7 +185,7 @@ const Withdraw = ({ valModal, modalToggle, balance }: Props) => {
         aria-modal="true">
         <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
         {/* <div className="fixed inset-0 z-10 w-full md:ml-[156px] overflow-y-auto mt-24 md:mt-0"> */}
-        <div className="fixed inset-0 z-10 w-full overflow-y-auto mt-24 md:mt-0">
+        <div className="fixed inset-0 z-10 w-full overflow-y-auto mt-8 md:mt-0">
           <div className="w-full flex min-h-full items-center justify-center md:justify-center p-4 text-start sm:items-center sm:p-0">
             <div className="w-full relative transform overflow-auto rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-2/3 mb-14 md:mb-0">
               <div className="p-4  shadow-md text-gray-800 h-full">

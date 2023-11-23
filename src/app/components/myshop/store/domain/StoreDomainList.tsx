@@ -209,7 +209,7 @@ const StoreDomainList = ({ id }: { id: Number }) => {
         <div className="p-6 px-4 pb-0 mb-0 border-b-0 rounded-t-2xl">
           <h6 className="mb-0 dark:text-white">My Store List</h6>
         </div>
-        <div className="flex-auto p-4 pt-6">
+        <div className="flex-auto p-4 pt-6 pb-20 sm:pb-0">
           <ul className="flex flex-col pl-0 mb-0 rounded-lg">
             {domains ? (
               domains.map((item: ShopDomain) => (

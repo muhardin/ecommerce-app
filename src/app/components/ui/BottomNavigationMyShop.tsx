@@ -1,6 +1,14 @@
 import Link from "next/link";
 import { Icons } from "./Icons";
+import { toggleProfileMenu } from "@/redux/profileSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
 const BottomNavigationMyShop = () => {
+  const isOpen = useSelector((state: RootState) => state.profile.isOpen);
+  const dispatch = useDispatch();
+  const handleToggleMenu = () => {
+    dispatch(toggleProfileMenu());
+  };
   return (
     <div className="md:hidden fixed z-10 w-full h-16 -translate-x-1/2 bg-white border border-gray-200 rounded-t-xl shadow-lg shadow-black bottom-0 left-1/2 dark:bg-gray-700 dark:border-gray-600">
       <div className="grid h-full max-w-lg grid-cols-5 mx-auto">
@@ -52,7 +60,8 @@ const BottomNavigationMyShop = () => {
           <div className="tooltip-arrow" data-popper-arrow></div>
         </div>
         <div className="flex items-center justify-center">
-          <button
+          <Link
+            href={"/myshop/orders"}
             data-tooltip-target="tooltip-new"
             type="button"
             className="inline-flex items-center justify-center w-10 h-10 font-medium bg-blue-600 rounded-full hover:bg-blue-700 group focus:ring-4 focus:ring-blue-300 focus:outline-none dark:focus:ring-blue-800">
@@ -76,7 +85,7 @@ const BottomNavigationMyShop = () => {
               <path d="m15 11-1 9" />
             </svg>
             <span className="sr-only">New item</span>
-          </button>
+          </Link>
         </div>
         <div
           id="tooltip-new"
@@ -85,21 +94,9 @@ const BottomNavigationMyShop = () => {
           Create new item
           <div className="tooltip-arrow" data-popper-arrow></div>
         </div>
-        <button
-          data-tooltip-target="tooltip-settings"
-          type="button"
-          className="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group">
-          <Icons.settingsBottom />
-          <span className="text-sm">Settings</span>
-        </button>
-        <div
-          id="tooltip-settings"
-          role="tooltip"
-          className="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-          Settings
-          <div className="tooltip-arrow" data-popper-arrow></div>
-        </div>
-        <button
+
+        <Link
+          href={"/myshop/profile/account"}
           data-tooltip-target="tooltip-profile"
           type="button"
           className="inline-flex flex-col items-center justify-center px-5 rounded-r-full hover:bg-gray-50 dark:hover:bg-gray-800 group">
@@ -112,12 +109,43 @@ const BottomNavigationMyShop = () => {
             <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm0 5a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 13a8.949 8.949 0 0 1-4.951-1.488A3.987 3.987 0 0 1 9 13h2a3.987 3.987 0 0 1 3.951 3.512A8.949 8.949 0 0 1 10 18Z" />
           </svg>
           <span className="text-sm">Account</span>
-        </button>
+        </Link>
         <div
           id="tooltip-profile"
           role="tooltip"
           className="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
           Profile
+          <div className="tooltip-arrow" data-popper-arrow></div>
+        </div>
+        <button
+          onClick={handleToggleMenu}
+          data-tooltip-target="tooltip-settings"
+          type="button"
+          className={`${
+            isOpen ? "text-sky-600" : ""
+          } inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group`}>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            className="lucide lucide-menu">
+            <line x1="4" x2="20" y1="12" y2="12" />
+            <line x1="4" x2="20" y1="6" y2="6" />
+            <line x1="4" x2="20" y1="18" y2="18" />
+          </svg>
+          <span className="text-sm">Menu</span>
+        </button>
+        <div
+          id="tooltip-settings"
+          role="tooltip"
+          className="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+          Menu
           <div className="tooltip-arrow" data-popper-arrow></div>
         </div>
       </div>
