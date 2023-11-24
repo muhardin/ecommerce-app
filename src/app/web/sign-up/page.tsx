@@ -501,7 +501,9 @@ const RegistrationForm: React.FC = () => {
                         </div>
                       ))
                     ) : (
-                      <div>Loading...</div>
+                      <div className="flex flex-row justify-center items-center">
+                        <span className="loading loading-dots loading-lg"></span>
+                      </div>
                     )}
                     {errPack && (
                       <label className="text-red-600 text-sm">
@@ -596,7 +598,9 @@ const RegistrationForm: React.FC = () => {
                         </div>
                       ))
                     ) : (
-                      <div>Loading...</div>
+                      <div className="flex flex-row justify-center items-center">
+                        <span className="loading loading-dots loading-lg"></span>
+                      </div>
                     )}
 
                     <div className="flex flex-row gap-2 justify-end">
