@@ -86,13 +86,13 @@ const OrderSupplierComponent = () => {
             <div
               className="flex flex-wrap justify-between md:justify-start -mb-px text-sm font-medium text-center"
               aria-label="Tabs">
-              <div className="me-1" role="presentation">
+              <div className="" role="presentation">
                 <button
                   onClick={() => {
                     setStatusFilter("all");
                     setCurrentPage(1);
                   }}
-                  className="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                  className="inline-block p-2 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
                   id="all-tab"
                   data-fc-target="#all"
                   type="button"
@@ -102,13 +102,13 @@ const OrderSupplierComponent = () => {
                   All <span className="text-slate-400">({orders?.all})</span>
                 </button>
               </div>
-              <div className="me-1" role="presentation">
+              <div className="" role="presentation">
                 <button
                   onClick={() => {
                     setStatusFilter("pending");
                     setCurrentPage(1);
                   }}
-                  className="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                  className="inline-block p-2 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
                   id="published-tab"
                   data-fc-target="#published"
                   type="button"
@@ -119,13 +119,13 @@ const OrderSupplierComponent = () => {
                   <span className="text-slate-400">({orders?.pending})</span>
                 </button>
               </div>
-              <div className="me-1" role="presentation">
+              <div className="" role="presentation">
                 <button
                   onClick={() => {
                     setStatusFilter("processing");
                     setCurrentPage(1);
                   }}
-                  className=" inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                  className=" inline-block p-2 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
                   id="drafts-tab"
                   data-fc-target="#drafts"
                   type="button"
@@ -136,13 +136,13 @@ const OrderSupplierComponent = () => {
                   <span className="text-slate-400">({orders?.processing})</span>
                 </button>
               </div>
-              <div className="me-1" role="presentation">
+              <div className="" role="presentation">
                 <button
                   onClick={() => {
                     setStatusFilter("received");
                     setCurrentPage(1);
                   }}
-                  className=" inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                  className=" inline-block p-2 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
                   id="drafts-tab"
                   data-fc-target="#drafts"
                   type="button"
@@ -234,6 +234,8 @@ const OrderSupplierComponent = () => {
                                 ? "text-red-500"
                                 : item.order_status == "received"
                                 ? "text-green-500"
+                                : item.order_status === "delivering"
+                                ? "text-green-700"
                                 : "text-red-700"
                             } font-mono capitalize`}>
                             {item.order_status}
@@ -250,6 +252,8 @@ const OrderSupplierComponent = () => {
                                 ? "bg-green-600"
                                 : item.order_status === "rejected"
                                 ? "bg-green-600"
+                                : item.order_status === "delivering"
+                                ? "bg-green-600"
                                 : "bg-red-600"
                             }  inline-flex items-center rounded-md bg-blue-600 py-2 px-3 text-xs text-white`}>
                             <OrderSupplierUpdate
@@ -258,6 +262,8 @@ const OrderSupplierComponent = () => {
                                 item.order_status === "received"
                                   ? "Detail"
                                   : item.order_status === "rejected"
+                                  ? "Detail"
+                                  : item.order_status === "delivering"
                                   ? "Detail"
                                   : "Update"
                               } `}
