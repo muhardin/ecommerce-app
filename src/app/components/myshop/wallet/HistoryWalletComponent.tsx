@@ -70,8 +70,7 @@ Get Data History
               </td>
               <td
                 width="50%"
-                className="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-6"
-              >
+                className="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-6">
                 Type
               </td>
 
@@ -98,8 +97,7 @@ Get Data History
                   </td>
                   <td
                     width="50%"
-                    className="whitespace-no-wrap py-4 text-sm font-bold text-gray-900 sm:px-6"
-                  >
+                    className="whitespace-no-wrap py-4 text-sm font-bold text-gray-900 sm:px-6">
                     {item.description}
                     <div className="mt-1 lg:hidden">
                       <p className="font-normal text-gray-500">
@@ -115,8 +113,7 @@ Get Data History
                   <td
                     className={`${
                       item.type == "Out" ? "text-red-600" : "text-green-600"
-                    } whitespace-no-wrap py-4 px-6 text-right text-sm lg:text-left`}
-                  >
+                    } whitespace-no-wrap py-4 px-6 text-right text-sm lg:text-left`}>
                     <div className="flex flex-row gap-1 justify-end">
                       {item.type == "Out" ? <p>-</p> : <p>+</p>}
                       <FormattedPrice amount={item.amount} />
@@ -155,8 +152,7 @@ Get Data History
                   onClick={() => {
                     setCurrentPage(Number(currentPage - 1));
                   }}
-                  className="px-4 py-2 font-medium text-blue-500 border border-blue-300 dark:border-gray-600 dark:hover:bg-gray-800 dark:bg-gray-700 dark:text-gray-300 bg-blue-50 rounded-l-md hover:bg-blue-400 hover:border-blue-400 hover:text-white"
-                >
+                  className="px-4 py-2 font-medium text-blue-500 border border-blue-300 dark:border-gray-600 dark:hover:bg-gray-800 dark:bg-gray-700 dark:text-gray-300 bg-blue-50 rounded-l-md hover:bg-blue-400 hover:border-blue-400 hover:text-white">
                   Previous
                 </button>
                 {Array.from({ length: pageCount }).map((_, index) => {
@@ -171,8 +167,7 @@ Get Data History
                         page === currentPage
                           ? "text-gray-100 bg-blue-500 border border-blue-300 dark:border-gray-600 dark:hover:bg-gray-800 dark:bg-gray-800 dark:text-gray-300"
                           : "text-blue-500 border border-blue-300 dark:border-gray-600 dark:hover:bg-gray-800 dark:bg-gray-700 dark:text-gray-300 bg-blue-50 hover:bg-gray-50"
-                      }`}
-                    >
+                      }`}>
                       {page}
                     </button>
                   );
@@ -202,8 +197,7 @@ Get Data History
                   onClick={() => {
                     setCurrentPage(Number(currentPage + 1));
                   }}
-                  className="px-4 py-2 font-medium text-blue-500 border border-blue-300 dark:border-gray-600 dark:hover:bg-gray-800 dark:bg-gray-700 dark:text-gray-300 bg-blue-50 rounded-r-md hover:bg-blue-400 hover:border-blue-400 hover:text-white"
-                >
+                  className="px-4 py-2 font-medium text-blue-500 border border-blue-300 dark:border-gray-600 dark:hover:bg-gray-800 dark:bg-gray-700 dark:text-gray-300 bg-blue-50 rounded-r-md hover:bg-blue-400 hover:border-blue-400 hover:text-white">
                   Next
                 </button>
               </div>

@@ -47,6 +47,7 @@ const OrderSupplierUpdate = ({
 
   const [selectedStatus, setSelectedStatus] = useState(item.order_status);
   const [shippingNumber, setShippingNumber] = useState(item.shipping_resi);
+  const [rejectedNote, setRejectedNote] = useState(item.status_description);
   const handleSetSelectedStatus = (value: string) => {
     setSelectedStatus(value);
   };
@@ -60,7 +61,6 @@ const OrderSupplierUpdate = ({
       setSelectedImage(file);
     }
   };
-  console.log(selectedImage);
 
   const handleUpdateStatus = async (e: SyntheticEvent, index: number) => {
     setLoading(true);
@@ -71,6 +71,7 @@ const OrderSupplierUpdate = ({
     formData.append("status", selectedStatus);
     formData.append("order_detail_id", index.toString());
     formData.append("shipping_number", shippingNumber || "");
+    formData.append("rejected_note", rejectedNote || "");
     if (selectedStatus === "delivering" && selectedImage) {
       formData.append("shipping_proof", selectedImage);
     }
@@ -90,17 +91,15 @@ const OrderSupplierUpdate = ({
       toast.dismiss();
       toast.success("Data updated successfully", { duration: 3000 });
       const result = response.data;
-      console.log(result);
       setModal(false);
       setErrMessage("");
     } else if (response.status == 201) {
       toast.dismiss();
       toast.error("Error update");
-      console.log(response);
       setLoading(false);
       const result = response.data;
       setErrMessage(result.message.error);
-      console.log(result.message.error);
+
       // setErrMessage(response);
     } else {
       setLoading(false);
@@ -120,7 +119,7 @@ const OrderSupplierUpdate = ({
   const handleToggleMenu = () => {
     dispatch(toggleProfileMenu());
   };
-  console.log(isOpen);
+
   return (
     <div>
       <div className={`${loading ? "block" : "hidden"} fixed z-20`}>
@@ -143,6 +142,7 @@ const OrderSupplierUpdate = ({
         aria-modal="true">
         <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
         {/* <div className="fixed inset-0 z-10 w-full md:ml-[156px] overflow-y-auto mt-24 md:mt-0"> */}
+
         <div className="fixed inset-0 z-10 w-full overflow-y-auto mt-24 md:mt-0">
           <div className="w-full flex min-h-full items-center justify-center md:justify-center p-4 text-start sm:items-center sm:p-0">
             <div className="w-full relative transform overflow-auto rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-2/3 mb-14 md:mb-0">
@@ -176,7 +176,7 @@ const OrderSupplierUpdate = ({
                               <span>Quantity : {item.quantity}</span>
                             </span>
                             <p className="mt-auto text-lg font-bold">
-                              <FormattedPrice amount={item.product.price} />
+                              <FormattedPrice amount={item.supplier_price} />
                             </p>
                           </div>
                         </div>
@@ -194,7 +194,7 @@ const OrderSupplierUpdate = ({
                             name={`shipping_detail${item.id}`}
                             checked
                           />
-                          <span className="peer-checked:border-gray-700 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
+
                           <label
                             className="peer-checked:border-2 peer-checked:border-gray-700 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-4"
                             htmlFor={`shipping_detail${item.id}`}>
@@ -207,7 +207,8 @@ const OrderSupplierUpdate = ({
                             />
                             <div className="ml-5">
                               <span className="mt-2 font-semibold uppercase">
-                                {item.shipping_method} {" / "}
+                                {item.shipping_method} | {item.shipping_option}{" "}
+                                {" / "}
                                 {item.shipping_etd}
                               </span>
                               <p className="text-slate-500 text-sm leading-6"></p>
@@ -235,7 +236,9 @@ const OrderSupplierUpdate = ({
                               Subtotal
                             </p>
                             <p className="font-semibold text-gray-900">
-                              {item.quantity * item.price}
+                              <FormattedPrice
+                                amount={item.quantity * item.product.price}
+                              />
                             </p>
                           </div>
                           <div className="flex items-center justify-between">
@@ -254,7 +257,7 @@ const OrderSupplierUpdate = ({
                               <FormattedPrice
                                 amount={
                                   item.shipping_price +
-                                  item.quantity * item.price
+                                  item.quantity * item.supplier_price
                                 }
                               />
                             </p>
@@ -269,46 +272,135 @@ const OrderSupplierUpdate = ({
                           Complete your order by providing your payment
                           details_.
                         </p>
-
-                        <div className="relative mt-2 flex flex-col gap-2">
-                          <div className="relative">
-                            <label
-                              htmlFor="card-holder"
-                              className="mt-4 mb-2 block text-sm font-medium">
-                              Set Order Status
-                            </label>
-                            <input
-                              className="peer hidden"
-                              id={`delivering_1${item.id}`}
-                              type="radio"
-                              name={`status[${item.id}]`}
-                              value={`processing`}
-                              checked={selectedStatus === "processing"}
-                              onChange={() => {
-                                handleSetSelectedStatus("processing");
-                              }}
-                            />
-                            <span className="peer-checked:border-sky-400 absolute right-4 top-2/3 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
-                            <label
-                              className="peer-checked:border-2 peer-checked:border-sky-500 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-1"
-                              htmlFor={`delivering_1${item.id}`}>
-                              <Image
-                                width={150}
-                                height={150}
-                                className="w-14 object-contain"
-                                src={`/images/status/process.png`}
-                                alt=""
-                              />
-                              <div className="ml-5">
-                                <span className="mt-2 font-semibold capitalize">
-                                  Konfirmasi
-                                </span>
-                                <p className="text-slate-500 text-sm leading-6">
-                                  Dalam Persiapan Pengiriman
-                                </p>
+                        <label
+                          htmlFor="card-holder"
+                          className="mt-4 mb-2 block text-sm font-medium">
+                          Set Order Status
+                        </label>
+                        <div className="relative mt-2 flex flex-col gap-2 ">
+                          {item.order_status !== "received" && (
+                            <>
+                              <div className="relative border border-gray-400 p-2 text-red-600">
+                                <div className="relative ">
+                                  <input
+                                    className="peer hidden"
+                                    id={`rejected_1${item.id}`}
+                                    type="radio"
+                                    name={`status[${item.id}]`}
+                                    value={`rejected`}
+                                    checked={selectedStatus === "rejected"}
+                                    onChange={() => {
+                                      handleSetSelectedStatus("rejected");
+                                    }}
+                                  />
+                                  <span className="peer-checked:border-sky-400 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
+                                  <label
+                                    className="peer-checked:border-2 peer-checked:border-sky-500 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-1"
+                                    htmlFor={`rejected_1${item.id}`}>
+                                    <Image
+                                      width={150}
+                                      height={150}
+                                      className="w-14 object-contain"
+                                      src={`/images/status/reject.png`}
+                                      alt=""
+                                    />
+                                    <div className="ml-5">
+                                      <span className="mt-2 font-semibold capitalize">
+                                        Reject
+                                      </span>
+                                      <p className="text-slate-500 text-sm leading-6">
+                                        Silahkan pilih jika order di tolak
+                                      </p>
+                                    </div>
+                                  </label>
+                                </div>
+                                <div
+                                  className={
+                                    selectedStatus == "rejected"
+                                      ? "block"
+                                      : "hidden"
+                                  }>
+                                  <label
+                                    htmlFor="card-holder"
+                                    className="mt-1 mb-1 block text-sm font-medium">
+                                    Rejected Note
+                                  </label>
+                                  <div className="relative">
+                                    <input
+                                      required={selectedStatus == "rejected"}
+                                      type="text"
+                                      id="card-holder"
+                                      name="rejected_note"
+                                      value={rejectedNote ?? ""}
+                                      className="w-full rounded-md border border-gray-200 px-4 py-3 pl-11 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
+                                      placeholder="Your reference note here"
+                                      onChange={(e) =>
+                                        setRejectedNote(e.target.value)
+                                      }
+                                      // required={selectedStatus == "delivering"}
+                                    />
+                                    <div className="pointer-events-none absolute inset-y-0 left-0 inline-flex items-center px-3">
+                                      <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        className="h-4 w-4 text-gray-400"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                        strokeWidth="2">
+                                        <path
+                                          strokeLinecap="round"
+                                          strokeLinejoin="round"
+                                          d="M15 9h3.75M15 12h3.75M15 15h3.75M4.5 19.5h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5zm6-10.125a1.875 1.875 0 11-3.75 0 1.875 1.875 0 013.75 0zm1.294 6.336a6.721 6.721 0 01-3.17.789 6.721 6.721 0 01-3.168-.789 3.376 3.376 0 016.338 0z"
+                                        />
+                                      </svg>
+                                    </div>
+                                    {errMessage.status_description ? (
+                                      <label
+                                        htmlFor=""
+                                        className="text-red-500">
+                                        {errMessage.status_description}
+                                      </label>
+                                    ) : (
+                                      ""
+                                    )}
+                                  </div>
+                                </div>
                               </div>
-                            </label>
-                          </div>
+                              <div className="relative">
+                                <input
+                                  className="peer hidden"
+                                  id={`delivering_1${item.id}`}
+                                  type="radio"
+                                  name={`status[${item.id}]`}
+                                  value={`processing`}
+                                  checked={selectedStatus === "processing"}
+                                  onChange={() => {
+                                    handleSetSelectedStatus("processing");
+                                  }}
+                                />
+                                <span className="peer-checked:border-sky-400 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
+                                <label
+                                  className="peer-checked:border-2 peer-checked:border-sky-500 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-1"
+                                  htmlFor={`delivering_1${item.id}`}>
+                                  <Image
+                                    width={150}
+                                    height={150}
+                                    className="w-14 object-contain"
+                                    src={`/images/status/process.png`}
+                                    alt=""
+                                  />
+                                  <div className="ml-5">
+                                    <span className="mt-2 font-semibold capitalize">
+                                      Konfirmasi
+                                    </span>
+                                    <p className="text-slate-500 text-sm leading-6">
+                                      Dalam Persiapan Pengiriman
+                                    </p>
+                                  </div>
+                                </label>
+                              </div>
+                            </>
+                          )}
 
                           <div
                             className={`${
@@ -328,7 +420,23 @@ const OrderSupplierUpdate = ({
                                   handleSetSelectedStatus("delivering");
                                 }}
                               />
-                              <span className="peer-checked:border-sky-400 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
+                              {item.order_status == "received" ? (
+                                <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  width="24"
+                                  height="24"
+                                  viewBox="0 0 24 24"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  stroke-width="2"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  className="lucide lucide-chevron-down absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-gray-300 bg-white">
+                                  <path d="m6 9 6 6 6-6" />
+                                </svg>
+                              ) : (
+                                <span className="peer-checked:border-sky-400 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
+                              )}
                               <label
                                 className="peer-checked:border-2 peer-checked:border-sky-400 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-1"
                                 htmlFor={`delivering${item.id}`}>
@@ -421,48 +529,24 @@ const OrderSupplierUpdate = ({
                           <div className="relative">
                             <input
                               className="peer hidden"
-                              id={`delivered${item.id}`}
-                              type="radio"
-                              name={`status${item.id}`}
-                              value={`delivered`}
-                              checked={selectedStatus === "delivered"}
-                              onChange={() => {
-                                handleSetSelectedStatus("delivered");
-                              }}
-                            />
-                            <span className="peer-checked:border-sky-400 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
-                            <label
-                              className="peer-checked:border-2 peer-checked:border-sky-400 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-1"
-                              htmlFor={`delivered${item.id}`}>
-                              <Image
-                                width={150}
-                                height={150}
-                                className="w-14 object-contain"
-                                src={`/images/status/delivered.png`}
-                                alt=""
-                              />
-                              <div className="ml-5">
-                                <span className="mt-2 font-semibold capitalize">
-                                  Delivered
-                                </span>
-                                <p className="text-slate-500 text-sm leading-6">
-                                  Barang Sudah Dikirim
-                                </p>
-                              </div>
-                            </label>
-                          </div>
-                          <div className="relative">
-                            <input
-                              className="peer hidden"
                               id={`received${item.id}`}
                               type="radio"
                               name={`status${item.id}`}
                               value={`received`}
                               checked={selectedStatus === "received"}
                             />
-                            <span className="peer-checked:border-sky-400 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
+                            <span
+                              className={`${
+                                item.order_status == "received"
+                                  ? "border-green-600"
+                                  : "border-gray-300"
+                              } peer-checked:border-sky-400 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8  bg-white`}></span>
                             <label
-                              className="peer-checked:border-2 peer-checked:border-sky-400 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-1"
+                              className={`${
+                                item.order_status == "received"
+                                  ? "border-green-600"
+                                  : "border-gray-300"
+                              } peer-checked:border-2 peer-checked:border-sky-400 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border  p-1`}
                               htmlFor={`delivered${item.id}`}>
                               <Image
                                 width={150}
@@ -485,13 +569,6 @@ const OrderSupplierUpdate = ({
 
                         <div className=" flex flex-row gap-2">
                           <button
-                            disabled={item.order_status == "received"}
-                            className={`${
-                              item.order_status == "received" && "hidden"
-                            } mt-4 mb-8 w-full rounded-md bg-sky-600 px-6 py-3 font-medium text-white`}>
-                            Update Status
-                          </button>
-                          <button
                             type="button"
                             onClick={() => {
                               setModal(false);
@@ -503,6 +580,20 @@ const OrderSupplierUpdate = ({
                             }}
                             className="mt-4 mb-8 w-full rounded-md bg-sky-400 px-6 py-3 font-medium text-white">
                             Close
+                          </button>
+                          <button
+                            disabled={
+                              item.order_status == "received" &&
+                              item.order_status == "received"
+                            }
+                            className={`${
+                              item.order_status == "received"
+                                ? "hidden"
+                                : item.order_status == "rejected"
+                                ? "hidden"
+                                : "block"
+                            } mt-4 mb-8 w-full rounded-md bg-sky-600 px-6 py-3 font-medium text-white`}>
+                            Update Status
                           </button>
                         </div>
                       </div>

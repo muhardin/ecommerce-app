@@ -366,6 +366,7 @@ export interface OrderItem {
   order_type: string;
   quantity: number;
   price: number;
+  supplier_price: number;
   amount: number;
   order_status: string;
   shipping_status: string | null;
@@ -379,6 +380,7 @@ export interface OrderItem {
   shipping_option: string;
   shipping_price: number;
   shipping_etd: string;
+  status_description: string;
   sku: string | null;
   user_address_id: string | null;
   shipping_resi?: string | null;
