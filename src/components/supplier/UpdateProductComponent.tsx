@@ -412,14 +412,14 @@ const UpdateProductComponent: React.FC<ModalProps> = ({
                       Update products info, combinations and extras.
                     </p>
                   </div>
-                  <select
+                  {/* <select
                     name="language"
                     className="block w-20 h-10 border border-emerald-400 bg-gray-100 dark:bg-gray-700 px-2 py-1 text-sm dark:text-gray-300 focus:outline-none rounded-md form-select focus:bg-white dark:focus:bg-gray-700">
                     <option value="en">en</option>
                     <option value="bn">bn </option>
                     <option value="de">de </option>
                     <option value="en">en </option>
-                  </select>
+                  </select> */}
                 </div>
               </div>
               <div className="bg-white text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-700">
@@ -447,7 +447,7 @@ const UpdateProductComponent: React.FC<ModalProps> = ({
                       Basic Info
                     </button>
                   </li>
-                  <li className="mr-2">
+                  <li className="mr-2 hidden">
                     <button
                       className="inline-block px-4 py-2 text-base false focus:outline-none"
                       aria-current="page">

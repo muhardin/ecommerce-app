@@ -1,12 +1,18 @@
 import Link from "next/link";
 import { Icons } from "./Icons";
 import { BaggageClaim, Home, ShoppingCart, User, Wallet } from "lucide-react";
+import { usePathname } from "next/navigation";
 const BottomNavigationSupplier = () => {
+  const pathName = usePathname();
   return (
-    <div className="md:hidden fixed bottom-0 px-5 pt-0 bg-sky-400 shadow-lg rounded-2xl w-full">
+    <div className="md:hidden fixed bottom-0 px-5 pt-0 bg-sky-400 shadow-lg rounded-2xl w-full rounded-b-none">
       <div className="flex flex-row space-x-3 justify-between">
         <div className="flex group">
-          <a href="#" className="p-3 text-slate-100 hover:text-yellow-500">
+          <Link
+            href="/supplier"
+            className={`${
+              pathName === "/supplier" ? "text-yellow-500" : ""
+            } p-3 text-slate-100 hover:text-yellow-500`}>
             <span className="flex flex-col items-center">
               <Home />
 
@@ -15,31 +21,21 @@ const BottomNavigationSupplier = () => {
               </span>
 
               <span
-                className="h-2 w-2 rounded-full group-hover:bg-yellow-500
-									transition-all duration-150 delay-100"
-              ></span>
+                className={`${
+                  pathName === "/supplier" ? "bg-yellow-500" : ""
+                } group-hover:bg-yellow-500 h-1 w-5 rounded-full 
+                hover:h-3 hover:w-3 transition-all duration-150 delay-100`}></span>
             </span>
-          </a>
+          </Link>
         </div>
-
         <div className="flex group">
-          <a href="#" className="p-3 text-slate-100 hover:text-yellow-500">
-            <span className="flex flex-col items-center">
-              <BaggageClaim />
-              <span className="text-xs mb-2 transition-all duration-200">
-                Order
-              </span>
-
-              <span
-                className="h-2 w-2 rounded-full group-hover:bg-yellow-500
-									transition-all duration-150 delay-100"
-              ></span>
-            </span>
-          </a>
-        </div>
-
-        <div className="flex group">
-          <a href="#" className="p-3 text-yellow-500 hover:text-yellow-500">
+          <Link
+            href="/supplier/wallet"
+            className={`${
+              pathName.startsWith("/supplier/wallet")
+                ? "text-yellow-500"
+                : "text-white"
+            }  p-3 hover:text-yellow-500`}>
             <span className="flex flex-col items-center">
               <Wallet />
 
@@ -48,11 +44,34 @@ const BottomNavigationSupplier = () => {
               </span>
 
               <span
-                className="h-1 w-5 rounded-full bg-yellow-500 group-hover:bg-yellow-500
-									hover:h-3 hover:w-3 transition-all duration-150 delay-100"
-              ></span>
+                className={`${
+                  pathName.startsWith("/supplier/wallet") ? "bg-yellow-500" : ""
+                } group-hover:bg-yellow-500 h-1 w-5 rounded-full 
+                hover:h-3 hover:w-3 transition-all duration-150 delay-100`}></span>
             </span>
-          </a>
+          </Link>
+        </div>
+        <div className="flex group">
+          <Link
+            href="/supplier/order"
+            className={`${
+              pathName.startsWith("/supplier/order")
+                ? "text-yellow-500"
+                : "text-slate-100"
+            } p-3  hover:text-yellow-500`}>
+            <span className="flex flex-col items-center">
+              <BaggageClaim />
+              <span className="text-xs mb-2 transition-all duration-200">
+                Order
+              </span>
+
+              <span
+                className={`${
+                  pathName.startsWith("/supplier/order") ? "bg-yellow-500" : ""
+                } group-hover:bg-yellow-500 h-1 w-5 rounded-full 
+                hover:h-3 hover:w-3 transition-all duration-150 delay-100`}></span>
+            </span>
+          </Link>
         </div>
 
         <div className="flex group">
@@ -66,8 +85,7 @@ const BottomNavigationSupplier = () => {
 
               <span
                 className="h-2 w-2 rounded-full group-hover:bg-yellow-500
-									transition-all duration-150 delay-100"
-              ></span>
+									transition-all duration-150 delay-100"></span>
             </span>
           </a>
         </div>
@@ -82,8 +100,7 @@ const BottomNavigationSupplier = () => {
 
               <span
                 className="h-2 w-2 rounded-full group-hover:bg-yellow-500
-									transition-all duration-150 delay-100"
-              ></span>
+									transition-all duration-150 delay-100"></span>
             </span>
           </a>
         </div>

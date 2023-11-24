@@ -162,7 +162,8 @@ const OrderSupplierUpdate = ({
                             className="m-2 h-24 w-28 rounded-md border object-cover object-center"
                             src={`${
                               item.product.product_gallery?.length > 0
-                                ? item.product.product_gallery[0].url
+                                ? process.env.SERVER_ENDPOINT +
+                                  item.product.product_gallery[0].url
                                 : "/images/product_image.png"
                             }`}
                             alt=""
@@ -482,7 +483,7 @@ const OrderSupplierUpdate = ({
                           </div>
                         </div>
 
-                        <div className="flex flex-row gap-2">
+                        <div className=" flex flex-row gap-2">
                           <button
                             disabled={item.order_status == "received"}
                             className={`${

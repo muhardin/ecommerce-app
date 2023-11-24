@@ -49,7 +49,7 @@ const OrderSupplierComponent = () => {
     refreshInterval: 3000,
   });
 
-  // console.log(orders);
+  console.log(orders);
   return (
     <>
       {/* <div className="">s</div>
@@ -66,15 +66,13 @@ const OrderSupplierComponent = () => {
                 <div className="flex items-center">
                   <label
                     htmlFor=""
-                    className="mr-2 flex-shrink-0 text-sm font-medium text-gray-900"
-                  >
+                    className="mr-2 flex-shrink-0 text-sm font-medium text-gray-900">
                     Sort by:
                   </label>
 
                   <select
                     name=""
-                    className="sm: mr-4 block w-full whitespace-pre rounded-lg border p-1 pr-10 text-base outline-none focus:shadow sm:text-sm"
-                  >
+                    className="sm: mr-4 block w-full whitespace-pre rounded-lg border p-1 pr-10 text-base outline-none focus:shadow sm:text-sm">
                     <option className="whitespace-no-wrap text-sm">
                       Recent
                     </option>
@@ -83,147 +81,80 @@ const OrderSupplierComponent = () => {
 
                 <button
                   type="button"
-                  className="inline-flex cursor-pointer items-center rounded-lg border border-gray-400 bg-white py-2 px-3 text-center text-sm font-medium text-gray-800 shadow hover:bg-gray-100 focus:shadow"
-                >
+                  className="inline-flex cursor-pointer items-center rounded-lg border border-gray-400 bg-white py-2 px-3 text-center text-sm font-medium text-gray-800 shadow hover:bg-gray-100 focus:shadow">
                   <svg
                     className="mr-1 h-4 w-4"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
-                    strokeWidth="2"
-                  >
+                    strokeWidth="2">
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
                       d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                      className=""
-                    ></path>
+                      className=""></path>
                   </svg>
                   Export to CSV
                 </button>
               </div>
             </div>
           </div>
-
-          <div className="mt-6 overflow-hidden rounded-xl border shadow">
-            <table className="min-w-full border-separate border-spacing-y-2 border-spacing-x-2">
-              <thead className="hidden border-b lg:table-header-group">
-                <tr className="">
-                  <td
-                    width="20%"
-                    className="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-6"
-                  >
-                    Invoice
-                  </td>
-                  <td className="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-6">
-                    Product
-                  </td>
-
-                  <td className="hidden md:block whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-6">
-                    Quantity
-                  </td>
-                  <td className="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-6">
-                    Date / Status
-                  </td>
-
-                  <td className="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-6">
-                    Action
-                  </td>
-                </tr>
-              </thead>
-
-              <tbody className="lg:border-gray-300">
-                {orders?.map((item: OrderItem) => (
-                  <tr key={item.id} className="">
-                    <td
-                      width="20%"
-                      className="whitespace-no-wrap py-4 text-sm font-bold text-sky-700 sm:px-6 hover:text-red-500"
-                    >
-                      <div className="w-1/2">
-                        <div className="">
-                          <OrderSupplierDetail
-                            item={item}
-                            title={item.order.invoice_number}
+          <div className="mt-4 pb-14">
+            {orders ? (
+              orders?.map((item: OrderItem) => (
+                <div
+                  key={item.id}
+                  className="mt-2 overflow-hidden rounded-xl border shadow">
+                  <div className="flex flex-row justify-between gap-2 p-4">
+                    <div className="flex justify-start flex-row items-center gap-2">
+                      <div className="w-1/5">
+                        {item.product.product_gallery?.length > 0 ? (
+                          <Image
+                            src={`${process.env.SERVER_ENDPOINT}${item.product.product_gallery[0].url}`}
+                            alt=""
+                            width={150}
+                            height={150}
                           />
+                        ) : (
+                          <Image
+                            src={`/image/no_image.png`}
+                            alt=""
+                            width={150}
+                            height={150}
+                          />
+                        )}
+                      </div>
+                      <div className="flex flex-col gap-1">
+                        <div className="text-red-500 font-mono">
+                          {item.order.invoice_number}
+                        </div>
+                        <div className="">{item.product.title}</div>
+                        <div className="text-sm font-mono">
+                          {formatDateAndTime(item.created_at)}
                         </div>
                         <div
                           className={`${
                             item.order_status == "pending"
-                              ? "text-red-600"
-                              : item.order_status == "delivering"
-                              ? "text-green-600"
-                              : item.order_status == "delivered"
-                              ? "text-sky-600"
-                              : "text-red-600"
-                          } md:hidden capitalize `}
-                        >
+                              ? "text-red-500"
+                              : item.order_status == "received"
+                              ? "text-green-500"
+                              : "text-red-700"
+                          } font-mono capitalize`}>
                           {item.order_status}
                         </div>
                       </div>
-                    </td>
-                    <td className="whitespace-no-wrap py-4 px-6 text-right font-bold text-md text-gray-600 lg:text-left">
-                      {item.product.title}
+                    </div>
 
-                      {item.order.order_payment.status == "UNPAID" ? (
-                        <div className="flex mt-1 ml-auto w-fit items-center rounded-full bg-red-600 py-2 px-3 text-left text-xs font-medium text-white lg:hidden">
-                          Unpaid
-                        </div>
-                      ) : item.order.order_payment.status == "PAID" ? (
-                        <>
-                          <div className="flex flex-row gap-1 justify-end items-center">
-                            {/* <div className="flex mt-1 ml-auto w-fit items-center rounded-md bg-sky-400 py-2 px-3 text-left text-xs font-medium text-white lg:hidden ">
-                              <OrderSupplierDetail
-                                item={item}
-                                title="Detail"
-                                className="text-white"
-                              />
-                            </div> */}
-                            {/* <div className="flex mt-1 w-fit items-center rounded-md bg-blue-600 py-2 px-3 text-left text-xs font-medium text-white lg:hidden">
-                              <OrderSupplierUpdate
-                                item={item}
-                                title="Update"
-                                className="text-white"
-                              />
-                            </div> */}
-                          </div>
-                        </>
-                      ) : item.order.order_payment.status == "EXPIRED" ? (
-                        <div className="flex mt-1 ml-auto w-fit items-center rounded-full bg-red-300 py-2 px-3 text-left text-xs font-medium text-white lg:hidden">
-                          EXPIRED
-                        </div>
-                      ) : (
-                        <div className="flex mt-1 ml-auto w-fit items-center rounded-full bg-red-300 py-2 px-3 text-left text-xs font-medium text-white lg:hidden">
-                          Pending
-                        </div>
-                      )}
-                    </td>
-                    <td className="whitespace-no-wrap hidden py-4 text-sm font-normal text-gray-500 sm:px-6 md:table-cell">
-                      <Link
-                        href={
-                          item.order.order_payment.status == "PAID"
-                            ? "/ordersummary/" + item.id
-                            : "/payment/" + item.id
-                        }
-                        className="hover:text-sky-600"
-                      >
-                        <div className="mt-1">
-                          <p className="font-normal text-gray-500">
-                            {item.quantity}
-                          </p>
-                        </div>
-                      </Link>
-                    </td>
-                    <td className="md:block whitespace-no-wrap hidden py-4 text-sm font-normal text-gray-500 sm:px-6 lg:table-cell">
-                      <div className="flex flex-col justify-start">
-                        <span>{item.order_status}</span>
-                        <div>{formatDateAndTime(item.created_at)}</div>
-                      </div>
-                    </td>
-
-                    <td className="whitespace-no-wrap block py-4 text-sm font-normal text-gray-500 sm:px-6 lg:table-cell text-end">
-                      {item.order.order_payment.status == "PAID" ? (
-                        <div className="inline-flex items-center rounded-md bg-blue-600 py-2 px-3 text-xs text-white">
+                    <div className="flex flex-col gap-2 font-mono">
+                      <div className="">Qty : {item.quantity}</div>
+                      <div className="">
+                        <div
+                          className={`${
+                            item.order_status == "received"
+                              ? "bg-green-600"
+                              : "bg-red-600"
+                          }  inline-flex items-center rounded-md bg-blue-600 py-2 px-3 text-xs text-white`}>
                           <OrderSupplierUpdate
                             item={item}
                             title={`${
@@ -234,14 +165,14 @@ const OrderSupplierComponent = () => {
                             className="text-white hover:text-white"
                           />
                         </div>
-                      ) : (
-                        ""
-                      )}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))
+            ) : (
+              <div>Loading..</div>
+            )}
           </div>
         </div>
       </div>
