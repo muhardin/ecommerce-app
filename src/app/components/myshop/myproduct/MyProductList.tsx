@@ -78,7 +78,7 @@ const MyProductList = ({ item }: { item: Product }) => {
   };
 
   return (
-    <div className="w-full rounded-lg overflow-hidden">
+    <div className="w-full rounded-lg overflow-hidden pb-4">
       <div className="">
         <Link
           href={{
@@ -107,21 +107,29 @@ const MyProductList = ({ item }: { item: Product }) => {
           </div>
         </Link>
         <div className="border-[1px] border-slate-300 border-t-0 py-4 px-2 flex flex-col gap-y-2 bg-white rounded-b-lg">
-          <Link
-            href={{
-              pathname: "/product",
-              query: {
-                id: item?.id,
-                image:
-                  item?.product_gallery?.length > 0
-                    ? item?.product_gallery[0].url
-                    : "/images/no_image.png",
-              },
-            }}>
-            <p className="cursor-pointer hover:text-sky-600">
-              {item?.product.title}
-            </p>
-          </Link>
+          <div className="flex flex-row justify-between items-center">
+            <Link
+              href={{
+                pathname: "/product",
+                query: {
+                  id: item?.id,
+                  image:
+                    item?.product_gallery?.length > 0
+                      ? item?.product_gallery[0].url
+                      : "/images/no_image.png",
+                },
+              }}>
+              <p className="cursor-pointer hover:text-sky-600">
+                {item?.product.title}
+              </p>
+            </Link>
+            {!item.product.isPublish && (
+              <span className="text-red-600">Unpublish</span>
+            )}
+            {item.product.status == "Pending" && (
+              <span className="text-red-600">Pending</span>
+            )}
+          </div>
           <div className=" flex items-center justify-between">
             <div className=" border-[1px] border-sky-500 py-1 px-4 rounded-full text-xs">
               <p>

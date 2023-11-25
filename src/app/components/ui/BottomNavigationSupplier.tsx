@@ -2,8 +2,39 @@ import Link from "next/link";
 import { Icons } from "./Icons";
 import { BaggageClaim, Home, ShoppingCart, User, Wallet } from "lucide-react";
 import { usePathname } from "next/navigation";
+import { useSession } from "next-auth/react";
+import { useState } from "react";
+import useSWR from "swr";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleProfileMenu } from "@/redux/profileSlice";
+import { RootState } from "@/redux/store";
 const BottomNavigationSupplier = () => {
+  const isOpen = useSelector((state: RootState) => state.profile.isOpen);
+  const dispatch = useDispatch();
+  const handleToggleMenu = () => {
+    dispatch(toggleProfileMenu());
+  };
   const pathName = usePathname();
+  const { data: session } = useSession();
+  const fetcher = (url: string) =>
+    fetch(url, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${session?.bearer}`,
+        "Content-Type": "application/json",
+      },
+    }).then((res) => res.json());
+  const [statusFilter, setStatusFilter] = useState<string>("");
+  const url = `${process.env.SERVER_ENDPOINT}/api/supplier-board/order/count`;
+  const {
+    data: ordersCount,
+    isLoading,
+    isValidating,
+    error,
+  } = useSWR(url, fetcher, {
+    refreshInterval: 3000,
+  });
+
   return (
     <div className="md:hidden fixed bottom-0 px-5 pt-0 bg-sky-400 shadow-lg rounded-2xl w-full rounded-b-none">
       <div className="flex flex-row space-x-3 justify-between">
@@ -59,7 +90,14 @@ const BottomNavigationSupplier = () => {
                 ? "text-yellow-500"
                 : "text-slate-100"
             } p-3  hover:text-yellow-500`}>
-            <span className="flex flex-col items-center">
+            <span className="flex flex-col items-center relative">
+              {ordersCount ? (
+                <div className="p-2 rounded-full bg-red-700 text-white font-mono absolute w-6 h-6 items-center -right-3 -top-2 flex justify-center">
+                  <span>{ordersCount}</span>
+                </div>
+              ) : (
+                ""
+              )}
               <BaggageClaim />
               <span className="text-xs mb-2 transition-all duration-200">
                 Order
@@ -75,25 +113,25 @@ const BottomNavigationSupplier = () => {
         </div>
 
         <div className="flex group">
-          <a href="#" className="p-3 text-slate-100 hover:text-yellow-500">
+          <Link
+            href="/supplier/profile/account"
+            className="p-3 text-slate-100 hover:text-yellow-500">
             <span className="flex flex-col items-center">
-              <ShoppingCart />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                className="lucide lucide-user">
+                <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+                <circle cx="12" cy="7" r="4" />
+              </svg>
 
-              <span className="text-xs mb-2 transition-all duration-200">
-                Cart
-              </span>
-
-              <span
-                className="h-2 w-2 rounded-full group-hover:bg-yellow-500
-									transition-all duration-150 delay-100"></span>
-            </span>
-          </a>
-        </div>
-
-        <div className="flex group">
-          <a href="#" className="p-3 text-slate-100 hover:text-yellow-500">
-            <span className="flex flex-col items-center">
-              <User />
               <span className="text-xs mb-2 transition-all duration-200">
                 Account
               </span>
@@ -102,7 +140,43 @@ const BottomNavigationSupplier = () => {
                 className="h-2 w-2 rounded-full group-hover:bg-yellow-500
 									transition-all duration-150 delay-100"></span>
             </span>
-          </a>
+          </Link>
+        </div>
+        <div className="flex group ">
+          <button
+            onClick={handleToggleMenu}
+            className={`${
+              isOpen
+                ? "text-yellow-500 hover:text-yellow-500"
+                : "text-slate-100"
+            } p-3  `}>
+            <span className="flex flex-col items-center">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                className="lucide lucide-menu">
+                <line x1="4" x2="20" y1="12" y2="12" />
+                <line x1="4" x2="20" y1="6" y2="6" />
+                <line x1="4" x2="20" y1="18" y2="18" />
+              </svg>
+              <span className="text-xs mb-2 transition-all duration-200">
+                Menu
+              </span>
+
+              <span
+                className={`${
+                  isOpen ? "text-yellow-500" : "text-slate-100"
+                } h-2 w-2 rounded-full group-hover:bg-yellow-500
+                transition-all duration-150 delay-100`}></span>
+            </span>
+          </button>
         </div>
       </div>
     </div>
