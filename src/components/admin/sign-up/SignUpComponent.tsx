@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import Image from "next/image";
 import axios from "axios";
@@ -7,10 +7,11 @@ import { useRouter } from "next/navigation";
 import ReactFlagsSelect from "react-flags-select";
 import { IoIosEye, IoIosEyeOff } from "react-icons/io";
 import useSWR from "swr";
+import { Payment, ShopPackage, StateProps, User } from "../../../../type";
 import FormattedPrice from "@/app/components/FormattedPrice";
 import { Check, CheckCheck, Minus } from "lucide-react";
-import { Payment, ShopPackage } from "../../../../../type";
-import { useSession } from "next-auth/react";
+import { useDispatch, useSelector } from "react-redux";
+import { addReferral } from "@/redux/shoppingSlice";
 
 //https://www.npmjs.com/package/react-flags-select
 interface FormData {
@@ -26,13 +27,16 @@ interface FormData {
   payment: string;
   country: string;
   shopName: string;
-  subdomain: string;
+  referralEmail: string;
 }
-interface ModalProps {
-  closeModal: () => void;
+interface UserProps {
+  referralCode: any;
+  referral: any;
 }
-const FormAddTeam: React.FC<ModalProps> = ({ closeModal }) => {
-  const { data: session } = useSession();
+interface Params {
+  referral?: string;
+}
+const SignUpComponent: React.FC<Params> = ({ referral }) => {
   const [step, setStep] = useState(1);
   const [selected, setSelected] = useState("");
 
@@ -44,6 +48,33 @@ const FormAddTeam: React.FC<ModalProps> = ({ closeModal }) => {
   const [errPack, setErrPack] = useState(false);
   const [errPay, setErrPay] = useState(false);
   const [errShopName, setErrShopName] = useState(false);
+
+  const fetcher = (url: any) =>
+    fetch(url, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then((res) => res.json());
+  //* get referral */
+  const urlReferral = process.env.SERVER_ENDPOINT + "/api/ref/get/" + referral;
+  const { data: referralGet } = useSWR(urlReferral, fetcher, {
+    refreshInterval: 10000,
+  });
+
+  const dispatch = useDispatch();
+  const { referralInfo } = useSelector((state: StateProps) => state?.shopping);
+  useEffect(() => {
+    if (referralGet?.id) {
+      dispatch(
+        addReferral({
+          first_name: referralGet?.first_name,
+          email: referralGet?.email,
+          phone_number: referralGet?.phone_number,
+        })
+      );
+    }
+  }, [referralGet, dispatch]);
 
   const [formData, setFormData] = useState<FormData>({
     username: "",
@@ -57,10 +88,10 @@ const FormAddTeam: React.FC<ModalProps> = ({ closeModal }) => {
     package: "",
     payment: "",
     shopName: "",
+    referralEmail: referralInfo.email,
     country: selected,
-    subdomain: "",
   });
-  console.log(selected);
+
   const [selectedPackage, setSelectedPackage] = useState<any>(null);
   const handleOptionPackage = (event: any) => {
     const value = event.target.value;
@@ -82,7 +113,6 @@ const FormAddTeam: React.FC<ModalProps> = ({ closeModal }) => {
     setSelectedPayment(value);
     setErrPay(false);
     setFormData({ ...formData, ["payment"]: value });
-    console.log(value);
   };
   const router = useRouter();
   const [error, setErrors] = useState<string[]>([]);
@@ -90,13 +120,7 @@ const FormAddTeam: React.FC<ModalProps> = ({ closeModal }) => {
   const [isFail, setIsFail] = useState(false);
 
   /** Start Get Shop */
-  const fetcher = (url: any) =>
-    fetch(url, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }).then((res) => res.json());
+
   const url = process.env.SERVER_ENDPOINT + "/api/package";
   const {
     data: packageData,
@@ -112,15 +136,6 @@ const FormAddTeam: React.FC<ModalProps> = ({ closeModal }) => {
   });
 
   /** End Of Get Shop Package */
-  // Specify the code you want to filter by
-  const specificCode = "mywallet";
-  // Filter the payments based on the specified code
-  const filteredPayments =
-    payments?.filter(
-      (payment: { code: string }) => payment.code === specificCode
-    ) || [];
-
-  console.log(filteredPayments);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.name == "first_name") {
@@ -142,7 +157,6 @@ const FormAddTeam: React.FC<ModalProps> = ({ closeModal }) => {
       setErrShopName(false);
     }
 
-    // console.log(e.target);
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
@@ -152,21 +166,16 @@ const FormAddTeam: React.FC<ModalProps> = ({ closeModal }) => {
     toast.loading("Loading...");
     // Reset errors before validation
     setErrors([]);
-    const headers = {
-      Authorization: `Bearer ${session?.bearer}`,
-      "Content-Type": "multipart/form-data", // Use 'multipart/form-data' for FormData
-    };
+
     const post = await axios.post(
-      process.env.SERVER_ENDPOINT + "/api/myshop-board/referral/add",
-      formData,
-      { headers }
+      process.env.SERVER_ENDPOINT + "/api/seller/sign-up",
+      formData
     );
-    console.log(post);
+    // console.log(post);
     if (post.status == 200) {
       toast.dismiss();
       toast.success("Success");
-      setErrMessage([]);
-      closeModal();
+      router.push("/sign-in");
     } else if (post.status == 201) {
       setErrMessage(post.data.message);
       setIsFail(true);
@@ -203,7 +212,6 @@ const FormAddTeam: React.FC<ModalProps> = ({ closeModal }) => {
   const handlePrevious = () => {
     setStep(step - 1);
   };
-
   return (
     <div>
       <section className="bg-white dark:bg-gray-900">
@@ -219,26 +227,21 @@ const FormAddTeam: React.FC<ModalProps> = ({ closeModal }) => {
               />
             </div>
 
-            <div className="flex mb-32 pb-8 md:pb-0 md:mb-0 flex-col mt-2 w-full max-w-3xl p-4 mx-auto lg:px-12 lg:w-1/2">
+            <div className="flex flex-col mt-2 w-full max-w-3xl p-4 mx-auto lg:px-12 lg:w-1/2">
               <div className="hidden md:block border-b-2 border-gray-200">
                 <h1 className="text-2xl font-semibold tracking-wider text-gray-800 capitalize dark:text-white">
                   Dapatkan Toko Online anda sekarang juga.
                 </h1>
-                <button
-                  type="button"
-                  onClick={closeModal}
-                  className="bg-white p-4">
-                  Close
-                </button>
+
                 <p className="mt-2 text-gray-500 dark:text-gray-400">
                   Let’s get you all set up so you can verify your personal
                   account and begin setting up your profile.
                 </p>
 
-                {errMessage?.error && (
+                {isFail && (
                   <div className="font-regular relative mb-4 block w-full rounded-lg bg-red-500 p-4 text-base leading-5 text-white opacity-100">
                     Register Fail !
-                    {errMessage?.error?.map((item: string) => (
+                    {errMessage.error.map((item: string) => (
                       <div className="" key={2}>
                         <li className="text-md font-bold text-white text-sm">
                           {item}
@@ -262,7 +265,17 @@ const FormAddTeam: React.FC<ModalProps> = ({ closeModal }) => {
                     account and begin setting up your profile.
                   </p>
                 </div> */}
-
+                  {referralInfo?.email ? (
+                    <div className="border border-sky-200 p-4 mt-2 rounded-lg">
+                      <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">
+                        Referral
+                      </label>
+                      <div className="flex flex-col gap-2">
+                        <span>{referralInfo.first_name}</span>
+                        <span>{referralInfo.email}</span>
+                      </div>
+                    </div>
+                  ) : null}
                   <div className="grid grid-cols-1 gap-4 mt-4 md:grid-cols-2">
                     <div>
                       <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">
@@ -425,18 +438,16 @@ const FormAddTeam: React.FC<ModalProps> = ({ closeModal }) => {
                       />
                       <input
                         required
-                        name="subdomain"
-                        id="subdomain"
+                        name="shop_sub_domain"
+                        id="shop_sub_domain"
                         type="text"
-                        value={formData.subdomain}
-                        onChange={handleChange}
                         placeholder="Sub Domain"
                         className="border-l-0 border-r-0 rounded-l-none rounded-r-none block w-full px-2 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                       />
                       <input
                         value=".smartcommerce.id"
                         type="text"
-                        className="bg-slate-200 text-xs md:text-md rounded-l-none  border-l-0 pointer-events-none block w-2/3 px-2 py-3 mt-2 text-gray-700 placeholder-gray-400 border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                        className="bg-slate-200 rounded-l-none  border-l-0 pointer-events-none block w-2/3 px-2 py-3 mt-2 text-gray-700 placeholder-gray-400 border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                       />
                     </div>
 
@@ -445,20 +456,18 @@ const FormAddTeam: React.FC<ModalProps> = ({ closeModal }) => {
                     </label>
                   </div>
                   {/* End Setting Shop */}
-                  {/* <div className="flex flex-row justify-end gap-2 mt-4">
+                  <div className="flex flex-row justify-end gap-2 mt-4">
                     <button
                       onClick={handleNext}
                       type="button"
-                      className="flex items-center justify-between px-6 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-md hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50"
-                    >
+                      className="flex items-center justify-between px-6 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-md hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
                       <span>Next </span>
 
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         className="w-5 h-5 rtl:-scale-x-100"
                         viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
+                        fill="currentColor">
                         <path
                           fillRule="evenodd"
                           d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
@@ -466,7 +475,7 @@ const FormAddTeam: React.FC<ModalProps> = ({ closeModal }) => {
                         />
                       </svg>
                     </button>
-                  </div> */}
+                  </div>
                 </div>
               )}
               {step === 2 && (
@@ -537,18 +546,16 @@ const FormAddTeam: React.FC<ModalProps> = ({ closeModal }) => {
                       </label>
                     )}
 
-                    {/* <div className="flex flex-row justify-end gap-2">
+                    <div className="flex flex-row justify-end gap-2">
                       <button
                         onClick={handlePrevious}
                         type="button"
-                        className="flex items-center justify-between px-6 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-md hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50"
-                      >
+                        className="flex items-center justify-between px-6 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-md hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           className="w-5 h-5 -scale-x-100"
                           viewBox="0 0 20 20"
-                          fill="currentColor"
-                        >
+                          fill="currentColor">
                           <path
                             fillRule="evenodd"
                             d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
@@ -560,16 +567,14 @@ const FormAddTeam: React.FC<ModalProps> = ({ closeModal }) => {
                       <button
                         onClick={handleNext}
                         type="button"
-                        className="flex items-center justify-between px-6 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-md hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50"
-                      >
+                        className="flex items-center justify-between px-6 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-md hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
                         <span>Next </span>
 
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           className="w-5 h-5 rtl:-scale-x-100"
                           viewBox="0 0 20 20"
-                          fill="currentColor"
-                        >
+                          fill="currentColor">
                           <path
                             fillRule="evenodd"
                             d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
@@ -577,7 +582,7 @@ const FormAddTeam: React.FC<ModalProps> = ({ closeModal }) => {
                           />
                         </svg>
                       </button>
-                    </div> */}
+                    </div>
                   </div>
                 </div>
               )}
@@ -587,10 +592,10 @@ const FormAddTeam: React.FC<ModalProps> = ({ closeModal }) => {
                     <label
                       htmlFor="card-holder"
                       className="mt-4 mb-2 block text-sm font-medium">
-                      Pilih Cara Pembayaran_
+                      Pilih Cara Pembayaran
                     </label>
-                    {filteredPayments ? (
-                      filteredPayments.map((item: Payment) => (
+                    {payments ? (
+                      payments.map((item: Payment) => (
                         <div className="relative" key={item.id}>
                           <input
                             className="peer hidden"
@@ -621,7 +626,7 @@ const FormAddTeam: React.FC<ModalProps> = ({ closeModal }) => {
                                 </span>
                               </span>
                               <p className="text-slate-500 text-sm leading-6">
-                                Instant Verification | {item.code}
+                                Instant Verification
                               </p>
                             </div>
                           </label>
@@ -633,18 +638,16 @@ const FormAddTeam: React.FC<ModalProps> = ({ closeModal }) => {
                       </div>
                     )}
 
-                    {/* <div className="flex flex-row gap-2 justify-end">
+                    <div className="flex flex-row gap-2 justify-end">
                       <button
                         onClick={handlePrevious}
                         type="button"
-                        className="flex items-center justify-between px-6 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-md hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50"
-                      >
+                        className="flex items-center justify-between px-6 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-md hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           className="w-5 h-5 -scale-x-100"
                           viewBox="0 0 20 20"
-                          fill="currentColor"
-                        >
+                          fill="currentColor">
                           <path
                             fillRule="evenodd"
                             d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
@@ -655,16 +658,14 @@ const FormAddTeam: React.FC<ModalProps> = ({ closeModal }) => {
                       </button>
                       <button
                         type="submit"
-                        className="flex items-center justify-between px-6 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-md hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50"
-                      >
+                        className="flex items-center justify-between px-6 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-md hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
                         <span>Sign Up </span>
 
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           className="w-5 h-5 rtl:-scale-x-100"
                           viewBox="0 0 20 20"
-                          fill="currentColor"
-                        >
+                          fill="currentColor">
                           <path
                             fillRule="evenodd"
                             d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
@@ -672,65 +673,10 @@ const FormAddTeam: React.FC<ModalProps> = ({ closeModal }) => {
                           />
                         </svg>
                       </button>
-                    </div> */}
+                    </div>
                   </div>
                 </div>
               )}
-            </div>
-            <div className="fixed flex flex-row justify-between z-10 bottom-0 md:bottom-0 w-full right-0 py-4 lg:py-2 px-2 gap-2 lg:gap-2 xl:gap-2 md:flex xl:flex bg-gray-50 border-t border-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300">
-              <div className="flex-grow-0 md:flex-grow lg:flex-grow xl:flex-grow">
-                <button
-                  disabled={step == 1}
-                  onClick={handlePrevious}
-                  className={`${
-                    step !== 1 &&
-                    "cursor-pointer hover:bg-red-50 hover:border-red-100 hover:text-red-600"
-                  } align-bottom inline-flex justify-center  leading-5 transition-colors duration-150 font-medium focus:outline-none px-4 py-2 text-sm text-gray-600 border-gray-200 border dark:text-gray-400 rounded-lg bg-gray-200  mr-3 items-center h-12 w-full dark:bg-gray-700 dark:border-gray-700 dark:hover:bg-gray-800 dark:hover:text-red-700`}
-                  type="button">
-                  Previous
-                </button>
-              </div>
-              {step < 3 ? (
-                <div className="flex-grow-0 md:flex-grow lg:flex-grow xl:flex-grow">
-                  <button
-                    onClick={handleNext}
-                    className="align-bottom inline-flex items-center justify-center cursor-pointer leading-5 transition-colors duration-150 font-medium focus:outline-none px-4 py-2 rounded-lg text-sm text-white bg-emerald-500 border border-transparent active:bg-emerald-600 hover:bg-emerald-600 w-full h-12"
-                    type="button">
-                    <span>Next</span>
-                  </button>
-                </div>
-              ) : null}
-
-              {step == 3 ? (
-                <div className="flex-grow-0 md:flex-grow lg:flex-grow xl:flex-grow">
-                  <button
-                    className="align-bottom inline-flex items-center justify-center cursor-pointer leading-5 transition-colors duration-150 font-medium focus:outline-none px-4 py-2 rounded-lg text-sm text-white bg-emerald-500 border border-transparent active:bg-emerald-600 hover:bg-emerald-600 w-full h-12"
-                    type="submit">
-                    <span>Submit</span>
-                  </button>
-                </div>
-              ) : null}
-
-              {/* {step == 3 ? (
-                <div className="flex-grow-0 md:flex-grow lg:flex-grow xl:flex-grow">
-                  <button
-                    className="align-bottom inline-flex items-center justify-center cursor-pointer leading-5 transition-colors duration-150 font-medium focus:outline-none px-4 py-2 rounded-lg text-sm text-white bg-emerald-500 border border-transparent active:bg-emerald-600 hover:bg-emerald-600 w-full h-12"
-                    type="submit"
-                  >
-                    <span>Submit</span>
-                  </button>
-                </div>
-              ) : (
-                <div className="flex-grow-0 md:flex-grow lg:flex-grow xl:flex-grow">
-                  <button
-                    onClick={handleNext}
-                    className="align-bottom inline-flex items-center justify-center cursor-pointer leading-5 transition-colors duration-150 font-medium focus:outline-none px-4 py-2 rounded-lg text-sm text-white bg-emerald-500 border border-transparent active:bg-emerald-600 hover:bg-emerald-600 w-full h-12"
-                    type="button"
-                  >
-                    <span>Next</span>
-                  </button>
-                </div>
-              )} */}
             </div>
           </div>
         </form>
@@ -740,4 +686,4 @@ const FormAddTeam: React.FC<ModalProps> = ({ closeModal }) => {
   );
 };
 
-export default FormAddTeam;
+export default SignUpComponent;

@@ -39,7 +39,7 @@ const BankAccountForm: React.FC<BankAccountFormProps> = ({
       <h2>{isAddMode ? "Add Bank Account" : "Update Bank Account"}</h2>
       <form>
         <div className="mb-4">
-          <label htmlFor="bankName">Bank Name</label>
+          <label htmlFor="bankName">Bank Name_</label>
           <input
             type="text"
             name="bankName"

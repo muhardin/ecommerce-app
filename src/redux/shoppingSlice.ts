@@ -4,6 +4,7 @@ import { Products } from "../../type";
 interface StoreState {
   productData: Products[];
   userInfo: null | string;
+  referralInfo: null | string;
   orderData: [];
   notes: null | string;
   modal: null | string;
@@ -13,6 +14,7 @@ interface StoreState {
 const initialState: StoreState = {
   productData: [],
   userInfo: null,
+  referralInfo: null,
   orderData: [],
   notes: null,
   modal: null,
@@ -64,6 +66,9 @@ export const shoppingSlice = createSlice({
     resetCart: (state) => {
       state.productData = [];
     },
+    addReferral: (state, action) => {
+      state.referralInfo = action.payload;
+    },
     addUser: (state, action) => {
       state.userInfo = action.payload;
     },
@@ -113,6 +118,7 @@ export const {
   deleteProduct,
   resetCart,
   addUser,
+  addReferral,
   deleteUser,
   saveOrder,
   resetOrder,

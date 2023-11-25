@@ -139,7 +139,9 @@ Get Data History
                 </tr>
               ))
             ) : (
-              <div>Loading...</div>
+              <div className="flex flex-row justify-center items-center">
+                <span className="loading loading-dots loading-lg"></span>
+              </div>
             )}
           </tbody>
         </table>

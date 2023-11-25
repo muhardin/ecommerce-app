@@ -172,7 +172,9 @@ const MyProductComponent = () => {
             <MyProductList key={product.id} item={product} />
           ))
         ) : (
-          <div>Loading....</div>
+          <div className="flex flex-row justify-center items-center">
+            <span className="loading loading-dots loading-lg"></span>
+          </div>
         )}
       </div>
     </div>

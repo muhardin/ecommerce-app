@@ -56,22 +56,22 @@ const LayoutWallet = ({ children }: { children: React.ReactNode }) => {
             </div>
           </div>
         ) : (
-          <div>Loading...</div>
+          <div className="flex flex-row justify-center items-center">
+            <span className="loading loading-dots loading-lg"></span>
+          </div>
         )}
         <div className="mt-2 sm:mt-0">
           <div className="flex items-center justify-between gap-2">
             <div className="flex items-center">
               <label
                 htmlFor=""
-                className="mr-2 flex-shrink-0 text-sm font-medium text-gray-900"
-              >
+                className="mr-2 flex-shrink-0 text-sm font-medium text-gray-900">
                 {" "}
                 Sort by:{" "}
               </label>
               <select
                 name=""
-                className="sm: mr-4 block w-full whitespace-pre rounded-lg border p-1 pr-10 text-base outline-none focus:shadow sm:text-sm"
-              >
+                className="sm: mr-4 block w-full whitespace-pre rounded-lg border p-1 pr-10 text-base outline-none focus:shadow sm:text-sm">
                 <option className="whitespace-no-wrap text-sm">Recent</option>
               </select>
             </div>
@@ -103,8 +103,7 @@ const LayoutWallet = ({ children }: { children: React.ReactNode }) => {
                 setValModal(true);
               }}
               type="button"
-              className="inline-flex cursor-pointer items-center rounded-lg border border-gray-400 bg-white py-2 px-3 text-center text-sm font-medium text-gray-800 shadow hover:bg-gray-100 focus:shadow"
-            >
+              className="inline-flex cursor-pointer items-center rounded-lg border border-gray-400 bg-white py-2 px-3 text-center text-sm font-medium text-gray-800 shadow hover:bg-gray-100 focus:shadow">
               <FileInput className="w-4 h-4 mr-1" />
               Withdraw
             </button>
@@ -149,8 +148,7 @@ const LayoutWallet = ({ children }: { children: React.ReactNode }) => {
             viewBox="0 0 24 24"
             strokeWidth="1.5"
             stroke="currentColor"
-            className="w-5 h-5"
-          >
+            className="w-5 h-5">
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -163,8 +161,7 @@ const LayoutWallet = ({ children }: { children: React.ReactNode }) => {
           onClick={() => {
             setValModal(true);
           }}
-          className="cursor-pointer absolute rounded-full transition-all duration-[0.2s] ease-out scale-x-0 group-hover:scale-x-100 group-hover:-translate-y-16  flex  p-2 hover:p-3 bg-red-500 hover:bg-red-600  text-white"
-        >
+          className="cursor-pointer absolute rounded-full transition-all duration-[0.2s] ease-out scale-x-0 group-hover:scale-x-100 group-hover:-translate-y-16  flex  p-2 hover:p-3 bg-red-500 hover:bg-red-600  text-white">
           {/* <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -190,8 +187,7 @@ const LayoutWallet = ({ children }: { children: React.ReactNode }) => {
             viewBox="0 0 24 24"
             strokeWidth="1.5"
             stroke="currentColor"
-            className="w-5 h-5"
-          >
+            className="w-5 h-5">
             <path
               strokeLinecap="round"
               strokeLinejoin="round"

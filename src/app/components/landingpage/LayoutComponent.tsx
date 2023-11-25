@@ -59,7 +59,7 @@ const LayoutComponent = ({ children }: { children: React.ReactNode }) => {
     <>
       <div className="flex min-h-full flex-col">
         {/* <BannerFlash /> */}
-        <header className="">
+        <header className="relative z-50">
           <nav>
             <div
               className={`${
@@ -438,6 +438,19 @@ const LayoutComponent = ({ children }: { children: React.ReactNode }) => {
                               setProfileMenu(false);
                             }}
                             href="/myshop"
+                            className="flex px-4 py-2 text-sm text-gray-700 dark:text-gray-400 dark:hover:bg-gray-800 hover:bg-gray-100">
+                            <div className="mr-2">
+                              <ShoppingBag name="Store" size={18} />
+                            </div>
+                            My Shop
+                          </Link>
+                        )}
+                        {userData?.data?.is_seller == 2 && (
+                          <Link
+                            onClick={() => {
+                              setProfileMenu(false);
+                            }}
+                            href="/web/myshop"
                             className="flex px-4 py-2 text-sm text-gray-700 dark:text-gray-400 dark:hover:bg-gray-800 hover:bg-gray-100">
                             <div className="mr-2">
                               <ShoppingBag name="Store" size={18} />

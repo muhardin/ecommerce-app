@@ -4,6 +4,7 @@ const nextConfig = {
   env: {
     SERVER_ENDPOINT: process.env.SERVER_ENDPOINT,
     LANDING_PAGE: process.env.LANDING_PAGE,
+    REFERRAL_PAGE: process.env.REFERRAL_PAGE,
   },
   images: {
     remotePatterns: [
