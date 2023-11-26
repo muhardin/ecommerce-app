@@ -48,7 +48,7 @@ const OrderHistory = () => {
   } = useSWR(url, fetcher, {
     refreshInterval: 3000,
   });
-  console.log(payment);
+
   return (
     <>
       <div className="w-full mx-auto ">
@@ -63,15 +63,13 @@ const OrderHistory = () => {
                 <div className="flex items-center">
                   <label
                     htmlFor=""
-                    className="mr-2 flex-shrink-0 text-sm font-medium text-gray-900"
-                  >
+                    className="mr-2 flex-shrink-0 text-sm font-medium text-gray-900">
                     Sort by:
                   </label>
 
                   <select
                     name=""
-                    className="sm: mr-4 block w-full whitespace-pre rounded-lg border p-1 pr-10 text-base outline-none focus:shadow sm:text-sm"
-                  >
+                    className="sm: mr-4 block w-full whitespace-pre rounded-lg border p-1 pr-10 text-base outline-none focus:shadow sm:text-sm">
                     <option className="whitespace-no-wrap text-sm">
                       Recent
                     </option>
@@ -80,22 +78,19 @@ const OrderHistory = () => {
 
                 <button
                   type="button"
-                  className="inline-flex cursor-pointer items-center rounded-lg border border-gray-400 bg-white py-2 px-3 text-center text-sm font-medium text-gray-800 shadow hover:bg-gray-100 focus:shadow"
-                >
+                  className="inline-flex cursor-pointer items-center rounded-lg border border-gray-400 bg-white py-2 px-3 text-center text-sm font-medium text-gray-800 shadow hover:bg-gray-100 focus:shadow">
                   <svg
                     className="mr-1 h-4 w-4"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
-                    strokeWidth="2"
-                  >
+                    strokeWidth="2">
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
                       d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                      className=""
-                    ></path>
+                      className=""></path>
                   </svg>
                   Export to CSV
                 </button>
@@ -109,8 +104,7 @@ const OrderHistory = () => {
                 <tr className="">
                   <td
                     width="20%"
-                    className="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-6"
-                  >
+                    className="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-6">
                     Invoice
                   </td>
                   <td className="hidden md:block whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-6">
@@ -135,16 +129,14 @@ const OrderHistory = () => {
                   <tr key={item.id} className="">
                     <td
                       width="20%"
-                      className="whitespace-no-wrap py-4 text-sm font-bold text-sky-700 sm:px-6 hover:text-red-500"
-                    >
+                      className="whitespace-no-wrap py-4 text-sm font-bold text-sky-700 sm:px-6 hover:text-red-500">
                       <Link
                         href={
                           item.status == "PAID"
                             ? "/profile/orders/summary/" + item?.order_id
                             : "/payment/" + item?.order_id
                         }
-                        className="hover:text-sky-600"
-                      >
+                        className="hover:text-sky-600">
                         {item.invoice_number}
                         <div className="mt-1 lg:hidden">
                           <p className="font-normal text-gray-500">
@@ -161,8 +153,7 @@ const OrderHistory = () => {
                             ? "/profile/orders/summary/" + item.id
                             : "/payment/" + item.id
                         }
-                        className="hover:text-sky-600"
-                      >
+                        className="hover:text-sky-600">
                         {item.payment_name}
                         <div className="mt-1 lg:hidden">
                           <p className="font-normal text-gray-500">

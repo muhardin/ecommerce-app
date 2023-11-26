@@ -3,10 +3,38 @@ import Link from "next/link";
 import { Icons } from "./Icons";
 import { useSelector } from "react-redux";
 import { StateProps } from "../../../../type";
+import { useSession } from "next-auth/react";
+import useSWR from "swr";
+import { useShopData } from "../shop/ShopContext";
 const BottomNavigationFront = () => {
   const { productData, orderData } = useSelector(
     (state: StateProps) => state.shopping
   );
+  const shopData = useShopData();
+  const { data: session } = useSession();
+  const fetcher = (url: any) =>
+    fetch(url, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${session?.bearer}`,
+        "Content-Type": "application/json",
+      },
+    }).then((res) => res.json());
+
+  const url =
+    process.env.SERVER_ENDPOINT + "/api/user/order/shop/" + shopData?.id;
+  const {
+    data: payment,
+    isLoading,
+    isValidating,
+    error,
+  } = useSWR(url, fetcher, {
+    refreshInterval: 3000,
+  });
+  const unpaidCount: number = payment.order.filter(
+    (item: { status: string }) => item.status === "UNPAID"
+  ).length;
+  console.log(unpaidCount);
   return (
     <div className="md:hidden fixed z-10 w-full h-16 -translate-x-1/2 bg-white border border-gray-200 rounded-t-xl shadow-lg shadow-black bottom-0 left-1/2 dark:bg-gray-700 dark:border-gray-600">
       <div className="grid h-full max-w-lg grid-cols-5 mx-auto">
@@ -37,7 +65,7 @@ const BottomNavigationFront = () => {
           href={"/profile/orders"}
           data-tooltip-target="tooltip-wallet"
           type="button"
-          className="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group">
+          className="relative inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -54,6 +82,11 @@ const BottomNavigationFront = () => {
             <path d="M16 10a4 4 0 0 1-8 0" />
           </svg>
           <span className="sr-only">Wallet</span>
+          {unpaidCount > 0 && (
+            <button className="absolute top-2 p-1 right-4 w-6 h-6 bg-red-600 rounded-full text-xs flex flex-row items-center justify-center text-white">
+              <span className="text-xs">{unpaidCount}</span>
+            </button>
+          )}
         </Link>
         <div
           id="tooltip-wallet"

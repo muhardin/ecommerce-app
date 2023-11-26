@@ -1,30 +1,16 @@
-"use client";
-import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
-import "react-tabs/style/react-tabs.css";
-import ImageGallery from "react-image-gallery";
+import React from "react";
 
-const TestPage = () => {
-  const images = [
-    {
-      original: "https://picsum.photos/id/1018/1000/600/",
-      thumbnail: "https://picsum.photos/id/1018/250/150/",
-    },
-    {
-      original: "https://picsum.photos/id/1015/1000/600/",
-      thumbnail: "https://picsum.photos/id/1015/250/150/",
-    },
-    {
-      original: "https://picsum.photos/id/1019/1000/600/",
-      thumbnail: "https://picsum.photos/id/1019/250/150/",
-    },
-  ];
+const ExampleComponent = () => {
   return (
-    <>
-      <div className="w-2/6">
-        <ImageGallery items={images} />;
-      </div>
-    </>
+    <div className="flex space-x-4 space-x-reverse">
+      <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+        Swap Right
+      </button>
+      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+        Swap Left
+      </button>
+    </div>
   );
 };
 
-export default TestPage;
+export default ExampleComponent;

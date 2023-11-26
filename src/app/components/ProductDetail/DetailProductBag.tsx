@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import FormattedPrice from "../FormattedPrice";
-import { IoMdCart } from "react-icons/io";
+import { IoIosStar, IoMdCart } from "react-icons/io";
 import { MdFavoriteBorder } from "react-icons/md";
 import { useDispatch } from "react-redux";
 import { addToCart } from "@/redux/shoppingSlice";
@@ -40,6 +40,16 @@ const DetailProductBag = ({
       (prevIndex) => (prevIndex + 1) % data?.product.product_gallery.length
     );
   };
+
+  const starArray = Array.from({ length: data?.product.rating }, (_, index) => (
+    <span key={index} className=" text-yellow-400">
+      <li>
+        <a href="#">
+          <IoIosStar />
+        </a>
+      </li>
+    </span>
+  ));
 
   const showPrevImage = () => {
     setCurrentImageIndex(
@@ -204,7 +214,11 @@ const DetailProductBag = ({
                   {data?.product.title}
                 </h2>
                 <div className="flex flex-wrap items-center mb-6">
-                  <ul className="flex mb-4 mr-2 lg:mb-0">
+                  {/* <div className="flex flex-row items-center justify-center">
+                    {starArray}
+                  </div> */}
+                  <ul className="flex mb-4 mr-2 lg:mb-0">{starArray}</ul>
+                  {/* <ul className="flex mb-4 mr-2 lg:mb-0">
                     <li>
                       <a href="#">
                         <svg
@@ -257,7 +271,7 @@ const DetailProductBag = ({
                         </svg>
                       </a>
                     </li>
-                  </ul>
+                  </ul> */}
                   <a
                     className="mb-4 text-xs underline dark:text-gray-400 dark:hover:text-gray-300 lg:mb-0"
                     href="#">
