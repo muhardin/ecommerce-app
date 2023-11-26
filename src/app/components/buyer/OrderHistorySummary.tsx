@@ -131,13 +131,24 @@ const OrderHistorySummary = ({ id }: any) => {
                     <div className="">
                       <div className="mt-2 space-y-3 rounded-lg border bg-white px-2 py-4 sm:px-6">
                         <div className="flex flex-row rounded-lg bg-white sm:flex-row">
-                          <Image
-                            width={350}
-                            height={350}
-                            className="m-2 h-24 w-28 rounded-md border object-cover object-center"
-                            src={`${process.env.SERVER_ENDPOINT}${item.product.image}`}
-                            alt=""
-                          />
+                          {item.product?.product_gallery?.length > 0 ? (
+                            <Image
+                              width={350}
+                              height={350}
+                              className="m-2 h-24 w-28 rounded-md border object-cover object-center"
+                              src={`${process.env.SERVER_ENDPOINT}${item.product.product_gallery[0].url}`}
+                              alt=""
+                            />
+                          ) : (
+                            <Image
+                              width={350}
+                              height={350}
+                              className="m-2 h-24 w-28 rounded-md border object-cover object-center"
+                              src={`/images/no_image.png`}
+                              alt=""
+                            />
+                          )}
+
                           <div className="flex w-full flex-col px-4 py-4">
                             <span className="font-semibold">
                               {item.product.title}

@@ -20,7 +20,7 @@ const AvailableProduct = async () => {
         },
       })
     ).json();
-    console.log(shops);
+    //console.log(shops);
     return (
       <div>
         <ProductAvailableGlobalComp shop={shops} />
