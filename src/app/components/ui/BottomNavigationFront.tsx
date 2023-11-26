@@ -31,7 +31,7 @@ const BottomNavigationFront = () => {
   } = useSWR(url, fetcher, {
     refreshInterval: 3000,
   });
-  const unpaidCount: number = payment.order.filter(
+  const unpaidCount: number = payment?.order?.filter(
     (item: { status: string }) => item.status === "UNPAID"
   ).length;
   console.log(unpaidCount);
