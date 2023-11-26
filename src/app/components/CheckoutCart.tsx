@@ -490,7 +490,7 @@ const CheckoutCart = () => {
                 className={`${
                   !address ? "hidden" : ""
                 } absolute flex flex-col gap-2 w-full md:w-2/3 right-0 top-0 mt-8 bg-white p-2 border border-gray-200 shadow-md justify-end`}>
-                <div className="overflow-y-auto h-96">
+                <div className="overflow-y-auto h-60 md:h-96">
                   {addresses?.length > 0 ? (
                     addresses.map((address: Address) => (
                       <div key={address.id} className="relative mt-2">
@@ -778,14 +778,14 @@ const CheckoutCart = () => {
       </div>
 
       <div
-        className={`relative z-10 ${
+        className={`relative z-50 ${
           modalCart ? "visible" : "invisible"
         } overflow-x-hidden overflow-y-auto fixed inset-0 outline-none focus:outline-none`}
         aria-labelledby="modal-title"
         role="dialog"
         aria-modal="true">
         <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
-        <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
+        <div className="fixed top-4 left-0 z-50 w-screen overflow-y-auto">
           <div className="w-full flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
             <div className="w-full relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg  mb-20">
               <form onSubmit={handleSubmitAddress}>
