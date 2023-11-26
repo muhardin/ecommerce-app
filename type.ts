@@ -227,6 +227,7 @@ export interface Category {
   status: number;
 }
 export interface ProductGallery {
+  [x: string]: any;
   id: number;
   product_id: number;
   galleries: string;
@@ -374,6 +375,7 @@ export interface OrderItem {
   created_at: string;
   updated_at: string;
   profit: number;
+  final_profit: number;
   product_varian: string | null;
   varian_text: string | null;
   images: string | null;

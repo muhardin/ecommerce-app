@@ -11,6 +11,7 @@ import { Product, Products, ShopData } from "../../../../../type";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import ImageListProduct from "@/components/images/ImageListProduct";
 
 const ProductModalGlobal = ({
   product,
@@ -33,20 +34,25 @@ const ProductModalGlobal = ({
     product?.company_price + product?.company_price * 0.1
   );
 
-  const profitDefault = Number(product?.company_price * 0.1);
-  const sharingProfitDefault = Number(profitDefault * 0.1);
-  const [price, setPrice] = useState(sellingPrice);
   const [basePrice, setBasePrice] = useState(product?.company_price);
+  const profitDefault = Number(basePrice * 0.1);
+  const sharingProfitDefault = Number((sellingPrice - basePrice) * 0.1);
+  const finalProfit = Number(profitDefault - sharingProfitDefault);
+  const [price, setPrice] = useState(sellingPrice);
   const [sharingProfit, setSharingProfit] = useState(sharingProfitDefault);
-  const [profit, setProfit] = useState(profitDefault);
+  const [profit, setProfit] = useState(50000);
   const [errorPrice, setErrorPrice] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
       if (product) {
-        setBasePrice(product?.company_price);
+        setBasePrice(product.company_price);
         setPrice(sellingPrice);
-        setProfit(profitDefault);
+        setProfit(
+          Number(sellingPrice) -
+            basePrice -
+            (Number(sellingPrice) - basePrice) * 0.1
+        );
         setSharingProfit(sharingProfitDefault);
       }
     };
@@ -106,17 +112,20 @@ const ProductModalGlobal = ({
         if (response.data.message.price) {
           setErrorPrice(true);
         }
-        setErrMessage(response.data.message);
         toast.dismiss();
+        toast.error(response.data.message.error);
       } else if (response.status == 500) {
         toast.error("System on maintenance mode");
         toast.dismiss();
+      } else {
+        toast.dismiss();
+        toast.error(response.data.message.error);
       }
     } catch (error) {
       toast.dismiss();
     }
   };
-  console.log(selectedShop);
+  console.log(shops);
   return (
     <div>
       <button
@@ -147,6 +156,7 @@ const ProductModalGlobal = ({
                               height={500}
                               src={
                                 process.env.SERVER_ENDPOINT +
+                                "/" +
                                 product.product_gallery[0].url
                               }
                               alt=""
@@ -163,57 +173,10 @@ const ProductModalGlobal = ({
                           )}
                         </div>
                         <div className="flex-wrap hidden md:flex ">
-                          <div className="w-1/2 p-2 sm:w-1/4">
-                            <a
-                              href="#"
-                              className="block border border-blue-300 dark:border-transparent dark:hover:border-blue-300 hover:border-blue-300">
-                              <Image
-                                width={500}
-                                height={500}
-                                src="/images/products/pexels-melvin-buezo-2529148.jpg"
-                                alt=""
-                                className="object-cover w-full lg:h-20"
-                              />
-                            </a>
-                          </div>
-                          <div className="w-1/2 p-2 sm:w-1/4">
-                            <a
-                              href="#"
-                              className="block border border-transparent dark:border-transparent dark:hover:border-blue-300 hover:border-blue-300">
-                              <Image
-                                width={500}
-                                height={500}
-                                src="/images/products/pexels-melvin-buezo-2529148.jpg"
-                                alt=""
-                                className="object-cover w-full lg:h-20"
-                              />
-                            </a>
-                          </div>
-                          <div className="w-1/2 p-2 sm:w-1/4">
-                            <a
-                              href="#"
-                              className="block border border-transparent dark:border-transparent dark:hover:border-blue-300 hover:border-blue-300">
-                              <Image
-                                width={500}
-                                height={500}
-                                src="/images/products/pexels-melvin-buezo-2529148.jpg"
-                                alt=""
-                                className="object-cover w-full lg:h-20"
-                              />
-                            </a>
-                          </div>
-                          <div className="w-1/2 p-2 sm:w-1/4">
-                            <a
-                              href="#"
-                              className="block border border-transparent dark:border-transparent dark:hover:border-blue-300 hover:border-blue-300">
-                              <Image
-                                width={500}
-                                height={500}
-                                src="/images/products/pexels-melvin-buezo-2529148.jpg"
-                                alt=""
-                                className="object-cover w-full lg:h-20"
-                              />
-                            </a>
+                          <div className="w-full">
+                            <ImageListProduct
+                              items={product?.product_gallery}
+                            />
                           </div>
                         </div>
                       </div>

@@ -273,7 +273,7 @@ const OrderShow = ({
                             Keuntungan Didapat :
                           </p>
                           <p className="text-2xl font-semibold text-gray-900">
-                            <FormattedPrice amount={item.profit} />
+                            <FormattedPrice amount={item.final_profit} />
                           </p>
                         </div>
                         <p className="text-xl font-medium">Progress Details</p>

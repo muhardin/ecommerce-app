@@ -5,9 +5,10 @@ import { useSession } from "next-auth/react";
 import Products from "../../Products";
 import MyProductList from "./MyProductList";
 import { Supplier } from "../../../../../adminType";
-import { Category, Product } from "../../../../../type";
+import { Category, Product, ShopData, ShopProduct } from "../../../../../type";
+import MyProductListGlobal from "./MyProductListGlobal";
 
-const MyProductGlobalCom = () => {
+const MyProductGlobalCom = ({ shop }: { shop: ShopData }) => {
   const shopData = useShopData();
   const { data: session } = useSession();
 
@@ -168,7 +169,7 @@ const MyProductGlobalCom = () => {
       <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-4 ">
         {productsData ? (
           productsData.map((product: Product) => (
-            <MyProductList key={product.id} item={product} />
+            <MyProductListGlobal key={product.id} item={product} shops={shop} />
           ))
         ) : (
           <div className="flex flex-row justify-center items-center">

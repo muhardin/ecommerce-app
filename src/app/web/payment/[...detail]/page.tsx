@@ -3,8 +3,8 @@ import PaymentWebComponent from "@/components/landingpage/PaymentWebComponent";
 import React from "react";
 
 const PaymentDetail = ({ params }: { params: { detail?: string } }) => {
-  console.log(params);
-  console.log(params.detail);
+  // console.log(params);
+  // console.log(params.detail);
   return (
     <Container>
       {/* <div className="">Payment</div> */}
