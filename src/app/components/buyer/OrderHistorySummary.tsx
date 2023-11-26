@@ -435,10 +435,13 @@ const OrderHistorySummary = ({ id }: any) => {
                       )}
                     </div>
                     <div className="flex justify-end items-end gap-2 mt-2 h-auto">
-                      <button className="bg-sky-500 rounded-md hover:bg-sky-300 text-white p-3">
-                        Track Shipping
-                      </button>
-                      {item?.order_status != "received" ? (
+                      {item?.order_status == "delivering" ||
+                        (item?.order_status == "delivered" && (
+                          <button className="bg-sky-500 rounded-md hover:bg-sky-300 text-white p-3">
+                            Track Shipping
+                          </button>
+                        ))}
+                      {item?.order_status === "delivering" && (
                         <button
                           onClick={() => {
                             ConfirmAction(item?.id, "del");
@@ -446,8 +449,6 @@ const OrderHistorySummary = ({ id }: any) => {
                           className="bg-red-500 rounded-md hover:bg-red-300 text-white p-3">
                           Received
                         </button>
-                      ) : (
-                        ""
                       )}
                     </div>
                   </div>
