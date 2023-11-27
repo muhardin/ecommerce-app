@@ -1,3 +1,4 @@
+import { OrderDetail } from "./typeJs";
 import { Supplier } from "./adminType";
 export interface ProductShops {
   id: number;
@@ -300,6 +301,7 @@ export interface Order {
   payment_option: string;
   payment_reference: string | null;
   invoice_number: string;
+  order_detail: OrderDetail[];
   created_at: string;
   updated_at: string;
   shipping_method: string | null;

@@ -1,6 +1,9 @@
+import { ProductGallery } from "./type";
+
 export interface Product {
   id: number;
   title: string;
+  product_gallery: ProductGallery;
   isNew: number;
   oldPrice: string;
   price: number;
@@ -21,6 +24,7 @@ export interface Product {
 export interface OrderDetail {
   id: number;
   order_id: number;
+  order: Order;
   product_id: number;
   shop_product_id: number;
   name: string;

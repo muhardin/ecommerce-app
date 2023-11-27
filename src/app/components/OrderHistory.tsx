@@ -7,6 +7,12 @@ import { useSession } from "next-auth/react";
 import useSWR from "swr";
 import { useShopData } from "./shop/ShopContext";
 import FormattedPrice from "./FormattedPrice";
+import { Order, OrderPayment } from "../../../type";
+import { OrderDetail } from "../../../typeJs";
+import OrderSupplierUpdate from "./supplier/order/OrderSupplierUpdate";
+import Swal from "sweetalert2";
+import { useState } from "react";
+import axios from "axios";
 
 const OrderHistory = () => {
   function formatDateAndTime(dateTimeString: string) {
@@ -39,7 +45,7 @@ const OrderHistory = () => {
     }).then((res) => res.json());
 
   const url =
-    process.env.SERVER_ENDPOINT + "/api/user/order/shop/" + shopData?.id;
+    process.env.SERVER_ENDPOINT + "/api/user/order/order-lists/" + shopData?.id;
   const {
     data: payment,
     isLoading,
@@ -49,10 +55,70 @@ const OrderHistory = () => {
     refreshInterval: 3000,
   });
 
+  const [errMessage, setErrMessage] = useState<string[]>([]);
+  const [inLoading, setInLoading] = useState(false);
+  const [modal, setModal] = useState(false);
+
+  const ConfirmAction = async (productId?: number, act?: string) => {
+    setInLoading(true);
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        cancelButton:
+          "bg-darkText hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:ring focus:ring-blue-200 ",
+        confirmButton:
+          "bg-darkText mr-2 ml-2 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:ring focus:ring-blue-200",
+      },
+      buttonsStyling: false,
+    });
+
+    swalWithBootstrapButtons
+      .fire({
+        title: "Are you sure?",
+        text: "Your order will be completed as received!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes, receive it!",
+        cancelButtonText: "No, cancel!",
+        reverseButtons: true,
+      })
+      .then(async (result) => {
+        if (result.isConfirmed) {
+          // console.log(productId);
+          if (act == "confirm") {
+            setErrMessage([]);
+            const config = {
+              headers: { Authorization: `Bearer ${session?.bearer}` },
+            };
+            const post = await axios.post(
+              process.env.SERVER_ENDPOINT + "/api/user/order/received",
+              { id: productId, shop: shopData?.id },
+              config
+            );
+
+            if (post.status == 200) {
+              setInLoading(false);
+              toast.dismiss();
+              toast.success("Success", { duration: 6000 });
+            } else if (post.status == 201) {
+              setModal(true);
+              setErrMessage(post.data.message.error);
+              toast.dismiss();
+              // console.log(post.data.message.error);
+            } else if (post.status == 500) {
+              toast.error("System on maintenance mode");
+              toast.dismiss();
+            }
+          } else {
+            // console.log(productId);
+          }
+        }
+      });
+  };
+  // console.log(payment);
   return (
     <>
       <div className="w-full mx-auto ">
-        <div className="mt-8 px-4 mb-4">
+        <div className="mt-2 px-4 mb-4">
           <div className="sm:flex sm:items-center sm:justify-between flex-col sm:flex-row">
             <p className="flex-1 text-base font-bold text-gray-900">
               Latest Payments
@@ -98,242 +164,118 @@ const OrderHistory = () => {
             </div>
           </div>
 
-          <div className="mt-6 overflow-hidden rounded-xl border shadow">
-            <table className="min-w-full border-separate border-spacing-y-2 border-spacing-x-2">
-              <thead className="hidden border-b lg:table-header-group">
-                <tr className="">
-                  <td
-                    width="20%"
-                    className="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-6">
-                    Invoice
-                  </td>
-                  <td className="hidden md:block whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-6">
-                    Payment
-                  </td>
-                  <td className="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-6">
-                    Date
-                  </td>
-
-                  <td className="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-6">
-                    Amount
-                  </td>
-
-                  <td className="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-6">
-                    Status
-                  </td>
-                </tr>
-              </thead>
-
-              <tbody className="lg:border-gray-300">
-                {payment?.order.map((item: any) => (
-                  <tr key={item.id} className="">
-                    <td
-                      width="20%"
-                      className="whitespace-no-wrap py-4 text-sm font-bold text-sky-700 sm:px-6 hover:text-red-500">
-                      <Link
-                        href={
-                          item.status == "PAID"
-                            ? "/profile/orders/summary/" + item?.order_id
-                            : "/payment/" + item?.order_id
-                        }
-                        className="hover:text-sky-600">
+          <div className="mt-2 overflow-hidden rounded-xl  shadow">
+            {payment?.data.map((item: Order) => (
+              <div
+                key={item.id}
+                className="mt-2 overflow-hidden rounded-xl border shadow">
+                <div className="flex flex-row justify-between gap-2 p-4 pb-0">
+                  <div className="flex justify-start flex-row items-center gap-2">
+                    {/* <div className="w-1/5">
+                      {item.order_detail[0].product?.product_gallery?.length >
+                      0 ? (
+                        <Image
+                          src={`${process.env.SERVER_ENDPOINT}${item.order_detail[0].product?.product_gallery[0].url}`}
+                          alt=""
+                          width={150}
+                          height={150}
+                        />
+                      ) : (
+                        <Image
+                          src={`/image/no_image.png`}
+                          alt=""
+                          width={150}
+                          height={150}
+                        />
+                      )}
+                    </div> */}
+                    <div className="flex flex-col gap-1">
+                      <div className="text-red-500 font-mono">
                         {item.invoice_number}
-                        <div className="mt-1 lg:hidden">
-                          <p className="font-normal text-gray-500">
-                            {formatDateAndTime(item.created_at)}
-                          </p>
-                        </div>
-                      </Link>
-                    </td>
+                      </div>
 
-                    <td className="whitespace-no-wrap hidden py-4 text-sm font-normal text-gray-500 sm:px-6 md:table-cell">
-                      <Link
-                        href={
-                          item.status == "PAID"
-                            ? "/profile/orders/summary/" + item.id
-                            : "/payment/" + item.id
-                        }
-                        className="hover:text-sky-600">
-                        {item.payment_name}
-                        <div className="mt-1 lg:hidden">
-                          <p className="font-normal text-gray-500">
-                            {formatDateAndTime(item.created_at)}
-                          </p>
+                      <div className="text-sm font-mono">
+                        {formatDateAndTime(item.created_at)}
+                      </div>
+                      <div
+                        className={`${
+                          item.order_payment.status == "UNPAID"
+                            ? "text-red-500"
+                            : item.order_status == "PAID"
+                            ? "text-green-500"
+                            : "text-red-700"
+                        } font-mono capitalize`}>
+                        {item.order_payment.status}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex flex-col gap-2 font-mono justify-start items-end">
+                    <div className="">
+                      <FormattedPrice amount={Number(item.amount)} />
+                    </div>
+                    {item.order_payment.status !== "PAID" && (
+                      <div className="">
+                        <Link
+                          href={"/payment/" + item.id}
+                          className={`inline-flex items-center rounded-md bg-red-600 py-2 px-3 text-xs text-white cursor-pointer`}>
+                          Pay
+                        </Link>
+                      </div>
+                    )}
+                    {item.order_payment.status == "PAID" && (
+                      <div className="">
+                        <Link
+                          href={"/profile/orders/summary/" + item.id}
+                          className={`inline-flex items-center rounded-md bg-green-600 py-2 px-3 text-xs text-white cursor-pointer`}>
+                          Detail
+                        </Link>
+                      </div>
+                    )}
+                  </div>
+                </div>
+                <div className="p-2 flex flex-col gap-1 text-xs font-mono">
+                  {item.order_detail.map((prod) => (
+                    <div
+                      key={prod.id}
+                      className="w-full border border-red-500 p-1 rounded-lg flex flex-row gap-1 justify-between">
+                      <div className="w-full flex flex-row justify-start items-center">
+                        <div className="">
+                          <div className="w-10 h-10 flex items-center justify-center">
+                            <Image
+                              className="object-scale-down"
+                              src={`${process.env.SERVER_ENDPOINT}${prod.product.product_gallery[0].url}`}
+                              width={25}
+                              height={20}
+                              alt=""
+                            />
+                          </div>
                         </div>
-                      </Link>
-                    </td>
-                    <td className="md:block whitespace-no-wrap hidden py-4 text-sm font-normal text-gray-500 sm:px-6 lg:table-cell">
-                      {formatDateAndTime(item.created_at)}
-                    </td>
-
-                    <td className="whitespace-no-wrap py-4 px-6 text-right text-sm text-gray-600 lg:text-left">
-                      <FormattedPrice amount={item.amount} />
-                      {item.status == "UNPAID" ? (
-                        <div className="flex mt-1 ml-auto w-fit items-center rounded-full bg-red-600 py-2 px-3 text-left text-xs font-medium text-white lg:hidden">
-                          Unpaid
+                        <div className="flex flex-col gap-1">
+                          <div className="">{prod.product.title}</div>
+                          <div className="">Qty : {prod.quantity}</div>
+                          <div className="">{prod.order_status}</div>
                         </div>
-                      ) : item.status == "PAID" ? (
-                        <div className="flex mt-1 ml-auto w-fit items-center rounded-full bg-blue-600 py-2 px-3 text-left text-xs font-medium text-white lg:hidden">
-                          Paid
-                        </div>
-                      ) : item.status == "EXPIRED" ? (
-                        <div className="flex mt-1 ml-auto w-fit items-center rounded-full bg-red-300 py-2 px-3 text-left text-xs font-medium text-white lg:hidden">
-                          Expired
-                        </div>
-                      ) : (
-                        <div className="flex mt-1 ml-auto w-fit items-center rounded-full bg-red-300 py-2 px-3 text-left text-xs font-medium text-white lg:hidden">
-                          Pending
+                      </div>
+                      {prod.order_status === "delivering" && (
+                        <div className="flex items-end justify-end gap-1">
+                          <button
+                            className={`inline-flex items-center rounded-md bg-green-600 py-2 px-3 text-xs text-white cursor-pointer`}>
+                            Track
+                          </button>
+                          <button
+                            onClick={() => {
+                              ConfirmAction(prod?.id, "confirm");
+                            }}
+                            className={`inline-flex items-center rounded-md bg-sky-600 py-2 px-3 text-xs text-white cursor-pointer`}>
+                            Terima
+                          </button>
                         </div>
                       )}
-                    </td>
-
-                    <td className="whitespace-no-wrap hidden py-4 text-sm font-normal text-gray-500 sm:px-6 lg:table-cell">
-                      {item.status == "UNPAID" ? (
-                        <div className="inline-flex items-center rounded-full bg-red-600 py-2 px-3 text-xs text-white">
-                          Unpaid
-                        </div>
-                      ) : item.status == "PAID" ? (
-                        <div className="inline-flex items-center rounded-full bg-blue-600 py-2 px-3 text-xs text-white">
-                          Paid
-                        </div>
-                      ) : item.status == "EXPIRED" ? (
-                        <div className="inline-flex items-center rounded-full bg-blue-600 py-2 px-3 text-xs text-white">
-                          EXPIRED
-                        </div>
-                      ) : (
-                        <div className="inline-flex items-center rounded-full bg-blue-600 py-2 px-3 text-xs text-white">
-                          Pending
-                        </div>
-                      )}
-                    </td>
-                  </tr>
-                ))}
-
-                {/* <tr className="">
-                  <td
-                    width="50%"
-                    className="whitespace-no-wrap py-4 text-sm font-bold text-gray-900 sm:px-6"
-                  >
-                    Standard Plan - Jan 2022
-                    <div className="mt-1 lg:hidden">
-                      <p className="font-normal text-gray-500">
-                        09 January, 2022
-                      </p>
                     </div>
-                  </td>
-
-                  <td className="whitespace-no-wrap hidden py-4 text-sm font-normal text-gray-500 sm:px-6 lg:table-cell">
-                    09 January, 2022
-                  </td>
-
-                  <td className="whitespace-no-wrap py-4 px-6 text-right text-sm text-gray-600 lg:text-left">
-                    $59.00
-                    <div className="flex mt-1 ml-auto w-fit items-center rounded-full bg-red-200 py-1 px-2 text-left font-medium text-red-500 lg:hidden">
-                      Canceled
-                    </div>
-                  </td>
-
-                  <td className="whitespace-no-wrap hidden py-4 text-sm font-normal text-gray-500 sm:px-6 lg:table-cell">
-                    <div className="inline-flex items-center rounded-full bg-red-200 py-1 px-2 text-red-500">
-                      Canceled
-                    </div>
-                  </td>
-                </tr>
-
-                <tr className="">
-                  <td
-                    width="50%"
-                    className="whitespace-no-wrap py-4 text-sm font-bold text-gray-900 sm:px-6"
-                  >
-                    Basic Plan - Dec 2021
-                    <div className="mt-1 lg:hidden">
-                      <p className="font-normal text-gray-500">
-                        15 December, 2021
-                      </p>
-                    </div>
-                  </td>
-
-                  <td className="whitespace-no-wrap hidden py-4 text-sm font-normal text-gray-500 sm:px-6 lg:table-cell">
-                    15 December, 2021
-                  </td>
-
-                  <td className="whitespace-no-wrap py-4 px-6 text-right text-sm text-gray-600 lg:text-left">
-                    $29.00
-                    <div className="flex mt-1 ml-auto w-fit items-center rounded-full bg-blue-600 py-2 px-3 text-left text-xs font-medium text-white lg:hidden">
-                      Complete
-                    </div>
-                  </td>
-
-                  <td className="whitespace-no-wrap hidden py-4 text-sm font-normal text-gray-500 sm:px-6 lg:table-cell">
-                    <div className="inline-flex items-center rounded-full bg-blue-600 py-2 px-3 text-xs text-white">
-                      Complete
-                    </div>
-                  </td>
-                </tr>
-
-                <tr className="">
-                  <td
-                    width="50%"
-                    className="whitespace-no-wrap py-4 text-sm font-bold text-gray-900 sm:px-6"
-                  >
-                    Basic Plan - Nov 2021
-                    <div className="mt-1 lg:hidden">
-                      <p className="font-normal text-gray-500">
-                        14 November, 2021
-                      </p>
-                    </div>
-                  </td>
-
-                  <td className="whitespace-no-wrap hidden py-4 text-sm font-normal text-gray-500 sm:px-6 lg:table-cell">
-                    14 November, 2021
-                  </td>
-
-                  <td className="whitespace-no-wrap py-4 px-6 text-right text-sm text-gray-600 lg:text-left">
-                    $29.00
-                    <div className="flex mt-1 ml-auto w-fit items-center rounded-full bg-blue-200 py-1 px-2 text-left font-medium text-blue-500 lg:hidden">
-                      Pending
-                    </div>
-                  </td>
-
-                  <td className="whitespace-no-wrap hidden py-4 text-sm font-normal text-gray-500 sm:px-6 lg:table-cell">
-                    <div className="inline-flex items-center rounded-full bg-blue-200 py-1 px-2 text-blue-500">
-                      Pending
-                    </div>
-                  </td>
-                </tr>
-
-                <tr className="">
-                  <td
-                    width="50%"
-                    className="whitespace-no-wrap py-4 text-sm font-bold text-gray-900 sm:px-6"
-                  >
-                    Basic Plan - Oct 2021
-                    <div className="mt-1 lg:hidden">
-                      <p className="font-normal text-gray-500">
-                        15 October, 2021
-                      </p>
-                    </div>
-                  </td>
-
-                  <td className="whitespace-no-wrap hidden py-4 text-sm font-normal text-gray-500 sm:px-6 lg:table-cell">
-                    15 October, 2021
-                  </td>
-
-                  <td className="whitespace-no-wrap py-4 px-6 text-right text-sm text-gray-600 lg:text-left">
-                    $29.00
-                    <div className="flex mt-1 ml-auto w-fit items-center rounded-full bg-blue-600 py-2 px-3 text-left text-xs font-medium text-white lg:hidden">
-                      Complete
-                    </div>
-                  </td>
-
-                  <td className="whitespace-no-wrap hidden py-4 text-sm font-normal text-gray-500 sm:px-6 lg:table-cell">
-                    <div className="inline-flex items-center rounded-full bg-blue-600 py-2 px-3 text-xs text-white">
-                      Complete
-                    </div>
-                  </td>
-                </tr> */}
-              </tbody>
-            </table>
+                  ))}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
