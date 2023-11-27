@@ -92,7 +92,7 @@ const PaymentForm = ({
   const handleSelectedVirtual = (value: string) => {
     setSelectedVirtual(value);
   };
-
+  const [paymentPhone, setPaymentPhone] = useState("");
   const [formErrors, setFormErrors] = useState<{ [key: string]: string }>({});
 
   const [errMessage, setErrMessage]: any = useState<string[]>([]);
@@ -105,11 +105,11 @@ const PaymentForm = ({
   const handleSubmit = async (event: SyntheticEvent) => {
     setIsLoading(true);
     event.preventDefault();
-    toast.loading("loading....");
     try {
       const formData = {
         payment: selectedPayment,
         payment_type: selectedVirtual,
+        payment_phone: paymentPhone,
         address_id: address,
         shop: shopData?.id,
         shipping: shippingMethod,
@@ -132,12 +132,12 @@ const PaymentForm = ({
         router.push("/payment/" + response.data.order.id);
         dispatch(resetCart());
         setIsLoading(false);
-        console.log(response);
+        // console.log(response);
       } else if (response.status == 201) {
         setErrMessage(response.data.message.error);
         setModal(true);
         toast.dismiss();
-        console.log(response);
+        // console.log(response);
       } else if (response.status == 500) {
         toast.error("System on maintenance mode");
         toast.dismiss();
@@ -212,8 +212,7 @@ const PaymentForm = ({
               <div className="w-full p-3">
                 <label
                   htmlFor="payment_1"
-                  className="flex items-center cursor-pointer"
-                >
+                  className="flex items-center cursor-pointer">
                   <input
                     required
                     type="radio"
@@ -228,8 +227,7 @@ const PaymentForm = ({
                 <div
                   className={`${
                     selectedPayment.includes("virtual") ? "block" : "hidden"
-                  } mt-2 grid gap-2`}
-                >
+                  } mt-2 grid gap-2`}>
                   <div className="relative">
                     <input
                       required={selectedPayment.includes("virtual")}
@@ -243,8 +241,7 @@ const PaymentForm = ({
                     <span className=" peer-checked:border-sky-500 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
                     <label
                       className="peer-checked:border-2 peer-checked:border-sky-500 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-2"
-                      htmlFor="radio_1"
-                    >
+                      htmlFor="radio_1">
                       <Image
                         width={500}
                         height={500}
@@ -271,8 +268,7 @@ const PaymentForm = ({
                     <span className="peer-checked:border-sky-500 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
                     <label
                       className="peer-checked:border-2 peer-checked:border-sky-500 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-2"
-                      htmlFor="radio_2"
-                    >
+                      htmlFor="radio_2">
                       <Image
                         width={500}
                         height={500}
@@ -299,8 +295,7 @@ const PaymentForm = ({
                     <span className="peer-checked:border-sky-500 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
                     <label
                       className="peer-checked:border-2 peer-checked:border-sky-500 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-2"
-                      htmlFor="radio_3"
-                    >
+                      htmlFor="radio_3">
                       <Image
                         width={500}
                         height={500}
@@ -327,8 +322,7 @@ const PaymentForm = ({
                     <span className="peer-checked:border-sky-500 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
                     <label
                       className="peer-checked:border-2 peer-checked:border-sky-500 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-2"
-                      htmlFor="virtual_4"
-                    >
+                      htmlFor="virtual_4">
                       <Image
                         width={500}
                         height={500}
@@ -355,8 +349,7 @@ const PaymentForm = ({
                     <span className="peer-checked:border-sky-500 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
                     <label
                       className="peer-checked:border-2 peer-checked:border-sky-500 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-2"
-                      htmlFor="virtual_5"
-                    >
+                      htmlFor="virtual_5">
                       <Image
                         width={500}
                         height={500}
@@ -377,8 +370,7 @@ const PaymentForm = ({
               <div className="w-full p-3">
                 <label
                   htmlFor="wallet"
-                  className="flex items-center cursor-pointer"
-                >
+                  className="flex items-center cursor-pointer">
                   <input
                     type="radio"
                     className=" h-5 w-5 text-indigo-500"
@@ -392,10 +384,10 @@ const PaymentForm = ({
                 <div
                   className={`${
                     selectedPayment.includes("wallet") ? "block" : "hidden"
-                  } mt-2 grid gap-2`}
-                >
+                  } mt-2 grid gap-2`}>
                   <div className="relative">
                     <input
+                      checked={selectedVirtual === "OVO"}
                       className="peer hidden"
                       id="wallet_1"
                       type="radio"
@@ -405,8 +397,7 @@ const PaymentForm = ({
                     <span className="peer-checked:border-sky-500 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
                     <label
                       className="peer-checked:border-2 peer-checked:border-sky-500 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-2"
-                      htmlFor="wallet_1"
-                    >
+                      htmlFor="wallet_1">
                       <Image
                         width={500}
                         height={500}
@@ -420,13 +411,38 @@ const PaymentForm = ({
                       </div>
                     </label>
                   </div>
+                  <div
+                    className={`${
+                      selectedVirtual === "OVO" ? "block" : "hidden"
+                    }`}>
+                    <div className="mb-3">
+                      <label className="text-gray-600 font-semibold text-sm mb-2 ml-1">
+                        Phone Number
+                      </label>
+                      <div>
+                        <input
+                          required={
+                            selectedVirtual === "OVO" &&
+                            selectedPayment === "wallet"
+                          }
+                          value={paymentPhone}
+                          name="payment_phone"
+                          onChange={(e) => {
+                            setPaymentPhone(e.target.value);
+                          }}
+                          className="w-full px-3 py-2 mb-1 border border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors"
+                          placeholder="0813728235589"
+                          type="text"
+                        />
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
               <div className="w-full p-3">
                 <label
                   htmlFor="payment_2"
-                  className="flex items-center cursor-pointer"
-                >
+                  className="flex items-center cursor-pointer">
                   <input
                     type="radio"
                     className=" h-5 w-5 text-indigo-500"
@@ -449,8 +465,7 @@ const PaymentForm = ({
                 <div className="mb-2">
                   <label
                     htmlFor="type1"
-                    className="flex items-center cursor-pointer"
-                  >
+                    className="flex items-center cursor-pointer">
                     <input
                       type="radio"
                       className="h-5 w-5 text-indigo-500"
@@ -471,8 +486,7 @@ const PaymentForm = ({
                 <div
                   className={`${
                     selectedPayment.includes("visa") ? "block" : "hidden"
-                  }`}
-                >
+                  }`}>
                   <div className="mb-3">
                     <label className="text-gray-600 font-semibold text-sm mb-2 ml-1">
                       Name on card
@@ -613,8 +627,7 @@ const PaymentForm = ({
           <div className="flex-col lg:flex-row flex gap-2 justify-end">
             <Link
               href={"/cart"}
-              className=" bg-red-400 rounded-md text-slate-100 mt-4 py-3 px-6 hover:bg-orange-950 cursor-pointer duration-200 flex flex-row justify-center text-center"
-            >
+              className=" bg-red-400 rounded-md text-slate-100 mt-4 py-3 px-6 hover:bg-orange-950 cursor-pointer duration-200 flex flex-row justify-center text-center">
               Back to Cart
             </Link>
             {userInfo ? (
@@ -641,14 +654,12 @@ const PaymentForm = ({
         className={`relative z-30 ${!modal ? "hidden" : ""} `}
         aria-labelledby="modal-title"
         role="dialog"
-        aria-modal="true"
-      >
+        aria-modal="true">
         <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
         <div className="fixed top-40 md:inset-0 z-10 w-screen overflow-y-auto">
           <div className="w-full flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
             <div
-              className={`animate-enter max-w-md w-full bg-white shadow-lg rounded-lg pointer-events-auto flex ring-1 ring-black ring-opacity-5`}
-            >
+              className={`animate-enter max-w-md w-full bg-white shadow-lg rounded-lg pointer-events-auto flex ring-1 ring-black ring-opacity-5`}>
               <div className="flex-1 w-0 p-4">
                 <div className="flex items-center">
                   <div className="flex-shrink-0 pt-0.5 mt-2">
@@ -661,8 +672,7 @@ const PaymentForm = ({
                       stroke="#f01616"
                       strokeWidth="2"
                       strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
+                      strokeLinejoin="round">
                       <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
                       <line x1="12" y1="9" x2="12" y2="13"></line>
                       <line x1="12" y1="17" x2="12.01" y2="17"></line>
@@ -679,8 +689,7 @@ const PaymentForm = ({
                           ? errMessage.map((item: string, index: any) => (
                               <div
                                 className="flex justify-start"
-                                key={item[index]}
-                              >
+                                key={item[index]}>
                                 <li className="text-md font-bold text-red-600 text-sm">
                                   - {item}
                                 </li>
@@ -698,8 +707,7 @@ const PaymentForm = ({
                     setModal(false);
                     setIsLoading(false);
                   }}
-                  className="w-full border border-transparent rounded-none rounded-r-lg p-4 flex items-center justify-center text-sm font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                >
+                  className="w-full border border-transparent rounded-none rounded-r-lg p-4 flex items-center justify-center text-sm font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500">
                   Close
                 </button>
               </div>

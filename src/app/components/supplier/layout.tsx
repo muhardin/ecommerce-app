@@ -11,6 +11,7 @@ import { Container, LogOut, Wallet } from "lucide-react";
 import MenuProfile from "../menu/MenuProfile";
 import { signOut } from "next-auth/react";
 import toast from "react-hot-toast";
+import { StateProps } from "../../../../type";
 
 const SupplierLayoutComponent = ({
   children,
@@ -31,6 +32,8 @@ const SupplierLayoutComponent = ({
     route.push("/web/sign-in");
     toast.dismiss();
   };
+  const { supplierOrder } = useSelector((state: StateProps) => state?.shopping);
+  console.log(supplierOrder.count);
   return (
     <div className="bg-gray-100 xl:h-screen dark:bg-gray-800">
       <div className="body-content">
@@ -121,9 +124,11 @@ const SupplierLayoutComponent = ({
                       </span>
                       <div className="flex flex-row items-center justify-end gap-1">
                         <span> Orders </span>
-                        <span className="flex flex-col items-center text-center justify-center w-6 h-6 px-2 ml-auto text-xs text-indigo-600 bg-indigo-100 rounded dark:group-hover:bg-gray-900 dark:bg-gray-700 dark:text-gray-100">
-                          5
-                        </span>
+                        {Number(supplierOrder.count) > 0 && (
+                          <span className="flex flex-col items-center text-center justify-center w-6 h-6 px-2 ml-auto text-xs text-white bg-red-600 rounded dark:group-hover:bg-gray-900 dark:bg-gray-700 dark:text-gray-100">
+                            {Number(supplierOrder.count)}
+                          </span>
+                        )}
                       </div>
                       <span className="inline-block ml-auto sidenav-arrow">
                         <svg
@@ -153,9 +158,11 @@ const SupplierLayoutComponent = ({
                             <span className="text-gray-700 dark:text-gray-400 ">
                               All Orders
                             </span>
-                            <span className="flex items-center justify-center w-6 h-6 px-2 ml-auto text-xs text-indigo-600 bg-indigo-100 rounded dark:group-hover:bg-gray-900 dark:bg-gray-700 dark:text-gray-100">
-                              5
-                            </span>
+                            {Number(supplierOrder.count) > 0 && (
+                              <span className="flex items-center justify-center w-6 h-6 px-2 ml-auto text-xs text-white bg-red-500 rounded dark:group-hover:bg-gray-900 dark:bg-gray-700 dark:text-gray-100">
+                                {Number(supplierOrder.count)}
+                              </span>
+                            )}
                           </Link>
                         </li>
                         <li>

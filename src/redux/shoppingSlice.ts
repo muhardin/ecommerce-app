@@ -4,6 +4,7 @@ import { Products } from "../../type";
 interface StoreState {
   productData: Products[];
   userInfo: null | string;
+  supplierOrder: null | string;
   referralInfo: null | string;
   orderData: [];
   notes: null | string;
@@ -14,6 +15,7 @@ interface StoreState {
 const initialState: StoreState = {
   productData: [],
   userInfo: null,
+  supplierOrder: null,
   referralInfo: null,
   orderData: [],
   notes: null,
@@ -75,6 +77,12 @@ export const shoppingSlice = createSlice({
     deleteUser: (state) => {
       state.userInfo = null;
     },
+    checkSupplierOrder: (state, action) => {
+      state.supplierOrder = action.payload;
+    },
+    delSupplierOrder: (state, action) => {
+      state.supplierOrder = null;
+    },
     saveOrder: (state, action) => {
       state.orderData = action.payload;
     },
@@ -122,5 +130,7 @@ export const {
   deleteUser,
   saveOrder,
   resetOrder,
+  checkSupplierOrder,
+  delSupplierOrder,
 } = shoppingSlice.actions;
 export default shoppingSlice.reducer;

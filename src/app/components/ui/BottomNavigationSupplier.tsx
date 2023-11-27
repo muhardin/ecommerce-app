@@ -3,11 +3,17 @@ import { Icons } from "./Icons";
 import { BaggageClaim, Home, ShoppingCart, User, Wallet } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useSession } from "next-auth/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useSWR from "swr";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleProfileMenu } from "@/redux/profileSlice";
 import { RootState } from "@/redux/store";
+import {
+  checkSupplierOrder,
+  delSupplierOrder,
+  deleteUser,
+} from "@/redux/shoppingSlice";
+import { StateProps } from "../../../../type";
 const BottomNavigationSupplier = () => {
   const isOpen = useSelector((state: RootState) => state.profile.isOpen);
   const dispatch = useDispatch();
@@ -34,6 +40,16 @@ const BottomNavigationSupplier = () => {
   } = useSWR(url, fetcher, {
     refreshInterval: 3000,
   });
+
+  useEffect(() => {
+    if (ordersCount) {
+      dispatch(
+        checkSupplierOrder({
+          count: ordersCount,
+        })
+      );
+    }
+  }, [session, dispatch]);
 
   return (
     <div className="md:hidden fixed bottom-0 px-5 pt-0 bg-sky-400 shadow-lg rounded-2xl w-full rounded-b-none">

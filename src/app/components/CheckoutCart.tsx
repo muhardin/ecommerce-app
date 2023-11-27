@@ -427,17 +427,6 @@ const CheckoutCart = () => {
     setSum(newSum);
   }, [selectedValuesCost]);
 
-  // console.log(sum);
-  // console.log(selectedValuesCost);
-  // console.log(JSON.stringify(productData));
-  // console.log(selectedShippingType);
-  // console.log(selectedArray);
-  // console.log(selectedValuesProduct);
-
-  // useEffect(() => {
-  //   console.log("Selected Values:", selectedValues);
-  // }, [selectedValues]); // Use an empty dependency array to run the effect only once on mount
-
   return (
     <>
       <div className="flex flex-col md:flex-row gap-2">

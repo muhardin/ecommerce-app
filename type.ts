@@ -148,6 +148,9 @@ export interface StateProps {
     status: boolean;
     productData: [];
     userInfo: {};
+    supplierOrder: {
+      count: Number;
+    };
     referralInfo: User;
     orderData: {
       order: Products[];
