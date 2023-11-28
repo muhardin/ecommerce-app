@@ -93,7 +93,7 @@ const SignUpComponent: React.FC<Params> = ({ referral }) => {
     payment: "",
     shopName: "",
     register_code: "",
-    referralEmail: referralInfo.email,
+    referralEmail: referralInfo?.email,
     country: selected,
   });
 
