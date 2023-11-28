@@ -174,18 +174,20 @@ const SignUpComponent: React.FC<Params> = ({ referral }) => {
       { phone_number: formData.phone_number }
     );
     if (post.status == 200) {
+      setTimer(120);
       toast.dismiss();
       toast.success("Success Send Code");
+    } else if (post.status == 201) {
+      toast.dismiss();
+      toast.error(`${post.data.message.error[0]}`, { duration: 7000 });
     } else {
       toast.dismiss();
       toast.error("Invalid");
     }
     ///api/seller/get-code
     // const newCode = Math.floor(100000 + Math.random() * 900000).toString();
-    setVerificationCode(post.data.code);
-    console.log(post);
+    // setVerificationCode(post.data.code);
     // Reset the timer to its initial value
-    setTimer(60);
   };
 
   useEffect(() => {
