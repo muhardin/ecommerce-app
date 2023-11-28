@@ -157,7 +157,7 @@ const MyShopListComponent = () => {
                         <span className="mb-2 text-xs leading-tight">
                           Domain:{" "}
                           <span className="font-semibold text-slate-700 dark:text-white sm:ml-2">
-                            {item.domain}
+                            {item.domain[0].domain}
                           </span>
                         </span>
                         <span className="mb-2 text-xs leading-tight">
