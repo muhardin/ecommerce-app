@@ -539,11 +539,12 @@ const WithdrawAdminComponent = () => {
                                   className="absolute rounded-full shadow-inner"
                                   aria-hidden="true"></div>
                               </div>
-                              <div>
+                              <div className="flex flex-col gap-1">
                                 <h2 className="text-sm font-medium ">
                                   {item.user?.first_name} {item.user?.last_name}
                                 </h2>
                                 <span>{item.user.email}</span>
+                                <span>{item.user.phone_number}</span>
                               </div>
                             </div>
                           </label>
@@ -580,7 +581,7 @@ const WithdrawAdminComponent = () => {
                             <span className="text-sm font-semibold text-red-400">
                               - <FormattedPrice amount={item.amount} />
                             </span>
-                            <span className="text-sm font-extrabold text-green-600 font-mono">
+                            <span className="text-sm font-extrabold text-red-700 font-mono">
                               -{" "}
                               <FormattedPrice amount={item.amount_totransfer} />
                             </span>
