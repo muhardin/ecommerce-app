@@ -490,8 +490,7 @@ const ShopAdminComponent = () => {
                           </label>
                         </td>
                         <td className="px-4 py-2">
-                          <div className="">{item.domain}</div>
-                          <div className="">{item.subdomain}</div>
+                          <div className="">{item.domain[0].domain}</div>
                         </td>
                         <td className="px-4 py-2">
                           <span className="text-sm text-red-500">
