@@ -166,7 +166,7 @@ const SignUpComponent: React.FC<Params> = ({ referral }) => {
     setFormData({ ...formData, [name]: value });
   };
   const [verificationCode, setVerificationCode] = useState("");
-  const [timer, setTimer] = useState(60); // Initial timer value in seconds
+  const [timer, setTimer] = useState(0); // Initial timer value in seconds
   const requestVerificationCode = async () => {
     toast.loading("Loading...");
     const post = await axios.post(
