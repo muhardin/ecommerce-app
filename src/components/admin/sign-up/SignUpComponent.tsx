@@ -26,7 +26,9 @@ interface FormData {
   package: string;
   payment: string;
   country: string;
+  shop_sub_domain: string;
   shopName: string;
+  register_code: string;
   referralEmail: string;
 }
 interface UserProps {
@@ -48,6 +50,7 @@ const SignUpComponent: React.FC<Params> = ({ referral }) => {
   const [errPack, setErrPack] = useState(false);
   const [errPay, setErrPay] = useState(false);
   const [errShopName, setErrShopName] = useState(false);
+  const [errCode, setErrorCode] = useState(false);
 
   const fetcher = (url: any) =>
     fetch(url, {
@@ -85,9 +88,11 @@ const SignUpComponent: React.FC<Params> = ({ referral }) => {
     last_name: "",
     confirm_password: "",
     phone_number: "",
+    shop_sub_domain: "",
     package: "",
     payment: "",
     shopName: "",
+    register_code: "",
     referralEmail: referralInfo.email,
     country: selected,
   });
@@ -160,6 +165,42 @@ const SignUpComponent: React.FC<Params> = ({ referral }) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
+  const [verificationCode, setVerificationCode] = useState("");
+  const [timer, setTimer] = useState(60); // Initial timer value in seconds
+  const requestVerificationCode = async () => {
+    toast.loading("Loading...");
+    const post = await axios.post(
+      process.env.SERVER_ENDPOINT + "/api/seller/get-code",
+      { phone_number: formData.phone_number }
+    );
+    if (post.status == 200) {
+      toast.dismiss();
+      toast.success("Success Send Code");
+    } else {
+      toast.dismiss();
+      toast.error("Invalid");
+    }
+    ///api/seller/get-code
+    // const newCode = Math.floor(100000 + Math.random() * 900000).toString();
+    setVerificationCode(post.data.code);
+    console.log(post);
+    // Reset the timer to its initial value
+    setTimer(60);
+  };
+
+  useEffect(() => {
+    let countdown: NodeJS.Timeout;
+    const startTimer = () => {
+      countdown = setInterval(() => {
+        setTimer((prevTimer) => prevTimer - 1);
+      }, 1000);
+    };
+
+    startTimer();
+    return () => {
+      clearInterval(countdown);
+    };
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -175,7 +216,7 @@ const SignUpComponent: React.FC<Params> = ({ referral }) => {
     if (post.status == 200) {
       toast.dismiss();
       toast.success("Success");
-      router.push("/sign-in");
+      router.push("/web/sign-in");
     } else if (post.status == 201) {
       setErrMessage(post.data.message);
       setIsFail(true);
@@ -191,7 +232,8 @@ const SignUpComponent: React.FC<Params> = ({ referral }) => {
     setPasswordShown(!passwordShown);
   };
 
-  const handleNext = () => {
+  const handleNext = async () => {
+    setErrorCode(false);
     if (step === 1 && !formData.first_name) {
       setErrFn(true);
     } else if (step === 1 && !formData.last_name) {
@@ -205,7 +247,20 @@ const SignUpComponent: React.FC<Params> = ({ referral }) => {
     } else if (step === 1 && !formData.shopName) {
       setErrShopName(true);
     } else {
-      setStep(step + 1);
+      toast.loading("Loading...");
+
+      const post = await axios.post(
+        process.env.SERVER_ENDPOINT + "/api/seller/check-code",
+        { phone_number: formData.phone_number, code: formData.register_code }
+      );
+      if (post.status == 200) {
+        toast.dismiss();
+        setErrorCode(false);
+        setStep(step + 1);
+      } else {
+        toast.dismiss();
+        setErrorCode(true);
+      }
     }
   };
 
@@ -332,18 +387,46 @@ const SignUpComponent: React.FC<Params> = ({ referral }) => {
                     </div>
                     <div>
                       <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">
-                        Phone number
+                        Whatsapp Number
                       </label>
-                      <input
-                        required
-                        name="phone_number"
-                        id="phone_number"
-                        value={formData.phone_number}
-                        onChange={handleChange}
-                        type="text"
-                        placeholder="XXX-XX-XXXX-XXX"
-                        className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
-                      />
+                      <div className="">
+                        <div className="flex flex-row border border-slate-400 p-2 rounded-md justify-between focus-within:border-sky-600 group">
+                          <input
+                            required
+                            name="phone_number"
+                            id="phone_number"
+                            value={formData.phone_number}
+                            onChange={handleChange}
+                            type="text"
+                            placeholder="XXX-XX-XXXX-XXX"
+                            className="outline-none"
+                          />
+                          <button
+                            onClick={() => {
+                              requestVerificationCode();
+                            }}
+                            disabled={timer > 0}
+                            type="button"
+                            className="bg-sky-400 text-sm text-white p-1 rounded-lg">
+                            {timer > 0 ? `Retry in ${timer}s` : "Get Code"}
+                          </button>
+                        </div>
+                        <div className="">
+                          <input
+                            name="register_code"
+                            value={formData.register_code}
+                            onChange={handleChange}
+                            type="text"
+                            placeholder="code"
+                            className="mt-1 p-2 w-full outline-sky-300 border border-gray-400 rounded-md"
+                          />
+                          {errCode && (
+                            <label className="text-red-600 text-sm">
+                              Invalid Code
+                            </label>
+                          )}
+                        </div>
+                      </div>
                       {errPhone && (
                         <label className="text-red-600 text-sm">
                           Wajib untuk diisi
@@ -438,6 +521,8 @@ const SignUpComponent: React.FC<Params> = ({ referral }) => {
                       />
                       <input
                         required
+                        value={formData.shop_sub_domain}
+                        onChange={handleChange}
                         name="shop_sub_domain"
                         id="shop_sub_domain"
                         type="text"
