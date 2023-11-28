@@ -1,12 +1,34 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Icons } from "@/app/components/ui/Icons";
 import Image from "next/image";
 import PageAbout from "@/app/web/about/page";
+import Link from "next/link";
 
 export default function LandingPageComponent() {
   const [close, setClose] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      setIsVisible(scrollTop > 100);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
   return (
     <>
       <main className="flex-auto">
@@ -2148,6 +2170,14 @@ export default function LandingPageComponent() {
               </li>
             </ul>
           </div>
+
+          <button
+            className={`${
+              isVisible ? "block" : "hidden"
+            } fixed bottom-4 right-4 bg-blue-500 text-white p-2 rounded`}
+            onClick={scrollToTop}>
+            Top
+          </button>
         </section>
       </main>
     </>

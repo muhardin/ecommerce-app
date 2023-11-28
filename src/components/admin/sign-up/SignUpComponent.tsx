@@ -409,7 +409,7 @@ const SignUpComponent: React.FC<Params> = ({ referral }) => {
                             }}
                             disabled={timer > 0}
                             type="button"
-                            className="bg-sky-400 text-sm text-white p-1 rounded-lg">
+                            className="bg-sky-400 text-sm text-white px-2 py-1 rounded-lg">
                             {timer > 0 ? `Retry in ${timer}s` : "Get Code"}
                           </button>
                         </div>

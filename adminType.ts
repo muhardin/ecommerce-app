@@ -1,3 +1,5 @@
+import { ShopData } from "./type";
+
 // Product type definition
 export interface Product {
   id: number;
@@ -148,7 +150,7 @@ export interface Order {
   reseller_id: number;
   address_id: number;
   quantity: number;
-  amount: string;
+  amount: Number;
   profit: any; // Add proper type here
   order_status: string;
   payment_method: string;
@@ -163,6 +165,7 @@ export interface Order {
   shipping_status: any; // Add proper type here
   payment_image: string | null;
   notif: number;
+  user: User;
   snap_token: string | null;
   payment_status: string;
   payment_type: any; // Add proper type here
@@ -170,6 +173,7 @@ export interface Order {
   status: any; // Add proper type here
   order_detail: OrderDetail[];
   order_payment: OrderPayment;
+  shop: ShopData;
 }
 // ProductCategory type definition
 export interface ProductCategory {

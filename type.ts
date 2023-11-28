@@ -1,5 +1,6 @@
 import { OrderDetail } from "./typeJs";
 import { Supplier } from "./adminType";
+import { Domain } from "domain";
 export interface ProductShops {
   id: number;
   title: string;
@@ -84,8 +85,7 @@ export interface ShopData {
   id: number;
   theme_id: number;
   user_id: number;
-  domain: string | null;
-  subdomain: string | null;
+  domain: ShopDomain[];
   master: string | null;
   slug: string | null;
   tagline: string | null;
@@ -318,6 +318,7 @@ export interface Order {
   order_payment: OrderPayment;
   user: User;
   order: Order;
+  shop: ShopData;
 }
 
 export interface Payment {
@@ -394,6 +395,7 @@ export interface OrderItem {
   shipping_resi?: string | null;
   product: Product;
   order: Order;
+  shop: ShopData;
   item: OrderItem;
   user_address: UserAddress;
 }

@@ -6,6 +6,10 @@ import { useSession } from "next-auth/react";
 import useSWR from "swr";
 import OrderSupplierUpdate from "@/app/components/supplier/order/OrderSupplierUpdate";
 import { Order, OrderDetail } from "../../../../adminType";
+import { Icons } from "@/app/components/ui/Icons";
+import FormattedPrice from "@/app/components/FormattedPrice";
+import { OrderItem } from "../../../../type";
+import { useState } from "react";
 
 const OrderAdminComponentNext = () => {
   function formatDateAndTime(dateTimeString: string) {
@@ -27,6 +31,10 @@ const OrderAdminComponentNext = () => {
 
   toast.dismiss();
   const { data: session } = useSession();
+  const [currentPage, setCurrentPage] = useState(1);
+  const [statusFilter, setStatusFilter] = useState<string>("");
+  const [filterText, setFilterText] = useState<string>("");
+
   const fetcher = (url: any) =>
     fetch(url, {
       method: "GET",
@@ -36,7 +44,7 @@ const OrderAdminComponentNext = () => {
       },
     }).then((res) => res.json());
 
-  const url = process.env.SERVER_ENDPOINT + "/api/admin/order/";
+  const url = `${process.env.SERVER_ENDPOINT}/api/admin/order?page=${currentPage}&search=${statusFilter}`;
   const {
     data: orders,
     isLoading,
@@ -46,6 +54,16 @@ const OrderAdminComponentNext = () => {
     refreshInterval: 3000,
   });
 
+  const startItem = (currentPage - 1) * orders?.per_page + 1;
+  const endItem = Math.min(currentPage * orders?.per_page, orders?.total);
+
+  const [itemOffset, setItemOffset] = useState(0);
+  const pageCount = Math.ceil(orders?.total / orders?.per_page);
+  const handlePageClick = (selected: number) => {
+    setCurrentPage(Number(selected + 1));
+    const newOffset = (selected * orders?.per_page) % orders?.total;
+    setItemOffset(newOffset);
+  };
   console.log(orders);
   return (
     <>
@@ -56,12 +74,10 @@ const OrderAdminComponentNext = () => {
               <div className="flex-auto p-0 md:p-4">
                 <div
                   className="mb-4 border-b border-gray-200 dark:border-slate-700"
-                  data-fc-type="tab"
-                >
+                  data-fc-type="tab">
                   <ul
                     className="flex flex-wrap -mb-px text-sm font-medium text-center"
-                    aria-label="Tabs"
-                  >
+                    aria-label="Tabs">
                     <li className="me-2" role="presentation">
                       <button
                         className="inline-block p-4 rounded-t-lg border-b-2 active "
@@ -70,8 +86,7 @@ const OrderAdminComponentNext = () => {
                         type="button"
                         role="tab"
                         aria-controls="all"
-                        aria-selected="false"
-                      >
+                        aria-selected="false">
                         All <span className="text-slate-400">(451)</span>
                       </button>
                     </li>
@@ -83,8 +98,7 @@ const OrderAdminComponentNext = () => {
                         type="button"
                         role="tab"
                         aria-controls="panding"
-                        aria-selected="false"
-                      >
+                        aria-selected="false">
                         Pending <span className="text-slate-400">(35)</span>
                       </button>
                     </li>
@@ -96,8 +110,7 @@ const OrderAdminComponentNext = () => {
                         type="button"
                         role="tab"
                         aria-controls="returns"
-                        aria-selected="false"
-                      >
+                        aria-selected="false">
                         Returns <span className="text-slate-400">(25)</span>
                       </button>
                     </li>
@@ -107,8 +120,7 @@ const OrderAdminComponentNext = () => {
                   <div className="mb-2 w-44">
                     <select
                       id="Category"
-                      className="w-full rounded-md mt-1 border border-slate-300/60 dark:border-slate-700 dark:text-slate-300 bg-transparent px-3 py-2 focus:outline-none focus:ring-0 placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-primary-500 dark:focus:border-primary-500  dark:hover:border-slate-700"
-                    >
+                      className="w-full rounded-md mt-1 border border-slate-300/60 dark:border-slate-700 dark:text-slate-300 bg-transparent px-3 py-2 focus:outline-none focus:ring-0 placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-primary-500 dark:focus:border-primary-500  dark:hover:border-slate-700">
                       <option className="dark:text-slate-700">
                         All Category
                       </option>
@@ -123,8 +135,7 @@ const OrderAdminComponentNext = () => {
                   <div className="mb-2 w-36">
                     <select
                       id="Payment"
-                      className="w-full rounded-md mt-1 border border-slate-300/60 dark:border-slate-700 dark:text-slate-300 bg-transparent px-3 py-2 focus:outline-none focus:ring-0 placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-primary-500 dark:focus:border-primary-500  dark:hover:border-slate-700"
-                    >
+                      className="w-full rounded-md mt-1 border border-slate-300/60 dark:border-slate-700 dark:text-slate-300 bg-transparent px-3 py-2 focus:outline-none focus:ring-0 placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-primary-500 dark:focus:border-primary-500  dark:hover:border-slate-700">
                       <option className="dark:text-slate-700">Payment</option>
                       <option className="dark:text-slate-700">Online</option>
                       <option className="dark:text-slate-700">Check</option>
@@ -146,13 +157,16 @@ const OrderAdminComponentNext = () => {
                             strokeLinecap="round"
                             strokeLinejoin="round"
                             data-lucide="search"
-                            className="lucide lucide-search z-[1] w-5 h-5 stroke-slate-400"
-                          >
+                            className="lucide lucide-search z-[1] w-5 h-5 stroke-slate-400">
                             <circle cx="11" cy="11" r="8"></circle>
                             <path d="m21 21-4.3-4.3"></path>
                           </svg>
                         </div>
                         <input
+                          onChange={(e) => {
+                            setFilterText(e.target.value);
+                          }}
+                          value={filterText}
                           type="search"
                           id="productSearch"
                           className="form-input w-52 rounded-md mt-1 border border-slate-300/60 dark:border-slate-700 dark:text-slate-300 bg-transparent px-3 py-2 focus:outline-none focus:ring-0 placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-primary-500 dark:focus:border-primary-500  dark:hover:border-slate-700 pl-10 p-2.5"
@@ -162,8 +176,10 @@ const OrderAdminComponentNext = () => {
                     </form>
                   </div>
                   <div>
-                    <button className="inline-block focus:outline-none bg-brand-500 mt-1 text-white hover:bg-brand-600 hover:text-white  text-md font-medium py-2 px-4 rounded">
-                      Add product
+                    <button
+                      onClick={() => setStatusFilter(filterText)}
+                      className="bg-sky-500 inline-block focus:outline-none bg-brand-500 mt-1 text-white hover:bg-brand-600 hover:text-white  text-md font-medium py-2 px-4 rounded">
+                      Search
                     </button>
                   </div>
                 </div>
@@ -173,8 +189,7 @@ const OrderAdminComponentNext = () => {
                     className="active  p-4 bg-gray-50 rounded-lg dark:bg-gray-700/20"
                     id="all"
                     role="tabpanel"
-                    aria-labelledby="all-tab"
-                  >
+                    aria-labelledby="all-tab">
                     <div className="grid grid-cols-1 p-0 md:p-4">
                       <div className="sm:-mx-6 lg:-mx-8">
                         <div className="relative overflow-x-auto block w-full sm:px-6 lg:px-8">
@@ -194,231 +209,305 @@ const OrderAdminComponentNext = () => {
                                 </th>
                                 <th
                                   scope="col"
-                                  className="p-3 text-xs font-medium tracking-wider text-left text-gray-700 dark:text-gray-400 uppercase"
-                                >
+                                  className="p-3 text-xs font-medium tracking-wider text-left text-gray-700 dark:text-gray-400 uppercase">
                                   Order ID
                                 </th>
                                 <th
                                   scope="col"
-                                  className="p-3 text-xs font-medium tracking-wider text-left text-gray-700 dark:text-gray-400 uppercase"
-                                >
+                                  className="p-3 text-xs font-medium tracking-wider text-left text-gray-700 dark:text-gray-400 uppercase">
                                   Customer
                                 </th>
                                 <th
                                   scope="col"
-                                  className="p-3 text-xs font-medium tracking-wider text-left text-gray-700 dark:text-gray-400 uppercase"
-                                >
+                                  className="p-3 text-xs font-medium tracking-wider text-left text-gray-700 dark:text-gray-400 uppercase">
+                                  Shop
+                                </th>
+                                <th
+                                  scope="col"
+                                  className="p-3 text-xs font-medium tracking-wider text-left text-gray-700 dark:text-gray-400 uppercase">
                                   Total
                                 </th>
                                 <th
                                   scope="col"
-                                  className="p-3 text-xs font-medium tracking-wider text-left text-gray-700 dark:text-gray-400 uppercase"
-                                >
+                                  className="p-3 text-xs font-medium tracking-wider text-left text-gray-700 dark:text-gray-400 uppercase">
                                   Date
                                 </th>
+
                                 <th
                                   scope="col"
-                                  className="p-3 text-xs font-medium tracking-wider text-left text-gray-700 dark:text-gray-400 uppercase"
-                                >
-                                  Type
+                                  className="p-3 text-xs font-medium tracking-wider text-left text-gray-700 dark:text-gray-400 uppercase">
+                                  Payment Status
                                 </th>
                                 <th
                                   scope="col"
-                                  className="p-3 text-xs font-medium tracking-wider text-left text-gray-700 dark:text-gray-400 uppercase"
-                                >
-                                  Status
-                                </th>
-                                <th
-                                  scope="col"
-                                  className="p-3 text-xs font-medium tracking-wider text-left text-gray-700 dark:text-gray-400 uppercase"
-                                >
+                                  className="p-3 text-xs font-medium tracking-wider text-left text-gray-700 dark:text-gray-400 uppercase">
                                   Action
                                 </th>
                               </tr>
                             </thead>
                             <tbody>
-                              <tr className="bg-white border-b border-dashed dark:bg-gray-900 dark:border-gray-700/40">
-                                <td className="w-4 p-4">
-                                  <label className="custom-label">
-                                    <div className="bg-white dark:bg-slate-600/40 border border-slate-200 dark:border-slate-600 rounded w-5 h-5  inline-block leading-5 text-center -mb-[6px]">
-                                      <input
-                                        type="checkbox"
-                                        className="hidden"
-                                      />
-                                      <i className="icofont-verification-check hidden text-xs text-brand-500 dark:text-slate-200"></i>
-                                    </div>
-                                  </label>
-                                </td>
-                                <td className="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                  <a
-                                    href="admin-order-details.html"
-                                    className="text-brand-500 underline"
-                                  >
-                                    #523666
-                                  </a>
-                                </td>
-                                <td className="p-3 text-sm font-medium whitespace-nowrap dark:text-white">
-                                  <div className="flex items-center">
-                                    <img
-                                      src="assets/images/users/avatar-2.png"
-                                      alt=""
-                                      className="me-2 h-8 inline-block"
-                                    />
-                                    <div className="self-center">
-                                      <h5 className="text-sm font-semibold text-slate-700 dark:text-gray-400">
-                                        Merri Diamond
-                                      </h5>
-                                      <span className="block  font-medium text-slate-500">
-                                        New york, USA
-                                      </span>
-                                    </div>
-                                  </div>
-                                </td>
-                                <td className="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                  $540.00
-                                </td>
-                                <td className="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                  20 Jun 2023
-                                </td>
-                                <td className="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                  Cash
-                                </td>
-                                <td className="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                  <span className="bg-green-600/5 text-green-600 text-[11px] font-medium px-2.5 py-0.5 rounded h-5">
-                                    Success
-                                  </span>
-                                </td>
-                                <td className="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                  <a href="#">
-                                    <i className="icofont-ui-edit text-lg text-gray-500 dark:text-gray-400"></i>
-                                  </a>
-                                  <a href="#">
-                                    <i className="icofont-ui-delete text-lg text-red-500 dark:text-red-400"></i>
-                                  </a>
-                                </td>
-                              </tr>
+                              {orders?.data?.length > 0 ? (
+                                orders.data.map((item: Order) => (
+                                  <>
+                                    <tr
+                                      key={item.id}
+                                      className="bg-white border-b border-dashed dark:bg-gray-900 dark:border-gray-700/40">
+                                      <td className="w-4 p-4">
+                                        <label className="custom-label">
+                                          <div className="bg-white dark:bg-slate-600/40 border border-slate-200 dark:border-slate-600 rounded w-5 h-5  inline-block leading-5 text-center -mb-[6px]">
+                                            <input
+                                              type="checkbox"
+                                              className="hidden"
+                                            />
+                                            <i className="icofont-verification-check hidden text-xs text-brand-500 dark:text-slate-200"></i>
+                                          </div>
+                                        </label>
+                                      </td>
+                                      <td className="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
+                                        <a
+                                          href="admin-order-details.html"
+                                          className="text-brand-500 underline">
+                                          #{item.invoice_number}
+                                        </a>
+                                      </td>
+                                      <td className="p-3 text-sm font-medium whitespace-nowrap dark:text-white">
+                                        <div className="flex items-center">
+                                          <Image
+                                            width={45}
+                                            height={45}
+                                            src="/images/no_image.png"
+                                            alt=""
+                                            className="me-2 h-8 inline-block"
+                                          />
+                                          <div className="self-center">
+                                            <h5 className="text-sm font-semibold text-slate-700 dark:text-gray-400">
+                                              {item.user.first_name +
+                                                " " +
+                                                item.user?.first_name}
+                                            </h5>
+                                            <span className="font-medium text-slate-500 flex flex-row gap-2 items-center">
+                                              <label htmlFor="">
+                                                {item.user.phone_number},{" "}
+                                              </label>
+                                              <button>
+                                                <Icons.whatsapp />
+                                              </button>
+                                            </span>
+                                            <span className="font-medium text-slate-500 flex flex-row gap-2 items-center">
+                                              <label htmlFor="">
+                                                {item.user.email}
+                                              </label>
+                                            </span>
+                                          </div>
+                                        </div>
+                                      </td>
 
-                              <tr className="bg-white border-b border-dashed dark:bg-gray-900 dark:border-gray-700/40">
-                                <td className="w-4 p-4">
-                                  <label className="custom-label">
-                                    <div className="bg-white dark:bg-slate-600/40 border border-slate-200 dark:border-slate-600 rounded w-5 h-5  inline-block leading-5 text-center -mb-[6px]">
-                                      <input
-                                        type="checkbox"
-                                        className="hidden"
-                                      />
-                                      <i className="icofont-verification-check hidden text-xs text-brand-500 dark:text-slate-200"></i>
-                                    </div>
-                                  </label>
-                                </td>
-                                <td className="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                  <a
-                                    href="admin-order-details.html"
-                                    className="text-brand-500 underline"
-                                  >
-                                    #658475
-                                  </a>
-                                </td>
-                                <td className="p-3 text-sm font-medium whitespace-nowrap dark:text-white">
-                                  <div className="flex items-center">
-                                    <img
-                                      src="assets/images/users/avatar-2.png"
-                                      alt=""
-                                      className="me-2 h-8 inline-block"
-                                    />
-                                    <div className="self-center">
-                                      <h5 className="text-sm font-semibold text-slate-700 dark:text-gray-400">
-                                        Glenn Rogers
-                                      </h5>
-                                      <span className="block  font-medium text-slate-500">
-                                        New york, USA
-                                      </span>
-                                    </div>
-                                  </div>
-                                </td>
-                                <td className="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                  $550.00
-                                </td>
-                                <td className="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                  10 jul 2023
-                                </td>
-                                <td className="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                  online
-                                </td>
-                                <td className="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                  <span className="bg-yellow-600/5 text-yellow-600 text-[11px] font-medium px-2.5 py-0.5 rounded h-5">
-                                    Pending
-                                  </span>
-                                </td>
-                                <td className="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                  <a href="#">
-                                    <i className="icofont-ui-edit text-lg text-gray-500 dark:text-gray-400"></i>
-                                  </a>
-                                  <a href="#">
-                                    <i className="icofont-ui-delete text-lg text-red-500 dark:text-red-400"></i>
-                                  </a>
-                                </td>
-                              </tr>
+                                      <td className="p-3 text-sm font-medium whitespace-nowrap dark:text-white">
+                                        <div className="flex items-center">
+                                          <Image
+                                            width={45}
+                                            height={45}
+                                            src={`${process.env.SERVER_ENDPOINT}/storage/logo/${item.shop.logo}`}
+                                            alt=""
+                                            className="me-2 h-8 inline-block"
+                                          />
+                                          <div className="self-center">
+                                            <h5 className="text-sm font-semibold text-slate-700 dark:text-gray-400">
+                                              {item.shop.company_name}
+                                            </h5>
+                                            <span className="font-medium text-slate-500 flex flex-row gap-2 items-center">
+                                              <label htmlFor="">
+                                                {item.shop.phone}
+                                              </label>
+                                            </span>
+                                            <span className="font-medium text-slate-500 flex flex-row gap-2 items-center">
+                                              <label htmlFor="">
+                                                {item.shop.domain[0].domain}
+                                              </label>
+                                            </span>
+                                          </div>
+                                        </div>
+                                      </td>
+                                      <td className="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
+                                        <FormattedPrice amount={item.amount} />
+                                      </td>
+                                      <td className="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
+                                        20 Jun 2023
+                                      </td>
+                                      <td className="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
+                                        {item.order_payment.status ===
+                                        "UNPAID" ? (
+                                          <span className="bg-red-600/5 text-red-600 text-[11px] font-medium px-2.5 py-0.5 rounded h-5">
+                                            {item.order_payment.status}
+                                          </span>
+                                        ) : item.order_payment.status ===
+                                          "PAID" ? (
+                                          <span className="bg-green-600/5 text-green-600 text-[11px] font-medium px-2.5 py-0.5 rounded h-5">
+                                            {item.order_payment.status}
+                                          </span>
+                                        ) : (
+                                          <span className="bg-green-600/5 text-green-600 text-[11px] font-medium px-2.5 py-0.5 rounded h-5">
+                                            {item.order_payment.status}
+                                          </span>
+                                        )}
+                                      </td>
+                                      <td className="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400"></td>
+                                    </tr>
 
-                              <tr className="bg-white border-b border-dashed dark:bg-gray-900 dark:border-gray-700/40">
-                                <td className="w-4 p-4">
-                                  <label className="custom-label">
-                                    <div className="bg-white dark:bg-slate-600/40 border border-slate-200 dark:border-slate-600 rounded w-5 h-5  inline-block leading-5 text-center -mb-[6px]">
-                                      <input
-                                        type="checkbox"
-                                        className="hidden"
-                                      />
-                                      <i className="icofont-verification-check hidden text-xs text-brand-500 dark:text-slate-200"></i>
+                                    <tr>
+                                      <td
+                                        colSpan={8}
+                                        className="p-2 text-center">
+                                        <details className="collapse bg-base-200">
+                                          <summary className="collapse-title text-xl font-medium">
+                                            Details
+                                          </summary>
+                                          <div className="collapse-content w-full">
+                                            <div className="p-2 flex flex-col gap-1 text-xs font-mono">
+                                              <div className="grid grid-cols-5 gap-4 w-full text-lg">
+                                                <div className="flex justify-start">
+                                                  Product
+                                                </div>
+                                                <div className="flex justify-start">
+                                                  Supplier
+                                                </div>
+                                                <div className="flex justify-start">
+                                                  Address
+                                                </div>
+                                                <div className="flex justify-start">
+                                                  Shipping
+                                                </div>
+                                                <div className="flex justify-end pr-4">
+                                                  Status
+                                                </div>
+                                              </div>
+                                              {item.order_detail.map((prod) => (
+                                                <div
+                                                  key={prod.id}
+                                                  className="w-full border border-red-500 p-1 rounded-lg grid grid-cols-5 gap-4 text-sm">
+                                                  <div className="w-full flex flex-row justify-start items-center">
+                                                    <div className="w-10 h-10 flex items-center justify-center">
+                                                      <Image
+                                                        className="object-scale-down"
+                                                        src={`${process.env.SERVER_ENDPOINT}${prod.product.product_gallery[0].url}`}
+                                                        width={25}
+                                                        height={20}
+                                                        alt=""
+                                                      />
+                                                    </div>
+                                                    <div className=" w-full">
+                                                      <div className="flex flex-col justify-start gap-1">
+                                                        <div className="flex justify-start">
+                                                          {prod.product.title}
+                                                        </div>
+                                                        <div className="flex justify-start">
+                                                          Qty : {prod.quantity}
+                                                        </div>
+                                                        <div className="flex justify-start">
+                                                          {prod.order_status}
+                                                        </div>
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                                  <div className="flex flex-col justify-start items-start gap-1 w-full">
+                                                    <div className="flex justify-start">
+                                                      {
+                                                        prod.product.supplier
+                                                          .supplier_name
+                                                      }
+                                                    </div>
+                                                    <div className="flex justify-start">
+                                                      {
+                                                        prod.product.supplier
+                                                          .subdistrict_name
+                                                      }
+                                                    </div>
+                                                    <div className="flex justify-start">
+                                                      {
+                                                        prod.product.supplier
+                                                          .user.first_name
+                                                      }
+                                                    </div>
+                                                    <div className="flex justify-start">
+                                                      {
+                                                        prod.product.supplier
+                                                          .user.phone_number
+                                                      }
+                                                    </div>
+                                                  </div>
+                                                  <div className="flex flex-col justify-start">
+                                                    <div className="flex justify-start">
+                                                      {
+                                                        prod.user_address
+                                                          .contact_person
+                                                      }
+                                                    </div>
+                                                    <div className="flex justify-start">
+                                                      Phone :{" "}
+                                                      {prod.user_address.phone}
+                                                    </div>
+                                                    <div className="flex justify-start">
+                                                      {
+                                                        prod.user_address
+                                                          .subdistrict_name
+                                                      }
+                                                    </div>
+                                                    <div className="flex justify-start">
+                                                      {
+                                                        prod.user_address
+                                                          .province_name
+                                                      }
+                                                    </div>
+                                                  </div>
+                                                  <div className="flex flex-col justify-start">
+                                                    <div className="flex justify-start">
+                                                      {prod.shipping_method}
+                                                    </div>
+                                                    <div className="flex justify-start">
+                                                      {prod.shipping_option}
+                                                    </div>
+                                                    <div className="flex justify-start">
+                                                      {prod.shipping_resi}
+                                                    </div>
+                                                  </div>
+                                                  <div className="flex justify-end items-center pr-4">
+                                                    <div className="">
+                                                      <button className="capitalize p-2 bg-red-400 text-white rounded-md">
+                                                        {prod.order_status}
+                                                      </button>
+                                                    </div>
+                                                  </div>
+                                                  {/* {prod.order_status ===
+                                                    "delivering" && (
+                                                    <div className="flex items-end justify-end gap-1">
+                                                      <button
+                                                        className={`inline-flex items-center rounded-md bg-green-600 py-2 px-3 text-xs text-white cursor-pointer`}>
+                                                        Track
+                                                      </button>
+                                                      <button
+                                                        className={`inline-flex items-center rounded-md bg-sky-600 py-2 px-3 text-xs text-white cursor-pointer`}>
+                                                        Terima
+                                                      </button>
+                                                    </div>
+                                                  )} */}
+                                                </div>
+                                              ))}
+                                            </div>
+                                          </div>
+                                        </details>
+                                      </td>
+                                    </tr>
+                                  </>
+                                ))
+                              ) : (
+                                <tr>
+                                  <td colSpan={8} className="p-6 text-center">
+                                    <div className="flex justify-center items-center">
+                                      <span className="loading loading-dots loading-lg"></span>
                                     </div>
-                                  </label>
-                                </td>
-                                <td className="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                  <a
-                                    href="admin-order-details.html"
-                                    className="text-brand-500 underline"
-                                  >
-                                    #523666
-                                  </a>
-                                </td>
-                                <td className="p-3 text-sm font-medium whitespace-nowrap dark:text-white">
-                                  <div className="flex items-center">
-                                    <img
-                                      src="assets/images/users/avatar-7.png"
-                                      alt=""
-                                      className="me-2 h-8 inline-block"
-                                    />
-                                    <div className="self-center">
-                                      <h5 className="text-sm font-semibold text-slate-700 dark:text-gray-400">
-                                        Merri Diamond
-                                      </h5>
-                                      <span className="block  font-medium text-slate-500">
-                                        New york, USA
-                                      </span>
-                                    </div>
-                                  </div>
-                                </td>
-                                <td className="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                  $880.00
-                                </td>
-                                <td className="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                  22 Oct 2023
-                                </td>
-                                <td className="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                  Cash
-                                </td>
-                                <td className="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                  <span className="bg-red-600/5 text-red-600 text-[11px] font-medium px-2.5 py-0.5 rounded h-5">
-                                    Cancel
-                                  </span>
-                                </td>
-                                <td className="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                  <a href="#">
-                                    <i className="icofont-ui-edit text-lg text-gray-500 dark:text-gray-400"></i>
-                                  </a>
-                                  <a href="#">
-                                    <i className="icofont-ui-delete text-lg text-red-500 dark:text-red-400"></i>
-                                  </a>
-                                </td>
-                              </tr>
+                                  </td>
+                                </tr>
+                              )}
                             </tbody>
                           </table>
                         </div>
@@ -433,18 +522,30 @@ const OrderAdminComponentNext = () => {
                       <div className="self-center">
                         <ul className="inline-flex items-center -space-x-px">
                           <li>
-                            <a
-                              href="#"
-                              className=" py-2 px-3 ms-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-900 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                            >
-                              <i className="icofont-simple-left"></i>
-                            </a>
+                            <button
+                              disabled={currentPage < 2}
+                              onClick={() => {
+                                setCurrentPage(Number(currentPage - 1));
+                              }}
+                              className="align-bottom inline-flex items-center justify-center leading-5 transition-colors duration-150 font-medium focus:outline-none p-2 rounded-md hover:bg-gray-100 text-gray-800 dark:text-gray-400 border border-transparent opacity-50 cursor-pointer"
+                              type="button"
+                              aria-label="Previous">
+                              <svg
+                                className="h-3 w-3"
+                                aria-hidden="true"
+                                fill="currentColor"
+                                viewBox="0 0 20 20">
+                                <path
+                                  d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+                                  clipRule="evenodd"
+                                  fillRule="evenodd"></path>
+                              </svg>
+                            </button>
                           </li>
-                          <li>
+                          {/* <li>
                             <a
                               href="#"
-                              className="py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-900 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                            >
+                              className="py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-900 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
                               1
                             </a>
                           </li>
@@ -452,649 +553,58 @@ const OrderAdminComponentNext = () => {
                             <a
                               href="#"
                               aria-current="page"
-                              className="z-10 py-2 px-3 leading-tight text-brand-600 bg-brand-50 border border-brand-300 hover:bg-brand-100 hover:text-brand-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white"
-                            >
+                              className="z-10 py-2 px-3 leading-tight text-brand-600 bg-brand-50 border border-brand-300 hover:bg-brand-100 hover:text-brand-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white">
                               2
                             </a>
                           </li>
                           <li>
                             <a
                               href="#"
-                              className="py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-900 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                            >
+                              className="py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-900 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
                               3
                             </a>
-                          </li>
+                          </li> */}
+                          {Array.from({ length: pageCount }).map((_, index) => {
+                            const page = index + 1;
+                            return (
+                              <li key={index}>
+                                <button
+                                  onClick={() => {
+                                    handlePageClick(index);
+                                  }}
+                                  key={page}
+                                  className={`mx-1 align-bottom inline-flex items-center justify-center cursor-pointer leading-5 transition-colors duration-150 font-medium focus:outline-none px-3 py-1 rounded-md text-xs ${
+                                    page == currentPage &&
+                                    "text-white bg-emerald-500"
+                                  } border border-transparent active:bg-emerald-600 hover:bg-emerald-600 hover:text-slate-50`}
+                                  type="button">
+                                  {page}
+                                </button>
+                              </li>
+                            );
+                          })}
                           <li>
-                            <a
-                              href="#"
-                              className=" py-2 px-3 leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-900 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                            >
-                              <i className="icofont-simple-right"></i>
-                            </a>
+                            <button
+                              disabled={currentPage == pageCount}
+                              onClick={() => {
+                                setCurrentPage(Number(currentPage + 1));
+                              }}
+                              className="align-bottom inline-flex items-center justify-center cursor-pointer leading-5 transition-colors duration-150 font-medium p-2 rounded-md text-gray-600 dark:text-gray-400 focus:outline-none border border-transparent active:bg-transparent hover:bg-gray-100 dark:hover:bg-gray-500 dark:hover:text-gray-300 dark:hover:bg-opacity-10"
+                              type="button"
+                              aria-label="Next">
+                              <svg
+                                className="h-3 w-3"
+                                aria-hidden="true"
+                                fill="currentColor"
+                                viewBox="0 0 20 20">
+                                <path
+                                  d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                                  clipRule="evenodd"
+                                  fillRule="evenodd"></path>
+                              </svg>
+                            </button>
                           </li>
                         </ul>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    className="hidden p-4 bg-gray-50 rounded-lg dark:bg-gray-800"
-                    id="panding"
-                    role="tabpanel"
-                    aria-labelledby="panding-tab"
-                  >
-                    <div className="grid grid-cols-1 p-0 md:p-4">
-                      <div className="sm:-mx-6 lg:-mx-8">
-                        <div className="relative overflow-x-auto block w-full sm:px-6 lg:px-8">
-                          <table className="w-full">
-                            <thead className="bg-gray-50 dark:bg-gray-600/20">
-                              <tr>
-                                <th scope="col" className="p-3">
-                                  <label className="custom-label">
-                                    <div className="bg-white dark:bg-slate-600/40 border border-slate-200 dark:border-slate-600 rounded w-5 h-5  inline-block leading-5 text-center -mb-[6px]">
-                                      <input
-                                        type="checkbox"
-                                        className="hidden"
-                                      />
-                                      <i className="icofont-verification-check hidden text-xs text-brand-500 dark:text-slate-200"></i>
-                                    </div>
-                                  </label>
-                                </th>
-                                <th
-                                  scope="col"
-                                  className="p-3 text-xs font-medium tracking-wider text-left text-gray-700 dark:text-gray-400 uppercase"
-                                >
-                                  Order ID
-                                </th>
-                                <th
-                                  scope="col"
-                                  className="p-3 text-xs font-medium tracking-wider text-left text-gray-700 dark:text-gray-400 uppercase"
-                                >
-                                  Customer
-                                </th>
-                                <th
-                                  scope="col"
-                                  className="p-3 text-xs font-medium tracking-wider text-left text-gray-700 dark:text-gray-400 uppercase"
-                                >
-                                  Total
-                                </th>
-                                <th
-                                  scope="col"
-                                  className="p-3 text-xs font-medium tracking-wider text-left text-gray-700 dark:text-gray-400 uppercase"
-                                >
-                                  Date
-                                </th>
-                                <th
-                                  scope="col"
-                                  className="p-3 text-xs font-medium tracking-wider text-left text-gray-700 dark:text-gray-400 uppercase"
-                                >
-                                  Type
-                                </th>
-                                <th
-                                  scope="col"
-                                  className="p-3 text-xs font-medium tracking-wider text-left text-gray-700 dark:text-gray-400 uppercase"
-                                >
-                                  Status
-                                </th>
-                                <th
-                                  scope="col"
-                                  className="p-3 text-xs font-medium tracking-wider text-left text-gray-700 dark:text-gray-400 uppercase"
-                                >
-                                  Action
-                                </th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr className="bg-white border-b border-dashed dark:bg-gray-900 dark:border-gray-700/40">
-                                <td className="w-4 p-4">
-                                  <label className="custom-label">
-                                    <div className="bg-white dark:bg-slate-600/40 border border-slate-200 dark:border-slate-600 rounded w-5 h-5  inline-block leading-5 text-center -mb-[6px]">
-                                      <input
-                                        type="checkbox"
-                                        className="hidden"
-                                      />
-                                      <i className="icofont-verification-check hidden text-xs text-brand-500 dark:text-slate-200"></i>
-                                    </div>
-                                  </label>
-                                </td>
-                                <td className="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                  <a
-                                    href="admin-order-details.html"
-                                    className="text-brand-500 underline"
-                                  >
-                                    #523666
-                                  </a>
-                                </td>
-                                <td className="p-3 text-sm font-medium whitespace-nowrap dark:text-white">
-                                  <div className="flex items-center">
-                                    <img
-                                      src="assets/images/users/avatar-2.png"
-                                      alt=""
-                                      className="me-2 h-8 inline-block"
-                                    />
-                                    <div className="self-center">
-                                      <h5 className="text-sm font-semibold text-slate-700 dark:text-gray-400">
-                                        Merri Diamond
-                                      </h5>
-                                      <span className="block  font-medium text-slate-500">
-                                        New york, USA
-                                      </span>
-                                    </div>
-                                  </div>
-                                </td>
-                                <td className="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                  $540.00
-                                </td>
-                                <td className="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                  20 Jun 2023
-                                </td>
-                                <td className="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                  Cash
-                                </td>
-                                <td className="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                  <span className="bg-yellow-600/5 text-yellow-600 text-[11px] font-medium px-2.5 py-0.5 rounded h-5">
-                                    Panding
-                                  </span>
-                                </td>
-                                <td className="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                  <a href="#">
-                                    <i className="icofont-ui-edit text-lg text-gray-500 dark:text-gray-400"></i>
-                                  </a>
-                                  <a href="#">
-                                    <i className="icofont-ui-delete text-lg text-red-500 dark:text-red-400"></i>
-                                  </a>
-                                </td>
-                              </tr>
-
-                              <tr className="bg-white border-b border-dashed dark:bg-gray-900 dark:border-gray-700/40">
-                                <td className="w-4 p-4">
-                                  <label className="custom-label">
-                                    <div className="bg-white dark:bg-slate-600/40 border border-slate-200 dark:border-slate-600 rounded w-5 h-5  inline-block leading-5 text-center -mb-[6px]">
-                                      <input
-                                        type="checkbox"
-                                        className="hidden"
-                                      />
-                                      <i className="icofont-verification-check hidden text-xs text-brand-500 dark:text-slate-200"></i>
-                                    </div>
-                                  </label>
-                                </td>
-                                <td className="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                  <a
-                                    href="admin-order-details.html"
-                                    className="text-brand-500 underline"
-                                  >
-                                    #369258
-                                  </a>
-                                </td>
-                                <td className="p-3 text-sm font-medium whitespace-nowrap dark:text-white">
-                                  <div className="flex items-center">
-                                    <img
-                                      src="assets/images/users/avatar-2.png"
-                                      alt=""
-                                      className="me-2 h-8 inline-block"
-                                    />
-                                    <div className="self-center">
-                                      <h5 className="text-sm font-semibold text-slate-700 dark:text-gray-400">
-                                        Glenn Rogers
-                                      </h5>
-                                      <span className="block  font-medium text-slate-500">
-                                        New york, USA
-                                      </span>
-                                    </div>
-                                  </div>
-                                </td>
-                                <td className="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                  $550.00
-                                </td>
-                                <td className="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                  10 jul 2023
-                                </td>
-                                <td className="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                  online
-                                </td>
-                                <td className="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                  <span className="bg-yellow-600/5 text-yellow-600 text-[11px] font-medium px-2.5 py-0.5 rounded h-5">
-                                    Pending
-                                  </span>
-                                </td>
-                                <td className="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                  <a href="#">
-                                    <i className="icofont-ui-edit text-lg text-gray-500 dark:text-gray-400"></i>
-                                  </a>
-                                  <a href="#">
-                                    <i className="icofont-ui-delete text-lg text-red-500 dark:text-red-400"></i>
-                                  </a>
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="flex justify-between mt-4">
-                      <div className="self-center">
-                        <p className="dark:text-slate-400">
-                          Showing 1 - 20 of 1,524
-                        </p>
-                      </div>
-                      <div className="self-center">
-                        <ul className="inline-flex items-center -space-x-px">
-                          <li>
-                            <a
-                              href="#"
-                              className=" py-2 px-3 ms-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-900 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                            >
-                              <i className="icofont-simple-left"></i>
-                            </a>
-                          </li>
-                          <li>
-                            <a
-                              href="#"
-                              className="py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-900 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                            >
-                              1
-                            </a>
-                          </li>
-                          <li>
-                            <a
-                              href="#"
-                              aria-current="page"
-                              className="z-10 py-2 px-3 leading-tight text-brand-600 bg-brand-50 border border-brand-300 hover:bg-brand-100 hover:text-brand-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white"
-                            >
-                              2
-                            </a>
-                          </li>
-                          <li>
-                            <a
-                              href="#"
-                              className="py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-900 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                            >
-                              3
-                            </a>
-                          </li>
-                          <li>
-                            <a
-                              href="#"
-                              className=" py-2 px-3 leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-900 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                            >
-                              <i className="icofont-simple-right"></i>
-                            </a>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    className="hidden p-4 bg-gray-50 rounded-lg dark:bg-gray-800"
-                    id="returns"
-                    role="tabpanel"
-                    aria-labelledby="returns-tab"
-                  >
-                    <div className="grid grid-cols-1 p-0 md:p-4">
-                      <div className="sm:-mx-6 lg:-mx-8">
-                        <div className="relative overflow-x-auto block w-full sm:px-6 lg:px-8">
-                          <table className="w-full">
-                            <thead className="bg-gray-50 dark:bg-gray-600/20">
-                              <tr>
-                                <th scope="col" className="p-3">
-                                  <label className="custom-label">
-                                    <div className="bg-white dark:bg-slate-600/40 border border-slate-200 dark:border-slate-600 rounded w-5 h-5  inline-block leading-5 text-center -mb-[6px]">
-                                      <input
-                                        type="checkbox"
-                                        className="hidden"
-                                      />
-                                      <i className="icofont-verification-check hidden text-xs text-brand-500 dark:text-slate-200"></i>
-                                    </div>
-                                  </label>
-                                </th>
-                                <th
-                                  scope="col"
-                                  className="p-3 text-xs font-medium tracking-wider text-left text-gray-700 dark:text-gray-400 uppercase"
-                                >
-                                  Order ID
-                                </th>
-                                <th
-                                  scope="col"
-                                  className="p-3 text-xs font-medium tracking-wider text-left text-gray-700 dark:text-gray-400 uppercase"
-                                >
-                                  Customer
-                                </th>
-                                <th
-                                  scope="col"
-                                  className="p-3 text-xs font-medium tracking-wider text-left text-gray-700 dark:text-gray-400 uppercase"
-                                >
-                                  Total
-                                </th>
-                                <th
-                                  scope="col"
-                                  className="p-3 text-xs font-medium tracking-wider text-left text-gray-700 dark:text-gray-400 uppercase"
-                                >
-                                  Date
-                                </th>
-                                <th
-                                  scope="col"
-                                  className="p-3 text-xs font-medium tracking-wider text-left text-gray-700 dark:text-gray-400 uppercase"
-                                >
-                                  Type
-                                </th>
-                                <th
-                                  scope="col"
-                                  className="p-3 text-xs font-medium tracking-wider text-left text-gray-700 dark:text-gray-400 uppercase"
-                                >
-                                  Status
-                                </th>
-                                <th
-                                  scope="col"
-                                  className="p-3 text-xs font-medium tracking-wider text-left text-gray-700 dark:text-gray-400 uppercase"
-                                >
-                                  Action
-                                </th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr className="bg-white border-b border-dashed dark:bg-gray-900 dark:border-gray-700/40">
-                                <td className="w-4 p-4">
-                                  <label className="custom-label">
-                                    <div className="bg-white dark:bg-slate-600/40 border border-slate-200 dark:border-slate-600 rounded w-5 h-5  inline-block leading-5 text-center -mb-[6px]">
-                                      <input
-                                        type="checkbox"
-                                        className="hidden"
-                                      />
-                                      <i className="icofont-verification-check hidden text-xs text-brand-500 dark:text-slate-200"></i>
-                                    </div>
-                                  </label>
-                                </td>
-                                <td className="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                  <a
-                                    href="admin-order-details.html"
-                                    className="text-brand-500 underline"
-                                  >
-                                    #998587
-                                  </a>
-                                </td>
-                                <td className="p-3 text-sm font-medium whitespace-nowrap dark:text-white">
-                                  <div className="flex items-center">
-                                    <img
-                                      src="assets/images/users/avatar-2.png"
-                                      alt=""
-                                      className="me-2 h-8 inline-block"
-                                    />
-                                    <div className="self-center">
-                                      <h5 className="text-sm font-semibold text-slate-700 dark:text-gray-400">
-                                        Glenn Rogers
-                                      </h5>
-                                      <span className="block  font-medium text-slate-500">
-                                        New york, USA
-                                      </span>
-                                    </div>
-                                  </div>
-                                </td>
-                                <td className="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                  $550.00
-                                </td>
-                                <td className="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                  10 jul 2023
-                                </td>
-                                <td className="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                  online
-                                </td>
-                                <td className="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                  <span className="bg-red-600/5 text-red-600 text-[11px] font-medium px-2.5 py-0.5 rounded h-5">
-                                    Cancel
-                                  </span>
-                                </td>
-                                <td className="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                  <a href="#">
-                                    <i className="icofont-ui-edit text-lg text-gray-500 dark:text-gray-400"></i>
-                                  </a>
-                                  <a href="#">
-                                    <i className="icofont-ui-delete text-lg text-red-500 dark:text-red-400"></i>
-                                  </a>
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    className="hidden p-4 bg-gray-50 rounded-lg dark:bg-gray-800"
-                    id="discount"
-                    role="tabpanel"
-                    aria-labelledby="discount-tab"
-                  >
-                    <div className="grid grid-cols-1 p-0 md:p-4">
-                      <div className="sm:-mx-6 lg:-mx-8">
-                        <div className="relative overflow-x-auto block w-full sm:px-6 lg:px-8">
-                          <table className="w-full">
-                            <thead className="bg-gray-50 dark:bg-gray-600/20">
-                              <tr>
-                                <th scope="col" className="p-3">
-                                  <label className="custom-label">
-                                    <div className="bg-white dark:bg-slate-600/40 border border-slate-200 dark:border-slate-600 rounded w-5 h-5  inline-block leading-5 text-center -mb-[6px]">
-                                      <input
-                                        type="checkbox"
-                                        className="hidden"
-                                      />
-                                      <i className="icofont-verification-check hidden text-xs text-brand-500 dark:text-slate-200"></i>
-                                    </div>
-                                  </label>
-                                </th>
-                                <th
-                                  scope="col"
-                                  className="p-3 text-xs font-medium tracking-wider text-left text-gray-700 dark:text-gray-400 uppercase"
-                                >
-                                  Product &amp; Title
-                                </th>
-                                <th
-                                  scope="col"
-                                  className="p-3 text-xs font-medium tracking-wider text-left text-gray-700 dark:text-gray-400 uppercase"
-                                >
-                                  Categories
-                                </th>
-                                <th
-                                  scope="col"
-                                  className="p-3 text-xs font-medium tracking-wider text-left text-gray-700 dark:text-gray-400 uppercase"
-                                >
-                                  Stock status
-                                </th>
-                                <th
-                                  scope="col"
-                                  className="p-3 text-xs font-medium tracking-wider text-left text-gray-700 dark:text-gray-400 uppercase"
-                                >
-                                  Attributes
-                                </th>
-                                <th
-                                  scope="col"
-                                  className="p-3 text-xs font-medium tracking-wider text-left text-gray-700 dark:text-gray-400 uppercase"
-                                >
-                                  Price
-                                </th>
-                                <th
-                                  scope="col"
-                                  className="p-3 text-xs font-medium tracking-wider text-left text-gray-700 dark:text-gray-400 uppercase"
-                                >
-                                  Date
-                                </th>
-                                <th
-                                  scope="col"
-                                  className="p-3 text-xs font-medium tracking-wider text-left text-gray-700 dark:text-gray-400 uppercase"
-                                >
-                                  Action
-                                </th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr className="bg-white border-b border-dashed dark:bg-gray-900 dark:border-gray-700/40">
-                                <td className="w-4 p-4">
-                                  <label className="custom-label">
-                                    <div className="bg-white dark:bg-slate-600/40 border border-slate-200 dark:border-slate-600 rounded w-5 h-5  inline-block leading-5 text-center -mb-[6px]">
-                                      <input
-                                        type="checkbox"
-                                        className="hidden"
-                                      />
-                                      <i className="icofont-verification-check hidden text-xs text-brand-500 dark:text-slate-200"></i>
-                                    </div>
-                                  </label>
-                                </td>
-                                <td className="p-3 text-sm font-medium whitespace-nowrap dark:text-white">
-                                  <div className="flex items-center">
-                                    <img
-                                      src="assets/images/products/pro-5.png"
-                                      alt=""
-                                      className="me-2 h-8 inline-block"
-                                    />
-                                    <div className="self-center">
-                                      <h5 className="text-sm font-semibold text-slate-700 dark:text-gray-400">
-                                        Mannat Watch 3 Active{" "}
-                                      </h5>
-                                      <span className="block  font-medium text-slate-500">
-                                        Latest Model 2023
-                                      </span>
-                                    </div>
-                                  </div>
-                                </td>
-                                <td className="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                  <a
-                                    href="#"
-                                    className="text-brand-500 underline"
-                                  >
-                                    Fashion
-                                  </a>
-                                  ,
-                                  <a
-                                    href="#"
-                                    className="text-brand-500 underline"
-                                  >
-                                    Lifestayle
-                                  </a>
-                                </td>
-                                <td className="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                  <span className="bg-green-600/5 text-green-600 text-[11px] font-medium px-2.5 py-0.5 rounded h-5">
-                                    In stock
-                                  </span>
-                                </td>
-                                <td className="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                  <div>
-                                    color :
-                                    <span className="ms-2">
-                                      <i className="icofont-brand-mts text-orange-500"></i>
-                                      <i className="icofont-brand-mts text-purple-500"></i>
-                                    </span>
-                                  </div>
-                                  <div>
-                                    Size :<span className="ms-2">S</span>
-                                    <span className="mx-1">M</span>
-                                    <span className="mx-1">L</span>
-                                    <span className="mx-1">XL</span>
-                                    <span className="mx-1">XXL</span>
-                                  </div>
-                                </td>
-                                <td className="p-3 font-semibold text-lg text-gray-800 whitespace-nowrap dark:text-gray-400">
-                                  $219{" "}
-                                  <del className="text-slate-500 font-normal">
-                                    $299
-                                  </del>
-                                </td>
-                                <td className="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                  25 Nov 2023
-                                </td>
-                                <td className="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                  <a href="#">
-                                    <i className="icofont-ui-edit text-lg text-gray-500 dark:text-gray-400"></i>
-                                  </a>
-                                  <a href="#">
-                                    <i className="icofont-ui-delete text-lg text-red-500 dark:text-red-400"></i>
-                                  </a>
-                                </td>
-                              </tr>
-                              <tr className="bg-white border-b border-dashed dark:bg-gray-900 dark:border-gray-700/40">
-                                <td className="w-4 p-4">
-                                  <label className="custom-label">
-                                    <div className="bg-white dark:bg-slate-600/40 border border-slate-200 dark:border-slate-600 rounded w-5 h-5  inline-block leading-5 text-center -mb-[6px]">
-                                      <input
-                                        type="checkbox"
-                                        className="hidden"
-                                      />
-                                      <i className="icofont-verification-check hidden text-xs text-brand-500 dark:text-slate-200"></i>
-                                    </div>
-                                  </label>
-                                </td>
-                                <td className="p-3 text-sm font-medium whitespace-nowrap dark:text-white">
-                                  <div className="flex items-center">
-                                    <img
-                                      src="assets/images/products/pro-6.png"
-                                      alt=""
-                                      className="me-2 h-8 inline-block"
-                                    />
-                                    <div className="self-center">
-                                      <h5 className="text-sm font-semibold text-slate-700 dark:text-gray-400">
-                                        Mannat Watch 3 Active{" "}
-                                      </h5>
-                                      <span className="block  font-medium text-slate-500">
-                                        Latest Model 2023
-                                      </span>
-                                    </div>
-                                  </div>
-                                </td>
-                                <td className="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                  <a
-                                    href="#"
-                                    className="text-brand-500 underline"
-                                  >
-                                    Fashion
-                                  </a>
-                                  ,
-                                  <a
-                                    href="#"
-                                    className="text-brand-500 underline"
-                                  >
-                                    Lifestayle
-                                  </a>
-                                </td>
-                                <td className="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                  <span className="bg-green-600/5 text-green-600 text-[11px] font-medium px-2.5 py-0.5 rounded h-5">
-                                    In stock
-                                  </span>
-                                </td>
-                                <td className="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                  <div>
-                                    color :
-                                    <span className="ms-2">
-                                      <i className="icofont-brand-mts text-orange-500"></i>
-                                      <i className="icofont-brand-mts text-purple-500"></i>
-                                    </span>
-                                  </div>
-                                  <div>
-                                    Size :<span className="ms-2">S</span>
-                                    <span className="mx-1">M</span>
-                                    <span className="mx-1">L</span>
-                                    <span className="mx-1">XL</span>
-                                    <span className="mx-1">XXL</span>
-                                  </div>
-                                </td>
-                                <td className="p-3 font-semibold text-lg text-gray-800 whitespace-nowrap dark:text-gray-400">
-                                  $219{" "}
-                                  <del className="text-slate-500 font-normal">
-                                    $299
-                                  </del>
-                                </td>
-                                <td className="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                  25 Nov 2023
-                                </td>
-                                <td className="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                  <a href="#">
-                                    <i className="icofont-ui-edit text-lg text-gray-500 dark:text-gray-400"></i>
-                                  </a>
-                                  <a href="#">
-                                    <i className="icofont-ui-delete text-lg text-red-500 dark:text-red-400"></i>
-                                  </a>
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
                       </div>
                     </div>
                   </div>
