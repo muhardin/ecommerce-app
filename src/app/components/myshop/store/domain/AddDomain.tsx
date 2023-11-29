@@ -51,20 +51,10 @@ const AddDomain: React.FC<ModalProps> = ({ isOpen, closeModal, id }) => {
       ...formData,
       [e.target.name]: e.target.value,
     });
-    if (name === "domain") {
-      const domainRegex = /^[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-      if (!domainRegex.test(formData.domain)) {
-        setIsValidDomain(true);
-        setMessage("Invalid domain format.");
-        return;
-      } else {
-        setIsValidDomain(false);
-        setMessage("");
-      }
-    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
+    setMessage("");
     toast.loading("loading...");
     e.preventDefault();
     // Additional server-side validation
@@ -73,26 +63,30 @@ const AddDomain: React.FC<ModalProps> = ({ isOpen, closeModal, id }) => {
       return;
     }
 
-    try {
-      const headers = {
-        Authorization: `Bearer ${session?.bearer}`,
-        "Content-Type": "multipart/form-data", // Use 'multipart/form-data' for FormData
-      };
+    const headers = {
+      Authorization: `Bearer ${session?.bearer}`,
+      "Content-Type": "multipart/form-data", // Use 'multipart/form-data' for FormData
+    };
 
-      const response = await axios.post(
-        `${process.env.SERVER_ENDPOINT}/api/myshop-board/domains/domain-add/${id}`,
-        formData,
-        { headers }
-      );
-      if (response.status == 200) {
-        toast.dismiss();
-        toast.success("Domain added successfully", { duration: 6000 });
-        closeModal();
+    const response = await axios.post(
+      `${process.env.SERVER_ENDPOINT}/api/myshop-board/domains/domain-add/${id}`,
+      formData,
+      { headers }
+    );
+    console.log(response);
+    if (response.status == 200) {
+      toast.dismiss();
+      toast.success("Domain added successfully", { duration: 6000 });
+      closeModal();
+    } else {
+      toast.dismiss();
+      if (response.data.message) {
+        toast.error(`${response.data.message[0]}`);
+        setMessage(response.data.message[0]);
       } else {
-        toast.dismiss();
+        toast.error(`${response.data.message.error[0]}`);
+        setMessage(response.data.message.error[0]);
       }
-    } catch (error) {
-      setMessage(`Error adding ShopDomain`);
     }
   };
 
@@ -161,7 +155,11 @@ const AddDomain: React.FC<ModalProps> = ({ isOpen, closeModal, id }) => {
                             type="text"
                             placeholder="example.com"
                           />
-                          {message && <label htmlFor="">Invalid Domain</label>}
+                          {message ? (
+                            <label className="text-red-500">{message}</label>
+                          ) : (
+                            ""
+                          )}
                           <div className="mt-1 bg-red-100 p-2 rounded-lg text-sm font-mono">
                             <p className="text-gray-700 ">
                               Mohon untuk segera mengupdate pengaturan Name

@@ -126,7 +126,11 @@ const MyShopListComponent = () => {
         </div>
         <div className="flex-auto p-4 pt-6">
           <ul className="flex flex-col pl-0 mb-0 rounded-lg">
-            {shops ? (
+            {isLoading ? (
+              <div className="flex flex-row justify-center items-center">
+                <span className="loading loading-dots loading-lg"></span>
+              </div>
+            ) : shops?.length > 0 ? (
               shops.map((item: ShopData) => (
                 <li key={item.id} className="">
                   <div className="flex flex-col sm:flex-row gap-2 w-full">
@@ -156,9 +160,15 @@ const MyShopListComponent = () => {
                         </h6>
                         <span className="mb-2 text-xs leading-tight">
                           Domain:{" "}
-                          <span className="font-semibold text-slate-700 dark:text-white sm:ml-2">
-                            {item.domain[0].domain}
-                          </span>
+                          {item?.domain?.length > 0 ? (
+                            <span className="font-semibold text-slate-700 dark:text-white sm:ml-2">
+                              {item?.domain[0].domain}
+                            </span>
+                          ) : (
+                            <span className="font-semibold text-slate-700 dark:text-white sm:ml-2">
+                              No Domain Added
+                            </span>
+                          )}
                         </span>
                         <span className="mb-2 text-xs leading-tight">
                           Email Address:{" "}
@@ -256,7 +266,7 @@ const MyShopListComponent = () => {
               ))
             ) : (
               <div className="flex flex-row justify-center items-center">
-                <span className="loading loading-dots loading-lg"></span>
+                <span className="">No Data</span>
               </div>
             )}
           </ul>

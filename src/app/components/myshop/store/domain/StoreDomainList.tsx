@@ -205,13 +205,17 @@ const StoreDomainList = ({ id }: { id: Number }) => {
           </form>
         </div>
       </div>
-      <div className=" flex flex-col min-w-0 break-words bg-white border-0 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
+      <div className=" flex flex-col min-w-0 break-words bg-white border-0 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl rounded-b-none bg-clip-border">
         <div className="p-6 px-4 pb-0 mb-0 border-b-0 rounded-t-2xl">
-          <h6 className="mb-0 dark:text-white">My Store List</h6>
+          <h6 className="mb-0 dark:text-white">My Domain List</h6>
         </div>
         <div className="flex-auto p-4 pt-6 pb-20 sm:pb-0">
           <ul className="flex flex-col pl-0 mb-0 rounded-lg">
-            {domains ? (
+            {isLoading ? (
+              <div className="flex flex-row justify-center items-center">
+                <span className="loading loading-dots loading-lg"></span>
+              </div>
+            ) : domains?.length > 0 ? (
               domains.map((item: ShopDomain) => (
                 <li key={item.id} className="">
                   <div className="flex flex-col sm:flex-row gap-2 w-full">
@@ -338,8 +342,8 @@ const StoreDomainList = ({ id }: { id: Number }) => {
                 </li>
               ))
             ) : (
-              <div className="flex flex-row justify-center items-center">
-                <span className="loading loading-dots loading-lg"></span>
+              <div className="flex flex-row justify-center items-center pb-4">
+                <span className=""> No Data</span>
               </div>
             )}
           </ul>

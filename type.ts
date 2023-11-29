@@ -417,6 +417,7 @@ export interface User {
   is_supplier: number;
   is_seller: number;
   is_company: number;
+  package: ShopPackage;
   shop: Shops[];
   supplier: Supplier[];
 }
@@ -521,7 +522,7 @@ export interface ShopPackage {
   id: number;
   package_name: string;
   title: string;
-  price: string;
+  price: Number;
   description_price: string;
   maximum_product_sale: number;
   minimum_price_sale: string;

@@ -38,7 +38,6 @@ const SideMenuAdmin = () => {
             <li>
               <Link
                 onClick={() => {
-                  // toggleOpen();
                   dispatch(toggleProfileMenu());
                 }}
                 href="/admin"
@@ -103,7 +102,6 @@ const SideMenuAdmin = () => {
                     <li>
                       <Link
                         onClick={() => {
-                          // toggleOpen();
                           dispatch(toggleProfileMenu());
                         }}
                         href="/admin/order"
@@ -275,7 +273,6 @@ const SideMenuAdmin = () => {
                     <li>
                       <Link
                         onClick={() => {
-                          // toggleOpen();
                           dispatch(toggleProfileMenu());
                         }}
                         href="/admin/wallet"
@@ -301,39 +298,79 @@ const SideMenuAdmin = () => {
                 </div>
               </details>
             </li>
-
             <li>
-              <Link
-                onClick={() => {
-                  dispatch(toggleProfileMenu());
-                }}
-                href="/admin/users"
-                className={`${
-                  pathName.startsWith("/admin/users")
-                    ? "text-gray-100 bg-blue-600 hover:bg-blue-500"
-                    : "text-gray-700 hover:bg-gray-100"
-                } cursor-pointer flex items-center px-8 py-4 group dark:text-gray-400 dark:hover:bg-gray-700 `}>
-                <span className="inline-block mr-3">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="22"
-                    height="22"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    stroke-linejoin="round"
-                    className="lucide lucide-users">
-                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-                    <circle cx="9" cy="7" r="4" />
-                    <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
-                    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-                  </svg>
-                </span>
-                <span> Users </span>
-              </Link>
+              <details className="group">
+                <summary
+                  className={`${
+                    pathName.startsWith("/admin/wallet")
+                      ? "text-gray-100 bg-blue-600 hover:bg-blue-500"
+                      : "text-gray-700 hover:bg-gray-100"
+                  } cursor-pointer flex items-center px-8 py-4 group dark:text-gray-400 dark:hover:bg-gray-700 `}>
+                  <span className="inline-block mr-3">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="22"
+                      height="22"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      stroke-linejoin="round"
+                      className="lucide lucide-users">
+                      <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                      <circle cx="9" cy="7" r="4" />
+                      <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                      <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                    </svg>
+                  </span>
+                  <span> Users </span>
+                  <span className="inline-block ml-auto sidenav-arrow">
+                    <svg
+                      className="w-3 h-3 group-"
+                      viewBox="0 0 10 6"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      data-config-id="auto-svg-3-1">
+                      <path
+                        d="M9.08329 0.666626C8.74996 0.333293 8.24996 0.333293 7.91663 0.666626L4.99996 3.58329L2.08329 0.666626C1.74996 0.333293 1.24996 0.333293 0.916626 0.666626C0.583293 0.999959 0.583293 1.49996 0.916626 1.83329L4.41663 5.33329C4.58329 5.49996 4.74996 5.58329 4.99996 5.58329C5.24996 5.58329 5.41663 5.49996 5.58329 5.33329L9.08329 1.83329C9.41663 1.49996 9.41663 0.999959 9.08329 0.666626Z"
+                        fill="currentColor"></path>
+                    </svg>
+                  </span>
+                </summary>
+                <div
+                  className="pl-3 ml-3 transition border-gray-500 dropdown-section nested-menu"
+                  x-show="open">
+                  <ul className="text-sm ">
+                    <li>
+                      <Link
+                        onClick={() => {
+                          dispatch(toggleProfileMenu());
+                        }}
+                        href="/admin/users"
+                        className="flex items-center py-3 pl-8 pr-4 text-gray-700 rounded dark:text-gray-400 dark:hover:bg-gray-700 hover:bg-gray-100 ">
+                        <span className="text-gray-700 dark:text-gray-400 ">
+                          All
+                        </span>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        onClick={() => {
+                          dispatch(toggleProfileMenu());
+                        }}
+                        href="/admin/users/pending"
+                        className="flex items-center py-3 pl-8 pr-4 text-gray-700 rounded dark:text-gray-400 dark:hover:bg-gray-700 hover:bg-gray-100 ">
+                        <span className="text-gray-700 dark:text-gray-400 ">
+                          User Shops
+                        </span>
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
+              </details>
             </li>
+
             <li>
               <details className="group">
                 <summary
@@ -382,7 +419,6 @@ const SideMenuAdmin = () => {
                     <li>
                       <Link
                         onClick={() => {
-                          // toggleOpen();
                           dispatch(toggleProfileMenu());
                         }}
                         href="/admin/shop"
@@ -395,7 +431,6 @@ const SideMenuAdmin = () => {
                     <li>
                       <Link
                         onClick={() => {
-                          // toggleOpen();
                           dispatch(toggleProfileMenu());
                         }}
                         href="/admin/shop/product"

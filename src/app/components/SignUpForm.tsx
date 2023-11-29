@@ -49,6 +49,7 @@ const RegistrationForm: React.FC = () => {
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    toast.loading("loading...");
     e.preventDefault();
     // Reset errors before validation
     setErrors([]);
@@ -79,6 +80,7 @@ const RegistrationForm: React.FC = () => {
       setIsFail(true);
       toast.dismiss();
     } else if (post.status == 500) {
+      toast.dismiss();
       toast.error("System on maintenance mode");
     }
     console.log(post.data.message.error);
@@ -178,8 +180,7 @@ const RegistrationForm: React.FC = () => {
 
               <form
                 onSubmit={handleSubmit}
-                className="grid grid-cols-1 gap-6 mt-8 md:grid-cols-2"
-              >
+                className="grid grid-cols-1 gap-6 mt-8 md:grid-cols-2">
                 <div>
                   <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">
                     First Name
@@ -271,8 +272,7 @@ const RegistrationForm: React.FC = () => {
                     <button
                       onClick={togglePassword}
                       type="button"
-                      className="absolute right-2 bg-transparent flex items-center justify-center text-gray-700"
-                    >
+                      className="absolute right-2 bg-transparent flex items-center justify-center text-gray-700">
                       {passwordShown ? <IoIosEye /> : <IoIosEyeOff />}
                     </button>
                   </div>
@@ -280,16 +280,14 @@ const RegistrationForm: React.FC = () => {
 
                 <button
                   type="submit"
-                  className="flex items-center justify-between w-full px-6 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-md hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50"
-                >
+                  className="flex items-center justify-between w-full px-6 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-md hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
                   <span>Sign Up </span>
 
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="w-5 h-5 rtl:-scale-x-100"
                     viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
+                    fill="currentColor">
                     <path
                       fillRule="evenodd"
                       d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"

@@ -1,7 +1,5 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { Editor } from "@tinymce/tinymce-react";
-import Switch from "react-switch";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
 import axios from "axios";
@@ -13,16 +11,14 @@ import {
   Wallet,
   Withdraw,
 } from "../../../../type";
-import FormattedPrice from "@/app/components/FormattedPrice";
 import useSWR from "swr";
 import Swal from "sweetalert2";
 import toast, { Toaster } from "react-hot-toast";
-import { CheckCheck, Minus } from "lucide-react";
-import Categories from "@/data/categories.json";
 import { formatDateAndTime } from "@/app/helpers";
-import UpdateUserComponent from "./UpdateUserComponent";
+import UpdatePendingComponent from "./UpdatePendingComponent";
+import FormattedPrice from "@/app/components/FormattedPrice";
 
-const UsersComponents = () => {
+const PendingUserComponent = () => {
   const [checked, setChecked] = useState(false);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -56,7 +52,7 @@ const UsersComponents = () => {
   const [search, setSearch] = useState<string>("");
   const [inputSearch, setInputSearch] = useState<string>("");
   const [currentPage, setCurrentPage] = useState(1);
-  const url = `${process.env.SERVER_ENDPOINT}/api/admin/users?page=${currentPage}&status=${statusFilter}&search=${search}`;
+  const url = `${process.env.SERVER_ENDPOINT}/api/admin/users/pending?page=${currentPage}&status=${statusFilter}&search=${search}`;
   const {
     data: productsItems,
     isLoading,
@@ -176,9 +172,10 @@ const UsersComponents = () => {
             };
             try {
               const response = await axios.post(
-                `${process.env.SERVER_ENDPOINT}/api/admin/wallet/withdraw/multi-accept`,
+                `${process.env.SERVER_ENDPOINT}/api/admin/users/pending/update`,
                 {
-                  id: checkedIds,
+                  ids: checkedIds,
+                  action: act,
                 },
                 {
                   headers: { Authorization: `Bearer ${session?.bearer}` },
@@ -443,6 +440,7 @@ const UsersComponents = () => {
                       />
                     </td>
                     <td className="px-4 py-2">MEMBER NAME</td>
+                    <td className="px-4 py-2">PACKAGE</td>
                     <td className="px-4 py-2">PHONE</td>
                     <td className="px-4 py-2">STATUS</td>
                     <td className="px-4 py-2">IS</td>
@@ -490,6 +488,12 @@ const UsersComponents = () => {
                           </label>
                         </td>
                         <td className="px-4 py-2">
+                          <div className="">{item.package?.package_name}</div>
+                          <div className="">
+                            <FormattedPrice amount={item.package?.price} />
+                          </div>
+                        </td>
+                        <td className="px-4 py-2">
                           <div className="">{item.phone_number}</div>
                         </td>
                         <td className="px-4 py-2">
@@ -530,7 +534,7 @@ const UsersComponents = () => {
                         </td>
                         <td className="px-4 py-2">
                           <span className="text-sm font-semibold"></span>
-                          <UpdateUserComponent
+                          <UpdatePendingComponent
                             isOpen={isModalOpen}
                             closeModal={closeBatch}
                             itemProducts={item}
@@ -556,127 +560,6 @@ const UsersComponents = () => {
                       </td>
                     </tr>
                   )}
-
-                  {/* <tr className="">
-                    <td className="px-4 py-2">
-                      <input
-                        id="6548e6134866d2000960390c"
-                        name="dưdwdw212"
-                        type="checkbox"
-                      />
-                    </td>
-                    <td className="px-4 py-2">
-                      <div className="flex items-center">
-                        <div className="rounded-full inline-block w-8 h-8 p-1 mr-2 md:block bg-gray-50 shadow-none">
-                          <Image
-                            width={250}
-                            height={250}
-                            className="object-cover w-full h-full rounded-full"
-                            src="/images/no_image.png"
-                            alt="product"
-                            loading="lazy"
-                          />
-                        </div>
-
-                        <div>
-                          <h2 className="text-sm font-medium ">dưdwdw212</h2>
-                        </div>
-                      </div>
-                    </td>
-                    <td className="px-4 py-2">
-                      <span className="text-sm">Dog Care</span>
-                    </td>
-                    <td className="px-4 py-2">
-                      <span className="text-sm font-semibold">$111.00</span>
-                    </td>
-                    <td className="px-4 py-2">
-                      <span className="text-sm font-semibold">$11.00</span>
-                    </td>
-                    <td className="px-4 py-2">
-                      <span className="text-sm">0</span>
-                    </td>
-                    <td className="px-4 py-2">
-                      <span className="inline-flex px-2 text-xs font-medium leading-5 rounded-full text-red-500 bg-red-100 dark:text-red-100 dark:bg-red-800">
-                        Sold Out
-                      </span>
-                    </td>
-                    <td className="px-4 py-2">
-                      <a
-                        className="flex justify-center text-gray-400 hover:text-emerald-600"
-                        href="/product/6548e6134866d2000960390c"
-                      >
-                        <p data-tip="true" data-for="view" className="text-xl">
-                          <svg
-                            stroke="currentColor"
-                            fill="none"
-                            strokeWidth="2"
-                            viewBox="0 0 24 24"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            height="1em"
-                            width="1em"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <circle cx="11" cy="11" r="8"></circle>
-                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                            <line x1="11" y1="8" x2="11" y2="14"></line>
-                            <line x1="8" y1="11" x2="14" y2="11"></line>
-                          </svg>
-                        </p>
-                      </a>
-                    </td>
-                    <td className="px-4 py-2 text-center"></td>
-                    <td className="px-4 py-2">
-                      <div className="flex justify-end text-right">
-                        <button className="p-2 cursor-pointer text-gray-400 hover:text-emerald-600 focus:outline-none">
-                          <p
-                            data-tip="true"
-                            data-for="edit"
-                            className="text-xl"
-                          >
-                            <svg
-                              stroke="currentColor"
-                              fill="none"
-                              strokeWidth="2"
-                              viewBox="0 0 24 24"
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              height="1em"
-                              width="1em"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
-                              <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
-                            </svg>
-                          </p>
-                        </button>
-                        <button className="p-2 cursor-pointer text-gray-400 hover:text-red-600 focus:outline-none">
-                          <p
-                            data-tip="true"
-                            data-for="delete"
-                            className="text-xl"
-                          >
-                            <svg
-                              stroke="currentColor"
-                              fill="none"
-                              strokeWidth="2"
-                              viewBox="0 0 24 24"
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              height="1em"
-                              width="1em"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <polyline points="3 6 5 6 21 6"></polyline>
-                              <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-                              <line x1="10" y1="11" x2="10" y2="17"></line>
-                              <line x1="14" y1="11" x2="14" y2="17"></line>
-                            </svg>
-                          </p>
-                        </button>
-                      </div>
-                    </td>
-                  </tr> */}
                 </tbody>
               </table>
             </div>
@@ -775,4 +658,4 @@ const UsersComponents = () => {
   );
 };
 
-export default UsersComponents;
+export default PendingUserComponent;

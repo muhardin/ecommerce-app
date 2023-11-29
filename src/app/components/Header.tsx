@@ -129,8 +129,6 @@ const Header = () => {
   // const { menu } = useSelector((state: any) => state.shopping);
   // console.log(menu);
 
-  const isOpen = useSelector((state: RootState) => state.profile.isOpen);
-
   const handleOpenMenu = () => {
     dispatch(openProfileMenu());
   };
@@ -160,8 +158,7 @@ const Header = () => {
                     data-drawer-toggle="default-sidebar"
                     aria-controls="default-sidebar"
                     type="button"
-                    className=""
-                  >
+                    className="">
                     <span className="sr-only">Open sidebar</span>
                     {!value ? (
                       <Bars3Icon className="block h-6 w-6" aria-hidden="true" />
@@ -213,20 +210,17 @@ const Header = () => {
           <div className="hidden md:flex space-x-3 flex-1 lg:ml-8">
             <Link
               href="#"
-              className="px-2 py-2 hover:bg-gray-100 rounded-lg text-gray-400 hover:text-gray-600"
-            >
+              className="px-2 py-2 hover:bg-gray-100 rounded-lg text-gray-400 hover:text-gray-600">
               Electronics
             </Link>
             <Link
               href="#"
-              className="px-2 py-2 hover:bg-gray-100 rounded-lg text-gray-400 hover:text-gray-600"
-            >
+              className="px-2 py-2 hover:bg-gray-100 rounded-lg text-gray-400 hover:text-gray-600">
               Fashion
             </Link>
             <Link
               href="/aboutus"
-              className="px-2 py-2 hover:bg-gray-100 rounded-lg text-gray-400 hover:text-gray-600"
-            >
+              className="px-2 py-2 hover:bg-gray-100 rounded-lg text-gray-400 hover:text-gray-600">
               About Us
             </Link>
           </div>
@@ -247,8 +241,7 @@ const Header = () => {
                 className=""
                 onClick={() => {
                   toggleNotification();
-                }}
-              >
+                }}>
                 <div className="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"></div>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -256,8 +249,7 @@ const Header = () => {
                   height="25"
                   fill="currentColor"
                   className="text-gray-400"
-                  viewBox="0 0 16 16"
-                >
+                  viewBox="0 0 16 16">
                   <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z" />
                 </svg>
               </span>
@@ -266,8 +258,7 @@ const Header = () => {
                 ref={refNotification}
                 className={`${
                   !notification ? "hidden" : "block"
-                } absolute z-30 top-8 right-0 mt-0 w-96 bg-white p-4 rounded-md shadow-md`}
-              >
+                } absolute z-30 top-8 right-0 mt-0 w-96 bg-white p-4 rounded-md shadow-md`}>
                 <div className="notification-panel">
                   {/* <button
                     aria-hidden="true"
@@ -336,8 +327,7 @@ const Header = () => {
                     aria-hidden="true"
                     id="headlessui-focus-sentinel-after-12"
                     data-headlessui-focus-guard="true"
-                    className="hidden-sentinel"
-                  ></button>
+                    className="hidden-sentinel"></button>
                 </div>
               </div>
             </div>
@@ -348,8 +338,7 @@ const Header = () => {
                   //() => signIn()
                   () => router.push("/sign-in")
                 }
-                className="headerDiv cursor-pointer"
-              >
+                className="headerDiv cursor-pointer">
                 <AiOutlineUser className="text-2xl" />
                 <p className=" text-sm font-semibold">Login/Register</p>
               </div>
@@ -385,8 +374,7 @@ const Header = () => {
                   onClick={() => {
                     toggleProfileMenuShown();
                   }}
-                  className={` cursor-pointer px-4 gap-x-1 py-1 items-center `}
-                >
+                  className={` cursor-pointer px-4 gap-x-1 py-1 items-center `}>
                   <AvatarHeader />
                   {/* <span>
                   {!profileMenuShown ? (
@@ -400,17 +388,14 @@ const Header = () => {
             </div>
             <div
               ref={ref}
-              className={`${!profileMenuShown ? "hidden" : "block"}`}
-            >
+              className={`${!profileMenuShown ? "hidden" : "block"}`}>
               <div
-                className={`absolute right-0 ml-4 p-4 w-screen max-w-screen-sm sm:max-w-screen-sm sm:w-screen md:max-w-screen-sm md:w-screen mt-2 origin-top-right`}
-              >
+                className={`absolute right-0 ml-4 p-4 w-screen max-w-screen-sm sm:max-w-screen-sm sm:w-screen md:max-w-screen-sm md:w-screen mt-2 origin-top-right`}>
                 <div
                   onMouseLeave={() => {
                     setProfileMenuShown(false);
                   }}
-                  className="px-2 pt-2 pb-4 bg-white rounded-md shadow-lg dark-mode:bg-gray-700"
-                >
+                  className="px-2 pt-2 pb-4 bg-white rounded-md shadow-lg dark-mode:bg-gray-700">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <Link
                       onClick={() => {
@@ -421,8 +406,7 @@ const Header = () => {
                         toast.dismiss();
                       }}
                       className={` flex row items-start rounded-lg bg-transparent p-2 dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline`}
-                      href={`/profile`}
-                    >
+                      href={`/profile`}>
                       <div className="bg-sky-500 text-white rounded-lg p-3">
                         <svg
                           fill="none"
@@ -431,8 +415,7 @@ const Header = () => {
                           strokeLinejoin="round"
                           strokeWidth="2"
                           viewBox="0 0 24 24"
-                          className="md:h-6 md:w-6 h-4 w-4"
-                        >
+                          className="md:h-6 md:w-6 h-4 w-4">
                           <path d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
                         </svg>
                       </div>
@@ -450,8 +433,7 @@ const Header = () => {
                         toggleProfileMenuShown();
                       }}
                       className="flex row items-start rounded-lg bg-transparent p-2 dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
-                      href="/order"
-                    >
+                      href="/order">
                       <div className="bg-sky-500 text-white rounded-lg p-3">
                         <AiOutlineOrderedList className="md:h-6 md:w-6 h-4 w-4" />
                       </div>
@@ -466,8 +448,7 @@ const Header = () => {
                         toggleProfileMenuShown();
                       }}
                       className="flex row items-start rounded-lg bg-transparent p-2 dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
-                      href="/buyer"
-                    >
+                      href="/buyer">
                       <div className="bg-sky-500 text-white rounded-lg p-3">
                         <svg
                           fill="none"
@@ -476,8 +457,7 @@ const Header = () => {
                           strokeLinejoin="round"
                           strokeWidth="2"
                           viewBox="0 0 24 24"
-                          className="md:h-6 md:w-6 h-4 w-4"
-                        >
+                          className="md:h-6 md:w-6 h-4 w-4">
                           <path d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path>
                           <path d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path>
                         </svg>
@@ -495,8 +475,7 @@ const Header = () => {
                           toggleProfileMenuShown();
                         }}
                         className="flex row items-start rounded-lg bg-transparent p-2 dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
-                        href="/supplier"
-                      >
+                        href="/supplier">
                         <div className="bg-sky-500 text-white rounded-lg p-3">
                           <svg
                             fill="none"
@@ -505,8 +484,7 @@ const Header = () => {
                             strokeLinejoin="round"
                             strokeWidth="2"
                             viewBox="0 0 24 24"
-                            className="md:h-6 md:w-6 h-4 w-4"
-                          >
+                            className="md:h-6 md:w-6 h-4 w-4">
                             <path d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path>
                             <path d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path>
                           </svg>
@@ -530,8 +508,7 @@ const Header = () => {
                         toggleProfileMenuShown();
                       }}
                       href="/cart"
-                      className=" cursor-pointer flex row items-start rounded-lg bg-transparent p-2 dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
-                    >
+                      className=" cursor-pointer flex row items-start rounded-lg bg-transparent p-2 dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
                       <div className="bg-sky-500 text-white rounded-lg p-3">
                         <IoMdCart className="md:h-6 md:w-6 h-4 w-4" />
                       </div>
@@ -550,8 +527,7 @@ const Header = () => {
                         });
                         toast.dismiss();
                       }}
-                      className=" cursor-pointer flex row items-start rounded-lg bg-transparent p-2 dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
-                    >
+                      className=" cursor-pointer flex row items-start rounded-lg bg-transparent p-2 dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
                       <div className="bg-sky-500 text-white rounded-lg p-3">
                         <FiLogOut className="md:h-6 md:w-6 h-4 w-4" />
                       </div>

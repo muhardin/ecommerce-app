@@ -14,7 +14,7 @@ import { useDispatch } from "react-redux";
 import SideBarWeb from "../menu/SideBarWeb";
 import { ClipboardList, ShoppingBag } from "lucide-react";
 import LucidaIcon from "../ui/LucidaIcons";
-import toast from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import { useUserData } from "../supplier/UserData";
 
 const LayoutComponent = ({ children }: { children: React.ReactNode }) => {
@@ -45,6 +45,9 @@ const LayoutComponent = ({ children }: { children: React.ReactNode }) => {
   const toggleMenuMobile = () => setMenuMobile(!menuMobile);
   const handleToggleMenu = () => {
     dispatch(toggleProfileMenu());
+  };
+  const closeMenu = () => {
+    dispatch(closeProfileMenu());
   };
   const [profileMenu, setProfileMenu] = useState(false);
   const handleToggleProfile = () => {
@@ -463,6 +466,7 @@ const LayoutComponent = ({ children }: { children: React.ReactNode }) => {
                           onClick={() => {
                             toast.loading("Loading...");
                             setProfileMenu(false);
+                            closeMenu();
                             onSignOut();
                           }}
                           className="w-full flex px-4 py-2 text-sm text-red-500 dark:hover:bg-gray-800 dark:text-gray-400 hover:bg-gray-100">
@@ -656,6 +660,7 @@ const LayoutComponent = ({ children }: { children: React.ReactNode }) => {
           //   </div>
           // </footer>
         )}
+        <Toaster />
       </div>
     </>
   );
