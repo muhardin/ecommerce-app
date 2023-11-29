@@ -167,13 +167,17 @@ const MyProductComponent = () => {
         </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-4 ">
-        {productsData ? (
+        {isLoading ? (
+          <div className="flex flex-row justify-center items-center">
+            <span className="loading loading-dots loading-lg"></span>
+          </div>
+        ) : productsData?.length > 0 ? (
           productsData.map((product: Product) => (
             <MyProductList key={product.id} item={product} />
           ))
         ) : (
           <div className="flex flex-row justify-center items-center">
-            <span className="loading loading-dots loading-lg"></span>
+            <span className="">No Data</span>
           </div>
         )}
       </div>
