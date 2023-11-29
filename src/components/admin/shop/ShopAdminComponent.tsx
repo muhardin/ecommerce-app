@@ -490,7 +490,11 @@ const ShopAdminComponent = () => {
                           </label>
                         </td>
                         <td className="px-4 py-2">
-                          <div className="">{item.domain[0].domain}</div>
+                          {item.domain?.length > 0 ? (
+                            <div className="">{item.domain[0].domain}</div>
+                          ) : (
+                            "Belum Ada Domain"
+                          )}
                         </td>
                         <td className="px-4 py-2">
                           <span className="text-sm text-red-500">

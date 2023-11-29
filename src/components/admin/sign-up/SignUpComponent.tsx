@@ -387,54 +387,7 @@ const SignUpComponent: React.FC<Params> = ({ referral }) => {
                         onSelect={(code) => handleOptionCountry(code)}
                       />
                     </div>
-                    <div>
-                      <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">
-                        Whatsapp Number
-                      </label>
-                      <div className="">
-                        <div className="flex flex-row border border-slate-400 p-2 rounded-md justify-between focus-within:border-sky-600 group">
-                          <input
-                            required
-                            name="phone_number"
-                            id="phone_number"
-                            value={formData.phone_number}
-                            onChange={handleChange}
-                            type="text"
-                            placeholder="XXX-XX-XXXX-XXX"
-                            className="outline-none"
-                          />
-                          <button
-                            onClick={() => {
-                              requestVerificationCode();
-                            }}
-                            disabled={timer > 0}
-                            type="button"
-                            className="bg-sky-400 text-sm text-white px-2 py-1 rounded-lg">
-                            {timer > 0 ? `Retry in ${timer}s` : "Get Code"}
-                          </button>
-                        </div>
-                        <div className="">
-                          <input
-                            name="register_code"
-                            value={formData.register_code}
-                            onChange={handleChange}
-                            type="text"
-                            placeholder="code"
-                            className="mt-1 p-2 w-full outline-sky-300 border border-gray-400 rounded-md"
-                          />
-                          {errCode && (
-                            <label className="text-red-600 text-sm">
-                              Invalid Code
-                            </label>
-                          )}
-                        </div>
-                      </div>
-                      {errPhone && (
-                        <label className="text-red-600 text-sm">
-                          Wajib untuk diisi
-                        </label>
-                      )}
-                    </div>
+
                     <div>
                       <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">
                         Email address
@@ -541,6 +494,54 @@ const SignUpComponent: React.FC<Params> = ({ referral }) => {
                     <label className="text-green-400 text-sm">
                       Dapat di isi nanti di setting shop
                     </label>
+                  </div>
+                  <div>
+                    <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">
+                      Whatsapp Number
+                    </label>
+                    <div className="">
+                      <div className="flex flex-row border border-slate-400 p-2 rounded-md justify-between focus-within:border-sky-600 group">
+                        <input
+                          required
+                          name="phone_number"
+                          id="phone_number"
+                          value={formData.phone_number}
+                          onChange={handleChange}
+                          type="text"
+                          placeholder="XXX-XX-XXXX-XXX"
+                          className="outline-none"
+                        />
+                        <button
+                          onClick={() => {
+                            requestVerificationCode();
+                          }}
+                          disabled={timer > 0}
+                          type="button"
+                          className="bg-sky-400 text-sm text-white px-2 py-1 rounded-lg">
+                          {timer > 0 ? `Retry in ${timer}s` : "Get Code"}
+                        </button>
+                      </div>
+                      <div className="">
+                        <input
+                          name="register_code"
+                          value={formData.register_code}
+                          onChange={handleChange}
+                          type="text"
+                          placeholder="code"
+                          className="mt-1 p-2 w-full outline-sky-300 border border-gray-400 rounded-md"
+                        />
+                        {errCode && (
+                          <label className="text-red-600 text-sm">
+                            Invalid Code
+                          </label>
+                        )}
+                      </div>
+                    </div>
+                    {errPhone && (
+                      <label className="text-red-600 text-sm">
+                        Wajib untuk diisi
+                      </label>
+                    )}
                   </div>
                   {/* End Setting Shop */}
                   <div className="flex flex-row justify-end gap-2 mt-4">
