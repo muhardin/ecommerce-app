@@ -295,7 +295,7 @@ const PendingUserComponent = () => {
                           stroke="currentColor"
                           strokeWidth="2"
                           strokeLinecap="round"
-                          stroke-linejoin="round"
+                          strokeLinejoin="round"
                           className="lucide lucide-shield-x">
                           <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10" />
                           <path d="m14.5 9-5 5" />
@@ -328,7 +328,7 @@ const PendingUserComponent = () => {
                           stroke="currentColor"
                           strokeWidth="2"
                           strokeLinecap="round"
-                          stroke-linejoin="round"
+                          strokeLinejoin="round"
                           className="lucide lucide-check-check">
                           <path d="M18 6 7 17l-5-5" />
                           <path d="m22 10-7.5 7.5L13 16" />
@@ -354,7 +354,7 @@ const PendingUserComponent = () => {
                           stroke="currentColor"
                           strokeWidth="2"
                           strokeLinecap="round"
-                          stroke-linejoin="round"
+                          strokeLinejoin="round"
                           className="lucide lucide-arrow-up-right-from-circle">
                           <path d="M22 12A10 10 0 1 1 12 2" />
                           <path d="M22 2 12 12" />

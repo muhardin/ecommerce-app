@@ -289,7 +289,7 @@ const TeamMyShopComponent = () => {
                           stroke="currentColor"
                           strokeWidth="2"
                           strokeLinecap="round"
-                          stroke-linejoin="round"
+                          strokeLinejoin="round"
                           className="lucide lucide-send">
                           <path d="m22 2-7 20-4-9-9-4Z" />
                           <path d="M22 2 11 13" />
@@ -315,7 +315,7 @@ const TeamMyShopComponent = () => {
                           stroke="currentColor"
                           strokeWidth="2"
                           strokeLinecap="round"
-                          stroke-linejoin="round"
+                          strokeLinejoin="round"
                           className="lucide lucide-user-plus">
                           <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
                           <circle cx="9" cy="7" r="4" />

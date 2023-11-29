@@ -304,7 +304,7 @@ const TeamMyShopComponent = () => {
                           stroke="currentColor"
                           strokeWidth="2"
                           strokeLinecap="round"
-                          stroke-linejoin="round"
+                          strokeLinejoin="round"
                           className="lucide lucide-clipboard-paste">
                           <path d="M15 2H9a1 1 0 0 0-1 1v2c0 .6.4 1 1 1h6c.6 0 1-.4 1-1V3c0-.6-.4-1-1-1Z" />
                           <path d="M8 4H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2M16 4h2a2 2 0 0 1 2 2v2M11 14h10" />
@@ -341,7 +341,7 @@ const TeamMyShopComponent = () => {
                           stroke="currentColor"
                           strokeWidth="2"
                           strokeLinecap="round"
-                          stroke-linejoin="round"
+                          strokeLinejoin="round"
                           className="lucide lucide-send">
                           <path d="m22 2-7 20-4-9-9-4Z" />
                           <path d="M22 2 11 13" />
@@ -367,7 +367,7 @@ const TeamMyShopComponent = () => {
                           stroke="currentColor"
                           strokeWidth="2"
                           strokeLinecap="round"
-                          stroke-linejoin="round"
+                          strokeLinejoin="round"
                           className="lucide lucide-user-plus">
                           <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
                           <circle cx="9" cy="7" r="4" />

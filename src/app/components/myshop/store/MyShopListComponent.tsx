@@ -103,7 +103,7 @@ const MyShopListComponent = () => {
                       stroke="currentColor"
                       strokeWidth="2"
                       strokeLinecap="round"
-                      stroke-linejoin="round"
+                      strokeLinejoin="round"
                       className="lucide lucide-package-plus">
                       <path d="M16 16h6" />
                       <path d="M19 13v6" />
@@ -195,7 +195,7 @@ const MyShopListComponent = () => {
                               stroke="currentColor"
                               strokeWidth="2"
                               strokeLinecap="round"
-                              stroke-linejoin="round"
+                              strokeLinejoin="round"
                               className="lucide lucide-power-off">
                               <path d="M18.36 6.64A9 9 0 0 1 20.77 15" />
                               <path d="M6.16 6.16a9 9 0 1 0 12.68 12.68" />
@@ -216,9 +216,9 @@ const MyShopListComponent = () => {
                               viewBox="0 0 24 24"
                               fill="none"
                               stroke="currentColor"
-                              stroke-width="2"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
+                              strokeWidth="2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
                               className="lucide lucide-globe">
                               <circle cx="12" cy="12" r="10" />
                               <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
@@ -240,7 +240,7 @@ const MyShopListComponent = () => {
                               stroke="currentColor"
                               strokeWidth="2"
                               strokeLinecap="round"
-                              stroke-linejoin="round"
+                              strokeLinejoin="round"
                               className="lucide lucide-file-signature">
                               <path d="M20 19.5v.5a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8.5L18 5.5" />
                               <path d="M8 18h1" />

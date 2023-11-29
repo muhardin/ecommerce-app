@@ -161,9 +161,9 @@ const StoreDomainList = ({ id }: { id: Number }) => {
                       viewBox="0 0 24 24"
                       fill="none"
                       stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                       className="lucide lucide-undo-2">
                       <path d="M9 14 4 9l5-5" />
                       <path d="M4 9h10.5a5.5 5.5 0 0 1 5.5 5.5v0a5.5 5.5 0 0 1-5.5 5.5H11" />
@@ -188,7 +188,7 @@ const StoreDomainList = ({ id }: { id: Number }) => {
                       stroke="currentColor"
                       strokeWidth="2"
                       strokeLinecap="round"
-                      stroke-linejoin="round"
+                      strokeLinejoin="round"
                       className="lucide lucide-package-plus">
                       <path d="M16 16h6" />
                       <path d="M19 13v6" />
@@ -241,9 +241,9 @@ const StoreDomainList = ({ id }: { id: Number }) => {
                                 viewBox="0 0 24 24"
                                 fill="none"
                                 stroke="currentColor"
-                                stroke-width="2"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
                                 className="lucide lucide-check-check">
                                 <path d="M18 6 7 17l-5-5" />
                                 <path d="m22 10-7.5 7.5L13 16" />
@@ -258,9 +258,9 @@ const StoreDomainList = ({ id }: { id: Number }) => {
                                 viewBox="0 0 24 24"
                                 fill="none"
                                 stroke="currentColor"
-                                stroke-width="2"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
                                 className="lucide lucide-copy-x">
                                 <line x1="12" x2="18" y1="12" y2="18" />
                                 <line x1="12" x2="18" y1="18" y2="12" />
@@ -292,9 +292,9 @@ const StoreDomainList = ({ id }: { id: Number }) => {
                               viewBox="0 0 24 24"
                               fill="none"
                               stroke="currentColor"
-                              stroke-width="2"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
+                              strokeWidth="2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
                               className="lucide lucide-package-x">
                               <path d="M21 10V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l2-1.14" />
                               <path d="m7.5 4.27 9 5.15" />
@@ -314,9 +314,9 @@ const StoreDomainList = ({ id }: { id: Number }) => {
                               viewBox="0 0 24 24"
                               fill="none"
                               stroke="currentColor"
-                              stroke-width="2"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
+                              strokeWidth="2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
                               className="lucide lucide-globe">
                               <circle cx="12" cy="12" r="10" />
                               <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />

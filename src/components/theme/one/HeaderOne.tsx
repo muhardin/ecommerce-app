@@ -397,8 +397,8 @@ const HeaderOne = () => {
               stroke="currentColor"
               strokeWidth="2">
               <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeLinecap="round"
+                strokeLinejoin="round"
                 d="M4 6h16M4 12h16M4 18h7"></path>
             </svg>
           </div>
