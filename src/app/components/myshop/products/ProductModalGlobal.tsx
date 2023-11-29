@@ -57,7 +57,7 @@ const ProductModalGlobal = ({
       }
     };
     fetchData();
-  }, [product, sellingPrice, profitDefault, sharingProfitDefault]);
+  }, [product, sellingPrice, profitDefault, sharingProfitDefault, basePrice]);
 
   const handleChange = (e: Number) => {
     if (Number(e) < Number(sellingPrice)) {

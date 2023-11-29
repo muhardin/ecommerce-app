@@ -27,9 +27,21 @@ const AvailableProduct = async () => {
       </div>
     );
   } else {
+    const sessionServer = await getServerSession(options);
+    const token = sessionServer?.bearer;
+    const shops = await (
+      await fetch(process.env.SERVER_ENDPOINT + "/api/myshop-board/", {
+        cache: "force-cache",
+        next: { tags: ["wallet"] },
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+    ).json();
     return (
       <div>
-        <ProductAvailableComponent />
+        <ProductAvailableGlobalComp shop={shops} />
+        {/* <ProductAvailableComponent /> */}
       </div>
     );
   }

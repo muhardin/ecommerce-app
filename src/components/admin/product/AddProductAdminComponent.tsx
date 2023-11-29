@@ -755,45 +755,6 @@ const AddProductAdminComponent: React.FC<ModalProps> = ({
                     </div>
                   </form>
                 </div>
-                <div role="tree" className="rc-tree">
-                  <div>
-                    <input
-                      tabIndex={0}
-                      aria-label="for screen reader"
-                      value=""
-                      className="w-0 h-0 flex overflow-hidden opacity-0 border-0 p-0 m-0"
-                    />
-                  </div>
-                  <div className="rc-tree-treenode" aria-hidden="true">
-                    <div className="absolute pointer-events-none invisible h-0 overflow-hidden border-0 p-0">
-                      <div className="rc-tree-indent">
-                        <div className="rc-tree-indent-unit"></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="rc-tree-list relative hidden">
-                    <div className="rc-tree-list-holder">
-                      <div>
-                        <div className="rc-tree-list-holder-inner flex flex-col">
-                          <div
-                            className="rc-tree-treenode rc-tree-treenode-switcher-close rc-tree-treenode-leaf-last"
-                            draggable="false">
-                            <span
-                              aria-hidden="true"
-                              className="rc-tree-indent"></span>
-                            <span className="rc-tree-switcher rc-tree-switcher_close"></span>
-                            <span
-                              title="Home"
-                              className="rc-tree-node-content-wrapper rc-tree-node-content-wrapper-close">
-                              <span className="rc-tree-iconEle rc-tree-icon__close"></span>
-                              <span className="rc-tree-title">Home_</span>
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
           </div>

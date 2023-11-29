@@ -47,7 +47,7 @@ const MyProductModal = ({ product }: { product: Product }) => {
       }
     };
     fetchData();
-  }, [product, sellingPrice, finalProfit, sharingProfitDefault]);
+  }, [product, sellingPrice, finalProfit, sharingProfitDefault, basePrice]);
 
   const handleChange = (e: Number) => {
     if (Number(e) < Number(minPrice)) {

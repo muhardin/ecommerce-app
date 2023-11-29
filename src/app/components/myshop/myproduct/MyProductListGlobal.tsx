@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useDispatch } from "react-redux";
 import { addToCart } from "@/redux/shoppingSlice";
 import toast, { Toaster } from "react-hot-toast";
-import { ItemProps, Product, ShopData } from "../../../../../type";
+import { ItemProps, Product, ShopData, ShopProduct } from "../../../../../type";
 import { calculatePercentage } from "@/app/helpers";
 import FormattedPrice from "../../FormattedPrice";
 import MyProductModal from "./MyProductModal";
@@ -19,7 +19,7 @@ const MyProductListGlobal = ({
   item,
   shops,
 }: {
-  item: Product;
+  item: ShopProduct;
   shops: ShopData;
 }) => {
   console.log(item);
@@ -30,7 +30,7 @@ const MyProductListGlobal = ({
       <IoIosStar />
     </span>
   ));
-  const SubmitDelete = async (id?: number, act?: string) => {
+  const SubmitDelete = async (id?: number, shopid?: number, act?: string) => {
     const config = {
       headers: { Authorization: `Bearer ${session?.bearer}` },
     };
@@ -61,7 +61,7 @@ const MyProductListGlobal = ({
             toast.loading("...loading");
             await axios
               .delete(
-                `${process.env.SERVER_ENDPOINT}/api/myshop-board/products/myproducts/delete/${id}/${shopData?.id}`,
+                `${process.env.SERVER_ENDPOINT}/api/myshop-board/products/myproducts/delete/${id}/${shopid}`,
                 {
                   headers: {
                     Authorization: `Bearer ${session?.bearer}`, // Include the bearer token
@@ -94,8 +94,8 @@ const MyProductListGlobal = ({
             query: {
               id: item?.id,
               image:
-                item?.product_gallery?.length > 0
-                  ? item?.product_gallery[0].url
+                item?.product?.product_gallery?.length > 0
+                  ? item?.product?.product_gallery[0].url
                   : "/images/no_image.png",
             },
           }}>
@@ -122,8 +122,8 @@ const MyProductListGlobal = ({
                 query: {
                   id: item?.id,
                   image:
-                    item?.product_gallery?.length > 0
-                      ? item?.product_gallery[0].url
+                    item?.product?.product_gallery?.length > 0
+                      ? item?.product?.product_gallery[0].url
                       : "/images/no_image.png",
                 },
               }}>
@@ -161,7 +161,7 @@ const MyProductListGlobal = ({
               <MyProductModalGlobal product={item} shops={shops} />
               <button
                 onClick={(e) => {
-                  SubmitDelete(item.id, "del");
+                  SubmitDelete(item.id, item.shop_id, "del");
                 }}
                 className=" bg-red-500 py-2 px-4 rounded-lg text-sm tracking-wide text-slate-100 hover:bg-red-600 hover:text-white duration-200">
                 Delete
