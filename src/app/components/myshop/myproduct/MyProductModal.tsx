@@ -7,13 +7,13 @@ import CurrencyInput from "react-currency-input-field";
 import toast, { Toaster } from "react-hot-toast";
 import FormattedPrice from "../../FormattedPrice";
 import { useShopData } from "../../shop/ShopContext";
-import { Product, Products } from "../../../../../type";
+import { Product, Products, ShopProduct } from "../../../../../type";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Swal from "sweetalert2";
 
-const MyProductModal = ({ product }: { product: Product }) => {
+const MyProductModal = ({ product }: { product: ShopProduct }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const shopData = useShopData();

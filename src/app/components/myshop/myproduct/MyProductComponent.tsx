@@ -5,7 +5,7 @@ import { useSession } from "next-auth/react";
 import Products from "../../Products";
 import MyProductList from "./MyProductList";
 import { Supplier } from "../../../../../adminType";
-import { Category, Product } from "../../../../../type";
+import { Category, Product, ShopProduct } from "../../../../../type";
 
 const MyProductComponent = () => {
   const shopData = useShopData();
@@ -47,7 +47,7 @@ const MyProductComponent = () => {
     refreshInterval: 3000,
   });
   /** end of category */
-  // console.log(shopData);
+  console.log(productsData);
   return (
     <div className="flex flex-col gap-2 bg-white pb-20 md:pb-0 p-4 md:p-6">
       <div
@@ -172,7 +172,7 @@ const MyProductComponent = () => {
             <span className="loading loading-dots loading-lg"></span>
           </div>
         ) : productsData?.length > 0 ? (
-          productsData.map((product: Product) => (
+          productsData.map((product: ShopProduct) => (
             <MyProductList key={product.id} item={product} />
           ))
         ) : (

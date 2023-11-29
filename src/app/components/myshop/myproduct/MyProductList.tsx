@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useDispatch } from "react-redux";
 import { addToCart } from "@/redux/shoppingSlice";
 import toast, { Toaster } from "react-hot-toast";
-import { ItemProps, Product } from "../../../../../type";
+import { ItemProps, Product, ShopProduct } from "../../../../../type";
 import { calculatePercentage } from "@/app/helpers";
 import FormattedPrice from "../../FormattedPrice";
 import MyProductModal from "./MyProductModal";
@@ -14,7 +14,7 @@ import { useSession } from "next-auth/react";
 import axios from "axios";
 import { useShopData } from "../../shop/ShopContext";
 
-const MyProductList = ({ item }: { item: Product }) => {
+const MyProductList = ({ item }: { item: ShopProduct }) => {
   const shopData = useShopData();
   const { data: session } = useSession();
   const starArray = Array.from({ length: item?.product.rating }, (_, index) => (
@@ -86,8 +86,8 @@ const MyProductList = ({ item }: { item: Product }) => {
             query: {
               id: item?.id,
               image:
-                item?.product_gallery?.length > 0
-                  ? item?.product_gallery[0].url
+                item?.product?.product_gallery?.length > 0
+                  ? item?.product?.product_gallery[0].url
                   : "/images/no_image.png",
             },
           }}>
@@ -114,8 +114,8 @@ const MyProductList = ({ item }: { item: Product }) => {
                 query: {
                   id: item?.id,
                   image:
-                    item?.product_gallery?.length > 0
-                      ? item?.product_gallery[0].url
+                    item?.product?.product_gallery?.length > 0
+                      ? item?.product?.product_gallery[0].url
                       : "/images/no_image.png",
                 },
               }}>
