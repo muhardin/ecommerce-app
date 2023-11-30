@@ -86,7 +86,7 @@ export default async function RootLayout({
       company_name,
       favicon,
     } = data;
-    // console.log(logo);
+
     return (
       <html lang="en">
         <head>

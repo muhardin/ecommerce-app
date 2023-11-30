@@ -93,19 +93,29 @@ export async function middleware(request: NextRequest) {
           request.url
         )
       );
+
       // return NextResponse.redirect(
       //   `${process.env.LANDING_PAGE}/web/payment/${data.id}`,
       //   { status: 301 }
       // );
     }
 
-    // const dataShop = await (
-    //   await fetch(process.env.SERVER_ENDPOINT + "/api/shop/" + domain, {
-    //     headers: {
-    //       Authorization: `Bearer ${token?.user.bearer}`,
-    //     },
-    //   })
-    // ).json();
+    /** Check is Domain Active or Not */
+    const dataDomain = await (
+      await fetch(process.env.SERVER_ENDPOINT + "/api/shop/" + domain, {
+        headers: {
+          Authorization: `Bearer ${token?.user.bearer}`,
+        },
+      })
+    ).json();
+
+    if (!process.env.LANDING_PAGE?.includes(domain)) {
+      if (!dataDomain.status) {
+        return NextResponse.redirect(new URL("/", request.url));
+      }
+    }
+    /** End Of Check is Domain Active or Not */
+
     const dataShop = await (
       await fetch(
         process.env.SERVER_ENDPOINT + "/api/myshop-board/domain/" + domain,
