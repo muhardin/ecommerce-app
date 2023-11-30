@@ -286,7 +286,7 @@ const TeamMyShopComponent = () => {
                         ref={inputRef}
                         type="text"
                         className="bg-gray-100 rounded-xl text-sm px-2 w-full"
-                        value={`https://${process.env.REFERRAL_PAGE}/ref/code90`}
+                        value={`${process.env.REFERRAL_PAGE}/ref/${session?.username}`}
                       />
                       <span className="text-xs ml-2">Referral Link</span>
                     </div>

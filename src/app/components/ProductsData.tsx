@@ -81,7 +81,7 @@ const ProductsData = ({ item }: { item: ShopProduct }) => {
                 image: `${process.env.SERVER_ENDPOINT}${item?.product?.product_gallery[0].url}`,
               },
             }}>
-            <p className="cursor-pointer hover:text-sky-600">
+            <p className="cursor-pointer hover:text-sky-600 truncate">
               {item?.product.title}
             </p>
           </Link>

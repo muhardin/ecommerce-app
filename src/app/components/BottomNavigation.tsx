@@ -10,7 +10,6 @@ import BottomNavigationFront from "./ui/BottomNavigationFront";
 
 const BottomNavigation = () => {
   const pathName = usePathname();
-  console.log(pathName);
   if (pathName.startsWith("/supplier")) {
     return (
       <div className="">

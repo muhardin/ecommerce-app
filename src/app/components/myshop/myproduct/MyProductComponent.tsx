@@ -47,11 +47,11 @@ const MyProductComponent = () => {
     refreshInterval: 3000,
   });
   /** end of category */
-  console.log(productsData);
-  console.log("Shop Data : - ", shopData);
+  // console.log(productsData);
+  // console.log("Shop Data : - ", shopData);
   return (
     <div className="flex flex-col gap-2 bg-white pb-20 md:pb-0 p-4 md:p-6">
-      <div
+      {/* <div
         className="mb-4 border-b border-gray-200 dark:border-slate-700"
         data-fc-type="tab">
         <ul
@@ -94,46 +94,48 @@ const MyProductComponent = () => {
             </button>
           </li>
         </ul>
-      </div>
-      <div className="flex flex-wrap gap-4 mb-3">
-        <div className="mb-2 w-44">
-          <select
-            id="Category"
-            className="w-full rounded-md mt-1 border border-slate-300/60 dark:border-slate-700 dark:text-slate-300 bg-transparent px-3 py-2 focus:outline-none focus:ring-0 placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-primary-500 dark:focus:border-primary-500  dark:hover:border-slate-700">
-            <option className="dark:text-slate-700">All Category</option>
-            {/* categories */}
-            {categories
-              ? categories.map((item: Category) => (
+      </div> */}
+      <div className="flex flex-wrap gap-4 mb-3 w-full">
+        <div className="w-full flex flex-row gap-2">
+          <div className="mb-2 w-full">
+            <select
+              id="Category"
+              className="w-full rounded-md mt-1 border border-slate-300/60 dark:border-slate-700 dark:text-slate-300 bg-transparent px-3 py-2 focus:outline-none focus:ring-0 placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-primary-500 dark:focus:border-primary-500  dark:hover:border-slate-700">
+              <option className="dark:text-slate-700">All Category</option>
+              {/* categories */}
+              {categories
+                ? categories.map((item: Category) => (
+                    <option
+                      key={item.id}
+                      value={item.id}
+                      className="dark:text-slate-700">
+                      {item.name}
+                    </option>
+                  ))
+                : null}
+            </select>
+          </div>
+          <div className="mb-2 w-full">
+            <select
+              id="City"
+              className="w-full rounded-md mt-1 border border-slate-300/60 dark:border-slate-700 dark:text-slate-300 bg-transparent px-3 py-2 focus:outline-none focus:ring-0 placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-primary-500 dark:focus:border-primary-500  dark:hover:border-slate-700">
+              <option selected className="dark:text-slate-700">
+                City
+              </option>
+              {suppliers &&
+                suppliers.map((item: Supplier) => (
                   <option
-                    key={item.id}
                     value={item.id}
+                    key={item.id}
                     className="dark:text-slate-700">
-                    {item.name}
+                    {item.city_name}
                   </option>
-                ))
-              : null}
-          </select>
+                ))}
+            </select>
+          </div>
         </div>
-        <div className="mb-2 w-36">
-          <select
-            id="City"
-            className="w-full rounded-md mt-1 border border-slate-300/60 dark:border-slate-700 dark:text-slate-300 bg-transparent px-3 py-2 focus:outline-none focus:ring-0 placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-primary-500 dark:focus:border-primary-500  dark:hover:border-slate-700">
-            <option selected className="dark:text-slate-700">
-              City
-            </option>
-            {suppliers &&
-              suppliers.map((item: Supplier) => (
-                <option
-                  value={item.id}
-                  key={item.id}
-                  className="dark:text-slate-700">
-                  {item.city_name}
-                </option>
-              ))}
-          </select>
-        </div>
-        <div className="ms-auto">
-          <form>
+        <div className="flex flex-row gap-2 w-full">
+          <div className="ms-auto">
             <div className="relative">
               <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
                 <svg
@@ -155,16 +157,16 @@ const MyProductComponent = () => {
               <input
                 type="search"
                 id="productSearch"
-                className="form-input w-52 rounded-md mt-1 border border-slate-300/60 dark:border-slate-700 dark:text-slate-300 bg-transparent px-3 py-2 focus:outline-none focus:ring-0 placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-primary-500 dark:focus:border-primary-500  dark:hover:border-slate-700 pl-10 p-2.5"
+                className=" form-input rounded-md mt-1 border border-slate-300/60 dark:border-slate-700 dark:text-slate-300 bg-transparent px-3 py-2 focus:outline-none focus:ring-0 placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-primary-500 dark:focus:border-primary-500  dark:hover:border-slate-700 pl-10 p-2.5"
                 placeholder="search"
               />
             </div>
-          </form>
-        </div>
-        <div>
-          <button className="bg-sky-600 inline-block focus:outline-none bg-brand-500 mt-1 text-white hover:bg-brand-600 hover:text-white  text-md font-medium py-2 px-4 rounded">
-            Search
-          </button>
+          </div>
+          <div>
+            <button className="bg-sky-600 inline-block focus:outline-none bg-brand-500 mt-1 text-white hover:bg-brand-600 hover:text-white  text-md font-medium py-2 px-4 rounded">
+              Search
+            </button>
+          </div>
         </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-4 ">

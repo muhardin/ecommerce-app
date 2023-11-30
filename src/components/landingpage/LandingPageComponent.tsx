@@ -1251,11 +1251,11 @@ export default function LandingPageComponent() {
                     fillOpacity="0.2"></circle>
                 </svg>
                 <h3 className="mt-6 font-semibold text-gray-900">
-                  Invest any amount
+                  RIBUAN PRODUK
                 </h3>
                 <p className="mt-2 text-gray-700">
-                  Whether it’s $1 or $1,000,000, we can put your money to work
-                  for you.
+                  Tersedia ribuan produk fashion siap jual dengan kualitas
+                  terbaik.
                 </p>
               </li>
               <li className="rounded-2xl border border-gray-200 p-8">
@@ -1300,11 +1300,10 @@ export default function LandingPageComponent() {
                   </defs>
                 </svg>
                 <h3 className="mt-6 font-semibold text-gray-900">
-                  Build a balanced portfolio
+                  HARGA TERMURAH
                 </h3>
                 <p className="mt-2 text-gray-700">
-                  Invest in different industries to find the most opportunities
-                  to win huge.
+                  Kami menjamin harga barang kompetitif untuk anda jual kembali.
                 </p>
               </li>
               <li className="rounded-2xl border border-gray-200 p-8">
@@ -1327,11 +1326,11 @@ export default function LandingPageComponent() {
                     fill="#171717"></path>
                 </svg>
                 <h3 className="mt-6 font-semibold text-gray-900">
-                  Trade in real-time
+                  CEK STOK ONLINE
                 </h3>
                 <p className="mt-2 text-gray-700">
-                  Get insider tips on big stock moves and act on them within
-                  seconds.
+                  Informasi stok barang tersedia di web dan di-update setiap
+                  hari.
                 </p>
               </li>
               <li className="rounded-2xl border border-gray-200 p-8">
@@ -1361,11 +1360,10 @@ export default function LandingPageComponent() {
                     fillOpacity="0.2"></circle>
                 </svg>
                 <h3 className="mt-6 font-semibold text-gray-900">
-                  Profit from your network
+                  TOKO ONLINE GRATIS
                 </h3>
                 <p className="mt-2 text-gray-700">
-                  Invite new insiders to get tips faster and beat even other
-                  Pocket users.
+                  Anda bisa membuat banyak toko online sesuai kebutuhan
                 </p>
               </li>
               <li className="rounded-2xl border border-gray-200 p-8">
@@ -1388,11 +1386,10 @@ export default function LandingPageComponent() {
                     fill="#171717"></path>
                 </svg>
                 <h3 className="mt-6 font-semibold text-gray-900">
-                  Encrypted and anonymized
+                  BUAT BRAND SENDIRI
                 </h3>
                 <p className="mt-2 text-gray-700">
-                  Cutting-edge security technology that even the NSA doesn’t
-                  know about keeps you hidden.
+                  Jualan di Shopee Mall, Tokopedia Official Store, LazMall dll
                 </p>
               </li>
               <li className="rounded-2xl border border-gray-200 p-8">
@@ -1424,11 +1421,11 @@ export default function LandingPageComponent() {
                     fillOpacity="0.2"></circle>
                 </svg>
                 <h3 className="mt-6 font-semibold text-gray-900">
-                  Portfolio tracking
+                  GARANSI RETUR
                 </h3>
                 <p className="mt-2 text-gray-700">
-                  Watch your investments grow exponentially, leaving other
-                  investors in the dust.
+                  Kami berikan garansi pengembalian 40 hari. Bisa ganti model/
+                  ukuran.
                 </p>
               </li>
             </ul>
