@@ -54,7 +54,7 @@ export const options: NextAuthOptions = {
           // console.log(user);
           return {
             id: `${user.id}`,
-            name: user?.firstname,
+            name: user?.first_name,
             username: `${user?.username}`,
             email: user?.email,
             bearer: auth?.token,
@@ -95,6 +95,7 @@ export const options: NextAuthOptions = {
       session.is_seller = token?.user?.is_seller;
       session.is_supplier = token?.user?.is_supplier;
       session.is_company = token?.user?.is_company;
+      session.name = token?.user?.first_name;
       return session;
     },
   },

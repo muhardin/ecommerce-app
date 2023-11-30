@@ -90,26 +90,34 @@ const FormLoginT = () => {
             <label htmlFor="email" className="block text-gray-600 font-medium">
               Email
             </label>
-            <input
+            {/* <input
               required
               type="email"
               id="email"
               name="email"
               placeholder="Enter your email"
               className="w-full mt-2 p-2 border rounded-md focus:outline-none focus:border-blue-500 focus:text-white"
+            /> */}
+            <input
+              required
+              name="email"
+              type="email"
+              className="w-full px-4 py-3 mt-2 bg-gray-200 rounded-lg dark:text-gray-100 dark:bg-gray-800"
+              placeholder="Enter your email"
             />
           </div>
 
-          <div className="flex flex-col my-4">
+          <div className="flex flex-col mt-4">
             <label className="text-gray-700">Password</label>
             <div className="relative flex items-center mt-2">
               <input
-                name="password"
-                id="password"
-                className="flex-1 p-2 pr-10 border border-gray-300 focus:outline-none focus:ring-0 focus:border-gray-300 rounded bg-white text-gray-900 focus:text-black"
-                placeholder="Enter your password"
+                required
                 type={passwordShown ? "text" : "password"}
+                className="w-full px-4 py-3 bg-gray-200 rounded-lg dark:text-gray-400 dark:bg-gray-800 "
+                name="password"
+                placeholder="Enter password"
               />
+
               <button
                 onClick={togglePassword}
                 type="button"
@@ -118,6 +126,12 @@ const FormLoginT = () => {
               </button>
             </div>
           </div>
+          <p className="mt-0 mb-2">
+            If you forget your account, please&nbsp;
+            <Link className="text-blue-500 hover:underline" href="/forgot">
+              Forgot Password
+            </Link>
+          </p>
 
           {/* <div className="mb-4">
             <label

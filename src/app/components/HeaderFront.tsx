@@ -339,11 +339,11 @@ const HeaderFront = () => {
                     className="lg:block">
                     <button className="flex items-center">
                       {/* <div className="hidden mr-3 text-right md:block">
-                      <p className="text-sm font-bold text-black dark:text-gray-400">
-                        {" "}
-                        Doe
-                      </p>
-                    </div> */}
+                        <p className="text-sm font-bold text-black dark:text-gray-400">
+                          {" "}
+                          Doe
+                        </p>
+                      </div> */}
                       <div className="mr-2">
                         <Image
                           width={250}

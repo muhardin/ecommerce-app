@@ -12,6 +12,9 @@ const BottomNavigationFront = () => {
   );
   const shopData = useShopData();
   const { data: session } = useSession();
+  const url =
+    process.env.SERVER_ENDPOINT + "/api/user/order/shop/" + shopData?.id;
+
   const fetcher = (url: any) =>
     fetch(url, {
       method: "GET",
@@ -21,8 +24,6 @@ const BottomNavigationFront = () => {
       },
     }).then((res) => res.json());
 
-  const url =
-    process.env.SERVER_ENDPOINT + "/api/user/order/shop/" + shopData?.id;
   const {
     data: payment,
     isLoading,
@@ -34,7 +35,7 @@ const BottomNavigationFront = () => {
   const unpaidCount: number = payment?.order?.filter(
     (item: { status: string }) => item.status === "UNPAID"
   ).length;
-  console.log(unpaidCount);
+
   return (
     <div className="md:hidden fixed z-10 w-full h-16 -translate-x-1/2 bg-white border border-gray-200 rounded-t-xl shadow-lg shadow-black bottom-0 left-1/2 dark:bg-gray-700 dark:border-gray-600">
       <div className="grid h-full max-w-lg grid-cols-5 mx-auto">

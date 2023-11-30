@@ -58,6 +58,7 @@ const LayoutComponent = ({ children }: { children: React.ReactNode }) => {
     route.push("/web/sign-in");
     toast.dismiss();
   };
+
   return (
     <>
       <div className="flex min-h-full flex-col">
@@ -309,12 +310,12 @@ const LayoutComponent = ({ children }: { children: React.ReactNode }) => {
                       }}
                       className="lg:block">
                       <button className="flex items-center">
-                        {/* <div className="hidden mr-3 text-right md:block">
-                      <p className="text-sm font-bold text-black dark:text-gray-400">
-                        {" "}
-                        Doe
-                      </p>
-                    </div> */}
+                        <div className=" mr-3 text-right md:block">
+                          <p className="text-sm font-bold text-black dark:text-gray-400">
+                            {" "}
+                            {session.user?.name}
+                          </p>
+                        </div>
                         <div className="mr-2">
                           {session.is_company ? (
                             <Image
