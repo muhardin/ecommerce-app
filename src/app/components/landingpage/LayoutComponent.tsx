@@ -63,7 +63,7 @@ const LayoutComponent = ({ children }: { children: React.ReactNode }) => {
     <>
       <div className="flex min-h-full flex-col">
         {/* <BannerFlash /> */}
-        <header className="relative z-50">
+        <header className="relative z-40">
           <nav>
             <div
               className={`${

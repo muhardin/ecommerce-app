@@ -2,15 +2,22 @@
 import { useShopData } from "@/app/components/shop/ShopContext";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
-import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
+import React, {
+  ChangeEvent,
+  FormEvent,
+  Suspense,
+  useEffect,
+  useState,
+} from "react";
 import useSWR from "swr";
-import { Products } from "../../../../../type";
+import { ProductGallery, Products } from "../../../../../type";
 import FormattedPrice from "../../FormattedPrice";
 import CurrencyInput from "react-currency-input-field";
 import Link from "next/link";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import ModalImage from "react-modal-image";
 
 interface Props {
   id: number;
@@ -125,7 +132,7 @@ const ProductDetailComponent = ({ id }: Props) => {
       // console.log(error);
     }
   };
-
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   return (
     <div>
       {product ? (
@@ -140,68 +147,65 @@ const ProductDetailComponent = ({ id }: Props) => {
                   <h2 className="max-w-xl mt-2 mb-6 text-2xl font-bold dark:text-gray-400 md:text-4xl">
                     {product.title}
                   </h2>
-                  <div className="relative mb-2 lg:mb-2">
-                    <Image
-                      width={500}
-                      height={500}
-                      src={`${process.env.SERVER_ENDPOINT}${product.image}`}
-                      alt=""
-                      className="object-cover w-full lg:h-2/5 "
-                    />
+                  <div className=" mb-2 lg:mb-2 ">
+                    <Suspense>
+                      {product?.product_gallery?.length > 0 ? (
+                        <ModalImage
+                          className="object-center items-center relative z-50"
+                          small={`${process.env.SERVER_ENDPOINT}${product.product_gallery[currentImageIndex].url}`}
+                          large={`${process.env.SERVER_ENDPOINT}${product.product_gallery[currentImageIndex].url}`}
+                          alt={product.title}
+                        />
+                      ) : (
+                        <ModalImage
+                          className="object-center items-center"
+                          small={`/images/no_image.png`}
+                          large={`/images/no_image.png`}
+                          alt={product.title}
+                        />
+                      )}
+                    </Suspense>
+
+                    {/* {product?.product_gallery?.length > 0 ? (
+                      <Image
+                        width={500}
+                        height={500}
+                        src={`${process.env.SERVER_ENDPOINT}${product.product_gallery[0].url}`}
+                        alt=""
+                        className="object-cover w-full lg:h-2/5 "
+                      />
+                    ) : (
+                      <Image
+                        width={500}
+                        height={500}
+                        src={`/images/no_image.png`}
+                        alt=""
+                        className="object-cover w-full lg:h-2/5 "
+                      />
+                    )} */}
                   </div>
-                  <div className="flex-wrap hidden md:flex ">
-                    <div className="w-1/2 p-2 sm:w-1/4">
-                      <a
-                        href="#"
-                        className="block border border-blue-300 dark:border-transparent dark:hover:border-blue-300 hover:border-blue-300">
-                        <Image
-                          width={500}
-                          height={500}
-                          src="/images/products/pexels-melvin-buezo-2529148.jpg"
-                          alt=""
-                          className="object-cover w-full lg:h-20"
-                        />
-                      </a>
-                    </div>
-                    <div className="w-1/2 p-2 sm:w-1/4">
-                      <a
-                        href="#"
-                        className="block border border-transparent dark:border-transparent dark:hover:border-blue-300 hover:border-blue-300">
-                        <Image
-                          width={500}
-                          height={500}
-                          src="/images/products/pexels-melvin-buezo-2529148.jpg"
-                          alt=""
-                          className="object-cover w-full lg:h-20"
-                        />
-                      </a>
-                    </div>
-                    <div className="w-1/2 p-2 sm:w-1/4">
-                      <a
-                        href="#"
-                        className="block border border-transparent dark:border-transparent dark:hover:border-blue-300 hover:border-blue-300">
-                        <Image
-                          width={500}
-                          height={500}
-                          src="/images/products/pexels-melvin-buezo-2529148.jpg"
-                          alt=""
-                          className="object-cover w-full lg:h-20"
-                        />
-                      </a>
-                    </div>
-                    <div className="w-1/2 p-2 sm:w-1/4">
-                      <a
-                        href="#"
-                        className="block border border-transparent dark:border-transparent dark:hover:border-blue-300 hover:border-blue-300">
-                        <Image
-                          width={500}
-                          height={500}
-                          src="/images/products/pexels-melvin-buezo-2529148.jpg"
-                          alt=""
-                          className="object-cover w-full lg:h-20"
-                        />
-                      </a>
-                    </div>
+                  <div className="flex flex-row">
+                    {product.product_gallery?.length > 0
+                      ? product.product_gallery.map(
+                          (item: ProductGallery, index: Number) => (
+                            <div key={item.id} className="w-1/2 p-2 sm:w-1/4">
+                              <button
+                                onClick={() => {
+                                  setCurrentImageIndex(Number(index));
+                                }}
+                                className="block border border-blue-300 dark:border-transparent dark:hover:border-blue-300 hover:border-blue-300">
+                                <Image
+                                  width={65}
+                                  height={65}
+                                  src={`${process.env.SERVER_ENDPOINT}${item.url}`}
+                                  alt=""
+                                  className="object-cover w-full lg:h-20"
+                                />
+                              </button>
+                            </div>
+                          )
+                        )
+                      : null}
                   </div>
                 </div>
               </div>
@@ -223,7 +227,7 @@ const ProductDetailComponent = ({ id }: Props) => {
                                 className="mt-4 mb-2 block text-sm font-medium">
                                 Base Price
                               </label>
-                              <div className="relative">
+                              <div className="">
                                 <CurrencyInput
                                   readOnly
                                   name="fee"
@@ -262,7 +266,7 @@ const ProductDetailComponent = ({ id }: Props) => {
                                 className="mt-4 mb-2 block text-sm font-medium">
                                 Harga Jual
                               </label>
-                              <div className="relative">
+                              <div className="">
                                 <CurrencyInput
                                   onValueChange={(value, name) =>
                                     handleChange(Number(value))
@@ -285,7 +289,7 @@ const ProductDetailComponent = ({ id }: Props) => {
                                 className="mt-4 mb-2 block text-sm font-medium">
                                 Your Profit
                               </label>
-                              <div className="relative">
+                              <div className="">
                                 <CurrencyInput
                                   readOnly
                                   value={profit}
@@ -298,7 +302,7 @@ const ProductDetailComponent = ({ id }: Props) => {
                                 className="mt-4 mb-2 block text-sm font-medium">
                                 Sharing Profit
                               </label>
-                              <div className="relative">
+                              <div className="">
                                 <CurrencyInput
                                   value={sharingProfit}
                                   readOnly
