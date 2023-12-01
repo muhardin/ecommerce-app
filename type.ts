@@ -19,6 +19,7 @@ export interface ShopProduct {
   category_id: null | number;
   shop_id: number;
   domain: string;
+  noteBuyer: string;
   product_id: number;
   agent_price: number;
   profit: number;
@@ -65,6 +66,7 @@ export interface Products {
   product_url: string;
   slug: string;
   sku: string;
+  noteBuyer: string;
   isPublish: number;
   product: Products;
   data: Product;

@@ -8,6 +8,7 @@ interface StoreState {
   referralInfo: null | string;
   orderData: [];
   notes: null | string;
+  noteBuyer: null | string;
   modal: null | string;
   menu: null | string;
 }
@@ -19,6 +20,7 @@ const initialState: StoreState = {
   referralInfo: null,
   orderData: [],
   notes: null,
+  noteBuyer: null,
   modal: null,
   menu: null,
 };
@@ -60,11 +62,26 @@ export const shoppingSlice = createSlice({
         existingProduct && existingProduct.quantity--;
       }
     },
+    // addNote: (state, action) => {
+    //   const existingProduct = state.productData.find(
+    //     (item: Products) => item.id === action.payload.id
+    //   );
+    //   existingProduct && existingProduct.noteBuyer === "2";
+    // },
+    addNote: (state, action) => {
+      const { id, value } = action.payload;
+      const existingProduct = state.productData.find(
+        (item: Products) => item.id === action.payload.id
+      );
+      existingProduct && (existingProduct.noteBuyer = value);
+    },
+
     deleteProduct: (state, action) => {
       state.productData = state.productData.filter(
         (item) => item.id !== action.payload
       );
     },
+
     resetCart: (state) => {
       state.productData = [];
     },
@@ -132,5 +149,6 @@ export const {
   resetOrder,
   checkSupplierOrder,
   delSupplierOrder,
+  addNote,
 } = shoppingSlice.actions;
 export default shoppingSlice.reducer;

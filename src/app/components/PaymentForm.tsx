@@ -27,6 +27,7 @@ interface Payment {
   shipping?: number;
   order?: Payment[];
   address?: number;
+  note?: string;
   shippingMethod?: CourierData[];
   shippingType?: CourierData[];
 }
@@ -42,6 +43,7 @@ const PaymentForm = ({
   shippingMethod,
   order,
   shippingType,
+  note,
 }: Payment) => {
   const [clientIP, setClientIP] = useState("Loading...");
 
@@ -111,6 +113,7 @@ const PaymentForm = ({
         payment_type: selectedVirtual,
         payment_phone: paymentPhone,
         address_id: address,
+        note: note,
         shop: shopData?.id,
         shipping: shippingMethod,
         shipping_type: shippingType,

@@ -14,6 +14,7 @@ import Image from "next/image";
 import { AiOutlineClose, AiOutlineOrderedList } from "react-icons/ai";
 import { FiChevronLeft, FiChevronRight, FiLogOut } from "react-icons/fi";
 import {
+  addNote,
   decreaseQuantity,
   deleteProduct,
   increaseQuantity,
@@ -391,6 +392,7 @@ const CheckoutCart = () => {
     setSelectedShippingType(updatedValueShipT);
     //get the product id
     const attProduct = selectedOption.getAttribute("source-product");
+    const noteBuyer = selectedOption.getAttribute("source-note-buyer");
     const etd = selectedOption.getAttribute("source-etd");
 
     //get the cost shipping
@@ -412,6 +414,7 @@ const CheckoutCart = () => {
       shippingtype,
       qtyProduct,
       etd,
+      noteBuyer,
     };
     setSelectedArray(updatedValuesSelectedArray);
   };
@@ -586,37 +589,38 @@ const CheckoutCart = () => {
             </div>
             <div className="flex flex-col gap-y-2">
               {productData?.map((item: Products, index) => (
-                <div className="" key={item.id}>
-                  <div className=" w-full bg-white p-4 flex flex-col md:flex-row items-center justify-between gap-4">
-                    <div className="flex items-center gap-2 md:justify-between w-full">
-                      <div className=" flex items-center gap-x-3 w-full md:w-1/3">
-                        <span
-                          onClick={() => {
-                            ConfirmAction(item?.id, "del");
-                          }}
-                          className="text-lg hover:text-red-600 cursor-pointer duration-200">
-                          <AiOutlineClose />
-                        </span>
-                        <Image
-                          src={
-                            item.product.product_gallery?.length > 0
-                              ? process.env.SERVER_ENDPOINT +
-                                item.product.product_gallery[0].url
-                              : "/images/no_image.png"
-                          }
-                          alt="image"
-                          width={500}
-                          height={500}
-                          className=" w-20 h-20 object-cover"
-                        />
-                        <span>{item.product.title}</span>
-                      </div>
-                      {/* quantity */}
+                <>
+                  <div className="" key={item.id}>
+                    <div className=" w-full bg-white p-4 flex flex-col md:flex-row items-center justify-between gap-4">
+                      <div className="flex items-center gap-2 md:justify-between w-full">
+                        <div className=" flex items-center gap-x-3 w-full">
+                          <span
+                            onClick={() => {
+                              ConfirmAction(item?.id, "del");
+                            }}
+                            className="text-lg hover:text-red-600 cursor-pointer duration-200">
+                            <AiOutlineClose />
+                          </span>
+                          <Image
+                            src={
+                              item.product.product_gallery?.length > 0
+                                ? process.env.SERVER_ENDPOINT +
+                                  item.product.product_gallery[0].url
+                                : "/images/no_image.png"
+                            }
+                            alt="image"
+                            width={500}
+                            height={500}
+                            className=" w-20 h-20 object-cover"
+                          />
+                          <span>{item.product.title}</span>
+                        </div>
+                        {/* quantity */}
 
-                      <div className="md:mr-28 flex items-center justify-start gap-x-1 md:gap-x-3 border-[1px] border-slate-300 py-2 px-1 md:px-3 md:w-auto">
-                        <p className="md:hidden">Qty</p>
-                        <div className=" flex items-center text-md md:text-lg w-15 justify-between">
-                          {/* <span
+                        <div className="md:mr-28 flex items-center justify-start gap-x-1 md:gap-x-3 border-[1px] border-slate-300 py-2 px-1 md:px-3 md:w-auto">
+                          <p className="md:hidden">Qty</p>
+                          <div className=" flex items-center text-md md:text-lg w-15 justify-between">
+                            {/* <span
                             onClick={() => {
                               dispatch(decreaseQuantity(item));
                               setSelectedValues([]);
@@ -625,8 +629,8 @@ const CheckoutCart = () => {
                           >
                             <FiChevronLeft />
                           </span> */}
-                          <span className="font-bold">{item?.quantity}</span>
-                          {/* <span
+                            <span className="font-bold">{item?.quantity}</span>
+                            {/* <span
                             onClick={() => {
                               dispatch(increaseQuantity(item));
                               setSelectedValues([]);
@@ -635,44 +639,64 @@ const CheckoutCart = () => {
                           >
                             <FiChevronRight />
                           </span> */}
+                          </div>
                         </div>
                       </div>
+                      <div className=" w-full md:w-1/3 flex md:flex-col items-end justify-end md:justify-end">
+                        {/* <p>W : {FormattedCommaNumber(item.weight / 1000)}</p> */}
+                        <p className="text-lg font-semibold">
+                          <FormattedPrice
+                            amount={item?.agent_price * item?.quantity}
+                          />
+                        </p>
+                      </div>
                     </div>
-                    <div className=" w-full md:w-1/3 flex md:flex-col items-end justify-start md:justify-end">
-                      {/* <p>W : {FormattedCommaNumber(item.weight / 1000)}</p> */}
-                      <p className="text-lg font-semibold">
-                        <FormattedPrice
-                          amount={item?.agent_price * item?.quantity}
-                        />
-                      </p>
+                    <div className="w-full flex flex-col items-start justify-start ml-2 mt-0 mb-2 mr-2 gap-1 font-mono">
+                      <div className="relative w-full pr-4">
+                        <textarea
+                          id="message"
+                          name="message"
+                          placeholder=" "
+                          onChange={(e) => {
+                            dispatch(
+                              addNote({ id: item.id, value: e.target.value })
+                            );
+                          }}
+                          value={item?.noteBuyer}
+                          className={`block border-2 textarea textarea-bordered  w-full focus:outline-none focus:border-blue-500 px-3 pt-1 pb-2 appearance-none leading-6 bg-transparent mr-8`}></textarea>
+                        <label
+                          htmlFor="message"
+                          className="absolute left-3 -top-2 px-1 text-xs bg-white cursor-pointer text-sky-500">
+                          Tulis Catatan
+                        </label>
+                      </div>
                     </div>
-                  </div>
-                  <div className="flex flex-col sm:flex-row gap-4 p-4 justify-end">
-                    <div className="">
-                      {/* <label
+                    <div className="flex flex-col sm:flex-row gap-4 p-4 justify-end">
+                      <div className="">
+                        {/* <label
                         htmlFor="countries"
                         className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                       >
                         Select an option
                       </label> */}
-                      <select
-                        key={item.id}
-                        onChange={(e) =>
-                          handleSelectChange(
-                            e,
-                            index,
-                            item.product.supplier_area
-                          )
-                        }
-                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                        <option>Select Courier</option>
-                        {optionCouriers.map((select) => (
-                          <option key={select.id} value={select.value}>
-                            {select.label}
-                          </option>
-                        ))}
+                        <select
+                          key={item.id}
+                          onChange={(e) =>
+                            handleSelectChange(
+                              e,
+                              index,
+                              item.product.supplier_area
+                            )
+                          }
+                          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                          <option>Select Courier</option>
+                          {optionCouriers.map((select) => (
+                            <option key={select.id} value={select.value}>
+                              {select.label}
+                            </option>
+                          ))}
 
-                        {/* <option selected={courier === "jne"} value="jne">
+                          {/* <option selected={courier === "jne"} value="jne">
                           JNE
                         </option>
                         <option selected={courier === "jnt"} value="jnt">
@@ -687,70 +711,79 @@ const CheckoutCart = () => {
                         <option selected={courier === "pos"} value="pos">
                           POS
                         </option> */}
-                      </select>
-                    </div>
-                    <div className="">
-                      {/* <label
+                        </select>
+                      </div>
+                      <div className="">
+                        {/* <label
                         htmlFor="countries"
                         className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                       >
                         Select an option
                       </label> */}
 
-                      {selectedValues[index]?.costs ? (
-                        <select
-                          id={`select-${index}`}
-                          onChange={(e) => handleSelectChangeCost(e, index)}
-                          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                          {loading ? (
-                            <option selected>Loading...</option>
-                          ) : (
-                            <option selected>Select Shipping Cost</option>
-                          )}
+                        {selectedValues[index]?.costs ? (
+                          <select
+                            id={`select-${index}`}
+                            onChange={(e) => handleSelectChangeCost(e, index)}
+                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            {loading ? (
+                              <option selected>Loading...</option>
+                            ) : (
+                              <option selected>Select Shipping Cost</option>
+                            )}
 
-                          {selectedValues[index]?.costs ? (
-                            selectedValues[index].costs.map((itemCost: any) => (
-                              <option
-                                key={itemCost.id}
-                                shipping-type={itemCost.description}
-                                source-product={item.id}
-                                source-etd={itemCost.cost[0].etd}
-                                source-shipping={selectedValues[index]?.code}
-                                source-qty={item.quantity}
-                                value={
-                                  itemCost.cost[0].value *
-                                  item?.quantity *
-                                  FormattedCommaNumber(item.weight / 1000)
-                                }>
-                                <div className="flex flex-row justify-between w-full gap-4">
-                                  <span>{itemCost.description}</span>
-                                  <span> | </span>
-                                  <span>{itemCost.cost[0].etd} days</span>
-                                  <span>|</span>
-                                  <span>
-                                    {/* {FormattedCommaNumber(item.weight / 1000)} */}
-                                    <FormattedPrice
-                                      amount={
-                                        itemCost.cost[0].value *
-                                        item?.quantity *
-                                        FormattedCommaNumber(item.weight / 1000)
-                                      }
-                                    />
-                                  </span>
-                                </div>
-                              </option>
-                            ))
-                          ) : (
-                            <option selected>Not Available</option>
-                          )}
-                        </select>
-                      ) : (
-                        ""
-                      )}
+                            {selectedValues[index]?.costs ? (
+                              selectedValues[index].costs.map(
+                                (itemCost: any) => (
+                                  <option
+                                    key={itemCost.id}
+                                    shipping-type={itemCost.description}
+                                    source-product={item.id}
+                                    source-note-buyer={item.noteBuyer}
+                                    source-etd={itemCost.cost[0].etd}
+                                    source-shipping={
+                                      selectedValues[index]?.code
+                                    }
+                                    source-qty={item.quantity}
+                                    value={
+                                      itemCost.cost[0].value *
+                                      item?.quantity *
+                                      FormattedCommaNumber(item.weight / 1000)
+                                    }>
+                                    <div className="flex flex-row justify-between w-full gap-4">
+                                      <span>{itemCost.description}</span>
+                                      <span> | </span>
+                                      <span>{itemCost.cost[0].etd} days</span>
+                                      <span>|</span>
+                                      <span>
+                                        {/* {FormattedCommaNumber(item.weight / 1000)} */}
+                                        <FormattedPrice
+                                          amount={
+                                            itemCost.cost[0].value *
+                                            item?.quantity *
+                                            FormattedCommaNumber(
+                                              item.weight / 1000
+                                            )
+                                          }
+                                        />
+                                      </span>
+                                    </div>
+                                  </option>
+                                )
+                              )
+                            ) : (
+                              <option selected>Not Available</option>
+                            )}
+                          </select>
+                        ) : (
+                          ""
+                        )}
+                      </div>
                     </div>
                   </div>
+
                   <hr className="my-6 h-0.5 border-t-0 bg-neutral-100 opacity-100 dark:opacity-50" />
-                </div>
+                </>
               ))}
             </div>
           </div>
