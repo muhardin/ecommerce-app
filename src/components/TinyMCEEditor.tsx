@@ -3,8 +3,8 @@ import { Editor } from "@tinymce/tinymce-react";
 
 interface TinyMCEEditorProps {
   apiKey: string;
-  value: string;
-  onChange: (content: string) => void;
+  value?: string;
+  onChange?: (content: string) => void;
 }
 
 const TinyMCEEditor: FC<TinyMCEEditorProps> = ({ apiKey, value, onChange }) => {
@@ -19,7 +19,7 @@ const TinyMCEEditor: FC<TinyMCEEditorProps> = ({ apiKey, value, onChange }) => {
       apiKey={apiKey}
       initialValue={value}
       init={{
-        height: 500,
+        height: 200,
         menubar: false,
         // directionality: "rtl",
         // plugins: [

@@ -13,6 +13,7 @@ import { ClipboardEdit } from "lucide-react";
 import { SelectValue } from "react-tailwindcss-select/dist/components/type";
 import useSWR from "swr";
 import Swal from "sweetalert2";
+import ReactQuill from "react-quill";
 
 interface ModalProps {
   isOpen: boolean;
@@ -141,6 +142,7 @@ const UpdateProductComponent: React.FC<ModalProps> = ({
   const [barcode, setBarcode] = useState("");
   const [salePrice, setSalePrice] = useState(product.company_price);
   const [errMessage, setErrMessage]: any = useState<string[]>([]);
+  const [content, setContent] = useState(product.description);
 
   useEffect(() => {
     setValCat({
@@ -208,7 +210,7 @@ const UpdateProductComponent: React.FC<ModalProps> = ({
   };
 
   const [open, setOpen] = useState(false);
-  const [type, setType] = useState(0);
+  const [type, setType] = useState(product?.isNew);
 
   const handleSubmit = async (e: React.FormEvent) => {
     setLoading(true);
@@ -222,7 +224,7 @@ const UpdateProductComponent: React.FC<ModalProps> = ({
     }
     formData.append("title", title);
     formData.append("isNew", type.toString());
-    formData.append("description", description);
+    formData.append("description", content);
     formData.append("sku", sku);
     formData.append("price", price?.toString());
     formData.append("quantity", quantity?.toString());
@@ -312,7 +314,33 @@ const UpdateProductComponent: React.FC<ModalProps> = ({
         }
       });
   };
+  const modules = {
+    toolbar: [
+      [{ header: [1, 2, false] }],
+      ["bold", "italic", "underline"],
+      ["blockquote", "code-block"],
+      [{ list: "ordered" }, { list: "bullet" }],
+      ["link", "image"],
+      ["clean"],
+    ],
+  };
 
+  const formats = [
+    "header",
+    "bold",
+    "italic",
+    "underline",
+    "blockquote",
+    "code-block",
+    "list",
+    "bullet",
+    "indent",
+    "link",
+    "image",
+  ];
+  const handleEditorChange = (content: string, editor: any) => {
+    setContent(content);
+  };
   if (!open)
     return (
       <>
@@ -377,7 +405,7 @@ const UpdateProductComponent: React.FC<ModalProps> = ({
     <>
       <div
         tabIndex={-1}
-        className="fixed drawer drawer-right drawer-open bg-white z-50">
+        className="fixed drawer drawer-right drawer-open bg-white z-30">
         <div className="fixed inset-0 bg-black opacity-50 z-50"></div>
         <div className="drawer-content-wrapper w-5/6 relative z-50">
           <div className="drawer-content">
@@ -491,7 +519,14 @@ const UpdateProductComponent: React.FC<ModalProps> = ({
                           Product Description
                         </label>
                         <div className="col-span-8 sm:col-span-4">
-                          <textarea
+                          <ReactQuill
+                            className="h-auto"
+                            value={content}
+                            onChange={handleEditorChange}
+                            modules={modules}
+                            formats={formats}
+                          />
+                          {/* <textarea
                             value={description}
                             onChange={(e) => {
                               setDescription(e.target.value);
@@ -506,7 +541,7 @@ const UpdateProductComponent: React.FC<ModalProps> = ({
                             </p>
                           ) : (
                             ""
-                          )}
+                          )} */}
                         </div>
                       </div>
                       <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
@@ -683,14 +718,14 @@ const UpdateProductComponent: React.FC<ModalProps> = ({
                         <div className="col-span-8 sm:col-span-4 flex sm:flex-row items-center gap-6">
                           <div className="cursor-pointer flex items-center mb-4 sm:mb-0">
                             <input
-                              checked={type == 1}
+                              checked={type}
                               onChange={() => {
-                                setType(1);
+                                setType(true);
                               }}
                               required
                               id="default-radio-1"
                               type="radio"
-                              value={type}
+                              value={1}
                               name="type_product"
                               className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                             />
@@ -702,14 +737,14 @@ const UpdateProductComponent: React.FC<ModalProps> = ({
                           </div>
                           <div className="cursor-pointer flex items-center">
                             <input
-                              checked={type == 0}
+                              checked={!type}
                               onChange={() => {
-                                setType(0);
+                                setType(false);
                               }}
                               required
                               id="default-radio-2"
                               type="radio"
-                              value={type}
+                              value={0}
                               name="type_product"
                               className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                             />

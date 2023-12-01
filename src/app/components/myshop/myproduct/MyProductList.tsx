@@ -159,7 +159,7 @@ const MyProductList = ({ item }: { item: ShopProduct }) => {
                 Delete
               </button>
               <Link
-                href={`/myshop/product/detail/${item.id}`}
+                href={`/myshop/product/myproduct/${item.id}`}
                 className=" bg-green-500 py-2 px-4 rounded-lg text-sm tracking-wide text-slate-100 hover:bg-sky-600 hover:text-white duration-200">
                 Detail
               </Link>

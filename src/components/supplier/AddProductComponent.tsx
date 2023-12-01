@@ -12,6 +12,8 @@ import toast from "react-hot-toast";
 import { ClipboardEdit } from "lucide-react";
 import { SelectValue } from "react-tailwindcss-select/dist/components/type";
 import Categories from "@/data/categories.json";
+import TinyMCEEditor from "../TinyMCEEditor";
+import ReactQuill from "react-quill";
 
 interface ModalProps {
   isOpen: boolean;
@@ -106,6 +108,7 @@ const AddProductComponent: React.FC<ModalProps> = ({
   const [barcode, setBarcode] = useState("");
   const [salePrice, setSalePrice] = useState(0);
   const [errMessage, setErrMessage]: any = useState<string[]>([]);
+  const [content, setContent] = useState("");
 
   const clearState = () => {
     setSelectedImages([]);
@@ -180,7 +183,7 @@ const AddProductComponent: React.FC<ModalProps> = ({
     }
     formData.append("title", title);
     formData.append("isNew", type.toString());
-    formData.append("description", description);
+    formData.append("description", content);
     formData.append("sku", sku);
     formData.append("price", price?.toString());
     formData.append("quantity", quantity?.toString());
@@ -221,13 +224,41 @@ const AddProductComponent: React.FC<ModalProps> = ({
       });
   };
 
+  const handleEditorChange = (content: string, editor: any) => {
+    setContent(content);
+  };
+  console.log(content);
+  const modules = {
+    toolbar: [
+      [{ header: [1, 2, false] }],
+      ["bold", "italic", "underline"],
+      ["blockquote", "code-block"],
+      [{ list: "ordered" }, { list: "bullet" }],
+      ["link", "image"],
+      ["clean"],
+    ],
+  };
+
+  const formats = [
+    "header",
+    "bold",
+    "italic",
+    "underline",
+    "blockquote",
+    "code-block",
+    "list",
+    "bullet",
+    "indent",
+    "link",
+    "image",
+  ];
   if (!isOpen) return null;
 
   return (
     <>
       <div
         tabIndex={-1}
-        className="drawer drawer-right drawer-open bg-white z-50">
+        className="drawer drawer-right drawer-open bg-white z-30">
         <div className="fixed inset-0 bg-black opacity-50"></div>
         <div className="drawer-content-wrapper w-5/6 ">
           <div className="drawer-content ">
@@ -339,16 +370,13 @@ const AddProductComponent: React.FC<ModalProps> = ({
                           Product Description
                         </label>
                         <div className="col-span-8 sm:col-span-4">
-                          <textarea
-                            onChange={(e) => {
-                              setDescription(e.target.value);
-                            }}
-                            className="block bg-gray-100 focus:bg-white dark:text-gray-300 rounded-md focus:outline-none p-3 bord dark:border-gray-600 dark:focus:border-gray-600 dark:bg-gray-700 text-sm  w-full  border-gray-200"
-                            name="description"
-                            placeholder="Product Description"
-                            spellCheck="false">
-                            {description}
-                          </textarea>
+                          <ReactQuill
+                            className="h-auto"
+                            value={content}
+                            onChange={handleEditorChange}
+                            modules={modules}
+                            formats={formats}
+                          />
                           {errMessage?.description ? (
                             <p className="text-red-400 text-sm">
                               Required description

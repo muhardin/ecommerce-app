@@ -78,7 +78,7 @@ const ProductAvailableGlobalComp = ({ shop }: { shop: ShopData }) => {
   const resetProduct = () => {
     setProductItem(null);
   };
-  console.log(products);
+
   return (
     <>
       {productItem && (
@@ -270,7 +270,7 @@ const ProductAvailableGlobalComp = ({ shop }: { shop: ShopData }) => {
                               pathname: "/product",
                               query: { id: product?.id, image: product?.image },
                             }}>
-                            <p className="cursor-pointer hover:text-sky-600 font-semibold">
+                            <p className="cursor-pointer hover:text-sky-600 font-semibold truncate">
                               {product?.title}
                             </p>
                             <p className="cursor-pointer hover:text-sky-600">

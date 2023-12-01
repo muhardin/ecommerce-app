@@ -59,6 +59,7 @@ export default async function RootLayout({
   if (process.env.LANDING_PAGE?.includes(domain)) {
     return (
       <html lang="en">
+        <meta charSet="UTF-8" />
         <head>
           <title>My Shop Page</title>
           <link rel="icon" href="/images/favicon.png" />

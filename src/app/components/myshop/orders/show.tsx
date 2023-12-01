@@ -278,7 +278,7 @@ const OrderShow = ({
                         </div>
                         <p className="text-xl font-medium">Progress Details</p>
                         <p className="text-gray-400">
-                          Complete your order by providing your payment details.
+                          Complete your setup by providing your price details.
                         </p>
                         <label
                           htmlFor="card-holder"

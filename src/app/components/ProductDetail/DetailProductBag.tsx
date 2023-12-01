@@ -279,7 +279,11 @@ const DetailProductBag = ({
                   </a>
                 </div>
                 <p className="max-w-md mb-8 text-gray-700 dark:text-gray-400">
-                  {data?.product.description}
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html: data?.product.description,
+                    }}
+                  />
                 </p>
                 <div className="p-4 mb-8 border border-gray-300 dark:border-gray-700">
                   <h2 className="mb-4 text-xl font-semibold dark:text-gray-400">

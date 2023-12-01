@@ -1,5 +1,5 @@
 "use client";
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, Suspense, useEffect, useState } from "react";
 import Modal from "../../ui/Modal";
 import axios from "axios";
 import { useSession } from "next-auth/react";
@@ -7,11 +7,17 @@ import CurrencyInput from "react-currency-input-field";
 import toast, { Toaster } from "react-hot-toast";
 import FormattedPrice from "../../FormattedPrice";
 import { useShopData } from "../../shop/ShopContext";
-import { Product, Products, ShopProduct } from "../../../../../type";
+import {
+  Product,
+  ProductGallery,
+  Products,
+  ShopProduct,
+} from "../../../../../type";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Swal from "sweetalert2";
+import ModalImage from "react-modal-image";
 
 const MyProductModal = ({ product }: { product: ShopProduct }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -108,7 +114,7 @@ const MyProductModal = ({ product }: { product: ShopProduct }) => {
       console.log(error);
     }
   };
-
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   return (
     <div>
       <button
@@ -131,67 +137,46 @@ const MyProductModal = ({ product }: { product: ShopProduct }) => {
                       {product.product.title}
                     </h2>
                     <div className="relative w-full h-96 mb-2 lg:mb-2">
-                      <Image
-                        width={500}
-                        height={500}
-                        src={`${process.env.SERVER_ENDPOINT}${product.product.product_gallery[0].url}`}
-                        alt=""
-                        className="object-cover w-full lg:h-full "
-                      />
+                      <Suspense>
+                        {product?.product.product_gallery?.length > 0 ? (
+                          <ModalImage
+                            className="object-center items-center relative z-10"
+                            small={`${process.env.SERVER_ENDPOINT}${product.product.product_gallery[currentImageIndex].url}`}
+                            large={`${process.env.SERVER_ENDPOINT}${product.product.product_gallery[currentImageIndex].url}`}
+                            alt={product.product.title}
+                          />
+                        ) : (
+                          <ModalImage
+                            className="object-center items-center"
+                            small={`/images/no_image.png`}
+                            large={`/images/no_image.png`}
+                            alt={product.product.title}
+                          />
+                        )}
+                      </Suspense>
                     </div>
-                    <div className="flex-wrap hidden md:flex ">
-                      <div className="w-1/2 p-2 sm:w-1/4">
-                        <a
-                          href="#"
-                          className="block border border-blue-300 dark:border-transparent dark:hover:border-blue-300 hover:border-blue-300">
-                          <Image
-                            width={500}
-                            height={500}
-                            src="/images/products/pexels-melvin-buezo-2529148.jpg"
-                            alt=""
-                            className="object-cover w-full lg:h-20"
-                          />
-                        </a>
-                      </div>
-                      <div className="w-1/2 p-2 sm:w-1/4">
-                        <a
-                          href="#"
-                          className="block border border-transparent dark:border-transparent dark:hover:border-blue-300 hover:border-blue-300">
-                          <Image
-                            width={500}
-                            height={500}
-                            src="/images/products/pexels-melvin-buezo-2529148.jpg"
-                            alt=""
-                            className="object-cover w-full lg:h-20"
-                          />
-                        </a>
-                      </div>
-                      <div className="w-1/2 p-2 sm:w-1/4">
-                        <a
-                          href="#"
-                          className="block border border-transparent dark:border-transparent dark:hover:border-blue-300 hover:border-blue-300">
-                          <Image
-                            width={500}
-                            height={500}
-                            src="/images/products/pexels-melvin-buezo-2529148.jpg"
-                            alt=""
-                            className="object-cover w-full lg:h-20"
-                          />
-                        </a>
-                      </div>
-                      <div className="w-1/2 p-2 sm:w-1/4">
-                        <a
-                          href="#"
-                          className="block border border-transparent dark:border-transparent dark:hover:border-blue-300 hover:border-blue-300">
-                          <Image
-                            width={500}
-                            height={500}
-                            src="/images/products/pexels-melvin-buezo-2529148.jpg"
-                            alt=""
-                            className="object-cover w-full lg:h-20"
-                          />
-                        </a>
-                      </div>
+                    <div className="flex flex-row md:flex  relative z-40">
+                      {product.product.product_gallery?.length > 0
+                        ? product.product.product_gallery.map(
+                            (item: ProductGallery, index: Number) => (
+                              <div key={item.id} className="w-1/2 p-2 sm:w-1/4">
+                                <button
+                                  onClick={() => {
+                                    setCurrentImageIndex(Number(index));
+                                  }}
+                                  className="block border border-blue-300 dark:border-transparent dark:hover:border-blue-300 hover:border-blue-300">
+                                  <Image
+                                    width={65}
+                                    height={65}
+                                    src={`${process.env.SERVER_ENDPOINT}${item.url}`}
+                                    alt=""
+                                    className="object-cover w-full lg:h-20"
+                                  />
+                                </button>
+                              </div>
+                            )
+                          )
+                        : null}
                     </div>
                   </div>
                 </div>

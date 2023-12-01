@@ -37,7 +37,8 @@ const ProductDetailComponent = ({ id }: Props) => {
         "Content-Type": "application/json",
       },
     }).then((res) => res.json());
-  const url = process.env.SERVER_ENDPOINT + "/api/products/" + id;
+  const url =
+    process.env.SERVER_ENDPOINT + "/api/myshop-board/products/detail/" + id;
   const {
     data: product,
     isValidating,
@@ -57,15 +58,15 @@ const ProductDetailComponent = ({ id }: Props) => {
   const [sharingProfit, setSharingProfit] = useState(sharingProfitDefault);
   const [profit, setProfit] = useState(profitDefault);
   const [errorPrice, setErrorPrice] = useState(false);
-  // console.log(product);
+  console.log(product);
 
   useEffect(() => {
     const fetchData = async () => {
       if (product) {
-        setBasePrice(product?.company_price);
-        setPrice(sellingPrice);
-        setProfit(profitDefault);
-        setSharingProfit(sharingProfitDefault);
+        setBasePrice(product?.product?.company_price);
+        setPrice(product?.agent_price);
+        setProfit(product?.final_profit);
+        setSharingProfit(product?.referral_profit);
       }
     };
     fetchData();
@@ -142,18 +143,18 @@ const ProductDetailComponent = ({ id }: Props) => {
               <div className="w-full px-4">
                 <div className="sticky top-0 z-0 overflow-hidden ">
                   <span className="text-lg font-medium text-rose-500 dark:text-rose-200">
-                    {product.isNew ? "New" : ""}
+                    {product?.product?.isNew ? "New" : ""}
                   </span>
                   <h2 className="max-w-xl mt-2 mb-6 text-2xl font-bold dark:text-gray-400 md:text-4xl">
                     {product.title}
                   </h2>
                   <div className=" mb-2 lg:mb-2 ">
                     <Suspense>
-                      {product?.product_gallery?.length > 0 ? (
+                      {product?.product?.product_gallery?.length > 0 ? (
                         <ModalImage
                           className="object-center items-center relative z-50"
-                          small={`${process.env.SERVER_ENDPOINT}${product.product_gallery[currentImageIndex].url}`}
-                          large={`${process.env.SERVER_ENDPOINT}${product.product_gallery[currentImageIndex].url}`}
+                          small={`${process.env.SERVER_ENDPOINT}${product?.product.product_gallery[currentImageIndex].url}`}
+                          large={`${process.env.SERVER_ENDPOINT}${product?.product.product_gallery[currentImageIndex].url}`}
                           alt={product.title}
                         />
                       ) : (
@@ -185,8 +186,8 @@ const ProductDetailComponent = ({ id }: Props) => {
                     )} */}
                   </div>
                   <div className="flex flex-row">
-                    {product.product_gallery?.length > 0
-                      ? product.product_gallery.map(
+                    {product?.product.product_gallery?.length > 0
+                      ? product?.product.product_gallery.map(
                           (item: ProductGallery, index: Number) => (
                             <div key={item.id} className="w-1/2 p-2 sm:w-1/4">
                               <button
@@ -218,7 +219,11 @@ const ProductDetailComponent = ({ id }: Props) => {
                           <div className="mt-0 bg-gray-50 px-4 pt-2 lg:mt-0">
                             <p className="text-xl font-medium">Price Details</p>
                             <p className="text-gray-400">
-                              {product.description}
+                              <div
+                                dangerouslySetInnerHTML={{
+                                  __html: product?.product.description,
+                                }}
+                              />
                             </p>
                             <div className="">
                               <label
@@ -230,7 +235,7 @@ const ProductDetailComponent = ({ id }: Props) => {
                                 <CurrencyInput
                                   readOnly
                                   name="fee"
-                                  value={product.company_price}
+                                  value={product?.product.company_price}
                                   className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-1 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                   intlConfig={{ locale: "id", currency: "IDR" }}
                                 />
@@ -359,7 +364,7 @@ const ProductDetailComponent = ({ id }: Props) => {
                                   </p>
                                   <p className="font-semibold text-gray-900">
                                     <FormattedPrice
-                                      amount={product.company_price}
+                                      amount={product.agent_price}
                                     />
                                   </p>
                                 </div>
@@ -392,7 +397,7 @@ const ProductDetailComponent = ({ id }: Props) => {
                             <div className="flex flex-wrap items-center -mx-4 mt-2">
                               <div className="w-full px-4 mb-4 lg:w-1/2 lg:mb-0">
                                 <Link
-                                  href={"/myshop/product/available"}
+                                  href={"/myshop/product/myproduct"}
                                   className="flex items-center justify-center w-full p-4 text-blue-500 border border-blue-500 rounded-md dark:text-gray-200 dark:border-blue-600 hover:bg-blue-600 hover:border-blue-600 hover:text-gray-100 dark:bg-blue-600 dark:hover:bg-blue-700 dark:hover:border-blue-700 dark:hover:text-gray-300">
                                   Back
                                 </Link>
