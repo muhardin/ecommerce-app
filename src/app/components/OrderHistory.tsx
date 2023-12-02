@@ -199,13 +199,13 @@ const OrderHistory = () => {
                       </div>
                       <div
                         className={`${
-                          item.order_payment.status == "UNPAID"
+                          item.order_payment?.status == "UNPAID"
                             ? "text-red-500"
                             : item.order_status == "PAID"
                             ? "text-green-500"
                             : "text-red-700"
                         } font-mono capitalize`}>
-                        {item.order_payment.status}
+                        {item.order_payment?.status}
                       </div>
                     </div>
                   </div>
@@ -213,7 +213,7 @@ const OrderHistory = () => {
                     <div className="">
                       <FormattedPrice amount={Number(item.amount)} />
                     </div>
-                    {item.order_payment.status !== "PAID" && (
+                    {item.order_payment?.status !== "PAID" && (
                       <div className="">
                         <Link
                           href={"/payment/" + item.id}
@@ -222,7 +222,7 @@ const OrderHistory = () => {
                         </Link>
                       </div>
                     )}
-                    {item.order_payment.status == "PAID" && (
+                    {item.order_payment?.status == "PAID" && (
                       <div className="">
                         <Link
                           href={"/profile/orders/summary/" + item.id}

@@ -435,7 +435,7 @@ const CheckoutCart = () => {
       <div className="flex flex-col md:flex-row gap-2">
         <div className="flex flex-col gap-y-2 w-full md:w-2/3">
           {/* Address choose */}
-          <div className="bg-white p-4 border border-gray-200 shadow-md">
+          <div className="z-40 bg-white p-4 border border-gray-200 shadow-md">
             <div className="flex flex-row justify-between relative" ref={ref}>
               <div className="flex flex-row gap-1">
                 <svg
@@ -652,7 +652,7 @@ const CheckoutCart = () => {
                       </div>
                     </div>
                     <div className="w-full flex flex-col items-start justify-start ml-2 mt-0 mb-2 mr-2 gap-1 font-mono">
-                      <div className="relative w-full pr-4">
+                      <div className="relative z-0 w-full pr-4">
                         <textarea
                           id="message"
                           name="message"

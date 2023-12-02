@@ -15,6 +15,11 @@ import { ProductGallery, ShopProduct } from "../../../../type";
 import ModalImage from "react-modal-image";
 import Slider from "react-slick";
 
+interface ColorSelectorProps {
+  selectedColor: string | null;
+  onColorChange: (color: string) => void;
+}
+
 const DetailProductBag = ({
   data,
   primaryImage,
@@ -58,8 +63,14 @@ const DetailProductBag = ({
         data?.product.product_gallery.length
     );
   };
+  const [selectedColor, setSelectedColor] = useState<string>("");
+
+  const handleColorChange = (color: string) => {
+    setSelectedColor(color);
+  };
   // console.log(data?.product);
   // console.log(data?.product.gallery[currentImageIndex]);
+  const size = ["XL", "XXL"];
   return (
     <section className="py-0 overflow-hidden font-poppins dark:bg-gray-800">
       <div className="max-w-6xl px-4 py-4 mx-auto lg:py-8 md:px-6">
@@ -314,18 +325,73 @@ const DetailProductBag = ({
                   Color
                 </h2>
                 <div className="flex flex-wrap -mb-2">
-                  <button className="p-1 mb-2 mr-2 border border-transparent rounded-full hover:border-gray-400 dark:border-gray-800 dark:hover:border-gray-400 ">
+                  <label
+                    className={`${
+                      selectedColor === "red"
+                        ? "border-red-600"
+                        : "hover:border-gray-400"
+                    } cursor-pointer p-1 mb-2 mr-2 border border-transparent rounded-full dark:border-gray-800 dark:hover:border-gray-400`}>
+                    <input
+                      hidden
+                      type="radio"
+                      name="color"
+                      value="red"
+                      checked={selectedColor === "red"}
+                      onChange={() => handleColorChange("red")}
+                    />
                     <div className="w-6 h-6 bg-red-600 rounded-full"></div>
-                  </button>
-                  <button className="p-1 mb-2 mr-2 border border-transparent rounded-full hover:border-gray-400 dark:border-gray-800 dark:hover:border-gray-400">
+                  </label>
+
+                  <label
+                    className={`${
+                      selectedColor === "green"
+                        ? "border border-green-600"
+                        : "hover:border-gray-400 border border-transparent "
+                    } cursor-pointer p-1 mb-2 mr-2 rounded-full hover:border-gray-400 dark:border-gray-800 dark:hover:border-gray-400`}>
+                    <input
+                      hidden
+                      type="radio"
+                      name="color"
+                      value="green"
+                      checked={selectedColor === "green"}
+                      onChange={() => handleColorChange("green")}
+                    />
                     <div className="w-6 h-6 bg-green-600 rounded-full"></div>
-                  </button>
-                  <button className="p-1 mb-2 border border-transparent rounded-full hover:border-gray-400 dark:border-gray-800 dark:hover:border-gray-400">
+                  </label>
+
+                  <label
+                    className={`${
+                      selectedColor === "yellow"
+                        ? "border-yellow-500"
+                        : "hover:border-gray-400"
+                    } p-1 mb-2 border border-transparent rounded-full cursor-pointer  dark:border-gray-800 dark:hover:border-gray-400`}>
+                    <input
+                      hidden
+                      type="radio"
+                      name="color"
+                      value="yellow"
+                      checked={selectedColor === "yellow"}
+                      onChange={() => handleColorChange("yellow")}
+                    />
                     <div className="w-6 h-6 bg-yellow-500 rounded-full"></div>
-                  </button>
-                  <button className="p-1 mb-2 border border-transparent rounded-full hover:border-gray-400 dark:border-gray-800 dark:hover:border-gray-400">
+                  </label>
+
+                  <label
+                    className={`${
+                      selectedColor === "sky"
+                        ? "border border-sky-500"
+                        : "border border-transparent hover:border-gray-400"
+                    } cursor-pointer p-1 mb-2   rounded-full dark:border-gray-800 dark:hover:border-gray-400`}>
+                    <input
+                      hidden
+                      type="radio"
+                      name="color"
+                      value="sky"
+                      checked={selectedColor === "sky"}
+                      onChange={() => handleColorChange("sky")}
+                    />
                     <div className="w-6 h-6 rounded-full bg-sky-400"></div>
-                  </button>
+                  </label>
                 </div>
               </div>
               <div className="pb-6 mb-2 border-b border-gray-300 dark:border-gray-700">
@@ -381,11 +447,11 @@ const DetailProductBag = ({
                       )} added successfully!`
                     )
                   }
-                  className="mb-2 mr-4 lg:mb-0 flex">
-                  <button className="w-full h-10 p-2 mr-0 bg-sky-500 dark:text-gray-200 text-gray-50 hover:bg-sky-600 dark:bg-sky-600 dark:hover:bg-sky-500">
+                  className="mb-2 mr-4 lg:mb-0 flex w-full">
+                  <button className="w-1/3 h-10 p-2 mr-0 bg-sky-500 dark:text-gray-200 text-gray-50 hover:bg-sky-600 dark:bg-sky-600 dark:hover:bg-sky-500">
                     Add To Cart
                   </button>
-                  <button className="flex items-center justify-center w-full h-10 p-2 text-gray-700 border border-gray-300 lg:w-11 hover:text-gray-50 dark:text-gray-200 dark:border-blue-600 hover:bg-sky-600 hover:border-sky-600 dark:bg-sky-600 dark:hover:bg-sky-500 dark:hover:border-blue-500 dark:hover:text-gray-300">
+                  <button className="w-1/3 flex items-center justify-center h-10 p-2 text-gray-700 border border-gray-300 lg:w-11 hover:text-gray-50 dark:text-gray-200 dark:border-blue-600 hover:bg-sky-600 hover:border-sky-600 dark:bg-sky-600 dark:hover:bg-sky-500 dark:hover:border-blue-500 dark:hover:text-gray-300">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="16"
@@ -396,19 +462,19 @@ const DetailProductBag = ({
                       <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
                     </svg>
                   </button>
-                </div>
-                <div className="mb-2 lg:mb-0">
-                  <button className="flex items-center justify-center w-full h-10 p-2 text-gray-700 border border-gray-300 lg:w-11 hover:text-gray-50 dark:text-gray-200 dark:border-blue-600 hover:bg-blue-600 hover:border-blue-600 dark:bg-blue-600 dark:hover:bg-blue-500 dark:hover:border-blue-500 dark:hover:text-gray-300">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      fill="currentColor"
-                      className=" bi bi-heart"
-                      viewBox="0 0 16 16">
-                      <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
-                    </svg>
-                  </button>
+                  <div className="mb-2 lg:mb-0 w-1/3">
+                    <button className="flex items-center justify-center w-full h-10 p-2 text-gray-700 border border-gray-300 lg:w-11 hover:text-gray-50 dark:text-gray-200 dark:border-blue-600 hover:bg-blue-600 hover:border-blue-600 dark:bg-blue-600 dark:hover:bg-blue-500 dark:hover:border-blue-500 dark:hover:text-gray-300">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="currentColor"
+                        className=" bi bi-heart"
+                        viewBox="0 0 16 16">
+                        <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
+                      </svg>
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>

@@ -159,7 +159,7 @@ const PaymentComponent = ({ id }: any) => {
                 <span>{payment?.order?.order_payment?.payment_reference}</span>
               </div>
             </div>
-            {payment?.order.order_payment.payment_method == "wallet" ? (
+            {payment?.order.order_payment?.payment_method == "wallet" ? (
               payment?.order?.order_payment?.status !== "PAID" ? (
                 <div className="py-10 text-center">
                   <Link

@@ -500,7 +500,7 @@ const SignUpComponent: React.FC<Params> = ({ referral }) => {
                       Whatsapp Number
                     </label>
                     <div className="">
-                      <div className="flex flex-row border border-slate-400 p-2 rounded-md justify-between focus-within:border-sky-600 group">
+                      {/* <div className="flex flex-row border border-slate-400 p-2 rounded-md justify-between focus-within:border-sky-600 group focus">
                         <input
                           required
                           name="phone_number"
@@ -520,8 +520,51 @@ const SignUpComponent: React.FC<Params> = ({ referral }) => {
                           className="bg-sky-400 text-sm text-white px-2 py-1 rounded-lg">
                           {timer > 0 ? `Retry in ${timer}s` : "Get Code"}
                         </button>
+                      </div> */}
+                      <div className="relative flex items-center mt-2">
+                        <input
+                          value={formData.phone_number}
+                          onChange={handleChange}
+                          name="phone_number"
+                          required
+                          type="text"
+                          className="w-full px-4 py-3 bg-gray-200 rounded-lg dark:text-gray-400 dark:bg-gray-800 "
+                          placeholder="Phone Number"
+                        />
+
+                        <div className="absolute right-2 bg-transparent flex items-center justify-center text-gray-700">
+                          <button
+                            disabled={timer > 0}
+                            onClick={requestVerificationCode}
+                            type="button"
+                            className=" bg-darkText hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:ring focus:ring-blue-200">
+                            {timer > 0 ? `Retry in ${timer}s` : "Get Code"}
+                          </button>
+                        </div>
                       </div>
-                      <div className="">
+                      <div className="relative flex items-center mt-2">
+                        <input
+                          required
+                          value={formData.register_code}
+                          onChange={handleChange}
+                          type="text"
+                          className="w-full px-4 py-3 bg-gray-200 rounded-lg dark:text-gray-400 dark:bg-gray-800 "
+                          name="register_code"
+                          placeholder="Code"
+                        />
+
+                        <div className="absolute right-2 bg-transparent flex items-center justify-center text-gray-700">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="#000">
+                            <path d="M24 11.7c0 6.45-5.27 11.68-11.78 11.68-2.07 0-4-.53-5.7-1.45L0 24l2.13-6.27a11.57 11.57 0 0 1-1.7-6.04C.44 5.23 5.72 0 12.23 0 18.72 0 24 5.23 24 11.7M12.22 1.85c-5.46 0-9.9 4.41-9.9 9.83 0 2.15.7 4.14 1.88 5.76L2.96 21.1l3.8-1.2a9.9 9.9 0 0 0 5.46 1.62c5.46 0 9.9-4.4 9.9-9.83a9.88 9.88 0 0 0-9.9-9.83m5.95 12.52c-.08-.12-.27-.19-.56-.33-.28-.14-1.7-.84-1.97-.93-.26-.1-.46-.15-.65.14-.2.29-.75.93-.91 1.12-.17.2-.34.22-.63.08-.29-.15-1.22-.45-2.32-1.43a8.64 8.64 0 0 1-1.6-1.98c-.18-.29-.03-.44.12-.58.13-.13.29-.34.43-.5.15-.17.2-.3.29-.48.1-.2.05-.36-.02-.5-.08-.15-.65-1.56-.9-2.13-.24-.58-.48-.48-.64-.48-.17 0-.37-.03-.56-.03-.2 0-.5.08-.77.36-.26.29-1 .98-1 2.4 0 1.4 1.03 2.76 1.17 2.96.14.19 2 3.17 4.93 4.32 2.94 1.15 2.94.77 3.47.72.53-.05 1.7-.7 1.95-1.36.24-.67.24-1.25.17-1.37" />
+                          </svg>
+                        </div>
+                      </div>
+                      {/* <div className="">
                         <input
                           name="register_code"
                           value={formData.register_code}
@@ -535,7 +578,7 @@ const SignUpComponent: React.FC<Params> = ({ referral }) => {
                             Invalid Code
                           </label>
                         )}
-                      </div>
+                      </div> */}
                     </div>
                     {errPhone && (
                       <label className="text-red-600 text-sm">
