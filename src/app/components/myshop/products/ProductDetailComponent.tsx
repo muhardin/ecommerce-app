@@ -10,12 +10,12 @@ import React, {
   useState,
 } from "react";
 import useSWR from "swr";
-import { ProductGallery, Products } from "../../../../../type";
+import { ProductGallery, Products, ShopData } from "../../../../../type";
 import FormattedPrice from "../../FormattedPrice";
 import CurrencyInput from "react-currency-input-field";
 import Link from "next/link";
 import axios from "axios";
-import toast from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import ModalImage from "react-modal-image";
 
@@ -80,14 +80,20 @@ const ProductDetailComponent = ({ id }: Props) => {
     setPrice(Number(e));
     setProfit(Number(e) - basePrice - (Number(e) - basePrice) * 0.1);
     setSharingProfit((Number(e) - basePrice) * 0.1);
-    // console.log(e);
   };
 
-  // console.log(basePrice);
-  // console.log(sharingProfit);
-  // console.log(profitDefault);
-  // console.log(price);
-  // console.log(profit);
+  /** select shop */
+  const urlShop = `${process.env.SERVER_ENDPOINT}/api/myshop-board`;
+  const {
+    data: shops,
+    isLoading: isLoadingShop,
+    error: errorShop,
+  } = useSWR(urlShop, fetcher, {
+    refreshInterval: 3000,
+  });
+  const [selectedShop, setSelectedShop] = useState<Number | null>(null);
+  /** end select shop */
+  console.log(shops);
 
   const [errMessage, setErrMessage]: any = useState<string[]>([]);
   const config = {
@@ -103,7 +109,7 @@ const ProductDetailComponent = ({ id }: Props) => {
       const formData = {
         product: id,
         price: price,
-        shop: shopData?.id,
+        shop: selectedShop,
       };
       // formDataOrder.parse(formData);
       // Form data is valid; submit it using Axios
@@ -120,8 +126,15 @@ const ProductDetailComponent = ({ id }: Props) => {
         setIsLoading(false);
         // console.log(response);
       } else if (response.status == 201) {
-        setErrMessage(response.data.message.error);
         toast.dismiss();
+        if (response.data.status === "require") {
+          setErrMessage(response.data.message.error.shop);
+          toast.error(response.data.message.error.shop);
+        } else {
+          setErrMessage(response.data.message.error);
+          toast.error(response.data.message.error);
+        }
+
         // console.log(response);
       } else if (response.status == 500) {
         toast.error("System on maintenance mode");
@@ -133,6 +146,9 @@ const ProductDetailComponent = ({ id }: Props) => {
     }
   };
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  console.log(selectedShop);
+
   return (
     <div>
       {product ? (
@@ -216,11 +232,44 @@ const ProductDetailComponent = ({ id }: Props) => {
                       <div className="w-full mb-2 ">
                         <form onSubmit={handleSubmit}>
                           <div className="mt-0 bg-gray-50 px-4 pt-2 lg:mt-0">
-                            <p className="text-xl font-medium">Price Details</p>
+                            <p className="text-xl font-medium">Descriptions</p>
                             <p className="text-gray-400">
-                              {product.description}
+                              <div
+                                dangerouslySetInnerHTML={{
+                                  __html: product.description,
+                                }}
+                              />
                             </p>
                             <div className="">
+                              <label
+                                htmlFor="card-holder"
+                                className="mt-4 mb-2 block text-sm font-medium">
+                                Store
+                              </label>
+                              <div className="relative z-0">
+                                <select
+                                  required
+                                  onChange={(e) =>
+                                    setSelectedShop(Number(e.target.value))
+                                  }
+                                  id="Category"
+                                  className="w-full rounded-md mt-1 border border-slate-300/60 dark:border-slate-700 dark:text-slate-300 bg-transparent px-3 py-2 focus:outline-none focus:ring-0 placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-primary-500 dark:focus:border-primary-500  dark:hover:border-slate-700">
+                                  <option className="dark:text-slate-700">
+                                    Select Shop
+                                  </option>
+                                  {/* categories */}
+                                  {Array.isArray(shops) && shops.length > 0
+                                    ? shops.map((item: ShopData, index) => (
+                                        <option
+                                          key={item.id}
+                                          value={item.id}
+                                          className="dark:text-slate-700">
+                                          {item.company_name}
+                                        </option>
+                                      ))
+                                    : null}
+                                </select>
+                              </div>
                               <label
                                 htmlFor="email"
                                 className="mt-4 mb-2 block text-sm font-medium">
@@ -432,6 +481,7 @@ const ProductDetailComponent = ({ id }: Props) => {
           <span className="loading loading-dots loading-lg"></span>
         </div>
       )}
+      <Toaster />
     </div>
   );
 };

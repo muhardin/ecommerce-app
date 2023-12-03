@@ -49,7 +49,7 @@ const BottomNavigationSupplier = () => {
         })
       );
     }
-  }, [session, dispatch]);
+  }, [session, dispatch, ordersCount]);
 
   return (
     <div className="md:hidden fixed bottom-0 px-5 pt-0 bg-sky-400 shadow-lg rounded-2xl w-full rounded-b-none">

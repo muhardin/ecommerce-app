@@ -9,6 +9,7 @@ import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import store, { persistor } from "@/redux/store";
 import { UserDataProvider } from "../supplier/UserData";
+import BottomNavigation from "../BottomNavigation";
 
 const LayoutWeb = ({ children }: { children: React.ReactNode }) => {
   /*
@@ -27,6 +28,7 @@ const LayoutWeb = ({ children }: { children: React.ReactNode }) => {
           <SessionProvider>
             <UserDataProvider>
               <LayoutComponent>{children}</LayoutComponent>
+              <BottomNavigation />
             </UserDataProvider>
           </SessionProvider>
         </PersistGate>

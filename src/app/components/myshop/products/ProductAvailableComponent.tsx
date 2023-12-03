@@ -285,7 +285,7 @@ const ProductAvailableComponent = () => {
                             <div className=" border-[1px] border-sky-500 py-1 px-4 rounded-full text-xs">
                               <p>
                                 {calculatePercentage(
-                                  product?.price,
+                                  product?.company_price,
                                   product?.oldPrice
                                 )}
                                 % off
@@ -297,7 +297,9 @@ const ProductAvailableComponent = () => {
                                 <FormattedPrice amount={product.oldPrice} />
                               </p>
                               <p className=" font-semibold">
-                                <FormattedPrice amount={product?.price} />
+                                <FormattedPrice
+                                  amount={product?.company_price}
+                                />
                               </p>
                             </div>
                           </div>

@@ -141,7 +141,7 @@ export async function middleware(request: NextRequest) {
         },
       })
     ).json();
-    if (data?.data.is_supplier < 1) {
+    if (data?.data?.is_supplier < 1) {
       return NextResponse.redirect(new URL("/", request.url));
     }
   }

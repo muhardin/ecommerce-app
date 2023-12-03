@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, KeyboardEvent } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import Image from "next/image";
 import axios from "axios";
@@ -161,9 +161,18 @@ const SignUpComponent: React.FC<Params> = ({ referral }) => {
     if (e.target.name == "shopName") {
       setErrShopName(false);
     }
+    if (e.target.name == "shop_sub_domain") {
+    }
 
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+  };
+  const [showWarning, setShowWarning] = useState<boolean>(false);
+  const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === " ") {
+      e.preventDefault(); // Prevent the space character from being entered
+      setShowWarning(true);
+    }
   };
   const [verificationCode, setVerificationCode] = useState("");
   const [timer, setTimer] = useState(0); // Initial timer value in seconds
@@ -250,7 +259,6 @@ const SignUpComponent: React.FC<Params> = ({ referral }) => {
       setErrShopName(true);
     } else {
       toast.loading("Loading...");
-
       const post = await axios.post(
         process.env.SERVER_ENDPOINT + "/api/seller/check-code",
         { phone_number: formData.phone_number, code: formData.register_code }
@@ -261,6 +269,7 @@ const SignUpComponent: React.FC<Params> = ({ referral }) => {
         setStep(step + 1);
       } else {
         toast.dismiss();
+        toast.error(post.data.message.error);
         setErrorCode(true);
       }
     }
@@ -475,6 +484,7 @@ const SignUpComponent: React.FC<Params> = ({ referral }) => {
                         className="bg-slate-200 rounded-r-none pointer-events-none block w-1/3 px-2 py-3 mt-2 text-gray-700 placeholder-gray-400 border border-r-0 border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                       />
                       <input
+                        onKeyDown={handleKeyDown}
                         required
                         value={formData.shop_sub_domain}
                         onChange={handleChange}
@@ -490,7 +500,11 @@ const SignUpComponent: React.FC<Params> = ({ referral }) => {
                         className="bg-slate-200 rounded-l-none  border-l-0 pointer-events-none block w-2/3 px-2 py-3 mt-2 text-gray-700 placeholder-gray-400 border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                       />
                     </div>
-
+                    {showWarning && (
+                      <p style={{ color: "red" }}>
+                        tidak boleh menggunakan spasi.
+                      </p>
+                    )}
                     <label className="text-green-400 text-sm">
                       Dapat di isi nanti di setting shop
                     </label>
@@ -529,7 +543,7 @@ const SignUpComponent: React.FC<Params> = ({ referral }) => {
                           required
                           type="text"
                           className="w-full px-4 py-3 bg-gray-200 rounded-lg dark:text-gray-400 dark:bg-gray-800 "
-                          placeholder="Phone Number"
+                          placeholder="628xxxxxxxx"
                         />
 
                         <div className="absolute right-2 bg-transparent flex items-center justify-center text-gray-700">
@@ -542,6 +556,11 @@ const SignUpComponent: React.FC<Params> = ({ referral }) => {
                           </button>
                         </div>
                       </div>
+                      {errPhone && (
+                        <label className="text-red-600 text-sm">
+                          Wajib untuk diisi
+                        </label>
+                      )}
                       <div className="relative flex items-center mt-2">
                         <input
                           required
@@ -580,11 +599,6 @@ const SignUpComponent: React.FC<Params> = ({ referral }) => {
                         )}
                       </div> */}
                     </div>
-                    {errPhone && (
-                      <label className="text-red-600 text-sm">
-                        Wajib untuk diisi
-                      </label>
-                    )}
                   </div>
                   {/* End Setting Shop */}
                   <div className="flex flex-row justify-end gap-2 mt-4">
@@ -619,52 +633,155 @@ const SignUpComponent: React.FC<Params> = ({ referral }) => {
                     </label>
                     {packageData ? (
                       packageData.map((item: ShopPackage) => (
-                        <div className="relative" key={item.id}>
-                          <input
-                            className="peer hidden"
-                            id={`delivering_1${item.id}`}
-                            type="radio"
-                            name={`package`}
-                            value={item.id}
-                            checked={selectedPackage == item.id}
-                            onChange={handleOptionPackage}
-                          />
-                          <span className="peer-checked:border-sky-400 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
-                          <label
-                            className="peer-checked:border-1 peer-checked:border-sky-500 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-1"
-                            htmlFor={`delivering_1${item.id}`}>
-                            {/* <Image
-                        width={150}
-                        height={150}
-                        className="w-14 object-contain"
-                        src={`/images/packages/${item.package_name}.png`}
-                        alt=""
-                      /> */}
-                            {selectedPackage == item.id ? (
-                              <div className="flex items-center justify-center flex-col w-14 text-green-500">
-                                <CheckCheck />
-                              </div>
-                            ) : (
-                              <div className="flex items-center justify-center flex-col w-14 text-red-500">
-                                <Minus />
-                              </div>
-                            )}
+                        <>
+                          <div className="relative" key={item.id}>
+                            <input
+                              className="peer hidden"
+                              id={`delivering_1${item.id}`}
+                              type="radio"
+                              name={`package`}
+                              value={item.id}
+                              checked={selectedPackage == item.id}
+                              onChange={handleOptionPackage}
+                            />
+                            <span className="hidden peer-checked:border-sky-400 absolute right-4 top-1/2 box-content h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
+                            <label
+                              className="peer-checked:border-2 peer-checked:border-sky-500 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-1"
+                              htmlFor={`delivering_1${item.id}`}>
+                              {selectedPackage == item.id ? (
+                                <div className="flex items-center justify-center flex-col w-14 text-green-500">
+                                  <CheckCheck />
+                                </div>
+                              ) : (
+                                <div className="flex items-center justify-center flex-col w-14 text-red-500">
+                                  <Minus />
+                                </div>
+                              )}
 
-                            <div className="ml-0">
-                              <span className="mt-2 font-semibold capitalize">
-                                {item.title}{" "}
-                                <span className="font-sans font-semibold text-sky-500">
-                                  ({" "}
-                                  <FormattedPrice amount={Number(item.price)} />{" "}
-                                  )
+                              <div className="ml-0">
+                                <span className="mt-2 font-semibold capitalize">
+                                  {item.title}{" "}
+                                  <span className="font-sans font-semibold text-sky-500">
+                                    ({" "}
+                                    <FormattedPrice
+                                      amount={Number(item.price)}
+                                    />{" "}
+                                    )
+                                  </span>
                                 </span>
-                              </span>
-                              <p className="text-slate-500 text-sm leading-6">
-                                Menunggu Konfirmasi Dari Penjual
-                              </p>
-                            </div>
-                          </label>
-                        </div>
+                                {selectedPackage == item.id ? (
+                                  <p className="text-slate-500 text-sm leading-6 font-semibold font-mono">
+                                    Detail Paket :
+                                  </p>
+                                ) : (
+                                  <p className="text-slate-500 text-sm leading-6 font-semibold font-mono">
+                                    Klik Untuk Melihat Detail Paket
+                                  </p>
+                                )}
+                                <div
+                                  className={`${
+                                    selectedPackage == item.id
+                                      ? "flex"
+                                      : "hidden"
+                                  } flex-col gap-1 justify-start items-start`}>
+                                  <ul>
+                                    <li className="flex flex-row gap-1 items-center">
+                                      <svg
+                                        viewBox="0 0 24 24"
+                                        aria-hidden="true"
+                                        className="h-4 w-4 flex-none text-cyan-500">
+                                        <path
+                                          d="M9.307 12.248a.75.75 0 1 0-1.114 1.004l1.114-1.004ZM11 15.25l-.557.502a.75.75 0 0 0 1.15-.043L11 15.25Zm4.844-5.041a.75.75 0 0 0-1.188-.918l1.188.918Zm-7.651 3.043 2.25 2.5 1.114-1.004-2.25-2.5-1.114 1.004Zm3.4 2.457 4.25-5.5-1.187-.918-4.25 5.5 1.188.918Z"
+                                          fill="currentColor"></path>
+                                        <circle
+                                          cx="12"
+                                          cy="12"
+                                          r="8.25"
+                                          fill="none"
+                                          stroke="currentColor"
+                                          strokeWidth="1.5"
+                                          strokeLinecap="round"
+                                          strokeLinejoin="round"></circle>
+                                      </svg>
+                                      <p className="text-slate-500 text-sm leading-6">
+                                        Maximum_domain :{" "}
+                                        <label className="font-bold">
+                                          {item.maximum_domain} Domain
+                                        </label>
+                                      </p>
+                                    </li>
+                                    <li className="flex flex-row gap-1 items-center">
+                                      <svg
+                                        viewBox="0 0 24 24"
+                                        aria-hidden="true"
+                                        className="h-4 w-4 flex-none text-cyan-500">
+                                        <path
+                                          d="M9.307 12.248a.75.75 0 1 0-1.114 1.004l1.114-1.004ZM11 15.25l-.557.502a.75.75 0 0 0 1.15-.043L11 15.25Zm4.844-5.041a.75.75 0 0 0-1.188-.918l1.188.918Zm-7.651 3.043 2.25 2.5 1.114-1.004-2.25-2.5-1.114 1.004Zm3.4 2.457 4.25-5.5-1.187-.918-4.25 5.5 1.188.918Z"
+                                          fill="currentColor"></path>
+                                        <circle
+                                          cx="12"
+                                          cy="12"
+                                          r="8.25"
+                                          fill="none"
+                                          stroke="currentColor"
+                                          strokeWidth="1.5"
+                                          strokeLinecap="round"
+                                          strokeLinejoin="round"></circle>
+                                      </svg>
+                                      <p className="text-slate-500 text-sm leading-6">
+                                        Menunggu Konfirmasi Dari Penjual
+                                      </p>
+                                    </li>
+                                    <li className="flex flex-row gap-1 items-center">
+                                      <svg
+                                        viewBox="0 0 24 24"
+                                        aria-hidden="true"
+                                        className="h-4 w-4 flex-none text-cyan-500">
+                                        <path
+                                          d="M9.307 12.248a.75.75 0 1 0-1.114 1.004l1.114-1.004ZM11 15.25l-.557.502a.75.75 0 0 0 1.15-.043L11 15.25Zm4.844-5.041a.75.75 0 0 0-1.188-.918l1.188.918Zm-7.651 3.043 2.25 2.5 1.114-1.004-2.25-2.5-1.114 1.004Zm3.4 2.457 4.25-5.5-1.187-.918-4.25 5.5 1.188.918Z"
+                                          fill="currentColor"></path>
+                                        <circle
+                                          cx="12"
+                                          cy="12"
+                                          r="8.25"
+                                          fill="none"
+                                          stroke="currentColor"
+                                          strokeWidth="1.5"
+                                          strokeLinecap="round"
+                                          strokeLinejoin="round"></circle>
+                                      </svg>
+                                      <p className="text-slate-500 text-sm leading-6">
+                                        Menunggu Konfirmasi Dari Penjual
+                                      </p>
+                                    </li>
+                                    <li className="flex flex-row gap-1 items-center">
+                                      <svg
+                                        viewBox="0 0 24 24"
+                                        aria-hidden="true"
+                                        className="h-4 w-4 flex-none text-cyan-500">
+                                        <path
+                                          d="M9.307 12.248a.75.75 0 1 0-1.114 1.004l1.114-1.004ZM11 15.25l-.557.502a.75.75 0 0 0 1.15-.043L11 15.25Zm4.844-5.041a.75.75 0 0 0-1.188-.918l1.188.918Zm-7.651 3.043 2.25 2.5 1.114-1.004-2.25-2.5-1.114 1.004Zm3.4 2.457 4.25-5.5-1.187-.918-4.25 5.5 1.188.918Z"
+                                          fill="currentColor"></path>
+                                        <circle
+                                          cx="12"
+                                          cy="12"
+                                          r="8.25"
+                                          fill="none"
+                                          stroke="currentColor"
+                                          strokeWidth="1.5"
+                                          strokeLinecap="round"
+                                          strokeLinejoin="round"></circle>
+                                      </svg>
+                                      <p className="text-slate-500 text-sm leading-6">
+                                        Menunggu Konfirmasi Dari Penjual
+                                      </p>
+                                    </li>
+                                  </ul>
+                                </div>
+                              </div>
+                            </label>
+                          </div>
+                        </>
                       ))
                     ) : (
                       <div className="flex flex-row justify-center items-center">
