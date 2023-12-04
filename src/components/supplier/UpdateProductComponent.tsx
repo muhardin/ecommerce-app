@@ -763,7 +763,7 @@ const UpdateProductComponent: React.FC<ModalProps> = ({
                         <div className="col-span-8 sm:col-span-4 flex sm:flex-row items-center gap-6">
                           <div className="cursor-pointer flex items-center mb-4 sm:mb-0">
                             <input
-                              checked={type}
+                              checked={type == 1}
                               onChange={() => {
                                 setType(true);
                               }}
@@ -782,7 +782,7 @@ const UpdateProductComponent: React.FC<ModalProps> = ({
                           </div>
                           <div className="cursor-pointer flex items-center">
                             <input
-                              checked={!type}
+                              checked={type == 0}
                               onChange={() => {
                                 setType(false);
                               }}
