@@ -435,7 +435,7 @@ const CheckoutCart = () => {
       <div className="flex flex-col md:flex-row gap-2">
         <div className="flex flex-col gap-y-2 w-full md:w-2/3">
           {/* Address choose */}
-          <div className="z-40 bg-white p-4 border border-gray-200 shadow-md">
+          <div className="z-10 bg-white p-4 border border-gray-200 shadow-md">
             <div className="flex flex-row justify-between relative" ref={ref}>
               <div className="flex flex-row gap-1">
                 <svg
