@@ -182,7 +182,7 @@ const SupplierLayoutComponent = ({
                   <details className="group">
                     <summary
                       className={`${
-                        pathName.startsWith("/supplier/product")
+                        pathName.startsWith("/supplier/prod/list")
                           ? "text-gray-100 bg-blue-600 hover:bg-blue-500"
                           : "text-gray-700 hover:bg-gray-100"
                       } rounded-md cursor-pointer flex items-center px-8 py-4  dark:text-gray-200 dark:bg-blue-500 dark:hover:bg-gray-700 `}>
@@ -222,7 +222,7 @@ const SupplierLayoutComponent = ({
                             onClick={() => {
                               dispatch(toggleProfileMenu());
                             }}
-                            href="/supplier/product/list"
+                            href="/supplier/prod/list"
                             className="flex items-center py-3 pl-8 pr-4 text-gray-700 rounded dark:text-gray-400 dark:hover:bg-gray-700 hover:bg-gray-100 ">
                             <span className="text-gray-700 dark:text-gray-400 ">
                               List View

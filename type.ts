@@ -247,7 +247,7 @@ export interface Product {
   map: any;
   id: number;
   title: string;
-  isNew: boolean;
+  isNew: boolean | number;
   oldPrice: number;
   price: number;
   company_price: number;

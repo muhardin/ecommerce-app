@@ -143,6 +143,7 @@ const UpdateProductComponent: React.FC<ModalProps> = ({
   const [salePrice, setSalePrice] = useState(product.company_price);
   const [errMessage, setErrMessage]: any = useState<string[]>([]);
   const [content, setContent] = useState(product.description);
+  const [publish, setPublish] = useState(product.isPublish);
 
   useEffect(() => {
     setValCat({
@@ -230,6 +231,7 @@ const UpdateProductComponent: React.FC<ModalProps> = ({
     formData.append("quantity", quantity?.toString());
     formData.append("weight", weight?.toString());
     formData.append("slug", slug);
+    formData.append("isPublish", publish.toString());
     if (valSuppG !== null) {
       formData.append("supplier_id", valSuppG as string);
     }
@@ -489,6 +491,49 @@ const UpdateProductComponent: React.FC<ModalProps> = ({
                   <form className="block" id="block" onSubmit={handleSubmit}>
                     <div className="px-6 pt-8 flex-grow w-full  h-full max-h-full pb-56 md:pb-56 lg:pb-56 xl:pb-56">
                       <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6 items-center">
+                        <label className="block text-sm text-gray-800 dark:text-gray-400 col-span-4 sm:col-span-2 font-medium">
+                          Status
+                        </label>
+                        <div className="col-span-8 sm:col-span-4 flex sm:flex-row items-center gap-6">
+                          <div className="cursor-pointer flex items-center mb-4 sm:mb-0">
+                            <input
+                              checked={publish == 0}
+                              id="default-radio-1"
+                              type="radio"
+                              value={1}
+                              onChange={(e) => {
+                                setPublish(0);
+                              }}
+                              name="draft_status"
+                              className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                            />
+                            <label
+                              htmlFor="default-radio-1"
+                              className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300 cursor-pointer">
+                              Draft
+                            </label>
+                          </div>
+                          <div className="cursor-pointer flex items-center">
+                            <input
+                              onChange={(e) => {
+                                setPublish(1);
+                              }}
+                              checked={publish == 1}
+                              id="default-radio-2"
+                              type="radio"
+                              value={0}
+                              name="draft_status"
+                              className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                            />
+                            <label
+                              htmlFor="default-radio-2"
+                              className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300 cursor-pointer">
+                              Publish
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6 items-center">
                         <label className="block text-gray-800 dark:text-gray-400 col-span-4 sm:col-span-2 font-medium text-sm">
                           Product Title/Name
                         </label>
@@ -723,15 +768,15 @@ const UpdateProductComponent: React.FC<ModalProps> = ({
                                 setType(true);
                               }}
                               required
-                              id="default-radio-1"
+                              id="default-new-1"
                               type="radio"
                               value={1}
                               name="type_product"
                               className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                             />
                             <label
-                              htmlFor="default-radio-1"
-                              className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                              htmlFor="default-new-1"
+                              className="cursor-pointer ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
                               New
                             </label>
                           </div>
@@ -742,15 +787,15 @@ const UpdateProductComponent: React.FC<ModalProps> = ({
                                 setType(false);
                               }}
                               required
-                              id="default-radio-2"
+                              id="default-new-2"
                               type="radio"
                               value={0}
                               name="type_product"
                               className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                             />
                             <label
-                              htmlFor="default-radio-2"
-                              className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                              htmlFor="default-new-2"
+                              className="cursor-pointer ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
                               Second
                             </label>
                           </div>

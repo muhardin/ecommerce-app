@@ -39,9 +39,13 @@ const ProductsData = ({ item }: { item: ShopProduct }) => {
                 className="w-full h-full object-cover group-hover:scale-110 duration-200 rounded-t-lg"
               />
 
-              {item?.product?.isNew && (
+              {Number(item?.product?.isNew) > 0 ? (
                 <span className=" absolute top-2 right-2 font-medium text-xs py-1 px-3 rounded-full group-hover:bg-sky-500 group-hover:text-white bg-white duration-200">
-                  New Arrival
+                  New
+                </span>
+              ) : (
+                <span className=" absolute top-2 right-2 font-medium text-xs py-1 px-3 rounded-full group-hover:bg-red-500 group-hover:text-white bg-white duration-200">
+                  Second
                 </span>
               )}
             </div>
@@ -64,9 +68,13 @@ const ProductsData = ({ item }: { item: ShopProduct }) => {
                 className="w-full h-full object-cover group-hover:scale-110 duration-200 rounded-t-lg"
               />
 
-              {item?.product?.isNew && (
+              {Number(item?.product?.isNew) > 0 ? (
                 <span className=" absolute top-2 right-2 font-medium text-xs py-1 px-3 rounded-full group-hover:bg-sky-500 group-hover:text-white bg-white duration-200">
-                  New Arrival
+                  New
+                </span>
+              ) : (
+                <span className=" absolute top-2 right-2 font-medium text-xs py-1 px-3 rounded-full group-hover:bg-red-500 group-hover:text-white bg-white duration-200">
+                  Second
                 </span>
               )}
             </div>

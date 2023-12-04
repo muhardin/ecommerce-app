@@ -600,7 +600,12 @@ const ListProductComponent = () => {
                           <div className="text-red-500 font-mono">
                             #{item.id}
                           </div>
-                          <div className="">{item.title}</div>
+                          <div className="">
+                            {item.title}{" "}
+                            <span className="text-red-600">
+                              {Number(item.isNew) > 0 ? "New" : "Second"}
+                            </span>
+                          </div>
                           {/* <div className="text-sm font-mono">
                             <div dangerouslySetInnerHTML={{ __html: item.description }}></div>
                           </div> */}
@@ -621,8 +626,12 @@ const ListProductComponent = () => {
                             </span>
                           </div>
                           <div
-                            className={`text-green-700 font-mono capitalize`}>
+                            className={`text-green-700 font-mono capitalize flex flex-row gap-2`}>
                             {item.status}
+                            <span className="text-slate-950"> - </span>
+                            <div className="text-sky-500">
+                              {item.isPublish > 0 ? "Publish" : "Draft"}
+                            </div>
                           </div>
                         </div>
                       </div>
