@@ -201,7 +201,11 @@ const OrderSupplierComponent = () => {
             </div>
             <hr className="mb-2 mt-2" />
             <div className="mt-4 pb-14">
-              {orders?.items?.data ? (
+              {isLoading ? (
+                <div className="flex flex-row justify-center items-center">
+                  <span className="loading loading-dots loading-lg"></span>
+                </div>
+              ) : orders?.items.data.length > 0 ? (
                 orders?.items.data.map((item: OrderItem) => (
                   <div
                     key={item.id}
@@ -282,7 +286,7 @@ const OrderSupplierComponent = () => {
                 ))
               ) : (
                 <div className="flex flex-row justify-center items-center">
-                  <span className="loading loading-dots loading-lg"></span>
+                  <span className="">No Data</span>
                 </div>
               )}
               <div className="flex w-full justify-center mt-2">
