@@ -378,7 +378,7 @@ const MyShopStoreCustom = ({ item }: { item: ShopData }) => {
                   <label
                     htmlFor="siteSubtitle"
                     className="mb-3 block text-sm font-semibold leading-none text-body-dark">
-                    Phone
+                    Phone / Whatsapp
                   </label>
                   <input
                     id="phone"
@@ -393,6 +393,28 @@ const MyShopStoreCustom = ({ item }: { item: ShopData }) => {
                     spellCheck="false"
                     aria-invalid="false"
                   />
+                  <div className="mb-5 mt-2">
+                    <div className="flex items-center gap-x-4">
+                      <label htmlFor="">Active Whatsapp Chat ?</label>
+                      <div className="form-control w-52">
+                        <label className="cursor-pointer flex flex-row items-center gap-2">
+                          <input
+                            value="1"
+                            type="checkbox"
+                            name="is_active_chat"
+                            checked={formData.is_active_chat}
+                            onChange={handleInputChange}
+                            className="toggle toggle-primary"
+                          />
+                          {formData.is_active_chat ? (
+                            <span className="label-text ml-1">Enabled</span>
+                          ) : (
+                            <span className="label-text ml-1">Disabled</span>
+                          )}
+                        </label>
+                      </div>
+                    </div>
+                  </div>
                 </div>
                 <div className="mb-5">
                   <label
@@ -447,7 +469,7 @@ const MyShopStoreCustom = ({ item }: { item: ShopData }) => {
                 </p>
               </div>
               <div className="bg-white p-5 md:p-8 bg-light shadow rounded w-full sm:w-8/12 md:w-2/3">
-                <div className="mb-5">
+                {/* <div className="mb-5">
                   <label className="block text-body-dark font-semibold text-sm leading-none mb-2">
                     Domain
                   </label>
@@ -469,7 +491,7 @@ const MyShopStoreCustom = ({ item }: { item: ShopData }) => {
                         className="border-l-0 border-r-0 rounded-l-none rounded-r-none block w-full px-2 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                       />
                     </div>
-                    {/* <div className="">
+                    <div className="">
                       <input
                         type="text"
                         placeholder="Search location form here"
@@ -478,7 +500,7 @@ const MyShopStoreCustom = ({ item }: { item: ShopData }) => {
                         onChange={handleInputChange}
                         autoComplete="off"
                       />
-                    </div> */}
+                    </div>
                   </div>
                   <div className="mt-1 bg-red-100 p-2 rounded-lg text-sm font-mono">
                     <p className="text-gray-700 ">
@@ -490,37 +512,7 @@ const MyShopStoreCustom = ({ item }: { item: ShopData }) => {
                       <li className="text-blue-500">NS2 : n2.smartshop.id</li>
                     </ul>
                   </div>
-                </div>
-                <div className="mb-5">
-                  <label className="block text-body-dark font-semibold text-sm leading-none mb-2">
-                    Sub Domain
-                  </label>
-                  <div className="relative">
-                    <div className="relative flex items-center">
-                      <input
-                        readOnly
-                        value="https://"
-                        type="text"
-                        className="bg-slate-200 rounded-r-none pointer-events-none block w-1/3 px-2 py-3 mt-2 text-gray-700 placeholder-gray-400 border border-r-0 border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
-                      />
-                      <input
-                        required={formData.is_subdomain}
-                        onChange={handleInputChange}
-                        value={formData.slug?.toString()}
-                        name="slug"
-                        id="shop_sub_domain"
-                        type="text"
-                        placeholder="Sub Domain"
-                        className="border-l-0 border-r-0 rounded-l-none rounded-r-none block w-full px-2 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
-                      />
-                      <input
-                        value=".smartcommerce.id"
-                        type="text"
-                        className="bg-slate-200 rounded-l-none  border-l-0 pointer-events-none block w-2/3 px-2 py-3 mt-2 text-gray-700 placeholder-gray-400 border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
-                      />
-                    </div>
-                  </div>
-                </div>
+                </div
 
                 <div className="flex flex-row gap-4">
                   <label htmlFor="">Enable Sub Domain : </label>
@@ -545,7 +537,7 @@ const MyShopStoreCustom = ({ item }: { item: ShopData }) => {
                       </div>
                     </div>
                   </div>
-                </div>
+                          </div>*/}
                 <div>
                   <div className="border-b border-dashed border-border-200 py-5 first:mt-5 first:border-t last:border-b-0 md:py-8 md:first:mt-10">
                     <div className="grid grid-cols-1 gap-5 sm:grid-cols-5">

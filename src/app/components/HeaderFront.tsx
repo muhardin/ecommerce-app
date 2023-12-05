@@ -31,6 +31,7 @@ import {
 import LucidaIcon from "./ui/LucidaIcons";
 import { ClipboardList, ShoppingBag } from "lucide-react";
 import { Icons } from "./ui/Icons";
+import { useShopData } from "./shop/ShopContext";
 
 interface HeaderProps {
   toggleNavVisibility: () => void;
@@ -171,7 +172,7 @@ const HeaderFront = () => {
     });
     router.push("/sign-in");
   };
-
+  const shopData = useShopData();
   const startsWithAny = (pathName: string, prefixes: string[]): boolean => {
     return prefixes.some((prefix) => pathName.startsWith(prefix));
   };
@@ -180,7 +181,7 @@ const HeaderFront = () => {
   const arrayContent: string[] = ["/myshop", "/supplier", "/admin"];
 
   const startsWithAnyResult: boolean = startsWithAny(pathName, arrayContent);
-  console.log(startsWithAnyResult);
+  console.log(shopData);
   return (
     <>
       <section className="sticky top-0 z-40 px-3 py-3 bg-bodyColor shadow dark:text-gray-100 dark:bg-gray-900 lg:px-5 w-full">
@@ -497,10 +498,10 @@ const HeaderFront = () => {
         </nav>
         <Toaster />
       </section>
-      {!startsWithAnyResult && (
+      {!startsWithAnyResult && shopData?.is_active_chat ? (
         <div className="relative">
           <button
-            onClick={() => router.push("https://wa.me/6281372823564")}
+            onClick={() => router.push(`https://wa.me/${shopData?.phone}`)}
             className="z-20 text-white flex flex-col shrink-0 grow-0 justify-around 
                   fixed bottom-14 right-4 sm:right-2 sm:bottom-4 rounded-lg
                   mr-1 mb-5 lg:mr-5 lg:mb-5 xl:mr-10 xl:mb-10">
@@ -516,7 +517,7 @@ const HeaderFront = () => {
             </div>
           </button>
         </div>
-      )}
+      ) : null}
       {/* {!pathFloat.includes(pathName) && (
         <div className="relative">
           <button

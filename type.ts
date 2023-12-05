@@ -99,6 +99,7 @@ export interface ShopData {
   nama_bank: string | null;
   status: boolean;
   is_subdomain: boolean;
+  is_active_chat: boolean;
   shop_package_id: number;
   created_at: string;
   updated_at: string;
@@ -118,6 +119,7 @@ export interface ShopDomain {
   shop_id: number;
   domain: string;
   status?: number;
+  created_at: string;
   shop: ShopData;
 }
 export interface Shops {
