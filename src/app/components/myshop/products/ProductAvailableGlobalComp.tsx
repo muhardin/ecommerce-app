@@ -306,7 +306,7 @@ const ProductAvailableGlobalComp = ({ shop }: { shop: ShopData }) => {
                           <div className="flex flex-row items-center justify-between">
                             {/* Add to cart */}
                             <div className="flex flex-row justify-start gap-2">
-                              <div className="flex flex-row gap-2 w-full h-full bg-white relative z-20">
+                              <div className="flex flex-row gap-2 w-full h-full bg-white relative z-0">
                                 {pathname.startsWith("/supplier") ? (
                                   <div className=" relative z-10">
                                     {/* <UpdateProductComponent

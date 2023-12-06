@@ -377,12 +377,12 @@ const MyProductModal = ({ product }: { product: ShopProduct }) => {
                                   </p>
                                 </div>
                               </div>
-                              <div className="flex flex-wrap items-center mt-2 justify-end gap-2 mb-2 mr-2">
+                              <div className="fixed bottom-0 right-4 md:relative flex flex-wrap items-center mt-2 justify-end gap-2 mb-2 mr-2">
                                 <div className="">
                                   <button
                                     type="button"
                                     onClick={() => setIsModalOpen(false)}
-                                    className="flex items-center justify-center w-full p-2 text-blue-500 border border-blue-500 rounded-md dark:text-gray-200 dark:border-blue-600 hover:bg-blue-600 hover:border-blue-600 hover:text-gray-100 dark:bg-blue-600 dark:hover:bg-blue-700 dark:hover:border-blue-700 dark:hover:text-gray-300">
+                                    className="flex items-center justify-center w-full p-2 bg-white text-blue-500 border border-blue-500 rounded-md dark:text-gray-200 dark:border-blue-600 hover:bg-blue-600 hover:border-blue-600 hover:text-gray-100 dark:bg-blue-600 dark:hover:bg-blue-700 dark:hover:border-blue-700 dark:hover:text-gray-300">
                                     Close
                                   </button>
                                 </div>
@@ -390,7 +390,7 @@ const MyProductModal = ({ product }: { product: ShopProduct }) => {
                                 <div className="">
                                   <button
                                     //   type="button"
-                                    className="flex items-center justify-center w-full p-2 text-blue-500 border border-blue-500 rounded-md dark:text-gray-200 dark:border-blue-600 hover:bg-blue-600 hover:border-blue-600 hover:text-gray-100 dark:bg-blue-600 dark:hover:bg-blue-700 dark:hover:border-blue-700 dark:hover:text-gray-300">
+                                    className="flex items-center justify-center w-full p-2 bg-white text-blue-500 border border-blue-500 rounded-md dark:text-gray-200 dark:border-blue-600 hover:bg-blue-600 hover:border-blue-600 hover:text-gray-100 dark:bg-blue-600 dark:hover:bg-blue-700 dark:hover:border-blue-700 dark:hover:text-gray-300">
                                     Update Product
                                   </button>
                                 </div>

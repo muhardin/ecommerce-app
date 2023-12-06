@@ -136,14 +136,14 @@ const OrderSupplierUpdate = ({
       <div
         className={`relative z-10 ${
           modal ? "visible" : "invisible"
-        } overflow-x-hidden overflow-y-auto inset-0 outline-none focus:outline-none w-full`}
+        } overflow-x-hidden overflow-y-auto inset-0 outline-none focus:outline-none w-full fixed z-50`}
         aria-labelledby="modal-title"
         role="dialog"
         aria-modal="true">
         <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
         {/* <div className="fixed inset-0 z-10 w-full md:ml-[156px] overflow-y-auto mt-24 md:mt-0"> */}
 
-        <div className="fixed inset-0 z-10 w-full overflow-y-auto mt-24 md:mt-0">
+        <div className="fixed inset-0 z-10 w-full overflow-y-auto mt-0 md:mt-0">
           <div className="w-full flex min-h-full items-center justify-center md:justify-center p-4 text-start sm:items-center sm:p-0">
             <div className="w-full relative transform overflow-auto rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-2/3 mb-14 md:mb-0">
               <div className="p-4  shadow-md text-gray-800">
@@ -202,7 +202,11 @@ const OrderSupplierUpdate = ({
                               width={150}
                               height={150}
                               className="w-14 object-contain"
-                              src={`/images/shipping/${item.shipping_method}.png`}
+                              src={`/images/shipping/${
+                                item.shipping_method == "J&T"
+                                  ? "jnt"
+                                  : item.shipping_method
+                              }.png`}
                               alt=""
                             />
                             <div className="ml-5">
@@ -223,6 +227,9 @@ const OrderSupplierUpdate = ({
                               </p>
                               <p className="text-slate-500 text-sm leading-6">
                                 {item.user_address.zip_code}
+                              </p>
+                              <p className="text-slate-500 text-sm leading-6">
+                                {item.user_address.contact_person}
                               </p>
                               <p className="text-slate-500 text-sm leading-6">
                                 {item.user_address.phone}

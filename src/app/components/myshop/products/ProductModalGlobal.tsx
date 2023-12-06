@@ -125,7 +125,7 @@ const ProductModalGlobal = ({
       toast.dismiss();
     }
   };
-  console.log(shops);
+
   return (
     <div>
       <button
@@ -133,7 +133,7 @@ const ProductModalGlobal = ({
         className="bg-sky-500 py-2 px-4 rounded-lg text-sm tracking-wide text-slate-100 hover:bg-sky-600 hover:text-white duration-200">
         Add To Shop
       </button>
-      <div className="fixed inset-0 flex items-center justify-center z-50 mt-2 mb-20 md:mb-2">
+      <div className="fixed inset-0 flex items-center justify-center z-50 mt-0 mb-0 md:mb-2">
         <div className="fixed inset-0 bg-black opacity-50"></div>
         <div className="modal-container bg-white w-full h-full md:h-auto lg:m-44 rounded shadow-lg z-50 overflow-y-auto">
           <div className="relative modal-content py-4 text-left px-6">
@@ -414,12 +414,12 @@ const ProductModalGlobal = ({
                                       </p>
                                     </div>
                                   </div>
-                                  <div className="flex flex-wrap items-center mt-2 justify-end gap-2 mb-2 mr-2">
+                                  <div className="fixed md:relative bottom-2 right-2 flex flex-wrap items-center mt-4 justify-end gap-2 mb-2 mr-0">
                                     <div className="">
                                       <button
                                         type="button"
                                         onClick={onReset}
-                                        className="flex items-center justify-center w-full p-4 text-blue-500 border border-blue-500 rounded-md dark:text-gray-200 dark:border-blue-600 hover:bg-blue-600 hover:border-blue-600 hover:text-gray-100 dark:bg-blue-600 dark:hover:bg-blue-700 dark:hover:border-blue-700 dark:hover:text-gray-300">
+                                        className="p-4 bg-sky-500 text-white rounded-lg border-blue-500 hover:bg-sky-700">
                                         Close
                                       </button>
                                     </div>
@@ -427,7 +427,7 @@ const ProductModalGlobal = ({
                                     <div className="">
                                       <button
                                         //   type="button"
-                                        className="flex items-center justify-center w-full p-4 text-blue-500 border border-blue-500 rounded-md dark:text-gray-200 dark:border-blue-600 hover:bg-blue-600 hover:border-blue-600 hover:text-gray-100 dark:bg-blue-600 dark:hover:bg-blue-700 dark:hover:border-blue-700 dark:hover:text-gray-300">
+                                        className="p-4 bg-sky-500 text-white rounded-lg border-blue-500 hover:bg-sky-700">
                                         Add to store
                                       </button>
                                     </div>

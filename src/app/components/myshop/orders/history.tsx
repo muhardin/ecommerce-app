@@ -56,7 +56,7 @@ const MyShopOrderHistory = () => {
   } = useSWR(url, fetcher, {
     refreshInterval: 3000,
   });
-  console.log(orders);
+
   const items = orders?.items;
   const [itemOffset, setItemOffset] = useState(0);
   const pageCount = Math.ceil(items?.total / items?.per_page);
