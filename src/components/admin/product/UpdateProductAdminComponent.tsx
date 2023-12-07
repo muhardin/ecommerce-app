@@ -249,8 +249,7 @@ const UpdateProductAdminComponent: React.FC<ModalProps> = ({
             onClick={() => {
               setOpen(true);
             }}
-            className={` bg-sky-500 py-2 px-4 rounded-lg text-sm tracking-wide text-slate-100 hover:bg-sky-600 hover:text-white duration-200`}
-          >
+            className={` bg-sky-500 py-2 px-4 rounded-lg text-sm tracking-wide text-slate-100 hover:bg-sky-600 hover:text-white duration-200`}>
             Update
           </button>
         ) : (
@@ -258,8 +257,7 @@ const UpdateProductAdminComponent: React.FC<ModalProps> = ({
             onClick={() => {
               setOpen(true);
             }}
-            className="p-2 cursor-pointer text-gray-400 hover:text-emerald-600 focus:outline-none "
-          >
+            className="p-2 cursor-pointer text-gray-400 hover:text-emerald-600 focus:outline-none ">
             <p data-tip="true" data-for="edit" className="text-xl">
               <svg
                 stroke="currentColor"
@@ -270,8 +268,7 @@ const UpdateProductAdminComponent: React.FC<ModalProps> = ({
                 strokeLinejoin="round"
                 height="1em"
                 width="1em"
-                xmlns="http://www.w3.org/2000/svg"
-              >
+                xmlns="http://www.w3.org/2000/svg">
                 <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
                 <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
               </svg>
@@ -307,8 +304,7 @@ const UpdateProductAdminComponent: React.FC<ModalProps> = ({
     <>
       <div
         tabIndex={-1}
-        className="fixed drawer drawer-right drawer-open bg-white"
-      >
+        className="fixed drawer drawer-right drawer-open bg-white">
         <div className="fixed inset-0 bg-black opacity-50 z-50"></div>
         <div className="drawer-content-wrapper w-5/6 relative z-50">
           <div className="drawer-content">
@@ -316,8 +312,7 @@ const UpdateProductAdminComponent: React.FC<ModalProps> = ({
               onClick={() => {
                 setOpen(false);
               }}
-              className="fixed top-16 focus:outline-none z-30 text-red-500 hover:bg-red-100 hover:text-gray-700 transition-colors duration-150 bg-white shadow-md mr-6 mt-6 right-0 left-auto w-10 h-10 rounded-full block text-center"
-            >
+              className="fixed top-16 focus:outline-none z-30 text-red-500 hover:bg-red-100 hover:text-gray-700 transition-colors duration-150 bg-white shadow-md mr-6 mt-6 right-0 left-auto w-10 h-10 rounded-full block text-center">
               <svg
                 stroke="currentColor"
                 fill="none"
@@ -328,8 +323,7 @@ const UpdateProductAdminComponent: React.FC<ModalProps> = ({
                 className="mx-auto"
                 height="1em"
                 width="1em"
-                xmlns="http://www.w3.org/2000/svg"
-              >
+                xmlns="http://www.w3.org/2000/svg">
                 <line x1="18" y1="6" x2="6" y2="18"></line>
                 <line x1="6" y1="6" x2="18" y2="18"></line>
               </svg>
@@ -342,13 +336,12 @@ const UpdateProductAdminComponent: React.FC<ModalProps> = ({
                       Add Product
                     </h4>
                     <p className="mb-0 text-sm dark:text-gray-300">
-                      Update products info, combinations and extras.
+                      Update products info
                     </p>
                   </div>
                   <select
                     name="language"
-                    className="block w-20 h-10 border border-emerald-400 bg-gray-100 dark:bg-gray-700 px-2 py-1 text-sm dark:text-gray-300 focus:outline-none rounded-md form-select focus:bg-white dark:focus:bg-gray-700"
-                  >
+                    className="block w-20 h-10 border border-emerald-400 bg-gray-100 dark:bg-gray-700 px-2 py-1 text-sm dark:text-gray-300 focus:outline-none rounded-md form-select focus:bg-white dark:focus:bg-gray-700">
                     <option value="en">en</option>
                     <option value="bn">bn </option>
                     <option value="de">de </option>
@@ -377,16 +370,14 @@ const UpdateProductAdminComponent: React.FC<ModalProps> = ({
                   <li className="mr-2">
                     <button
                       className="inline-block px-4 py-2 text-base text-emerald-600 border-emerald-600 dark:text-emerald-500 dark:border-emerald-500 rounded-t-lg border-b-2 focus:outline-none"
-                      aria-current="page"
-                    >
+                      aria-current="page">
                       Basic Info
                     </button>
                   </li>
                   <li className="mr-2">
                     <button
                       className="inline-block px-4 py-2 text-base false focus:outline-none"
-                      aria-current="page"
-                    >
+                      aria-current="page">
                       Combination
                     </button>
                   </li>
@@ -435,8 +426,7 @@ const UpdateProductAdminComponent: React.FC<ModalProps> = ({
                             className="block bg-gray-100 focus:bg-white dark:text-gray-300 rounded-md focus:outline-none p-3 border dark:border-gray-600 dark:focus:border-gray-600 dark:bg-gray-700 text-sm  w-full  border-gray-200"
                             name="description"
                             placeholder="Product Description"
-                            spellCheck="false"
-                          ></textarea>
+                            spellCheck="false"></textarea>
                           {errMessage?.description ? (
                             <p className="text-red-400 text-sm">
                               Required description
@@ -456,8 +446,7 @@ const UpdateProductAdminComponent: React.FC<ModalProps> = ({
                               onClick={handleDivClick}
                               className="border-2 border-gray-300 dark:border-gray-600 border-dashed rounded-md cursor-pointer px-6 pt-5 pb-6"
                               role="presentation"
-                              tabIndex={0}
-                            >
+                              tabIndex={0}>
                               <input
                                 ref={fileInputRef}
                                 className="hidden"
@@ -478,8 +467,7 @@ const UpdateProductAdminComponent: React.FC<ModalProps> = ({
                                   className="text-3xl text-emerald-500"
                                   height="1em"
                                   width="1em"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                >
+                                  xmlns="http://www.w3.org/2000/svg">
                                   <polyline points="16 16 12 12 8 16"></polyline>
                                   <line x1="12" y1="12" x2="12" y2="21"></line>
                                   <path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"></path>
@@ -519,8 +507,7 @@ const UpdateProductAdminComponent: React.FC<ModalProps> = ({
                                     <button
                                       onClick={() => removeSelectedImage(index)}
                                       type="button"
-                                      className="absolute top-0 right-0 text-red-500 focus:outline-none"
-                                    >
+                                      className="absolute top-0 right-0 text-red-500 focus:outline-none">
                                       <svg
                                         stroke="currentColor"
                                         fill="none"
@@ -530,21 +517,18 @@ const UpdateProductAdminComponent: React.FC<ModalProps> = ({
                                         strokeLinejoin="round"
                                         height="1em"
                                         width="1em"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                      >
+                                        xmlns="http://www.w3.org/2000/svg">
                                         <circle cx="12" cy="12" r="10"></circle>
                                         <line
                                           x1="15"
                                           y1="9"
                                           x2="9"
-                                          y2="15"
-                                        ></line>
+                                          y2="15"></line>
                                         <line
                                           x1="9"
                                           y1="9"
                                           x2="15"
-                                          y2="15"
-                                        ></line>
+                                          y2="15"></line>
                                       </svg>
                                     </button>
                                   </div>
@@ -568,7 +552,7 @@ const UpdateProductAdminComponent: React.FC<ModalProps> = ({
                           Product Type
                         </label>
                         <div className="col-span-8 sm:col-span-4 flex sm:flex-row items-center gap-6">
-                          <div className="cursor-pointer flex items-center mb-4 sm:mb-0">
+                          <div className="cursor-pointer flex justify-center items-center">
                             <input
                               checked={type == 1}
                               onChange={() => {
@@ -583,8 +567,7 @@ const UpdateProductAdminComponent: React.FC<ModalProps> = ({
                             />
                             <label
                               htmlFor="default-radio-1"
-                              className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                            >
+                              className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
                               New
                             </label>
                           </div>
@@ -603,8 +586,7 @@ const UpdateProductAdminComponent: React.FC<ModalProps> = ({
                             />
                             <label
                               htmlFor="default-radio-2"
-                              className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                            >
+                              className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
                               Second
                             </label>
                           </div>
@@ -849,16 +831,14 @@ const UpdateProductAdminComponent: React.FC<ModalProps> = ({
                             setOpen(false);
                           }}
                           className="align-bottom inline-flex justify-center cursor-pointer leading-5 transition-colors duration-150 font-medium focus:outline-none px-4 py-2 text-sm text-gray-600 border-gray-200 border dark:text-gray-400 rounded-lg bg-gray-200  mr-3 items-center h-12 w-full hover:bg-red-50 hover:border-red-100 hover:text-red-600 dark:bg-gray-700 dark:border-gray-700 dark:hover:bg-gray-800 dark:hover:text-red-700"
-                          type="button"
-                        >
+                          type="button">
                           Cancel
                         </button>
                       </div>
                       <div className="flex-grow-0 md:flex-grow lg:flex-grow xl:flex-grow">
                         <button
                           className="align-bottom inline-flex items-center justify-center cursor-pointer leading-5 transition-colors duration-150 font-medium focus:outline-none px-4 py-2 rounded-lg text-sm text-white bg-emerald-500 border border-transparent active:bg-emerald-600 hover:bg-emerald-600 w-full h-12"
-                          type="submit"
-                        >
+                          type="submit">
                           <span>Update Product</span>
                         </button>
                       </div>
@@ -887,17 +867,14 @@ const UpdateProductAdminComponent: React.FC<ModalProps> = ({
                         <div className="rc-tree-list-holder-inner flex flex-col">
                           <div
                             className="rc-tree-treenode rc-tree-treenode-switcher-close rc-tree-treenode-leaf-last"
-                            draggable="false"
-                          >
+                            draggable="false">
                             <span
                               aria-hidden="true"
-                              className="rc-tree-indent"
-                            ></span>
+                              className="rc-tree-indent"></span>
                             <span className="rc-tree-switcher rc-tree-switcher_close"></span>
                             <span
                               title="Home"
-                              className="rc-tree-node-content-wrapper rc-tree-node-content-wrapper-close"
-                            >
+                              className="rc-tree-node-content-wrapper rc-tree-node-content-wrapper-close">
                               <span className="rc-tree-iconEle rc-tree-icon__close"></span>
                               <span className="rc-tree-title">Home_</span>
                             </span>

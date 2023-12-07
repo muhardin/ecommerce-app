@@ -254,7 +254,7 @@ const AddProductAdminComponent: React.FC<ModalProps> = ({
                       Add Product
                     </h4>
                     <p className="mb-0 text-sm dark:text-gray-300">
-                      Update products info, combinations and extras.
+                      Update products info
                     </p>
                   </div>
                   <select
@@ -471,7 +471,7 @@ const AddProductAdminComponent: React.FC<ModalProps> = ({
                           Product Type
                         </label>
                         <div className="col-span-8 sm:col-span-4 flex sm:flex-row items-center gap-6">
-                          <div className="cursor-pointer flex items-center mb-4 sm:mb-0">
+                          <div className="cursor-pointer flex items-center">
                             <input
                               onChange={() => {
                                 setType(1);

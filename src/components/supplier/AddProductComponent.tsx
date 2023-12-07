@@ -288,7 +288,7 @@ const AddProductComponent: React.FC<ModalProps> = ({
                       Add Product
                     </h4>
                     <p className="mb-0 text-sm dark:text-gray-300">
-                      Update products info, combinations and extras.
+                      Update products info
                     </p>
                   </div>
                   <select

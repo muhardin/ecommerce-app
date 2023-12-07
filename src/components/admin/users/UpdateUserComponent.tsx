@@ -275,8 +275,7 @@ const UpdateUserComponent: React.FC<ModalProps> = ({
             onClick={() => {
               setOpen(true);
             }}
-            className={` bg-sky-500 py-2 px-4 rounded-lg text-sm tracking-wide text-slate-100 hover:bg-sky-600 hover:text-white duration-200`}
-          >
+            className={` bg-sky-500 py-2 px-4 rounded-lg text-sm tracking-wide text-slate-100 hover:bg-sky-600 hover:text-white duration-200`}>
             Update
           </button>
         ) : (
@@ -284,8 +283,7 @@ const UpdateUserComponent: React.FC<ModalProps> = ({
             onClick={() => {
               setOpen(true);
             }}
-            className="p-2 cursor-pointer text-gray-400 hover:text-emerald-600 focus:outline-none "
-          >
+            className="p-2 cursor-pointer text-gray-400 hover:text-emerald-600 focus:outline-none ">
             <p data-tip="true" data-for="edit" className="text-xl">
               <svg
                 stroke="currentColor"
@@ -296,8 +294,7 @@ const UpdateUserComponent: React.FC<ModalProps> = ({
                 strokeLinejoin="round"
                 height="1em"
                 width="1em"
-                xmlns="http://www.w3.org/2000/svg"
-              >
+                xmlns="http://www.w3.org/2000/svg">
                 <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
                 <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
               </svg>
@@ -333,8 +330,7 @@ const UpdateUserComponent: React.FC<ModalProps> = ({
     <>
       <div
         tabIndex={-1}
-        className="fixed drawer drawer-right drawer-open bg-white"
-      >
+        className="fixed drawer drawer-right drawer-open bg-white">
         <div className="fixed inset-0 bg-black opacity-50 z-50"></div>
         <div className="drawer-content-wrapper w-5/6 relative z-50">
           <div className="drawer-content">
@@ -342,8 +338,7 @@ const UpdateUserComponent: React.FC<ModalProps> = ({
               onClick={() => {
                 setOpen(false);
               }}
-              className="fixed top-32 focus:outline-none z-10 text-red-500 hover:bg-red-100 hover:text-gray-700 transition-colors duration-150 bg-white shadow-md mr-6 mt-6 right-0 left-auto w-10 h-10 rounded-full block text-center"
-            >
+              className="fixed top-32 focus:outline-none z-10 text-red-500 hover:bg-red-100 hover:text-gray-700 transition-colors duration-150 bg-white shadow-md mr-6 mt-6 right-0 left-auto w-10 h-10 rounded-full block text-center">
               <svg
                 stroke="currentColor"
                 fill="none"
@@ -354,8 +349,7 @@ const UpdateUserComponent: React.FC<ModalProps> = ({
                 className="mx-auto"
                 height="1em"
                 width="1em"
-                xmlns="http://www.w3.org/2000/svg"
-              >
+                xmlns="http://www.w3.org/2000/svg">
                 <line x1="18" y1="6" x2="6" y2="18"></line>
                 <line x1="6" y1="6" x2="18" y2="18"></line>
               </svg>
@@ -368,13 +362,12 @@ const UpdateUserComponent: React.FC<ModalProps> = ({
                       Add Product
                     </h4>
                     <p className="mb-0 text-sm dark:text-gray-300">
-                      Update products info, combinations and extras.
+                      Update products info
                     </p>
                   </div>
                   <select
                     name="language"
-                    className="block w-20 h-10 border border-emerald-400 bg-gray-100 dark:bg-gray-700 px-2 py-1 text-sm dark:text-gray-300 focus:outline-none rounded-md form-select focus:bg-white dark:focus:bg-gray-700"
-                  >
+                    className="block w-20 h-10 border border-emerald-400 bg-gray-100 dark:bg-gray-700 px-2 py-1 text-sm dark:text-gray-300 focus:outline-none rounded-md form-select focus:bg-white dark:focus:bg-gray-700">
                     <option value="en">en</option>
                     <option value="bn">bn </option>
                     <option value="de">de </option>
@@ -403,16 +396,14 @@ const UpdateUserComponent: React.FC<ModalProps> = ({
                   <li className="mr-2">
                     <button
                       className="inline-block px-4 py-2 text-base text-emerald-600 border-emerald-600 dark:text-emerald-500 dark:border-emerald-500 rounded-t-lg border-b-2 focus:outline-none"
-                      aria-current="page"
-                    >
+                      aria-current="page">
                       Basic Info
                     </button>
                   </li>
                   <li className="mr-2">
                     <button
                       className="inline-block px-4 py-2 text-base false focus:outline-none"
-                      aria-current="page"
-                    >
+                      aria-current="page">
                       Combination
                     </button>
                   </li>
@@ -889,17 +880,14 @@ const UpdateUserComponent: React.FC<ModalProps> = ({
                         <div className="rc-tree-list-holder-inner flex flex-col">
                           <div
                             className="rc-tree-treenode rc-tree-treenode-switcher-close rc-tree-treenode-leaf-last"
-                            draggable="false"
-                          >
+                            draggable="false">
                             <span
                               aria-hidden="true"
-                              className="rc-tree-indent"
-                            ></span>
+                              className="rc-tree-indent"></span>
                             <span className="rc-tree-switcher rc-tree-switcher_close"></span>
                             <span
                               title="Home"
-                              className="rc-tree-node-content-wrapper rc-tree-node-content-wrapper-close"
-                            >
+                              className="rc-tree-node-content-wrapper rc-tree-node-content-wrapper-close">
                               <span className="rc-tree-iconEle rc-tree-icon__close"></span>
                               <span className="rc-tree-title">Home_</span>
                             </span>

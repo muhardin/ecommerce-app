@@ -306,6 +306,7 @@ const ListProductComponent = () => {
 
       <main className="h-full overflow-y-auto">
         <AddProductComponent isOpen={isModalOpen} closeModal={closeModal} />
+
         <div className="sm:container grid lg:px-6 sm:px-4 px-2 mx-auto pb-14 md:pb-0">
           <h1 className="my-6 text-lg font-bold text-gray-700 dark:text-gray-300">
             Products
@@ -363,7 +364,10 @@ const ListProductComponent = () => {
                   className={`${
                     isModalOpen ? "hidden" : "block"
                   } flex flex-col sm:flex-row gap-4`}>
-                  <div className="flex-grow-0 md:flex-grow lg:flex-grow xl:flex-grow">
+                  <div
+                    className={`${
+                      checkedItemIds.length > 0 ? "block" : "hidden"
+                    } flex-grow-0 md:flex-grow lg:flex-grow xl:flex-grow`}>
                     <button
                       disabled={checkedItemIds.length < 1}
                       onClick={() => {
@@ -393,7 +397,10 @@ const ListProductComponent = () => {
                       Bulk Action
                     </button>
                   </div>
-                  <div className="flex-grow-0 md:flex-grow lg:flex-grow xl:flex-grow">
+                  <div
+                    className={`${
+                      checkedItemIds.length > 0 ? "block" : "hidden"
+                    } flex-grow-0 md:flex-grow lg:flex-grow xl:flex-grow`}>
                     <button
                       disabled={checkedItemIds.length < 1}
                       onClick={() => {
@@ -548,6 +555,18 @@ const ListProductComponent = () => {
             </div>
           </div>
           <div className="w-full overflow-hidden  rounded-lg mb-8 rounded-b-lg">
+            <div className="flex flex-row gap-2">
+              <input
+                checked={selectAll}
+                onChange={toggleChecked}
+                id="selectAll"
+                name="selectAll"
+                type="checkbox"
+              />
+              <label htmlFor="selectAll" className="cursor-pointer">
+                Select All
+              </label>
+            </div>
             <div className="w-full overflow-x-auto">
               {isLoading ? (
                 <div className="flex flex-row justify-center items-center">
@@ -558,7 +577,20 @@ const ListProductComponent = () => {
                   <div
                     key={item.id}
                     className="mt-2 overflow-hidden rounded-xl border shadow">
-                    <div className="flex flex-row justify-between gap-2 p-4">
+                    <div
+                      className={`flex flex-row justify-between gap-2 p-4 items-center border ${
+                        checkedItems[item.id] ? "bg-sky-200" : ""
+                      }`}>
+                      <div className="">
+                        <input
+                          onChange={() => handleCheckboxChange(item.id)}
+                          value={item.id}
+                          checked={checkedItems[item.id] || false}
+                          id={`${item.id}`}
+                          name="iphone"
+                          type="checkbox"
+                        />
+                      </div>
                       <div className="flex justify-start flex-row items-center gap-2">
                         <div className="w-1/5">
                           <Suspense>
@@ -596,44 +628,48 @@ const ListProductComponent = () => {
                             />
                           )} */}
                         </div>
-                        <div className="flex flex-col gap-1">
-                          <div className="text-red-500 font-mono">
-                            #{item.id}
-                          </div>
-                          <div className="">
-                            {item.title}{" "}
-                            <span className="text-red-600">
-                              {Number(item.isNew) > 0 ? "New" : "Second"}
-                            </span>
-                          </div>
-                          {/* <div className="text-sm font-mono">
+                        <label
+                          htmlFor={`${item.id}`}
+                          className="cursor-pointer ">
+                          <div className="flex flex-col gap-1">
+                            <div className="text-red-500 font-mono">
+                              #{item.id}
+                            </div>
+                            <div className="">
+                              {item.title}{" "}
+                              <span className="text-red-600">
+                                {Number(item.isNew) > 0 ? "New" : "Second"}
+                              </span>
+                            </div>
+                            {/* <div className="text-sm font-mono">
                             <div dangerouslySetInnerHTML={{ __html: item.description }}></div>
                           </div> */}
-                          <div className="text-sm font-mono">
-                            <span>Category :</span>
-                            <span>{item?.category?.name}</span>
-                          </div>
-                          <div className="text-sm font-mono">
-                            <span>Set Price :</span>
-                            <span>
-                              <FormattedPrice amount={item.price} />
-                            </span>
-                          </div>
-                          <div className="text-sm font-mono">
-                            <span>Final Price :</span>
-                            <span>
-                              <FormattedPrice amount={item.company_price} />
-                            </span>
-                          </div>
-                          <div
-                            className={`text-green-700 font-mono capitalize flex flex-row gap-2`}>
-                            {item.status}
-                            <span className="text-slate-950"> - </span>
-                            <div className="text-sky-500">
-                              {item.isPublish > 0 ? "Publish" : "Draft"}
+                            <div className="text-sm font-mono">
+                              <span>Category :</span>
+                              <span>{item?.category?.name}</span>
+                            </div>
+                            <div className="text-sm font-mono">
+                              <span>Set Price :</span>
+                              <span>
+                                <FormattedPrice amount={item.price} />
+                              </span>
+                            </div>
+                            <div className="text-sm font-mono">
+                              <span>Final Price :</span>
+                              <span>
+                                <FormattedPrice amount={item.company_price} />
+                              </span>
+                            </div>
+                            <div
+                              className={`text-green-700 font-mono capitalize flex flex-row gap-2`}>
+                              {item.status}
+                              <span className="text-slate-950"> - </span>
+                              <div className="text-sky-500">
+                                {item.isPublish > 0 ? "Publish" : "Draft"}
+                              </div>
                             </div>
                           </div>
-                        </div>
+                        </label>
                       </div>
 
                       <div className="flex flex-col gap-1 font-mono justify-start items-end">
