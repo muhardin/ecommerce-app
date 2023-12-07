@@ -59,7 +59,7 @@ export function UserDataProvider({ children }: { children: ReactNode }) {
     urlAddPrimary,
     fetcher,
     {
-      refreshInterval: 3000,
+      refreshInterval: 6000,
     }
   );
 

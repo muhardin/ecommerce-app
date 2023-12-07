@@ -396,7 +396,7 @@ const page = () => {
                     <svg
                       stroke="currentColor"
                       fill="currentColor"
-                      stroke-width="0"
+                      strokeWidth="0"
                       viewBox="0 0 512 512"
                       height="1em"
                       width="1em"
@@ -411,7 +411,7 @@ const page = () => {
                     <svg
                       stroke="currentColor"
                       fill="currentColor"
-                      stroke-width="0"
+                      strokeWidth="0"
                       viewBox="0 0 512 512"
                       height="1em"
                       width="1em"
@@ -737,7 +737,7 @@ const page = () => {
                       <svg
                         stroke="currentColor"
                         fill="currentColor"
-                        stroke-width="0"
+                        strokeWidth="0"
                         viewBox="0 0 512 512"
                         height="1em"
                         width="1em"
@@ -752,7 +752,7 @@ const page = () => {
                       <svg
                         stroke="currentColor"
                         fill="currentColor"
-                        stroke-width="0"
+                        strokeWidth="0"
                         viewBox="0 0 512 512"
                         height="1em"
                         width="1em"
@@ -1866,7 +1866,7 @@ const page = () => {
                     <svg
                       stroke="currentColor"
                       fill="currentColor"
-                      stroke-width="0"
+                      strokeWidth="0"
                       viewBox="0 0 512 512"
                       height="1em"
                       width="1em"
@@ -1881,7 +1881,7 @@ const page = () => {
                     <svg
                       stroke="currentColor"
                       fill="currentColor"
-                      stroke-width="0"
+                      strokeWidth="0"
                       viewBox="0 0 512 512"
                       height="1em"
                       width="1em"
@@ -2040,7 +2040,7 @@ const page = () => {
                       <svg
                         stroke="currentColor"
                         fill="currentColor"
-                        stroke-width="0"
+                        strokeWidth="0"
                         viewBox="0 0 512 512"
                         height="1em"
                         width="1em"
@@ -2062,7 +2062,7 @@ const page = () => {
                       <svg
                         stroke="currentColor"
                         fill="currentColor"
-                        stroke-width="0"
+                        strokeWidth="0"
                         viewBox="0 0 512 512"
                         height="1em"
                         width="1em"
@@ -2082,7 +2082,7 @@ const page = () => {
                       <svg
                         stroke="currentColor"
                         fill="currentColor"
-                        stroke-width="0"
+                        strokeWidth="0"
                         viewBox="0 0 512 512"
                         height="1em"
                         width="1em"
@@ -2355,7 +2355,7 @@ const page = () => {
                 transform="translate(-30.619 0.236)"
                 fill="currentColor"
                 stroke="currentColor"
-                stroke-width="0.4"></path>
+                strokeWidth="0.4"></path>
             </svg>
           </a>
           <button
@@ -2388,7 +2388,7 @@ const page = () => {
                 transform="translate(7723.3 -2914.703)"
                 fill="currentColor"
                 stroke="currentColor"
-                stroke-width="0.6"></path>
+                strokeWidth="0.6"></path>
             </svg>
           </a>
         </div>
@@ -2434,7 +2434,7 @@ const page = () => {
                       <svg
                         stroke="currentColor"
                         fill="currentColor"
-                        stroke-width="0"
+                        strokeWidth="0"
                         viewBox="0 0 512 512"
                         className="w-6 h-6"
                         height="1em"
@@ -2442,9 +2442,9 @@ const page = () => {
                         xmlns="http://www.w3.org/2000/svg">
                         <path
                           fill="none"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="32"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="32"
                           d="M368 368L144 144m224 0L144 368"></path>
                       </svg>
                     </button>

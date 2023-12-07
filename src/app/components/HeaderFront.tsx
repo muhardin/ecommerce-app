@@ -181,7 +181,7 @@ const HeaderFront = () => {
   const arrayContent: string[] = ["/myshop", "/supplier", "/admin"];
 
   const startsWithAnyResult: boolean = startsWithAny(pathName, arrayContent);
-  console.log(shopData);
+  // console.log(shopData);
   return (
     <>
       <section className="sticky top-0 z-40 px-3 py-3 bg-bodyColor shadow dark:text-gray-100 dark:bg-gray-900 lg:px-5 w-full">

@@ -8,6 +8,8 @@ import { useDispatch } from "react-redux";
 import { useUserData } from "../../supplier/UserData";
 import useSWR from "swr";
 import Withdraw from "./Withdraw";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 const LayoutWallet = ({ children }: { children: React.ReactNode }) => {
   const dispatch = useDispatch();
@@ -34,32 +36,39 @@ const LayoutWallet = ({ children }: { children: React.ReactNode }) => {
     isValidating,
     error,
   } = useSWR(url, fetcher, {
-    refreshInterval: 3000,
+    refreshInterval: 10000,
   });
   return (
     <div className="px-4 md:px-16 bg-white">
       <div className="sm:flex sm:items-stretch sm:justify-between flex-col sm:flex-col pt-4">
         <p className="flex-1 text-base font-bold text-gray-900">Latest List</p>
-        {balance ? (
-          <div className="flex flex-row justify-between gap-2 items-center mt-2 mb-2">
-            <div className="flex flex-col gap-0">
-              <span className="font-semibold capitalize">
-                Hello{" "}
-                {userData?.data?.first_name + " " + userData?.data?.last_name}
-              </span>
-              <span className="text-sm">Your available Balance</span>
-            </div>
-            <div className="">
-              <span className="font-extrabold font-mono text-lg">
-                <FormattedPrice amount={balance.balance} />
-              </span>
-            </div>
+        <div className="flex flex-row justify-between gap-2 items-center mt-2 mb-2">
+          <div className="flex flex-col gap-0">
+            <span className="font-semibold capitalize">
+              {!balance ? (
+                <Skeleton width={150} height={20} />
+              ) : (
+                `Hello ${userData?.data?.first_name} ${userData?.data?.last_name}`
+              )}
+            </span>
+            <span className="text-sm">
+              {!balance ? (
+                <Skeleton width={100} height={15} />
+              ) : (
+                "Your available Balance"
+              )}
+            </span>
           </div>
-        ) : (
-          <div className="flex flex-row justify-center items-center">
-            <span className="loading loading-dots loading-lg"></span>
+          <div className="">
+            <span className="font-extrabold font-mono text-lg">
+              {!balance ? (
+                <Skeleton width={100} height={20} />
+              ) : (
+                <FormattedPrice amount={balance?.balance} />
+              )}
+            </span>
           </div>
-        )}
+        </div>
         <div className="mt-2 sm:mt-0">
           <div className="flex items-center justify-between gap-2">
             <div className="flex items-center">

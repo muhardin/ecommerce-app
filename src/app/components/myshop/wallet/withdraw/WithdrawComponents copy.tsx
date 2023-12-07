@@ -67,16 +67,14 @@ const WithdrawComponents = ({ items }: { items?: Withdraw }) => {
           <tbody className="lg:border-gray-300">
             {histories ? (
               histories.data.map((item: Withdraw, index: number) => (
-                <tr className="flex items-center justify-between" key={item.id}>
+                <tr className="" key={item.id}>
                   <td className="whitespace-no-wrap hidden py-4 text-sm font-normal text-gray-500 sm:px-6 lg:table-cell">
                     {itemOffset + index + 1} #{item.id}
                   </td>
                   <td
                     width="50%"
                     className="whitespace-no-wrap py-4 text-sm font-bold text-gray-900 sm:px-6">
-                    <p>{item.bank_name}</p>
-                    <p>{item.bank_account_name}</p>
-                    <p>{item.bank_account_number}</p>
+                    {item.bank_name}
                     <div className="mt-1 lg:hidden">
                       <p className="font-normal text-gray-500">
                         {formatDateAndTime(item.created_at)}
@@ -93,47 +91,8 @@ const WithdrawComponents = ({ items }: { items?: Withdraw }) => {
                     <div className="flex mt-1 ml-auto w-fit items-center rounded-full  py-2 px-3 text-left text-xs font-medium text-white lg:hidden">
                       {item.status === 2 ? (
                         <CheckCheck className="text-green-600" />
-                      ) : item.status === 3 ? (
-                        <div className="text-red-600">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="24"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            className="lucide lucide-badge-alert">
-                            <path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z" />
-                            <line x1="12" x2="12" y1="8" y2="12" />
-                            <line x1="12" x2="12.01" y1="16" y2="16" />
-                          </svg>
-                        </div>
                       ) : (
-                        <div className="text-red-600">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="24"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            className="lucide lucide-loader">
-                            <line x1="12" x2="12" y1="2" y2="6" />
-                            <line x1="12" x2="12" y1="18" y2="22" />
-                            <line x1="4.93" x2="7.76" y1="4.93" y2="7.76" />
-                            <line x1="16.24" x2="19.07" y1="16.24" y2="19.07" />
-                            <line x1="2" x2="6" y1="12" y2="12" />
-                            <line x1="18" x2="22" y1="12" y2="12" />
-                            <line x1="4.93" x2="7.76" y1="19.07" y2="16.24" />
-                            <line x1="16.24" x2="19.07" y1="7.76" y2="4.93" />
-                          </svg>
-                        </div>
+                        <FileOutput className="text-red-600" />
                       )}
                     </div>
                   </td>
@@ -143,28 +102,7 @@ const WithdrawComponents = ({ items }: { items?: Withdraw }) => {
                       {item.status === 2 ? (
                         <CheckCheck className="text-green-600" />
                       ) : (
-                        <div className="text-red-600">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="24"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            className="lucide lucide-loader">
-                            <line x1="12" x2="12" y1="2" y2="6" />
-                            <line x1="12" x2="12" y1="18" y2="22" />
-                            <line x1="4.93" x2="7.76" y1="4.93" y2="7.76" />
-                            <line x1="16.24" x2="19.07" y1="16.24" y2="19.07" />
-                            <line x1="2" x2="6" y1="12" y2="12" />
-                            <line x1="18" x2="22" y1="12" y2="12" />
-                            <line x1="4.93" x2="7.76" y1="19.07" y2="16.24" />
-                            <line x1="16.24" x2="19.07" y1="7.76" y2="4.93" />
-                          </svg>
-                        </div>
+                        <FileOutput className="text-red-600" />
                       )}
                     </div>
                   </td>

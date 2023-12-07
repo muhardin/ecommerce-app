@@ -38,7 +38,7 @@ const BottomNavigationSupplier = () => {
     isValidating,
     error,
   } = useSWR(url, fetcher, {
-    refreshInterval: 3000,
+    refreshInterval: 10000,
   });
 
   useEffect(() => {

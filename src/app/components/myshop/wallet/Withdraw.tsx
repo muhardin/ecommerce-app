@@ -44,6 +44,7 @@ const Withdraw = ({ valModal, modalToggle, balance }: Props) => {
   const [modal, setModal] = useState(false);
   const [errMessage, setErrMessage]: any = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
+  const route = useRouter();
   // console.log("Balance WD", balance);
 
   // console.log(selectedStatus);
@@ -81,12 +82,12 @@ const Withdraw = ({ valModal, modalToggle, balance }: Props) => {
     isValidating,
     error,
   } = useSWR(url, fetcher, {
-    refreshInterval: 6000,
+    refreshInterval: 10000,
   });
 
   const urlUserBank = process.env.SERVER_ENDPOINT + "/api/wallet/banks/user";
   const { data: userBanks } = useSWR(urlUserBank, fetcher, {
-    refreshInterval: 3000,
+    refreshInterval: 6000,
   });
   const [selectedBank, setSelectedBank] = useState<any>(null);
   const handleSelectBank = (event: any) => {
@@ -104,7 +105,7 @@ const Withdraw = ({ valModal, modalToggle, balance }: Props) => {
     selectedDetailBank,
     fetcher,
     {
-      refreshInterval: 3000,
+      refreshInterval: 6000,
     }
   );
   const [isAddBankAccountOpen, setAddBankAccountOpen] = useState(false);
@@ -132,6 +133,10 @@ const Withdraw = ({ valModal, modalToggle, balance }: Props) => {
   };
 
   const handleSubmitWithdrawal = async (e: SyntheticEvent) => {
+    if (valueAmount < 1) {
+      toast.error("Invalid Amount");
+      return null;
+    }
     setDisable(true);
     setErrMessage([]);
     toast.loading("loading...");
@@ -167,6 +172,7 @@ const Withdraw = ({ valModal, modalToggle, balance }: Props) => {
       setDisable(false);
     } catch (error) {
       toast.error("An error occurred while submitting the withdrawal request");
+      route.push("/myshop/wallet/withdraw");
       // Handle errors
     }
   };

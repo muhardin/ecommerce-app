@@ -27,15 +27,15 @@ const HistoryWalletComponent = ({ items }: { items?: any }) => {
       },
     }).then((res) => res.json());
 
-  const url = process.env.SERVER_ENDPOINT + "/api/wallet/balance";
-  const {
-    data: balance,
-    isLoading,
-    isValidating,
-    error,
-  } = useSWR(url, fetcher, {
-    refreshInterval: 3000,
-  });
+  // const url = process.env.SERVER_ENDPOINT + "/api/wallet/balance";
+  // const {
+  //   data: balance,
+  //   isLoading,
+  //   isValidating,
+  //   error,
+  // } = useSWR(url, fetcher, {
+  //   refreshInterval: 6000,
+  // });
 
   /*
 Get Data History
@@ -44,7 +44,7 @@ Get Data History
   const urlHistory =
     process.env.SERVER_ENDPOINT + "/api/wallet?page=" + currentPage;
   const { data: histories } = useSWR(urlHistory, fetcher, {
-    refreshInterval: 3000,
+    refreshInterval: 9000,
   });
   // console.log(histories);
 
@@ -58,7 +58,7 @@ Get Data History
     );
     setItemOffset(newOffset);
   };
-  console.log(itemOffset);
+
   return (
     <>
       <div className="mt-4 overflow-hidden rounded-xl border shadow">
