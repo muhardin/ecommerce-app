@@ -142,6 +142,11 @@ const ProductModalGlobal = ({
                 <div className="max-w-6xl px-2 py-0 mx-auto lg:py-2 sm:px-2">
                   <div className="flex flex-col md:flex-row -mx-4">
                     <div className="w-full px-4">
+                      <button
+                        onClick={onReset}
+                        className="p-1 ml-auto bg-transparent border-0 text-sky-600 float-right text-3xl leading-none font-semibold outline-none focus:outline-none">
+                        ×
+                      </button>
                       <div className="sticky top-0 z-0 overflow-hidden ">
                         <span className="text-lg font-medium text-rose-500 dark:text-rose-200">
                           {product.isNew ? "New" : ""}
@@ -414,12 +419,12 @@ const ProductModalGlobal = ({
                                       </p>
                                     </div>
                                   </div>
-                                  <div className="fixed md:relative bottom-2 right-2 flex flex-wrap items-center mt-4 justify-end gap-2 mb-2 mr-0">
+                                  <div className="fixed md:relative bottom-2 right-2 flex flex-wrap items-center mt-4 justify-end gap-2 mb-2 mr-4">
                                     <div className="">
                                       <button
                                         type="button"
                                         onClick={onReset}
-                                        className="p-4 bg-sky-500 text-white rounded-lg border-blue-500 hover:bg-sky-700">
+                                        className="p-2 bg-white text-sky-500 rounded-lg border border-blue-500 hover:bg-sky-700">
                                         Close
                                       </button>
                                     </div>
@@ -427,7 +432,7 @@ const ProductModalGlobal = ({
                                     <div className="">
                                       <button
                                         //   type="button"
-                                        className="p-4 bg-sky-500 text-white rounded-lg border-blue-500 hover:bg-sky-700">
+                                        className="p-2 bg-white text-sky-500 rounded-lg border border-blue-500 hover:bg-sky-700">
                                         Add to store
                                       </button>
                                     </div>
