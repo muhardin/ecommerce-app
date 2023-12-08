@@ -139,6 +139,7 @@ const UpdateProductComponent: React.FC<ModalProps> = ({
   const [quantity, setQuantity] = useState(product.quantity);
   const [weight, setWeight] = useState(product.weight);
   const [slug, setSlug] = useState(product.slug);
+  const [tag, setTag] = useState(product.tag);
   const [barcode, setBarcode] = useState("");
   const [salePrice, setSalePrice] = useState(product.company_price);
   const [errMessage, setErrMessage]: any = useState<string[]>([]);
@@ -231,6 +232,7 @@ const UpdateProductComponent: React.FC<ModalProps> = ({
     formData.append("quantity", quantity?.toString());
     formData.append("weight", weight?.toString());
     formData.append("slug", slug);
+    formData.append("tag", tag);
     formData.append("isPublish", publish.toString());
     if (valSuppG !== null) {
       formData.append("supplier_id", valSuppG as string);
@@ -1021,9 +1023,14 @@ const UpdateProductComponent: React.FC<ModalProps> = ({
                         <div className="col-span-8 sm:col-span-4">
                           <div className="react-tag-input">
                             <input
-                              className="react-tag-input__input"
-                              placeholder="Product Tag (Write then press enter to add new tag )"
-                              value=""
+                              onChange={(e) => {
+                                setTag(e.target.value);
+                              }}
+                              className="block w-full h-12 border px-3 py-1 text-sm focus:outline-none dark:text-gray-300 leading-5 rounded-md bg-gray-100 focus:bg-white dark:focus:bg-gray-700 focus:border-gray-200 border-gray-200 dark:border-gray-600 dark:focus:border-gray-500 dark:bg-gray-700  mr-2 p-2"
+                              type="text"
+                              name="tags"
+                              placeholder="Product Tags"
+                              value={tag}
                             />
                           </div>
                         </div>

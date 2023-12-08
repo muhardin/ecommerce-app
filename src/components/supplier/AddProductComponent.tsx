@@ -105,6 +105,7 @@ const AddProductComponent: React.FC<ModalProps> = ({
   const [quantity, setQuantity] = useState(0);
   const [weight, setWeight] = useState(0);
   const [slug, setSlug] = useState("");
+  const [tag, setTag] = useState("");
   const [barcode, setBarcode] = useState("");
   const [salePrice, setSalePrice] = useState(0);
   const [errMessage, setErrMessage]: any = useState<string[]>([]);
@@ -120,6 +121,7 @@ const AddProductComponent: React.FC<ModalProps> = ({
     setQuantity(0);
     setWeight(0);
     setSlug("");
+    setTag("");
     setBarcode("");
     setSalePrice(0);
     setErrMessage([]);
@@ -189,6 +191,7 @@ const AddProductComponent: React.FC<ModalProps> = ({
     formData.append("quantity", quantity?.toString());
     formData.append("weight", weight?.toString());
     formData.append("slug", slug);
+    formData.append("tag", tag);
     if (valSuppG !== null) {
       formData.append("supplier_id", valSuppG as string);
     }
@@ -227,7 +230,6 @@ const AddProductComponent: React.FC<ModalProps> = ({
   const handleEditorChange = (content: string, editor: any) => {
     setContent(content);
   };
-  console.log(content);
   const modules = {
     toolbar: [
       [{ header: [1, 2, false] }],
@@ -282,7 +284,7 @@ const AddProductComponent: React.FC<ModalProps> = ({
             </button>
             <div className="fixed flex flex-col w-full h-full justify-between bg-white">
               <div className="w-full relative p-6 border-b border-gray-100 bg-gray-200 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300">
-                <div className="flex md:flex-row flex-col justify-between mr-20">
+                <div className="flex flex-row justify-between mr-20">
                   <div>
                     <h4 className="text-xl font-medium dark:text-gray-300">
                       Add Product
@@ -302,12 +304,12 @@ const AddProductComponent: React.FC<ModalProps> = ({
                 </div>
               </div>
               <div className="bg-white text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-700">
-                <div className="mb-3 flex flex-wrap justify-end items-center mr-8 h-2">
+                <div className="mb-3 flex flex-wrap justify-end items-center mr-4 h-2">
                   <div className="flex flex-wrap items-center mt-2">
                     <label className="block text-base font-normal text-orange-500 dark:text-orange-400 mx-4">
                       Have variants?
                     </label>
-                    <div className="react-switch md:ml-0 ml-3 relative inline-block text-left  direction-ltr rounded-15 ease-in-out touch-none select-none">
+                    <div className="react-switch md:ml-0 ml-1 relative inline-block text-left  direction-ltr rounded-15 ease-in-out touch-none select-none">
                       <Switch
                         onChange={() => {
                           toggleChecked();
@@ -326,7 +328,8 @@ const AddProductComponent: React.FC<ModalProps> = ({
                       Basic Info
                     </button>
                   </li>
-                  <li className="mr-2">
+                  <li
+                    className={`${checked == true ? "block" : "hidden"} mr-2 `}>
                     <button
                       className="inline-block px-4 py-2 text-base false focus:outline-none"
                       aria-current="page">
@@ -502,7 +505,7 @@ const AddProductComponent: React.FC<ModalProps> = ({
                           Product Type
                         </label>
                         <div className="col-span-8 sm:col-span-4 flex sm:flex-row items-center gap-6">
-                          <div className="cursor-pointer flex items-center mb-4 sm:mb-0">
+                          <div className="cursor-pointer flex items-center sm:mb-0">
                             <input
                               onChange={() => {
                                 setType(1);
@@ -613,6 +616,7 @@ const AddProductComponent: React.FC<ModalProps> = ({
                               Rp
                             </span>
                             <CurrencyInput
+                              required
                               onValueChange={(e) => {
                                 handleSalePrice(Number(e));
                               }}
@@ -675,6 +679,7 @@ const AddProductComponent: React.FC<ModalProps> = ({
                         <div className="col-span-8 sm:col-span-4">
                           <div className="flex flex-row">
                             <input
+                              required
                               onChange={handleAmountQuantity}
                               className="block w-full h-12 px-3 py-1 text-sm focus:outline-none dark:text-gray-300 leading-5 rounded-md bg-gray-100 focus:bg-white dark:focus:bg-gray-700 border border-gray-400 cursor-not-allowed opacity-50  dark:bg-gray-800 mr-2 p-2"
                               type="text"
@@ -697,6 +702,7 @@ const AddProductComponent: React.FC<ModalProps> = ({
                         <div className="col-span-8 sm:col-span-4">
                           <div className="flex flex-row">
                             <input
+                              required
                               onChange={handleAmountWeight}
                               className="block w-full h-12 px-3 py-1 text-sm focus:outline-none dark:text-gray-300 leading-5 rounded-md bg-gray-100 focus:bg-white dark:focus:bg-gray-700 border border-gray-400 cursor-not-allowed opacity-50 dark:bg-gray-800 mr-2 p-2"
                               type="text"
@@ -759,9 +765,14 @@ const AddProductComponent: React.FC<ModalProps> = ({
                         <div className="col-span-8 sm:col-span-4">
                           <div className="react-tag-input">
                             <input
-                              className="react-tag-input__input"
-                              placeholder="Product Tag (Write then press enter to add new tag )"
-                              value=""
+                              onChange={(e) => {
+                                setTag(e.target.value);
+                              }}
+                              className="block w-full h-12 border px-3 py-1 text-sm focus:outline-none dark:text-gray-300 leading-5 rounded-md bg-gray-100 focus:bg-white dark:focus:bg-gray-700 focus:border-gray-200 border-gray-200 dark:border-gray-600 dark:focus:border-gray-500 dark:bg-gray-700  mr-2 p-2"
+                              type="text"
+                              name="tags"
+                              placeholder="Product Tags"
+                              value={tag}
                             />
                           </div>
                         </div>

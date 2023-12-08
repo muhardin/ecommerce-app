@@ -271,6 +271,7 @@ export interface Product {
   sub_category: number;
   product_url: string;
   slug: string;
+  tags: string;
   sku: string;
   status: string;
   isPublish: number;

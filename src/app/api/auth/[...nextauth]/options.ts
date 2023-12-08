@@ -102,6 +102,6 @@ export const options: NextAuthOptions = {
   },
   session: {
     // Use a custom session expiration callback
-    maxAge: 3 * 60 * 60, // 1 hour in seconds
+    // maxAge: 3 * 60 * 60, // 1 hour in seconds
   },
 };
