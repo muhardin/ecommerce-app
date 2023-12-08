@@ -105,7 +105,7 @@ const Withdraw = ({ valModal, modalToggle, balance }: Props) => {
     selectedDetailBank,
     fetcher,
     {
-      refreshInterval: 6000,
+      refreshInterval: 30000,
     }
   );
   const [isAddBankAccountOpen, setAddBankAccountOpen] = useState(false);
