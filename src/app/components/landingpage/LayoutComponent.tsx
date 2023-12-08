@@ -58,7 +58,7 @@ const LayoutComponent = ({ children }: { children: React.ReactNode }) => {
     route.push("/web/sign-in");
     toast.dismiss();
   };
-
+  // console.log(session);
   return (
     <>
       <div className="flex min-h-full flex-col">
@@ -423,7 +423,7 @@ const LayoutComponent = ({ children }: { children: React.ReactNode }) => {
                           </Link>
                         )}
 
-                        {userData?.data?.is_supplier == 1 && (
+                        {session.is_supplier == 1 && (
                           <Link
                             onClick={() => {
                               setProfileMenu(false);
@@ -436,7 +436,7 @@ const LayoutComponent = ({ children }: { children: React.ReactNode }) => {
                             Supplier
                           </Link>
                         )}
-                        {userData?.data?.is_seller == 1 && (
+                        {session?.is_seller == 1 ? (
                           <Link
                             onClick={() => {
                               setProfileMenu(false);
@@ -448,8 +448,8 @@ const LayoutComponent = ({ children }: { children: React.ReactNode }) => {
                             </div>
                             My Shop
                           </Link>
-                        )}
-                        {userData?.data?.is_seller == 2 && (
+                        ) : null}
+                        {session?.is_seller == 2 && (
                           <Link
                             onClick={() => {
                               setProfileMenu(false);

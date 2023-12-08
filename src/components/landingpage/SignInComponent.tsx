@@ -54,11 +54,11 @@ const SignInComponent = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        if (session?.is_company == "1") {
+        if (session?.is_company == 1) {
           router.push("/admin");
         }
 
-        if (session?.is_seller == "2") {
+        if (session?.is_seller == 2) {
           const response = await fetch(
             `${process.env.SERVER_ENDPOINT}/api/register-payment/2`,
             {
@@ -74,7 +74,7 @@ const SignInComponent = () => {
             router.push("/web/payment/" + data.id);
           }
           console.log(data);
-        } else if (session?.is_seller == "1") {
+        } else if (session?.is_seller == 1) {
           router.push("/myshop/");
         }
       } catch (error) {

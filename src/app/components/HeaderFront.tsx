@@ -434,7 +434,7 @@ const HeaderFront = () => {
                       ) : (
                         ""
                       )}
-                      {session?.is_seller == "1" ? (
+                      {session?.is_seller == 1 ? (
                         <Link
                           onClick={() => {
                             setProfileMenu(false);
