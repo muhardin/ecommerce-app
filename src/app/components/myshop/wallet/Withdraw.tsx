@@ -82,12 +82,12 @@ const Withdraw = ({ valModal, modalToggle, balance }: Props) => {
     isValidating,
     error,
   } = useSWR(url, fetcher, {
-    refreshInterval: 10000,
+    refreshInterval: 12000,
   });
 
   const urlUserBank = process.env.SERVER_ENDPOINT + "/api/wallet/banks/user";
   const { data: userBanks } = useSWR(urlUserBank, fetcher, {
-    refreshInterval: 6000,
+    refreshInterval: 10000,
   });
   const [selectedBank, setSelectedBank] = useState<any>(null);
   const handleSelectBank = (event: any) => {

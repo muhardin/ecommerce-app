@@ -36,7 +36,7 @@ const LayoutWallet = ({ children }: { children: React.ReactNode }) => {
     isValidating,
     error,
   } = useSWR(url, fetcher, {
-    refreshInterval: 10000,
+    refreshInterval: 20000,
   });
   return (
     <div className="px-4 md:px-16 bg-white">
