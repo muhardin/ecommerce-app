@@ -81,7 +81,7 @@ const Banner = () => {
       <div className="mb-12 md:mb-14 xl:mb-16 px-2.5 grid grid-cols-2 sm:grid-cols-9 gap-2 md:gap-2.5 max-w-[1920px] mx-auto">
         <div className="mx-auto w-full col-span-full sm:col-span-5">
           <Link
-            href="/collections/mens-collection"
+            href="#"
             className="group flex justify-center relative overflow-hidden w-full aspect-[2.3/1] sm:aspect-[5.075/2]">
             <Image
               alt="Men's Collection"
@@ -94,7 +94,7 @@ const Banner = () => {
 
         <div className="mx-auto w-full col-span-1 sm:col-span-2">
           <Link
-            href="/collections/new-kids"
+            href="#"
             className="group flex justify-center relative overflow-hidden w-full aspect-square h-full">
             <Image
               alt="New Kid's"
@@ -107,7 +107,7 @@ const Banner = () => {
 
         <div className="mx-auto w-full col-span-1 sm:col-span-2">
           <Link
-            href="/collections/dress-women"
+            href="#"
             className="group flex justify-center relative overflow-hidden w-full aspect-square h-full">
             <Image
               alt="Dress Women"

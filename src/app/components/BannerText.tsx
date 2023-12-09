@@ -3,8 +3,9 @@ import { motion } from "framer-motion";
 
 interface Props {
   title: string;
+  content?: string;
 }
-const BannerText = ({ title }: Props) => {
+const BannerText = ({ title, content }: Props) => {
   return (
     <div className="sm:inline-block lg:inline-block absolute top-0 left-2 sm:left-4 w-full h-full">
       <Container className="flex h-full flex-col gap-y-2 sm:gap-y-6 justify-center items-start">
@@ -19,16 +20,16 @@ const BannerText = ({ title }: Props) => {
           initial={{ y: 40, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.6 }}
-          className="text-sm sm:text-lg text-slate-100">
-          Stock up on sportswear and limited edition collections in our brand
-          <br />
-          awesome mid-season sale
+          className="text-sm sm:text-lg text-slate-100 flex-wrap">
+          {content
+            ? content
+            : "Stock up on sportswear and limited edition collections in our brand"}
         </motion.p>
         <motion.div
           initial={{ y: 50, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.7 }}
-          className="flex gap-x-4 mt-2">
+          className="flex gap-x-4 mt-1 sm:mt-2">
           <button className="p-2 sm:py-3 text-xs sm:px-6 rounded-full bg-slate-200 hover:bg-white duration-200 sm:text-sm uppercase font-semibold">
             Find out more
           </button>

@@ -697,7 +697,7 @@ const MyShopStoreCustom = ({ item }: { item: ShopData }) => {
               </div>
             </div>
 
-            <div className="mb-4 text-end flex flex-row gap-2 fixed right-10 bottom-2">
+            <div className="mb-4 text-end flex flex-row gap-2 fixed sm:right-10 right-4 bottom-14 sm:bottom-2">
               <Link
                 href={"/myshop/store"}
                 data-variant="normal"
