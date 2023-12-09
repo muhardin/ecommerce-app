@@ -63,12 +63,12 @@ const LayoutComponent = ({ children }: { children: React.ReactNode }) => {
     <>
       <div className="flex min-h-full flex-col">
         {/* <BannerFlash /> */}
-        <header className="relative z-40">
+        <header className="w-full z-40 top-0 ">
           <nav>
             <div
               className={`${
                 isSticky ? "fixed top-0" : "relative"
-              } bg-white  mx-auto px-4 sm:px-6 lg:px-8 z-10 flex justify-between py-3 shadow-lg shadow-gray-200 w-full`}>
+              }  bg-white  mx-auto px-4 sm:px-6 lg:px-8 z-10 flex justify-between py-3 shadow-lg shadow-gray-200 w-full`}>
               {/* <div
               className={`${"fixed top-0"} bg-white  mx-auto px-4 sm:px-6 lg:px-8 z-10 flex justify-between py-3 shadow-lg shadow-gray-200 w-full`}
             > */}
@@ -390,7 +390,7 @@ const LayoutComponent = ({ children }: { children: React.ReactNode }) => {
                           </div>
                           Order
                         </Link>
-                        {userData?.data?.is_company == 1 && (
+                        {session.is_company == 1 && (
                           <Link
                             onClick={() => {
                               setProfileMenu(false);
