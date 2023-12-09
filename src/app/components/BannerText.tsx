@@ -20,10 +20,10 @@ const BannerText = ({ title, content }: Props) => {
           initial={{ y: 40, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.6 }}
-          className="text-sm sm:text-lg text-slate-100 flex-wrap">
+          className="text-sm sm:text-lg text-slate-100 flex-wrap w-1/2">
           {content
             ? content
-            : "Stock up on sportswear and limited edition collections in our brand"}
+            : "Stock up on sportswear and limited edition collections"}
         </motion.p>
         <motion.div
           initial={{ y: 50, opacity: 0 }}
