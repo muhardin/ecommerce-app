@@ -3,6 +3,7 @@ import Products from "@/app/components/Products";
 import { useShopData } from "@/app/components/shop/ShopContext";
 import BannerOne from "./theme/one/BannerOne";
 import Banner from "@/app/components/Banner";
+import Image from "next/image";
 
 const DefaultPage = ({ domain }: { domain: string }) => {
   const shopData = useShopData();

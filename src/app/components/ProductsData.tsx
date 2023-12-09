@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { ItemProps, ShopProduct } from "../../../type";
+import { ItemProps, ProductGallery, ShopProduct } from "../../../type";
 import { calculatePercentage } from "../helpers";
 import FormattedPrice from "./FormattedPrice";
 import { IoIosStar } from "react-icons/io";
@@ -8,6 +8,7 @@ import Link from "next/link";
 import { useDispatch } from "react-redux";
 import { addToCart } from "@/redux/shoppingSlice";
 import toast, { Toaster } from "react-hot-toast";
+import Slider from "react-slick";
 
 const ProductsData = ({ item }: { item: ShopProduct }) => {
   const dispatch = useDispatch();
@@ -16,6 +17,15 @@ const ProductsData = ({ item }: { item: ShopProduct }) => {
       <IoIosStar />
     </span>
   ));
+  var settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    autoplay: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    arrows: false,
+  };
   // console.log(item);
   // console.log(item);
   return (
@@ -31,13 +41,29 @@ const ProductsData = ({ item }: { item: ShopProduct }) => {
               },
             }}>
             <div className=" w-full h-80 group overflow-hidden relative">
-              <Image
+              <Slider {...settings}>
+                {item.product?.product_gallery.map(
+                  (gallery: ProductGallery) => (
+                    <div key={gallery.id} className="w-full h-full relative">
+                      <Image
+                        width={500}
+                        height={500}
+                        src={`${process.env.SERVER_ENDPOINT}${gallery.url}`}
+                        alt="Banner One"
+                        className="w-full h-full object-cover group-hover:scale-110 duration-200 rounded-t-lg"
+                        priority
+                      />
+                    </div>
+                  )
+                )}
+              </Slider>
+              {/* <Image
                 src={`${process.env.SERVER_ENDPOINT}${item.product?.product_gallery[0].url}`}
                 alt="Product image"
                 width={500}
                 height={500}
                 className="w-full h-full object-cover group-hover:scale-110 duration-200 rounded-t-lg"
-              />
+              /> */}
 
               {Number(item?.product?.isNew) > 0 ? (
                 <span className=" absolute top-2 right-2 font-medium text-xs py-1 px-3 rounded-full group-hover:bg-sky-500 group-hover:text-white bg-white duration-200">
