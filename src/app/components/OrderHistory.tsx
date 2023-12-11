@@ -15,6 +15,8 @@ import { useState } from "react";
 import axios from "axios";
 
 const OrderHistory = () => {
+  const [statusFilter, setStatusFilter] = useState<string>("");
+  const [currentPage, setCurrentPage] = useState(1);
   function formatDateAndTime(dateTimeString: string) {
     const options: Intl.DateTimeFormatOptions = {
       day: "2-digit",
@@ -45,7 +47,11 @@ const OrderHistory = () => {
     }).then((res) => res.json());
 
   const url =
-    process.env.SERVER_ENDPOINT + "/api/user/order/order-lists/" + shopData?.id;
+    process.env.SERVER_ENDPOINT +
+    "/api/user/order/order-lists/" +
+    shopData?.id +
+    "?page=" +
+    currentPage;
   const {
     data: payment,
     isLoading,
@@ -114,7 +120,18 @@ const OrderHistory = () => {
         }
       });
   };
-  // console.log(payment);
+  const items = payment;
+  const [itemOffset, setItemOffset] = useState(0);
+  const pageCount = Math.ceil(items?.total / items?.per_page);
+  const handlePageClick = (selected: number) => {
+    setCurrentPage(Number(selected + 1));
+    const newOffset = (selected * items?.per_page) % items?.total;
+    console.log(
+      `User requested page number ${selected}, which is offset ${newOffset}`
+    );
+    setItemOffset(newOffset);
+  };
+  console.log(payment);
   return (
     <>
       <div className="w-full mx-auto ">
@@ -276,6 +293,71 @@ const OrderHistory = () => {
                 </div>
               </div>
             ))}
+            <div className="flex w-full justify-center mt-2">
+              <nav aria-label="Page navigation example w-full">
+                <ul className="inline-flex -space-x-px text-base h-10">
+                  <li>
+                    <button
+                      disabled={currentPage < 2}
+                      onClick={() => {
+                        setCurrentPage(Number(currentPage - 1));
+                      }}
+                      className="flex items-center justify-center px-4 h-10 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="18"
+                        height="18"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="lucide lucide-chevron-left">
+                        <path d="m15 18-6-6 6-6" />
+                      </svg>
+                    </button>
+                  </li>
+                  {Array.from({ length: pageCount }).map((_, index) => {
+                    const page = index + 1;
+                    return (
+                      <li key={page}>
+                        <button
+                          onClick={() => {
+                            handlePageClick(index);
+                          }}
+                          className="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                          {page}
+                        </button>
+                      </li>
+                    );
+                  })}
+
+                  <li>
+                    <button
+                      disabled={currentPage == pageCount}
+                      onClick={() => {
+                        setCurrentPage(Number(currentPage + 1));
+                      }}
+                      className="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="18"
+                        height="18"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="lucide lucide-chevron-right">
+                        <path d="m9 18 6-6-6-6" />
+                      </svg>
+                    </button>
+                  </li>
+                </ul>
+              </nav>
+            </div>
           </div>
         </div>
       </div>
