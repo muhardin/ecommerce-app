@@ -126,9 +126,6 @@ const OrderHistory = () => {
   const handlePageClick = (selected: number) => {
     setCurrentPage(Number(selected + 1));
     const newOffset = (selected * items?.per_page) % items?.total;
-    console.log(
-      `User requested page number ${selected}, which is offset ${newOffset}`
-    );
     setItemOffset(newOffset);
   };
 
@@ -182,13 +179,18 @@ const OrderHistory = () => {
           </div>
 
           <div className="mt-2 overflow-hidden rounded-xl  shadow">
-            {payment?.data.map((item: Order) => (
-              <div
-                key={item.id}
-                className="mt-2 overflow-hidden rounded-xl border shadow">
-                <div className="flex flex-row justify-between gap-2 p-4 pb-0">
-                  <div className="flex justify-start flex-row items-center gap-2">
-                    {/* <div className="w-1/5">
+            {isLoading ? (
+              <div className="flex flex-row justify-center items-center">
+                <span className="loading loading-dots loading-lg"></span>
+              </div>
+            ) : payment?.data?.length > 0 ? (
+              payment?.data.map((item: Order) => (
+                <div
+                  key={item.id}
+                  className="mt-2 overflow-hidden rounded-xl border shadow">
+                  <div className="flex flex-row justify-between gap-2 p-4 pb-0">
+                    <div className="flex justify-start flex-row items-center gap-2">
+                      {/* <div className="w-1/5">
                       {item.order_detail[0].product?.product_gallery?.length >
                       0 ? (
                         <Image
@@ -206,93 +208,98 @@ const OrderHistory = () => {
                         />
                       )}
                     </div> */}
-                    <div className="flex flex-col gap-1">
-                      <div className="text-red-500 font-mono">
-                        {item.invoice_number}
-                      </div>
+                      <div className="flex flex-col gap-1">
+                        <div className="text-red-500 font-mono">
+                          {item.invoice_number}
+                        </div>
 
-                      <div className="text-sm font-mono">
-                        {formatDateAndTime(item.created_at)}
-                      </div>
-                      <div
-                        className={`${
-                          item.order_payment?.status == "UNPAID"
-                            ? "text-red-500"
-                            : item.order_status == "PAID"
-                            ? "text-green-500"
-                            : "text-red-700"
-                        } font-mono capitalize`}>
-                        {item.order_payment?.status}
+                        <div className="text-sm font-mono">
+                          {formatDateAndTime(item.created_at)}
+                        </div>
+                        <div
+                          className={`${
+                            item.order_payment?.status == "UNPAID"
+                              ? "text-red-500"
+                              : item.order_status == "PAID"
+                              ? "text-green-500"
+                              : "text-red-700"
+                          } font-mono capitalize`}>
+                          {item.order_payment?.status}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div className="flex flex-col gap-2 font-mono justify-start items-end">
-                    <div className="">
-                      <FormattedPrice amount={Number(item.amount)} />
-                    </div>
-                    {item.order_payment?.status !== "PAID" && (
+                    <div className="flex flex-col gap-2 font-mono justify-start items-end">
                       <div className="">
-                        <Link
-                          href={"/payment/" + item.id}
-                          className={`inline-flex items-center rounded-md bg-red-600 py-2 px-3 text-xs text-white cursor-pointer`}>
-                          Pay
-                        </Link>
+                        <FormattedPrice amount={Number(item.amount)} />
                       </div>
-                    )}
-                    {item.order_payment?.status == "PAID" && (
-                      <div className="">
-                        <Link
-                          href={"/profile/orders/summary/" + item.id}
-                          className={`inline-flex items-center rounded-md bg-green-600 py-2 px-3 text-xs text-white cursor-pointer`}>
-                          Detail
-                        </Link>
-                      </div>
-                    )}
-                  </div>
-                </div>
-                <div className="p-2 flex flex-col gap-1 text-xs font-mono">
-                  {item.order_detail.map((prod) => (
-                    <div
-                      key={prod.id}
-                      className="w-full border border-red-500 p-1 rounded-lg flex flex-row gap-1 justify-between">
-                      <div className="w-full flex flex-row justify-start items-center">
+                      {item.order_payment?.status !== "PAID" && (
                         <div className="">
-                          <div className="w-10 h-10 flex items-center justify-center">
-                            <Image
-                              className="object-scale-down"
-                              src={`${process.env.SERVER_ENDPOINT}${prod.product.product_gallery[0].url}`}
-                              width={25}
-                              height={20}
-                              alt=""
-                            />
-                          </div>
+                          <Link
+                            href={"/payment/" + item.id}
+                            className={`inline-flex items-center rounded-md bg-red-600 py-2 px-3 text-xs text-white cursor-pointer`}>
+                            Pay
+                          </Link>
                         </div>
-                        <div className="flex flex-col gap-1">
-                          <div className="">{prod.product.title}</div>
-                          <div className="">Qty : {prod.quantity}</div>
-                          <div className="">{prod.order_status}</div>
-                        </div>
-                      </div>
-                      {prod.order_status === "delivering" && (
-                        <div className="flex items-end justify-end gap-1">
-                          <button
+                      )}
+                      {item.order_payment?.status == "PAID" && (
+                        <div className="">
+                          <Link
+                            href={"/profile/orders/summary/" + item.id}
                             className={`inline-flex items-center rounded-md bg-green-600 py-2 px-3 text-xs text-white cursor-pointer`}>
-                            Track
-                          </button>
-                          <button
-                            onClick={() => {
-                              ConfirmAction(prod?.id, "confirm");
-                            }}
-                            className={`inline-flex items-center rounded-md bg-sky-600 py-2 px-3 text-xs text-white cursor-pointer`}>
-                            Terima
-                          </button>
+                            Detail
+                          </Link>
                         </div>
                       )}
                     </div>
-                  ))}
+                  </div>
+                  <div className="p-2 flex flex-col gap-1 text-xs font-mono">
+                    {item.order_detail.map((prod) => (
+                      <div
+                        key={prod.id}
+                        className="w-full border border-red-500 p-1 rounded-lg flex flex-row gap-1 justify-between">
+                        <div className="w-full flex flex-row justify-start items-center">
+                          <div className="">
+                            <div className="w-10 h-10 flex items-center justify-center">
+                              <Image
+                                className="object-scale-down"
+                                src={`${process.env.SERVER_ENDPOINT}${prod.product.product_gallery[0].url}`}
+                                width={25}
+                                height={20}
+                                alt=""
+                              />
+                            </div>
+                          </div>
+                          <div className="flex flex-col gap-1">
+                            <div className="">{prod.product.title}</div>
+                            <div className="">Qty : {prod.quantity}</div>
+                            <div className="">{prod.order_status}</div>
+                          </div>
+                        </div>
+                        {prod.order_status === "delivering" && (
+                          <div className="flex items-end justify-end gap-1">
+                            <button
+                              className={`inline-flex items-center rounded-md bg-green-600 py-2 px-3 text-xs text-white cursor-pointer`}>
+                              Track
+                            </button>
+                            <button
+                              onClick={() => {
+                                ConfirmAction(prod?.id, "confirm");
+                              }}
+                              className={`inline-flex items-center rounded-md bg-sky-600 py-2 px-3 text-xs text-white cursor-pointer`}>
+                              Terima
+                            </button>
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
                 </div>
+              ))
+            ) : (
+              <div className="flex flex-row justify-center items-center">
+                <span className="">No Data</span>
               </div>
-            ))}
+            )}
             <div className="flex w-full justify-center mt-2">
               <nav aria-label="Page navigation example w-full">
                 <ul className="inline-flex -space-x-px text-base h-10">
