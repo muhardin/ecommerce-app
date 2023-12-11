@@ -131,7 +131,7 @@ const OrderHistory = () => {
     );
     setItemOffset(newOffset);
   };
-  console.log(payment);
+
   return (
     <>
       <div className="w-full mx-auto ">

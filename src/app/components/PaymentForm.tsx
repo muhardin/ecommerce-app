@@ -481,7 +481,7 @@ const PaymentForm = ({
                                     onChange={(e) => {
                                       setPaymentPhone(e.target.value);
                                     }}
-                                    className="w-full px-3 py-2 mb-1 border border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors"
+                                    className="w-full px-3 py-2 mb-1 border bg-white text-black border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 focus:bg-white focus:text-black"
                                     placeholder="0813728235589"
                                     type="text"
                                   />
