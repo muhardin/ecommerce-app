@@ -40,8 +40,8 @@ const ProductsData = ({ item }: { item: ShopProduct }) => {
                 image: `${process.env.SERVER_ENDPOINT}${item.product?.product_gallery[0].url}`,
               },
             }}>
-            <div className=" w-full h-96 group overflow-hidden relative">
-              <Slider {...settings}>
+            <div className=" w-full h-80 group overflow-hidden relative">
+              {/* <Slider {...settings}>
                 {item.product?.product_gallery.map(
                   (gallery: ProductGallery) => (
                     <div key={gallery.id} className="w-full h-full relative">
@@ -56,14 +56,14 @@ const ProductsData = ({ item }: { item: ShopProduct }) => {
                     </div>
                   )
                 )}
-              </Slider>
-              {/* <Image
+              </Slider> */}
+              <Image
                 src={`${process.env.SERVER_ENDPOINT}${item.product?.product_gallery[0].url}`}
                 alt="Product image"
                 width={500}
                 height={500}
                 className="w-full h-full object-cover group-hover:scale-110 duration-200 rounded-t-lg"
-              /> */}
+              />
 
               {Number(item?.product?.isNew) > 0 ? (
                 <span className=" absolute top-2 right-2 font-medium text-xs py-1 px-3 rounded-full group-hover:bg-sky-500 group-hover:text-white bg-white duration-200">

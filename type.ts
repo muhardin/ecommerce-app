@@ -326,17 +326,6 @@ export interface Order {
   shop: ShopData;
 }
 
-export interface Payment {
-  id: number;
-  tripay_code: string;
-  code: string;
-  payment_name: string;
-  picture: string;
-  type: string;
-  created_at: string;
-  updated_at: string | null;
-}
-
 export interface OrderPayment {
   id: number;
   order_id: number;
@@ -570,10 +559,12 @@ export interface SupplierData {
 }
 export interface Payment {
   id: number;
-  tripay_code: string;
   code: string;
   payment_name: string;
   picture: string;
+  module_payment: string;
+  descriptions: string;
+  instructions: string;
   type: string;
   created_at: string;
   updated_at: string | null;
@@ -602,5 +593,23 @@ export interface PackageData {
   unilevel_cut: number;
   maximum_domain: number;
   maximum_supplier: number;
+}
+export interface PaymentMethod {
+  id: number;
+  code: string;
+  payment_name: string;
+  picture: string;
+  type: string;
+  module_payment: string;
+  descriptions: string;
+  created_at: string;
+  updated_at: string | null;
+  status: number;
+  instructions: Instruction[];
+}
+
+export interface Instruction {
+  title: string;
+  steps: string[];
 }
 export type ShopPackageArray = ShopPackage[];

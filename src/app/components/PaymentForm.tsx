@@ -1,7 +1,12 @@
 "use client";
 
 import { useDispatch, useSelector } from "react-redux";
-import { CourierData, Products, StateProps } from "../../../type";
+import {
+  CourierData,
+  PaymentMethod,
+  Products,
+  StateProps,
+} from "../../../type";
 import FormattedPrice from "./FormattedPrice";
 import { SyntheticEvent, useEffect, useState } from "react";
 // import { loadStripe } from "@stripe/stripe-js";
@@ -23,11 +28,17 @@ interface CustomToastProps {
   id: string;
   visible: boolean;
 }
+interface Payments {
+  payment_virtual?: PaymentMethod[];
+  payment_wallet?: PaymentMethod[];
+  is_payment_gateway?: string;
+}
 interface Payment {
   shipping?: number;
   order?: Payment[];
   address?: number;
   note?: string;
+  payments?: Payments;
   shippingMethod?: CourierData[];
   shippingType?: CourierData[];
 }
@@ -44,6 +55,7 @@ const PaymentForm = ({
   order,
   shippingType,
   note,
+  payments,
 }: Payment) => {
   const [clientIP, setClientIP] = useState("Loading...");
 
@@ -159,26 +171,7 @@ const PaymentForm = ({
       }
     }
   };
-  // console.log(formErrors);
-  /** Strip Payment End */
 
-  // const [selectedOptions, setSelectedOptions] = useState("");
-  // const handleCheckboxChange = (value: string) => {
-  //   setSelectedOptions(value);
-  // };
-
-  // console.log("product data : ", productData);
-
-  // console.log(JSON.stringify(order));
-  // console.log(clientIP);
-  // console.log(errMessage);
-
-  // console.log(shippingMethod);
-  // console.log(productData);
-  // console.log(address);
-  // console.log(shopData);
-  // console.log(selectedPayment);
-  // console.log(selectedVirtual);
   return (
     <>
       <div className=" w-full bg-white p-4 relative">
@@ -231,7 +224,46 @@ const PaymentForm = ({
                   className={`${
                     selectedPayment.includes("virtual") ? "block" : "hidden"
                   } mt-2 grid gap-2`}>
-                  <div className="relative">
+                  {payments?.payment_virtual ? (
+                    payments.payment_virtual.map((virtual: PaymentMethod) => (
+                      <div key={virtual.id} className="relative">
+                        <input
+                          required={selectedPayment.includes("virtual")}
+                          className="peer hidden"
+                          id={`radio_1${virtual.code}`}
+                          type="radio"
+                          name="payment_type"
+                          onChange={() => handleSelectedVirtual(virtual.code)}
+                        />
+
+                        <span className=" peer-checked:border-sky-500 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
+                        <label
+                          className="peer-checked:border-2 peer-checked:border-sky-500 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-2"
+                          htmlFor={`radio_1${virtual.code}`}>
+                          <Image
+                            width={500}
+                            height={500}
+                            className="w-14 object-contain"
+                            src={`/images/payment/${virtual.code}.png`}
+                            alt=""
+                          />
+                          <div className="ml-1">
+                            <span className="mt-2 font-semibold">
+                              {virtual.payment_name}
+                            </span>
+                            <p className="text-slate-500 text-sm leading-6">
+                              {virtual.descriptions}
+                            </p>
+                          </div>
+                        </label>
+                      </div>
+                    ))
+                  ) : (
+                    <div className="flex flex-row justify-center items-center">
+                      <span className="loading loading-dots loading-lg"></span>
+                    </div>
+                  )}
+                  {/* <div className="relative">
                     <input
                       required={selectedPayment.includes("virtual")}
                       className="peer hidden"
@@ -282,7 +314,7 @@ const PaymentForm = ({
                       <div className="ml-1">
                         <span className="mt-2 font-semibold">BNI</span>
                         <p className="text-slate-500 text-sm leading-6">
-                          Delivery: 2-4 Days
+                          Bank Negara Indonesia
                         </p>
                       </div>
                     </label>
@@ -367,7 +399,7 @@ const PaymentForm = ({
                         </p>
                       </div>
                     </label>
-                  </div>
+                  </div> */}
                 </div>
               </div>
               <div className="w-full p-3">
@@ -388,58 +420,114 @@ const PaymentForm = ({
                   className={`${
                     selectedPayment.includes("wallet") ? "block" : "hidden"
                   } mt-2 grid gap-2`}>
-                  <div className="relative">
-                    <input
-                      checked={selectedVirtual === "OVO"}
-                      className="peer hidden"
-                      id="wallet_1"
-                      type="radio"
-                      name="payment_type"
-                      onChange={() => handleSelectedVirtual("OVO")}
-                    />
-                    <span className="peer-checked:border-sky-500 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
-                    <label
-                      className="peer-checked:border-2 peer-checked:border-sky-500 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-2"
-                      htmlFor="wallet_1">
-                      <Image
-                        width={500}
-                        height={500}
-                        className="w-14 object-contain"
-                        src="/images/payment/ovo.png"
-                        alt=""
-                      />
-                      <div className="ml-5">
-                        <span className="mt-2 font-semibold">OVO</span>
-                        <p className="text-slate-500 text-sm leading-6">Ovo</p>
-                      </div>
-                    </label>
-                  </div>
-                  <div
-                    className={`${
-                      selectedVirtual === "OVO" ? "block" : "hidden"
-                    }`}>
-                    <div className="mb-3">
-                      <label className="text-gray-600 font-semibold text-sm mb-2 ml-1">
-                        Phone Number
-                      </label>
-                      <div>
-                        <input
-                          required={
-                            selectedVirtual === "OVO" &&
-                            selectedPayment === "wallet"
-                          }
-                          value={paymentPhone}
-                          name="payment_phone"
-                          onChange={(e) => {
-                            setPaymentPhone(e.target.value);
-                          }}
-                          className="w-full px-3 py-2 mb-1 border border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors"
-                          placeholder="0813728235589"
-                          type="text"
-                        />
-                      </div>
+                  {payments?.payment_wallet ? (
+                    payments?.payment_wallet?.map(
+                      (wallets: PaymentMethod, index) => (
+                        <div key={wallets.id} className="">
+                          <div className="relative">
+                            <input
+                              checked={selectedVirtual === wallets.code}
+                              className="peer hidden"
+                              id={`wallet_1${wallets.id}`}
+                              type="radio"
+                              name="payment_type"
+                              onChange={() =>
+                                handleSelectedVirtual(wallets.code)
+                              }
+                            />
+                            <span className="peer-checked:border-sky-500 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
+                            <label
+                              className="peer-checked:border-2 peer-checked:border-sky-500 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-2"
+                              htmlFor={`wallet_1${wallets.id}`}>
+                              <Image
+                                width={500}
+                                height={500}
+                                className="w-14 object-contain"
+                                src={`/images/payment/${wallets.code}.png`}
+                                alt=""
+                              />
+                              <div className="ml-5">
+                                <span className="mt-2 font-semibold">
+                                  {wallets.payment_name}
+                                </span>
+                                <p className="text-slate-500 text-sm leading-6">
+                                  {wallets.payment_name}
+                                </p>
+                              </div>
+                            </label>
+                          </div>
+                          {selectedVirtual === "OVO" ||
+                          (selectedVirtual === "ovo" && index == 0) ? (
+                            <div
+                              className={`${
+                                selectedVirtual === "OVO" ||
+                                selectedVirtual === "ovo"
+                                  ? "block"
+                                  : "block"
+                              }`}>
+                              <div className="mb-3">
+                                <label className="text-gray-600 font-semibold text-sm mb-2 ml-1">
+                                  Phone Number
+                                </label>
+                                <div>
+                                  <input
+                                    required={
+                                      selectedVirtual === "OVO" ||
+                                      (selectedVirtual === "ovo" &&
+                                        selectedPayment === "wallet")
+                                    }
+                                    value={paymentPhone}
+                                    name="payment_phone"
+                                    onChange={(e) => {
+                                      setPaymentPhone(e.target.value);
+                                    }}
+                                    className="w-full px-3 py-2 mb-1 border border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors"
+                                    placeholder="0813728235589"
+                                    type="text"
+                                  />
+                                </div>
+                              </div>
+                            </div>
+                          ) : null}
+                        </div>
+                      )
+                    )
+                  ) : (
+                    <div className="flex flex-row justify-center items-center">
+                      <span className="loading loading-dots loading-lg"></span>
                     </div>
-                  </div>
+                  )}
+
+                  {/* <div className="">
+                    <div className="relative">
+                      <input
+                        checked={selectedVirtual === "OVO"}
+                        className="peer hidden"
+                        id="wallet_1"
+                        type="radio"
+                        name="payment_type"
+                        onChange={() => handleSelectedVirtual("OVO")}
+                      />
+                      <span className="peer-checked:border-sky-500 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
+                      <label
+                        className="peer-checked:border-2 peer-checked:border-sky-500 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-2"
+                        htmlFor="wallet_1">
+                        <Image
+                          width={500}
+                          height={500}
+                          className="w-14 object-contain"
+                          src="/images/payment/ovo.png"
+                          alt=""
+                        />
+                        <div className="ml-5">
+                          <span className="mt-2 font-semibold">OVO</span>
+                          <p className="text-slate-500 text-sm leading-6">
+                            Ovo
+                          </p>
+                        </div>
+                      </label>
+                    </div>
+                  </div> */}
                 </div>
               </div>
               <div className="w-full p-3">

@@ -430,6 +430,12 @@ const CheckoutCart = () => {
     setSum(newSum);
   }, [selectedValuesCost]);
 
+  const urlPayments =
+    process.env.SERVER_ENDPOINT + "/api/user/order/get-payments";
+  const { data: payments, error: paymentError } = useSWR(urlPayments, fetcher, {
+    refreshInterval: 60000,
+  });
+
   return (
     <>
       <div className="flex flex-col md:flex-row gap-2">
@@ -790,6 +796,7 @@ const CheckoutCart = () => {
         </div>
         <div className="border border-gray-200 bg-white w-full md:w-1/3 md:right-0">
           <PaymentForm
+            payments={payments}
             order={selectedArray}
             shipping={sum}
             shippingType={selectedShippingType}
