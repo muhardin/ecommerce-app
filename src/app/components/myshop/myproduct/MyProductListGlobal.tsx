@@ -102,7 +102,7 @@ const MyProductListGlobal = ({
           <div className=" w-full h-80 group overflow-hidden relative">
             {item.product.product_gallery.length > 0 ? (
               <Image
-                src={`${process.env.SERVER_ENDPOINT}${item.product.product_gallery[0].url}`}
+                src={`${process.env.SERVER_ENDPOINT}${item?.product?.product_gallery[0].url}`}
                 alt="Product image"
                 width={500}
                 height={500}

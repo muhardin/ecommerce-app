@@ -141,13 +141,23 @@ const MyProductModalGlobal = ({
                       {product.product.title}
                     </h2>
                     <div className="relative w-full h-96 mb-2 lg:mb-2">
-                      <Image
-                        width={500}
-                        height={500}
-                        src={`${process.env.SERVER_ENDPOINT}${product.product.product_gallery[0].url}`}
-                        alt=""
-                        className="object-cover w-full lg:h-full "
-                      />
+                      {product.product.product_gallery.length > 0 ? (
+                        <Image
+                          width={500}
+                          height={500}
+                          src={`${process.env.SERVER_ENDPOINT}${product.product.product_gallery[0].url}`}
+                          alt=""
+                          className="object-cover w-full lg:h-full "
+                        />
+                      ) : (
+                        <Image
+                          width={500}
+                          height={500}
+                          src={`/images/no_image.png`}
+                          alt=""
+                          className="object-cover w-full lg:h-full "
+                        />
+                      )}
                     </div>
                     <div className="flex-wrap hidden md:flex ">
                       <div className="w-full">
