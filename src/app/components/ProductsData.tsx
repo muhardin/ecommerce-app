@@ -107,18 +107,34 @@ const ProductsData = ({ item }: { item: ShopProduct }) => {
           </Link>
         )}
         <div className="border-[1px] border-slate-300 border-t-0 py-4 px-2 flex flex-col gap-y-2 bg-white rounded-b-lg">
-          <Link
-            href={{
-              pathname: "/product",
-              query: {
-                id: item?.id,
-                image: `${process.env.SERVER_ENDPOINT}${item?.product?.product_gallery[0].url}`,
-              },
-            }}>
-            <p className="cursor-pointer hover:text-sky-600 truncate">
-              {item?.product.title}
-            </p>
-          </Link>
+          {item?.product?.product_gallery?.length > 0 ? (
+            <Link
+              href={{
+                pathname: "/product",
+                query: {
+                  id: item?.id,
+                  image: `${process.env.SERVER_ENDPOINT}${item?.product?.product_gallery[0].url}`,
+                },
+              }}>
+              <p className="cursor-pointer hover:text-sky-600 truncate">
+                {item?.product.title}
+              </p>
+            </Link>
+          ) : (
+            <Link
+              href={{
+                pathname: "/product",
+                query: {
+                  id: item?.id,
+                  image: `/images/no_image.png`,
+                },
+              }}>
+              <p className="cursor-pointer hover:text-sky-600 truncate">
+                {item?.product.title}
+              </p>
+            </Link>
+          )}
+
           <div className=" flex items-center justify-end relative">
             <div className="absolute -top-20 bg-white left-0 border-[1px] border-sky-500 py-1 px-4 rounded-full text-xs">
               <p>
