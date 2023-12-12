@@ -7,13 +7,7 @@ import { useRouter } from "next/navigation";
 import ReactFlagsSelect from "react-flags-select";
 import { IoIosEye, IoIosEyeOff } from "react-icons/io";
 import useSWR from "swr";
-import {
-  Payment,
-  PaymentMethod,
-  ShopPackage,
-  StateProps,
-  User,
-} from "../../../../type";
+import { Payment, ShopPackage, StateProps, User } from "../../../../type";
 import FormattedPrice from "@/app/components/FormattedPrice";
 import { Check, CheckCheck, Minus } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
@@ -143,7 +137,7 @@ const SignUpComponent: React.FC<Params> = ({ referral }) => {
   });
   const urlPayment = process.env.SERVER_ENDPOINT + "/api/package/get-payments";
   const { data: payments } = useSWR(urlPayment, fetcher, {
-    refreshInterval: 60000,
+    refreshInterval: 10000,
   });
 
   /** End Of Get Shop Package */
@@ -280,20 +274,10 @@ const SignUpComponent: React.FC<Params> = ({ referral }) => {
       }
     }
   };
-  const [selectedVirtual, setSelectedVirtual] = useState("");
-  const handleSelectedVirtual = (value: string) => {
-    setSelectedVirtual(value);
-  };
-  const [selectedGroupPayment, setSelectedGroupPayment] = useState("");
-  const handleSelectedPayment = (value: string) => {
-    setFormData({ ...formData, ["payment"]: "" });
-    setSelectedGroupPayment(value);
-    setSelectedVirtual("");
-  };
+
   const handlePrevious = () => {
     setStep(step - 1);
   };
-  console.log(formData.payment);
   return (
     <div>
       <section className="bg-white dark:bg-gray-900">
@@ -852,210 +836,92 @@ const SignUpComponent: React.FC<Params> = ({ referral }) => {
               )}
               {step === 3 && (
                 <div className="w-full">
-                  <label
-                    htmlFor="card-holder"
-                    className="mt-4 mb-2 block text-sm font-medium">
-                    Pilih Cara Pembayaran
-                  </label>
-
-                  <div className="w-full p-3">
+                  <div className="flex flex-col gap-2">
                     <label
-                      htmlFor="payment_1"
-                      className="flex items-center cursor-pointer">
-                      <input
-                        required
-                        type="radio"
-                        className=" h-5 w-5 text-indigo-500"
-                        name="payment"
-                        id="payment_1"
-                        value={"virtual"}
-                        onChange={() => handleSelectedPayment("virtual")}
-                      />
-                      <span className="ml-2">Bank Virtual Account</span>
+                      htmlFor="card-holder"
+                      className="mt-4 mb-2 block text-sm font-medium">
+                      Pilih Cara Pembayaran
                     </label>
-                    <div
-                      className={`${
-                        selectedGroupPayment === "virtual" ? "block" : "hidden"
-                      } mt-2 grid gap-2`}>
-                      {payments?.payment_virtual ? (
-                        payments.payment_virtual.map(
-                          (virtual: PaymentMethod) => (
-                            <div key={virtual.id} className="relative">
-                              <input
-                                checked={
-                                  formData.payment === virtual.id.toString()
-                                }
-                                required={selectedGroupPayment === "virtual"}
-                                className="peer hidden"
-                                id={`radio_1${virtual.code}`}
-                                type="radio"
-                                name="payment_type"
-                                value={virtual.id}
-                                onChange={handleOptionPayment}
-                              />
+                    {payments ? (
+                      payments.map((item: Payment) => (
+                        <div className="relative" key={item.id}>
+                          <input
+                            className="peer hidden"
+                            id={`payment_1${item.id}`}
+                            type="radio"
+                            name={`payment`}
+                            value={item.id}
+                            checked={selectedPayment == item.id}
+                            onChange={handleOptionPayment}
+                          />
+                          <span className="peer-checked:border-sky-400 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
+                          <label
+                            className="peer-checked:border-1 peer-checked:border-sky-500 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-1"
+                            htmlFor={`payment_1${item.id}`}>
+                            <Image
+                              width={150}
+                              height={150}
+                              className="w-14 object-contain"
+                              src={`/images/payment/${item.code}.png`}
+                              alt=""
+                            />
 
-                              <span className=" peer-checked:border-sky-500 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
-                              <label
-                                className="peer-checked:border-2 peer-checked:border-sky-500 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-2"
-                                htmlFor={`radio_1${virtual.code}`}>
-                                <Image
-                                  width={500}
-                                  height={500}
-                                  className="w-14 object-contain"
-                                  src={`/images/payment/${virtual.code}.png`}
-                                  alt=""
-                                />
-                                <div className="ml-1">
-                                  <span className="mt-2 font-semibold">
-                                    {virtual.payment_name}
-                                  </span>
-                                  <p className="text-slate-500 text-sm leading-6">
-                                    {virtual.descriptions}
-                                  </p>
-                                </div>
-                              </label>
+                            <div className="ml-4">
+                              <span className="mt-2 font-semibold capitalize">
+                                {item.payment_name}{" "}
+                                <span className="font-sans font-semibold text-sky-500">
+                                  ( {item.type})
+                                </span>
+                              </span>
+                              <p className="text-slate-500 text-sm leading-6">
+                                Instant Verification
+                              </p>
                             </div>
-                          )
-                        )
-                      ) : (
-                        <div className="flex flex-row justify-center items-center">
-                          <span className="loading loading-dots loading-lg"></span>
+                          </label>
                         </div>
-                      )}
-                    </div>
-                  </div>
-                  <div className="w-full p-3">
-                    <label
-                      htmlFor="wallet"
-                      className="flex items-center cursor-pointer">
-                      <input
-                        type="radio"
-                        className=" h-5 w-5 text-indigo-500"
-                        name="payment"
-                        id="wallet"
-                        value={"wallet"}
-                        onChange={() => handleSelectedPayment("wallet")}
-                      />
-                      <span className="ml-2">Wallet</span>
-                    </label>
-                    <div
-                      className={`${
-                        selectedGroupPayment === "wallet" ? "block" : "hidden"
-                      } mt-2 grid gap-2`}>
-                      {payments?.payment_wallet ? (
-                        payments?.payment_wallet?.map(
-                          (wallets: PaymentMethod, index: Number) => (
-                            <div key={wallets.id} className="">
-                              <div className="relative">
-                                <input
-                                  required={selectedGroupPayment === "wallet"}
-                                  checked={
-                                    formData.payment === wallets.id.toString()
-                                  }
-                                  className="peer hidden"
-                                  id={`wallet_1${wallets.id}`}
-                                  type="radio"
-                                  name="payment_type"
-                                  value={wallets.id}
-                                  onChange={handleOptionPayment}
-                                />
-                                <span className="peer-checked:border-sky-500 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
-                                <label
-                                  className="peer-checked:border-2 peer-checked:border-sky-500 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-2"
-                                  htmlFor={`wallet_1${wallets.id}`}>
-                                  <Image
-                                    width={500}
-                                    height={500}
-                                    className="w-14 object-contain"
-                                    src={`/images/payment/${wallets.code}.png`}
-                                    alt=""
-                                  />
-                                  <div className="ml-5">
-                                    <span className="mt-2 font-semibold">
-                                      {wallets.payment_name}
-                                    </span>
-                                    <p className="text-slate-500 text-sm leading-6">
-                                      {wallets.payment_name}
-                                    </p>
-                                  </div>
-                                </label>
-                              </div>
-                              {formData.payment === "OVO" ||
-                              (formData.payment === "ovo" && index == 0) ? (
-                                <div
-                                  className={`${
-                                    formData.payment === "OVO" ||
-                                    formData.payment === "ovo"
-                                      ? "block"
-                                      : "block"
-                                  }`}>
-                                  <div className="mb-3">
-                                    <label className="text-gray-600 font-semibold text-sm mb-2 ml-1">
-                                      Phone Number
-                                    </label>
-                                    <div>
-                                      <input
-                                        required={
-                                          selectedVirtual === "OVO" ||
-                                          (selectedVirtual === "ovo" &&
-                                            selectedGroupPayment === "wallet")
-                                        }
-                                        value={formData.phone_number}
-                                        name="payment_phone"
-                                        onChange={handleOptionPayment}
-                                        className="w-full px-3 py-2 mb-1 border bg-white text-black border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 focus:bg-white focus:text-black"
-                                        placeholder="0813728235589"
-                                        type="text"
-                                      />
-                                    </div>
-                                  </div>
-                                </div>
-                              ) : null}
-                            </div>
-                          )
-                        )
-                      ) : (
-                        <div className="flex flex-row justify-center items-center">
-                          <span className="loading loading-dots loading-lg"></span>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                  <div className="flex flex-row gap-2 justify-end">
-                    <button
-                      onClick={handlePrevious}
-                      type="button"
-                      className="flex items-center justify-between px-6 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-md hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="w-5 h-5 -scale-x-100"
-                        viewBox="0 0 20 20"
-                        fill="currentColor">
-                        <path
-                          fillRule="evenodd"
-                          d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                      <span>Previous </span>
-                    </button>
-                    <button
-                      type="submit"
-                      className="flex items-center justify-between px-6 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-md hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
-                      <span>Sign Up </span>
+                      ))
+                    ) : (
+                      <div className="flex flex-row justify-center items-center">
+                        <span className="loading loading-dots loading-lg"></span>
+                      </div>
+                    )}
 
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="w-5 h-5 rtl:-scale-x-100"
-                        viewBox="0 0 20 20"
-                        fill="currentColor">
-                        <path
-                          fillRule="evenodd"
-                          d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                    </button>
+                    <div className="flex flex-row gap-2 justify-end">
+                      <button
+                        onClick={handlePrevious}
+                        type="button"
+                        className="flex items-center justify-between px-6 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-md hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="w-5 h-5 -scale-x-100"
+                          viewBox="0 0 20 20"
+                          fill="currentColor">
+                          <path
+                            fillRule="evenodd"
+                            d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                            clipRule="evenodd"
+                          />
+                        </svg>
+                        <span>Previous </span>
+                      </button>
+                      <button
+                        type="submit"
+                        className="flex items-center justify-between px-6 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-md hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
+                        <span>Sign Up </span>
+
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="w-5 h-5 rtl:-scale-x-100"
+                          viewBox="0 0 20 20"
+                          fill="currentColor">
+                          <path
+                            fillRule="evenodd"
+                            d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                            clipRule="evenodd"
+                          />
+                        </svg>
+                      </button>
+                    </div>
                   </div>
                 </div>
               )}
