@@ -100,13 +100,24 @@ const MyProductListGlobal = ({
             },
           }}>
           <div className=" w-full h-80 group overflow-hidden relative">
-            <Image
-              src={`${process.env.SERVER_ENDPOINT}${item.product.product_gallery[0].url}`}
-              alt="Product image"
-              width={500}
-              height={500}
-              className="w-full h-full object-cover group-hover:scale-110 duration-200 rounded-t-lg"
-            />
+            {item.product.product_gallery.length > 0 ? (
+              <Image
+                src={`${process.env.SERVER_ENDPOINT}${item.product.product_gallery[0].url}`}
+                alt="Product image"
+                width={500}
+                height={500}
+                className="w-full h-full object-cover group-hover:scale-110 duration-200 rounded-t-lg"
+              />
+            ) : (
+              <Image
+                src={`/images/no_image.png`}
+                alt="Product image"
+                width={500}
+                height={500}
+                className="w-full h-full object-cover group-hover:scale-110 duration-200 rounded-t-lg"
+              />
+            )}
+
             {item?.product?.isNew && (
               <span className=" absolute top-2 right-2 font-medium text-xs py-1 px-3 rounded-full group-hover:bg-sky-500 group-hover:text-white bg-white duration-200">
                 New Arrival
