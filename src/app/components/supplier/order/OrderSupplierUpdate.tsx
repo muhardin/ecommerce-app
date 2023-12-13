@@ -480,7 +480,7 @@ const OrderSupplierUpdate = ({
                                   id="card-holder"
                                   name="card-holder"
                                   value={shippingNumber ?? ""}
-                                  className="w-full rounded-md border border-gray-200 focus:text-white px-4 py-3 pl-11 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
+                                  className="w-full rounded-md border border-gray-200 focus:text-black focus:bg-white px-4 py-3 pl-11 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
                                   placeholder="Your reference code here"
                                   onChange={(e) =>
                                     setShippingNumber(e.target.value)

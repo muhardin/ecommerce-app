@@ -12,8 +12,15 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
+import useSWR from "swr";
+import { ShopBanner } from "../../../type";
 
-const Banner = () => {
+interface banner {
+  title: string;
+  description: string;
+  image: string;
+}
+const Banner = ({ host }: { host: string }) => {
   const NextArrow = (props: any) => {
     const { onClick } = props;
     return (
@@ -45,35 +52,74 @@ const Banner = () => {
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
   };
+  const fetcher = (url: any) =>
+    fetch(url, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json", // Adjust headers as needed
+      },
+    }).then((res) => res.json());
+  const url = process.env.SERVER_ENDPOINT + "/api/shop/banner/" + host;
+  const {
+    data: banners,
+    isLoading,
+    isValidating,
+    error,
+  } = useSWR(url, fetcher, {
+    refreshInterval: 10000,
+  });
+  console.log();
   return (
     <>
       <div className="relative">
         <Slider {...settings}>
-          <div className="w-full h-full relative">
-            <Image
-              src={bannerOne}
-              alt="Banner One"
-              className="w-full h-full relative"
-              priority
-            />
-            <BannerText title="Outware Picks" />
-          </div>
-          <div className="w-full h-full relative">
-            <Image
-              src={bannerThree}
-              alt="Banner One"
-              className="w-full h-full relative"
-            />
-            <BannerText title="Seasonal Offer" />
-          </div>
-          <div className="w-full h-full relative">
-            <Image
-              src={bannerTwo}
-              alt="Banner One"
-              className="w-full h-full relative"
-            />
-            <BannerText title="Best for men" />
-          </div>
+          {isLoading ? null : banners?.slide?.length > 0 ? (
+            banners.slide.map((item: ShopBanner) => (
+              <div key={item.id} className="w-full h-full relative">
+                <Image
+                  width={950}
+                  height={950}
+                  src={`${process.env.SERVER_ENDPOINT}${item.link}`}
+                  alt={`Banner One`}
+                  className="w-full h-full relative"
+                  priority
+                />
+                <BannerText
+                  title={item.title}
+                  content={item.text}
+                  href={item.href}
+                />
+              </div>
+            ))
+          ) : (
+            <>
+              <div className="w-full h-full relative">
+                <Image
+                  src={bannerOne}
+                  alt="Banner One"
+                  className="w-full h-full relative"
+                  priority
+                />
+                <BannerText title="Outware Picks" />
+              </div>
+              <div className="w-full h-full relative">
+                <Image
+                  src={bannerThree}
+                  alt="Banner One"
+                  className="w-full h-full relative"
+                />
+                <BannerText title="Seasonal Offer" />
+              </div>
+              <div className="w-full h-full relative">
+                <Image
+                  src={bannerTwo}
+                  alt="Banner One"
+                  className="w-full h-full relative"
+                />
+                <BannerText title="Best for men" />
+              </div>
+            </>
+          )}
         </Slider>
         <div className="hidden sm:block absolute w-full h-44 bg-gradient-to-t from-gray-100 to-transparent bottom-0 left-0 z-10" />
       </div>

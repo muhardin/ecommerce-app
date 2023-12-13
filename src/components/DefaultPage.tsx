@@ -17,7 +17,7 @@ const DefaultPage = ({ domain }: { domain: string }) => {
   } else {
     return (
       <div>
-        <Banner />
+        <Banner host={domain} />
         <Products host={domain} />
       </div>
     );

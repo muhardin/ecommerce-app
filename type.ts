@@ -607,7 +607,18 @@ export interface PaymentMethod {
   status: number;
   instructions: Instruction[];
 }
-
+export interface ShopBanner {
+  id: number;
+  shop_id: number;
+  name: string;
+  link: string;
+  type: string;
+  title: string;
+  href: string;
+  text: string;
+  created_at: string;
+  updated_at: string | null;
+}
 export interface Instruction {
   title: string;
   steps: string[];

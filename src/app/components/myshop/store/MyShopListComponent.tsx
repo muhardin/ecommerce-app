@@ -184,7 +184,7 @@ const MyShopListComponent = () => {
                         </span>
                       </div>
                       <div className=" text-right flex flex-row sm:flex-col gap-1 sm:gap-2 justify-end p-2">
-                        <button className="text-sm bg-red-500 hover:bg-red-600 p-2 text-white rounded-lg flex flex-row items-start justify-center">
+                        {/* <button className="text-sm bg-red-500 hover:bg-red-600 p-2 text-white rounded-lg flex flex-row items-start justify-center">
                           <span className="mr-1 sm:mr-2">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
@@ -204,7 +204,7 @@ const MyShopListComponent = () => {
                             </svg>
                           </span>
                           Disable
-                        </button>
+                        </button> */}
                         <Link
                           href={"/myshop/store/domain/list/" + item.id}
                           className="text-sm bg-sky-500 hover:bg-sky-600 p-2 text-white rounded-lg flex flex-row items-start justify-center">
@@ -248,6 +248,29 @@ const MyShopListComponent = () => {
                             </svg>
                           </span>
                           Setting
+                        </Link>
+                        <Link
+                          className="text-sm bg-yellow-500 hover:bg-yellow-600 p-2 text-white rounded-lg flex flex-row items-start justify-center"
+                          href={`/myshop/store/setting/customize/${item.id}`}>
+                          <span className="mr-1 sm:mr-2">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="18"
+                              height="18"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              className="lucide lucide-file-image">
+                              <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
+                              <polyline points="14 2 14 8 20 8" />
+                              <circle cx="10" cy="13" r="2" />
+                              <path d="m20 17-1.09-1.09a2 2 0 0 0-2.82 0L10 22" />
+                            </svg>
+                          </span>
+                          Banner
                         </Link>
                         {/* <a
                         className="inline-block px-4 py-3 mb-0 text-sm font-bold text-center align-middle transition-all ease-in bg-transparent border-0 rounded-lg shadow-none cursor-pointer leading-pro bg-150 hover:-translate-y-px active:opacity-85 bg-x-25 text-slate-700 dark:text-white"
