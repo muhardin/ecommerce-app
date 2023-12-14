@@ -110,7 +110,7 @@ const MyStoreCustomize = ({ store }: { store: Number }) => {
       />
 
       <div className="p-4 pb-10">
-        <MenuBanner store={store} />
+        {/* <MenuBanner store={store} /> */}
         <div className="rounded-lg overflow-hidden bg-white min-w-0 shadow-xs dark:bg-gray-800 mb-5">
           <div className="p-2">
             <form className="py-3 md:pb-0 grid gap-4 lg:gap-6 xl:gap-6 xl:flex">
@@ -224,60 +224,124 @@ const MyStoreCustomize = ({ store }: { store: Number }) => {
           </div>
         </div>
 
-        <div className="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
-          <div className="p-6 px-4 pb-0 mb-0 border-b-0 rounded-t-2xl">
-            <h6 className="mb-0 dark:text-white">Slide Show Picture</h6>
-          </div>
-          <div className="flex-auto p-4 pt-4">
-            <div className="sm:col-gap-12 row-gap-12 md:ga mt-4 grid grid-cols-2 sm:mt-4 sm:grid-cols-2 md:grid-cols-3 xl:mt-4 ">
-              {isLoading ? (
-                <div className="flex flex-row justify-center items-center w-full">
-                  <span className="loading loading-dots loading-lg items-center "></span>
-                </div>
-              ) : banners?.slide?.length > 0 ? (
-                banners?.slide?.map((item: ShopBanner) => (
-                  <div
-                    key={item.id}
-                    className="flex flex-col justify-between border-b-2 border-sky-500 shadow-lg m-2 p-4 mb-4">
-                    <div className="">
-                      <div className="flex justify-center flex-row">
-                        <Image
-                          className="object-cover"
-                          src={`${process.env.SERVER_ENDPOINT}${item.link}`}
-                          width={200}
-                          height={200}
-                          alt=""
-                        />
-                      </div>
-                      <h3 className="mt-4 text-xl font-bold text-slate-800">
-                        {item?.title}
-                      </h3>
-                      <p className="mt-0 text-base text-gray-700 mb-1">
-                        <div dangerouslySetInnerHTML={{ __html: item?.text }} />
-                      </p>
-                    </div>
-                    <div className=" flex flex-row gap-2 object-bottom text-white mt-2 justify-center">
-                      {/* <UpdateAddress address={address} /> */}
-                      <button
-                        onClick={() => {
-                          openUpdate(item);
-                        }}
-                        className="p-2 bg-sky-500 hover:bg-sky-400 rounded-md">
-                        Update
-                      </button>
-                      <button
-                        onClick={() => {
-                          SubmitDelete(item.id, "del");
-                        }}
-                        className="p-2 bg-red-500 hover:bg-red-400 rounded-md">
-                        Delete
-                      </button>
-                    </div>
+        <div className="flex flex-col gap-4">
+          <div className="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
+            <div className="p-6 px-4 pb-0 mb-0 border-b-0 rounded-t-2xl">
+              <h6 className="mb-0 dark:text-white">Slide Show Picture</h6>
+            </div>
+            <div className="flex-auto p-4 pt-4">
+              <div className="sm:col-gap-12 row-gap-12 md:ga mt-4 grid grid-cols-2 sm:mt-4 sm:grid-cols-2 md:grid-cols-3 xl:mt-4 ">
+                {isLoading ? (
+                  <div className="flex flex-row justify-center items-center w-full">
+                    <span className="loading loading-dots loading-lg items-center "></span>
                   </div>
-                ))
-              ) : (
-                <div>No Data</div>
-              )}
+                ) : banners?.slide?.length > 0 ? (
+                  banners?.slide?.map((item: ShopBanner) => (
+                    <div
+                      key={item.id}
+                      className="flex flex-col justify-between border-b-2 border-sky-500 shadow-lg m-2 p-4 mb-4">
+                      <div className="">
+                        <div className="flex justify-center flex-row">
+                          <Image
+                            className="object-cover"
+                            src={`${process.env.SERVER_ENDPOINT}${item.link}`}
+                            width={200}
+                            height={200}
+                            alt=""
+                          />
+                        </div>
+                        <h3 className="mt-4 text-xl font-bold text-slate-800">
+                          {item?.title}
+                        </h3>
+                        <p className="mt-0 text-base text-gray-700 mb-1">
+                          <div
+                            dangerouslySetInnerHTML={{ __html: item?.text }}
+                          />
+                        </p>
+                      </div>
+                      <div className=" flex flex-row gap-2 object-bottom text-white mt-2 justify-center">
+                        {/* <UpdateAddress address={address} /> */}
+                        <button
+                          onClick={() => {
+                            openUpdate(item);
+                          }}
+                          className="p-2 bg-sky-500 hover:bg-sky-400 rounded-md">
+                          Update
+                        </button>
+                        <button
+                          onClick={() => {
+                            SubmitDelete(item.id, "del");
+                          }}
+                          className="p-2 bg-red-500 hover:bg-red-400 rounded-md">
+                          Delete
+                        </button>
+                      </div>
+                    </div>
+                  ))
+                ) : (
+                  <div>No Data</div>
+                )}
+              </div>
+            </div>
+          </div>
+
+          <div className="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
+            <div className="p-6 px-4 pb-0 mb-0 border-b-0 rounded-t-2xl">
+              <h6 className="mb-0 dark:text-white">Top Banner Picture</h6>
+            </div>
+            <div className="flex-auto p-4 pt-4">
+              <div className="sm:col-gap-12 row-gap-12 md:ga mt-4 grid grid-cols-2 sm:mt-4 sm:grid-cols-2 md:grid-cols-3 xl:mt-4 ">
+                {isLoading ? (
+                  <div className="flex flex-row justify-center items-center w-full">
+                    <span className="loading loading-dots loading-lg items-center "></span>
+                  </div>
+                ) : banners?.top?.length > 0 ? (
+                  banners?.top?.map((item: ShopBanner) => (
+                    <div
+                      key={item.id}
+                      className="flex flex-col justify-between border-b-2 border-sky-500 shadow-lg m-2 p-4 mb-4">
+                      <div className="">
+                        <div className="flex justify-center flex-row">
+                          <Image
+                            className="object-cover"
+                            src={`${process.env.SERVER_ENDPOINT}${item.link}`}
+                            width={200}
+                            height={200}
+                            alt=""
+                          />
+                        </div>
+                        <h3 className="mt-4 text-xl font-bold text-slate-800">
+                          {item?.title}
+                        </h3>
+                        <p className="mt-0 text-base text-gray-700 mb-1">
+                          <div
+                            dangerouslySetInnerHTML={{ __html: item?.text }}
+                          />
+                        </p>
+                      </div>
+                      <div className=" flex flex-row gap-2 object-bottom text-white mt-2 justify-center">
+                        {/* <UpdateAddress address={address} /> */}
+                        <button
+                          onClick={() => {
+                            openUpdate(item);
+                          }}
+                          className="p-2 bg-sky-500 hover:bg-sky-400 rounded-md">
+                          Update
+                        </button>
+                        <button
+                          onClick={() => {
+                            SubmitDelete(item.id, "del");
+                          }}
+                          className="p-2 bg-red-500 hover:bg-red-400 rounded-md">
+                          Delete
+                        </button>
+                      </div>
+                    </div>
+                  ))
+                ) : (
+                  <div>No Data</div>
+                )}
+              </div>
             </div>
           </div>
         </div>

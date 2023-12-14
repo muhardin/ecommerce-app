@@ -75,13 +75,13 @@ const Banner = ({ host }: { host: string }) => {
         <Slider {...settings}>
           {isLoading ? null : banners?.slide?.length > 0 ? (
             banners.slide.map((item: ShopBanner) => (
-              <div key={item.id} className="w-full h-full relative">
+              <div key={item.id} className="w-full h-40 sm:h-full relative">
                 <Image
                   width={950}
                   height={950}
                   src={`${process.env.SERVER_ENDPOINT}${item.link}`}
                   alt={`Banner One`}
-                  className="w-full h-full relative"
+                  className="w-full h-full relative object-cover"
                   priority
                 />
                 <BannerText
@@ -125,44 +125,73 @@ const Banner = ({ host }: { host: string }) => {
       </div>
 
       <div className="mb-12 md:mb-14 xl:mb-16 px-2.5 grid grid-cols-2 sm:grid-cols-9 gap-2 md:gap-2.5 max-w-[1920px] mx-auto">
-        <div className="mx-auto w-full col-span-full sm:col-span-5">
-          <Link
-            href="#"
-            className="group flex justify-center relative overflow-hidden w-full aspect-[2.3/1] sm:aspect-[5.075/2]">
-            <Image
-              alt="Men's Collection"
-              src="/images/banner/banner-mobile-7.jpeg"
-              layout="fill"
-              objectFit="cover"
-            />
-          </Link>
-        </div>
+        {banners?.top?.length > 0 ? (
+          banners?.top.map((top: ShopBanner, index: Number) => (
+            <div
+              key={top.id}
+              className={`${
+                index == 0
+                  ? "mx-auto w-full col-span-full sm:col-span-5"
+                  : "mx-auto w-full col-span-1 sm:col-span-2"
+              }`}>
+              <Link
+                href="#"
+                className={`${
+                  index == 0
+                    ? "group flex justify-center relative overflow-hidden w-full aspect-[2.3/1] sm:aspect-[5.075/2]"
+                    : "group flex justify-center relative overflow-hidden w-full aspect-square h-full"
+                }`}>
+                <Image
+                  alt={`${top.name}`}
+                  src={`${process.env.SERVER_ENDPOINT}${top.link}`}
+                  layout="fill"
+                  objectFit="cover"
+                />
+              </Link>
+            </div>
+          ))
+        ) : (
+          <>
+            <div className="mx-auto w-full col-span-full sm:col-span-5">
+              <Link
+                href="#"
+                className="group flex justify-center relative overflow-hidden w-full aspect-[2.3/1] sm:aspect-[5.075/2]">
+                <Image
+                  alt="Men's Collection"
+                  src="/images/banner/banner-mobile-7.jpeg"
+                  layout="fill"
+                  objectFit="cover"
+                />
+              </Link>
+            </div>
 
-        <div className="mx-auto w-full col-span-1 sm:col-span-2">
-          <Link
-            href="#"
-            className="group flex justify-center relative overflow-hidden w-full aspect-square h-full">
-            <Image
-              alt="New Kid's"
-              src="/images/banner/banner-mobile-8_.jpeg"
-              layout="fill"
-              objectFit="cover"
-            />
-          </Link>
-        </div>
+            <div className="mx-auto w-full col-span-1 sm:col-span-2">
+              <Link
+                href="#"
+                className="group flex justify-center relative overflow-hidden w-full aspect-square h-full">
+                <Image
+                  alt="New Kid's"
+                  src="/images/banner/banner-mobile-8_.jpeg"
+                  layout="fill"
+                  objectFit="cover"
+                />
+              </Link>
+            </div>
 
-        <div className="mx-auto w-full col-span-1 sm:col-span-2">
-          <Link
-            href="#"
-            className="group flex justify-center relative overflow-hidden w-full aspect-square h-full">
-            <Image
-              alt="Dress Women"
-              src="/images/banner/banner-mobile-9.jpeg"
-              layout="fill"
-              objectFit="cover"
-            />
-          </Link>
-        </div>
+            <div className="mx-auto w-full col-span-1 sm:col-span-2">
+              <Link
+                href="#"
+                className="group flex justify-center relative overflow-hidden w-full aspect-square h-full">
+                <Image
+                  alt="Dress Women"
+                  src="/images/banner/banner-mobile-9.jpeg"
+                  layout="fill"
+                  objectFit="cover"
+                />
+              </Link>
+            </div>
+          </>
+        )}
       </div>
 
       {/* <div className="relative mb-5 md:mb-8 mx-auto max-w-[1920px] xl:mb-[60px]">

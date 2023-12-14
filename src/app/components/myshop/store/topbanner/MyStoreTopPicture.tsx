@@ -113,57 +113,6 @@ const MyStoreTopPicture = ({ store }: { store: Number }) => {
         <div className="rounded-lg overflow-hidden bg-white min-w-0 shadow-xs dark:bg-gray-800 mb-5">
           <div className="p-2">
             <form className="py-3 md:pb-0 grid gap-4 lg:gap-6 xl:gap-6 xl:flex">
-              {/* <div className="flex-grow-0 sm:flex-grow md:flex-grow lg:flex-grow xl:flex-grow">
-                <div className=" lg:flex md:flex flex-grow-0">
-                  <div className="flex">
-                    <div className="lg:flex-1 md:flex-1 mr-3 sm:flex-none">
-                      <button
-                        type="button"
-                        className="border flex justify-center items-center border-gray-300 hover:border-emerald-400 hover:text-emerald-400  dark:text-gray-300 cursor-pointer h-10 w-20 rounded-md focus:outline-none">
-                        <svg
-                          stroke="currentColor"
-                          fill="none"
-                          strokeWidth="2"
-                          viewBox="0 0 24 24"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          className="mr-2"
-                          height="1em"
-                          width="1em"
-                          xmlns="http://www.w3.org/2000/svg">
-                          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                          <polyline points="17 8 12 3 7 8"></polyline>
-                          <line x1="12" y1="3" x2="12" y2="15"></line>
-                        </svg>
-                        <span className="text-xs">Export</span>
-                      </button>
-                    </div>
-                    <div className="lg:flex-1 md:flex-1 mr-3  sm:flex-none">
-                      <button
-                        type="button"
-                        className="border flex justify-center items-center h-10 w-20 hover:text-yellow-400  border-gray-300 dark:text-gray-300 cursor-pointer  py-2 hover:border-yellow-400 rounded-md focus:outline-none">
-                        <svg
-                          stroke="currentColor"
-                          fill="none"
-                          strokeWidth="2"
-                          viewBox="0 0 24 24"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          className="mr-2"
-                          height="1em"
-                          width="1em"
-                          xmlns="http://www.w3.org/2000/svg">
-                          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                          <polyline points="7 10 12 15 17 10"></polyline>
-                          <line x1="12" y1="15" x2="12" y2="3"></line>
-                        </svg>
-                        <span className="text-xs">Import</span>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div> */}
-
               <div className={`flex flex-row sm:flex-row gap-4 justify-end`}>
                 <div className="flex-grow-0 md:flex-grow lg:flex-grow xl:flex-grow">
                   <Link
@@ -225,7 +174,7 @@ const MyStoreTopPicture = ({ store }: { store: Number }) => {
 
         <div className="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
           <div className="p-6 px-4 pb-0 mb-0 border-b-0 rounded-t-2xl">
-            <h6 className="mb-0 dark:text-white">Slide Show Picture</h6>
+            <h6 className="mb-0 dark:text-white">Top Picture</h6>
           </div>
           <div className="flex-auto p-4 pt-4">
             <div className="sm:col-gap-12 row-gap-12 md:ga mt-4 grid grid-cols-2 sm:mt-4 sm:grid-cols-2 md:grid-cols-3 xl:mt-4 ">
@@ -233,8 +182,8 @@ const MyStoreTopPicture = ({ store }: { store: Number }) => {
                 <div className="flex flex-row justify-center items-center w-full">
                   <span className="loading loading-dots loading-lg items-center "></span>
                 </div>
-              ) : banners?.slide?.length > 0 ? (
-                banners?.slide?.map((item: ShopBanner) => (
+              ) : banners?.top?.length > 0 ? (
+                banners?.top?.map((item: ShopBanner) => (
                   <div
                     key={item.id}
                     className="flex flex-col justify-between border-b-2 border-sky-500 shadow-lg m-2 p-4 mb-4">

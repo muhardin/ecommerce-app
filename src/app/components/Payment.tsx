@@ -100,7 +100,7 @@ const PaymentComponent = ({ id }: any) => {
       console.error("Error decoding JSON:", error);
     }
   }, [jsonString]);
-  console.log(payment);
+
   return (
     <>
       {payment ? (

@@ -210,7 +210,7 @@ const AddBanner: React.FC<ModalProps> = ({ isOpen, closeModal, shopId }) => {
                 <div className="flex flex-row justify-between mr-20">
                   <div>
                     <h4 className="text-xl font-medium dark:text-gray-300">
-                      Add Slide
+                      Add Top Banner
                     </h4>
                     <p className="mb-0 text-sm dark:text-gray-300">
                       Slide Running With Text
