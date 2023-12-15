@@ -3,11 +3,12 @@ import { getProducts } from "../helpers";
 import Container from "./Container";
 import ProductsData from "./ProductsData";
 import {
+  Category,
   ProductShops,
   Products as ProductType,
   ShopProduct,
 } from "../../../type";
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { useShopData } from "./shop/ShopContext";
 import useSWR from "swr";
 
@@ -30,8 +31,23 @@ const Products = ({ host }: any) => {
   //   };
   //   fetchData();
   // }, [domain]);
+  const [selectedOrder, setSelectedOrder] = useState<string>("");
 
-  const url = process.env.SERVER_ENDPOINT + "/api/shop/product/" + shopData?.id;
+  const handleColorChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    const selectedValue = e.target.value;
+    setSelectedOrder(selectedValue);
+    // You can perform additional actions based on the selected value here
+  };
+  const urlCategory = `${process.env.SERVER_ENDPOINT}/api/products/categories/list`;
+  const { data: prodCategories } = useSWR(urlCategory, fetcher, {
+    refreshInterval: 20000,
+  });
+  const url =
+    process.env.SERVER_ENDPOINT +
+    "/api/shop/product/" +
+    shopData?.id +
+    "?order=" +
+    selectedOrder;
   const {
     data: productsData,
     isLoading,
@@ -40,7 +56,7 @@ const Products = ({ host }: any) => {
   } = useSWR(url, fetcher, {
     refreshInterval: 3000,
   });
-
+  console.log(prodCategories);
   // useEffect(() => {
   //   const fetchData = async () => {
   //     const response = await fetch(
@@ -165,7 +181,28 @@ const Products = ({ host }: any) => {
                               Category
                             </h3>
                             <div className="mt-2 flex flex-col space-y-4">
-                              <label className="group flex items-center text-heading text-sm cursor-pointer gap-2">
+                              {isLoading ? (
+                                <div>Loading...</div>
+                              ) : prodCategories.length > 0 ? (
+                                prodCategories.map((item: Category) => (
+                                  <label
+                                    key={item.id}
+                                    className="group flex items-center text-heading text-sm cursor-pointer gap-2">
+                                    <input
+                                      type="checkbox"
+                                      className="form-checkbox w-5 h-5 border border-gray-300 rounded cursor-pointer transition duration-500 ease-in-out focus:ring-offset-0 text-heading hover:border-heading focus:outline-none focus:ring-0 focus-visible:outline-none checked:bg-heading"
+                                      name="bags"
+                                      value={`${item.id}`}
+                                    />
+                                    <span className="ltr:ml-4 rtl:mr-4 -mt-0.5">
+                                      {item.name}
+                                    </span>
+                                  </label>
+                                ))
+                              ) : (
+                                <div>No Data</div>
+                              )}
+                              {/* <label className="group flex items-center text-heading text-sm cursor-pointer gap-2">
                                 <input
                                   type="checkbox"
                                   className="form-checkbox w-5 h-5 border border-gray-300 rounded cursor-pointer transition duration-500 ease-in-out focus:ring-offset-0 text-heading hover:border-heading focus:outline-none focus:ring-0 focus-visible:outline-none checked:bg-heading"
@@ -193,7 +230,6 @@ const Products = ({ host }: any) => {
                                   className="form-checkbox w-5 h-5 border border-gray-300 rounded cursor-pointer transition duration-500 ease-in-out focus:ring-offset-0 text-heading hover:border-heading focus:outline-none focus:ring-0 focus-visible:outline-none checked:bg-heading"
                                   name="men"
                                   value="men"
-                                  checked
                                 />
                                 <span className="ltr:ml-4 rtl:mr-4 -mt-0.5">
                                   Men
@@ -220,7 +256,7 @@ const Products = ({ host }: any) => {
                                 <span className="ltr:ml-4 rtl:mr-4 -mt-0.5">
                                   Sports
                                 </span>
-                              </label>
+                              </label> */}
                               <div className="w-full">
                                 <button
                                   data-variant="custom"
@@ -457,11 +493,15 @@ const Products = ({ host }: any) => {
               20 items
             </div>
             <div className="relative text-white bg-gray-700 rounded-md ltr:ml-2 rtl:mr-2 ltr:lg:ml-0 rtl:lg:mr-0 z-10 min-w-[180px]">
-              <select className="select select-bordered w-full max-w-xs bg-slate-600">
-                <option selected>Sorting Options</option>
+              <select
+                className="select select-bordered w-full max-w-xs bg-slate-600"
+                onChange={handleColorChange}>
+                <option selected value={"all"}>
+                  Sorting Options
+                </option>
                 <option>Popularity</option>
-                <option>Price: low to high</option>
-                <option>Price: high to low</option>
+                <option value={"lowest"}>Price: low to high</option>
+                <option value={"highest"}>Price: high to low</option>
               </select>
             </div>
           </div>
