@@ -454,7 +454,7 @@ const Products = ({ host }: any) => {
             <div className="flex-shrink-0 text-body text-xs md:text-sm leading-4 ltr:pr-4 rtl:pl-4 ltr:md:mr-6 rtl:md:ml-6 ltr:pl-2 rtl:pr-2 hidden lg:block">
               20 items
             </div>
-            <div className="relative ltr:ml-2 rtl:mr-2 ltr:lg:ml-0 rtl:lg:mr-0 z-10 min-w-[180px]">
+            <div className="relative text-white bg-gray-700 ltr:ml-2 rtl:mr-2 ltr:lg:ml-0 rtl:lg:mr-0 z-10 min-w-[180px]">
               <select className="select select-bordered w-full max-w-xs">
                 <option selected>Sorting Options</option>
                 <option>Popularity</option>

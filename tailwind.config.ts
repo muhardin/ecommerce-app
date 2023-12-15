@@ -36,6 +36,5 @@ const config: Config = {
     require("daisyui"),
     require("preline/plugin"),
   ],
-  darkMode: "class",
 };
 export default config;
