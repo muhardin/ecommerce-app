@@ -124,7 +124,7 @@ const Banner = ({ host }: { host: string }) => {
         <div className="hidden sm:block absolute w-full h-44 bg-gradient-to-t from-gray-100 to-transparent bottom-0 left-0 z-10" />
       </div>
 
-      <div className="mb-12 md:mb-14 xl:mb-16 px-2.5 grid grid-cols-2 sm:grid-cols-9 gap-2 md:gap-2.5 max-w-[1920px] mx-auto">
+      <div className="mb-2 md:mb-2 xl:mb-2 px-2.5 grid grid-cols-2 sm:grid-cols-9 gap-2 md:gap-2.5 max-w-[1920px] mx-auto">
         {banners?.top?.length > 0 ? (
           banners?.top.map((top: ShopBanner, index: Number) => (
             <div

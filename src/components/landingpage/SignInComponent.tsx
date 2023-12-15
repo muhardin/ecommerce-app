@@ -2,6 +2,7 @@
 import { Eye } from "lucide-react";
 import { signIn, useSession } from "next-auth/react";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
@@ -173,11 +174,11 @@ const SignInComponent = () => {
                         </button>
                         <div className="mt-4 text-gray-700  dark:text-gray-300">
                           Need an account?
-                          <a
-                            href="#"
+                          <Link
+                            href="/web/sign-up"
                             className="font-semibold text-blue-700 hover:underline">
                             Create an account{" "}
-                          </a>
+                          </Link>
                         </div>
                       </form>
                     </div>

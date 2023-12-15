@@ -26,7 +26,7 @@ interface FormData {
   payment: string;
   country: string;
   shopName: string;
-  subdomain: string;
+  domain: string;
 }
 interface ModalProps {
   closeModal: () => void;
@@ -44,6 +44,7 @@ const FormAddTeam: React.FC<ModalProps> = ({ closeModal }) => {
   const [errPack, setErrPack] = useState(false);
   const [errPay, setErrPay] = useState(false);
   const [errShopName, setErrShopName] = useState(false);
+  const [errDomain, setErrDomain] = useState(false);
 
   const [formData, setFormData] = useState<FormData>({
     username: "",
@@ -58,7 +59,7 @@ const FormAddTeam: React.FC<ModalProps> = ({ closeModal }) => {
     payment: "",
     shopName: "",
     country: selected,
-    subdomain: "",
+    domain: "",
   });
   console.log(selected);
   const [selectedPackage, setSelectedPackage] = useState<any>(null);
@@ -116,13 +117,14 @@ const FormAddTeam: React.FC<ModalProps> = ({ closeModal }) => {
   const specificCode = "mywallet";
   // Filter the payments based on the specified code
   const filteredPayments =
-    payments?.filter(
+    payments?.my_wallet.filter(
       (payment: { code: string }) => payment.code === specificCode
     ) || [];
 
-  console.log(filteredPayments);
+  const regex = /^[a-zA-Z0-9]+$/;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const valueGet = e.target.value;
     if (e.target.name == "first_name") {
       setErrFn(false);
     }
@@ -141,6 +143,13 @@ const FormAddTeam: React.FC<ModalProps> = ({ closeModal }) => {
     if (e.target.name == "shopName") {
       setErrShopName(false);
     }
+    if (e.target.name == "domain") {
+      if (!regex.test(valueGet)) {
+        setErrDomain(true);
+      } else {
+        setErrDomain(false);
+      }
+    }
 
     // console.log(e.target);
     const { name, value } = e.target;
@@ -148,6 +157,7 @@ const FormAddTeam: React.FC<ModalProps> = ({ closeModal }) => {
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    setErrMessage([]);
     e.preventDefault();
     toast.loading("Loading...");
     // Reset errors before validation
@@ -195,6 +205,10 @@ const FormAddTeam: React.FC<ModalProps> = ({ closeModal }) => {
       setErrPassword(true);
     } else if (step === 1 && !formData.shopName) {
       setErrShopName(true);
+    } else if (step === 1 && !formData.domain) {
+      setErrDomain(true);
+    } else if (!regex.test(formData.domain)) {
+      setErrDomain(true);
     } else {
       setStep(step + 1);
     }
@@ -222,19 +236,13 @@ const FormAddTeam: React.FC<ModalProps> = ({ closeModal }) => {
             <div className="flex mb-32 pb-8 md:pb-0 md:mb-0 flex-col mt-2 w-full max-w-3xl p-4 mx-auto lg:px-12 lg:w-1/2">
               <div className="hidden md:block border-b-2 border-gray-200">
                 <h1 className="text-2xl font-semibold tracking-wider text-gray-800 capitalize dark:text-white">
-                  Dapatkan Toko Online anda sekarang juga.
+                  Register Shop
                 </h1>
-                <button
-                  type="button"
-                  onClick={closeModal}
-                  className="bg-white p-4">
-                  Close
-                </button>
                 <p className="mt-2 text-gray-500 dark:text-gray-400">
-                  Let’s get you all set up so you can verify your personal
-                  account and begin setting up your profile.
+                  Let’s get you all set up so you can verify your personal data
                 </p>
-
+              </div>
+              <div className="">
                 {errMessage?.error && (
                   <div className="font-regular relative mb-4 block w-full rounded-lg bg-red-500 p-4 text-base leading-5 text-white opacity-100">
                     Register Fail !
@@ -425,10 +433,10 @@ const FormAddTeam: React.FC<ModalProps> = ({ closeModal }) => {
                       />
                       <input
                         required
-                        name="subdomain"
-                        id="subdomain"
+                        name="domain"
+                        id="domain"
                         type="text"
-                        value={formData.subdomain}
+                        value={formData.domain}
                         onChange={handleChange}
                         placeholder="Sub Domain"
                         className="border-l-0 border-r-0 rounded-l-none rounded-r-none block w-full px-2 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
@@ -440,9 +448,11 @@ const FormAddTeam: React.FC<ModalProps> = ({ closeModal }) => {
                       />
                     </div>
 
-                    <label className="text-green-400 text-sm">
-                      Dapat di isi nanti di setting shop
-                    </label>
+                    {errDomain ? (
+                      <label className="text-red-400 text-sm">
+                        Wajib diisi tanpa spasi atau karakter tertentu
+                      </label>
+                    ) : null}
                   </div>
                   {/* End Setting Shop */}
                   {/* <div className="flex flex-row justify-end gap-2 mt-4">
