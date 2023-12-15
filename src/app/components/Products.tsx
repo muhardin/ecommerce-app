@@ -63,7 +63,9 @@ const Products = ({ host }: any) => {
             <input id="my-drawer" type="checkbox" className="drawer-toggle" />
             <div className="drawer-content">
               {/* Page content here */}
-              <label htmlFor="my-drawer" className="btn drawer-button ">
+              <label
+                htmlFor="my-drawer"
+                className="btn drawer-button text-white bg-slate-500">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="18px"
@@ -102,13 +104,13 @@ const Products = ({ host }: any) => {
                 <span className="ltr:pl-2.5 rtl:pr-2.5">Filters</span>
               </label>
             </div>
-            <div className="drawer-side">
+            <div className="drawer-side ">
               <label
                 htmlFor="my-drawer"
                 aria-label="close sidebar"
                 className="drawer-overlay"></label>
-              <div className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
-                <div className="flex flex-col justify-between w-full h-full">
+              <div className="menu p-4 w-80 min-h-full bg-base-200 text-base-content ">
+                <div className="flex flex-col justify-between w-full h-full ">
                   <div className="w-full border-b border-gray-100 flex justify-between items-center relative ltr:pr-5 rtl:pl-5 ltr:md:pr-7 rtl:md:pl-7 flex-shrink-0 py-0.5">
                     <label
                       htmlFor="my-drawer"
@@ -454,8 +456,8 @@ const Products = ({ host }: any) => {
             <div className="flex-shrink-0 text-body text-xs md:text-sm leading-4 ltr:pr-4 rtl:pl-4 ltr:md:mr-6 rtl:md:ml-6 ltr:pl-2 rtl:pr-2 hidden lg:block">
               20 items
             </div>
-            <div className="relative text-white bg-gray-700 ltr:ml-2 rtl:mr-2 ltr:lg:ml-0 rtl:lg:mr-0 z-10 min-w-[180px]">
-              <select className="select select-bordered w-full max-w-xs">
+            <div className="relative text-white bg-gray-700 rounded-md ltr:ml-2 rtl:mr-2 ltr:lg:ml-0 rtl:lg:mr-0 z-10 min-w-[180px]">
+              <select className="select select-bordered w-full max-w-xs bg-slate-600">
                 <option selected>Sorting Options</option>
                 <option>Popularity</option>
                 <option>Price: low to high</option>
