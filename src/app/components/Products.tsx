@@ -56,7 +56,7 @@ const Products = ({ host }: any) => {
   } = useSWR(url, fetcher, {
     refreshInterval: 3000,
   });
-  console.log(prodCategories);
+
   // useEffect(() => {
   //   const fetchData = async () => {
   //     const response = await fetch(
@@ -183,7 +183,7 @@ const Products = ({ host }: any) => {
                             <div className="mt-2 flex flex-col space-y-4">
                               {isLoading ? (
                                 <div>Loading...</div>
-                              ) : prodCategories.length > 0 ? (
+                              ) : prodCategories?.length > 0 ? (
                                 prodCategories.map((item: Category) => (
                                   <label
                                     key={item.id}
@@ -507,9 +507,65 @@ const Products = ({ host }: any) => {
           </div>
         </div>
         <Container className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 -mt-5">
-          {productsData?.map((item: ShopProduct) => (
-            <ProductsData item={item} key={item.id} />
-          ))}
+          {isLoading ? (
+            <>
+              <div className="flex flex-col gap-4 w-full">
+                <div className="skeleton h-32 w-full"></div>
+                <div className="skeleton h-4 w-28"></div>
+                <div className="skeleton h-4 w-full"></div>
+                <div className="skeleton h-4 w-full"></div>
+              </div>
+              <div className="flex flex-col gap-4 w-full">
+                <div className="skeleton h-32 w-full"></div>
+                <div className="skeleton h-4 w-28"></div>
+                <div className="skeleton h-4 w-full"></div>
+                <div className="skeleton h-4 w-full"></div>
+              </div>
+              <div className="flex flex-col gap-4 w-full">
+                <div className="skeleton h-32 w-full"></div>
+                <div className="skeleton h-4 w-28"></div>
+                <div className="skeleton h-4 w-full"></div>
+                <div className="skeleton h-4 w-full"></div>
+              </div>
+              <div className="flex flex-col gap-4 w-full">
+                <div className="skeleton h-32 w-full"></div>
+                <div className="skeleton h-4 w-28"></div>
+                <div className="skeleton h-4 w-full"></div>
+                <div className="skeleton h-4 w-full"></div>
+              </div>
+            </>
+          ) : productsData?.length > 0 ? (
+            productsData?.map((item: ShopProduct) => (
+              <ProductsData item={item} key={item.id} />
+            ))
+          ) : (
+            <>
+              <div className="flex flex-col gap-4 w-full">
+                <div className="skeleton h-32 w-full"></div>
+                <div className="skeleton h-4 w-28"></div>
+                <div className="skeleton h-4 w-full"></div>
+                <div className="skeleton h-4 w-full"></div>
+              </div>
+              <div className="flex flex-col gap-4 w-full">
+                <div className="skeleton h-32 w-full"></div>
+                <div className="skeleton h-4 w-28"></div>
+                <div className="skeleton h-4 w-full"></div>
+                <div className="skeleton h-4 w-full"></div>
+              </div>
+              <div className="flex flex-col gap-4 w-full">
+                <div className="skeleton h-32 w-full"></div>
+                <div className="skeleton h-4 w-28"></div>
+                <div className="skeleton h-4 w-full"></div>
+                <div className="skeleton h-4 w-full"></div>
+              </div>
+              <div className="flex flex-col gap-4 w-full">
+                <div className="skeleton h-32 w-full"></div>
+                <div className="skeleton h-4 w-28"></div>
+                <div className="skeleton h-4 w-full"></div>
+                <div className="skeleton h-4 w-full"></div>
+              </div>
+            </>
+          )}
         </Container>
       </div>
     </>
