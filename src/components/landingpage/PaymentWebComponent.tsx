@@ -114,7 +114,7 @@ const PaymentWebComponent = ({ id }: any) => {
                   <Image
                     className="object-cover"
                     // src={`${payment?.payment?.picture}`}
-                    src={`/images/payment/code/${payment?.payment?.code}.png`}
+                    src={`/images/payment/code/${payment?.payment?.picture}.png`}
                     alt=""
                     width={250}
                     height={250}

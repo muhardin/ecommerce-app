@@ -510,28 +510,28 @@ const Products = ({ host }: any) => {
           {isLoading ? (
             <>
               <div className="flex flex-col gap-4 w-full bg-bodyColor">
-                <div className="skeleton h-32 w-full bg-gray-400"></div>
-                <div className="skeleton h-4 w-28 bg-gray-400"></div>
-                <div className="skeleton h-4 w-full bg-gray-400"></div>
-                <div className="skeleton h-4 w-full bg-gray-400"></div>
+                <div className="skeleton h-32 w-full bg-gray-300"></div>
+                <div className="skeleton h-4 w-28 bg-gray-300"></div>
+                <div className="skeleton h-4 w-full bg-gray-300"></div>
+                <div className="skeleton h-4 w-full bg-gray-300"></div>
               </div>
               <div className="flex flex-col gap-4 w-full bg-bodyColor">
-                <div className="skeleton h-32 w-full bg-gray-400"></div>
-                <div className="skeleton h-4 w-28 bg-gray-400"></div>
-                <div className="skeleton h-4 w-full bg-gray-400"></div>
-                <div className="skeleton h-4 w-full bg-gray-400"></div>
+                <div className="skeleton h-32 w-full bg-gray-300"></div>
+                <div className="skeleton h-4 w-28 bg-gray-300"></div>
+                <div className="skeleton h-4 w-full bg-gray-300"></div>
+                <div className="skeleton h-4 w-full bg-gray-300"></div>
               </div>
               <div className="flex flex-col gap-4 w-full bg-bodyColor">
-                <div className="skeleton h-32 w-full bg-gray-400"></div>
-                <div className="skeleton h-4 w-28 bg-gray-400"></div>
-                <div className="skeleton h-4 w-full bg-gray-400"></div>
-                <div className="skeleton h-4 w-full bg-gray-400"></div>
+                <div className="skeleton h-32 w-full bg-gray-300"></div>
+                <div className="skeleton h-4 w-28 bg-gray-300"></div>
+                <div className="skeleton h-4 w-full bg-gray-300"></div>
+                <div className="skeleton h-4 w-full bg-gray-300"></div>
               </div>
               <div className="flex flex-col gap-4 w-full bg-bodyColor">
-                <div className="skeleton h-32 w-full bg-gray-400"></div>
-                <div className="skeleton h-4 w-28 bg-gray-400"></div>
-                <div className="skeleton h-4 w-full bg-gray-400"></div>
-                <div className="skeleton h-4 w-full bg-gray-400"></div>
+                <div className="skeleton h-32 w-full bg-gray-300"></div>
+                <div className="skeleton h-4 w-28 bg-gray-300"></div>
+                <div className="skeleton h-4 w-full bg-gray-300"></div>
+                <div className="skeleton h-4 w-full bg-gray-300"></div>
               </div>
             </>
           ) : productsData?.length > 0 ? (

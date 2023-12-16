@@ -584,7 +584,7 @@ const RegisterComponent: React.FC = () => {
                               width={150}
                               height={150}
                               className="w-14 object-contain"
-                              src={`/images/payment/${item.code}.png`}
+                              src={`/images/payment/${item.picture}.png`}
                               alt=""
                             />
 
