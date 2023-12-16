@@ -862,7 +862,7 @@ const SignUpComponent: React.FC<Params> = ({ referral }) => {
                               width={150}
                               height={150}
                               className="w-14 object-contain"
-                              src={`/images/payment/${item.picture}.png`}
+                              src={`/images/payment/${item.picture}`}
                               alt=""
                             />
 

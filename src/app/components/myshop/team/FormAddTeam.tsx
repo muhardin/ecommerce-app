@@ -619,7 +619,7 @@ const FormAddTeam: React.FC<ModalProps> = ({ closeModal }) => {
                               width={150}
                               height={150}
                               className="w-14 object-contain"
-                              src={`/images/payment/${item.picture}.png`}
+                              src={`/images/payment/${item.picture}`}
                               alt=""
                             />
 

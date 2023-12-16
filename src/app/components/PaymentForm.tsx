@@ -244,7 +244,7 @@ const PaymentForm = ({
                             width={500}
                             height={500}
                             className="w-14 object-contain"
-                            src={`/images/payment/${virtual.picture}.png`}
+                            src={`/images/payment/${virtual.picture}`}
                             alt=""
                           />
                           <div className="ml-1">
@@ -443,7 +443,7 @@ const PaymentForm = ({
                                 width={500}
                                 height={500}
                                 className="w-14 object-contain"
-                                src={`/images/payment/${wallets.picture}.png`}
+                                src={`/images/payment/${wallets.picture}`}
                                 alt=""
                               />
                               <div className="ml-5">
