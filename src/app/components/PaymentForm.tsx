@@ -456,7 +456,7 @@ const PaymentForm = ({
                               </div>
                             </label>
                           </div>
-                          {selectedVirtual === "OVO" ||
+                          {(selectedVirtual === "OVO" && index == 0) ||
                           (selectedVirtual === "ovo" && index == 0) ? (
                             <div
                               className={`${
