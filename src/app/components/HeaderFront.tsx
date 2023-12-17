@@ -419,6 +419,32 @@ const HeaderFront = () => {
                         </div>
                         Order
                       </Link>
+                      <Link
+                        onClick={() => {
+                          setProfileMenu(false);
+                        }}
+                        href="/profile/address"
+                        className="flex px-4 py-2 text-sm text-gray-700 dark:text-gray-400 dark:hover:bg-gray-800 hover:bg-gray-100">
+                        <div className="mr-2">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="18"
+                            height="18"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            className="lucide lucide-book-user">
+                            <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20" />
+                            <circle cx="12" cy="8" r="2" />
+                            <path d="M15 13a3 3 0 1 0-6 0" />
+                          </svg>
+                        </div>
+                        Address
+                      </Link>
+                      <hr />
                       {session?.is_supplier == 1 ? (
                         <Link
                           onClick={() => {

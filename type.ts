@@ -27,7 +27,7 @@ export interface ShopProduct {
   referral_profit: number;
   created_at: string;
   updated_at: string;
-  old_price: null | number;
+  old_price: number;
   is_old_price: number;
   detail_product: null | string;
   status: number;
@@ -37,6 +37,7 @@ export interface ShopProduct {
   is_primary: number;
   quantity: number;
   isDisable: number;
+  is_variant: number;
   product: Product;
 }
 export interface Products {

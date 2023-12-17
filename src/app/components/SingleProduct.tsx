@@ -12,6 +12,7 @@ import { useEffect, useState } from "react";
 import useSWR from "swr";
 import DetailProductBag from "./ProductDetail/DetailProductBag";
 import DetailProductCloth from "./ProductDetail/DetailProductCloth";
+import DetailProductVariant from "./ProductDetail/DetailProductVariant";
 
 const fetcher = (url: any) => fetch(url).then((res) => res.json());
 
@@ -29,7 +30,7 @@ const SingleProduct = ({ product, primaryImage }: any) => {
     case 1:
       return <DetailProductBag data={data} primaryImage={primaryImage} />;
     case 2:
-      return <DetailProductCloth data={data} primaryImage={primaryImage} />;
+      return <DetailProductVariant data={data} primaryImage={primaryImage} />;
 
     default:
       return <DetailProductBag data={data} primaryImage={primaryImage} />;

@@ -194,8 +194,8 @@ const DetailProductBag = ({
                                 : ""
                             }`}
                             src={`${process.env.SERVER_ENDPOINT}${item?.url}`}
-                            width={100}
-                            height={100}
+                            width={250}
+                            height={250}
                             alt=""
                           />
                         </Link>
@@ -322,7 +322,99 @@ const DetailProductBag = ({
                   </span>
                 </p>
               </div>
+              <div className="mb-2">
+                <h2 className="mb-2 text-xl font-bold dark:text-gray-400">
+                  Color
+                </h2>
+                <div className="flex flex-wrap -mb-2">
+                  <label
+                    className={`${
+                      selectedColor === "red"
+                        ? "border-red-600"
+                        : "hover:border-gray-400"
+                    } cursor-pointer p-1 mb-2 mr-2 border border-transparent rounded-full dark:border-gray-800 dark:hover:border-gray-400`}>
+                    <input
+                      hidden
+                      type="radio"
+                      name="color"
+                      value="red"
+                      checked={selectedColor === "red"}
+                      onChange={() => handleColorChange("red")}
+                    />
+                    <div className="w-6 h-6 bg-red-600 rounded-full"></div>
+                  </label>
 
+                  <label
+                    className={`${
+                      selectedColor === "green"
+                        ? "border border-green-600"
+                        : "hover:border-gray-400 border border-transparent "
+                    } cursor-pointer p-1 mb-2 mr-2 rounded-full hover:border-gray-400 dark:border-gray-800 dark:hover:border-gray-400`}>
+                    <input
+                      hidden
+                      type="radio"
+                      name="color"
+                      value="green"
+                      checked={selectedColor === "green"}
+                      onChange={() => handleColorChange("green")}
+                    />
+                    <div className="w-6 h-6 bg-green-600 rounded-full"></div>
+                  </label>
+
+                  <label
+                    className={`${
+                      selectedColor === "yellow"
+                        ? "border-yellow-500"
+                        : "hover:border-gray-400"
+                    } p-1 mb-2 border border-transparent rounded-full cursor-pointer  dark:border-gray-800 dark:hover:border-gray-400`}>
+                    <input
+                      hidden
+                      type="radio"
+                      name="color"
+                      value="yellow"
+                      checked={selectedColor === "yellow"}
+                      onChange={() => handleColorChange("yellow")}
+                    />
+                    <div className="w-6 h-6 bg-yellow-500 rounded-full"></div>
+                  </label>
+
+                  <label
+                    className={`${
+                      selectedColor === "sky"
+                        ? "border border-sky-500"
+                        : "border border-transparent hover:border-gray-400"
+                    } cursor-pointer p-1 mb-2   rounded-full dark:border-gray-800 dark:hover:border-gray-400`}>
+                    <input
+                      hidden
+                      type="radio"
+                      name="color"
+                      value="sky"
+                      checked={selectedColor === "sky"}
+                      onChange={() => handleColorChange("sky")}
+                    />
+                    <div className="w-6 h-6 rounded-full bg-sky-400"></div>
+                  </label>
+                </div>
+              </div>
+              <div className="pb-6 mb-2 border-b border-gray-300 dark:border-gray-700">
+                <h2 className="mb-2 text-xl font-bold dark:text-gray-400">
+                  Size
+                </h2>
+                <div className="flex flex-wrap -mb-2">
+                  <button className="py-1 mb-2 mr-1 border w-11 hover:border-blue-400 dark:border-gray-400 hover:text-blue-600 dark:hover:border-gray-300 dark:text-gray-400">
+                    XL
+                  </button>
+                  <button className="py-1 mb-2 mr-1 border w-11 hover:border-blue-400 hover:text-blue-600 dark:border-gray-400 dark:hover:border-gray-300 dark:text-gray-400">
+                    S
+                  </button>
+                  <button className="py-1 mb-2 mr-1 border w-11 hover:border-blue-400 hover:text-blue-600 dark:border-gray-400 dark:hover:border-gray-300 dark:text-gray-400">
+                    M
+                  </button>
+                  <button className="py-1 mb-2 mr-1 border w-11 hover:border-blue-400 hover:text-blue-600 dark:border-gray-400 dark:hover:border-gray-300 dark:text-gray-400">
+                    XS
+                  </button>
+                </div>
+              </div>
               <div className="flex flex-wrap items-center ">
                 {/* <div className="mb-4 mr-4 lg:mb-0">
                   <div className="w-28">

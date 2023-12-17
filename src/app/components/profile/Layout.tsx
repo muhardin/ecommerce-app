@@ -11,7 +11,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       <div className="mx-4 min-h-screen max-w-screen-xl sm:mx-8 xl:mx-auto pl-4">
         <h1 className="border-b py-6 text-4xl font-semibold">Profile</h1>
         <div className="grid grid-cols-8 pt-3 sm:grid-cols-10">
-          <div className="relative my-4 w-80 sm:hidden">
+          {/* <div className="relative my-4 w-80 sm:hidden">
             <input
               className="peer hidden"
               type="checkbox"
@@ -81,7 +81,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                 </li>
               </Link>
             </ul>
-          </div>
+          </div> */}
 
           <div className="col-span-2 hidden sm:block">
             <ul>

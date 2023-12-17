@@ -56,7 +56,7 @@ const Products = ({ host }: any) => {
   } = useSWR(url, fetcher, {
     refreshInterval: 3000,
   });
-
+  // console.log(productsData);
   // useEffect(() => {
   //   const fetchData = async () => {
   //     const response = await fetch(

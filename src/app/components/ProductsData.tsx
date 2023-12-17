@@ -138,14 +138,16 @@ const ProductsData = ({ item }: { item: ShopProduct }) => {
           <div className=" flex items-center justify-end relative">
             <div className="absolute -top-20 bg-white left-0 border-[1px] border-sky-500 py-1 px-4 rounded-full text-xs">
               <p>
-                {calculatePercentage(item?.agent_price, item?.product.oldPrice)}
-                % off
+                {calculatePercentage(item?.agent_price, item.old_price)}% off
               </p>
             </div>
             <div className=" flex items-center gap-x-2">
-              <p className="text-slate-500 line-through text-sm">
-                <FormattedPrice amount={item.product.oldPrice} />
-              </p>
+              {item?.old_price > item.agent_price ? (
+                <p className="text-slate-500 line-through text-sm">
+                  <FormattedPrice amount={item?.old_price} />
+                </p>
+              ) : null}
+
               <p className=" font-semibold">
                 <FormattedPrice amount={item?.agent_price} />
               </p>
