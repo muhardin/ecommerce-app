@@ -30,7 +30,7 @@ export async function middleware(request: NextRequest) {
     }
   }
 
-  if (token && pathname.startsWith("/web/myshop")) {
+  if (token && pathname.startsWith("/myshop")) {
     const data = await (
       await fetch(process.env.SERVER_ENDPOINT + "/api/user/profile", {
         headers: {
