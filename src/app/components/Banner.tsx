@@ -72,9 +72,10 @@ const Banner = ({ host }: { host: string }) => {
   return (
     <>
       <div className="relative">
-        <Slider {...settings}>
-          {isLoading ? null : banners?.slide?.length > 0 ? (
-            banners.slide.map((item: ShopBanner) => (
+        {isLoading ? null : banners?.slide?.length > 0 ? (
+          <Slider {...settings}>
+            {" "}
+            {banners.slide.map((item: ShopBanner) => (
               <div key={item.id} className="w-full h-40 sm:h-full relative">
                 <Image
                   width={950}
@@ -90,37 +91,38 @@ const Banner = ({ host }: { host: string }) => {
                   href={item.href}
                 />
               </div>
-            ))
-          ) : (
-            <>
-              <div className="w-full h-full relative">
-                <Image
-                  src={bannerOne}
-                  alt="Banner One"
-                  className="w-full h-full relative"
-                  priority
-                />
-                <BannerText title="Outware Picks" />
-              </div>
-              <div className="w-full h-full relative">
-                <Image
-                  src={bannerThree}
-                  alt="Banner One"
-                  className="w-full h-full relative"
-                />
-                <BannerText title="Seasonal Offer" />
-              </div>
-              <div className="w-full h-full relative">
-                <Image
-                  src={bannerTwo}
-                  alt="Banner One"
-                  className="w-full h-full relative"
-                />
-                <BannerText title="Best for men" />
-              </div>
-            </>
-          )}
-        </Slider>
+            ))}
+          </Slider>
+        ) : (
+          <Slider {...settings}>
+            <div className="w-full h-full relative">
+              <Image
+                src={bannerOne}
+                alt="Banner One"
+                className="w-full h-full relative"
+                priority
+              />
+              <BannerText title="Outware Picks" />
+            </div>
+            <div className="w-full h-full relative">
+              <Image
+                src={bannerThree}
+                alt="Banner One"
+                className="w-full h-full relative"
+              />
+              <BannerText title="Seasonal Offer" />
+            </div>
+            <div className="w-full h-full relative">
+              <Image
+                src={bannerTwo}
+                alt="Banner One"
+                className="w-full h-full relative"
+              />
+              <BannerText title="Best for men" />
+            </div>
+          </Slider>
+        )}
+
         <div className="hidden sm:block absolute w-full h-44 bg-gradient-to-t from-gray-100 to-transparent bottom-0 left-0 z-10" />
       </div>
 

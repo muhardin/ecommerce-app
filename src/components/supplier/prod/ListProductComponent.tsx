@@ -360,78 +360,77 @@ const ListProductComponent = () => {
                     </div>
                   </div>
                 </div>
-                <div
-                  className={`${
-                    isModalOpen ? "hidden" : "block"
-                  } flex flex-col sm:flex-row gap-4`}>
-                  <div
-                    className={`${
-                      checkedItemIds.length > 0 ? "block" : "hidden"
-                    } flex-grow-0 md:flex-grow lg:flex-grow xl:flex-grow`}>
-                    <button
-                      disabled={checkedItemIds.length < 1}
-                      onClick={() => {
-                        setIsBatch(true);
-                      }}
+                <div className={`flex flex-col sm:flex-row gap-4`}>
+                  <div className="flex gap-2 fixed bottom-24 right-4">
+                    <div
                       className={`${
-                        checkedItemIds.length > 0
-                          ? "bg-emerald-500 cursor-pointer"
-                          : "bg-emerald-300 opacity-50"
-                      } align-bottom inline-flex items-center justify-center leading-5 transition-colors duration-150 font-medium focus:outline-none px-4 py-2 rounded-lg text-sm text-white  border border-transparent  w-full h-12 btn-gray`}
-                      type="button">
-                      <span className="mr-2">
-                        <svg
-                          stroke="currentColor"
-                          fill="none"
-                          strokeWidth="2"
-                          viewBox="0 0 24 24"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          height="1em"
-                          width="1em"
-                          xmlns="http://www.w3.org/2000/svg">
-                          <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
-                          <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
-                        </svg>
-                      </span>
-                      Bulk Action
-                    </button>
-                  </div>
-                  <div
-                    className={`${
-                      checkedItemIds.length > 0 ? "block" : "hidden"
-                    } flex-grow-0 md:flex-grow lg:flex-grow xl:flex-grow`}>
-                    <button
-                      disabled={checkedItemIds.length < 1}
-                      onClick={() => {
-                        ConfirmActionDelete("del");
-                      }}
-                      // selectAll
+                        checkedItemIds.length > 0 ? "block" : "hidden"
+                      } flex-grow-0 md:flex-grow lg:flex-grow xl:flex-grow`}>
+                      <button
+                        disabled={checkedItemIds.length < 1}
+                        onClick={() => {
+                          setIsBatch(true);
+                        }}
+                        className={`${
+                          checkedItemIds.length > 0
+                            ? "bg-emerald-500 cursor-pointer"
+                            : "bg-emerald-300 opacity-50"
+                        } align-bottom inline-flex items-center justify-center leading-5 transition-colors duration-150 font-medium focus:outline-none px-4 py-2 rounded-lg text-sm text-white  border border-transparent  w-full h-12 btn-gray`}
+                        type="button">
+                        <span className="mr-2">
+                          <svg
+                            stroke="currentColor"
+                            fill="none"
+                            strokeWidth="2"
+                            viewBox="0 0 24 24"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            height="1em"
+                            width="1em"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                          </svg>
+                        </span>
+                        Bulk Action
+                      </button>
+                    </div>
+                    <div
                       className={`${
-                        checkedItemIds.length > 0
-                          ? "bg-red-500 cursor-pointer "
-                          : "bg-red-300 disabled opacity-50"
-                      } align-bottom inline-flex items-center justify-center leading-5 transition-colors duration-150 font-medium focus:outline-none px-4 py-2 rounded-lg text-sm text-white border border-transparent  w-full h-12   btn-red relative z-0`}
-                      type="button">
-                      <span className="mr-2">
-                        <svg
-                          stroke="currentColor"
-                          fill="none"
-                          strokeWidth="2"
-                          viewBox="0 0 24 24"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          height="1em"
-                          width="1em"
-                          xmlns="http://www.w3.org/2000/svg">
-                          <polyline points="3 6 5 6 21 6"></polyline>
-                          <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-                          <line x1="10" y1="11" x2="10" y2="17"></line>
-                          <line x1="14" y1="11" x2="14" y2="17"></line>
-                        </svg>
-                      </span>
-                      Delete
-                    </button>
+                        checkedItemIds.length > 0 ? "block" : "hidden"
+                      } flex-grow-0 md:flex-grow lg:flex-grow xl:flex-grow`}>
+                      <button
+                        disabled={checkedItemIds.length < 1}
+                        onClick={() => {
+                          ConfirmActionDelete("del");
+                        }}
+                        // selectAll
+                        className={`${
+                          checkedItemIds.length > 0
+                            ? "bg-red-500 cursor-pointer "
+                            : "bg-red-300 disabled opacity-50"
+                        } align-bottom inline-flex items-center justify-center leading-5 transition-colors duration-150 font-medium focus:outline-none px-4 py-2 rounded-lg text-sm text-white border border-transparent  w-full h-12   btn-red relative z-0`}
+                        type="button">
+                        <span className="mr-2">
+                          <svg
+                            stroke="currentColor"
+                            fill="none"
+                            strokeWidth="2"
+                            viewBox="0 0 24 24"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            height="1em"
+                            width="1em"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <polyline points="3 6 5 6 21 6"></polyline>
+                            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                            <line x1="10" y1="11" x2="10" y2="17"></line>
+                            <line x1="14" y1="11" x2="14" y2="17"></line>
+                          </svg>
+                        </span>
+                        Delete
+                      </button>
+                    </div>
                   </div>
                   <div className="flex-grow-0 md:flex-grow lg:flex-grow xl:flex-grow">
                     <button
