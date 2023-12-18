@@ -22,7 +22,7 @@ const ProductAddTo = ({ product }: { product: Products }) => {
   const { data: session } = useSession();
 
   const sellingPrice = Number(
-    product?.company_price + product?.company_price * 0.1
+    product?.company_price + product?.company_price * 0.2
   );
 
   const profitDefault = Number(product?.company_price * 0.1);
@@ -112,8 +112,7 @@ const ProductAddTo = ({ product }: { product: Products }) => {
     <div>
       <button
         onClick={() => setIsModalOpen(true)}
-        className="bg-sky-500 py-2 px-4 rounded-lg text-sm tracking-wide text-slate-100 hover:bg-sky-600 hover:text-white duration-200"
-      >
+        className="bg-sky-500 py-2 px-4 rounded-lg text-sm tracking-wide text-slate-100 hover:bg-sky-600 hover:text-white duration-200">
         Add To Shop
       </button>
 
@@ -143,8 +142,7 @@ const ProductAddTo = ({ product }: { product: Products }) => {
                       <div className="w-1/2 p-2 sm:w-1/4">
                         <a
                           href="#"
-                          className="block border border-blue-300 dark:border-transparent dark:hover:border-blue-300 hover:border-blue-300"
-                        >
+                          className="block border border-blue-300 dark:border-transparent dark:hover:border-blue-300 hover:border-blue-300">
                           <Image
                             width={500}
                             height={500}
@@ -157,8 +155,7 @@ const ProductAddTo = ({ product }: { product: Products }) => {
                       <div className="w-1/2 p-2 sm:w-1/4">
                         <a
                           href="#"
-                          className="block border border-transparent dark:border-transparent dark:hover:border-blue-300 hover:border-blue-300"
-                        >
+                          className="block border border-transparent dark:border-transparent dark:hover:border-blue-300 hover:border-blue-300">
                           <Image
                             width={500}
                             height={500}
@@ -171,8 +168,7 @@ const ProductAddTo = ({ product }: { product: Products }) => {
                       <div className="w-1/2 p-2 sm:w-1/4">
                         <a
                           href="#"
-                          className="block border border-transparent dark:border-transparent dark:hover:border-blue-300 hover:border-blue-300"
-                        >
+                          className="block border border-transparent dark:border-transparent dark:hover:border-blue-300 hover:border-blue-300">
                           <Image
                             width={500}
                             height={500}
@@ -185,8 +181,7 @@ const ProductAddTo = ({ product }: { product: Products }) => {
                       <div className="w-1/2 p-2 sm:w-1/4">
                         <a
                           href="#"
-                          className="block border border-transparent dark:border-transparent dark:hover:border-blue-300 hover:border-blue-300"
-                        >
+                          className="block border border-transparent dark:border-transparent dark:hover:border-blue-300 hover:border-blue-300">
                           <Image
                             width={500}
                             height={500}
@@ -216,8 +211,7 @@ const ProductAddTo = ({ product }: { product: Products }) => {
                               <div className="">
                                 <label
                                   htmlFor="email"
-                                  className="mt-4 mb-2 block text-sm font-medium"
-                                >
+                                  className="mt-4 mb-2 block text-sm font-medium">
                                   Base Price
                                 </label>
                                 <div className="relative">
@@ -259,8 +253,7 @@ const ProductAddTo = ({ product }: { product: Products }) => {
                                 </div>
                                 <label
                                   htmlFor="card-holder"
-                                  className="mt-4 mb-2 block text-sm font-medium"
-                                >
+                                  className="mt-4 mb-2 block text-sm font-medium">
                                   Harga Jual
                                 </label>
                                 <div className="relative">
@@ -286,8 +279,7 @@ const ProductAddTo = ({ product }: { product: Products }) => {
                                 </div>
                                 <label
                                   htmlFor="card-holder"
-                                  className="mt-4 mb-2 block text-sm font-medium"
-                                >
+                                  className="mt-4 mb-2 block text-sm font-medium">
                                   Your Profit
                                 </label>
                                 <div className="relative">
@@ -303,8 +295,7 @@ const ProductAddTo = ({ product }: { product: Products }) => {
                                 </div>
                                 <label
                                   htmlFor="card-holder"
-                                  className="mt-4 mb-2 block text-sm font-medium"
-                                >
+                                  className="mt-4 mb-2 block text-sm font-medium">
                                   Sharing Profit
                                 </label>
                                 <div className="relative">
@@ -403,8 +394,7 @@ const ProductAddTo = ({ product }: { product: Products }) => {
                                   <button
                                     type="button"
                                     onClick={() => setIsModalOpen(false)}
-                                    className="flex items-center justify-center w-full p-4 text-blue-500 border border-blue-500 rounded-md dark:text-gray-200 dark:border-blue-600 hover:bg-blue-600 hover:border-blue-600 hover:text-gray-100 dark:bg-blue-600 dark:hover:bg-blue-700 dark:hover:border-blue-700 dark:hover:text-gray-300"
-                                  >
+                                    className="flex items-center justify-center w-full p-4 text-blue-500 border border-blue-500 rounded-md dark:text-gray-200 dark:border-blue-600 hover:bg-blue-600 hover:border-blue-600 hover:text-gray-100 dark:bg-blue-600 dark:hover:bg-blue-700 dark:hover:border-blue-700 dark:hover:text-gray-300">
                                     Close
                                   </button>
                                 </div>
@@ -412,8 +402,7 @@ const ProductAddTo = ({ product }: { product: Products }) => {
                                 <div className="">
                                   <button
                                     //   type="button"
-                                    className="flex items-center justify-center w-full p-4 text-blue-500 border border-blue-500 rounded-md dark:text-gray-200 dark:border-blue-600 hover:bg-blue-600 hover:border-blue-600 hover:text-gray-100 dark:bg-blue-600 dark:hover:bg-blue-700 dark:hover:border-blue-700 dark:hover:text-gray-300"
-                                  >
+                                    className="flex items-center justify-center w-full p-4 text-blue-500 border border-blue-500 rounded-md dark:text-gray-200 dark:border-blue-600 hover:bg-blue-600 hover:border-blue-600 hover:text-gray-100 dark:bg-blue-600 dark:hover:bg-blue-700 dark:hover:border-blue-700 dark:hover:text-gray-300">
                                     Add to store
                                   </button>
                                 </div>
