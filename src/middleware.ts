@@ -38,7 +38,7 @@ export async function middleware(request: NextRequest) {
         },
       })
     ).json();
-    if (data?.data.is_seller == 2) {
+    if (data?.data?.is_seller == 2) {
       const response = await fetch(
         `${process.env.SERVER_ENDPOINT}/api/register-payment/2`,
         {
@@ -72,6 +72,7 @@ export async function middleware(request: NextRequest) {
         },
       })
     ).json();
+
     if (data?.data?.is_seller < 1) {
       return NextResponse.redirect(new URL("/", request.url));
     }
@@ -126,10 +127,11 @@ export async function middleware(request: NextRequest) {
         }
       )
     ).json();
-
+    // console.log(domain);
+    // console.log(dataShop);
     if (!dataShop.id) {
       if (!process.env.LANDING_PAGE?.includes(domain)) {
-        return NextResponse.redirect(new URL("/", request.url));
+        // return NextResponse.redirect(new URL("/", request.url));
       }
     }
   }
