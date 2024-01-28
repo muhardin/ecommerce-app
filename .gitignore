@@ -5,6 +5,7 @@
 /.backups
 /.pnp
 .pnp.js
+bun.lockb
 
 # testing
 /coverage
