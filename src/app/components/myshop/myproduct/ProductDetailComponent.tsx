@@ -58,7 +58,7 @@ const ProductDetailComponent = ({ id }: Props) => {
   const [sharingProfit, setSharingProfit] = useState(sharingProfitDefault);
   const [profit, setProfit] = useState(profitDefault);
   const [errorPrice, setErrorPrice] = useState(false);
-  console.log(product);
+  // console.log(product);
 
   useEffect(() => {
     const fetchData = async () => {

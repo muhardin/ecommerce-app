@@ -36,8 +36,7 @@ const RegisterPage = () => {
                 xmlns="http://www.w3.org/2000/svg"
                 width="100%"
                 height="auto"
-                viewBox="0 0 744.84799 747.07702"
-              >
+                viewBox="0 0 744.84799 747.07702">
                 <path
                   id="fa3b9e12-7275-481e-bee9-64fd9595a50d"
                   data-name="Path 1"
@@ -316,22 +315,23 @@ const RegisterPage = () => {
           </div>
         </div>
       </div>
-      <div className="flex items-end justify-end fixed bottom-0 right-0 mb-4 mr-4 z-10">
+      {/* <div className="flex items-end justify-end fixed bottom-0 right-0 mb-4 mr-4 z-10">
         <div>
           <a
             title="Buy me a beer"
             href="https://www.buymeacoffee.com/scottwindon"
             target="_blank"
-            className="block w-16 h-16 rounded-full transition-all shadow hover:shadow-lg transform hover:scale-110 hover:rotate-12"
-          >
+            className="block w-16 h-16 rounded-full transition-all shadow hover:shadow-lg transform hover:scale-110 hover:rotate-12">
             <Image
+              width={250}
+              height={250}
               className="object-cover object-center w-full h-full rounded-full"
               src="https://i.pinimg.com/originals/60/fd/e8/60fde811b6be57094e0abc69d9c2622a.jpg"
               alt="Image"
             />
           </a>
         </div>
-      </div>
+      </div> */}
     </>
   );
 };

@@ -92,7 +92,7 @@ const BankComponent = () => {
   };
   const [isAddBankAccountOpen, setAddBankAccountOpen] = useState(false);
 
-  console.log(items);
+  // console.log(items);
   return (
     <>
       <div>
@@ -104,8 +104,7 @@ const BankComponent = () => {
                 dispatch(closeProfileMenu());
                 setAddBankAccountOpen(true);
               }}
-              className="bg-sky-500 hover:bg-sky-400 p-2 text-white rounded-md"
-            >
+              className="bg-sky-500 hover:bg-sky-400 p-2 text-white rounded-md">
               Add Bank
             </button>
           </div>
@@ -115,8 +114,7 @@ const BankComponent = () => {
                 ? items.map((item: UserBank) => (
                     <div
                       key={item.id}
-                      className="flex flex-col justify-between border-b-2 border-sky-500 shadow-lg m-2 p-4"
-                    >
+                      className="flex flex-col justify-between border-b-2 border-sky-500 shadow-lg m-2 p-4">
                       <div className="">
                         {/* <svg
                         className="mx-auto block align-middle text-sky-400"
@@ -187,8 +185,7 @@ const BankComponent = () => {
                             onClick={() => {
                               SubmitDelete(item.id, "del");
                             }}
-                            className="p-2 bg-red-500 hover:bg-red-400 rounded-md"
-                          >
+                            className="p-2 bg-red-500 hover:bg-red-400 rounded-md">
                             Delete
                           </button>
                           <UpdateBank item={item} />
@@ -203,8 +200,7 @@ const BankComponent = () => {
       </div>
       <Modal
         isOpen={isAddBankAccountOpen}
-        onClose={() => setAddBankAccountOpen(false)}
-      >
+        onClose={() => setAddBankAccountOpen(false)}>
         <AddBankAccountForm onClose={() => setAddBankAccountOpen(false)} />
       </Modal>
     </>

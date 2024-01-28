@@ -52,7 +52,7 @@ const UpdateBank = ({ item }: { item: UserBank }) => {
     setBank(value);
     setBankVal(value.value);
   };
-  console.log(getBank);
+  // console.log(getBank);
   const data = {
     bank: getBankVal,
     branch: bankBranch,

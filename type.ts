@@ -578,7 +578,7 @@ export interface PackageData {
   description_price: string;
   maximum_product_sale: number;
   minimum_price_sale: string;
-  benefit: string | null;
+  benefit: Benefit[];
   other_rule: string | null;
   created_at: string;
   updated_at: string | null;
@@ -623,5 +623,14 @@ export interface ShopBanner {
 export interface Instruction {
   title: string;
   steps: string[];
+}
+export interface Benefit {
+  id: number;
+  package_id: string;
+  benefit: string;
+  value: number;
+  description: string | null;
+  created_at: string | null;
+  updated_at: string | null;
 }
 export type ShopPackageArray = ShopPackage[];

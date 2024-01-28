@@ -5,20 +5,28 @@ import { getServerSession } from "next-auth";
 import { headers } from "next/headers";
 import React from "react";
 
-const MyProductPage = async () => {
+const MyProductPage = async ({
+  params,
+}: {
+  params: { slug: string; shop: number };
+}) => {
   const headersList = headers();
   const domain = headersList.get("host") || "";
+  console.log(params.shop);
   if (process.env.LANDING_PAGE?.includes(domain)) {
     const sessionServer = await getServerSession(options);
     const token = sessionServer?.bearer;
     const shops = await (
-      await fetch(process.env.SERVER_ENDPOINT + "/api/myshop-board/", {
-        cache: "force-cache",
-        next: { tags: ["wallet"] },
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
+      await fetch(
+        process.env.SERVER_ENDPOINT + "/api/myshop-board?id=" + params.shop,
+        {
+          cache: "force-cache",
+          next: { tags: ["wallet"] },
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
     ).json();
     console.log(shops);
     return (

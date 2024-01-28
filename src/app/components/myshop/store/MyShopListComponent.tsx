@@ -183,7 +183,7 @@ const MyShopListComponent = () => {
                           </span>
                         </span>
                       </div>
-                      <div className=" text-right flex flex-row sm:flex-col gap-1 sm:gap-2 justify-end p-2">
+                      <div className=" text-right flex flex-col sm:flex-col gap-1 sm:gap-2 justify-center p-2">
                         {/* <button className="text-sm bg-red-500 hover:bg-red-600 p-2 text-white rounded-lg flex flex-row items-start justify-center">
                           <span className="mr-1 sm:mr-2">
                             <svg
@@ -271,6 +271,55 @@ const MyShopListComponent = () => {
                             </svg>
                           </span>
                           Banner
+                        </Link>
+                        <Link
+                          className="text-sm bg-sky-500 hover:bg-sky-700 p-2 text-white rounded-lg flex flex-row items-start justify-center"
+                          href={`/myshop/store/product/myproduct/${item.id}`}>
+                          <span className="mr-1 sm:mr-2">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="18"
+                              height="18"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              className="lucide lucide-package-search">
+                              <path d="M21 10V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l2-1.14" />
+                              <path d="m7.5 4.27 9 5.15" />
+                              <polyline points="3.29 7 12 12 20.71 7" />
+                              <line x1="12" x2="12" y1="22" y2="12" />
+                              <circle cx="18.5" cy="15.5" r="2.5" />
+                              <path d="M20.27 17.27 22 19" />
+                            </svg>
+                          </span>
+                          Product
+                        </Link>
+                        <Link
+                          className="text-sm bg-red-500 hover:bg-red-700 p-2 text-white rounded-lg flex flex-row items-start justify-center"
+                          href={`/myshop/store/product/catalog/${item.id}`}>
+                          <span className="mr-1 sm:mr-2">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="18"
+                              height="18"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              className="lucide lucide-backpack">
+                              <path d="M4 10a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z" />
+                              <path d="M9 6V4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2" />
+                              <path d="M8 21v-5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v5" />
+                              <path d="M8 10h8" />
+                              <path d="M8 18h8" />
+                            </svg>
+                          </span>
+                          Catalog
                         </Link>
                         {/* <a
                         className="inline-block px-4 py-3 mb-0 text-sm font-bold text-center align-middle transition-all ease-in bg-transparent border-0 rounded-lg shadow-none cursor-pointer leading-pro bg-150 hover:-translate-y-px active:opacity-85 bg-x-25 text-slate-700 dark:text-white"

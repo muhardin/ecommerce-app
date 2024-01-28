@@ -83,7 +83,7 @@ const RegistrationForm: React.FC = () => {
       toast.dismiss();
       toast.error("System on maintenance mode");
     }
-    console.log(post.data.message.error);
+    // console.log(post.data.message.error);
     // You can make an API call here to register the user
   };
   const [passwordShown, setPasswordShown] = useState(false);

@@ -93,7 +93,7 @@ const ProductDetailComponent = ({ id }: Props) => {
   });
   const [selectedShop, setSelectedShop] = useState<Number | null>(null);
   /** end select shop */
-  console.log(shops);
+  // console.log(shops);
 
   const [errMessage, setErrMessage]: any = useState<string[]>([]);
   const config = {
@@ -147,7 +147,7 @@ const ProductDetailComponent = ({ id }: Props) => {
   };
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  console.log(selectedShop);
+  // console.log(selectedShop);
 
   return (
     <div>

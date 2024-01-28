@@ -1,5 +1,5 @@
 import useSWR from "swr";
-import { PackageData } from "../../../type";
+import { Benefit, PackageData } from "../../../type";
 import FormattedPrice from "@/app/components/FormattedPrice";
 
 const LandingPackage = () => {
@@ -129,27 +129,29 @@ const LandingPackage = () => {
                           ? "-my-2 divide-y text-sm divide-gray-200 text-slate-50"
                           : "-my-2 divide-y text-sm divide-gray-200 text-gray-700"
                       } `}>
-                      <li className="flex py-2">
-                        <svg
-                          viewBox="0 0 24 24"
-                          aria-hidden="true"
-                          className="h-6 w-6 flex-none text-cyan-500">
-                          <path
-                            d="M9.307 12.248a.75.75 0 1 0-1.114 1.004l1.114-1.004ZM11 15.25l-.557.502a.75.75 0 0 0 1.15-.043L11 15.25Zm4.844-5.041a.75.75 0 0 0-1.188-.918l1.188.918Zm-7.651 3.043 2.25 2.5 1.114-1.004-2.25-2.5-1.114 1.004Zm3.4 2.457 4.25-5.5-1.187-.918-4.25 5.5 1.188.918Z"
-                            fill="currentColor"></path>
-                          <circle
-                            cx="12"
-                            cy="12"
-                            r="8.25"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="1.5"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"></circle>
-                        </svg>
-                        <span className="ml-4">Commission-free trading</span>
-                      </li>
-                      <li className="flex py-2">
+                      {item.benefit.map((benefit: Benefit) => (
+                        <li key={benefit.id} className="flex py-2">
+                          <svg
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                            className="h-6 w-6 flex-none text-cyan-500">
+                            <path
+                              d="M9.307 12.248a.75.75 0 1 0-1.114 1.004l1.114-1.004ZM11 15.25l-.557.502a.75.75 0 0 0 1.15-.043L11 15.25Zm4.844-5.041a.75.75 0 0 0-1.188-.918l1.188.918Zm-7.651 3.043 2.25 2.5 1.114-1.004-2.25-2.5-1.114 1.004Zm3.4 2.457 4.25-5.5-1.187-.918-4.25 5.5 1.188.918Z"
+                              fill="currentColor"></path>
+                            <circle
+                              cx="12"
+                              cy="12"
+                              r="8.25"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="1.5"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"></circle>
+                          </svg>
+                          <span className="ml-4">{benefit.benefit}</span>
+                        </li>
+                      ))}
+                      {/* <li className="flex py-2">
                         <svg
                           viewBox="0 0 24 24"
                           aria-hidden="true"
@@ -210,7 +212,7 @@ const LandingPackage = () => {
                         <span className="ml-4">
                           Invest up to $1,500 each month
                         </span>
-                      </li>
+                      </li> */}
                     </ul>
                   </div>
                   <a
@@ -220,7 +222,7 @@ const LandingPackage = () => {
                         : "inline-flex justify-center rounded-lg py-2 px-3 text-sm font-semibold outline-2 outline-offset-2 transition-colors bg-gray-800 text-white hover:bg-gray-900 active:bg-gray-800 active:text-white/80 mt-6"
                     }`}
                     aria-label="Get started with the Starter plan for [object Object]"
-                    href="/register">
+                    href="/web/sign-up">
                     Get started for free
                   </a>
                 </section>

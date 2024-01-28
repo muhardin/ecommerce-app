@@ -22,7 +22,7 @@ const MyProductListGlobal = ({
   item: ShopProduct;
   shops: ShopData;
 }) => {
-  console.log(item);
+  console.log(shops);
   const shopData = useShopData();
   const { data: session } = useSession();
   const starArray = Array.from({ length: item?.product.rating }, (_, index) => (

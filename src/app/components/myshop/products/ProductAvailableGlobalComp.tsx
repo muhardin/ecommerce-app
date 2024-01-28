@@ -18,7 +18,7 @@ import { IoIosStar } from "react-icons/io";
 import ProductModal from "./ProductModal";
 import ProductModalGlobal from "./ProductModalGlobal";
 
-const ProductAvailableGlobalComp = ({ shop }: { shop: ShopData }) => {
+const ProductAvailableGlobalComp = ({ shop }: { shop: any }) => {
   const pathname = usePathname();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [open, setOpen] = useState(false);
@@ -29,7 +29,7 @@ const ProductAvailableGlobalComp = ({ shop }: { shop: ShopData }) => {
 
   const shopData = useShopData();
   const { data: session } = useSession();
-
+  // console.log(shop[0].id);
   const fetcher = (url: any) =>
     fetch(url, {
       method: "GET",
@@ -38,7 +38,8 @@ const ProductAvailableGlobalComp = ({ shop }: { shop: ShopData }) => {
         "Content-Type": "application/json",
       },
     }).then((res) => res.json());
-  const url = process.env.SERVER_ENDPOINT + "/api/myshop-board/products/";
+  const url =
+    process.env.SERVER_ENDPOINT + "/api/myshop-board/products?id=" + shop[0].id;
   const {
     data: products,
     isLoading,

@@ -141,9 +141,9 @@ const AddBanner: React.FC<ModalProps> = ({ isOpen, closeModal, shopId }) => {
         if (response.status == 201) {
           setLoading(false);
           setErrMessage(response.data?.message.error);
-          console.log(response.data?.message.error);
+          // console.log(response.data?.message.error);
         }
-        console.log("Response:", response);
+        // console.log("Response:", response);
       })
       .catch((error) => {
         console.error("Error:", error);

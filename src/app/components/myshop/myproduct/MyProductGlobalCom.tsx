@@ -8,10 +8,10 @@ import { Supplier } from "../../../../../adminType";
 import { Category, Product, ShopData, ShopProduct } from "../../../../../type";
 import MyProductListGlobal from "./MyProductListGlobal";
 
-const MyProductGlobalCom = ({ shop }: { shop: ShopData }) => {
+const MyProductGlobalCom = ({ shop }: { shop: any }) => {
   const shopData = useShopData();
+  console.log(shop[0]);
   const { data: session } = useSession();
-
   const fetcher = (url: any) =>
     fetch(url, {
       method: "GET",
@@ -22,7 +22,8 @@ const MyProductGlobalCom = ({ shop }: { shop: ShopData }) => {
     }).then((res) => res.json());
   const url =
     process.env.SERVER_ENDPOINT +
-    "/api/myshop-board/products/myproducts-global/list/";
+    "/api/myshop-board/products/myproducts/" +
+    shop[0].id;
   const {
     data: productsData,
     isLoading,
@@ -47,7 +48,7 @@ const MyProductGlobalCom = ({ shop }: { shop: ShopData }) => {
     refreshInterval: 3000,
   });
   /** end of category */
-  // console.log(productsData);
+  console.log(productsData);
   return (
     <div className="flex flex-col gap-2 bg-white p-6">
       <div
