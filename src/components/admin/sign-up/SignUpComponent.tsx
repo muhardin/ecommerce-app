@@ -8,6 +8,7 @@ import ReactFlagsSelect from "react-flags-select";
 import { IoIosEye, IoIosEyeOff } from "react-icons/io";
 import useSWR from "swr";
 import {
+  Benefit,
   Payment,
   PaymentMethod,
   ShopPackage,
@@ -293,7 +294,7 @@ const SignUpComponent: React.FC<Params> = ({ referral }) => {
   const handlePrevious = () => {
     setStep(step - 1);
   };
-  console.log(formData.payment);
+  // console.log(packageData);
   return (
     <div>
       <section className="bg-white dark:bg-gray-900">
@@ -701,6 +702,39 @@ const SignUpComponent: React.FC<Params> = ({ referral }) => {
                                       : "hidden"
                                   } flex-col gap-1 justify-start items-start`}>
                                   <ul>
+                                    {packageData.benefit?.length > 0
+                                      ? packageData.benefit.map(
+                                          (pack: Benefit) => (
+                                            <li
+                                              key={pack.id}
+                                              className="flex flex-row gap-1 items-center">
+                                              <svg
+                                                viewBox="0 0 24 24"
+                                                aria-hidden="true"
+                                                className="h-4 w-4 flex-none text-cyan-500">
+                                                <path
+                                                  d="M9.307 12.248a.75.75 0 1 0-1.114 1.004l1.114-1.004ZM11 15.25l-.557.502a.75.75 0 0 0 1.15-.043L11 15.25Zm4.844-5.041a.75.75 0 0 0-1.188-.918l1.188.918Zm-7.651 3.043 2.25 2.5 1.114-1.004-2.25-2.5-1.114 1.004Zm3.4 2.457 4.25-5.5-1.187-.918-4.25 5.5 1.188.918Z"
+                                                  fill="currentColor"></path>
+                                                <circle
+                                                  cx="12"
+                                                  cy="12"
+                                                  r="8.25"
+                                                  fill="none"
+                                                  stroke="currentColor"
+                                                  strokeWidth="1.5"
+                                                  strokeLinecap="round"
+                                                  strokeLinejoin="round"></circle>
+                                              </svg>
+                                              <p className="text-slate-500 text-sm leading-6">
+                                                {pack.benefit}
+                                                <label className="font-bold">
+                                                  {pack.value}
+                                                </label>
+                                              </p>
+                                            </li>
+                                          )
+                                        )
+                                      : null}
                                     <li className="flex flex-row gap-1 items-center">
                                       <svg
                                         viewBox="0 0 24 24"
@@ -720,13 +754,10 @@ const SignUpComponent: React.FC<Params> = ({ referral }) => {
                                           strokeLinejoin="round"></circle>
                                       </svg>
                                       <p className="text-slate-500 text-sm leading-6">
-                                        Maximum_domain :{" "}
-                                        <label className="font-bold">
-                                          {item.maximum_domain} Domain
-                                        </label>
+                                        Menunggu Konfirmasi Dari Penjual
                                       </p>
                                     </li>
-                                    <li className="flex flex-row gap-1 items-center">
+                                    {/* <li className="flex flex-row gap-1 items-center">
                                       <svg
                                         viewBox="0 0 24 24"
                                         aria-hidden="true"
@@ -791,7 +822,7 @@ const SignUpComponent: React.FC<Params> = ({ referral }) => {
                                       <p className="text-slate-500 text-sm leading-6">
                                         Menunggu Konfirmasi Dari Penjual
                                       </p>
-                                    </li>
+                                    </li> */}
                                   </ul>
                                 </div>
                               </div>

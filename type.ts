@@ -521,7 +521,7 @@ export interface ShopPackage {
   description_price: string;
   maximum_product_sale: number;
   minimum_price_sale: string;
-  benefit: string | null;
+  benefit: Benefit[];
   other_rule: string | null;
   created_at: string;
   updated_at: string | null;

@@ -240,7 +240,7 @@ const ProductDetailComponent = ({ id }: Props) => {
                                 }}
                               />
                             </p>
-                            <div className="">
+                            <div className="pb-8 sm:pb-0">
                               <label
                                 htmlFor="card-holder"
                                 className="mt-4 mb-2 block text-sm font-medium">
@@ -438,15 +438,18 @@ const ProductDetailComponent = ({ id }: Props) => {
                                 </p>
                               </div>
                             </div>
-                            <div className="flex flex-wrap items-center -mx-4 mt-2">
-                              <div className="w-full px-4 mb-4 lg:w-1/2 lg:mb-0">
-                                <Link
-                                  href={"/myshop/product/available"}
+                            <div className="flex flex-row items-center -mx-4 mt-2 fixed bottom-14 right-4 w-full">
+                              <div className="w-full px-4 mb-4 lg:w-1/2 lg:mb-0 bg-white">
+                                <button
+                                  onClick={() => {
+                                    router.back();
+                                  }}
+                                  type="button"
                                   className="flex items-center justify-center w-full p-4 text-blue-500 border border-blue-500 rounded-md dark:text-gray-200 dark:border-blue-600 hover:bg-blue-600 hover:border-blue-600 hover:text-gray-100 dark:bg-blue-600 dark:hover:bg-blue-700 dark:hover:border-blue-700 dark:hover:text-gray-300">
                                   Back
-                                </Link>
+                                </button>
                               </div>
-                              <div className="w-full px-4 mb-4 lg:mb-0 lg:w-1/2">
+                              <div className="w-full px-4 mb-4 lg:mb-0 lg:w-1/2  bg-white">
                                 <button
                                   //   type="button"
                                   className="flex items-center justify-center w-full p-4 text-blue-500 border border-blue-500 rounded-md dark:text-gray-200 dark:border-blue-600 hover:bg-blue-600 hover:border-blue-600 hover:text-gray-100 dark:bg-blue-600 dark:hover:bg-blue-700 dark:hover:border-blue-700 dark:hover:text-gray-300">

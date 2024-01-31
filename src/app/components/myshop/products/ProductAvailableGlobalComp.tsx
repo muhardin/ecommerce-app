@@ -26,6 +26,7 @@ const ProductAvailableGlobalComp = ({ shop }: { shop: any }) => {
 
   const [selectedCity, setSelectedCity] = useState<string | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string>("");
+  const [currentPage, setCurrentPage] = useState(1);
 
   const shopData = useShopData();
   const { data: session } = useSession();
@@ -39,7 +40,11 @@ const ProductAvailableGlobalComp = ({ shop }: { shop: any }) => {
       },
     }).then((res) => res.json());
   const url =
-    process.env.SERVER_ENDPOINT + "/api/myshop-board/products?id=" + shop[0].id;
+    process.env.SERVER_ENDPOINT +
+    "/api/myshop-board/products?id=" +
+    shop[0].id +
+    "&page=" +
+    currentPage;
   const {
     data: products,
     isLoading,
@@ -48,6 +53,13 @@ const ProductAvailableGlobalComp = ({ shop }: { shop: any }) => {
   } = useSWR(url, fetcher, {
     refreshInterval: 3000,
   });
+  const [itemOffset, setItemOffset] = useState(0);
+  const pageCount = Math.ceil(products?.total / products?.per_page);
+  const handlePageClick = (selected: number) => {
+    setCurrentPage(Number(selected + 1));
+    const newOffset = (selected * products?.per_page) % products?.total;
+    setItemOffset(newOffset);
+  };
 
   const starArray = Array.from({ length: products?.rating }, (_, index) => (
     <span key={index} className=" text-yellow-400">
@@ -221,10 +233,10 @@ const ProductAvailableGlobalComp = ({ shop }: { shop: any }) => {
           </div>
         </div>
         <hr className="mb-2" />
-        <TabPanel className="">
-          {products ? (
+        <TabPanel className="mb-8">
+          {products?.data ? (
             <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-4 ">
-              {products
+              {products?.data
                 .filter((product: Products) => {
                   if (selectedCity) {
                     return product.supplier.city_id.toString() === selectedCity;
@@ -356,6 +368,48 @@ const ProductAvailableGlobalComp = ({ shop }: { shop: any }) => {
               </div>
             </div>
           )}
+          <div className="flex flex-row justify-end">
+            <section className="flex items-center h-auto bg-white font-poppins dark:bg-gray-800 ">
+              <div className="justify-center flex-1 px-4 py-6 mx-auto max-w-7xl lg:py-4 md:px-6">
+                <div className="relative z-0 flex justify-center -space-x-px rounded-md">
+                  <button
+                    disabled={currentPage < 2}
+                    onClick={() => {
+                      setCurrentPage(Number(currentPage - 1));
+                    }}
+                    className="px-4 py-2 font-medium text-blue-500 border border-blue-300 dark:border-gray-600 dark:hover:bg-gray-800 dark:bg-gray-700 dark:text-gray-300 bg-blue-50 rounded-l-md hover:bg-blue-400 hover:border-blue-400 hover:text-white">
+                    {"<"}
+                  </button>
+                  {Array.from({ length: pageCount }).map((_, index) => {
+                    const page = index + 1;
+                    return (
+                      <button
+                        onClick={() => {
+                          handlePageClick(index);
+                        }}
+                        key={page}
+                        className={`relative inline-flex items-center px-4 py-2 text-sm font-medium ${
+                          page === currentPage
+                            ? "text-gray-100 bg-blue-500 border border-blue-300 dark:border-gray-600 dark:hover:bg-gray-800 dark:bg-gray-800 dark:text-gray-300"
+                            : "text-blue-500 border border-blue-300 dark:border-gray-600 dark:hover:bg-gray-800 dark:bg-gray-700 dark:text-gray-300 bg-blue-50 hover:bg-gray-50"
+                        }`}>
+                        {page}
+                      </button>
+                    );
+                  })}
+
+                  <button
+                    disabled={currentPage == pageCount}
+                    onClick={() => {
+                      setCurrentPage(Number(currentPage + 1));
+                    }}
+                    className="px-4 py-2 font-medium text-blue-500 border border-blue-300 dark:border-gray-600 dark:hover:bg-gray-800 dark:bg-gray-700 dark:text-gray-300 bg-blue-50 rounded-r-md hover:bg-blue-400 hover:border-blue-400 hover:text-white">
+                    {">"}
+                  </button>
+                </div>
+              </div>
+            </section>
+          </div>
         </TabPanel>
         <TabPanel>
           <div className="">tab 2</div>
