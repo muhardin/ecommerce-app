@@ -232,7 +232,7 @@ const OrderHistory = () => {
                       <div className="">
                         <FormattedPrice amount={Number(item.amount)} />
                       </div>
-                      {item.order_payment?.status !== "PAID" && (
+                      {item.order_payment?.status !== "PAID" ? (
                         <div className="">
                           <Link
                             href={"/payment/" + item.id}
@@ -240,7 +240,15 @@ const OrderHistory = () => {
                             Pay
                           </Link>
                         </div>
-                      )}
+                      ) : item.order_payment?.status !== "PAID" ? (
+                        <div className="">
+                          <Link
+                            href={"#"}
+                            className={`inline-flex items-center rounded-md bg-red-600 py-2 px-3 text-xs text-white cursor-pointer`}>
+                            Expired
+                          </Link>
+                        </div>
+                      ) : null}
                       {item.order_payment?.status == "PAID" && (
                         <div className="">
                           <Link
