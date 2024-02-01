@@ -207,11 +207,19 @@ const PaymentComponent = ({ id }: any) => {
             <div className="bg-gray-100 h-auto">
               <div className="bg-white p-6  md:mx-auto">
                 <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
                   viewBox="0 0 24 24"
-                  className="text-red-600 w-16 h-16 mx-auto my-6">
-                  <path
-                    fill="currentColor"
-                    d="M12,0A12,12,0,1,0,24,12,12.014,12.014,0,0,0,12,0Zm6.927,8.2-6.845,9.289a1.011,1.011,0,0,1-1.43.188L5.764,13.769a1,1,0,1,1,1.25-1.562l4.076,3.261,6.227-8.451A1,1,0,1,1,18.927,8.2Z"></path>
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  className="lucide lucide-shield-x">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10" />
+                  <path d="m14.5 9-5 5" />
+                  <path d="m9.5 9 5 5" />
                 </svg>
                 <div className="text-center">
                   <h3 className="md:text-2xl text-base text-red-700 font-semibold text-center">
