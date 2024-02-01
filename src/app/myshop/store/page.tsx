@@ -3,7 +3,7 @@ import MyShopListComponent from "@/app/components/myshop/store/MyShopListCompone
 const page = () => {
   return (
     <>
-      <div className="h-full p-10">
+      <div className="h-full p-4">
         <MyShopListComponent />
       </div>
     </>

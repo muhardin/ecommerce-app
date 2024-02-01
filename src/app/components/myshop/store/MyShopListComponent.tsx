@@ -58,7 +58,7 @@ const MyShopListComponent = () => {
                         <polyline points="17 8 12 3 7 8"></polyline>
                         <line x1="12" y1="3" x2="12" y2="15"></line>
                       </svg>
-                      <span className="text-xs">Export</span>
+                      <span className="text-xs">Export_</span>
                     </button>
                   </div>
                   <div className="lg:flex-1 md:flex-1 mr-3  sm:flex-none">

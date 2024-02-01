@@ -14,7 +14,7 @@ const LandingPackage = () => {
   const { data, isValidating, isLoading, error } = useSWR(url, fetcher, {
     refreshInterval: 3000,
   });
-  console.log(data);
+
   return (
     <div>
       <section
