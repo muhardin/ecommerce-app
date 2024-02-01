@@ -450,7 +450,7 @@ const HeaderFront = () => {
                           onClick={() => {
                             setProfileMenu(false);
                           }}
-                          href="/supplier"
+                          href={`${process.env.REFERRAL_PAGE}/supplier`}
                           className="flex px-4 py-2 text-sm text-gray-700 dark:text-gray-400 dark:hover:bg-gray-800 hover:bg-gray-100">
                           <div className="mr-2">
                             <LucidaIcon name="Store" size={18} />
@@ -465,7 +465,7 @@ const HeaderFront = () => {
                           onClick={() => {
                             setProfileMenu(false);
                           }}
-                          href="/myshop"
+                          href={`${process.env.REFERRAL_PAGE}/myshop`}
                           className="flex px-4 py-2 text-sm text-gray-700 dark:text-gray-400 dark:hover:bg-gray-800 hover:bg-gray-100">
                           <div className="mr-2">
                             <ShoppingBag name="Store" size={18} />
