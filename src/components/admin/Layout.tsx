@@ -18,15 +18,13 @@ const AdminLayout = ({ children }: { children: React.ReactNode }) => {
   const isOpen = useSelector((state: RootState) => state.profile.isOpen);
   const pathName = usePathname();
 
-  // console.log(isOpen);
   return (
     <div className="bg-gray-100 xl:h-screen dark:bg-gray-800">
       <div className="body-content">
         <SideMenuAdmin />
         <div
           className={`transition-all ${isOpen ? " md:ml-[280px]" : "md:ml-0"}`}
-          id="dash"
-        >
+          id="dash">
           {children}
         </div>
       </div>
