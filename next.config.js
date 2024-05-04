@@ -32,6 +32,18 @@ const nextConfig = {
         port: "",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "api.effix.shop",
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "api.jualanyuk.shop",
+        port: "",
+        pathname: "/**",
+      },
     ],
   },
   async headers() {
