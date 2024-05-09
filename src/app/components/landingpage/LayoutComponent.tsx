@@ -472,7 +472,7 @@ const LayoutComponent = ({ children }: { children: React.ReactNode }) => {
                             {session.is_seller == 1 && (
                               <li>
                                 <Link
-                                  href={"/supplier"}
+                                  href={"/myshop"}
                                   className="justify-between cursor-pointer p-2">
                                   <div className="flex flex-row gap-0 justify-start">
                                     <div className="mr-2">
@@ -486,7 +486,7 @@ const LayoutComponent = ({ children }: { children: React.ReactNode }) => {
                             {session.is_seller == 2 && (
                               <li>
                                 <Link
-                                  href={"/supplier"}
+                                  href={"/myshop"}
                                   className="justify-between cursor-pointer p-2">
                                   <div className="flex flex-row gap-0 justify-start">
                                     <div className="mr-2">
