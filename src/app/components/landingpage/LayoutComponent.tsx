@@ -25,6 +25,7 @@ const LayoutComponent = ({ children }: { children: React.ReactNode }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
   const pathName = usePathname();
+
   // useEffect(() => {
   //   const handleScroll = () => {
   //     if (window.scrollY > 0) {
@@ -361,6 +362,7 @@ const LayoutComponent = ({ children }: { children: React.ReactNode }) => {
                           <div
                             tabIndex={0}
                             role="button"
+                            onClick={() => setProfileMenu(true)}
                             className="btn btn-ghost btn-circle avatar">
                             <div className="w-10 rounded-full">
                               {session.is_company ? (
@@ -382,55 +384,18 @@ const LayoutComponent = ({ children }: { children: React.ReactNode }) => {
                               )}
                             </div>
                           </div>
-                          <ul
-                            tabIndex={0}
-                            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-white rounded-box w-52 gap-1">
-                            <li>
-                              <Link
-                                href={"/profile"}
-                                className="justify-between cursor-pointer p-2">
-                                <div className="flex flex-row gap-0 justify-start">
-                                  <svg
-                                    className="mr-2"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="18"
-                                    height="18"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    strokeWidth="2"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round">
-                                    <circle cx="12" cy="12" r="3"></circle>
-                                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
-                                  </svg>
-                                  <span>Account</span>
-                                </div>
-                                <span className="badge">New</span>
-                              </Link>
-                            </li>
-                            <li>
-                              <Link
-                                href={"/profile/orders"}
-                                className="justify-between cursor-pointer p-2">
-                                <div className="flex flex-row gap-0 justify-start">
-                                  <div className="mr-2">
-                                    <ClipboardList size={18} />
-                                  </div>
-                                  <span>Order</span>
-                                </div>
-                                <span className="badge-warning w-5 h-5 rounded-full text-center">
-                                  2
-                                </span>
-                              </Link>
-                            </li>
-                            <li>
-                              <Link
-                                href={"/admin"}
-                                className="justify-between cursor-pointer p-2">
-                                <div className="flex flex-row gap-0 justify-start">
-                                  <div className="mr-2">
+                          {profileMenu && (
+                            <ul
+                              onClick={() => setProfileMenu(!profileMenu)}
+                              tabIndex={0}
+                              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-white rounded-box w-52 gap-1">
+                              <li>
+                                <Link
+                                  href={"/profile"}
+                                  className="justify-between cursor-pointer p-2">
+                                  <div className="flex flex-row gap-0 justify-start">
                                     <svg
+                                      className="mr-2"
                                       xmlns="http://www.w3.org/2000/svg"
                                       width="18"
                                       height="18"
@@ -439,100 +404,140 @@ const LayoutComponent = ({ children }: { children: React.ReactNode }) => {
                                       stroke="currentColor"
                                       strokeWidth="2"
                                       strokeLinecap="round"
-                                      strokeLinejoin="round"
-                                      className="lucide lucide-blocks">
-                                      <rect
-                                        width="7"
-                                        height="7"
-                                        x="14"
-                                        y="3"
-                                        rx="1"
-                                      />
-                                      <path d="M10 21V8a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-5a1 1 0 0 0-1-1H3" />
-                                    </svg>
-                                  </div>
-                                  <span>Administrator</span>
-                                </div>
-                              </Link>
-                            </li>
-                            {session.is_supplier == 1 && (
-                              <li>
-                                <Link
-                                  href={"/supplier"}
-                                  className="justify-between cursor-pointer p-2">
-                                  <div className="flex flex-row gap-0 justify-start">
-                                    <div className="mr-2">
-                                      <LucidaIcon name="Store" size={18} />
-                                    </div>
-                                    <span>Supplier</span>
-                                  </div>
-                                </Link>
-                              </li>
-                            )}
-                            {session.is_seller == 1 && (
-                              <li>
-                                <Link
-                                  href={"/myshop"}
-                                  className="justify-between cursor-pointer p-2">
-                                  <div className="flex flex-row gap-0 justify-start">
-                                    <div className="mr-2">
-                                      <ShoppingBag name="Store" size={18} />
-                                    </div>
-                                    <span>My Shop</span>
-                                  </div>
-                                </Link>
-                              </li>
-                            )}
-                            {session.is_seller == 2 && (
-                              <li>
-                                <Link
-                                  href={"/myshop"}
-                                  className="justify-between cursor-pointer p-2">
-                                  <div className="flex flex-row gap-0 justify-start">
-                                    <div className="mr-2">
-                                      <ShoppingBag name="Store" size={18} />
-                                    </div>
-                                    <span>My Shop</span>
-                                  </div>
-                                </Link>
-                              </li>
-                            )}
-
-                            <li>
-                              <div
-                                onClick={() => {
-                                  toast.loading("Loading...");
-                                  setProfileMenu(false);
-                                  closeMenu();
-                                  onSignOut();
-                                }}
-                                className="justify-between cursor-pointer p-2">
-                                <div className="flex flex-row gap-0 justify-start">
-                                  <div className="mr-2">
-                                    <svg
-                                      xmlns="http://www.w3.org/2000/svg"
-                                      width="17"
-                                      height="17"
-                                      viewBox="0 0 24 24"
-                                      fill="none"
-                                      stroke="currentColor"
-                                      strokeWidth="2"
-                                      strokeLinecap="round"
                                       strokeLinejoin="round">
-                                      <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
-                                      <polyline points="16 17 21 12 16 7"></polyline>
-                                      <line
-                                        x1="21"
-                                        y1="12"
-                                        x2="9"
-                                        y2="12"></line>
+                                      <circle cx="12" cy="12" r="3"></circle>
+                                      <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
                                     </svg>
+                                    <span>Account</span>
                                   </div>
-                                  <span>Logout</span>
+                                  <span className="badge">New</span>
+                                </Link>
+                              </li>
+                              <li>
+                                <Link
+                                  href={"/profile/orders"}
+                                  className="justify-between cursor-pointer p-2">
+                                  <div className="flex flex-row gap-0 justify-start">
+                                    <div className="mr-2">
+                                      <ClipboardList size={18} />
+                                    </div>
+                                    <span>Order</span>
+                                  </div>
+                                  <span className="badge-warning w-5 h-5 rounded-full text-center">
+                                    2
+                                  </span>
+                                </Link>
+                              </li>
+                              <li>
+                                <Link
+                                  href={"/admin"}
+                                  className="justify-between cursor-pointer p-2">
+                                  <div className="flex flex-row gap-0 justify-start">
+                                    <div className="mr-2">
+                                      <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="18"
+                                        height="18"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        strokeWidth="2"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        className="lucide lucide-blocks">
+                                        <rect
+                                          width="7"
+                                          height="7"
+                                          x="14"
+                                          y="3"
+                                          rx="1"
+                                        />
+                                        <path d="M10 21V8a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-5a1 1 0 0 0-1-1H3" />
+                                      </svg>
+                                    </div>
+                                    <span>Administrator</span>
+                                  </div>
+                                </Link>
+                              </li>
+                              {session.is_supplier == 1 && (
+                                <li>
+                                  <Link
+                                    href={"/supplier"}
+                                    className="justify-between cursor-pointer p-2">
+                                    <div className="flex flex-row gap-0 justify-start">
+                                      <div className="mr-2">
+                                        <LucidaIcon name="Store" size={18} />
+                                      </div>
+                                      <span>Supplier</span>
+                                    </div>
+                                  </Link>
+                                </li>
+                              )}
+                              {session.is_seller == 1 && (
+                                <li>
+                                  <Link
+                                    href={"/myshop"}
+                                    className="justify-between cursor-pointer p-2">
+                                    <div className="flex flex-row gap-0 justify-start">
+                                      <div className="mr-2">
+                                        <ShoppingBag name="Store" size={18} />
+                                      </div>
+                                      <span>My Shop</span>
+                                    </div>
+                                  </Link>
+                                </li>
+                              )}
+                              {session.is_seller == 2 && (
+                                <li>
+                                  <Link
+                                    href={"/myshop"}
+                                    className="justify-between cursor-pointer p-2">
+                                    <div className="flex flex-row gap-0 justify-start">
+                                      <div className="mr-2">
+                                        <ShoppingBag name="Store" size={18} />
+                                      </div>
+                                      <span>My Shop</span>
+                                    </div>
+                                  </Link>
+                                </li>
+                              )}
+
+                              <li>
+                                <div
+                                  onClick={() => {
+                                    toast.loading("Loading...");
+                                    setProfileMenu(false);
+                                    closeMenu();
+                                    onSignOut();
+                                  }}
+                                  className="justify-between cursor-pointer p-2">
+                                  <div className="flex flex-row gap-0 justify-start">
+                                    <div className="mr-2">
+                                      <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="17"
+                                        height="17"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        strokeWidth="2"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round">
+                                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                                        <polyline points="16 17 21 12 16 7"></polyline>
+                                        <line
+                                          x1="21"
+                                          y1="12"
+                                          x2="9"
+                                          y2="12"></line>
+                                      </svg>
+                                    </div>
+                                    <span>Logout</span>
+                                  </div>
                                 </div>
-                              </div>
-                            </li>
-                          </ul>
+                              </li>
+                            </ul>
+                          )}
                         </div>
                       </div>
                     </div>
