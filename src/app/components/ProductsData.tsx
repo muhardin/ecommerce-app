@@ -40,7 +40,7 @@ const ProductsData = ({ item }: { item: ShopProduct }) => {
                 image: `${process.env.SERVER_ENDPOINT}${item.product?.product_gallery[0].url}`,
               },
             }}>
-            <div className=" w-full h-80 group overflow-hidden relative">
+            <div className=" w-full h-64 group overflow-hidden relative">
               {/* <Slider {...settings}>
                 {item.product?.product_gallery.map(
                   (gallery: ProductGallery) => (
