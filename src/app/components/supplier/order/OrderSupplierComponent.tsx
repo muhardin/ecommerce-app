@@ -213,7 +213,7 @@ const OrderSupplierComponent = () => {
                     <div className="flex flex-row justify-between gap-2 p-4">
                       <div className="flex justify-start flex-row items-center gap-2">
                         <div className="w-1/5">
-                          {item.product.product_gallery?.length > 0 ? (
+                          {item?.product?.product_gallery?.length > 0 ? (
                             <Image
                               src={`${process.env.SERVER_ENDPOINT}${item.product.product_gallery[0].url}`}
                               alt=""
@@ -233,7 +233,7 @@ const OrderSupplierComponent = () => {
                           <div className="text-red-500 font-mono">
                             {item.order.invoice_number}
                           </div>
-                          <div className="">{item.product.title}</div>
+                          <div className="">{item?.product?.title}</div>
                           <div className="text-sm font-mono">
                             {formatDateAndTime(item.created_at)}
                           </div>

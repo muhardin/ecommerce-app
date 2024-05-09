@@ -63,9 +63,8 @@ const OrderSupplierDetail = ({
           handleCloseMenu();
           setModal(true);
         }}
-        className={`${className} text-sky-700 cursor-pointer hover:text-sky-500 `}
-      >
-        {title ? title : item.product.title}
+        className={`${className} text-sky-700 cursor-pointer hover:text-sky-500 `}>
+        {title ? title : item?.product?.title}
       </div>
       <div
         className={`relative z-10 ${
@@ -73,8 +72,7 @@ const OrderSupplierDetail = ({
         } overflow-x-hidden overflow-y-auto inset-0 outline-none focus:outline-none w-full`}
         aria-labelledby="modal-title"
         role="dialog"
-        aria-modal="true"
-      >
+        aria-modal="true">
         <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
         <div className="fixed inset-0 z-10 w-full md:ml-[156px] overflow-y-auto mt-24 md:mt-0">
           <div className="w-full flex min-h-full items-center justify-center md:justify-center p-4 text-start sm:items-center sm:p-0">
@@ -92,7 +90,7 @@ const OrderSupplierDetail = ({
                   </div>
                   <div className="flex flex-col border-b-2 border-sky-200">
                     <span className="font-extrabold text-2xl">
-                      {item.product.title}
+                      {item?.product?.title}
                     </span>
                     <span className="mt-4 hidden md:block">
                       {item.product.description}
@@ -151,8 +149,7 @@ const OrderSupplierDetail = ({
                         })
                       );
                     }}
-                    className="p-4 rounded-md text-white bg-sky-500 cursor-pointer"
-                  >
+                    className="p-4 rounded-md text-white bg-sky-500 cursor-pointer">
                     Close
                   </button>
                 </div>

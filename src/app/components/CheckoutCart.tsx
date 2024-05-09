@@ -609,7 +609,7 @@ const CheckoutCart = () => {
                           </span>
                           <Image
                             src={
-                              item.product.product_gallery?.length > 0
+                              item?.product?.product_gallery?.length > 0
                                 ? process.env.SERVER_ENDPOINT +
                                   item.product.product_gallery[0].url
                                 : "/images/no_image.png"
@@ -619,7 +619,7 @@ const CheckoutCart = () => {
                             height={500}
                             className=" w-20 h-20 object-cover"
                           />
-                          <span>{item.product.title}</span>
+                          <span>{item?.product?.title}</span>
                         </div>
                         {/* quantity */}
 

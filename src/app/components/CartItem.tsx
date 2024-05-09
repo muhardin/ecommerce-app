@@ -103,7 +103,7 @@ const CartItem = () => {
                       className="text-lg hover:text-red-600 cursor-pointer duration-200">
                       <AiOutlineClose />
                     </span>
-                    {item.product.product_gallery?.length > 0 ? (
+                    {item?.product?.product_gallery?.length > 0 ? (
                       <Image
                         src={
                           process.env.SERVER_ENDPOINT +

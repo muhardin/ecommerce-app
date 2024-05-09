@@ -154,7 +154,7 @@ const MyShopOrderHistory = () => {
                       </div>
                     </td>
                     <td className="whitespace-no-wrap py-4 px-6 text-right font-bold text-md text-gray-600 lg:text-left">
-                      {item.product.title}
+                      {item?.product?.title}
 
                       {item.order.order_payment?.status == "UNPAID" ? (
                         <div className="flex mt-1 ml-auto w-fit items-center rounded-full bg-red-600 py-2 px-3 text-left text-xs font-medium text-white lg:hidden">

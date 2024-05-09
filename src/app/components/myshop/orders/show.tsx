@@ -131,7 +131,7 @@ const OrderShow = ({
           setModal(true);
         }}
         className={`text-sky-700 cursor-pointer hover:text-sky-500 ${className}`}>
-        {title ? title : item.product.title}
+        {title ? title : item?.product?.title}
       </div>
       <div
         className={`relative z-10 ${
@@ -161,7 +161,7 @@ const OrderShow = ({
                             height={350}
                             className="m-2 h-24 w-28 rounded-md border object-cover object-center"
                             src={`${
-                              item.product.product_gallery?.length > 0
+                              item?.product?.product_gallery?.length > 0
                                 ? process.env.SERVER_ENDPOINT +
                                   item.product.product_gallery[0].url
                                 : "/images/product_image.png"
@@ -170,7 +170,7 @@ const OrderShow = ({
                           />
                           <div className="flex w-full flex-col px-4 py-4">
                             <span className="font-semibold">
-                              {item.product.title}
+                              {item?.product?.title}
                             </span>
                             <span className="float-right text-gray-400">
                               <span>Quantity : {item.quantity}</span>
@@ -237,7 +237,7 @@ const OrderShow = ({
                             </p>
                             <p className="font-semibold text-gray-900">
                               <FormattedPrice
-                                amount={item.quantity * item.product.price}
+                                amount={item?.quantity * item?.product?.price}
                               />
                             </p>
                           </div>

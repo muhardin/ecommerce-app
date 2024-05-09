@@ -151,7 +151,7 @@ const OrderHistorySummary = ({ id }: any) => {
 
                           <div className="flex w-full flex-col px-4 py-4">
                             <span className="font-semibold">
-                              {item.product.title}
+                              {item?.product?.title}
                             </span>
                             <span className="float-right text-gray-400">
                               <span>Quantity : {item.quantity}</span>
