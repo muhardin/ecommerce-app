@@ -32,7 +32,7 @@ const MyShopListComponent = () => {
   });
 
   return (
-    <div>
+    <div className="pb-8 md:pb-0">
       <div className="rounded-lg overflow-hidden bg-white min-w-0 shadow-xs dark:bg-gray-800 mb-5">
         <div className="p-4">
           <form className="py-3 md:pb-0 grid gap-4 lg:gap-6 xl:gap-6 xl:flex">
@@ -140,16 +140,16 @@ const MyShopListComponent = () => {
                           className="object-cover"
                           src={`${process.env.SERVER_ENDPOINT}/storage/logo/${item.logo}`}
                           alt=""
-                          width={150}
-                          height={150}
+                          width={120}
+                          height={120}
                         />
                       ) : (
                         <Image
                           className="object-cover"
                           src={"/images/admin.png"}
                           alt=""
-                          width={150}
-                          height={150}
+                          width={120}
+                          height={120}
                         />
                       )}
                     </div>
