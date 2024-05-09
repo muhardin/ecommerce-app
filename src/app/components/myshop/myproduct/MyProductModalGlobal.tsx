@@ -28,7 +28,7 @@ const MyProductModalGlobal = ({
 
   const sellingPrice = Number(product?.agent_price);
 
-  const [basePrice, setBasePrice] = useState(product?.product.company_price);
+  const [basePrice, setBasePrice] = useState(product?.product?.company_price);
   const profitDefault = Number(basePrice * 0.1);
   const sharingProfitDefault = Number((sellingPrice - basePrice) * 0.1);
   const finalProfit = Number(profitDefault - sharingProfitDefault);
@@ -39,11 +39,11 @@ const MyProductModalGlobal = ({
   // console.log(product);
 
   const minPrice =
-    product?.product.company_price + product?.product.company_price * 0.2;
+    product?.product?.company_price + product?.product?.company_price * 0.2;
   useEffect(() => {
     const fetchData = async () => {
       if (product) {
-        setBasePrice(product.product.company_price);
+        setBasePrice(product?.product?.company_price);
         setPrice(sellingPrice);
         setProfit(
           Number(sellingPrice) -
@@ -135,17 +135,17 @@ const MyProductModalGlobal = ({
                 <div className="w-full px-4">
                   <div className="sticky top-0 z-0 overflow-hidden ">
                     <span className="text-lg font-medium text-rose-500 dark:text-rose-200">
-                      {product.product.isNew ? "New" : ""}
+                      {product?.product?.isNew ? "New" : ""}
                     </span>
                     <h2 className="max-w-xl mt-2 mb-6 text-2xl font-bold dark:text-gray-400 md:text-4xl">
-                      {product.product.title}
+                      {product?.product?.title}
                     </h2>
                     <div className="relative w-full h-96 mb-2 lg:mb-2">
-                      {product.product.product_gallery.length > 0 ? (
+                      {product?.product?.product_gallery.length > 0 ? (
                         <Image
                           width={500}
                           height={500}
-                          src={`${process.env.SERVER_ENDPOINT}${product.product.product_gallery[0].url}`}
+                          src={`${process.env.SERVER_ENDPOINT}${product?.product?.product_gallery[0].url}`}
                           alt=""
                           className="object-cover w-full lg:h-full "
                         />
@@ -162,7 +162,7 @@ const MyProductModalGlobal = ({
                     <div className="flex-wrap hidden md:flex ">
                       <div className="w-full">
                         <ImageListProduct
-                          items={product.product.product_gallery}
+                          items={product?.product?.product_gallery}
                         />
                       </div>
                     </div>
@@ -192,7 +192,7 @@ const MyProductModalGlobal = ({
                                   <CurrencyInput
                                     readOnly
                                     name="fee"
-                                    value={product.product.company_price}
+                                    value={product?.product?.company_price}
                                     className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-1 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                     intlConfig={{
                                       locale: "id",
@@ -362,7 +362,7 @@ const MyProductModalGlobal = ({
                                     </p>
                                     <p className="font-semibold text-gray-900">
                                       <FormattedPrice
-                                        amount={product.product.company_price}
+                                        amount={product?.product?.company_price}
                                       />
                                     </p>
                                   </div>

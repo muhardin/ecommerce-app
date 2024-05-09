@@ -9,9 +9,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { toggleProfileMenu } from "@/redux/profileSlice";
 import { Container, LogOut, Wallet } from "lucide-react";
 import MenuProfile from "../menu/MenuProfile";
-import { signOut } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import toast from "react-hot-toast";
 import { StateProps } from "../../../../type";
+import useSWR from "swr";
 
 const SupplierLayoutComponent = ({
   children,
@@ -33,7 +34,26 @@ const SupplierLayoutComponent = ({
     toast.dismiss();
   };
   const { supplierOrder } = useSelector((state: StateProps) => state?.shopping);
-  // console.log(supplierOrder?.count);
+  const { data: session } = useSession();
+  const fetcher = (url: any) =>
+    fetch(url, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${session?.bearer}`,
+        "Content-Type": "application/json",
+      },
+    }).then((res) => res.json());
+
+  const url = `${process.env.SERVER_ENDPOINT}/api/supplier-board/order/count`;
+  const {
+    data: ordersCount,
+    isLoading,
+    isValidating,
+    error,
+  } = useSWR(url, fetcher, {
+    refreshInterval: 1000,
+  });
+
   return (
     <div className="bg-gray-100 xl:h-screen dark:bg-gray-800">
       <div className="body-content">
@@ -124,9 +144,9 @@ const SupplierLayoutComponent = ({
                       </span>
                       <div className="flex flex-row items-center justify-end gap-1">
                         <span> Orders </span>
-                        {Number(supplierOrder?.count) > 0 && (
+                        {Number(ordersCount?.count) > 0 && (
                           <span className="flex flex-col items-center text-center justify-center w-6 h-6 px-2 ml-auto text-xs text-white bg-red-600 rounded dark:group-hover:bg-gray-900 dark:bg-gray-700 dark:text-gray-100">
-                            {Number(supplierOrder.count)}
+                            {Number(ordersCount)}
                           </span>
                         )}
                       </div>
@@ -158,9 +178,9 @@ const SupplierLayoutComponent = ({
                             <span className="text-gray-700 dark:text-gray-400 ">
                               All Orders
                             </span>
-                            {Number(supplierOrder?.count) > 0 && (
+                            {Number(ordersCount?.count) > 0 && (
                               <span className="flex items-center justify-center w-6 h-6 px-2 ml-auto text-xs text-white bg-red-500 rounded dark:group-hover:bg-gray-900 dark:bg-gray-700 dark:text-gray-100">
-                                {Number(supplierOrder.count)}
+                                {Number(ordersCount.count)}
                               </span>
                             )}
                           </Link>

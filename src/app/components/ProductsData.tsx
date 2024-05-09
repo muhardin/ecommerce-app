@@ -12,11 +12,14 @@ import Slider from "react-slick";
 
 const ProductsData = ({ item }: { item: ShopProduct }) => {
   const dispatch = useDispatch();
-  const starArray = Array.from({ length: item?.product.rating }, (_, index) => (
-    <span key={index} className=" text-yellow-400">
-      <IoIosStar />
-    </span>
-  ));
+  const starArray = Array.from(
+    { length: item?.product?.rating },
+    (_, index) => (
+      <span key={index} className=" text-yellow-400">
+        <IoIosStar />
+      </span>
+    )
+  );
   var settings = {
     dots: false,
     infinite: true,

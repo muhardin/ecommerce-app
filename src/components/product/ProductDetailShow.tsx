@@ -19,7 +19,7 @@ const ProductDetailShow = (product: any) => {
     refreshInterval: 3000,
   });
   console.log(product.product);
-  //   console.log(detailProduct.product.gallery);
+  //   console.log(detailproduct?.product?.gallery);
 
   return (
     <div>
@@ -35,7 +35,7 @@ const ProductDetailShow = (product: any) => {
                     {/* {data.categoryName} */}
                   </span>
                   <h2 className="text-2xl font-bold text-gray-800 lg:text-3xl">
-                    {detailProduct.product.title}
+                    {detailproduct?.product?.title}
                   </h2>
                 </div>
 

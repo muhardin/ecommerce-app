@@ -128,7 +128,7 @@ const OrderHistory = () => {
     const newOffset = (selected * items?.per_page) % items?.total;
     setItemOffset(newOffset);
   };
-
+  console.log(payment?.data);
   return (
     <>
       <div className="w-full mx-auto ">
@@ -269,19 +269,29 @@ const OrderHistory = () => {
                         <div className="w-full flex flex-row justify-start items-center">
                           <div className="">
                             <div className="w-10 h-10 flex items-center justify-center">
-                              <Image
-                                className="object-scale-down"
-                                src={`${process.env.SERVER_ENDPOINT}${prod.product.product_gallery[0].url}`}
-                                width={25}
-                                height={20}
-                                alt=""
-                              />
+                              {prod?.product?.product_gallery.length > 0 ? (
+                                <Image
+                                  className="object-scale-down"
+                                  src={`${process.env.SERVER_ENDPOINT}${prod?.product?.product_gallery[0].url}`}
+                                  width={25}
+                                  height={20}
+                                  alt=""
+                                />
+                              ) : (
+                                <Image
+                                  className="object-scale-down"
+                                  src={`/images/no_image.png`}
+                                  width={25}
+                                  height={20}
+                                  alt=""
+                                />
+                              )}
                             </div>
                           </div>
                           <div className="flex flex-col gap-1">
-                            <div className="">{prod.product.title}</div>
-                            <div className="">Qty : {prod.quantity}</div>
-                            <div className="">{prod.order_status}</div>
+                            <div className="">{prod?.product?.title}</div>
+                            <div className="">Qty : {prod?.quantity}</div>
+                            <div className="">{prod?.order_status}</div>
                           </div>
                         </div>
                         {prod.order_status === "delivering" && (

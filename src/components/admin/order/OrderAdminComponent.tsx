@@ -148,7 +148,7 @@ const OrderAdminComponent = () => {
                       </td>
                       <td className="whitespace-no-wrap py-4 px-6 text-right font-bold text-md text-gray-600 lg:text-left">
                         {item.order_detail.map((product: OrderDetail) => (
-                          <div key={product.id}>{product.product.title}</div>
+                          <div key={product.id}>{product?.product?.title}</div>
                         ))}
 
                         {item.order_payment.status == "UNPAID" ? (

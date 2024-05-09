@@ -38,11 +38,11 @@ const MyProductModal = ({ product }: { product: ShopProduct }) => {
   // console.log(product);
 
   const minPrice =
-    product?.product.company_price + product?.product.company_price * 0.2;
+    product?.product?.company_price + product?.product?.company_price * 0.2;
   useEffect(() => {
     const fetchData = async () => {
       if (product) {
-        setBasePrice(product.product.company_price);
+        setBasePrice(product?.product?.company_price);
         setPrice(sellingPrice);
         setProfit(
           Number(sellingPrice) -
@@ -131,33 +131,33 @@ const MyProductModal = ({ product }: { product: ShopProduct }) => {
                 <div className="w-full px-4">
                   <div className="sticky top-0 z-0 overflow-hidden ">
                     <span className="text-lg font-medium text-rose-500 dark:text-rose-200">
-                      {product.product.isNew ? "New" : ""}
+                      {product?.product?.isNew ? "New" : ""}
                     </span>
                     <h2 className="max-w-xl mt-2 mb-6 text-2xl font-bold dark:text-gray-400 md:text-4xl">
-                      {product.product.title}
+                      {product?.product?.title}
                     </h2>
                     <div className="relative w-full h-96 mb-2 lg:mb-2">
                       <Suspense>
                         {product?.product.product_gallery?.length > 0 ? (
                           <ModalImage
                             className="object-center items-center relative z-10"
-                            small={`${process.env.SERVER_ENDPOINT}${product.product.product_gallery[currentImageIndex].url}`}
-                            large={`${process.env.SERVER_ENDPOINT}${product.product.product_gallery[currentImageIndex].url}`}
-                            alt={product.product.title}
+                            small={`${process.env.SERVER_ENDPOINT}${product?.product?.product_gallery[currentImageIndex].url}`}
+                            large={`${process.env.SERVER_ENDPOINT}${product?.product?.product_gallery[currentImageIndex].url}`}
+                            alt={product?.product?.title}
                           />
                         ) : (
                           <ModalImage
                             className="object-center items-center"
                             small={`/images/no_image.png`}
                             large={`/images/no_image.png`}
-                            alt={product.product.title}
+                            alt={product?.product?.title}
                           />
                         )}
                       </Suspense>
                     </div>
                     <div className="flex flex-row md:flex  relative z-40">
-                      {product.product.product_gallery?.length > 0
-                        ? product.product.product_gallery.map(
+                      {product?.product?.product_gallery?.length > 0
+                        ? product?.product?.product_gallery.map(
                             (item: ProductGallery, index: Number) => (
                               <div key={item.id} className="w-1/2 p-2 sm:w-1/4">
                                 <button
@@ -204,7 +204,7 @@ const MyProductModal = ({ product }: { product: ShopProduct }) => {
                                   <CurrencyInput
                                     readOnly
                                     name="fee"
-                                    value={product.product.company_price}
+                                    value={product?.product?.company_price}
                                     className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-1 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                     intlConfig={{
                                       locale: "id",
@@ -345,7 +345,7 @@ const MyProductModal = ({ product }: { product: ShopProduct }) => {
                                     </p>
                                     <p className="font-semibold text-gray-900">
                                       <FormattedPrice
-                                        amount={product.product.company_price}
+                                        amount={product?.product?.company_price}
                                       />
                                     </p>
                                   </div>

@@ -25,11 +25,14 @@ const MyProductListGlobal = ({
   console.log(shops);
   const shopData = useShopData();
   const { data: session } = useSession();
-  const starArray = Array.from({ length: item?.product.rating }, (_, index) => (
-    <span key={index} className=" text-yellow-400">
-      <IoIosStar />
-    </span>
-  ));
+  const starArray = Array.from(
+    { length: item?.product?.rating },
+    (_, index) => (
+      <span key={index} className=" text-yellow-400">
+        <IoIosStar />
+      </span>
+    )
+  );
   const SubmitDelete = async (id?: number, shopid?: number, act?: string) => {
     const config = {
       headers: { Authorization: `Bearer ${session?.bearer}` },
@@ -100,7 +103,7 @@ const MyProductListGlobal = ({
             },
           }}>
           <div className=" w-full h-80 group overflow-hidden relative">
-            {item.product.product_gallery.length > 0 ? (
+            {item?.product?.product_gallery?.length > 0 ? (
               <Image
                 src={`${process.env.SERVER_ENDPOINT}${item?.product?.product_gallery[0].url}`}
                 alt="Product image"
@@ -139,27 +142,30 @@ const MyProductListGlobal = ({
                 },
               }}>
               <p className="cursor-pointer hover:text-sky-600">
-                {item?.product.title}
+                {item?.product?.title}
               </p>
             </Link>
-            {!item.product.isPublish && (
+            {!item.product?.isPublish && (
               <span className="text-red-600">Unpublish</span>
             )}
-            {item.product.status == "Pending" && (
+            {item?.product?.status == "Pending" && (
               <span className="text-red-600">Pending</span>
             )}
           </div>
           <div className=" flex items-center justify-between">
             <div className=" border-[1px] border-sky-500 py-1 px-4 rounded-full text-xs">
               <p>
-                {calculatePercentage(item?.agent_price, item?.product.oldPrice)}
+                {calculatePercentage(
+                  item?.agent_price,
+                  item?.product?.oldPrice
+                )}
                 % off
               </p>
             </div>
 
             <div className=" flex items-center gap-x-2">
               <p className="text-slate-500 line-through text-sm">
-                <FormattedPrice amount={item.product.oldPrice} />
+                <FormattedPrice amount={item.product?.oldPrice} />
               </p>
               <p className=" font-semibold">
                 <FormattedPrice amount={item?.agent_price} />
@@ -172,13 +178,13 @@ const MyProductListGlobal = ({
               <MyProductModalGlobal product={item} shops={shops} />
               <button
                 onClick={(e) => {
-                  SubmitDelete(item.id, item.shop_id, "del");
+                  SubmitDelete(item?.id, item?.shop_id, "del");
                 }}
                 className=" bg-red-500 py-2 px-4 rounded-lg text-sm tracking-wide text-slate-100 hover:bg-red-600 hover:text-white duration-200">
                 Delete
               </button>
               <Link
-                href={`/myshop/product/detail/${item.id}`}
+                href={`/myshop/product/detail/${item?.id}`}
                 className=" bg-green-500 py-2 px-4 rounded-lg text-sm tracking-wide text-slate-100 hover:bg-sky-600 hover:text-white duration-200">
                 Detail
               </Link>
