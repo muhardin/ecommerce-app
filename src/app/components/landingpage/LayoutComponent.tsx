@@ -384,7 +384,7 @@ const LayoutComponent = ({ children }: { children: React.ReactNode }) => {
                           </div>
                           <ul
                             tabIndex={0}
-                            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 gap-2">
+                            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-white rounded-box w-52 gap-2">
                             <li>
                               <Link
                                 href={"/profile"}
