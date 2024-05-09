@@ -35,7 +35,7 @@ const ProductDetailShow = (product: any) => {
                     {/* {data.categoryName} */}
                   </span>
                   <h2 className="text-2xl font-bold text-gray-800 lg:text-3xl">
-                    {detailproduct?.product?.title}
+                    {detailProduct?.product?.title}
                   </h2>
                 </div>
 
