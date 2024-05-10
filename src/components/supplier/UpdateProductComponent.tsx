@@ -917,11 +917,11 @@ const UpdateProductComponent: React.FC<ModalProps> = ({
                               disabled
                               placeholder="Sale price"
                               value={salePrice}
-                              className="block w-full h-12 px-3 py-1 text-sm focus:outline-none dark:text-gray-300 leading-5 rounded-md focus:bg-white dark:focus:bg-gray-700 border border-gray-400 cursor-not-allowed opacity-50 bg-gray-300 dark:bg-gray-800 mr-2 p-2 rounded-l-none"
+                              className="block w-full h-12 px-3 py-1 text-sm focus:outline-none dark:text-gray-300 leading-5 rounded-md focus:bg-white dark:focus:bg-gray-700 border border-gray-400  opacity-50 bg-gray-300 dark:bg-gray-800 mr-2 p-2 rounded-l-none"
                               // intlConfig={{ locale: "id", currency: "IDR" }}
                             />
                             {/* <input
-                              className="block w-full h-12 px-3 py-1 text-sm focus:outline-none dark:text-gray-300 leading-5 rounded-md bg-gray-100 focus:bg-white dark:focus:bg-gray-700 border border-gray-400 cursor-not-allowed opacity-50 bg-gray-300 dark:bg-gray-800 mr-2 p-2 rounded-l-none"
+                              className="block w-full h-12 px-3 py-1 text-sm focus:outline-none dark:text-gray-300 leading-5 rounded-md bg-gray-100 focus:bg-white dark:focus:bg-gray-700 border border-gray-400  opacity-50 bg-gray-300 dark:bg-gray-800 mr-2 p-2 rounded-l-none"
                               type="number"
                               name="price"
                               step="0.01"
@@ -940,7 +940,7 @@ const UpdateProductComponent: React.FC<ModalProps> = ({
                           <div className="flex flex-row">
                             <input
                               onChange={handleAmountQuantity}
-                              className="block w-full h-12 px-3 py-1 text-sm focus:outline-none dark:text-gray-300 leading-5 rounded-md bg-gray-100 focus:bg-white dark:focus:bg-gray-700 border border-gray-400 cursor-not-allowed opacity-50  dark:bg-gray-800 mr-2 p-2"
+                              className="block w-full h-12 px-3 py-1 text-sm focus:outline-none dark:text-gray-300 leading-5 rounded-md bg-gray-100 focus:bg-white dark:focus:bg-gray-700 border border-gray-400  opacity-50  dark:bg-gray-800 mr-2 p-2"
                               type="text"
                               name="stock"
                               placeholder="Product Quantity"
@@ -962,7 +962,7 @@ const UpdateProductComponent: React.FC<ModalProps> = ({
                           <div className="flex flex-row">
                             <input
                               onChange={handleAmountWeight}
-                              className="block w-full h-12 px-3 py-1 text-sm focus:outline-none dark:text-gray-300 leading-5 rounded-md bg-gray-100 focus:bg-white dark:focus:bg-gray-700 border border-gray-400 cursor-not-allowed opacity-50 dark:bg-gray-800 mr-2 p-2"
+                              className="block w-full h-12 px-3 py-1 text-sm focus:outline-none dark:text-gray-300 leading-5 rounded-md bg-gray-100 focus:bg-white dark:focus:bg-gray-700 border border-gray-400  opacity-50 dark:bg-gray-800 mr-2 p-2"
                               type="text"
                               name="stock"
                               placeholder="Product Quantity"
