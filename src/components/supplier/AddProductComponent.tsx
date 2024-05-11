@@ -34,6 +34,7 @@ const AddProductComponent: React.FC<ModalProps> = ({
       fileInputRef.current.click();
     }
   };
+  const [basic, setBasic] = useState(true);
   /*
   get Supplier 
   */
@@ -125,6 +126,8 @@ const AddProductComponent: React.FC<ModalProps> = ({
     setTag("");
     setBarcode("");
     setSalePrice(0);
+    setContent("");
+    setValSupp(null);
     setErrMessage([]);
   };
 
@@ -325,7 +328,11 @@ const AddProductComponent: React.FC<ModalProps> = ({
                 <ul className="flex flex-wrap -mb-px">
                   <li className="mr-2">
                     <button
-                      className="inline-block px-4 py-2 text-base text-emerald-600 border-emerald-600 dark:text-emerald-500 dark:border-emerald-500 rounded-t-lg border-b-2 focus:outline-none"
+                      onClick={() => setBasic(true)}
+                      className={`${
+                        basic &&
+                        "border-emerald-600 text-emerald-600  dark:text-emerald-500"
+                      } inline-block px-4 py-2 text-base  dark:border-emerald-500 rounded-t-lg border-b-2 focus:outline-none`}
                       aria-current="page">
                       Basic Info
                     </button>
@@ -333,14 +340,21 @@ const AddProductComponent: React.FC<ModalProps> = ({
                   <li
                     className={`${checked == true ? "block" : "hidden"} mr-2 `}>
                     <button
-                      className="inline-block px-4 py-2 text-base false focus:outline-none"
+                      onClick={() => setBasic(false)}
+                      className={`${
+                        basic ??
+                        "border-emerald-600 text-emerald-600  dark:text-emerald-500 dark:border-emerald-500"
+                      } inline-block px-4 py-2 text-base   rounded-t-lg border-b-2 focus:outline-none`}
                       aria-current="page">
                       Combination
                     </button>
                   </li>
                 </ul>
               </div>
-              <div className="bg-white relative overflow-hidden h-full track-horizontal thumb-horizontal w-full dark:bg-gray-700 dark:text-gray-200">
+              <div
+                className={`${
+                  basic ? "block" : "hidden"
+                } bg-white relative overflow-hidden h-full track-horizontal thumb-horizontal w-full dark:bg-gray-700 dark:text-gray-200`}>
                 <div className="absolute inset-0 overflow-y-scroll mr-[-17px] mb-[-17px]">
                   <form className="block" id="block" onSubmit={handleSubmit}>
                     <div className="px-6 pt-8 flex-grow w-full h-full max-h-full pb-56 md:pb-56 lg:pb-56 xl:pb-56">
@@ -880,6 +894,14 @@ const AddProductComponent: React.FC<ModalProps> = ({
                       </div>
                     </div>
                   </div>
+                </div>
+              </div>
+              <div
+                className={`${
+                  basic ? "hidden" : "block"
+                } bg-white relative overflow-hidden h-full track-horizontal thumb-horizontal w-full dark:bg-gray-700 dark:text-gray-200`}>
+                <div className="absolute inset-0 overflow-y-scroll mr-[-17px] mb-[-17px]">
+                  Teset Data
                 </div>
               </div>
             </div>
