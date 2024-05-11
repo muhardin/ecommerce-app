@@ -128,6 +128,7 @@ const AddProductComponent: React.FC<ModalProps> = ({
     setSalePrice(0);
     setContent("");
     setValSupp(null);
+    setValCat(null);
     setErrMessage([]);
   };
 
