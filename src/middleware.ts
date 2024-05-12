@@ -127,8 +127,7 @@ export async function middleware(request: NextRequest) {
         }
       )
     ).json();
-    // console.log(domain);
-    // console.log(dataShop);
+
     if (!dataShop.id) {
       if (!process.env.LANDING_PAGE?.includes(domain)) {
         // return NextResponse.redirect(new URL("/", request.url));
