@@ -34,7 +34,7 @@ export async function middleware(request: NextRequest) {
     const data = await (
       await fetch(process.env.SERVER_ENDPOINT + "/api/user/profile", {
         headers: {
-          Authorization: `Bearer ${token?.user.bearer}`,
+          Authorization: `Bearer ${token?.user?.bearer}`,
         },
       })
     ).json();
@@ -44,7 +44,7 @@ export async function middleware(request: NextRequest) {
         {
           method: "GET",
           headers: {
-            Authorization: `Bearer ${token?.user.bearer}`,
+            Authorization: `Bearer ${token?.user?.bearer}`,
             "Content-Type": "application/json",
           },
         }
@@ -68,7 +68,7 @@ export async function middleware(request: NextRequest) {
     const data = await (
       await fetch(process.env.SERVER_ENDPOINT + "/api/user/profile", {
         headers: {
-          Authorization: `Bearer ${token?.user.bearer}`,
+          Authorization: `Bearer ${token?.user?.bearer}`,
         },
       })
     ).json();
@@ -82,7 +82,7 @@ export async function middleware(request: NextRequest) {
         {
           method: "GET",
           headers: {
-            Authorization: `Bearer ${token?.user.bearer}`,
+            Authorization: `Bearer ${token?.user?.bearer}`,
             "Content-Type": "application/json",
           },
         }
@@ -105,7 +105,7 @@ export async function middleware(request: NextRequest) {
     const dataDomain = await (
       await fetch(process.env.SERVER_ENDPOINT + "/api/shop/" + domain, {
         headers: {
-          Authorization: `Bearer ${token?.user.bearer}`,
+          Authorization: `Bearer ${token?.user?.bearer}`,
         },
       })
     ).json();
@@ -122,7 +122,7 @@ export async function middleware(request: NextRequest) {
         process.env.SERVER_ENDPOINT + "/api/myshop-board/domain/" + domain,
         {
           headers: {
-            Authorization: `Bearer ${token?.user.bearer}`,
+            Authorization: `Bearer ${token?.user?.bearer}`,
           },
         }
       )
@@ -139,7 +139,7 @@ export async function middleware(request: NextRequest) {
     const data = await (
       await fetch(process.env.SERVER_ENDPOINT + "/api/user/profile", {
         headers: {
-          Authorization: `Bearer ${token?.user.bearer}`,
+          Authorization: `Bearer ${token?.user?.bearer}`,
         },
       })
     ).json();
@@ -158,7 +158,7 @@ export async function middleware(request: NextRequest) {
     const data = await (
       await fetch(process.env.SERVER_ENDPOINT + "/api/user/profile", {
         headers: {
-          Authorization: `Bearer ${token?.user.bearer}`,
+          Authorization: `Bearer ${token?.user?.bearer}`,
         },
       })
     ).json();
