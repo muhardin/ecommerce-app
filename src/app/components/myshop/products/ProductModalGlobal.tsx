@@ -264,7 +264,10 @@ const ProductModalGlobal = ({
                                         {Array.isArray(shops) &&
                                         shops.length > 0
                                           ? shops.map(
-                                              (item: ShopData, index) => (
+                                              (
+                                                item: ShopData,
+                                                index: number
+                                              ) => (
                                                 <option
                                                   selected={index === 0}
                                                   key={item.id}
