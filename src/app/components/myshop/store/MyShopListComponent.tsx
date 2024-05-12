@@ -7,29 +7,14 @@ import { ShopData } from "../../../../../type";
 import Image from "next/image";
 import Link from "next/link";
 
-const MyShopListComponent = () => {
+const MyShopListComponent = ({ shops }: { shops: ShopData }) => {
   const { data: session } = useSession();
   const [shop, setShop] = useState([]);
-  const fetcher = (url: string) =>
-    fetch(url, {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${session?.bearer}`,
-        "Content-Type": "application/json",
-      },
-    }).then((res) => res.json());
+  const [isLoading, setIsLoading] = useState(false);
 
   const [statusFilter, setStatusFilter] = useState<string>("");
   const [currentPage, setCurrentPage] = useState(1);
   const url = `${process.env.SERVER_ENDPOINT}/api/myshop-board/`;
-  const {
-    data: shops,
-    isLoading,
-    isValidating,
-    error,
-  } = useSWR(url, fetcher, {
-    refreshInterval: 3000,
-  });
 
   return (
     <div className="pb-8 md:pb-0">

@@ -85,6 +85,8 @@ export interface Products {
   };
 }
 export interface ShopData {
+  length: number;
+  map: any;
   id: number;
   theme_id: number;
   user_id: number;
