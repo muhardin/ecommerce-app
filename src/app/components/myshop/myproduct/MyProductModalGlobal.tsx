@@ -242,15 +242,17 @@ const MyProductModalGlobal = ({
                                     </option>
                                     {/* categories */}
                                     {Array.isArray(shops) && shops.length > 0
-                                      ? shops.map((item: ShopData, index) => (
-                                          <option
-                                            selected={index === 0}
-                                            key={item.id}
-                                            value={item.id}
-                                            className="dark:text-slate-700">
-                                            {item.company_name}
-                                          </option>
-                                        ))
+                                      ? shops.map(
+                                          (item: ShopData, index: number) => (
+                                            <option
+                                              selected={index === 0}
+                                              key={item.id}
+                                              value={item.id}
+                                              className="dark:text-slate-700">
+                                              {item.company_name}
+                                            </option>
+                                          )
+                                        )
                                       : null}
                                   </select>
                                 </div>

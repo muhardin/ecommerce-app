@@ -14,8 +14,6 @@ const MyShopListComponent = ({ shops }: { shops: ShopData }) => {
 
   const [statusFilter, setStatusFilter] = useState<string>("");
   const [currentPage, setCurrentPage] = useState(1);
-  const url = `${process.env.SERVER_ENDPOINT}/api/myshop-board/`;
-
   return (
     <div className="pb-8 md:pb-0">
       <div className="rounded-lg overflow-hidden bg-white min-w-0 shadow-xs dark:bg-gray-800 mb-5">
