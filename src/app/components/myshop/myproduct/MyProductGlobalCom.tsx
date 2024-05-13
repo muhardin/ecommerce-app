@@ -7,6 +7,7 @@ import MyProductList from "./MyProductList";
 import { Supplier } from "../../../../../adminType";
 import { Category, Product, ShopData, ShopProduct } from "../../../../../type";
 import MyProductListGlobal from "./MyProductListGlobal";
+import Link from "next/link";
 
 const MyProductGlobalCom = ({ shop }: { shop: any }) => {
   const shopData = useShopData();
@@ -52,7 +53,7 @@ const MyProductGlobalCom = ({ shop }: { shop: any }) => {
   return (
     <div className="flex flex-col gap-2 bg-white p-6">
       <div
-        className="mb-4 border-b border-gray-200 dark:border-slate-700"
+        className="mb-4 border-b border-gray-200 dark:border-slate-700 flex flex-row justify-between"
         data-fc-type="tab">
         <ul
           className="flex flex-wrap -mb-px text-sm font-medium text-center"
@@ -94,6 +95,32 @@ const MyProductGlobalCom = ({ shop }: { shop: any }) => {
             </button>
           </li>
         </ul>
+        <div className={`block flex-col sm:flex-row gap-4`}>
+          <div className="flex flex-row gap-2">
+            <Link
+              href={"/myshop/store"}
+              className="align-bottom inline-flex items-center justify-center cursor-pointer leading-5 transition-colors duration-150 font-medium focus:outline-none px-4 py-2 rounded-lg text-sm text-white bg-red-500 border border-transparent active:bg-red-600 hover:bg-red-600 w-full h-12"
+              type="button">
+              <span className="mr-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="lucide lucide-undo-2">
+                  <path d="M9 14 4 9l5-5" />
+                  <path d="M4 9h10.5a5.5 5.5 0 0 1 5.5 5.5v0a5.5 5.5 0 0 1-5.5 5.5H11" />
+                </svg>
+              </span>
+              Back
+            </Link>
+          </div>
+        </div>
       </div>
       <div className="flex flex-wrap gap-4 mb-3">
         <div className="mb-2 w-44">
