@@ -3,7 +3,6 @@ import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { options } from "./app/api/auth/[...nextauth]/options";
-import { getServerSession } from "next-auth";
 
 export async function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
@@ -14,7 +13,6 @@ export async function middleware(request: NextRequest) {
 
   const headersList = headers();
   const domain = headersList.get("host") || "";
-  const sessionServer = await getServerSession(options);
   const token = (await getToken({
     req: request as any,
     secret: process.env.NEXTAUTH_SECRET!,
