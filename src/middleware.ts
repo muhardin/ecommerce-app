@@ -1,7 +1,9 @@
 import { getToken } from "next-auth/jwt";
+import { getServerSession } from "next-auth/next";
 import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import { options } from "./app/api/auth/[...nextauth]/options";
 
 export async function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
@@ -12,7 +14,7 @@ export async function middleware(request: NextRequest) {
 
   const headersList = headers();
   const domain = headersList.get("host") || "";
-
+  const sessionServer = await getServerSession(options);
   const token = (await getToken({
     req: request as any,
     secret: process.env.NEXTAUTH_SECRET!,
@@ -22,7 +24,7 @@ export async function middleware(request: NextRequest) {
 
   const includes = ["/web", "/web/sign-up", "/web/sign-in", "/sign-in"];
 
-  if (!token && !includes.includes(pathname)) {
+  if (!sessionServer?.bearer && !includes.includes(pathname)) {
     if (process.env.LANDING_PAGE?.includes(domain)) {
       return NextResponse.redirect(new URL("/web/sign-in", request.url));
     } else {
@@ -30,11 +32,11 @@ export async function middleware(request: NextRequest) {
     }
   }
 
-  if (token && pathname.startsWith("/myshop")) {
+  if (sessionServer?.bearer && pathname.startsWith("/myshop")) {
     const data = await (
       await fetch(process.env.SERVER_ENDPOINT + "/api/user/profile", {
         headers: {
-          Authorization: `Bearer ${token?.user?.bearer}`,
+          Authorization: `Bearer ${sessionServer?.bearer}`,
         },
       })
     ).json();
@@ -44,7 +46,7 @@ export async function middleware(request: NextRequest) {
         {
           method: "GET",
           headers: {
-            Authorization: `Bearer ${token?.user?.bearer}`,
+            Authorization: `Bearer ${sessionServer?.bearer}`,
             "Content-Type": "application/json",
           },
         }
@@ -60,7 +62,7 @@ export async function middleware(request: NextRequest) {
     }
   }
 
-  if (token && pathname == "/sign-in") {
+  if (sessionServer?.bearer && pathname == "/sign-in") {
     return NextResponse.redirect(new URL("/profile", request.url));
   }
 
@@ -68,7 +70,7 @@ export async function middleware(request: NextRequest) {
     const data = await (
       await fetch(process.env.SERVER_ENDPOINT + "/api/user/profile", {
         headers: {
-          Authorization: `Bearer ${token?.user?.bearer}`,
+          Authorization: `Bearer ${sessionServer?.bearer}`,
         },
       })
     ).json();
@@ -82,7 +84,7 @@ export async function middleware(request: NextRequest) {
         {
           method: "GET",
           headers: {
-            Authorization: `Bearer ${token?.user?.bearer}`,
+            Authorization: `Bearer ${sessionServer?.bearer}`,
             "Content-Type": "application/json",
           },
         }
@@ -105,7 +107,7 @@ export async function middleware(request: NextRequest) {
     const dataDomain = await (
       await fetch(process.env.SERVER_ENDPOINT + "/api/shop/" + domain, {
         headers: {
-          Authorization: `Bearer ${token?.user?.bearer}`,
+          Authorization: `Bearer ${sessionServer?.bearer}`,
         },
       })
     ).json();
@@ -122,7 +124,7 @@ export async function middleware(request: NextRequest) {
         process.env.SERVER_ENDPOINT + "/api/myshop-board/domain/" + domain,
         {
           headers: {
-            Authorization: `Bearer ${token?.user?.bearer}`,
+            Authorization: `Bearer ${sessionServer?.bearer}`,
           },
         }
       )
@@ -138,7 +140,7 @@ export async function middleware(request: NextRequest) {
     const data = await (
       await fetch(process.env.SERVER_ENDPOINT + "/api/user/profile", {
         headers: {
-          Authorization: `Bearer ${token?.user?.bearer}`,
+          Authorization: `Bearer ${sessionServer?.bearer}`,
         },
       })
     ).json();
@@ -157,7 +159,7 @@ export async function middleware(request: NextRequest) {
     const data = await (
       await fetch(process.env.SERVER_ENDPOINT + "/api/user/profile", {
         headers: {
-          Authorization: `Bearer ${token?.user?.bearer}`,
+          Authorization: `Bearer ${sessionServer?.bearer}`,
         },
       })
     ).json();
