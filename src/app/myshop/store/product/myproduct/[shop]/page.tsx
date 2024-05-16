@@ -13,12 +13,14 @@ const MyProductPage = async ({
   const headersList = headers();
   const domain = headersList.get("host") || "";
   console.log(params.shop);
+
   if (process.env.LANDING_PAGE?.includes(domain)) {
-    const sessionServer = await getServerSession(options);
-    const token = sessionServer?.bearer;
-    const shops = await (
-      await fetch(
-        process.env.SERVER_ENDPOINT + "/api/myshop-board?id=" + params.shop,
+    try {
+      const sessionServer = await getServerSession(options);
+      const token = sessionServer?.bearer;
+
+      const response = await fetch(
+        `${process.env.SERVER_ENDPOINT}/api/myshop-board?id=${params.shop}`,
         {
           cache: "force-cache",
           next: { tags: ["wallet"] },
@@ -26,14 +28,23 @@ const MyProductPage = async ({
             Authorization: `Bearer ${token}`,
           },
         }
-      )
-    ).json();
-    console.log(shops);
-    return (
-      <div className="">
-        <MyProductGlobalCom shop={shops} />
-      </div>
-    );
+      );
+      const shops = await response.json();
+      console.log(shops);
+
+      return (
+        <div className="">
+          <MyProductGlobalCom shop={shops} />
+        </div>
+      );
+    } catch (error) {
+      console.error("Error fetching shop data:", error);
+      return (
+        <div className="">
+          <p>Error fetching shop data. Please try again later.</p>
+        </div>
+      );
+    }
   } else {
     return (
       <div className="">
