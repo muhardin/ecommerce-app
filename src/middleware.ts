@@ -3,7 +3,6 @@ import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { options } from "./app/api/auth/[...nextauth]/options";
-import { getServerSession } from "next-auth/next";
 
 export async function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
@@ -14,9 +13,12 @@ export async function middleware(request: NextRequest) {
 
   const headersList = headers();
   const domain = headersList.get("host") || "";
-
-  const sessionServer = await getServerSession(options);
-  const token = sessionServer?.bearer;
+  const token = (await getToken({
+    req: request as any,
+    secret: process.env.NEXTAUTH_SECRET!,
+  })) as {
+    user: { email: string; role: string; bearer: string; id: number };
+  } | null;
 
   const includes = ["/web", "/web/sign-up", "/web/sign-in", "/sign-in"];
 
@@ -32,7 +34,7 @@ export async function middleware(request: NextRequest) {
     const data = await (
       await fetch(process.env.SERVER_ENDPOINT + "/api/user/profile", {
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${token?.user?.bearer}`,
         },
       })
     ).json();
@@ -42,7 +44,7 @@ export async function middleware(request: NextRequest) {
         {
           method: "GET",
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${token?.user?.bearer}`,
             "Content-Type": "application/json",
           },
         }
@@ -66,7 +68,7 @@ export async function middleware(request: NextRequest) {
     const data = await (
       await fetch(process.env.SERVER_ENDPOINT + "/api/user/profile", {
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${token?.user?.bearer}`,
         },
       })
     ).json();
@@ -80,7 +82,7 @@ export async function middleware(request: NextRequest) {
         {
           method: "GET",
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${token?.user?.bearer}`,
             "Content-Type": "application/json",
           },
         }
@@ -103,7 +105,7 @@ export async function middleware(request: NextRequest) {
     const dataDomain = await (
       await fetch(process.env.SERVER_ENDPOINT + "/api/shop/" + domain, {
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${token?.user?.bearer}`,
         },
       })
     ).json();
@@ -120,7 +122,7 @@ export async function middleware(request: NextRequest) {
         process.env.SERVER_ENDPOINT + "/api/myshop-board/domain/" + domain,
         {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${token?.user?.bearer}`,
           },
         }
       )
@@ -136,7 +138,7 @@ export async function middleware(request: NextRequest) {
     const data = await (
       await fetch(process.env.SERVER_ENDPOINT + "/api/user/profile", {
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${token?.user?.bearer}`,
         },
       })
     ).json();
@@ -155,7 +157,7 @@ export async function middleware(request: NextRequest) {
     const data = await (
       await fetch(process.env.SERVER_ENDPOINT + "/api/user/profile", {
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${token?.user?.bearer}`,
         },
       })
     ).json();
