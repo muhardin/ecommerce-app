@@ -343,7 +343,7 @@ const AddProductComponent: React.FC<ModalProps> = ({
                     <button
                       onClick={() => setBasic(false)}
                       className={`${
-                        basic ??
+                        !basic &&
                         "border-emerald-600 text-emerald-600  dark:text-emerald-500 dark:border-emerald-500"
                       } inline-block px-4 py-2 text-base   rounded-t-lg border-b-2 focus:outline-none`}
                       aria-current="page">
