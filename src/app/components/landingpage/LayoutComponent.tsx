@@ -95,7 +95,7 @@ const LayoutComponent = ({ children }: { children: React.ReactNode }) => {
                   </div>
                 )}
                 <Link aria-label="Home" href="/">
-                  <div className="h-24 w-24">
+                  <div className="h-24 w-24 flex flex-row items-center">
                     <Image
                       className="object-fill"
                       src={`${process.env.SERVER_ENDPOINT}/images/klogo.png`}
