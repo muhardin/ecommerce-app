@@ -519,7 +519,7 @@ const SignUpComponent: React.FC<Params> = ({ referral }) => {
                         />
                       ) : (
                         <input
-                          value=".smartcommerce.id"
+                          value=".shopiticon.com"
                           type="text"
                           className="bg-slate-200 rounded-l-none  border-l-0 pointer-events-none block w-2/3 px-2 py-3 mt-2 text-gray-700 placeholder-gray-400 border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                         />
