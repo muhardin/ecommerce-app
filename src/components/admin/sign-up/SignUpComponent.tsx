@@ -19,7 +19,7 @@ import FormattedPrice from "@/app/components/FormattedPrice";
 import { Check, CheckCheck, Minus } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { addReferral } from "@/redux/shoppingSlice";
-
+import { usePathname } from "next/navigation";
 //https://www.npmjs.com/package/react-flags-select
 interface FormData {
   username: string;
@@ -294,7 +294,8 @@ const SignUpComponent: React.FC<Params> = ({ referral }) => {
   const handlePrevious = () => {
     setStep(step - 1);
   };
-  // console.log(packageData);
+  const currentPage = usePathname();
+  console.log(currentPage);
   return (
     <div>
       <section className="bg-white dark:bg-gray-900">
