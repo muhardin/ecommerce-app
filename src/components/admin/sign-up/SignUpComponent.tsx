@@ -295,7 +295,7 @@ const SignUpComponent: React.FC<Params> = ({ referral }) => {
     setStep(step - 1);
   };
   const currentPage = usePathname();
-  console.log(currentPage);
+  console.log(window.location.host);
   return (
     <div>
       <section className="bg-white dark:bg-gray-900">
