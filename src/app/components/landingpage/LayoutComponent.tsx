@@ -98,7 +98,7 @@ const LayoutComponent = ({ children }: { children: React.ReactNode }) => {
                   <div className="h-12 w-14">
                     <Image
                       className="object-fill"
-                      src={`${process.env.SERVER_ENDPOINT}/images/logo.png`}
+                      src={`${process.env.SERVER_ENDPOINT}/images/logo-k.png`}
                       width={500}
                       height={500}
                       alt=""
