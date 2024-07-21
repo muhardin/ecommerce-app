@@ -95,10 +95,10 @@ const LayoutComponent = ({ children }: { children: React.ReactNode }) => {
                   </div>
                 )}
                 <Link aria-label="Home" href="/">
-                  <div className="h-12 w-14">
+                  <div className="h-14 w-14">
                     <Image
                       className="object-fill"
-                      src={`${process.env.SERVER_ENDPOINT}/images/logo-k.png`}
+                      src={`${process.env.SERVER_ENDPOINT}/images/logo.png`}
                       width={500}
                       height={500}
                       alt=""
