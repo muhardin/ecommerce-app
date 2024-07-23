@@ -40,7 +40,7 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "api.jualanyuk.shop",
+        hostname: "api.tokokiens.com",
         port: "",
         pathname: "/**",
       },
