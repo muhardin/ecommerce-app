@@ -18,7 +18,7 @@ import { IoIosStar } from "react-icons/io";
 import ProductModal from "./ProductModal";
 import ProductModalGlobal from "./ProductModalGlobal";
 
-const ProductAvailableGlobalComp = ({ shop }: { shop: any }) => {
+const ProductAvailableGlobalComp = ({ shop }: { shop?: any }) => {
   const pathname = usePathname();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [open, setOpen] = useState(false);

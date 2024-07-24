@@ -40,7 +40,12 @@ const AvailableProduct = async () => {
     ).json();
     return (
       <div>
-        <ProductAvailableGlobalComp shop={shops} />
+        {shops ? (
+          <ProductAvailableGlobalComp shop={shops} />
+        ) : (
+          <div>Loading...</div>
+        )}
+
         {/* <ProductAvailableComponent /> */}
       </div>
     );

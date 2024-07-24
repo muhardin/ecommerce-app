@@ -115,7 +115,7 @@ const OrderSupplierComponent = () => {
                   role="tab"
                   aria-controls="published"
                   aria-selected="false">
-                  Pending{" "}
+                  Paid{" "}
                   <span className="text-slate-400">({orders?.pending})</span>
                 </button>
               </div>
