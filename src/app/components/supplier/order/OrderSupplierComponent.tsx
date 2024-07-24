@@ -247,7 +247,9 @@ const OrderSupplierComponent = () => {
                                 ? "text-green-700"
                                 : "text-red-700"
                             } font-mono capitalize`}>
-                            {item.order_status}
+                            {item.order_status === "pending"
+                              ? "Paid"
+                              : item.order_status}
                           </div>
                         </div>
                       </div>
