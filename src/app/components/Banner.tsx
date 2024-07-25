@@ -1,8 +1,8 @@
 "use client";
 import Image from "next/image";
-import bannerOne from "../../../public/images/slider/bannerone.jpg";
-import bannerTwo from "../../../public/images/slider/bannertwo.jpg";
-import bannerThree from "../../../public/images/slider/bannerthree.jpg";
+import bannerOne from "../../../public/images/slider/1.jpg";
+import bannerTwo from "../../../public/images/slider/2.jpg";
+import bannerThree from "../../../public/images/slider/3.jpg";
 import { PiCaretLeftLight, PiCaretRightLight } from "react-icons/pi";
 
 import Slider from "react-slick";
