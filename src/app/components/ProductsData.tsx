@@ -88,7 +88,7 @@ const ProductsData = ({ item }: { item: ShopProduct }) => {
                 image: `/images/no_image.png`,
               },
             }}>
-            <div className=" w-full h-80 group overflow-hidden relative">
+            <div className=" w-full h-64 group overflow-hidden relative">
               <Image
                 src={`/images/no_image.png`}
                 alt="Product image"
