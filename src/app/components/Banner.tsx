@@ -173,7 +173,7 @@ const Banner = ({ host }: { host: string }) => {
                 className="group flex justify-center relative overflow-hidden w-full aspect-square h-full">
                 <Image
                   alt="New Kid's"
-                  src="/images/banner/banner-mobile-8_.jpeg"
+                  src="/images/banner/banner_.jpg"
                   layout="fill"
                   objectFit="cover"
                 />
@@ -186,7 +186,7 @@ const Banner = ({ host }: { host: string }) => {
                 className="group flex justify-center relative overflow-hidden w-full aspect-square h-full">
                 <Image
                   alt="Dress Women"
-                  src="/images/banner/banner-mobile-9.jpeg"
+                  src="/images/banner/banner_2.jpg"
                   layout="fill"
                   objectFit="cover"
                 />
