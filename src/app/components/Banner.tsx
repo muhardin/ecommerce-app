@@ -160,7 +160,7 @@ const Banner = ({ host }: { host: string }) => {
                 className="group flex justify-center relative overflow-hidden w-full aspect-[2.3/1] sm:aspect-[5.075/2]">
                 <Image
                   alt="Men's Collection"
-                  src="/images/banner/banner-mobile-7.jpeg"
+                  src="/images/banner/banner_one.jpg"
                   layout="fill"
                   objectFit="cover"
                 />
