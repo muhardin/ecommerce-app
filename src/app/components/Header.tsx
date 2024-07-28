@@ -226,14 +226,14 @@ const Header = () => {
           </div>
 
           {/* Search Field */}
-          <div className="ml-2 bg-white hidden sm:flex items-center gap-x-1 border-[1px] border-lightText/50 rounded-full px-4 py-1.5 focus-within:border-orange-600 group">
+          {/* <div className="ml-2 bg-white hidden sm:flex items-center gap-x-1 border-[1px] border-lightText/50 rounded-full px-4 py-1.5 focus-within:border-orange-600 group">
             <FiSearch className=" text-gray-500 group-focus-within:text-darkText duration-200" />
             <input
               type="text"
               placeholder="Search"
               className=" placeholder:text-sm flex-1 outline-none"
             />
-          </div>
+          </div> */}
 
           <div className="flex items-center">
             <div className="relative mr-4 cursor-pointer">
