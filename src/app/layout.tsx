@@ -62,7 +62,14 @@ export default async function RootLayout({
         <meta charSet="UTF-8" />
         <head>
           <title>My Shop Page</title>
-          <link rel="icon" href="/images/favicon.png" />
+          {window.location.host === "tokokiens.com" ? (
+            <link rel="icon" href="/images/favicon.png" />
+          ) : (
+            <link
+              rel="icon"
+              href={`${process.env.SERVER_ENDPOINT}/images/favicon.jpg`}
+            />
+          )}
         </head>
         <body className="font-bodyFont w-full bg-main-bg text-darkText ">
           <LayoutProvider>
