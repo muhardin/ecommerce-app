@@ -119,7 +119,7 @@ const ProductsData = ({ item }: { item: ShopProduct }) => {
                   image: `${process.env.SERVER_ENDPOINT}${item?.product?.product_gallery[0].url}`,
                 },
               }}>
-              <p className="cursor-pointer hover:text-sky-600 truncate text-[#21cc10] font-semibold">
+              <p className="cursor-pointer hover:text-sky-600 truncate text-[#21cc10] font-bold">
                 {item?.product.title}
               </p>
             </Link>
@@ -132,7 +132,7 @@ const ProductsData = ({ item }: { item: ShopProduct }) => {
                   image: `/images/no_image.png`,
                 },
               }}>
-              <p className="cursor-pointer hover:text-sky-600 truncate text-[#21cc10] font-semibold">
+              <p className="cursor-pointer hover:text-sky-600 truncate text-[#21cc10] font-bold">
                 {item?.product.title}
               </p>
             </Link>
