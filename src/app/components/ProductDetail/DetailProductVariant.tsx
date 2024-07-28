@@ -435,7 +435,7 @@ const DetailProductVariant = ({
                 </div>*/}
                 {/* <div className="mb-2 mr-4 lg:mb-0">
                   <button className="w-full h-10 p-2 mr-4 bg-sky-500 dark:text-gray-200 text-gray-50 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-500">
-                    Add To Cart
+                    Buy
                   </button>
                 </div> */}
 
@@ -451,7 +451,7 @@ const DetailProductVariant = ({
                   }
                   className="mb-2 mr-4 lg:mb-0 flex w-full">
                   <button className="w-1/3 h-10 p-2 mr-0 bg-sky-500 dark:text-gray-200 text-gray-50 hover:bg-sky-600 dark:bg-sky-600 dark:hover:bg-sky-500">
-                    Add To Cart
+                    Buy
                   </button>
                   <button className="w-1/3 flex items-center justify-center h-10 p-2 text-gray-700 border border-gray-300 lg:w-11 hover:text-gray-50 dark:text-gray-200 dark:border-blue-600 hover:bg-sky-600 hover:border-sky-600 dark:bg-sky-600 dark:hover:bg-sky-500 dark:hover:border-blue-500 dark:hover:text-gray-300">
                     <svg

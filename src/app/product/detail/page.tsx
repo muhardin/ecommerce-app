@@ -272,7 +272,7 @@ const page = ({ searchParams }: Props) => {
                       d="M12 4.5v15m7.5-7.5h-15"></path>
                   </svg>
                 </div>
-                Add To Cart
+                Buy
               </button>
               <p aria-live="polite" className="sr-only" role="status"></p>
             </form>

@@ -157,7 +157,7 @@ const ProductsData = ({ item }: { item: ShopProduct }) => {
             </div>
           </div>
           <div className="flex items-center justify-between">
-            {/* Add to cart */}
+            {/* Buy */}
             <button
               onClick={() =>
                 dispatch(addToCart(item)) &&
@@ -166,7 +166,7 @@ const ProductsData = ({ item }: { item: ShopProduct }) => {
                 )
               }
               className=" bg-sky-500 py-2 px-4 rounded-full text-sm tracking-wide text-slate-100 hover:bg-sky-600 hover:text-white duration-200">
-              <span className="hidden sm:block">add to cart</span>
+              <span className="hidden sm:block">Buy</span>
               <span className=" sm:hidden">
                 <svg
                   className="text-white"

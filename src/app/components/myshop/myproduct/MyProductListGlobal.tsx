@@ -173,7 +173,7 @@ const MyProductListGlobal = ({
             </div>
           </div>
           <div className="flex items-center justify-between">
-            {/* Add to cart */}
+            {/* Buy */}
             <div className="flex flex-row justify-start gap-2">
               <MyProductModalGlobal product={item} shops={shops} />
               <button

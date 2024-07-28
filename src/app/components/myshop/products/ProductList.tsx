@@ -105,7 +105,7 @@ const ProductList = ({ item }: { item: Product }) => {
               </div>
             </div>
             <div className="flex flex-row items-center justify-between">
-              {/* Add to cart */}
+              {/* Buy */}
               <div className="flex flex-row justify-start gap-2">
                 <div className="flex flex-row gap-2 w-full h-full bg-white relative z-20">
                   {pathname.startsWith("/supplier") ? (
