@@ -65,7 +65,7 @@ const ProductsData = ({ item }: { item: ShopProduct }) => {
                 alt="Product image"
                 width={400}
                 height={400}
-                className="w-full h-full object-cover group-hover:scale-110 duration-200 rounded-t-lg"
+                className="w-full h-full object-fill group-hover:scale-110 duration-200 rounded-t-lg"
               />
 
               {/* {Number(item?.product?.isNew) > 0 ? (
@@ -94,7 +94,7 @@ const ProductsData = ({ item }: { item: ShopProduct }) => {
                 alt="Product image"
                 width={400}
                 height={400}
-                className="w-full h-full object-cover group-hover:scale-110 duration-200 rounded-t-lg"
+                className="w-full h-full object-fill group-hover:scale-110 duration-200 rounded-t-lg"
               />
 
               {/* {Number(item?.product?.isNew) > 0 ? (
