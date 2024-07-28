@@ -24,7 +24,7 @@ const TrendingProduct = (domain: any) => {
             Trending Products
           </h2>
           <div className="w-20 mb-6 border-b border-red-700 dark:border-gray-400"></div>
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 ">
+          <div className="grid grid-cols-2 md:grid-cols-2 xl:grid-cols-4 gap-4 ">
             {data?.map((item: ShopProduct) => (
               <ProductsData key={item.id} item={item} />
             ))}
