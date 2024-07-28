@@ -186,7 +186,7 @@ const Banner = ({ host }: { host: string }) => {
                 className="group flex justify-center relative overflow-hidden w-full aspect-square h-full">
                 <Image
                   alt="Dress Women"
-                  src="/images/banner/banner_2.jpg"
+                  src="/images/banner/banner-mobile-9.jpeg"
                   layout="fill"
                   objectFit="cover"
                 />
