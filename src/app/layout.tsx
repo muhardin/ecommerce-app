@@ -62,7 +62,7 @@ export default async function RootLayout({
         <meta charSet="UTF-8" />
         <head>
           <title>My Shop Page</title>
-          {window.location.host === "tokokiens.com" ? (
+          {domain === "tokokiens.com" ? (
             <link rel="icon" href="/images/favicon.png" />
           ) : (
             <link
