@@ -185,12 +185,21 @@ const SignInComponent = () => {
                   </div>
                   <div className="hidden w-full px-6 mb-16 lg:w-3/5 lg:mb-0 lg:block">
                     <span className="flex items-center justify-center w-28 h-28 mx-auto text-gray-900 bg-white rounded-lg dark:bg-yellow-300 mb-9">
-                      <Image
-                        src={`${process.env.SERVER_ENDPOINT}/images/logo.png`}
-                        alt=""
-                        width={250}
-                        height={250}
-                      />
+                      {window.location.host === "tokokiens.com" ? (
+                        <Image
+                          src={`${process.env.SERVER_ENDPOINT}/images/klogo.png`}
+                          alt=""
+                          width={250}
+                          height={250}
+                        />
+                      ) : (
+                        <Image
+                          src={`${process.env.SERVER_ENDPOINT}/images/shopitycon.png`}
+                          alt=""
+                          width={250}
+                          height={250}
+                        />
+                      )}
                     </span>
                     <h2 className="text-4xl font-bold text-center text-gray-100 dark:text-gray-400 mb-9 lg:text-6xl ">
                       Are you ready to login our account?
