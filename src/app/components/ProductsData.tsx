@@ -63,8 +63,8 @@ const ProductsData = ({ item }: { item: ShopProduct }) => {
               <Image
                 src={`${process.env.SERVER_ENDPOINT}${item.product?.product_gallery[0].url}`}
                 alt="Product image"
-                width={500}
-                height={500}
+                width={400}
+                height={400}
                 className="w-full h-full object-cover group-hover:scale-110 duration-200 rounded-t-lg"
               />
 
@@ -92,8 +92,8 @@ const ProductsData = ({ item }: { item: ShopProduct }) => {
               <Image
                 src={`/images/no_image.png`}
                 alt="Product image"
-                width={500}
-                height={500}
+                width={400}
+                height={400}
                 className="w-full h-full object-cover group-hover:scale-110 duration-200 rounded-t-lg"
               />
 
