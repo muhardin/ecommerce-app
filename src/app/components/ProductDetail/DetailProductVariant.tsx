@@ -214,7 +214,7 @@ const DetailProductVariant = ({
           <div className="w-full px-4 md:w-1/2 ">
             <div className="lg:pl-20">
               <div className="pb-6 mb-8 border-b border-gray-200 dark:border-gray-700">
-                {data?.product.isNew === 1 ? (
+                {/* {data?.product.isNew === 1 ? (
                   <span className="text-lg font-medium text-sky-500 dark:text-rose-200">
                     New
                   </span>
@@ -222,7 +222,7 @@ const DetailProductVariant = ({
                   <span className="text-lg font-medium text-rose-500 dark:text-rose-200">
                     Product Second
                   </span>
-                )}
+                )} */}
                 <h2 className="max-w-xl mt-2 mb-6 text-xl font-bold dark:text-gray-300 md:text-4xl">
                   {data?.product.title}
                 </h2>
