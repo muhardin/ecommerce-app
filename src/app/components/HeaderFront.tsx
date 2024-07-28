@@ -260,14 +260,14 @@ const HeaderFront = () => {
                         placeholder="Search"
                       />
                     </div> */}
-                    <div className="ml-2 bg-white hidden sm:flex items-center gap-x-1 border-[1px] border-lightText/50 rounded-full px-4 py-1.5 focus-within:border-orange-600 group">
+                    {/* <div className="ml-2 bg-white hidden sm:flex items-center gap-x-1 border-[1px] border-lightText/50 rounded-full px-4 py-1.5 focus-within:border-orange-600 group">
                       <FiSearch className=" text-gray-500 group-focus-within:text-darkText duration-200" />
                       <input
                         type="text"
                         placeholder="Search"
                         className=" placeholder:text-sm flex-1 outline-none"
                       />
-                    </div>
+                    </div> */}
                     {/* <button
                       className="btn i px-6 py-2.5 bg-blue-600 dark:bg-blue-300 dark:hover:bg-blue-400  dark:text-gray-900 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700  focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out flex items-center"
                       type="button"
