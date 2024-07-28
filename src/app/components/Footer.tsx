@@ -71,7 +71,7 @@ const Footer = () => {
                   </Link>
                 </div>
               </div>
-              <div className="">
+              {/* <div className="">
                 <p className="text-lg">Latest posts</p>
                 <ul className="text-sm font-light mt-2 flex flex-col gap-y-2">
                   <li className="flex flex-col">
@@ -99,7 +99,7 @@ const Footer = () => {
                     <span className="text-sky-600">January 31, 2022</span>
                   </li>
                 </ul>
-              </div>
+              </div> */}
               <div className="">
                 <p className="text-lg">Links</p>
                 <ul className=" text-base gap-y-2 ">
