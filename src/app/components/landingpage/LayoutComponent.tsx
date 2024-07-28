@@ -96,13 +96,23 @@ const LayoutComponent = ({ children }: { children: React.ReactNode }) => {
                 )}
                 <Link aria-label="Home" href="/">
                   <div className="h-14 w-24 flex flex-row items-center">
-                    <Image
-                      className="object-fill"
-                      src={`${process.env.SERVER_ENDPOINT}/images/klogo.png`}
-                      width={500}
-                      height={500}
-                      alt=""
-                    />
+                    {window.location.host === "tokokiens.com" ? (
+                      <Image
+                        className="object-fill"
+                        src={`${process.env.SERVER_ENDPOINT}/images/klogo.png`}
+                        width={500}
+                        height={500}
+                        alt=""
+                      />
+                    ) : (
+                      <Image
+                        className="object-fill"
+                        src={`${process.env.SERVER_ENDPOINT}/images/shopitycon.png`}
+                        width={500}
+                        height={500}
+                        alt=""
+                      />
+                    )}
                   </div>
                 </Link>
                 <div className="hidden lg:flex lg:gap-10">

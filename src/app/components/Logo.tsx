@@ -16,13 +16,21 @@ const Logo = () => {
             height={85}
             src={`${process.env.SERVER_ENDPOINT}/storage/logo/${shopData.logo}`}
           />
+        ) : window.location.host === "tokokiens.com" ? (
+          <Image
+            className="object-cover w-10 h-10"
+            alt=""
+            width={85}
+            height={85}
+            src={`${process.env.SERVER_ENDPOINT}/images/klogo.png`}
+          />
         ) : (
           <Image
             className="object-cover w-10 h-10"
             alt=""
             width={85}
             height={85}
-            src={"/images/shop/logo_shop.png"}
+            src={`${process.env.SERVER_ENDPOINT}/images/shopitycon.png`}
           />
         )}
 
