@@ -223,7 +223,7 @@ const LandingPackage = () => {
                     }`}
                     aria-label="Get started with the Starter plan for [object Object]"
                     href="/web/sign-up">
-                    Get started for free
+                    Register Now
                   </a>
                 </section>
               ))
