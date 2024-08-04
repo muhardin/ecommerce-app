@@ -107,7 +107,7 @@ const LayoutComponent = ({ children }: { children: React.ReactNode }) => {
                     ) : window.location.host === "bangkokmiracle.store" ? (
                       <Image
                         className="object-fill"
-                        src={`${process.env.SERVER_ENDPOINT}/images/shopitycon.png`}
+                        src={`${process.env.SERVER_ENDPOINT}/images/bangkokmiracle.png`}
                         width={500}
                         height={500}
                         alt=""
