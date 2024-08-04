@@ -24,6 +24,14 @@ const Logo = () => {
             height={85}
             src={`${process.env.SERVER_ENDPOINT}/images/klogo.png`}
           />
+        ) : window.location.host === "bangkokmiracle.store" ? (
+          <Image
+            className="object-cover w-10 h-10"
+            alt=""
+            width={85}
+            height={85}
+            src={`${process.env.SERVER_ENDPOINT}/images/bangkokmiracle.png`}
+          />
         ) : (
           <Image
             className="object-cover w-10 h-10"

@@ -64,6 +64,11 @@ export default async function RootLayout({
           <title>My Shop Page</title>
           {domain === "tokokiens.com" ? (
             <link rel="icon" href="/images/favicon.png" />
+          ) : domain === "bangkokmiracle.store" ? (
+            <link
+              rel="icon"
+              href={`${process.env.SERVER_ENDPOINT}/images/bangkokmiracle.jpg`}
+            />
           ) : (
             <link
               rel="icon"

@@ -192,6 +192,13 @@ const SignInComponent = () => {
                           width={250}
                           height={250}
                         />
+                      ) : window.location.host === "bangkokmiracle.store" ? (
+                        <Image
+                          src={`${process.env.SERVER_ENDPOINT}/images/bangkokmiracle.png`}
+                          alt=""
+                          width={250}
+                          height={250}
+                        />
                       ) : (
                         <Image
                           src={`${process.env.SERVER_ENDPOINT}/images/shopitycon.png`}
