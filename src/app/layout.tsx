@@ -67,7 +67,7 @@ export default async function RootLayout({
           ) : domain === "bangkokmiracle.store" ? (
             <link
               rel="icon"
-              href={`${process.env.SERVER_ENDPOINT}/images/bangkokmiracle.jpg`}
+              href={`${process.env.SERVER_ENDPOINT}/images/favicon_bangkokmiracle.jpg`}
             />
           ) : (
             <link
