@@ -446,7 +446,7 @@ const LayoutComponent = ({ children }: { children: React.ReactNode }) => {
                                   </span>
                                 </Link>
                               </li>
-                              {/* <li>
+                              <li>
                                 <Link
                                   href={"/admin"}
                                   className="justify-between cursor-pointer p-2">
@@ -476,7 +476,7 @@ const LayoutComponent = ({ children }: { children: React.ReactNode }) => {
                                     <span>Administrator</span>
                                   </div>
                                 </Link>
-                              </li> */}
+                              </li>
                               {session.is_supplier == 1 && (
                                 <li>
                                   <Link
