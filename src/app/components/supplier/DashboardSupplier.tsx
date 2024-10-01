@@ -161,7 +161,7 @@ const DashboardSupplier = () => {
           </div>
         </div>
       </section>
-      <section className="px-4 py-6">
+      {/* <section className="px-4 py-6">
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-3 ">
           <div className="p-4 bg-white rounded-md shadow md:p-6 dark:bg-gray-900 ">
             <h2 className="pb-4 text-xl font-bold border-b dark:border-gray-700 dark:text-gray-400">
@@ -583,7 +583,7 @@ const DashboardSupplier = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
     </div>
   );
 };
