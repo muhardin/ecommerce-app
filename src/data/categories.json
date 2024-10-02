@@ -1,66 +1,162 @@
 [
-    {
-        "id": 1,
-        "name": "Fashion",
-        "created_at": "2023-05-23T08:01:39.000000Z",
-        "updated_at": null,
-        "picture": "1.png",
-        "status": 1
-    },
-    {
-        "id": 2,
-        "name": "Beauty",
-        "created_at": "2023-05-23T08:01:50.000000Z",
-        "updated_at": null,
-        "picture": "2.png",
-        "status": 1
-    },
-    {
-        "id": 3,
-        "name": "Accessories",
-        "created_at": "2023-05-23T08:02:00.000000Z",
-        "updated_at": null,
-        "picture": "3.png",
-        "status": 1
-    },
-    {
-        "id": 4,
-        "name": "Health",
-        "created_at": "2023-05-23T08:02:09.000000Z",
-        "updated_at": null,
-        "picture": "4.png",
-        "status": 1
-    },
-    {
-        "id": 5,
-        "name": "Stationery",
-        "created_at": "2023-05-23T08:02:20.000000Z",
-        "updated_at": null,
-        "picture": "5.png",
-        "status": 1
-    },
-    {
-        "id": 6,
-        "name": "Baby care",
-        "created_at": "2023-05-23T08:02:31.000000Z",
-        "updated_at": null,
-        "picture": "6.png",
-        "status": 1
-    },
-    {
-        "id": 7,
-        "name": "Electronics",
-        "created_at": "2023-05-23T08:02:39.000000Z",
-        "updated_at": null,
-        "picture": "7.png",
-        "status": 1
-    },
-    {
-        "id": 8,
-        "name": "Sports",
-        "created_at": "2023-05-23T08:02:48.000000Z",
-        "updated_at": null,
-        "picture": "8.png",
-        "status": 1
-    }
+  {
+    "id": 1,
+    "name": "Healthy food",
+    "created_at": "2023-05-23T15:01:39.000000Z",
+    "updated_at": null,
+    "picture": "1.png",
+    "status": 1
+  },
+  {
+    "id": 2,
+    "name": "Supplemen",
+    "created_at": "2023-05-23T15:01:50.000000Z",
+    "updated_at": null,
+    "picture": "2.png",
+    "status": 1
+  },
+  {
+    "id": 3,
+    "name": "Accessories",
+    "created_at": "2023-05-23T15:02:00.000000Z",
+    "updated_at": null,
+    "picture": "3.png",
+    "status": 1
+  },
+  {
+    "id": 4,
+    "name": "Medicare",
+    "created_at": "2023-05-23T15:02:09.000000Z",
+    "updated_at": null,
+    "picture": "4.png",
+    "status": 1
+  },
+  {
+    "id": 5,
+    "name": "Perfume",
+    "created_at": "2023-05-23T15:02:20.000000Z",
+    "updated_at": null,
+    "picture": "5.png",
+    "status": 1
+  },
+  {
+    "id": 6,
+    "name": "Healthcare",
+    "created_at": "2023-05-23T15:02:31.000000Z",
+    "updated_at": null,
+    "picture": "6.png",
+    "status": 1
+  },
+  {
+    "id": 7,
+    "name": "Electronics",
+    "created_at": "2023-05-23T15:02:39.000000Z",
+    "updated_at": null,
+    "picture": "7.png",
+    "status": 1
+  },
+  {
+    "id": 8,
+    "name": "Skincare",
+    "created_at": "2023-05-23T15:02:48.000000Z",
+    "updated_at": null,
+    "picture": "8.png",
+    "status": 1
+  },
+  {
+    "id": 9,
+    "name": "Healing oil",
+    "created_at": null,
+    "updated_at": null,
+    "picture": "8.png",
+    "status": 1
+  },
+  {
+    "id": 10,
+    "name": "Baby care",
+    "created_at": null,
+    "updated_at": null,
+    "picture": "8.png",
+    "status": 1
+  },
+  {
+    "id": 11,
+    "name": "Men's care",
+    "created_at": null,
+    "updated_at": null,
+    "picture": "8.png",
+    "status": 1
+  },
+  {
+    "id": 12,
+    "name": "Fashion",
+    "created_at": null,
+    "updated_at": null,
+    "picture": "8.png",
+    "status": 1
+  },
+  {
+    "id": 13,
+    "name": "Accecories",
+    "created_at": null,
+    "updated_at": null,
+    "picture": "8.png",
+    "status": 1
+  },
+  {
+    "id": 14,
+    "name": "Snack",
+    "created_at": null,
+    "updated_at": null,
+    "picture": "8.png",
+    "status": 1
+  },
+  {
+    "id": 15,
+    "name": "Healthy drink",
+    "created_at": null,
+    "updated_at": null,
+    "picture": "8.png",
+    "status": 1
+  },
+  {
+    "id": 16,
+    "name": "Bags",
+    "created_at": null,
+    "updated_at": null,
+    "picture": "8.png",
+    "status": 1
+  },
+  {
+    "id": 17,
+    "name": "Wallet",
+    "created_at": null,
+    "updated_at": null,
+    "picture": "8.png",
+    "status": 1
+  },
+  {
+    "id": 18,
+    "name": "Watch",
+    "created_at": null,
+    "updated_at": null,
+    "picture": "8.png",
+    "status": 1
+  },
+  {
+    "id": 19,
+    "name": "Moslem wear",
+    "created_at": null,
+    "updated_at": null,
+    "picture": "8.png",
+    "status": 1
+  },
+  {
+    "id": 20,
+    "name": "Smartphone accecories",
+    "created_at": null,
+    "updated_at": null,
+    "picture": "8.png",
+    "status": 1
+  }
 ]
