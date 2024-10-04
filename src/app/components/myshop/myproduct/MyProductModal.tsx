@@ -38,7 +38,7 @@ const MyProductModal = ({ product }: { product: ShopProduct }) => {
   // console.log(product);
 
   const minPrice =
-    product?.product?.company_price + product?.product?.company_price * 0.2;
+    product?.product?.company_price + product?.product?.company_price * 0.1;
   useEffect(() => {
     const fetchData = async () => {
       if (product) {

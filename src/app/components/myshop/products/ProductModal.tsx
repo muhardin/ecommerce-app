@@ -29,7 +29,7 @@ const ProductModal = ({
   const { data: session } = useSession();
 
   const sellingPrice = Number(
-    product?.company_price + product?.company_price * 0.2
+    product?.company_price + product?.company_price * 0.1
   );
 
   const profitDefault = Number(product?.company_price * 0.1);
