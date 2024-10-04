@@ -59,8 +59,8 @@ const ProductModal = ({
       setErrorPrice(false);
     }
     setPrice(Number(e));
-    setProfit(Number(e) - basePrice - (Number(e) - basePrice) * 0.1);
-    setSharingProfit((Number(e) - basePrice) * 0.1);
+    setProfit(Number(e) - basePrice - (Number(e) - basePrice) * 0);
+    setSharingProfit((Number(e) - basePrice) * 0);
     // console.log(e);
   };
 

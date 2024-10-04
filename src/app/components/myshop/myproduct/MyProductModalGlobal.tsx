@@ -29,8 +29,8 @@ const MyProductModalGlobal = ({
   const sellingPrice = Number(product?.agent_price);
 
   const [basePrice, setBasePrice] = useState(product?.product?.company_price);
-  const profitDefault = Number(basePrice * 0.1);
-  const sharingProfitDefault = Number((sellingPrice - basePrice) * 0.1);
+  const profitDefault = Number(basePrice * 0);
+  const sharingProfitDefault = Number((sellingPrice - basePrice) * 0);
   const finalProfit = Number(profitDefault - sharingProfitDefault);
   const [price, setPrice] = useState(sellingPrice);
   const [sharingProfit, setSharingProfit] = useState(sharingProfitDefault);
@@ -48,7 +48,7 @@ const MyProductModalGlobal = ({
         setProfit(
           Number(sellingPrice) -
             basePrice -
-            (Number(sellingPrice) - basePrice) * 0.1
+            (Number(sellingPrice) - basePrice) * 0
         );
         setSharingProfit(sharingProfitDefault);
       }
@@ -64,8 +64,8 @@ const MyProductModalGlobal = ({
     }
 
     setPrice(Number(e));
-    setProfit(Number(e) - basePrice - (Number(e) - basePrice) * 0.1);
-    setSharingProfit((Number(e) - basePrice) * 0.1);
+    setProfit(Number(e) - basePrice - (Number(e) - basePrice) * 0);
+    setSharingProfit((Number(e) - basePrice) * 0);
   };
 
   const [errMessage, setErrMessage]: any = useState<string[]>([]);
