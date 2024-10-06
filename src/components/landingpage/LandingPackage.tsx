@@ -26,11 +26,12 @@ const LandingPackage = () => {
             <h2
               id="pricing-title"
               className="text-3xl font-medium tracking-tight text-gray-900">
-              Flat pricing, no management fees.
+              oko Online Bebas Ribet & Serba Otomatis
             </h2>
             <p className="mt-2 text-lg text-gray-600">
-              Whether you’re one person trying to get ahead or a big firm trying
-              to take over the world, we’ve got a plan for you.
+              Bangun Bisnis Toko Online-mu Sampai Jadi Tycon ( Bos ) Online Shop
+              Yang Sukses Tanpa harus Punya Produk Atau Modal Stok. Disini Kamu
+              Bisa Mulai dari NOL Bersama Shopitycon !
             </p>
           </div>
           <div className="mt-8 flex justify-center">
