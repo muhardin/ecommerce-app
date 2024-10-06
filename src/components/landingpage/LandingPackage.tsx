@@ -119,8 +119,8 @@ const LandingPackage = () => {
                         ? "mt-3 text-sm text-slate-50"
                         : "mt-3 text-sm text-gray-700"
                     } `}>
-                    You’re new to investing but want to do it right. Get started
-                    for free.
+                    Non Promotycon Membership Plan. Tap DAFTAR / REGISTER
+                    Untuk Memulai
                   </p>
                   <div className="order-last mt-6">
                     <ul
