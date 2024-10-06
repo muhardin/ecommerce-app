@@ -110,7 +110,7 @@ const PageAbout = () => {
                 <Image
                   width={500}
                   height={500}
-                  src="/images/landing/about.jpg"
+                  src="/images/landing/landing.jpg"
                   alt=""
                   className="relative z-40 object-cover w-full rounded-md md:h-96 h-44"
                 />
