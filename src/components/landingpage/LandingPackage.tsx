@@ -32,15 +32,16 @@ const LandingPackage = () => {
             <p className="mt-2 text-lg text-gray-600">
               Bangun Bisnis Toko Online-mu Sampai Jadi Tycon ( Bos ) Online Shop
               Yang Sukses Tanpa harus Punya Produk Atau Modal Stok. Disini Kamu
-              Bisa Mulai dari NOL Bersama Shopitycon !
+              Bisa Mulai dari NOL Bersama Shopitycon !
             </p>
           </div>
-          <div className="">
+          <div className="flex justify-center mt-8">
             <Image
               src="/images/packages/pack.jpg"
               alt="package"
               width={1000}
               height={1000}
+              className="max-w-full h-auto"
             />
           </div>
           <div className="mt-8 flex justify-center">
