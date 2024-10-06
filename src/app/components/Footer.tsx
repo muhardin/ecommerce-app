@@ -33,7 +33,7 @@ const Footer = () => {
               <div className=" flex flex-col gap-y-4">
                 <Logo />
                 <p>{shopData?.description && shopData?.description}</p>
-                <div className="gap-x-4 flex items-center">
+                {/* <div className="gap-x-4 flex items-center">
                   <Link href="https://www.google.com" target="_blank">
                     <span className="socialLink">
                       <BsYoutube />
@@ -69,7 +69,7 @@ const Footer = () => {
                       <BsTelegram />
                     </span>
                   </Link>
-                </div>
+                </div> */}
               </div>
               {/* <div className="">
                 <p className="text-lg">Latest posts</p>
