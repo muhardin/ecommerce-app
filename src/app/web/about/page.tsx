@@ -22,7 +22,7 @@ const PageAbout = () => {
             <div className="flex flex-wrap items-center">
               <div className="w-full px-4 mb-10 md:w-1/2 lg:mb-0 ">
                 <h2 className="mb-4 text-2xl font-bold text-gray-700 dark:text-gray-300">
-                  We are providing a better facility
+                  We are providing a better facility__
                 </h2>
                 <p className="mb-4 text-base leading-7 text-gray-500 dark:text-gray-400">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
@@ -38,8 +38,7 @@ const PageAbout = () => {
                         height="16"
                         fill="currentColor"
                         className="w-5 h-5 bi bi-arrow-right-circle-fill"
-                        viewBox="0 0 16 16"
-                      >
+                        viewBox="0 0 16 16">
                         <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z" />
                       </svg>
                     </span>
@@ -53,8 +52,7 @@ const PageAbout = () => {
                         height="16"
                         fill="currentColor"
                         className="w-5 h-5 bi bi-arrow-right-circle-fill"
-                        viewBox="0 0 16 16"
-                      >
+                        viewBox="0 0 16 16">
                         <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z" />
                       </svg>
                     </span>
@@ -68,8 +66,7 @@ const PageAbout = () => {
                         height="16"
                         fill="currentColor"
                         className="w-5 h-5 bi bi-arrow-right-circle-fill"
-                        viewBox="0 0 16 16"
-                      >
+                        viewBox="0 0 16 16">
                         <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z" />
                       </svg>
                     </span>
@@ -83,8 +80,7 @@ const PageAbout = () => {
                         height="16"
                         fill="currentColor"
                         className="w-5 h-5 bi bi-arrow-right-circle-fill"
-                        viewBox="0 0 16 16"
-                      >
+                        viewBox="0 0 16 16">
                         <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z" />
                       </svg>
                     </span>
@@ -93,8 +89,7 @@ const PageAbout = () => {
                 </ul>
                 <a
                   href="#"
-                  className="px-4 py-2 text-gray-100 bg-blue-500 rounded-md dark:bg-blue-400 dark:hover:bg-blue-500 hover:bg-blue-600"
-                >
+                  className="px-4 py-2 text-gray-100 bg-blue-500 rounded-md dark:bg-blue-400 dark:hover:bg-blue-500 hover:bg-blue-600">
                   Learn more
                 </a>
               </div>
@@ -111,8 +106,7 @@ const PageAbout = () => {
                     width="290"
                     height="166"
                     fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
+                    xmlns="http://www.w3.org/2000/svg">
                     <mask
                       id="a"
                       className="mask mask-type-alpha"
@@ -120,8 +114,7 @@ const PageAbout = () => {
                       x="0"
                       y="0"
                       width="290"
-                      height="166"
-                    >
+                      height="166">
                       <path
                         fill="url(#paint0_linear_228_431)"
                         d="M0 0H290V165.838H0z"
@@ -152,8 +145,7 @@ const PageAbout = () => {
                         y1="161.063"
                         x2="154.33"
                         y2="4.773"
-                        gradientUnits="userSpaceOnUse"
-                      >
+                        gradientUnits="userSpaceOnUse">
                         <stop stop-color="#fff" />
                         <stop offset="1" stop-color="#fff" stopOpacity="0" />
                       </linearGradient>
@@ -163,8 +155,7 @@ const PageAbout = () => {
                         y1="80.334"
                         x2="3.944"
                         y2="3.188"
-                        gradientUnits="userSpaceOnUse"
-                      >
+                        gradientUnits="userSpaceOnUse">
                         <stop stop-color="#246151" />
                         <stop offset=".422" stop-color="#A7C6BC" />
                         <stop offset=".865" stop-color="#73CADC" />
@@ -175,8 +166,7 @@ const PageAbout = () => {
                         y1="165.839"
                         x2="3.944"
                         y2="88.693"
-                        gradientUnits="userSpaceOnUse"
-                      >
+                        gradientUnits="userSpaceOnUse">
                         <stop stop-color="#246151" />
                         <stop offset=".422" stop-color="#A7C6BC" />
                         <stop offset=".865" stop-color="#73CADC" />
@@ -187,8 +177,7 @@ const PageAbout = () => {
                         y1="80.335"
                         x2="280.382"
                         y2="3.188"
-                        gradientUnits="userSpaceOnUse"
-                      >
+                        gradientUnits="userSpaceOnUse">
                         <stop stop-color="#246151" />
                         <stop offset=".422" stop-color="#A7C6BC" />
                         <stop offset=".865" stop-color="#73CADC" />
@@ -199,8 +188,7 @@ const PageAbout = () => {
                         y1="165.839"
                         x2="280.382"
                         y2="88.693"
-                        gradientUnits="userSpaceOnUse"
-                      >
+                        gradientUnits="userSpaceOnUse">
                         <stop stop-color="#246151" />
                         <stop offset=".422" stop-color="#A7C6BC" />
                         <stop offset=".865" stop-color="#73CADC" />
