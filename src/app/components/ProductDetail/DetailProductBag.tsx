@@ -316,11 +316,13 @@ const DetailProductBag = ({
                   <span>
                     <FormattedPrice amount={price} />
                   </span>
-                  <span className="ml-2 text-base font-normal text-gray-500 line-through dark:text-gray-400">
-                    <FormattedPrice
-                      amount={data?.old_price ? data?.old_price : 0}
-                    />
-                  </span>
+                  {data?.old_price > 0 && (
+                    <span className="ml-2 text-base font-normal text-gray-500 line-through dark:text-gray-400">
+                      <FormattedPrice
+                        amount={data?.old_price ? data?.old_price : 0}
+                      />
+                    </span>
+                  )}
                 </p>
               </div>
 
