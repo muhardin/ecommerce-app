@@ -30,13 +30,11 @@ const AboutUs = () => {
           </div>
           <div className="w-full px-4 mb-10 lg:w-1/2 lg:mb-0">
             <h2 className="py-3 pl-2 mb-4 text-2xl font-bold text-gray-700 border-l-4 border-blue-500 dark:border-blue-400 dark:text-gray-300">
-              We are providing a better facility
+              Platform E-commerce Toko Online Yang Powerful.
             </h2>
             <p className="mb-4 text-base leading-7 text-gray-500 dark:text-gray-400">
-              Welcome to My Shop, your go-to online store for all things of
-              product. We are dedicated to providing you with the very best of
-              products, with an emphasis on quality, customer service, and
-              uniqueness.
+              Solusi Instan untuk Menjadi Pemilik Onlineshop Sukses, Khususnya
+              Buat Pemula & Yang Gaptek !
             </p>
             <ul className="mb-10">
               <li className="flex items-center mb-4 text-base text-gray-600 dark:text-gray-400">
@@ -47,8 +45,7 @@ const AboutUs = () => {
                     height="16"
                     fill="currentColor"
                     className="w-5 h-5 bi bi-patch-check-fill"
-                    viewBox="0 0 16 16"
-                  >
+                    viewBox="0 0 16 16">
                     <path d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zm.287 5.984-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7 8.793l2.646-2.647a.5.5 0 0 1 .708.708z" />
                   </svg>
                 </span>
@@ -63,12 +60,11 @@ const AboutUs = () => {
                     height="16"
                     fill="currentColor"
                     className="w-5 h-5 bi bi-patch-check-fill"
-                    viewBox="0 0 16 16"
-                  >
+                    viewBox="0 0 16 16">
                     <path d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zm.287 5.984-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7 8.793l2.646-2.647a.5.5 0 0 1 .708.708z" />
                   </svg>
                 </span>
-                Eli orem ipsum dolor sit amet, consectetur advice
+                All In One Solution
               </li>
               <li className="flex items-center text-base text-gray-600 dark:text-gray-400">
                 <span className="mr-3 text-blue-500 dark:text-blue-400">
@@ -78,8 +74,7 @@ const AboutUs = () => {
                     height="16"
                     fill="currentColor"
                     className="w-5 h-5 bi bi-patch-check-fill"
-                    viewBox="0 0 16 16"
-                  >
+                    viewBox="0 0 16 16">
                     <path d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a.5.5 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01.89.636-.622a2.89 2.89 0 0 0 0-4.134l.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zm.287 5.984-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7 8.793l2.646-2.647a.5.5 0 0 1 .708.708z" />
                   </svg>
                 </span>
@@ -88,8 +83,7 @@ const AboutUs = () => {
             </ul>
             <a
               href="#"
-              className="px-4 py-3 text-blue-700 transition-all transform border border-blue-500 hover:bg-blue-600 dark:border-blue-400 dark:hover:bg-blue-500 dark:hover:text-gray-100 dark:hover:border-blue-500 dark:text-blue-400 hover:text-gray-100"
-            >
+              className="px-4 py-3 text-blue-700 transition-all transform border border-blue-500 hover:bg-blue-600 dark:border-blue-400 dark:hover:bg-blue-500 dark:hover:text-gray-100 dark:hover:border-blue-500 dark:text-blue-400 hover:text-gray-100">
               Discover more
             </a>
           </div>
