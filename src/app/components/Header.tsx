@@ -207,7 +207,7 @@ const Header = () => {
           </div>
 
           {/* Button Menu */}
-          <div className="hidden md:flex space-x-3 flex-1 lg:ml-8">
+          {/* <div className="hidden md:flex space-x-3 flex-1 lg:ml-8">
             <Link
               href="#"
               className="px-2 py-2 hover:bg-gray-100 rounded-lg text-gray-400 hover:text-gray-600">
@@ -223,7 +223,7 @@ const Header = () => {
               className="px-2 py-2 hover:bg-gray-100 rounded-lg text-gray-400 hover:text-gray-600">
               About Us
             </Link>
-          </div>
+          </div> */}
 
           {/* Search Field */}
           {/* <div className="ml-2 bg-white hidden sm:flex items-center gap-x-1 border-[1px] border-lightText/50 rounded-full px-4 py-1.5 focus-within:border-orange-600 group">
