@@ -273,11 +273,7 @@ const ProductAvailableGlobalComp = ({ shop }: { shop?: any }) => {
                   <div className="" key={product.id}>
                     <div className="w-full rounded-lg overflow-hidden">
                       <div className={`${isListed ? "hidden" : "block"}`}>
-                        <Link
-                          href={{
-                            pathname: "/product",
-                            query: { id: product?.id, image: product?.image },
-                          }}>
+                        <Link href={`/myshop/product/detail/${product.id}`}>
                           <div className=" w-full h-80 group overflow-hidden relative">
                             {product?.product_gallery?.length > 0 ? (
                               <Image
