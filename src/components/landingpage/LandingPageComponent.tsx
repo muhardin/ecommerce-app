@@ -81,11 +81,12 @@ export default function LandingPageComponent() {
                     <p className="mt-4 text-sm text-gray-700">
                       Shopitycon adalah platform toko online yang mempertemukan
                       pemilik produk (supplier) dan penjual (seller) dalam satu
-                      software otomatis bebas repot. Nama Shopitycon berasal
-                      dari dua kata dengan terjemahan bebas: Shopi (toko online)
-                      dan Tycon (bos/raja). Jadi Shopitycon artinya bosnya toko
-                      online. Dengan Shopitycon, kamu bisa memulai bisnis toko
-                      online bahkan tanpa modal stok produk sama sekali.
+                      software otomatis bebas repot. <br />
+                      Nama Shopitycon berasal dari dua kata dengan terjemahan
+                      bebas: Shopi (toko online) dan Tycon (bos/raja). <br />
+                      Jadi Shopitycon artinya bosnya toko online. <br />
+                      Dengan Shopitycon, kamu bisa memulai bisnis toko online
+                      bahkan tanpa modal stok produk sama sekali. <br />
                     </p>
                   </li>
                   <li>
@@ -96,9 +97,10 @@ export default function LandingPageComponent() {
                     <p className="mt-4 text-sm text-gray-700">
                       Jika member menggunakan plan Start Up sampai Premier, maka
                       nama tokonya mengikuti subdomain shopitycon (contoh:
-                      namatokoanda.shopitycon.com). Jika member menggunakan plan
-                      Elite dan Royale, maka toko online bisa menggunakan
-                      private domain (www.namatokoanda.com).
+                      namatokoanda.shopitycon.com). <br />
+                      Jika member menggunakan plan Elite dan Royale, maka toko
+                      online bisa menggunakan private domain
+                      (www.namatokoanda.com). <br />
                     </p>
                   </li>
                   <li>
@@ -108,9 +110,11 @@ export default function LandingPageComponent() {
                     <p className="mt-4 text-sm text-gray-700">
                       Setelah terdaftar dan bisa login, masuk ke dashboard
                       seller, pilih produk yang ingin ditampilkan di frontpage
-                      toko onlinemu. Setiap produk yang terpilih akan langsung
-                      tampil di toko onlinemu untuk bisa dijual. Kamu akan
-                      mendapat keuntungan dari selisih harga jual.
+                      toko onlinemu. <br />
+                      Setiap produk yang terpilih akan langsung tampil di toko
+                      onlinemu untuk bisa dijual. <br />
+                      Kamu akan mendapat keuntungan dari selisih harga jual.{" "}
+                      <br />
                     </p>
                   </li>
                 </ul>
@@ -122,10 +126,11 @@ export default function LandingPageComponent() {
                       Berapa Lama Proses Pendaftaran Sampai Toko Saya Online?
                     </h3>
                     <p className="mt-4 text-sm text-gray-700">
-                      Prosesnya instan dan cepat. Setelah menyelesaikan form
-                      registrasi dan pembayaran Pin Akses, dashboard login
-                      langsung aktif. Kamu bisa memilih produk untuk ditampilkan
-                      di toko online dalam hitungan detik.
+                      Prosesnya instan dan cepat. <br />
+                      Setelah menyelesaikan form registrasi dan pembayaran Pin
+                      Akses, dashboard login langsung aktif. <br />
+                      Kamu bisa memilih produk untuk ditampilkan di toko online
+                      dalam hitungan detik. <br />
                     </p>
                   </li>
                   <li>
@@ -135,9 +140,9 @@ export default function LandingPageComponent() {
                     </h3>
                     <p className="mt-4 text-sm text-gray-700">
                       Setelah pembeli check out, sistem akan memberikan
-                      notifikasi ke WhatsApp Seller dan Supplier. Supplier akan
-                      mengirim produk, dan dana akan otomatis tersplit setelah
-                      produk terkirim.
+                      notifikasi ke WhatsApp Seller dan Supplier. <br />
+                      Supplier akan mengirim produk, dan dana akan otomatis
+                      tersplit setelah produk terkirim. <br />
                     </p>
                   </li>
                   <li>
@@ -146,8 +151,8 @@ export default function LandingPageComponent() {
                     </h3>
                     <p className="mt-4 text-sm text-gray-700">
                       Kami menyediakan berbagai opsi pembayaran seperti Virtual
-                      Account, E-Money, dan Kartu Kredit. Proses dilakukan oleh
-                      payment gateway resmi.
+                      Account, E-Money, dan Kartu Kredit. <br />
+                      Proses dilakukan oleh payment gateway resmi. <br />
                     </p>
                   </li>
                 </ul>
@@ -161,7 +166,7 @@ export default function LandingPageComponent() {
                     <p className="mt-4 text-sm text-gray-700">
                       Ongkos kirim dihitung berdasarkan jarak antara gudang
                       supplier dan lokasi pembeli, menggunakan sistem API Raja
-                      Ongkir.
+                      Ongkir. <br />
                     </p>
                   </li>
                   <li>
@@ -170,8 +175,9 @@ export default function LandingPageComponent() {
                     </h3>
                     <p className="mt-4 text-sm text-gray-700">
                       Kamu bisa menjual produk yang sesuai dengan niche dan
-                      target audiensmu. Lakukan riset pasar untuk menentukan
-                      produk yang unik atau kompetitif.
+                      target audiensmu. <br />
+                      Lakukan riset pasar untuk menentukan produk yang unik atau
+                      kompetitif. <br />
                     </p>
                   </li>
                   <li>
@@ -180,7 +186,7 @@ export default function LandingPageComponent() {
                     </h3>
                     <p className="mt-4 text-sm text-gray-700">
                       Untuk info dan pertanyaan lainnya, kamu bisa melihat
-                      tutorial di dashboard seller masing-masing.
+                      tutorial di dashboard seller masing-masing. <br />
                     </p>
                   </li>
                 </ul>
