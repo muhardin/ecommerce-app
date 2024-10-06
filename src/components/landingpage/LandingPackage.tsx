@@ -1,6 +1,7 @@
 import useSWR from "swr";
 import { Benefit, PackageData } from "../../../type";
 import FormattedPrice from "@/app/components/FormattedPrice";
+import Image from "next/image";
 
 const LandingPackage = () => {
   const fetcher = (url: any) =>
@@ -33,6 +34,14 @@ const LandingPackage = () => {
               Yang Sukses Tanpa harus Punya Produk Atau Modal Stok. Disini Kamu
               Bisa Mulai dari NOL Bersama Shopitycon !
             </p>
+          </div>
+          <div className="">
+            <Image
+              src="/images/packages/pack.jpg"
+              alt="package"
+              width={1000}
+              height={1000}
+            />
           </div>
           <div className="mt-8 flex justify-center">
             <div className="relative">
