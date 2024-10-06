@@ -224,7 +224,7 @@ const DetailProductBag = ({
                   </span>
                 )} */}
                 <h2 className="max-w-xl mt-2 mb-6 text-xl font-bold dark:text-gray-300 md:text-4xl">
-                  {data?.product.title}
+                  {data?.product.title}___
                 </h2>
                 <div className="flex flex-wrap items-center mb-6">
                   {/* <div className="flex flex-row items-center justify-center">
