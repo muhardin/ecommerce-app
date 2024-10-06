@@ -38,7 +38,7 @@ const Logo = () => {
             alt=""
             width={85}
             height={85}
-            src={`${process.env.SERVER_ENDPOINT}/images/shopitycon.png`}
+            src={`${process.env.SERVER_ENDPOINT}/images/favicon_.png`}
           />
         )}
 
