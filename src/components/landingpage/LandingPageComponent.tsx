@@ -58,14 +58,14 @@ export default function LandingPageComponent() {
               <h2
                 id="faqs-title"
                 className="text-3xl font-medium tracking-tight text-gray-900">
-                Tanya Jawab (FAQ) Website Business Toko Online SmartShop
+                Apa Itu Shopitycon?
               </h2>
               <p className="mt-2 text-lg text-gray-600">
-                If you have anything else you want to ask,{" "}
+                Jika kamu memiliki pertanyaan lain,{" "}
                 <a
                   href="mailto:info@example.com"
                   className="text-gray-900 underline">
-                  reach out to us
+                  hubungi kami
                 </a>{" "}
               </p>
             </div>
@@ -76,57 +76,41 @@ export default function LandingPageComponent() {
                 <ul role="list" className="space-y-10">
                   <li>
                     <h3 className="text-lg font-semibold leading-6 text-gray-900">
-                      Apa Itu Toko Online?
+                      Apa Itu Shopitycon?
                     </h3>
                     <p className="mt-4 text-sm text-gray-700">
-                      Toko online adalah toko yang menjual produk dan layanannya
-                      melalui internet. Jenis usaha ini berbeda dengan toko
-                      konvensional yang masih berjualan lewat bangunan fisik.
-                      Website eCommerce adalah platform yang mendukung aktivitas
-                      jual beli produk atau layanan di internet. Dengan kata
-                      lain, website eCommerce adalah toko online. Setelah
-                      pembeli melunasi pembayaran, produk yang dipesan akan
-                      diantarkan ke alamat pembeli. Opsi pembayaran di transaksi
-                      eCommerce bervariasi, mulai dari pembayaran digital hingga
-                      COD.
+                      Shopitycon adalah platform toko online yang mempertemukan
+                      pemilik produk (supplier) dan penjual (seller) dalam satu
+                      software otomatis bebas repot. Nama Shopitycon berasal
+                      dari dua kata dengan terjemahan bebas: Shopi (toko online)
+                      dan Tycon (bos/raja). Jadi Shopitycon artinya bosnya toko
+                      online. Dengan Shopitycon, kamu bisa memulai bisnis toko
+                      online bahkan tanpa modal stok produk sama sekali.
                     </p>
                   </li>
                   <li>
                     <h3 className="text-lg font-semibold leading-6 text-gray-900">
-                      Mengapa Saya Perlu Website untuk Jualan Online?
+                      Apa Perbedaan Toko Subdomain Shopitycon dan Private
+                      Domain?
                     </h3>
                     <p className="mt-4 text-sm text-gray-700">
-                      Meskipun sudah berjualan di marketplace, Anda masih bisa
-                      mendapatkan keuntungan lebih banyak dengan memiliki
-                      website toko online sendiri. Anda bebas melakukan optimasi
-                      untuk mendatangkan lebih banyak pelanggan lewat mesin
-                      pencari, seperti Google, dan menautkannya dengan akun
-                      media sosial yang dimiliki. Sudah jadi rahasia umum kalau
-                      persaingan di marketplace lebih sulit karena mereka
-                      memiliki algoritmanya sendiri. Anda pun harus berusaha
-                      lebih keras agar toko terlihat pembeli. Tapi, apabila
-                      punya website toko online sendiri, Anda tidak perlu
-                      mengalami hal ini. Cukup pilih domain profesional yang
-                      memuat nama usaha dan buat website toko online terbaik
-                      versi Anda. Selain itu, banyak marketplace yang
-                      membebankan biaya administrasi hingga 15% dari setiap
-                      produk yang berhasil terjual membuat margin keuntungan
-                      Anda menjadi lebih kecil.
+                      Jika member menggunakan plan Start Up sampai Premier, maka
+                      nama tokonya mengikuti subdomain shopitycon (contoh:
+                      namatokoanda.shopitycon.com). Jika member menggunakan plan
+                      Elite dan Royale, maka toko online bisa menggunakan
+                      private domain (www.namatokoanda.com).
                     </p>
                   </li>
                   <li>
                     <h3 className="text-lg font-semibold leading-6 text-gray-900">
-                      Apakah Bisnis Toko Online Menguntungkan?
+                      Bagaimana Sistem Kerja Sebagai Seller di Shopitycon?
                     </h3>
                     <p className="mt-4 text-sm text-gray-700">
-                      Jika dibandingkan dengan toko konvensional, tentu saja
-                      lebih menguntungkan. Toko online tidak perlu bangunan
-                      fisik. Jadi, Anda tidak perlu memikirkan biaya listrik,
-                      air, dan sewa bulanan. Toko online bisa diakses 24/7 oleh
-                      siapa saja dari seluruh dunia; tidak dibatasi waktu buka
-                      atau lokasi toko. Biaya operasionalnya juga bisa lebih
-                      murah karena Anda tidak perlu mempekerjakan banyak
-                      karyawan.
+                      Setelah terdaftar dan bisa login, masuk ke dashboard
+                      seller, pilih produk yang ingin ditampilkan di frontpage
+                      toko onlinemu. Setiap produk yang terpilih akan langsung
+                      tampil di toko onlinemu untuk bisa dijual. Kamu akan
+                      mendapat keuntungan dari selisih harga jual.
                     </p>
                   </li>
                 </ul>
@@ -135,17 +119,25 @@ export default function LandingPageComponent() {
                 <ul role="list" className="space-y-10">
                   <li>
                     <h3 className="text-lg font-semibold leading-6 text-gray-900">
-                      Apakah Jualan Online Hanya untuk Bisnis Profesional?
+                      Berapa Lama Proses Pendaftaran Sampai Toko Saya Online?
                     </h3>
                     <p className="mt-4 text-sm text-gray-700">
-                      Tidak. Mulai dari bisnis individu dan kecil hingga
-                      perusahaan multinasional bisa berjulan online. Meskipun
-                      sudah memiliki website, Anda bisa meningkatkan penjualan
-                      dengan membuka toko online. Anda juga bisa memperluas
-                      jangkauan bisnis dengan menerima pesanan di website
-                      eCommerce. Buat toko online mudah dan cepat. Jangan
-                      khawatir jika Anda belum memiliki ide bisnis! Kami siap
-                      membantu mewujudkan bisnis Anda sekarang.
+                      Prosesnya instan dan cepat. Setelah menyelesaikan form
+                      registrasi dan pembayaran Pin Akses, dashboard login
+                      langsung aktif. Kamu bisa memilih produk untuk ditampilkan
+                      di toko online dalam hitungan detik.
+                    </p>
+                  </li>
+                  <li>
+                    <h3 className="text-lg font-semibold leading-6 text-gray-900">
+                      Bagaimana Proses Ketika Produk Supplier Terjual di Toko
+                      Online Saya?
+                    </h3>
+                    <p className="mt-4 text-sm text-gray-700">
+                      Setelah pembeli check out, sistem akan memberikan
+                      notifikasi ke WhatsApp Seller dan Supplier. Supplier akan
+                      mengirim produk, dan dana akan otomatis tersplit setelah
+                      produk terkirim.
                     </p>
                   </li>
                   <li>
@@ -153,26 +145,9 @@ export default function LandingPageComponent() {
                       Apa Saja Opsi Pembayaran yang Tersedia untuk Pelanggan?
                     </h3>
                     <p className="mt-4 text-sm text-gray-700">
-                      Kami menyediakan berbagai opsi pembayaran berbeda untuk
-                      tiap negara. Anda bisa memilih opsi pembayaran yang sesuai
-                      dengan lokasi target audiens. Hubungkan website ke Stripe
-                      dan aktifkan 20+ opsi pembayaran internasional seperti
-                      Apple Pay, EPS, Sofort, dan masih banyak lagi.
-                    </p>
-                  </li>
-                  <li>
-                    <h3 className="text-lg font-semibold leading-6 text-gray-900">
-                      Apa Produk yang Bisa Saya Jual?
-                    </h3>
-                    <p className="mt-4 text-sm text-gray-700">
-                      Tergantung dari niche dan target audiens Anda. Sebelum
-                      merintis website jualan online, lakukan riset untuk
-                      mengetahui tren produk di pasaran. Dengan begitu, Anda
-                      dapat menentukan strategi yang tepat untuk bersaing dengan
-                      kompetitor. Jual produk yang unik atau produk dengan harga
-                      yang menarik di toko online Anda. Sebagai rekomendasi,
-                      kami sudah membuat daftar produk jualan online paling
-                      laris di tahun ini khusus untuk Anda.
+                      Kami menyediakan berbagai opsi pembayaran seperti Virtual
+                      Account, E-Money, dan Kartu Kredit. Proses dilakukan oleh
+                      payment gateway resmi.
                     </p>
                   </li>
                 </ul>
@@ -181,37 +156,31 @@ export default function LandingPageComponent() {
                 <ul role="list" className="space-y-10">
                   <li>
                     <h3 className="text-lg font-semibold leading-6 text-gray-900">
-                      Berapa Lama Waktu untuk Buat Website Toko Online?
+                      Bagaimana Sistem Penghitungan Ongkos Kirim?
                     </h3>
                     <p className="mt-4 text-sm text-gray-700">
-                      Lama cepatnya tergantung pada produk yang ingin dijual dan
-                      tampilan toko online yang diinginkan. Kebanyakan website
-                      builder membutuhkan beberapa hari hingga beberapa minggu
-                      untuk menyiapkan dan mengonlinekan website, tergantung
-                      tingkat kemampuan Anda. Untungnya,dengan website builder
-                      drag-and-drop intuitif Hostinger, Anda bisa buat buat toko
-                      online tanpa skill coding dalam sekejap.
+                      Ongkos kirim dihitung berdasarkan jarak antara gudang
+                      supplier dan lokasi pembeli, menggunakan sistem API Raja
+                      Ongkir.
                     </p>
                   </li>
                   <li>
                     <h3 className="text-lg font-semibold leading-6 text-gray-900">
-                      How do I explain the money I withdraw from Pocket to the
-                      IRS?
+                      Apa Produk yang Bisa Saya Jual?
                     </h3>
                     <p className="mt-4 text-sm text-gray-700">
-                      This feels like one-hundred percent a you problem. Pocket
-                      is not responsible in any way for your tax returns.
+                      Kamu bisa menjual produk yang sesuai dengan niche dan
+                      target audiensmu. Lakukan riset pasar untuk menentukan
+                      produk yang unik atau kompetitif.
                     </p>
                   </li>
                   <li>
                     <h3 className="text-lg font-semibold leading-6 text-gray-900">
-                      How do I become an insider?
+                      Pertanyaan & Panduan Penggunaan?
                     </h3>
                     <p className="mt-4 text-sm text-gray-700">
-                      Contact us with some details about your industry and the
-                      type of access you have to apply for an insider account.
-                      Once approved, we &apos ll send you a guide on collecting
-                      insider information without being detected at work.
+                      Untuk info dan pertanyaan lainnya, kamu bisa melihat
+                      tutorial di dashboard seller masing-masing.
                     </p>
                   </li>
                 </ul>
