@@ -26,7 +26,7 @@ const LandingPackage = () => {
             <h2
               id="pricing-title"
               className="text-3xl font-medium tracking-tight text-gray-900">
-              oko Online Bebas Ribet & Serba Otomatis
+              Toko Online Bebas Ribet & Serba Otomatis
             </h2>
             <p className="mt-2 text-lg text-gray-600">
               Bangun Bisnis Toko Online-mu Sampai Jadi Tycon ( Bos ) Online Shop
@@ -49,7 +49,7 @@ const LandingPackage = () => {
                   data-headlessui-state="checked">
                   Annually
                 </div>
-                <div
+                {/* <div
                   className="cursor-pointer border border-gray-300 px-[calc(theme(spacing.3)-1px)] py-[calc(theme(spacing.2)-1px)] text-sm text-gray-700 outline-2 outline-offset-2 transition-colors hover:border-gray-400 -ml-px rounded-r-lg"
                   id="headlessui-radiogroup-option-:rg:"
                   role="radio"
@@ -57,7 +57,7 @@ const LandingPackage = () => {
                   tabIndex={-1}
                   data-headlessui-state="">
                   Monthly
-                </div>
+                </div> */}
               </div>
               <div
                 aria-hidden="true"
@@ -65,9 +65,9 @@ const LandingPackage = () => {
                 <div className="py-2 text-center text-sm font-semibold text-white">
                   Annually
                 </div>
-                <div className="py-2 text-center text-sm font-semibold text-white -ml-px">
+                {/* <div className="py-2 text-center text-sm font-semibold text-white -ml-px">
                   Monthly
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
@@ -119,8 +119,7 @@ const LandingPackage = () => {
                         ? "mt-3 text-sm text-slate-50"
                         : "mt-3 text-sm text-gray-700"
                     } `}>
-                    Non Promotycon Membership Plan. Tap DAFTAR / REGISTER
-                    Untuk Memulai
+                    {item.description_price}
                   </p>
                   <div className="order-last mt-6">
                     <ul
