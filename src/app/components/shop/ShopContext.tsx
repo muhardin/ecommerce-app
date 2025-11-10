@@ -1,12 +1,13 @@
 "use client";
 import React, {
   createContext,
-  useContext,
-  useState,
   ReactNode,
+  useContext,
   useEffect,
-} from "react";
-import { ShopData } from "../../../../type";
+  useState,
+} from 'react';
+
+import { ShopData } from '../../../../type';
 
 // Define the shape of your ShopData
 // interface ShopData {

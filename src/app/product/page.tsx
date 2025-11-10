@@ -4,7 +4,7 @@ import ProductsData from "../components/ProductsData";
 import SingleProduct from "../components/SingleProduct";
 import TrendingProduct from "../components/TrendingProduct";
 import { getSingleProduct, getTrendingProducts } from "../helpers";
-import { headers } from "next/headers";
+import { getRealDomain } from "@/utils/domainUtils";
 
 type Props = {
   searchParams: { [key: string]: string | string[] | undefined };
@@ -17,8 +17,7 @@ const ProductPage = async ({ searchParams }: Props) => {
   const id = Number(_idString);
   // const product = await getSingleProduct(id);
   // const data = await getTrendingProducts();
-  const headersList = headers();
-  const domain = headersList.get("host") || "";
+  const domain = getRealDomain();
   // console.log(domain);
   return (
     <div>

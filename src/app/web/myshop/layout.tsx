@@ -1,5 +1,6 @@
 import { Metadata } from "next";
-import { headers } from "next/headers";
+
+import { getRealDomain } from "@/utils/domainUtils";
 
 export const metadata: Metadata = {
   title: "Landing Page",
@@ -11,23 +12,8 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  // const sessionServer = await getServerSession(options);
-  // const token = sessionServer?.bearer;
-  // const res = await fetch("http://127.0.0.1:8000/api/user/profile", {
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //     Authorization: `Bearer ${token}`,
-  //   },
-  // });
-  // const data = await res.json();
-  // console.log(process.env.GITHUB_ID!);
-  const headersList = headers();
-  const domain = headersList.get("host") || "";
-  const fullUrl = headersList.get("referer") || "";
-  const [, pathname] =
-    fullUrl.match(new RegExp(`https?:\/\/${domain}(.*)`)) || [];
-  // console.log(pathname);
-  // console.log(domain);
+  // Get real domain from proxy headers
+  const domain = getRealDomain();
   return (
     <>
       <div className="">{children}</div>

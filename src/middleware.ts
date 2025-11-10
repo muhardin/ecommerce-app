@@ -1,8 +1,8 @@
-import { getToken } from "next-auth/jwt";
-import { headers } from "next/headers";
-import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
-import { options } from "./app/api/auth/[...nextauth]/options";
+import { getToken } from 'next-auth/jwt';
+import type { NextRequest } from 'next/server';
+import { NextResponse } from 'next/server';
+
+import { getRealDomainFromRequest } from '@/utils/domainUtils';
 
 export async function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
@@ -11,8 +11,8 @@ export async function middleware(request: NextRequest) {
   const host = request.nextUrl.host;
   const locale = request.nextUrl.locale;
 
-  const headersList = headers();
-  const domain = headersList.get("host") || "";
+  // Get real domain from proxy headers
+  const domain = getRealDomainFromRequest(request);
   const token = (await getToken({
     req: request as any,
     secret: process.env.NEXTAUTH_SECRET!,

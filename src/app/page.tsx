@@ -1,13 +1,10 @@
-import Banner from "./components/Banner";
-import Products from "./components/Products";
-import { NextRequest, NextResponse } from "next/server";
-import { headers } from "next/headers";
-import LandingPageComponent from "@/components/landingpage/LandingPageComponent";
-import DefaultPage from "@/components/DefaultPage";
+import DefaultPage from '@/components/DefaultPage';
+import LandingPageComponent
+  from '@/components/landingpage/LandingPageComponent';
+import { getRealDomain } from '@/utils/domainUtils';
+
 export default async function Home() {
-  const headersList = headers();
-  const domain = headersList.get("host") || "";
-  const fullUrl = headersList.get("referer") || "";
+  const domain = getRealDomain();
 
   if (process.env.LANDING_PAGE?.includes(domain)) {
     return (

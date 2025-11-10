@@ -1,13 +1,14 @@
-import { options } from "@/app/api/auth/[...nextauth]/options";
-import ProductAvailableComponent from "@/app/components/myshop/products/ProductAvailableComponent";
-import ProductAvailableGlobalComp from "@/app/components/myshop/products/ProductAvailableGlobalComp";
-import { getServerSession } from "next-auth";
-import { headers } from "next/headers";
-import React from "react";
+import React from 'react';
+
+import { getServerSession } from 'next-auth';
+
+import { options } from '@/app/api/auth/[...nextauth]/options';
+import ProductAvailableGlobalComp
+  from '@/app/components/myshop/products/ProductAvailableGlobalComp';
+import { getRealDomain } from '@/utils/domainUtils';
 
 const AvailableProduct = async () => {
-  const headersList = headers();
-  const domain = headersList.get("host") || "";
+  const domain = getRealDomain();
   if (process.env.LANDING_PAGE?.includes(domain)) {
     const sessionServer = await getServerSession(options);
     const token = sessionServer?.bearer;

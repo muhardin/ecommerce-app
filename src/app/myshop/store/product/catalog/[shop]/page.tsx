@@ -2,7 +2,7 @@ import { options } from "@/app/api/auth/[...nextauth]/options";
 import ProductAvailableComponent from "@/app/components/myshop/products/ProductAvailableComponent";
 import ProductAvailableGlobalComp from "@/app/components/myshop/products/ProductAvailableGlobalComp";
 import { getServerSession } from "next-auth";
-import { headers } from "next/headers";
+import { getRealDomain } from "@/utils/domainUtils";
 import React from "react";
 
 const AvailableProduct = async ({
@@ -10,8 +10,7 @@ const AvailableProduct = async ({
 }: {
   params: { slug: string; shop: number };
 }) => {
-  const headersList = headers();
-  const domain = headersList.get("host") || "";
+  const domain = getRealDomain();
   //   console.log(params);
   if (process.env.LANDING_PAGE?.includes(domain)) {
     const sessionServer = await getServerSession(options);

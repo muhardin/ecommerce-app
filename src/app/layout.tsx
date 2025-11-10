@@ -3,7 +3,8 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
 import { getServerSession } from 'next-auth';
-import { headers } from 'next/headers';
+
+import { getRealDomain } from '@/utils/domainUtils';
 
 import { options } from './api/auth/[...nextauth]/options';
 import LayoutWeb from './components/landingpage/Layout';
@@ -33,14 +34,9 @@ export default async function RootLayout({
   // const data = await res.json();
   // console.log(process.env.GITHUB_ID!);
 
-  /** */
-  const headersList = headers();
-  const domain = headersList.get("host") || "";
-  const fullUrl = headersList.get("referer") || "";
-  const [, pathname] =
-    fullUrl.match(new RegExp(`https?:\/\/${domain}(.*)`)) || [];
-  // console.log(pathname);
-  // console.log(domain);
+  /** Get real domain from proxy headers or host header */
+  const domain = getRealDomain();
+  // console.log('Domain:', domain);
 
   /**
    <Provider store={store}>
