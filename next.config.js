@@ -40,13 +40,13 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "api.tokokiens.com",
+        hostname: "pasaria.store",
         port: "",
         pathname: "/**",
       },
       {
         protocol: "https",
-        hostname: "api.shopitycon.com",
+        hostname: "api.pasaria.store",
         port: "",
         pathname: "/**",
       },
