@@ -1,20 +1,16 @@
-import Header from "./components/Header";
-import Layout from "./components/Layout";
-import "./css/globals.css";
-import type { Metadata } from "next";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import Footer from "./components/Footer";
-import BottomNavigation from "./components/BottomNavigation";
-import { getServerSession } from "next-auth";
-import { options } from "./api/auth/[...nextauth]/options";
-import { LayoutProvider } from "./LayoutProvider";
-import { headers } from "next/headers";
-import { ShopDataProvider } from "./components/shop/ShopContext";
-import HeaderFront from "./components/HeaderFront";
-import LayoutWeb from "./components/landingpage/Layout";
-import FooterWeb from "@/components/landingpage/FooterWeb";
-import LayoutCustom from "./components/LayoutCustom";
+import './css/globals.css';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+
+import { getServerSession } from 'next-auth';
+import { headers } from 'next/headers';
+
+import { options } from './api/auth/[...nextauth]/options';
+import LayoutWeb from './components/landingpage/Layout';
+import Layout from './components/Layout';
+import LayoutCustom from './components/LayoutCustom';
+import { ShopDataProvider } from './components/shop/ShopContext';
+import { LayoutProvider } from './LayoutProvider';
 
 // export const metadata: Metadata = {
 //   title: "Smart Shop ",
@@ -88,10 +84,71 @@ export default async function RootLayout({
   } else {
     const sessionServer = await getServerSession(options);
     const token = sessionServer?.bearer;
-    const res = await fetch(
-      `${process.env.SERVER_ENDPOINT}/api/shop/${domain}`
-    );
-    const data = await res.json();
+    
+    // Default values in case of fetch failure
+    let data = {
+      domain: domain,
+      description: "",
+      logo: "",
+      company_name: "My Shop",
+      favicon: "",
+    };
+
+    try {
+      // Create AbortController for timeout
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
+
+      const res = await fetch(
+        `${process.env.SERVER_ENDPOINT}/api/shop/${domain}`,
+        {
+          signal: controller.signal,
+          headers: {
+            "Accept": "application/json",
+            "User-Agent": "Next.js",
+          },
+          // Add cache options to help with reliability
+          cache: "no-store", // Always fetch fresh data
+        }
+      );
+
+      clearTimeout(timeoutId);
+
+      if (res.ok) {
+        data = await res.json();
+      } else {
+        console.error(`Failed to fetch shop data: ${res.status} ${res.statusText}`);
+      }
+    } catch (error: any) {
+      // Handle abort (timeout)
+      if (error.name === "AbortError") {
+        console.error("Request timeout: Failed to fetch shop data within 10 seconds");
+      } else {
+        console.error("Error fetching shop data:", error.message);
+        
+        // If it's an SSL error, provide helpful error message
+        if (
+          error.code === "ERR_SSL_SSLV3_ALERT_HANDSHAKE_FAILURE" ||
+          error.code === "ERR_TLS_CERT_ALTNAME_INVALID" ||
+          error.code === "CERT_HAS_EXPIRED" ||
+          error.message?.includes("SSL") ||
+          error.message?.includes("handshake") ||
+          error.message?.includes("certificate")
+        ) {
+          console.error(
+            "\n⚠️  SSL/TLS Certificate Error Detected!\n" +
+            "Possible solutions:\n" +
+            "1. For development with self-signed certificates, set NODE_TLS_REJECT_UNAUTHORIZED=0 (NOT for production)\n" +
+            "2. Ensure SERVER_ENDPOINT uses a valid SSL certificate\n" +
+            "3. Verify the certificate hasn't expired\n" +
+            "4. Check if SERVER_ENDPOINT should use HTTP instead of HTTPS for development\n" +
+            `Current SERVER_ENDPOINT: ${process.env.SERVER_ENDPOINT}\n`
+          );
+        }
+      }
+      // Continue with default values so the page still renders
+    }
+
     const {
       domain: domainName,
       description,
@@ -104,10 +161,12 @@ export default async function RootLayout({
       <html lang="en">
         <head>
           <title>{company_name}</title>
-          <link
-            rel="icon"
-            href={`${process.env.SERVER_ENDPOINT}/storage/logo/${favicon}`}
-          />
+          {favicon && (
+            <link
+              rel="icon"
+              href={`${process.env.SERVER_ENDPOINT}/storage/logo/${favicon}`}
+            />
+          )}
         </head>
         <body className="font-bodyFont w-full bg-main-bg text-darkText ">
           <LayoutProvider>
