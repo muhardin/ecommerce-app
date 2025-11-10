@@ -231,7 +231,7 @@ const HeaderFront = () => {
             <div className="ml-2">
               <Logo />
             </div>
-            <div className="hidden lg:flex space-x-3 flex-1 lg:ml-8">
+            {/* <div className="hidden lg:flex space-x-3 flex-1 lg:ml-8">
               <Link
                 href="#"
                 className="px-2 py-2 hover:bg-gray-100 rounded-lg text-gray-400 hover:text-gray-600">
@@ -247,7 +247,7 @@ const HeaderFront = () => {
                 className="px-2 py-2 hover:bg-gray-100 rounded-lg text-gray-400 hover:text-gray-600">
                 About Us
               </Link>
-            </div>
+            </div> */}
             <div className="flex items-center">
               <div className="justify-center hidden mr-4 md:flex">
                 <div className=" xl:w-96">
