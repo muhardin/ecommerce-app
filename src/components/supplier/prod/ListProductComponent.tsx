@@ -595,16 +595,14 @@ const ListProductComponent = () => {
                           <Suspense>
                             {item.product_gallery?.length > 0 ? (
                               <ModalImage
-                                width={150}
-                                height={150}
-                                className="object-center items-center rounded-lg"
+                                className="w-[150px] h-[150px] object-center items-center rounded-lg"
                                 small={`${process.env.SERVER_ENDPOINT}${item.product_gallery[0].url}`}
                                 large={`${process.env.SERVER_ENDPOINT}${item.product_gallery[0].url}`}
                                 alt={item?.title}
                               />
                             ) : (
                               <ModalImage
-                                className="object-center items-center"
+                                className="w-[150px] h-[150px] object-center items-center"
                                 small={`/images/no_image.png`}
                                 large={`/images/no_image.png`}
                                 alt={item?.title}
